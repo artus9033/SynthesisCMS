@@ -21,4 +21,9 @@ elixir(mix => {
 	.webpack('materialize.js');
 
 	mix.webpack('jquery-3.1.1.min.js');
+
+	mix.copy(
+		 'resources/assets/img',
+		 'public/img'
+	  );
 });

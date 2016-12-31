@@ -11,8 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-	return view('home', [
-		'middleware' => 'auth'
-	]);
+Auth::routes();
+
+Route::group(['middleware' => 'web'], function () {
+	Auth::routes();
+	Route::auth();
+
+	Route::get('/', function () {
+         return redirect('/home');
+     });
+
+	Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@info']);
+
+     Route::get('/profile/password', ['as' => 'profile', 'uses' => 'ProfileController@info_edit']);
+
+     Route::post('/profile/password', ['as' => 'profile_password', 'uses' => 'ProfileController@edit']);
+
+     Route::get('/home', 'HomeController@index');
 });

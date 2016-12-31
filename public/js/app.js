@@ -68,7 +68,7 @@
 /* 0 */
 /***/ function(module, exports) {
 
-eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMC5qcyIsInNvdXJjZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ==");
+eval("$(document).ready(function() {\r\n\t$('.dropdown-button').dropdown({\r\n      inDuration: 500,\r\n      outDuration: 350,\r\n      constrain_width: true,\r\n      hover: true,\r\n      gutter: 0,\r\n      belowOrigin: true\r\n    });\r\n    $('select').material_select();\r\n});\r\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9yZXNvdXJjZXMvYXNzZXRzL2pzL2FwcC5qcz84YjY3Il0sInNvdXJjZXNDb250ZW50IjpbIiQoZG9jdW1lbnQpLnJlYWR5KGZ1bmN0aW9uKCkge1xyXG5cdCQoJy5kcm9wZG93bi1idXR0b24nKS5kcm9wZG93bih7XHJcbiAgICAgIGluRHVyYXRpb246IDUwMCxcclxuICAgICAgb3V0RHVyYXRpb246IDM1MCxcclxuICAgICAgY29uc3RyYWluX3dpZHRoOiB0cnVlLFxyXG4gICAgICBob3ZlcjogdHJ1ZSxcclxuICAgICAgZ3V0dGVyOiAwLFxyXG4gICAgICBiZWxvd09yaWdpbjogdHJ1ZVxyXG4gICAgfSk7XHJcbiAgICAkKCdzZWxlY3QnKS5tYXRlcmlhbF9zZWxlY3QoKTtcclxufSk7XHJcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyByZXNvdXJjZXMvYXNzZXRzL2pzL2FwcC5qcyJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTsiLCJzb3VyY2VSb290IjoiIn0=");
 
 /***/ }
 /******/ ]);
