@@ -6,7 +6,8 @@ return [
     'register' => 'Register',
     'profile' => 'Profile',
     'profile_change_password' => 'Change Password',
-    'choose_language' => 'Choose Language'
+    'choose_language' => 'Choose Language',
+    'msg_language_changed' => 'Language has been changed to ',
 ];
 
 ?>

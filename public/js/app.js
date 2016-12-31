@@ -1,5 +1,5 @@
 function setLanguage(lang){
-	alert(lang);
+	window.location.href = "/lang/" + lang;
 }
 
 $(document).ready(function() {
@@ -12,5 +12,4 @@ $(document).ready(function() {
       belowOrigin: true
     });
     $('select').material_select();
-    setLanguage("A");
 });
