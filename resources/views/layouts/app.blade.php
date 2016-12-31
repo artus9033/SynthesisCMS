@@ -29,7 +29,7 @@
 			<div class="nav-wrapper col s12">
 				<a href="/" class="brand-logo" style="margin-left: 10px;">{{ config('app.name') }}</a>
 				<div class="input-field right">
-				<select class="icons white-text">
+				<select class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value);">
 				<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="left circle">EN</option>
 				<option value="PL" data-icon="{!! asset('img/langs/PL.png') !!}" class="left circle">PL</option>
 			   </select>

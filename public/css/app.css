@@ -1,2 +1,13 @@
+.caret {
+  color: white !important;
+}
+
+.select-dropdown {
+  border-bottom-color: white !important;
+}
+
+.select-wrapper {
+  margin-top: 5px !important;
+}
 
 /*# sourceMappingURL=app.css.map */
