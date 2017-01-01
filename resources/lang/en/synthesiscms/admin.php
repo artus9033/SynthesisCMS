@@ -8,6 +8,7 @@ return [
     'section_users' => 'Users & Administration',
     'section_routes' => 'Routes & Extensions',
     'section_settings' => 'Settings',
+    'backend' => 'Site Administration',
 ];
 
 ?>

@@ -13,7 +13,7 @@ class BackendController extends Controller
 	public function index()
 	{
 		if(Auth::check() && Auth::user()->is_admin){
-			return view('auth.admin');
+			return view('admin.admin');
 		}else{
 			return view('auth.error');
 		}
@@ -22,7 +22,7 @@ class BackendController extends Controller
 	public function manageUsersGet()
 	{
 		if(Auth::check()){
-			return view('auth.profile_password');
+			return view('admin.manage_users');
 		}else{
 			return view('auth.error');
 		}
