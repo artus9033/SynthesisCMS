@@ -9,7 +9,6 @@ return [
     'user' => 'User',
     'profile' => 'My Profile',
     'change_password' => 'Change Password',
-    'manage_users' => 'Manage Users & Privileges',
 ];
 
 ?>

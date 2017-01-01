@@ -12,7 +12,7 @@
 	<div class="col s6 offset-s3 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 		<div class="card-content">
 			<div class="card-title">
-				<h3 class="teal-text">{{ trans('synthesiscms/auth.login')}}</h5>
+				<h3 class="teal-text">{{ trans('synthesiscms/auth.login')}}</h3>
 				</div>
 				<div class="divider teal col s12"></div>
 				<form class="form-horizontal col s12" role="form" method="POST" action="{{ url('/login') }}">

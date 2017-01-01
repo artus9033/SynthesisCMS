@@ -31,6 +31,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
 		  \App\Http\Middleware\Locale::class,
+		  \PragmaRX\Tracker\Vendor\Laravel\Middlewares\Tracker::class,
         ],
 
 	   'admin' => [
