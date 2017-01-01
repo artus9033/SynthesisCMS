@@ -7,6 +7,8 @@ elixir(mix => {
 
 	mix.sass('materializecss/materialize.scss').webpack('materialize.js');
 
+	mix.sass('loginregister.scss');
+
 	mix.copy('resources/assets/js/jquery-3.1.1.min.js', 'public/js/');
 
 	mix.copy('resources/assets/img', 'public/img');

@@ -1,22 +1,55 @@
 @extends('layouts.app')
 
+@section('head')
+<link type="text/css" rel="stylesheet" href="{!! asset('css/login-register.css') !!}"/>
+@endsection
+
 @section('breadcrumbs')
-<a href="/profile" class="breadcrumb">{{ trans('synthesiscms/main.profile')}}</a>
+<a href="/profile" class="breadcrumb">{{ trans('synthesiscms/main.profile') }}</a>
 @endsection
 
 @section('main')
-<div class="container">
-	<h1>{{ trans('synthesiscms/auth.profile') }}</h1>
-	@if(Session::has('message'))
-	    <div class="card-panel col s8 offset-s2 green white-text center" style="height: 45px;">
-	      <h5 class="center">{{ Session::get('message') }}</h5>
-	    </div>
-	@endif
-    @foreach($errors as $error)
-	    <div class="card-panel col s8 offset-s2 red white-text center" style="height: 45px;">
- 		<h5 class="center">{{ $error }}</h5>
- 	   </div>
-    @endforeach
-    <a href="/profile/password" class="btn teal waves-effect waves-light center hoverable">{{ trans('synthesiscms/auth.change_password') }}</a>
-</div>
+	<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+		<div class="card-content">
+			<div class="card-title col s12">
+				<h3 class="teal-text valign-wrapper"><i class="material-icons prefix teal-text medium valign">supervisor_account</i>&nbsp;{{ trans('synthesiscms/auth.profile') }}</h5>
+				</div>
+				<div class="divider teal col s12"></div>
+				<div class="col s12 row"></div>
+				<div class="col s12 row">
+				<table class="bordered col s7">
+        <thead>
+          <tr>
+              <th data-field="id">{{ trans('synthesiscms/profile.id') }}</th>
+              <th data-field="name">{{ trans('synthesiscms/profile.name') }}</th>
+              <th data-field="email">{{ trans('synthesiscms/profile.email') }}</th>
+		    <th data-field="rights">{{ trans('synthesiscms/profile.rights') }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>{{ \Auth::user()->id }}</td>
+		  <td>{{ \Auth::user()->name }}</td>
+		  <td>{{ \Auth::user()->email }}</td>
+		  <td>@php if(\Auth::user()->is_admin){ echo trans('synthesiscms/profile.admin'); }else{ echo trans('synthesiscms/profile.user'); } @endphp</td>
+          </tr>
+        </tbody>
+      </table>
+	 <div class="col s5 row">
+				<div class="col s10 offset-s1">
+					<a href="/profile/password" class="btn btn-large teal waves-effect waves-light center hoverable col s12"><i class="material-icons white-text left">lock_outline</i>{{ trans('synthesiscms/profile.change_password') }}</a>
+				</div>
+				<div class="col s12 row"></div>
+				<div class="col s10 offset-s1">
+					<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-large col s12 teal waves-effect waves-light center hoverable"><i class="material-icons white-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}</a>
+					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+						{{ csrf_field() }}
+					</form>
+				</div>
+			</div>
+			</div>
+			<div class="col s12 row"></div>
+			</div>
+		</div>
 @endsection

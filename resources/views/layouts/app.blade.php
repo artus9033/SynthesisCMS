@@ -29,27 +29,33 @@
 			<div class="nav-wrapper col s12">
 				<a href="/" class="brand-logo" style="margin-left: 10px;">{{ config('app.name') }}</a>
 				<div class="input-field right">
-				<select class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value);">
+				<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value);">
 				<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="left circle">EN</option>
 				<option value="PL" data-icon="{!! asset('img/langs/PL.png') !!}" class="left circle">PL</option>
 			   </select>
 		   </div>
-				<ul class="right hide-on-med-and-down">
+		   <script>
+		   $('#lang-select').val('@php echo(strtoupper(\App::getLocale()));@endphp');
+		   </script>
+				<ul class="col s10 right">
 					@yield('menu')
 					@if (Auth::guest())
-						<li><a href="{{ url('/login') }}">{!! trans('synthesiscms/menu.login') !!}</a></li>
-						<li><a href="{{ url('/register') }}">{!! trans('synthesiscms/menu.register') !!}</a></li>
+						<li class="right col s3 m2 l2"><a class="center" href="{{ url('/register') }}"><i class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}</a></li>
+						<li class="right col s3 m2 l2"><a class="center" href="{{ url('/login') }}"><i class="material-icons white-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}</a></li>
 					@else
 						<ul id="user_dropdown" class="dropdown-content">
 							<li>
-								<a href="{{ url('/profile') }}">{!! trans('synthesiscms/menu.profile') !!}</a>
-								<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{!! trans('synthesiscms/menu.logout') !!}</a>
+								@if(Auth::user()->is_admin)
+									<a href="{{ url('/admin') }}"><i class="material-icons teal-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}</a>
+								@endif
+								<a href="{{ url('/profile') }}"><i class="material-icons teal-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}</a>
+								<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons teal-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}</a>
 								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 									{{ csrf_field() }}
 								</form>
 							</li>
 						</ul>
-						<li><a class="dropdown-button" href="/profile" data-activates="user_dropdown">{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
+						<li class="right col s3 m3 l3"><a class="dropdown-button center" href="/profile" data-activates="user_dropdown"><i class="material-icons white-text left">account_circle</i>{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
 					@endif
 				</ul>
 			</div>
@@ -63,6 +69,10 @@
 			</div>
 		</nav>
 		<div class="main col s12 row center">
+			@if(Session::has('message'))
+				@include('partials/message', ['message' => Session::get('message')])
+			@endif
+		    @each('partials/error', $errors, 'error')
 			@yield('main')
 		</div>
 	</div>

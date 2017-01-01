@@ -10,16 +10,24 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+Route::get('/', function () {
+    return redirect('/home');
+});
 
-Auth::routes();
+Route::get('/backend', function () {
+    return redirect('/admin');
+});
 
+Route::group(['middleware' => 'admin'], function () {
+	Route::get('/admin', ['as' => 'admin', 'uses' => 'BackendController@index']);
+
+	Route::get('/admin/manage_users', ['as' => 'manage_users', 'uses' => 'BackendController@manageUsersGet']);
+     Route::post('/admin/manage_users', ['as' => 'manage_users_post', 'uses' => 'BackendController@manageUsersPost']);
+});
+//Page::where('id', $id)->update(array('image' => 'asdasd'));
 Route::group(['middleware' => 'web'], function () {
 	Auth::routes();
 	Route::auth();
-
-	Route::get('/', function () {
-         return redirect('/home');
-     });
 
 	Route::get('/lang/{language}', [ 'as' => 'lang', 'uses' => 'HomeController@lang']);
 
