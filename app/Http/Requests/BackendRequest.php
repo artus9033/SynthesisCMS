@@ -13,7 +13,7 @@ class BackendRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check() && Auth::user()->is_admin;
+        return \Auth::check() && \Auth::user()->is_admin;
     }
 
     /**

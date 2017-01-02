@@ -4,6 +4,10 @@
 <link type="text/css" rel="stylesheet" href="{!! asset('css/login-register.css') !!}"/>
 @endsection
 
+@section('title')
+	{{ trans('synthesiscms/auth.change_password')}}
+@endsection
+
 @section('breadcrumbs')
 <a href="/profile" class="breadcrumb">{{ trans('synthesiscms/main.profile')}}</a>
 <a href="/profile/password" class="breadcrumb">{{ trans('synthesiscms/main.profile_change_password')}}</a>
@@ -32,7 +36,9 @@
     <label for="oldpassword">{{ trans('synthesiscms/auth.oldpassword') }}</label>
     <input id="oldpassword" name="oldpassword" type="password" value="">
 </div>
+<div class="col s12 row">
 <button type="submit" class="btn btn-large teal waves-effect waves-light center hoverable"><i class="material-icons white-text left">phonelink_lock</i>{{ trans('synthesiscms/auth.change_password_btn') }}</button>
+</div>
 {!! Form::close() !!}
 </div>
 @endsection

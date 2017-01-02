@@ -1,81 +1,76 @@
 @extends('layouts.app')
 
+@section('title')
+	{{ trans('synthesiscms/auth.registration')}}
+@endsection
+
+@section('head')
+	<link type="text/css" rel="stylesheet" href="{!! asset('css/login-register.css') !!}"/>
+@endsection
+
 @section('breadcrumbs')
-<a href="{{ url('/register') }}" class="breadcrumb">{{ trans('synthesiscms/main.register')}}</a>
+	<a href="{{ url('/register') }}" class="breadcrumb">{{ trans('synthesiscms/auth.registration')}}</a>
 @endsection
 
 @section('main')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {{ csrf_field() }}
-				    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+	<div class="col s6 offset-s3 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+		<div class="card-content">
+			<div class="card-title">
+				<h3 class="teal-text">{{ trans('synthesiscms/auth.registration')}}</h3>
+				</div>
+				<div class="divider teal col s12"></div>
+				<form class="form-horizontal col s12" role="form" method="POST" action="{{ url('/register') }}">
+					{{ csrf_field() }}
+					<div class='row'></div>
+					<div class='row'>
+						@if ($errors->has('name'))
+							<h5 class="red-text center">
+								<strong>{{ $errors->first('name') }}</strong>
+							</h5>
+						@endif
+						<div class='input-field col s12'>
+							<i class="material-icons teal-text prefix">perm_identity</i>
+							<input class='validate' type='text' name='name' id='name' value="{{ old('name') }}" required />
+							<label for='name'  data-error="{{ trans('synthesiscms/auth.name_bad')}}" data-success="{{ trans('synthesiscms/auth.name_ok')}}">{{ trans('synthesiscms/auth.name')}}</label>
+						</div>
+					</div>
+					<div class='row'>
+						@if ($errors->has('email'))
+							<h5 class="red-text center">
+								<strong>{{ $errors->first('email') }}</strong>
+							</h5>
+						@endif
+						<div class='input-field col s12'>
+							<i class="material-icons teal-text prefix">mail_outline</i>
+							<input class='validate' type='email' name='email' id='email' value="{{ old('email') }}" required />
+							<label for='email'  data-error="{{ trans('synthesiscms/auth.email_bad')}}" data-success="{{ trans('synthesiscms/auth.email_ok')}}">{{ trans('synthesiscms/auth.email')}}</label>
+						</div>
+					</div>
+					<div class='row'>
+						@if ($errors->has('password'))
+							<h5 class="red-text center">
+								<strong>{{ $errors->first('password') }}</strong>
+							</h5>
+						@endif
+						<div class='input-field col s12'>
+							<i class="material-icons teal-text prefix">lock_outline</i>
+							<input class='validate' type='password' name='password' id='password' value="{{ old('password') }}" required />
+							<label for='password' data-error="{{ trans('synthesiscms/auth.password_bad')}}" data-success="{{ trans('synthesiscms/auth.password_ok')}}">{{ trans('synthesiscms/auth.password')}}</label>
+						</div>
+						</div>
+						<div class='row'>
+							<div class='input-field col s12'>
+								<i class="material-icons teal-text prefix">lock_outline</i>
+								<input class='validate' type='password' name='password_confirmation' id='password_confirmation' required />
+								<label for='password_confirmation' data-error="{{ trans('synthesiscms/auth.password_bad')}}" data-success="{{ trans('synthesiscms/auth.password_ok')}}">{{ trans('synthesiscms/auth.password')}}</label>
+							</div>
+						<div class="row"></div>
+						<button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect waves-light teal hoverable'>{{ trans('synthesiscms/auth.register')}}</button>
+						</div>
+				</form>
+			</div>
+			<div class="card-action col s12 row center">
+				<a class="center teal-text darken-1" href="{{ url('/login') }}">{{ trans('synthesiscms/auth.login')}}</a>
+			</div>
+		</div>
+	@endsection

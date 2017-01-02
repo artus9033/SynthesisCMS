@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+	{{ trans('synthesiscms/auth.login')}}
+@endsection
+
 @section('head')
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/login-register.css') !!}"/>
 @endsection
@@ -53,7 +57,7 @@
 							</p>
 						</div>
 						<div class="row"></div>
-						<button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect waves-light teal'>{{ trans('synthesiscms/auth.login')}}</button>
+						<button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect waves-light teal hoverable'>{{ trans('synthesiscms/auth.login_btn')}}</button>
 					</div>
 				</form>
 			</div>

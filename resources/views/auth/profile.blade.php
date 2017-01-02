@@ -4,6 +4,10 @@
 <link type="text/css" rel="stylesheet" href="{!! asset('css/login-register.css') !!}"/>
 @endsection
 
+@section('title')
+	{{ trans('synthesiscms/auth.profile')}}
+@endsection
+
 @section('breadcrumbs')
 <a href="/profile" class="breadcrumb">{{ trans('synthesiscms/main.profile') }}</a>
 @endsection

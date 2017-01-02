@@ -5,7 +5,6 @@
     "dev": "gulp watch"
   },
   "devDependencies": {
-    "materialize-sass": "^0.95.2",
     "gulp": "^3.9.1",
     "jquery": "^3.1.0",
     "laravel-elixir": "^6.0.0-9",

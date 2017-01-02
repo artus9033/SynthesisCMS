@@ -14,6 +14,8 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
+Route::get('/p/{slug}', array('as' => 'page.show', 'uses' => 'PageController@show'));
+
 Route::get('/backend', function () {
     return redirect('/admin');
 });
@@ -23,6 +25,10 @@ Route::group(['middleware' => 'admin'], function () {
 
 	Route::get('/admin/manage_users', ['as' => 'manage_users', 'uses' => 'BackendController@manageUsersGet']);
      Route::post('/admin/manage_users', ['as' => 'manage_users_post', 'uses' => 'BackendController@manageUsersPost']);
+
+
+	Route::get('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'BackendController@privileges']);
+	Route::post('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'BackendController@privileges_change']);
 });
 //Page::where('id', $id)->update(array('image' => 'asdasd'));
 Route::group(['middleware' => 'web'], function () {
@@ -32,6 +38,8 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/lang/{language}', [ 'as' => 'lang', 'uses' => 'HomeController@lang']);
 
 	Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@info']);
+
+	Route::get('/profile/delete/{id}', ['as' => 'profile', 'uses' => 'ProfileController@delete']);
 
      Route::get('/profile/password', ['as' => 'profile', 'uses' => 'ProfileController@info_edit']);
 

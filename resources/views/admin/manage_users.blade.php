@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
+@section('title')
+	{{ trans('synthesiscms/admin.manage_users')}}
+@endsection
+
 @section('breadcrumbs')
-<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-<a href="/admin/manage_users" class="breadcrumb">{{ trans('synthesiscms/admin.manage_users') }}</a>
+	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="/admin/manage_users" class="breadcrumb">{{ trans('synthesiscms/admin.manage_users') }}</a>
 @endsection
 
 @section('main')
@@ -14,39 +18,46 @@
 				<div class="divider teal col s12"></div>
 				<div class="col s12 row"></div>
 				<div class="col s12 row">
-				<table class="bordered col s7">
-        <thead>
-          <tr>
-              <th data-field="id">{{ trans('synthesiscms/profile.id') }}</th>
-              <th data-field="name">{{ trans('synthesiscms/profile.name') }}</th>
-              <th data-field="email">{{ trans('synthesiscms/profile.email') }}</th>
-		    <th data-field="rights">{{ trans('synthesiscms/profile.rights') }}</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>{{ \Auth::user()->id }}</td>
-		  <td>{{ \Auth::user()->name }}</td>
-		  <td>{{ \Auth::user()->email }}</td>
-		  <td>@php if(\Auth::user()->is_admin){ echo trans('synthesiscms/profile.admin'); }else{ echo trans('synthesiscms/profile.user'); } @endphp</td>
-          </tr>
-        </tbody>
-      </table>
-	 <div class="col s5 row">
-				<div class="col s10 offset-s1">
-					<a href="/profile/password" class="btn btn-large teal waves-effect waves-light center hoverable col s12"><i class="material-icons white-text left">lock_outline</i>{{ trans('synthesiscms/profile.change_password') }}</a>
+					<table class="bordered col s12">
+						<thead>
+							<tr>
+								<th data-field="id" class="center">{{ trans('synthesiscms/profile.id') }}</th>
+								<th data-field="name" class="center">{{ trans('synthesiscms/profile.name') }}</th>
+								<th data-field="email" class="center">{{ trans('synthesiscms/profile.email') }}</th>
+								<th data-field="rights" class="center">{{ trans('synthesiscms/profile.rights') }}</th>
+								<th data-field="edit" class="center">{{ trans('synthesiscms/profile.edit_rights') }}</th>
+								<th data-field="delete" class="center">{{ trans('synthesiscms/profile.delete') }}</th>
+							</tr>
+						</thead>
+						<tbody>
+								@php
+									use \App\User;
+									$usr_count = 0;
+									$all_users = User::all();
+								@endphp
+								@foreach ($all_users as $user)
+									@if (\Auth::user()->id != $user->id)
+										@php
+											$usr_count = $usr_count + 1;
+											$uid = $user->id;
+										@endphp
+										<tr>
+											<td class="center">{{ $uid }}</td>
+											<td class="center">{{ $user->name }}</td>
+											<td class="center">{{ $user->email }}</td>
+											<td class="center">@php if($user->is_admin){ echo trans('synthesiscms/profile.admin'); }else{ echo trans('synthesiscms/profile.user'); } @endphp</td>
+											<td class="center"><a href="/admin/user-privileges/{{ $uid }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.change_user_privileges') }}</a></td>
+											<td class="center"><a href="/profile/delete/{{ $uid }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_user') }}</a></td>
+										</tr>
+									@endif
+								@endforeach
+								@if ($usr_count == 0)
+									<tr><td colspan="6" class="center">{{ trans('synthesiscms/admin.no_other_users') }}</td></tr>
+								@endif
+							</tr>
+						</tbody>
+					</table>
 				</div>
-				<div class="col s12 row"></div>
-				<div class="col s10 offset-s1">
-					<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-large col s12 teal waves-effect waves-light center hoverable"><i class="material-icons white-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}</a>
-					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-						{{ csrf_field() }}
-					</form>
-				</div>
-			</div>
-			</div>
-			<div class="col s12 row"></div>
 			</div>
 		</div>
-@endsection
+	@endsection

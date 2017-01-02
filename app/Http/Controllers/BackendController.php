@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\BackendRequest;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
 
@@ -59,5 +60,24 @@ class BackendController extends Controller
 			Auth::user()->save();
 			return \Redirect::route('profile')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
 		}
+	}
+
+	public function privileges($id){
+		$uname = User::select('name')->where('id', $id)->first()['name'];
+		$privs = User::select('is_admin')->where('id', $id)->first()['is_admin'] == true;
+		return view('admin.change_user_privileges', ['priv' => $privs, 'uid' => $id, 'uname' => $uname]);
+	}
+
+	public function privileges_change($id, BackendRequest $request){
+		if($id == Auth::user()->id){
+			return view('admin.change_user_privileges')->with('errors', trans("admin.err_cant_edit_self_privileges"));
+		}
+		$is_admin_new = $request->input("is_admin") === 'true'? true : false;
+		$usr = User::find($id);
+		$usr->is_admin = $is_admin_new;
+		$usr->save();
+		//Auth::user()->is_admin = $request->get('is_admin');
+		//Auth::user()->save();
+		return \Redirect::route('manage_users')->with('message', trans('synthesiscms/admin.msg_user_privileges_successfully_changed', ['name' => $usr->name]));
 	}
 }

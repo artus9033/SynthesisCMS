@@ -63,11 +63,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+	    $bIsAdmin = false;
+	    if(User::all()->isEmpty()){
+		    $bIsAdmin = true;
+	    }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-		  'is_admin' => true,
-        ]);
+		  'is_admin' => $bIsAdmin,
+	  ]);
     }
 }

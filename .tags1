@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BackendController	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^class BackendController extends Controller$/;"	class	line:11
+index	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^	public function index()$/;"	function	line:14
+manageUsersGet	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^	public function manageUsersGet()$/;"	function	line:23
+manageUsersPost	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^	public function manageUsersPost(BackendRequest $request)$/;"	function	line:32
+passwd	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^		$passwd = $request->get('newpassword');$/;"	variable	line:34
+passwd2	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^		$passwd2 = $request->get('newpassword2');$/;"	variable	line:35
+passwd_old	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^		$passwd_old = $request->get('oldpassword');$/;"	variable	line:36
+errors	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^		$errors = array();$/;"	variable	line:37
+err	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^		$err = false;$/;"	variable	line:38
+err	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^			$err = true;$/;"	variable	line:41
+err	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^			$err = true;$/;"	variable	line:46
+err	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^			$err = true;$/;"	variable	line:53
+privileges	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^	public function privileges($id){$/;"	function	line:65
+uname	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^		$uname = User::select('name')->where('id', $id)->first()['name'];$/;"	variable	line:66
+privs	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^		$privs = User::select('is_admin')->where('id', $id)->first()['is_admin'] == true;$/;"	variable	line:67
+privileges_change	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^	public function privileges_change($id, BackendRequest $request){$/;"	function	line:71
+is_admin_new	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^		$is_admin_new = $request->input("is_admin") === 'true'? true : false;$/;"	variable	line:75
+usr	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Http\Controllers\BackendController.php	/^		$usr = User::find($id);$/;"	variable	line:76

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileFormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -58,5 +59,11 @@ class ProfileController extends Controller
 			Auth::user()->save();
 			return \Redirect::route('profile')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
 		}
+	}
+
+	public function delete($id){
+		$user = User::find($id);
+		$user->delete();
+		return \Redirect::back()->with('message', trans('synthesiscms/profile.msg_user_deleted'));
 	}
 }

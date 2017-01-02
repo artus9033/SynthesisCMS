@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+	{{ trans('synthesiscms/admin.backend')}}
+@endsection
+
 @section('breadcrumbs')
 <a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
 @endsection
