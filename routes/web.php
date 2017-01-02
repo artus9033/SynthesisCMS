@@ -26,6 +26,8 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin/manage_users', ['as' => 'manage_users', 'uses' => 'BackendController@manageUsersGet']);
      Route::post('/admin/manage_users', ['as' => 'manage_users_post', 'uses' => 'BackendController@manageUsersPost']);
 
+	Route::get('/admin/manage_routes', ['as' => 'manage_routes', 'uses' => 'BackendController@manageRoutesGet']);
+	Route::post('/admin/manage_routes/{id}', ['as' => 'manage_routes_post', 'uses' => 'BackendController@manageRoutesPost']);
 
 	Route::get('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'BackendController@privileges']);
 	Route::post('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'BackendController@privileges_change']);

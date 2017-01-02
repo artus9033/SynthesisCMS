@@ -4,7 +4,5 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-usr_count	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\resources\views\admin\manage_users.blade.php	/^									$usr_count = 0;$/;"	variable	line:35
-all_users	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\resources\views\admin\manage_users.blade.php	/^									$all_users = User::all();$/;"	variable	line:36
-usr_count	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\resources\views\admin\manage_users.blade.php	/^											$usr_count = $usr_count + 1;$/;"	variable	line:41
-uid	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\resources\views\admin\manage_users.blade.php	/^											$uid = $user->id;$/;"	variable	line:42
+all_routes	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\resources\views\admin\manage_routes.blade.php	/^									$all_routes = Page::all();$/;"	variable	line:34
+all_routes_count	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\resources\views\admin\manage_routes.blade.php	/^									$all_routes_count = $all_routes->count();$/;"	variable	line:35
