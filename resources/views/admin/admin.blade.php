@@ -48,7 +48,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="toc-wrapper pinned" style="position: fixed; z-index: 1; right: 0; top: 40%;">
+	<div class="toc-wrapper pinned" style="position: fixed; z-index: 1; right: 0; top: 40%; padding-right: 40px;">
 		<ul class="section table-of-contents">
 			<li><a class="synthesis" href="#users">{{ trans('synthesiscms/admin.section_users') }}</a></li>
 			<li><a class="synthesis" href="#routes">{{ trans('synthesiscms/admin.section_routes') }}</a></li>

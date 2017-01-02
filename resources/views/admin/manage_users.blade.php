@@ -47,7 +47,19 @@
 											<td class="center">{{ $user->email }}</td>
 											<td class="center">@php if($user->is_admin){ echo trans('synthesiscms/profile.admin'); }else{ echo trans('synthesiscms/profile.user'); } @endphp</td>
 											<td class="center"><a href="/admin/user-privileges/{{ $uid }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.change_user_privileges') }}</a></td>
-											<td class="center"><a href="/profile/delete/{{ $uid }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_user') }}</a></td>
+											  <div id="modalDelete" class="modal">
+											    <div class="modal-content">
+											      <h3>{{ trans('synthesiscms/admin.modal_delete_header') }}</h3>
+												 <div class="row col s12"><div class="divider red col s10 offset-s1" style="height: 2px;"></div></div>
+											      <h5>{{ trans('synthesiscms/admin.modal_delete_content') }}</h5>
+												 <h5 class="red-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_delete_content_2') }}</strong></h5>
+											    </div>
+											    <div class="modal-footer">
+												 <a style="margin-right: 9%;" onclick="$('#modalDelete').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_btn_no') }}</a>
+												 <a style="margin-left: 9%;" href="/profile/delete/{{ $uid }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_btn_yes') }}</a>
+											    </div>
+											  </div>
+											<td class="center"><button data-target="modalDelete" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_user') }}</button></td>
 										</tr>
 									@endif
 								@endforeach
@@ -60,4 +72,12 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.modal').modal({
+		      dismissible: false
+		    }
+		  );
+		});
+		</script>
 	@endsection

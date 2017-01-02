@@ -15,6 +15,11 @@ return [
     'change_name_privileges' => 'Change :name\'s Privileges',
     'err_cant_edit_self_privileges' => 'You cannot change Your own profile\'s privileges',
     'msg_user_privileges_successfully_changed' => ':name\'s privileges has been successfully changed!',
+    'modal_delete_header' => 'Are You sure?',
+    'modal_delete_content' => 'Are You sure You want to delete this user account?',
+    'modal_delete_content_2' => 'Remember, this cannot be undone!',
+    'modal_delete_btn_yes' => 'Yes, I understand, kick them out!',
+    'modal_delete_btn_no' => 'No, leave him alone!',
 ];
 
 ?>
