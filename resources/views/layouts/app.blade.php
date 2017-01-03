@@ -22,12 +22,15 @@
 	<title>TODO - @yield('title')</title>
 	@yield('head')
 </head>
+<header>
+	@yield('header')
+</header>
 <body>
 	@yield('body')
 	<div class="col s12 row">
 		<nav class="teal col s12 z-depth-3">
 			<div class="nav-wrapper col s12">
-				<a href="/" class="brand-logo" style="margin-left: 10px;">{{ config('app.name') }}</a>
+				<a href="/" class="brand-logo" style="margin-left: 10px;">@section('brand-logo'){{ config('app.name') }}@show</a>
 				<div class="input-field right">
 				<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value);">
 				<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="left circle">EN</option>
