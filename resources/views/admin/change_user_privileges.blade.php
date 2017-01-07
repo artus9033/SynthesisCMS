@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('head')
 	<style>
@@ -44,6 +44,7 @@
 					</select>
 				</div>
 				<button type="submit" class="valign col s4 text-center btn btn-large waves-effect waves-light teal"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.change_user_privileges') }}</button>
+			</form>
 			</div>
 		</div>
 	</div>

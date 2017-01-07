@@ -1,10 +1,10 @@
 <?php
 
 return [
-    '404_header' => '404 (Not Found)',
+    '404_header' => '&nbsp;Error 404 (Not Found)',
     '404_desc'     => 'Sorry, there\'s nothing to show You here',
     '404_header2'     => 'Are You Lost?',
-    '404_desc2'     => 'The page you were looking for does not exist. If you think this is a mistake and one of our pages has gone missing, throw us an email or send us a tweet. Click below to learn more about our CSS framework.',
+    '404_desc2'     => 'The page you were looking for does not exist. Click the button below to return to the home page.',
     '404_link'     => 'Home Page',
     '503_header' => 'Be right back',
     '503_desc'     => 'A 503 (Server Down) error has occured.',

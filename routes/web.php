@@ -1,20 +1,8 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
-*/
 Route::get('/', function () {
     return redirect('/home');
 });
-
-Route::get('/p/{slug}', array('as' => 'page.show', 'uses' => 'PageController@show'));
 
 Route::get('/backend', function () {
     return redirect('/admin');
@@ -28,6 +16,9 @@ Route::group(['middleware' => 'admin'], function () {
 
 	Route::get('/admin/manage_routes', ['as' => 'manage_routes', 'uses' => 'BackendController@manageRoutesGet']);
 	Route::post('/admin/manage_routes/{id}', ['as' => 'manage_routes_post', 'uses' => 'BackendController@manageRoutesPost']);
+
+	Route::get('/admin/create_route', ['as' => 'create_route', 'uses' => 'BackendController@createRouteGet']);
+	Route::post('/admin/create_route', ['as' => 'create_route_post', 'uses' => 'BackendController@createRoutePost']);
 
 	Route::get('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'BackendController@privileges']);
 	Route::post('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'BackendController@privileges_change']);
@@ -49,3 +40,5 @@ Route::group(['middleware' => 'web'], function () {
 
      Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
 });
+
+Route::any('/p/{slug}', array('as' => 'page.show', 'uses' => 'PageController@show'))->where(['slug' => '.*']);

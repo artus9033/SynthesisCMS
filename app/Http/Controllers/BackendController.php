@@ -95,29 +95,36 @@ class BackendController extends Controller
 		$passwd_old = $request->get('oldpassword');
 		$errors = array();
 		$err = false;
-
-		if($passwd != $passwd2){
-			$err = true;
-			array_push($errors, trans('synthesiscms/auth.err_passwords_differ'));
-		}
-
-		if(!($passwd != "" && strlen($passwd) >= 6)){
-			$err = true;
-			array_push($errors, trans('synthesiscms/auth.err_password_too_short'));
-		}
-
-		if(\Hash::check($passwd_old, Auth::user()->getAuthPassword())){
-			Auth::user()->password = \Hash::make($passwd);
+		$route = "TODO GET ROUTE with ->where";
+		if($err){
+			return \Redirect::route('manage_routes')->with('errors', $errors);
 		}else{
-			$err = true;
-			array_push($errors, trans('synthesiscms/auth.err_password_original_bad'));
+			$route->save();
+			return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
 		}
+	}
+
+	public function createRouteGet()
+	{
+		if(Auth::check()){
+			return view('admin.create_route');
+		}else{
+			return view('auth.error');
+		}
+	}
+
+	public function createRoutePost($id, BackendRequest $request)
+	{
+		$passwd = $request->get('newpassword');
+		$passwd2 = $request->get('newpassword2');
+		$passwd_old = $request->get('oldpassword');
+		$errors = array();
+		$err = false;
 
 		if($err){
-			return \Redirect::route('profile')->with('errors', $errors);
+			return \Redirect::route('create_route')->with('errors', $errors);
 		}else{
-			Auth::user()->save();
-			return \Redirect::route('profile')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
+			return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
 		}
 	}
 }

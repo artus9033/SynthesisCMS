@@ -20,7 +20,12 @@ class PageController extends Controller
      // Show a page by slug
      public function show($slug = 'home')
      {
-         $page = Page::whereSlug($slug)->first();
-         return \View::make('pages.index')->with('page', $page);
+         $page = Page::where('slug', $slug)->first();
+	    if(is_null($page)){
+		    abort(404);
+	    }else{
+		    echo("JA!");
+	    }
+		return \View::make('pages.index')->with(['page' => $page, 'slug' => $slug]);
      }
 }

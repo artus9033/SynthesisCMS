@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title')
 	{{ trans('synthesiscms/admin.manage_users')}}

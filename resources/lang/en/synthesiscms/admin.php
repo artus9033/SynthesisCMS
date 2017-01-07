@@ -1,6 +1,9 @@
 <?php
 
 return [
+	'create_route_slug_tooltip' => 'A route cannot be a wildcard (e.g. can\'t be \'mypage\this\is\wrong\')',
+	'create_route_slug_label' => 'Page Route',
+	'create_route' => 'Create Route',
 	'stats' => 'Visitors Statistics',
 	'manage_users' => 'Manage Users & Privileges',
 	'manage_extensions' => 'Manage Extensions',

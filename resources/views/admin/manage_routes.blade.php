@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title')
 	{{ trans('synthesiscms/admin.manage_users')}}
@@ -16,6 +16,8 @@
 				<h3 class="teal-text valign-wrapper"><i class="material-icons prefix teal-text medium valign">pages</i>&nbsp;{{ trans('synthesiscms/admin.manage_routes') }}</h3>
 				</div>
 				<div class="divider teal col s12"></div>
+				<div class="col s12 row"></div>
+				<a href="/admin/create_route" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_route') }}</a>
 				<div class="col s12 row"></div>
 				<div class="col s12 row">
 					<table class="bordered col s12">

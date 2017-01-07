@@ -2,6 +2,6 @@
 
 @section('main')
 <div class="container col s12 row">
-	{{ $page->page_content }}
+	{{ $slug }}
 </div>
 @endsection
