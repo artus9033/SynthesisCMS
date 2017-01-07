@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
-    public $timestamps = false;
+	protected $fillable = array('slug', 'module', 'page_title', 'page_content');
+
+	public $timestamps = false;
 }

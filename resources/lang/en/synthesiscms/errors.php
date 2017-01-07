@@ -1,6 +1,14 @@
 <?php
 
 return [
+	'err_module_not_found' => 'ModuleNotFound',
+	'err_module_not_found_help' => 'Please contact the site admin to fix this.',
+	'cmserr' => 'SynthesisCMS Error',
+	'cmserr_header' => '&nbsp;Internal SynthesisCMS Error',
+     'cmserr_desc'     => 'Sorry, an internal error has occured',
+     'cmserr_header2'     => 'We are sorry, but the controls are out!',
+     'cmserr_desc2'     => 'Error :error has occured. :help',
+     'cmserr_link'     => 'Home Page',
     '404_header' => '&nbsp;Error 404 (Not Found)',
     '404_desc'     => 'Sorry, there\'s nothing to show You here',
     '404_header2'     => 'Are You Lost?',

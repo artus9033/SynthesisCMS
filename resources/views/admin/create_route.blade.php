@@ -4,6 +4,22 @@
 	{{ trans('synthesiscms/admin.manage_users')}}
 @endsection
 
+@section('head')
+<style>
+	.caret {
+	  color: teal !important;
+	}
+
+	.select-dropdown {
+	  border-bottom-color: teal !important;
+	}
+
+	.select-wrapper {
+	  margin-top: 5px !important;
+	}
+</style>
+@endsection
+
 @section('breadcrumbs')
 	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
 	<a href="/admin/manage_routes" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
@@ -19,30 +35,34 @@
 				<div class="divider teal col s12"></div>
 				<div class="col s12 row"></div>
 				@php
+				//TODO: dynamically check if route free:
 					$routes = \Route::getRoutes();
 					$request = Request::create("/p/1/123/weii21-j-rfi02fn.flkergi-efw+2");
 					try {
 					    $routes->match($request);
-					    echo("yes");
+					    //echo("yes");
 					}
 					catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
-					    echo("no");
+					    //echo("no");
 					}
 				@endphp
-				<form class="form-horizontal col s12 valign-wrapper" role="form" method="POST" action="">
-					{{ csrf_field() }}
+				{!! Form::open(array('class' => 'form')) !!}
 					<div class="input-field col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.create_route_slug_tooltip') }}">
-				          <input id="create_route" type="text" name="create_route" class="validate">
-				          <label for="create_route">{{ trans('synthesiscms/admin.create_route_slug_label') }}</label>
+						<i class="material-icons prefix teal-text">label_outline</i>
+				          <input id="route" type="text" name="route" class="validate">
+				          <label for="route">{{ trans('synthesiscms/admin.create_route_slug_label') }}</label>
 			        	</div>
 				<div class="input-field col s8 valign">
-					<select id="is_admin" name="is_admin" class="teal-text">
-						<option value="false"></option>
-						<option value="true"></option>
+					<select id="module" name="module" class="teal-text">
+						<optgroup label="{{ trans('synthesiscms/modules.synthesiscms_modules') }}">
+						<option value="pl.artus9033.synthesiscms.hydrogen">{{ trans('synthesiscms/modules.hydrogen') }}</option>
+						<option value="pl.artus9033.synthesiscms.lithium">{{ trans('synthesiscms/modules.lithium') }}</option>
+					</optgroup>
 					</select>
+					<label>{{ trans('synthesiscms/modules.choose_module') }}</label>
 				</div>
-				<button type="submit" class="valign col s4 text-center btn btn-large waves-effect waves-light teal"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.change_user_privileges') }}</button>
-			</form>
+				<button type="submit" class="valign col s4 text-center btn btn-large waves-effect waves-light teal"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_route') }}</button>
+			{!! Form::close() !!}
 			</div>
 		</div>
 	@endsection

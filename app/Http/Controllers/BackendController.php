@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\BackendRequest;
 use App\User;
+use App\Page;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
 
@@ -88,20 +89,14 @@ class BackendController extends Controller
 		}
 	}
 
-	public function manageRoutesPost($id, BackendRequest $request)
-	{
-		$passwd = $request->get('newpassword');
-		$passwd2 = $request->get('newpassword2');
-		$passwd_old = $request->get('oldpassword');
-		$errors = array();
-		$err = false;
-		$route = "TODO GET ROUTE with ->where";
-		if($err){
-			return \Redirect::route('manage_routes')->with('errors', $errors);
-		}else{
-			$route->save();
-			return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
-		}
+	public function editRoute($id){
+
+	}
+
+	public function deleteRoute($id){
+		$page = Page::find($id);
+		$page->delete();
+		return \Redirect::back()->with('message', trans('synthesiscms/admin.msg_route_deleted'));
 	}
 
 	public function createRouteGet()
@@ -113,18 +108,16 @@ class BackendController extends Controller
 		}
 	}
 
-	public function createRoutePost($id, BackendRequest $request)
+	public function createRoutePost(BackendRequest $request)
 	{
-		$passwd = $request->get('newpassword');
-		$passwd2 = $request->get('newpassword2');
-		$passwd_old = $request->get('oldpassword');
-		$errors = array();
-		$err = false;
-
-		if($err){
-			return \Redirect::route('create_route')->with('errors', $errors);
-		}else{
-			return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
+		$route = $request->get('route');
+		$module = $request->get('module');
+		$route = str_replace("\\", "/", $route);
+		if(!starts_with($route, "/")){
+			$route_bak = $route;
+			$route = "/" . $route_bak;
 		}
+		$page = Page::create(['slug' => $route, 'module' => $module, 'title' => 'SynthesisCMS']);
+		return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
 	}
 }

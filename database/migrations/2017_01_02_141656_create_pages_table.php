@@ -16,8 +16,9 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
 		  $table->string('slug');
-		  $table->string('title');
-		  $table->string('page_content');
+		  $table->string('module');
+		  $table->string('page_title')->default("SynthesisCMS");
+		  $table->string('page_content')->default("SynthesisCMS");
         });
     }
 
