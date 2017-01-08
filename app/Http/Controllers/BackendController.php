@@ -117,7 +117,7 @@ class BackendController extends Controller
 			$route_bak = $route;
 			$route = "/" . $route_bak;
 		}
-		$page = Page::create(['slug' => $route, 'module' => $module, 'title' => 'SynthesisCMS']);
+		$page = Page::create(['slug' => $route, 'module' => $module]);
 		return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
 	}
 }

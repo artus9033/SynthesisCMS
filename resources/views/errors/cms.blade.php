@@ -8,7 +8,7 @@
  <div class="col s12">
 	 <div class="container">
    <h2 class="white-text"><i class="material-icons large prefix center-on-small-only" style="vertical-align: middle;">memory</i>{{ trans('synthesiscms/errors.cmserr_header') }}</h2>
-   <h4 class="light red-text text-lighten-4 center-on-small-only">{{ trans('synthesiscms/errors.cmserr_desc') }}</h4>
+   <h4 class="light red-text text-lighten-4 center-on-small-only">{{ trans('synthesiscms/errors.cmserr_desc', ['error' => $error]) }}</h4>
    </div>
  </div>
  <div class="col s12 white darken-1 z-depth-3" style="margin-top: 10px;">

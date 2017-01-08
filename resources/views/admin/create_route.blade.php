@@ -55,8 +55,8 @@
 				<div class="input-field col s8 valign">
 					<select id="module" name="module" class="teal-text">
 						<optgroup label="{{ trans('synthesiscms/modules.synthesiscms_modules') }}">
-						<option value="pl.artus9033.synthesiscms.hydrogen">{{ trans('synthesiscms/modules.hydrogen') }}</option>
-						<option value="pl.artus9033.synthesiscms.lithium">{{ trans('synthesiscms/modules.lithium') }}</option>
+						<option value="Hydrogen">{{ trans('synthesiscms/modules.hydrogen') }}</option>
+						<option value="Lithium">{{ trans('synthesiscms/modules.lithium') }}</option>
 					</optgroup>
 					</select>
 					<label>{{ trans('synthesiscms/modules.choose_module') }}</label>

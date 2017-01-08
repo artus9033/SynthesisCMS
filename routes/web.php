@@ -42,4 +42,4 @@ Route::group(['middleware' => 'web'], function () {
      Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
 });
 
-Route::any('/p/{slug}', array('as' => 'page.show', 'uses' => 'PageController@show'))->where(['slug' => '.*']);
+Route::any('/p/{slug}', array('as' => 'page.show', 'uses' => 'PageController@show'))->where(['slug' => '(.*)']);
