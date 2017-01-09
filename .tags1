@@ -4,31 +4,10 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-RequestMethod	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^abstract class RequestMethod$/;"	class	line:7
-SynthesisRouter	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^class SynthesisRouter {$/;"	class	line:14
-request	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^	public $request;$/;"	variable	line:16
-slug	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^	public $slug;$/;"	variable	line:17
-module	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^	public $module;$/;"	variable	line:18
-routesGet	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^	private $routesGet = Array();$/;"	variable	line:20
-routesGet	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^	private $routesGet = Array();$/;"	variable	line:20
-routesPost	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^	private $routesPost = Array();$/;"	variable	line:21
-routesPost	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^	private $routesPost = Array();$/;"	variable	line:21
-__construct	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^	function __construct($request, $slug, $mod) {$/;"	function	line:29
-request	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^		$this->request = $request;$/;"	variable	line:30
-slug	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^		$this->slug = $slug;$/;"	variable	line:31
-module	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^		$this->module = $mod;$/;"	variable	line:32
-getType	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^	function getType(){$/;"	function	line:39
-registerRoute	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^	function registerRoute($method, $slug){$/;"	function	line:49
-slug	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^		$slug = str_replace("\\\\", "\/", $slug);$/;"	variable	line:50
-slug_bak	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^			$slug_bak = $slug;$/;"	variable	line:52
-slug	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^			$slug = "\/" . $slug_bak;$/;"	variable	line:53
-react	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^	function react(){$/;"	function	line:69
-path	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^		$path = $this->request->path();$/;"	variable	line:70
-path	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^		$path = str_replace("\\\\", "\/", $path);$/;"	variable	line:71
-path_bak	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^			$path_bak = $path;$/;"	variable	line:73
-path	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^			$path = "\/" . $path_bak;$/;"	variable	line:74
-path	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^		$path = strtok($path, '\/') . '\/' . strtok('\/');$/;"	variable	line:76
-path_bak	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^			$path_bak = $path;$/;"	variable	line:78
-path	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^			$path = "\/" . $path_bak;$/;"	variable	line:79
-path	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^			$path = substr($path, 0, -1);$/;"	variable	line:82
-path	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\SynthesisCMS\API\SynthesisRouter.php	/^		$path = substr($path, 2);$/;"	variable	line:84
+is	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Modules\Lithium\ModuleKernel.php	/^ * related to the Module. This class is required, otherwise any routes$/;"	class	line:15
+ModuleKernel	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Modules\Lithium\ModuleKernel.php	/^class ModuleKernel extends Controller$/;"	class	line:19
+__construct	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Modules\Lithium\ModuleKernel.php	/^	function __construct( TestModel $testModel )$/;"	function	line:21
+testModel	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Modules\Lithium\ModuleKernel.php	/^		$this->testModel = $testModel;$/;"	variable	line:23
+index	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Modules\Lithium\ModuleKernel.php	/^	public function index($page, $slug_parent)$/;"	function	line:26
+router	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Modules\Lithium\ModuleKernel.php	/^		$router = new SynthesisRouter(\\Request::instance(), $slug_parent, $this->getNamespaceName(), 'Lithium');$/;"	variable	line:28
+modelTest	C:\Users\Artur\Documents\Projekty Aplikacji\Projekty Web\Synthesis CMS\app\Modules\Lithium\ModuleKernel.php	/^	public function modelTest()$/;"	function	line:34

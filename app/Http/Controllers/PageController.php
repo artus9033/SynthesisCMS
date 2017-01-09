@@ -43,10 +43,10 @@ class PageController extends Controller
 		if(is_null($page)){
 			abort(404);
 		}else{
-			$mod_path = app_path() . "/Modules/" . $page->module;
+			$mod_path = app_path() . "/Modules/" . $page->module . "/ModuleKernel.php";
 			$mod_path = str_replace("/", "\\", $mod_path);
 			if(file_exists($mod_path)){
-				return \App::make('\App\Modules\\'.$page->module.'\Controllers\ModuleController')->index($page, $slug);
+				return \App::make('\App\Modules\\'.$page->module.'\ModuleKernel')->index($page, $slug);
 			}else{
 				return \View::make('errors.cms')->with(['error' => trans("synthesiscms/errors.err_module_not_found"), 'help' => trans("synthesiscms/errors.err_module_not_found_help")]);
 			}

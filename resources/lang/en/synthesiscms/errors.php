@@ -2,7 +2,7 @@
 
 return [
 	'err_module_not_found' => 'ModuleNotFound',
-	'err_module_not_found_help' => 'Please contact the site admin to fix this.',
+	'err_module_not_found_help' => 'The requested module does not exist or it is missing the ModuleKernel class. Please contact the site admin to fix this.',
 	'cmserr' => 'SynthesisCMS Error',
 	'cmserr_header' => '&nbsp;Internal SynthesisCMS Error',
      'cmserr_desc'     => 'Sorry, :error error has occured',
