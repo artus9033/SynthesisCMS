@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Modules\Lithium;
+namespace App\Modules\Hydrogen;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Lithium\Models\TestModel;
+use App\Modules\Hydrogen\Models\TestModel;
 use App\SynthesisCMS\API\SynthesisRouter;
 use App\SynthesisCMS\API\RequestMethod;
 use App\SynthesisCMS\API\ResponseMethod;
@@ -20,9 +20,13 @@ class ModuleKernel extends Controller
 {
 	public function index($page, $slug_parent)
 	{
-		$router = new SynthesisRouter(\Request::instance(), $slug_parent, $this, 'Lithium');
-		$router->registerRoute(RequestMethod::GET, '/', ResponseMethod::VIEW, 'lithium::index', ['page' => $page]);
-		$router->registerRoute(RequestMethod::GET, '/controller', ResponseMethod::CONTROLLER, 'Controllers\LithiumController@modelTest', ['page' => $page]);
+		$router = new SynthesisRouter(\Request::instance(), $slug_parent, $this, 'Hydrogen');
+		$router->registerRoute(RequestMethod::GET, '/', ResponseMethod::CONTROLLER, 'Controllers\HydrogenController@index', ['page' => $page]);
 		$router->react();
+	}
+
+	public function edit($page)
+	{
+		return \View::make('hydrogen::partials/edit')->with(['page' => $page]);
 	}
 }

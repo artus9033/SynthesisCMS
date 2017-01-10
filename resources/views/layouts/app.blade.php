@@ -71,7 +71,7 @@
 				 </div>
 			</div>
 		</nav>
-		<div class="main col s12 row center">
+		<div class="main col s12 row">
 			@if(Session::has('message'))
 				@include('partials/message', ['message' => Session::get('message')])
 			@endif

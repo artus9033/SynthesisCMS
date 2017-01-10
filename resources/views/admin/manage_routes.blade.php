@@ -27,7 +27,7 @@
 								<th data-field="slug" class="center">{{ trans('synthesiscms/page.slug') }}</th>
 								<th data-field="title" class="center">{{ trans('synthesiscms/page.title') }}</th>
 								<th data-field="module" class="center">{{ trans('synthesiscms/page.module_name') }}</th>
-								<th data-field="edit" class="center">{{ trans('synthesiscms/admin.edit_route') }}</th>
+								<th data-field="edit" class="center">{{ trans('synthesiscms/admin.edit_route', ['route' => '']) }}</th>
 								<th data-field="delete" class="center">{{ trans('synthesiscms/admin.delete_route') }}</th>
 							</tr>
 						</thead>
@@ -43,12 +43,12 @@
 											<td class="center">{{ $route->slug }}</td>
 											<td class="center">{{ $route->page_title }}</td>
 											<td class="center">{{ $route->module }}</td>
-											<td class="center"><a href="/admin/manage_routes/edit/{{ $route->id }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/admin.edit_route') }}</a></td>
+											<td class="center"><a href="/admin/manage_routes/edit/{{ $route->id }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/admin.edit_route', ['route' => '']) }}</a></td>
 											  <div id="modalDelete{{ $route->id }}" class="modal">
 											    <div class="modal-content">
 											      <h3>{{ trans('synthesiscms/admin.modal_delete_route_header') }}</h3>
 												 <div class="row col s12"><div class="divider red col s10 offset-s1" style="height: 2px;"></div></div>
-											      <h5>{{ trans('synthesiscms/admin.modal_delete_route_content') }}</h5>
+											      <h5>{{ trans('synthesiscms/admin.modal_delete_route_content', ['route' => $route->slug]) }}</h5>
 												 <h5 class="red-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_delete_route_content_2') }}</strong></h5>
 											    </div>
 											    <div class="modal-footer">

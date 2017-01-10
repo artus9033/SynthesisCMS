@@ -1,8 +1,10 @@
 <?php
 
 return [
-	'msg_route_deleted' => 'Route has been succesfully deleted',
-	'create_route_slug_tooltip' => 'A route cannot be a wildcard (e.g. \'mypage\this\is\wrong\')',
+	'view_route' => 'View Route',
+	'msg_route_created' => 'Route :route has been succesfully created',
+	'msg_route_deleted' => 'Route :route has been succesfully deleted',
+	'create_route_slug_tooltip' => 'A route can be a wildcard (e.g. \'mypage\this\is\a\wildcard\')',
 	'create_route_slug_label' => 'Page Route',
 	'create_route' => 'Create Route',
 	'stats' => 'Visitors Statistics',
@@ -26,11 +28,11 @@ return [
 	'modal_delete_user_btn_yes' => 'Yes, I understand, kick them out!',
 	'modal_delete_user_btn_no' => 'No, leave them alone!',
 	'modal_delete_route_header' => 'Are You sure?',
-	'modal_delete_route_content' => 'Are You sure You want to delete this route?',
+	'modal_delete_route_content' => 'Are You sure You want to delete the route :route ?',
 	'modal_delete_route_content_2' => 'Remember, this cannot be undone!',
-	'modal_delete_route_btn_yes' => 'Yes, destroy this route!',
+	'modal_delete_route_btn_yes' => 'Yes, delete this route!',
 	'modal_delete_route_btn_no' => 'No, leave this route!',
-	'edit_route' => 'Edit Route',
+	'edit_route' => 'Edit Route :route',
 	'delete_route' => 'Delete Route',
 	'no_routes' => 'No Routes',
 ];

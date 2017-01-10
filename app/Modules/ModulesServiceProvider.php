@@ -31,6 +31,16 @@ class ModulesServiceProvider extends ServiceProvider
 			if(is_dir(__DIR__.'/'.$module.'/Lang')) {
 				$this->loadTranslationsFrom(__DIR__.'/'.$module.'/Lang', $module);
 			}
+
+			// Load the module config file
+			if(file_exists(__DIR__.'/'.$module.'/Lang/'.$module.".php")) {
+				$this->publishes([__DIR__.'/'.$module.'/Lang/'.$module.".php" => config_path(strtolower($module).".php")]);
+			}
+
+			// Load module database migrations
+			if(is_dir(__DIR__.'/'.$module.'/Migrations')) {
+				$this->loadMigrationsFrom(__DIR__.'/'.$module.'/Migrations');
+			}
 		}
 	}
 

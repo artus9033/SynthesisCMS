@@ -90,13 +90,15 @@ class BackendController extends Controller
 	}
 
 	public function editRoute($id){
-
+		$page = Page::find($id);
+		return view('admin.edit_route', ['page' => $page]);
 	}
 
 	public function deleteRoute($id){
 		$page = Page::find($id);
+		$route = $page->slug;
 		$page->delete();
-		return \Redirect::back()->with('message', trans('synthesiscms/admin.msg_route_deleted'));
+		return \Redirect::back()->with('message', trans('synthesiscms/admin.msg_route_deleted', ['route' => $route]));
 	}
 
 	public function createRouteGet()
@@ -113,11 +115,26 @@ class BackendController extends Controller
 		$route = $request->get('route');
 		$module = $request->get('module');
 		$route = str_replace("\\", "/", $route);
-		if(!starts_with($route, "/")){
-			$route_bak = $route;
-			$route = "/" . $route_bak;
+
+		function chkRoute(&$route){
+			$ret = false;
+			if(!starts_with($route, "/")){
+				$ret = true;
+				$route = "/" . $route;
+			}
+			if(ends_with($route, "/")){
+				$ret = true;
+				$route = substr($route, 0, -1);
+			}
+			if($ret){
+				chkRoute($route);
+			}else{
+				echo $route;
+			}
 		}
+
+		chkRoute($route);
 		$page = Page::create(['slug' => $route, 'module' => $module]);
-		return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
+		return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/admin.msg_route_created', ['route' => $route]));
 	}
 }

@@ -3,7 +3,7 @@
 return  [
     'modules' => [
 	  'lithium',
-	  //'hydrogen',
+	  'hydrogen',
     ]
 ]
 

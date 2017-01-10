@@ -53,7 +53,7 @@ class SynthesisRouter {
 	* @param {string} slug slug of the route
 	* @return void
 	*/
-	function registerRoute($method, $slug, $type, $response, $params = ["sample" => "SynthesisCMS API"]){
+	function registerRoute($method, $slug, $type, $response, $params = ["api_sample" => "SynthesisCMS API"]){
 		$slug = str_replace("\\", "/", $slug);
 		if(!starts_with($slug, "/")){
 			$slug_bak = $slug;
