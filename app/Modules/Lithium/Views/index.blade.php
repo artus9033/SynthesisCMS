@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Dummy view</title>
-</head>
-<body>
+@extends('layouts.app')
+@section('title')
+	Dummy view
+@endsection
+@section('main')
 	<h1>Just a dummy view</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -13,5 +12,5 @@
 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	<br/>
 	{{$sample}}
-</body>
-</html>
+	{{trans("lithium::lithium.a")}}
+@endsection

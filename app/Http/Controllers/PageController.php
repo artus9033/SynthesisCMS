@@ -46,7 +46,7 @@ class PageController extends Controller
 			$mod_path = app_path() . "/Modules/" . $page->module . "/ModuleKernel.php";
 			$mod_path = str_replace("/", "\\", $mod_path);
 			if(file_exists($mod_path)){
-				return \App::make('\App\Modules\\'.$page->module.'\ModuleKernel')->index($page, $slug);
+				echo \App::make('\App\Modules\\'.$page->module.'\ModuleKernel')->index($page, $slug);
 			}else{
 				return \View::make('errors.cms')->with(['error' => trans("synthesiscms/errors.err_module_not_found"), 'help' => trans("synthesiscms/errors.err_module_not_found_help")]);
 			}
