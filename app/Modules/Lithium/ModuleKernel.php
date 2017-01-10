@@ -25,9 +25,9 @@ class ModuleKernel extends Controller
 
 	public function index($page, $slug_parent)
 	{
-		$router = new SynthesisRouter(\Request::instance(), $slug_parent, $this->getNamespaceName(), 'Lithium');
+		$router = new SynthesisRouter(\Request::instance(), $slug_parent, $this, 'Lithium');
 		$router->registerRoute(RequestMethod::GET, '/', ResponseMethod::VIEW, 'lithium::index');
-		$router->registerRoute(RequestMethod::GET, '/controller', ResponseMethod::CONTROLLER, 'LithiumController');
+		$router->registerRoute(RequestMethod::GET, '/controller', ResponseMethod::CONTROLLER, 'Controllers\LithiumController@modelTest');
 		$router->react();
 	}
 

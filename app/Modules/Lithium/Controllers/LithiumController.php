@@ -10,13 +10,13 @@ use App\SynthesisCMS\API\ResponseMethod;
 
 class LithiumController extends Controller
 {
-	function __construct( TestModel $testModel )
+	function __construct(TestModel $testModel)
 	{
 		$this->testModel = $testModel;
 	}
 
 	public function modelTest()
 	{
-		return $this->testModel->getAny();
+		return $this->testModel->getAll();
 	}
 }

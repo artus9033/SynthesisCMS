@@ -32,11 +32,10 @@ class SynthesisRouter {
 	* @param {string} mod module name
 	* @return void
 	*/
-	function __construct($request, $slug, $nmspc, $mod) {
+	function __construct($request, $slug, $parent, $mod) {
 		$this->request = $request;
 		$this->slug = $slug;
-		$this->namespc = $nmspc;
-		echo $this->namespc;
+		$this->namespc = (new \ReflectionObject($parent))->getNamespaceName();
 		$this->module = $mod;
 	}
 
@@ -68,14 +67,13 @@ class SynthesisRouter {
 					abort(500, "SynthesisCMS internal error with module " . $this->module . ": 'route " . $slug . " with method " . $method . " already defined' thrown at SynthesisCMS/API/SynthesisRouter");
 				}
 				break;
-
-			case RequestMethod::POST:
-				if(!in_array($slug, $this->routesPost)){
-					array_push($this->routesPost, [$slug, $type, $response, $params]);
-				}else{
-					abort(500, "SynthesisCMS internal error with module " . $this->module . ": 'route " . $slug . " with method " . $method . " already defined' thrown at SynthesisCMS/API/SynthesisRouter");
-				}
-				break;
+				case RequestMethod::POST:
+					if(!in_array($slug, $this->routesGet)){
+						array_push($this->routesPost, [$slug, $type, $response, $params]);
+					}else{
+						abort(500, "SynthesisCMS internal error with module " . $this->module . ": 'route " . $slug . " with method " . $method . " already defined' thrown at SynthesisCMS/API/SynthesisRouter");
+					}
+					break;
 		}
 	}
 
@@ -116,37 +114,37 @@ class SynthesisRouter {
 				if($found){
 					switch($this->routesGet[$mKey][1]){
 						case ResponseMethod::VIEW:
-						echo view($this->routesGet[$mKey][2])->with($this->routesGet[$mKey][3]);
+							echo view($this->routesGet[$mKey][2])->with($this->routesGet[$mKey][3]);
 						break;
 						case ResponseMethod::CONTROLLER:
-						echo action($this->routesGet[$mKey][2], $this->routesGet[$mKey][3]);
+							echo \App::call($this->namespc . "\\" . $this->routesGet[$mKey][2], $this->routesGet[$mKey][3]);
 						break;
 					}
 					exit;
 				}
 				break;
 
-			case RequestMethod::POST:
-				$found = false;
-				$mKey;
-				foreach ($this->routesPost as $key => $value) {
-					if($value[0] == $path){
-						$mKey = $key;
-						$found = true;
+				case RequestMethod::POST:
+					$found = false;
+					$mKey;
+					foreach ($this->routesPost as $key => $value) {
+						if($value[0] == $path){
+							$mKey = $key;
+							$found = true;
+						}
 					}
-				}
-				if($found){
-					switch($this->routesPost[$mKey][1]){
-						case ResponseMethod::VIEW:
-						echo view($this->routesPost[$mKey][2])->with($this->routesPost[$mKey][3]);
-						break;
-						case ResponseMethod::CONTROLLER:
-						echo action($this->routesPost[$mKey][2], $this->routesPost[$mKey][3]);
-						break;
+					if($found){
+						switch($this->routesPost[$mKey][1]){
+							case ResponseMethod::VIEW:
+								echo view($this->routesPost[$mKey][2])->with($this->routesPost[$mKey][3]);
+							break;
+							case ResponseMethod::CONTROLLER:
+								echo \App::call($this->namespc . "\\" . $this->routesPost[$mKey][2], $this->routesPost[$mKey][3]);
+							break;
+						}
+						exit;
 					}
-					exit;
-				}
-				break;
+					break;
 		}
 		// If any view was found, exit was called; otherwise 404 will be thrown:
 		abort(404);
