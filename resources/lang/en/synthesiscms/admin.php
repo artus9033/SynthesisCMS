@@ -1,6 +1,8 @@
 <?php
 
 return [
+	'save_route' => 'Save Route',
+	'cancel_route' => 'Cancel',
 	'view_route' => 'View Route',
 	'msg_route_created' => 'Route :route has been succesfully created',
 	'msg_route_deleted' => 'Route :route has been succesfully deleted',

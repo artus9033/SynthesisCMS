@@ -43,9 +43,9 @@ label{
 		</div>
 	</div>
 	<div class="card-action">
-		<a class="btn-flat waves-effect waves-green" class="btn-large teal waves-effect waves-green"><i class="material-icons white-text left">save</i>{{ trans('synthesiscms/admin.save_route') }}</a>
-		<a class="btn-flat waves-effect waves-green" class="btn-large teal waves-effect waves-yellow"><i class="material-icons white-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_route') }}</a>
-		<a class="btn-flat waves-effect waves-green" class="btn-large teal waves-effect waves-red"><i class="material-icons white-text left">delete</i>{{ trans('synthesiscms/admin.delete_route') }}</a>
+		<a class="btn-flat waves-effect waves-green teal-text"><i class="material-icons teal-text left">save</i>{{ trans('synthesiscms/admin.save_route') }}</a>
+		<a class="btn-flat waves-effect waves-yellow teal-text" href="{{ /url()->previous() }}"><i class="material-icons teal-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_route') }}</a>
+		<button class="btn-flat waves-effect waves-red teal-text" data-target="modalDelete{{ $page->id }}"><i class="material-icons teal-text left">security</i>{{ trans('synthesiscms/admin.delete_route') }}</button>
 	</div>
 </div>
 <script type="text/javascript">
