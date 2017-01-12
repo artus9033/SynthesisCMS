@@ -15,14 +15,15 @@ Route::group(['middleware' => 'admin'], function () {
      Route::post('/admin/manage_users', ['as' => 'manage_users_post', 'uses' => 'BackendController@manageUsersPost']);
 
 	Route::get('/admin/manage_routes', ['as' => 'manage_routes', 'uses' => 'BackendController@manageRoutesGet']);
-	Route::get('/admin/manage_routes/edit/{id}', ['as' => 'manage_routes_post', 'uses' => 'BackendController@editRoute']);
-	Route::get('/admin/manage_routes/delete/{id}', ['as' => 'manage_routes_post', 'uses' => 'BackendController@deleteRoute']);
+	Route::get('/admin/manage_routes/edit/{id}', ['as' => 'manage_routes_edit', 'uses' => 'BackendController@editRouteGet']);
+	Route::post('/admin/manage_routes/edit/{id}', ['as' => 'manage_routes_edit_post', 'uses' => 'BackendController@editRoutePost']);
+	Route::get('/admin/manage_routes/delete/{id}', ['as' => 'manage_routes_delete', 'uses' => 'BackendController@deleteRoute']);
 
 	Route::get('/admin/manage_routes/create_route', ['as' => 'create_route', 'uses' => 'BackendController@createRouteGet']);
 	Route::post('/admin/manage_routes/create_route', ['as' => 'create_route_post', 'uses' => 'BackendController@createRoutePost']);
 
 	Route::get('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'BackendController@privileges']);
-	Route::post('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'BackendController@privileges_change']);
+	Route::post('/admin/user-privileges/{id}', ['as' => 'profile_post', 'uses' => 'BackendController@privileges_change']);
 });
 //Page::where('id', $id)->update(array('image' => 'asdasd'));
 Route::group(['middleware' => 'web'], function () {

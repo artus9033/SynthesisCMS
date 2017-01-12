@@ -12,6 +12,21 @@ class Toolbox
 		$len = strpos($string, $end, $ini) - $ini;
 		return substr($string, $ini, $len);
 	}
+
+	static function chkRoute(&$route){
+		$ret = false;
+		if(!starts_with($route, "/")){
+			$ret = true;
+			$route = "/" . $route;
+		}
+		if(ends_with($route, "/")){
+			$ret = true;
+			$route = substr($route, 0, -1);
+		}
+		if($ret){
+			Toolbox::chkRoute($route);
+		}
+	}
 }
 
 ?>

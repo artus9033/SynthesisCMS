@@ -33,18 +33,21 @@ label{
 		<div class="card-title col s12 row valign-wrapper">
 			<h3 class="teal-text valign-wrapper col s8"><i class="material-icons prefix teal-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_route', ['route' => $page->slug]) }}</h3>
 			<div class="col s4 valign row">
-				<button class="col s12 btn-large waves-effect waves-light" data-target="modalDelete{{ $page->id }}" class="btn-large teal waves-effect waves-light hoverable"><i class="material-icons white-text left">open_in_new</i>{{ trans('synthesiscms/admin.view_route') }}</button>
+				<a class="col s12 btn-large waves-effect waves-light" href="{{ $page->slug }}" target="_blank" class="btn-large teal waves-effect waves-light hoverable"><i class="material-icons white-text left">open_in_new</i>{{ trans('synthesiscms/admin.view_route') }}</a>
 			</div>
 		</div>
 		<div class="divider teal col s12"></div>
 		<div class="col s12 row"></div>
 		<div class="row">
-			{!! \App::make('\App\Modules\\'.$page->module.'\ModuleKernel')->edit($page) !!}
+			<form id="edit" role="form" method="post" action="">
+				{{ csrf_field() }}
+				{!! \App::make('App\Modules\\'.$page->module.'\ModuleKernel')->edit($page) !!}
+			</form>
 		</div>
 	</div>
 	<div class="card-action">
-		<a class="btn-flat waves-effect waves-green teal-text"><i class="material-icons teal-text left">save</i>{{ trans('synthesiscms/admin.save_route') }}</a>
-		<a class="btn-flat waves-effect waves-yellow teal-text" href="{{ /url()->previous() }}"><i class="material-icons teal-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_route') }}</a>
+		<a onclick="$('#edit').submit()" class="btn-flat waves-effect waves-green teal-text"><i class="material-icons teal-text left">save</i>{{ trans('synthesiscms/admin.save_route') }}</a>
+		<a class="btn-flat waves-effect waves-yellow teal-text" href="{{ URL::previous() }}"><i class="material-icons teal-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_route') }}</a>
 		<button class="btn-flat waves-effect waves-red teal-text" data-target="modalDelete{{ $page->id }}"><i class="material-icons teal-text left">security</i>{{ trans('synthesiscms/admin.delete_route') }}</button>
 	</div>
 </div>

@@ -18,7 +18,7 @@ class CreatePagesTable extends Migration
 		  $table->string('slug');
 		  $table->string('module');
 		  $table->string('page_title')->default("SynthesisCMS Sample Title");
-		  $table->string('page_content')->default("SynthesisCMS Sample Content: Lorem ipsum sit dolor amet...");
+		  $table->string('page_header')->default("SynthesisCMS Sample Page Header: Lorem ipsum sit dolor amet...");
         });
     }
 

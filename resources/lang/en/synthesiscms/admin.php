@@ -1,11 +1,15 @@
 <?php
 
 return [
+	'err_header_cannot_be_empty' => 'Header cannot be empty!',
+	'err_slug_cannot_be_empty' => 'Slug cannot be empty!',
+	'err_title_cannot_be_empty' => 'Title cannot be empty!',
+	'msg_route_saved' => 'Route :route has been successfully saved',
 	'save_route' => 'Save Route',
 	'cancel_route' => 'Cancel',
 	'view_route' => 'View Route',
-	'msg_route_created' => 'Route :route has been succesfully created',
-	'msg_route_deleted' => 'Route :route has been succesfully deleted',
+	'msg_route_created' => 'Route :route has been successfully created',
+	'msg_route_deleted' => 'Route :route has been successfully deleted',
 	'create_route_slug_tooltip' => 'A route can be a wildcard (e.g. \'mypage\this\is\a\wildcard\')',
 	'create_route_slug_label' => 'Page Route',
 	'create_route' => 'Create Route',

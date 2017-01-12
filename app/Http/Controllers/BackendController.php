@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BackendRequest;
 use App\User;
 use App\Page;
+use App\Toolbox;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
 
@@ -89,9 +90,47 @@ class BackendController extends Controller
 		}
 	}
 
-	public function editRoute($id){
+	public function editRouteGet($id){
 		$page = Page::find($id);
 		return view('admin.edit_route', ['page' => $page]);
+	}
+
+	public function editRoutePost($id, BackendRequest $request)
+	{
+		$slug = $request->get('slug');
+		$title = $request->get('title');
+		$header = $request->get('header');
+		$errors = array();
+		$err = false;
+
+		if(strlen($slug) == 0 || strlen(trim($slug)) == 0){
+			$err = true;
+			array_push($errors, trans("synthesiscms/admin.err_slug_cannot_be_empty"));
+		}
+
+		if(strlen($title) == 0 || strlen(trim($title)) == 0){
+			$err = true;
+			array_push($errors, trans("synthesiscms/admin.err_title_cannot_be_empty"));
+		}
+
+		if(strlen($header) == 0 || strlen(trim($header)) == 0){
+			$err = true;
+			array_push($errors, trans("synthesiscms/admin.err_header_cannot_be_empty"));
+		}
+
+		if(!$err){
+			Toolbox::chkRoute($slug);
+		}
+
+		if($err){
+			return \Redirect::to(\Request::path())->with('errors', $errors);
+		}else{
+			$page = Page::find($id);
+			$page->slug = $slug;
+			$page->page_title = $page_title;
+			$page->page_header = $header;
+			return \Redirect::route("manage_routes")->with('message', trans('synthesiscms/admin.msg_route_saved', ['route' => $page->slug]));
+		}
 	}
 
 	public function deleteRoute($id){
@@ -116,24 +155,8 @@ class BackendController extends Controller
 		$module = $request->get('module');
 		$route = str_replace("\\", "/", $route);
 
-		function chkRoute(&$route){
-			$ret = false;
-			if(!starts_with($route, "/")){
-				$ret = true;
-				$route = "/" . $route;
-			}
-			if(ends_with($route, "/")){
-				$ret = true;
-				$route = substr($route, 0, -1);
-			}
-			if($ret){
-				chkRoute($route);
-			}else{
-				echo $route;
-			}
-		}
+		Toolbox::chkRoute($route);
 
-		chkRoute($route);
 		$page = Page::create(['slug' => $route, 'module' => $module]);
 		return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/admin.msg_route_created', ['route' => $route]));
 	}

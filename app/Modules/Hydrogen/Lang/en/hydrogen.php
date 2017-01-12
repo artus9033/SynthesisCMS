@@ -5,7 +5,7 @@ return [
     'previous' => 'Previous',
     'slug' => 'Slug',
     'title' => 'Page Title & Header Title',
-    'content' => 'Page Header Content'
+    'header' => 'Page Header Content'
 ];
 
 ?>
