@@ -127,8 +127,9 @@ class BackendController extends Controller
 		}else{
 			$page = Page::find($id);
 			$page->slug = $slug;
-			$page->page_title = $page_title;
+			$page->page_title = $title;
 			$page->page_header = $header;
+			$page->save();
 			return \Redirect::route("manage_routes")->with('message', trans('synthesiscms/admin.msg_route_saved', ['route' => $page->slug]));
 		}
 	}
