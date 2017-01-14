@@ -3,9 +3,9 @@
 use Illuminate\Database\Eloquent\Model;
 
 
-class HydrogenModel extends Model
+class HydrogenModule extends Model
 {
-	protected $fillable = array('title', 'content', 'image');
+	protected $fillable = array('title', 'content');
 
 	public $timestamps = true;
 }

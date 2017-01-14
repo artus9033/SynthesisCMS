@@ -4,6 +4,22 @@
 	{{ trans('synthesiscms/admin.edit_route', ['route' => $page->slug]) }}
 @endsection
 
+@section('head')
+<style>
+	#molecule-div .caret {
+	  color: teal !important;
+	}
+
+	#molecule-div .select-dropdown {
+	  border-bottom-color: teal !important;
+	}
+
+	#molecule-div .select-wrapper {
+	  margin-top: 5px !important;
+	}
+</style>
+@endsection
+
 @section('breadcrumbs')
 	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
 	<a href="/admin/manage_routes" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
@@ -41,8 +57,50 @@ label{
 		<div class="row">
 			<form id="edit" role="form" method="post" action="">
 				{{ csrf_field() }}
-				{!! \App::make('App\Modules\\'.$page->module.'\ModuleKernel')->edit($page) !!}
+				<div class="card-panel col s8 offset-s2 z-depth-2 center teal white-text">
+				<h5>{{ trans('synthesiscms/modules.edit_main') }}</h5>
+			</div>
+				<div class="row">
+						<div class="input-field col s6">
+							<input value="{{ $page->slug }}" id="slug" name="slug" type="text">
+							<label for="slug">{{ trans('synthesiscms/modules.slug') }}</label>
+						</div>
+						<div class="input-field col s6">
+							<input value="{{ $page->page_title }}" id="title" name="title" type="text">
+							<label for="title">{{ trans('synthesiscms/modules.title') }}</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<textarea id="header" name="header" class="materialize-textarea">{{ $page->page_header }}</textarea>
+							<label for="header">{{ trans('synthesiscms/modules.header') }}</label>
+						</div>
+					</div>
+					<div class="row col s12 center">
+						<div class="input-field col s8 offset-s2 valign" id="molecule-div">
+							<select id="molecule" name="molecule" class="teal-text">
+									@php
+										$tmp_ct = 0;
+									@endphp
+									@foreach (App\Molecule::all() as $key => $value)
+										@php
+											$tmp_ct++;
+											var_dump($value);
+										@endphp
+									@endforeach
+									@if ($tmp_ct == 0)
+										<option disabled selected class="card-panel col s10 offset-s1 red white-text"><h5>{{ trans('synthesiscms/modules.no_molecules') }}</h5></option>
+									@endif
+							</select>
+							<label>{{ trans('synthesiscms/modules.choose_molecule') }}</label>
+						</div>
+						</div>
 			</form>
+			<div class="divider teal col s12 row"></div>
+			<div class="card-panel col s8 offset-s2 z-depth-2 center teal white-text row">
+			<h5>{{ trans('synthesiscms/modules.edit_specific') }}</h5>
+		</div>
+			{!! \App::make('App\Modules\\'.$page->module.'\ModuleKernel')->edit($page) !!}
 		</div>
 	</div>
 	<div class="card-action">
