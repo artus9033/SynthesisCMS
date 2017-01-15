@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BackendRequest;
 use App\User;
 use App\Page;
+use App\Molecule;
 use App\Toolbox;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -24,11 +25,7 @@ class BackendController extends Controller
 
 	public function manageUsersGet()
 	{
-		if(Auth::check()){
-			return view('admin.manage_users');
-		}else{
-			return view('auth.error');
-		}
+		return view('admin.manage_users');
 	}
 
 	public function manageUsersPost(BackendRequest $request)
@@ -83,11 +80,7 @@ class BackendController extends Controller
 
 	public function manageRoutesGet()
 	{
-		if(Auth::check()){
-			return view('admin.manage_routes');
-		}else{
-			return view('auth.error');
-		}
+		return view('admin.manage_routes');
 	}
 
 	public function editRouteGet($id){
@@ -143,11 +136,7 @@ class BackendController extends Controller
 
 	public function createRouteGet()
 	{
-		if(Auth::check()){
-			return view('admin.create_route');
-		}else{
-			return view('auth.error');
-		}
+		return view('admin.create_route');
 	}
 
 	public function createRoutePost(BackendRequest $request)
@@ -160,5 +149,42 @@ class BackendController extends Controller
 
 		$page = Page::create(['slug' => $route, 'module' => $module]);
 		return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/admin.msg_route_created', ['route' => $route]));
+	}
+
+	public function manageMoleculesGet()
+	{
+		return view('admin.manage_molecules');
+	}
+
+	public function editMoleculeGet($id){
+		$molecule = Molecule::find($id);
+		return view('admin.edit_molecule', ['molecule' => $molecule]);
+	}
+
+	public function editMoleculePost($id, BackendRequest $request)
+	{
+		echo "TODO"; //TODO add edition of molecule
+	}
+
+	public function deleteMolecule($id){
+		$molecule = Molecule::find($id);
+		$name_orig = $molecule->title;
+		$name_new = Toolbox::string_truncate($name_orig, 10);
+		$molecule->delete();
+		return \Redirect::back()->with('message', trans('synthesiscms/admin.msg_molecule_deleted', ['name' => $name_new]));
+	}
+
+	public function createMoleculeGet()
+	{
+		return view('admin.create_molecule');
+	}
+
+	public function createMoleculePost(BackendRequest $request)
+	{
+		$title = $request->get('title');
+		$desc = $request->get('description');
+		$molecule = Molecule::create(['title' => $title, 'description' => $desc]);
+		$name_new = Toolbox::string_truncate($title, 10);
+		return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecule_created', ['name' => $title]));
 	}
 }

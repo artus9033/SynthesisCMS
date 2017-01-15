@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-	{{ trans('synthesiscms/admin.manage_users')}}
+	{{ trans('synthesiscms/admin.create_route')}}
 @endsection
 
 @section('head')

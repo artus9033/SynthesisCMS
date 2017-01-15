@@ -16,8 +16,8 @@ class CreateMoleculesTable extends Migration
 	    Schema::create('molecules', function (Blueprint $table) {
             $table->increments('id');
  		  $table->string('title')->default("SynthesisCMS Molecule Sample");
- 		  $table->string('content')->default("SynthesisCMS Molecule Sample Content: Lorem ipsum sit dolor amet...");
- 		  $table->string('image')->default("http://mannaforlifeblog.com/wp-content/uploads/2014/04/Electrik_bulb2-586x349.jpg");
+ 		  $table->string('description')->default("SynthesisCMS Molecule Sample Description: Lorem ipsum sit dolor amet...");
+		  $table->timestamps();
          });
     }
 

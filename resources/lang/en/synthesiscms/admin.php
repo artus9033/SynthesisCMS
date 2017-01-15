@@ -1,6 +1,17 @@
 <?php
 
 return [
+	'edit_molecule' => 'Edit Molecule',
+	'choose_molecule' => 'Choose Molecule',
+	'manage_molecules' => 'Manage Molecules',
+	'create_molecule' => 'Create Molecule',
+	'create_molecule_title_tooltip' => 'Name the Molecule (this will be the title displayed on the site)',
+	'create_molecule_title_label' => 'Molecule Title',
+	'create_molecule_description_tooltip' => 'Describe the Molecule (this will be the description displayed on the site)',
+	'create_molecule_description_label' => 'Molecule Description',
+	'msg_molecule_saved' => 'Molecule :name has been successfully saved',
+	'msg_molecule_created' => 'MoleculeMolecule :name has been successfully created',
+	'msg_molecule_deleted' => 'Molecule :name has been successfully deleted',
 	'err_header_cannot_be_empty' => 'Header cannot be empty!',
 	'err_slug_cannot_be_empty' => 'Slug cannot be empty!',
 	'err_title_cannot_be_empty' => 'Title cannot be empty!',
@@ -38,9 +49,15 @@ return [
 	'modal_delete_route_content_2' => 'Remember, this cannot be undone!',
 	'modal_delete_route_btn_yes' => 'Yes, delete this route!',
 	'modal_delete_route_btn_no' => 'No, leave this route!',
+	'modal_delete_molecule_header' => 'Are You sure?',
+	'modal_delete_molecule_content' => 'Are You sure You want to delete the molecule :molecule ?',
+	'modal_delete_molecule_content_2' => 'Remember, this cannot be undone!',
+	'modal_delete_molecule_btn_yes' => 'Yes, delete this molecule!',
+	'modal_delete_molecule_btn_no' => 'No, leave this molecule!',
 	'edit_route' => 'Edit Route :route',
 	'delete_route' => 'Delete Route',
 	'no_routes' => 'No Routes',
+	'no_molecules' => 'No Molecules',
 ];
 
 ?>

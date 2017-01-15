@@ -18,9 +18,15 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin/manage_routes/edit/{id}', ['as' => 'manage_routes_edit', 'uses' => 'BackendController@editRouteGet']);
 	Route::post('/admin/manage_routes/edit/{id}', ['as' => 'manage_routes_edit_post', 'uses' => 'BackendController@editRoutePost']);
 	Route::get('/admin/manage_routes/delete/{id}', ['as' => 'manage_routes_delete', 'uses' => 'BackendController@deleteRoute']);
-
 	Route::get('/admin/manage_routes/create_route', ['as' => 'create_route', 'uses' => 'BackendController@createRouteGet']);
 	Route::post('/admin/manage_routes/create_route', ['as' => 'create_route_post', 'uses' => 'BackendController@createRoutePost']);
+
+	Route::get('/admin/manage_molecules/', ['as' => 'manage_molecules', 'uses' => 'BackendController@manageMoleculesGet']);
+	Route::get('/admin/manage_molecules/delete/{id}', ['as' => 'manage_molecules_delete', 'uses' => 'BackendController@deleteMolecule']);
+	Route::get('/admin/manage_molecules/edit/{id}', ['as' => 'manage_molecules_edit', 'uses' => 'BackendController@editMoleculeGet']);
+	Route::post('/admin/manage_molecules/edit/{id}', ['as' => 'manage_molecules_edit_post', 'uses' => 'BackendController@editMoleculePost']);
+	Route::get('/admin/manage_molecules/create_molecule', ['as' => 'create_molecule', 'uses' => 'BackendController@createMoleculeGet']);
+	Route::post('/admin/manage_molecules/create_molecule', ['as' => 'create_molecule_post', 'uses' => 'BackendController@createMoleculePost']);
 
 	Route::get('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'BackendController@privileges']);
 	Route::post('/admin/user-privileges/{id}', ['as' => 'profile_post', 'uses' => 'BackendController@privileges_change']);

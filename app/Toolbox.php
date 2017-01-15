@@ -27,6 +27,14 @@ class Toolbox
 			Toolbox::chkRoute($route);
 		}
 	}
+
+	static function string_truncate($str, $length){
+		$retstr = substr($str, 0 , $length);
+		if(strlen($str) > $length){
+			$retstr .= "...";
+		}
+		return $retstr;
+	}
 }
 
 ?>
