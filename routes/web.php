@@ -28,6 +28,13 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin/manage_molecules/create_molecule', ['as' => 'create_molecule', 'uses' => 'BackendController@createMoleculeGet']);
 	Route::post('/admin/manage_molecules/create_molecule', ['as' => 'create_molecule_post', 'uses' => 'BackendController@createMoleculePost']);
 
+	Route::get('/admin/manage_atoms/', ['as' => 'manage_atoms', 'uses' => 'BackendController@manageAtomsGet']);
+	Route::get('/admin/manage_atoms/delete/{id}', ['as' => 'manage_atoms_delete', 'uses' => 'BackendController@deleteAtom']);
+	Route::get('/admin/manage_atoms/edit/{id}', ['as' => 'manage_atoms_edit', 'uses' => 'BackendController@editAtomGet']);
+	Route::post('/admin/manage_atoms/edit/{id}', ['as' => 'manage_atoms_edit_post', 'uses' => 'BackendController@editAtomPost']);
+	Route::get('/admin/manage_atoms/create_atom', ['as' => 'create_atom', 'uses' => 'BackendController@createAtomGet']);
+	Route::post('/admin/manage_atoms/create_atom', ['as' => 'create_atom_post', 'uses' => 'BackendController@createAtomPost']);
+	
 	Route::get('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'BackendController@privileges']);
 	Route::post('/admin/user-privileges/{id}', ['as' => 'profile_post', 'uses' => 'BackendController@privileges_change']);
 });

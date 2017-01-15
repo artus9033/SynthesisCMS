@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Atom;
 use Illuminate\Database\Eloquent\Model;
 
 class Molecule extends Model
@@ -11,8 +12,7 @@ class Molecule extends Model
      public $timestamps = true;
 
 	public function getAmount(){
-		//TODO: implement atoms
-		$atoms = null;//Atom::where('molecule', $this->id)->cursor();
-		return 0;//$atoms->count();
+		$atoms = Atom::where('molecule', $this->id);
+		return $atoms->count();
 	}
 }

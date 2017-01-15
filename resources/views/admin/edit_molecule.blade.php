@@ -23,17 +23,15 @@ label{
 		<h5>{{ trans('synthesiscms/admin.modal_delete_molecule_content', ['molecule' => $molecule->title]) }}</h5>
 		<h5 class="red-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_delete_molecule_content_2') }}</strong></h5>
 	</div>
-	<form class="form" id="formDelete{{ $molecule->id }}" method="delete">
-	</form>
 	<div class="modal-footer">
 		<a style="margin-right: 9%;" onclick="$('#modalDelete{{ $molecule->id }}').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_no') }}</a>
-		<a style="margin-left: 9%;" onclick="$('#formDelete{{ $molecule->id }}').submit();" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
+		<a style="margin-left: 9%;" href="/admin/manage_molecules/delete/{{ $molecule->id }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
 	</div>
 </div>
 <div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 	<div class="card-content">
 		<div class="card-title col s12 row valign-wrapper">
-			<h3 class="teal-text valign-wrapper col s12"><i class="material-icons prefix teal-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_molecule') }}</h3>
+			<h3 class="teal-text valign-wrapper col s12"><i class="material-icons prefix teal-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_molecule') }}&nbsp;(ID&nbsp;{{ $molecule->id }})</h3>
 		</div>
 		<div class="divider teal col s12"></div>
 		<div class="col s12 row"></div>
@@ -54,9 +52,9 @@ label{
 		</form>
 	</div>
 	<div class="card-action">
-		<a onclick="$('#edit').submit()" class="btn-flat waves-effect waves-green teal-text"><i class="material-icons teal-text left">save</i>{{ trans('synthesiscms/admin.save_route') }}</a>
-		<a class="btn-flat waves-effect waves-yellow teal-text" href="{{ URL::previous() }}"><i class="material-icons teal-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_route') }}</a>
-		<button class="btn-flat waves-effect waves-red teal-text" data-target="modalDelete{{ $molecule->id }}"><i class="material-icons teal-text left">security</i>{{ trans('synthesiscms/admin.delete_route') }}</button>
+		<a onclick="$('#edit').submit()" class="btn-flat waves-effect waves-green teal-text"><i class="material-icons teal-text left">save</i>{{ trans('synthesiscms/admin.save_molecule') }}</a>
+		<a class="btn-flat waves-effect waves-yellow teal-text" href="{{ URL::previous() }}"><i class="material-icons teal-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_molecule') }}</a>
+		<button @php if($molecule->id == 1){ echo('disabled'); } @endphp class="btn-flat waves-effect waves-red teal-text" data-target="modalDelete{{ $molecule->id }}"><i class="material-icons teal-text left">security</i>{{ trans('synthesiscms/molecule.delete_molecule') }}</button>
 	</div>
 </div>
 <script type="text/javascript">

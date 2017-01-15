@@ -7,6 +7,7 @@ use App\Http\Requests\BackendRequest;
 use App\User;
 use App\Page;
 use App\Molecule;
+use App\Atom;
 use App\Toolbox;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -163,15 +164,23 @@ class BackendController extends Controller
 
 	public function editMoleculePost($id, BackendRequest $request)
 	{
-		echo "TODO"; //TODO add edition of molecule
+		$molecule = Molecule::find($id);
+		$molecule->title = $request->get('title');
+		$molecule->description = $request->get('desc');
+		$molecule->save();
+		return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecule_saved', ['name' => Toolbox::string_truncate($molecule->title, 10)]));
 	}
 
 	public function deleteMolecule($id){
-		$molecule = Molecule::find($id);
-		$name_orig = $molecule->title;
-		$name_new = Toolbox::string_truncate($name_orig, 10);
-		$molecule->delete();
-		return \Redirect::back()->with('message', trans('synthesiscms/admin.msg_molecule_deleted', ['name' => $name_new]));
+		if($id == 1){
+			return \Redirect::back()->with('errors', [trans('synthesiscms/admin.msg_route_cannot_be_deleted')]);
+		}else{
+			$molecule = Molecule::find($id);
+			$name_orig = $molecule->title;
+			$name_new = Toolbox::string_truncate($name_orig, 10);
+			$molecule->delete();
+			return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecule_deleted', ['name' => $name_new]));
+		}
 	}
 
 	public function createMoleculeGet()
@@ -186,5 +195,47 @@ class BackendController extends Controller
 		$molecule = Molecule::create(['title' => $title, 'description' => $desc]);
 		$name_new = Toolbox::string_truncate($title, 10);
 		return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecule_created', ['name' => $title]));
+	}
+
+	public function createAtomGet()
+	{
+		return view('admin.create_atom');
+	}
+
+	public function createAtomPost(BackendRequest $request)
+	{
+		$title = $request->get('title');
+		$desc = $request->get('description');
+		$atom = Atom::create(['title' => $title, 'description' => $desc, 'molecule' => $request->get('molecule')]);
+		$name_new = Toolbox::string_truncate($title, 10);
+		return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_created', ['name' => $title]));
+	}
+
+	public function manageAtomsGet()
+	{
+		return view('admin.manage_atoms');
+	}
+
+	public function editAtomGet($id){
+		$atom = Atom::find($id);
+		return view('admin.edit_atom', ['atom' => $atom]);
+	}
+
+	public function editAtomPost($id, BackendRequest $request)
+	{
+		$atom = Atom::find($id);
+		$atom->title = $request->get('title');
+		$atom->description = $request->get('desc');
+		$atom->molecule = $request->get('molecule');
+		$atom->save();
+		return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_saved', ['name' => Toolbox::string_truncate($atom->title, 10)]));
+	}
+
+	public function deleteAtom($id){
+		$atom = Atom::find($id);
+		$name_orig = $atom->title;
+		$name_new = Toolbox::string_truncate($name_orig, 10);
+		$atom->delete();
+		return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_deleted', ['name' => $name_new]));
 	}
 }
