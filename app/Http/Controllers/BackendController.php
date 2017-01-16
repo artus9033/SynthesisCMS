@@ -153,7 +153,7 @@ class BackendController extends Controller
 		$kpath = 'App\\Modules\\'.$module.'\\ModuleKernel';
 		$kernel = new $kpath;
 		$kernel->create($page->id);
-		
+
 		return \Redirect::route('manage_routes_edit', ['id' => $page->id])->with('message', trans('synthesiscms/admin.msg_route_created', ['route' => $route]));
 	}
 
@@ -242,5 +242,12 @@ class BackendController extends Controller
 		$name_new = Toolbox::string_truncate($name_orig, 10);
 		$atom->delete();
 		return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_deleted', ['name' => $name_new]));
+	}
+
+	public function massDeleteAtom(BackendRequest $request){
+		$input = $request->all();
+		foreach ($input as $key => $id) {
+			var_dump($id);
+		}
 	}
 }
