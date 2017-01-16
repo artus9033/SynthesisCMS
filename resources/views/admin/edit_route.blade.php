@@ -76,25 +76,6 @@ label{
 							<label for="header">{{ trans('synthesiscms/modules.header') }}</label>
 						</div>
 					</div>
-					<div class="row col s12 center">
-						<div class="input-field col s8 offset-s2 valign" id="molecule-div">
-							<select id="molecule" name="molecule" class="teal-text">
-									@php
-										$tmp_ct = 0;
-									@endphp
-									@foreach (App\Molecule::all() as $key => $value)
-										@php
-											$tmp_ct++;
-											var_dump($value);
-										@endphp
-									@endforeach
-									@if ($tmp_ct == 0)
-										<option disabled selected class="card-panel col s10 offset-s1 red white-text"><h5>{{ trans('synthesiscms/modules.no_molecules') }}</h5></option>
-									@endif
-							</select>
-							<label>{{ trans('synthesiscms/modules.choose_molecule') }}</label>
-						</div>
-						</div>
 			</form>
 			<div class="divider teal col s12 row"></div>
 			<div class="card-panel col s8 offset-s2 z-depth-2 center teal white-text row">

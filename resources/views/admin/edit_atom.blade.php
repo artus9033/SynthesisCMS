@@ -10,12 +10,30 @@
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.edit_atom') }}</a>
 @endsection
 
-@section('main')
+@section('head')
+	<script>$(document).ready(function() {
+    $('select').material_select();
+});</script>
 <style>
-label{
-	text-align: left !important;
-}
+	#molecule-div .caret {
+	  color: teal !important;
+	}
+
+	#molecule-div .select-dropdown {
+	  border-bottom-color: teal !important;
+	}
+
+	#molecule-div .select-wrapper {
+	  margin-top: 5px !important;
+	}
+
+	label{
+		text-align: left !important;
+	}
 </style>
+@endsection
+
+@section('main')
 <div id="modalDelete{{ $atom->id }}" class="modal">
 	<div class="modal-content">
 		<h3>{{ trans('synthesiscms/admin.modal_delete_atom_header') }}</h3>
@@ -49,16 +67,16 @@ label{
 					<label for="desc">{{ trans('synthesiscms/atom.content') }}</label>
 				</div>
 			</div>
-			<div class="row col s12 center">
-				<div class="input-field col s8 offset-s2 valign" id="molecule-div">
-					<select id="molecule" name="molecule" class="teal-text">
-							@foreach (App\Molecule::all() as $key => $value)
-								<option value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $value->title }}</h5></option>
-							@endforeach
-					</select>
-					<label>{{ trans('synthesiscms/modules.choose_molecule') }}</label>
-				</div>
-			</div>
+			<div class="row">
+		       <div class="input-field col s8 offset-s2" id="molecule-div">
+		         <select class="teal-text" name="molecule" id="molecule">
+				    @foreach (App\Molecule::all() as $key => $value)
+ 					   <option @php if($value->id == $atom->molecule){ echo("selected"); } @endphp value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $value->title }}</h5></option>
+ 				   @endforeach
+		          </select>
+				<label>{{ trans('synthesiscms/modules.choose_molecule') }}</label>
+		       </div>
+		     </div>
 		</form>
 	</div>
 	<div class="card-action">

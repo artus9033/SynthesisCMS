@@ -149,7 +149,12 @@ class BackendController extends Controller
 		Toolbox::chkRoute($route);
 
 		$page = Page::create(['slug' => $route, 'module' => $module]);
-		return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/admin.msg_route_created', ['route' => $route]));
+
+		$kpath = 'App\\Modules\\'.$module.'\\ModuleKernel';
+		$kernel = new $kpath;
+		$kernel->create($page->id);
+		
+		return \Redirect::route('manage_routes_edit', ['id' => $page->id])->with('message', trans('synthesiscms/admin.msg_route_created', ['route' => $route]));
 	}
 
 	public function manageMoleculesGet()

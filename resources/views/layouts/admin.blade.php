@@ -106,7 +106,7 @@
 									</form>
 								</li>
 							</ul>
-							<li class="right" style="min-width: 150px;"><a class="dropdown-button center" href="/profile" data-activates="user_dropdown"><i class="material-icons white-text left">account_circle</i>{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
+							<li class="right" style="min-width: 210px;"><a class="dropdown-button center" href="/profile" data-activates="user_dropdown"><i class="material-icons white-text left">account_circle</i>{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
 						@endif
 					</ul>
 				</div>

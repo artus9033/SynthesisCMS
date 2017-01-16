@@ -15,10 +15,9 @@ class CreateHydrogenModulesTable extends Migration
     {
         Schema::create('hydrogen_modules', function (Blueprint $table) {
             $table->increments('id');
-		  $table->string('title')->default("Hydrogen Module Sample");
-		  $table->string('content')->default("Hydrogen Module Sample Content: Lorem ipsum sit dolor amet...");
-		  $table->string('image')->default("http://mannaforlifeblog.com/wp-content/uploads/2014/04/Electrik_bulb2-586x349.jpg");
-        });
+		  $table->integer('molecule')->default(1);
+		  $table->timestamps();
+		});
     }
 
     /**
