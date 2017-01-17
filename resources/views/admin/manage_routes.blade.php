@@ -4,6 +4,8 @@
 	{{ trans('synthesiscms/admin.manage_routes')}}
 @endsection
 
+@section('side-nav-active', 'manage_routes')
+
 @section('breadcrumbs')
 	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
 	<a href="/admin/manage_routes" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>

@@ -13,7 +13,7 @@ return [
 	'delete_atom' => 'Delete Atom',
 	'delete' => 'Delete',
 	'molecule' => 'Parent Molecule',
-	'check' => 'Select'
+	'check' => 'Select',
 ];
 
 ?>

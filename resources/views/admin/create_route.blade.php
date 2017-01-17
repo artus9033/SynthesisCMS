@@ -4,6 +4,8 @@
 	{{ trans('synthesiscms/admin.create_route')}}
 @endsection
 
+@section('side-nav-active', 'manage_routes')
+
 @section('head')
 <style>
 	.caret {

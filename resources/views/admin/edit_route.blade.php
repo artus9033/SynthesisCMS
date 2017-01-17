@@ -4,6 +4,8 @@
 	{{ trans('synthesiscms/admin.edit_route', ['route' => $page->slug]) }}
 @endsection
 
+@section('side-nav-active', 'manage_routes')
+
 @section('head')
 <style>
 	#molecule-div .caret {

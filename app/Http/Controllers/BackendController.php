@@ -284,4 +284,45 @@ class BackendController extends Controller
 			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atoms_copied', ['count' => $count, 'beginning' => $count == 1 ? "atom has" : "atoms have"]));
 		}
 	}
+
+	public function massDeletemolecule(BackendRequest $request){
+		$count = 0;
+		$csrf_token = true; // check if it's the csrf token hidden input
+		foreach ($request->all() as $key => $val) {
+			if($csrf_token){
+				$csrf_token = false;
+			}else if(starts_with($key, "molecule_checkbox")){
+				Molecule::find(intval(str_replace("molecule_checkbox", "", $key)))->delete();
+				$count++;
+			}
+		}
+		if($count == 0){
+			$errors = Array();
+			array_push($errors, trans('synthesiscms/admin.err_no_molecules_selected'));
+			return \Redirect::route('manage_molecules')->with('errors', $errors);
+		}else{
+			return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecules_deleted', ['count' => $count, 'beginning' => $count == 1 ? "molecule has" : "molecules have"]));
+		}
+	}
+
+	public function massCopymolecule(BackendRequest $request){
+		$count = 0;
+		$csrf_token = true; // check if it's the csrf token hidden input
+		foreach ($request->all() as $key => $val) {
+			if($csrf_token){
+				$csrf_token = false;
+			}else if(starts_with($key, "molecule_checkbox")){
+				$origin = Molecule::find(intval(str_replace("molecule_checkbox", "", $key)));
+				Molecule::create(['title' => trans("synthesiscms/helper.molecule_copy_prefix") . $origin->title, 'description' => $origin->description, 'molecule' => $origin->molecule, 'image' => $origin->image, 'imageSourceType' => $origin->imageSourceType]);
+				$count++;
+			}
+		}
+		if($count == 0){
+			$errors = Array();
+			array_push($errors, trans('synthesiscms/admin.err_no_molecules_selected'));
+			return \Redirect::route('manage_molecules')->with('errors', $errors);
+		}else{
+			return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecules_copied', ['count' => $count, 'beginning' => $count == 1 ? "molecule has" : "molecules have"]));
+		}
+	}
 }

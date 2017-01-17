@@ -4,6 +4,8 @@
 	{{ trans('synthesiscms/admin.create_atom')}}
 @endsection
 
+@section('side-nav-active', 'manage_atoms')
+
 @section('head')
 <style>
 	#molecule-div .caret {

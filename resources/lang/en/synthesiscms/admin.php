@@ -1,6 +1,9 @@
 <?php
 
 return [
+	'err_no_molecules_selected' => 'In order to perform this operation, first you have to select some molecules!',
+	'msg_molecules_copied' => ':count :beginning successfully been copied',
+	'msg_molecules_deleted' => ':count :beginning successfully been deleted',
 	'err_no_atoms_selected' => 'In order to perform this operation, first you have to select some atoms!',
 	'msg_atoms_copied' => ':count :beginning successfully been copied',
 	'msg_atoms_deleted' => ':count :beginning successfully been deleted',
@@ -75,6 +78,11 @@ return [
 	'modal_mass_delete_atom_content_2' => 'Remember, this cannot be undone!',
 	'modal_mass_delete_atom_btn_yes' => 'Yes, I understand, dissolve them in acid!',
 	'modal_mass_delete_atom_btn_no' => 'No, leave them alone!',
+	'modal_mass_delete_molecule_header' => 'Are You sure?',
+	'modal_mass_delete_molecule_content' => 'Are You sure You want to delete the selected molecules?',
+	'modal_mass_delete_molecule_content_2' => 'Remember, this cannot be undone!',
+	'modal_mass_delete_molecule_btn_yes' => 'Yes, I understand, dissolve them in acid!',
+	'modal_mass_delete_molecule_btn_no' => 'No, leave them alone!',
 	'modal_delete_route_header' => 'Are You sure?',
 	'modal_delete_route_content' => 'Are You sure You want to delete the route :route ?',
 	'modal_delete_route_content_2' => 'Remember, this cannot be undone!',

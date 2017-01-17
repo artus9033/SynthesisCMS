@@ -23,6 +23,9 @@
 	<script>
 	$(document).ready(function(){
 		$('.collapsible').collapsible();
+		var selector = "#@yield('side-nav-active')";
+		$(selector).addClass("active");
+		$(selector).parents('li').children('a').click();
 	});
 	</script>
 	<style>
@@ -37,34 +40,34 @@
 		<li class="logo"><a href="/admin" class="brand-logo teal white-text waves-effect waves-light"><i class="material-icons white-text">verified_user</i>{{ trans('synthesiscms/admin.backend') }}</a></li>
 		<li>
 			<ul class="collapsible collapsible-accordion">
-				<li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons teal-text">content_copy</i>{{ trans('synthesiscms/admin.section_content') }}</a>
+				<li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons teal-text">description</i>{{ trans('synthesiscms/admin.section_content') }}</a>
 					<div class="collapsible-body">
 						<ul>
-							<li><a class="waves-effect waves-teal" href="/admin/manage_atoms">{{ trans('synthesiscms/admin.manage_atoms') }}</a></li>
-							<li><a class="waves-effect waves-teal" href="/admin/manage_molecules">{{ trans('synthesiscms/admin.manage_molecules') }}</a></li>
+							<li id="manage_atoms"><a class="waves-effect waves-teal" href="/admin/manage_atoms">{{ trans('synthesiscms/admin.manage_atoms') }}</a></li>
+							<li id="manage_molecules"><a class="waves-effect waves-teal" href="/admin/manage_molecules">{{ trans('synthesiscms/admin.manage_molecules') }}</a></li>
 						</ul>
 					</div>
 				</li>
 				<li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons teal-text">supervisor_account</i>{{ trans('synthesiscms/admin.section_users') }}</a>
 					<div class="collapsible-body">
 						<ul>
-							<li><a class="waves-effect waves-teal" href="/profile">{{ trans('synthesiscms/profile.profile') }}</a></li>
-							<li><a class="waves-effect waves-teal" href="/admin/manage_users">{{ trans('synthesiscms/admin.manage_users') }}</a></li>
+							<li id="profile"><a class="waves-effect waves-teal" href="/profile">{{ trans('synthesiscms/profile.profile') }}</a></li>
+							<li id="manage_users"><a class="waves-effect waves-teal" href="/admin/manage_users">{{ trans('synthesiscms/admin.manage_users') }}</a></li>
 						</ul>
 					</div>
 				</li>
 				<li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons teal-text">pages</i>{{ trans('synthesiscms/admin.section_routes') }}</a>
 					<div class="collapsible-body">
 						<ul>
-							<li><a class="waves-effect waves-teal" href="/admin/manage_routes">{{ trans('synthesiscms/admin.manage_routes') }}</a></li>
-							<li><a class="waves-effect waves-teal" href="/admin/manage_extensions">{{ trans('synthesiscms/admin.manage_extensions') }}</a></li>
+							<li id="manage_routes"><a class="waves-effect waves-teal" href="/admin/manage_routes">{{ trans('synthesiscms/admin.manage_routes') }}</a></li>
+							<li id="manage_extensions"><a class="waves-effect waves-teal" href="/admin/manage_extensions">{{ trans('synthesiscms/admin.manage_extensions') }}</a></li>
 						</ul>
 					</div>
 				</li>
 				<li class="bold active"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons teal-text">settings</i>{{ trans('synthesiscms/admin.section_settings') }}</a>
 					<div class="collapsible-body" style="display: block;">
 						<ul>
-							<li><a class="waves-effect waves-teal" href="/admin/settings">{{ trans('synthesiscms/admin.settings') }}</a></li>
+							<li id="settings"><a class="waves-effect waves-teal" href="/admin/settings">{{ trans('synthesiscms/admin.settings') }}</a></li>
 						</ul>
 					</div>
 				</li>
