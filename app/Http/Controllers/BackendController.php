@@ -250,11 +250,38 @@ class BackendController extends Controller
 		foreach ($request->all() as $key => $val) {
 			if($csrf_token){
 				$csrf_token = false;
-			}else if(starts_with($key, "delete_checkbox")){
-				Atom::find(intval(str_replace("delete_checkbox", "", $key)))->delete();
+			}else if(starts_with($key, "atom_checkbox")){
+				Atom::find(intval(str_replace("atom_checkbox", "", $key)))->delete();
 				$count++;
 			}
 		}
-		return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atoms_deleted', ['count' => $count, 'atoms' => $count == 1 ? "atom has" : "atoms have"]));
+		if($count == 0){
+			$errors = Array();
+			array_push($errors, trans('synthesiscms/admin.err_no_atoms_selected'));
+			return \Redirect::route('manage_atoms')->with('errors', $errors);
+		}else{
+			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atoms_deleted', ['count' => $count, 'beginning' => $count == 1 ? "atom has" : "atoms have"]));
+		}
+	}
+
+	public function massCopyAtom(BackendRequest $request){
+		$count = 0;
+		$csrf_token = true; // check if it's the csrf token hidden input
+		foreach ($request->all() as $key => $val) {
+			if($csrf_token){
+				$csrf_token = false;
+			}else if(starts_with($key, "atom_checkbox")){
+				$origin = Atom::find(intval(str_replace("atom_checkbox", "", $key)));
+				Atom::create(['title' => trans("synthesiscms/helper.atom_copy_prefix") . $origin->title, 'description' => $origin->description, 'molecule' => $origin->molecule, 'image' => $origin->image, 'imageSourceType' => $origin->imageSourceType]);
+				$count++;
+			}
+		}
+		if($count == 0){
+			$errors = Array();
+			array_push($errors, trans('synthesiscms/admin.err_no_atoms_selected'));
+			return \Redirect::route('manage_atoms')->with('errors', $errors);
+		}else{
+			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atoms_copied', ['count' => $count, 'beginning' => $count == 1 ? "atom has" : "atoms have"]));
+		}
 	}
 }

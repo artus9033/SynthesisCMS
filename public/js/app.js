@@ -8,6 +8,22 @@ function toggleAll(selector){
 	});
 }
 
+function selectAll(selector){
+	$(selector).each(function(index) {
+		if(!$(this).is(":checked")){
+			$(this).click();
+		}
+	});
+}
+
+function unselectAll(selector){
+	$(selector).each(function(index) {
+		if($(this).is(":checked")){
+			$(this).click();
+		}
+	});
+}
+
 $(document).ready(function() {
 	$('.dropdown-button').dropdown({
       inDuration: 500,

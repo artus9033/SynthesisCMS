@@ -1,8 +1,13 @@
 <?php
 
 return [
+	'err_no_atoms_selected' => 'In order to perform this operation, first you have to select some atoms!',
+	'msg_atoms_copied' => ':count :beginning successfully been copied',
 	'msg_atoms_deleted' => ':count :beginning successfully been deleted',
-	'select_all' => 'Toggle All',
+	'menu_select_actions' => 'Actions',
+	'menu_select_actions_swap_selection' => 'Swap Selection',
+	'menu_select_actions_select_all' => 'Select All',
+	'menu_select_actions_unselect_all' => 'Unselect All',
 	'no_atoms' => 'No Atoms',
 	'msg_route_cannot_be_deleted' => 'This is the default Molecule! It cannot be deleted!',
 	'edit_atom' => 'Edit Atom',
@@ -65,6 +70,11 @@ return [
 	'modal_delete_user_content_2' => 'Remember, this cannot be undone!',
 	'modal_delete_user_btn_yes' => 'Yes, I understand, kick them out!',
 	'modal_delete_user_btn_no' => 'No, leave them alone!',
+	'modal_mass_delete_atom_header' => 'Are You sure?',
+	'modal_mass_delete_atom_content' => 'Are You sure You want to delete the selected atoms?',
+	'modal_mass_delete_atom_content_2' => 'Remember, this cannot be undone!',
+	'modal_mass_delete_atom_btn_yes' => 'Yes, I understand, dissolve them in acid!',
+	'modal_mass_delete_atom_btn_no' => 'No, leave them alone!',
 	'modal_delete_route_header' => 'Are You sure?',
 	'modal_delete_route_content' => 'Are You sure You want to delete the route :route ?',
 	'modal_delete_route_content_2' => 'Remember, this cannot be undone!',

@@ -2,6 +2,8 @@
 
 return [
 	'delete_selected' => 'Delete Selected',
+	'copy_selected' => 'Copy Selected',
+	'move_selected' => 'Move Selected',
 	'id' => 'ID',
 	'title' => 'Title',
 	'content' => 'Content',
