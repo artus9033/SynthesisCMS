@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'msg_atoms_deleted' => ':count :beginning successfully been deleted',
 	'select_all' => 'Toggle All',
 	'no_atoms' => 'No Atoms',
 	'msg_route_cannot_be_deleted' => 'This is the default Molecule! It cannot be deleted!',

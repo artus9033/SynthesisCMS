@@ -245,9 +245,16 @@ class BackendController extends Controller
 	}
 
 	public function massDeleteAtom(BackendRequest $request){
-		$input = $request->all();
-		foreach ($input as $key => $id) {
-			var_dump($id);
+		$count = 0;
+		$csrf_token = true; // check if it's the csrf token hidden input
+		foreach ($request->all() as $key => $val) {
+			if($csrf_token){
+				$csrf_token = false;
+			}else if(starts_with($key, "delete_checkbox")){
+				Atom::find(intval(str_replace("delete_checkbox", "", $key)))->delete();
+				$count++;
+			}
 		}
+		return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atoms_deleted', ['count' => $count, 'atoms' => $count == 1 ? "atom has" : "atoms have"]));
 	}
 }

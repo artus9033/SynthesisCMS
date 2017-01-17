@@ -2,6 +2,12 @@ function setLanguage(lang){
 	window.location.href = "/lang/" + lang;
 }
 
+function toggleAll(selector){
+	$(selector).each(function(index) {
+		$(this).click();
+	});
+}
+
 $(document).ready(function() {
 	$('.dropdown-button').dropdown({
       inDuration: 500,

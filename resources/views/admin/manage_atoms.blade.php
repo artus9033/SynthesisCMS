@@ -10,7 +10,7 @@
 @endsection
 
 @section('main')
-	<button onclick="toggleAll();" class="btn-floating btn-large teal white-text waves-effect waves-light z-depth-4 tooltipped" data-position="left" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.select_all') }}" style="position: absolute; bottom: 32px; right: 32px;">
+	<button onclick="toggleAll('.delete_checkbox');" class="btn-floating btn-large teal white-text waves-effect waves-light z-depth-4 tooltipped" data-position="left" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.select_all') }}" style="position: absolute; bottom: 32px; right: 32px;">
 		<i class="large material-icons">select_all</i>
 	</button>
 	<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
@@ -48,8 +48,8 @@
 							<td class="right">
 								<div class="col s12">
 									<p>
-										<input class="filled-in" type="checkbox" id="checkbox" name="checkbox{{ $atom->id }}">
-										<label for="checkbox"></label>
+										<input class="delete_checkbox filled-in" type="checkbox" id="checkbox{{ $atom->id }}" name="delete_checkbox{{ $atom->id }}">
+										<label for="checkbox{{ $atom->id }}"></label>
 									</p>
 								</div>
 							</td>
