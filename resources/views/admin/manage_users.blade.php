@@ -15,7 +15,7 @@
 	<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 		<div class="card-content">
 			<div class="card-title col s12">
-				<h3 class="teal-text valign-wrapper"><i class="material-icons prefix teal-text medium valign">supervisor_account</i>&nbsp;{{ trans('synthesiscms/auth.profile') }}</h3>
+				<h3 class="teal-text valign-wrapper"><i class="material-icons prefix teal-text medium valign">supervisor_account</i>&nbsp;{{ trans('synthesiscms/admin.manage_users') }}</h3>
 				</div>
 				<div class="divider teal col s12"></div>
 				<div class="col s12 row"></div>
