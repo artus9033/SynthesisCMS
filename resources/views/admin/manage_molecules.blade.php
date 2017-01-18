@@ -40,6 +40,12 @@
 			<div class="row col s12"><div class="divider red col s10 offset-s1" style="height: 2px;"></div></div>
 			<h5>{{ trans('synthesiscms/admin.modal_mass_delete_molecule_content') }}</h5>
 			<h5 class="red-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_mass_delete_molecule_content_2') }}</strong></h5>
+			<div class="col s12">
+				<p>
+					<input onclick="$('#formMassDeleteChildAtomsCheckbox').prop('checked', $(this).prop('checked'));" class="filled-in teal-text" type="checkbox" id="checkboxDeleteAtoms" name="checkboxDeleteAtoms">
+					<label class="teal-text" for="checkboxDeleteAtoms">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_checkbox_delete_subatoms') }}</label>
+				</p>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<a style="margin-right: 9%;" onclick="$('#modalMassDelete').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_btn_no') }}</a>
@@ -55,6 +61,18 @@
 			<div class="col s12 row"></div>
 			<form class="form col s12 row" id="action_form" method="post">
 				{{ csrf_field() }}
+				<script>
+					$(document).ready(function() {
+						$('#formMassDeleteChildAtomsCheckbox').click();
+						$('#formMassDeleteChildAtomsCheckbox').click();
+					});
+				</script>
+				<div class="col s12" style="display: none;">
+					<p>
+						<input id="formMassDeleteChildAtomsCheckbox" name="formMassDeleteChildAtomsCheckbox" class="filled-in teal-text" type="checkbox">
+						<label class="teal-text" for="checkboxDeleteAtoms">You should not see this</label>
+					</p>
+				</div>
 				<a href="/admin/manage_molecules/create_molecule" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_molecule') }}</a>
 				&nbsp;&nbsp;&nbsp;
 				<button data-target="modalMassDelete" type="button" class="btn teal white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/molecule.delete_selected') }}</button>

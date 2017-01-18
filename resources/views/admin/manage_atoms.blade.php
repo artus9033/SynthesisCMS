@@ -89,8 +89,8 @@
 									</div>
 								</td>
 								<td class="center">{{ $atom->id }}</td>
-								<td class="center">{{ $atom->title }}</td>
-								<td class="center">{{ App\Molecule::find($atom->molecule)->title }}&nbsp;(ID&nbsp;{{ $atom->molecule }})</td>
+								<td class="center">{{ App\Toolbox::string_truncate($atom->title, 34) }}</td>
+								<td class="center">{{ App\Toolbox::string_truncate(('(ID ' . $atom->molecule . ') ' . App\Molecule::find($atom->molecule)->title), 15) }}</td>
 								<td class="center"><a href="/admin/manage_atoms/edit/{{ $atom->id }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/atom.edit') }}</a></td>
 								<div id="modalDelete{{ $atom->id }}" class="modal">
 									<div class="modal-content">

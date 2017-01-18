@@ -1,9 +1,11 @@
 <?php
 
 return [
+	'err_cannot_delete_default_molecule' => 'The default molecule (ID 1) cannot be deleted!',
 	'err_no_molecules_selected' => 'In order to perform this operation, first you have to select some molecules!',
 	'msg_molecules_copied' => ':count :beginning successfully been copied',
 	'msg_molecules_deleted' => ':count :beginning successfully been deleted',
+	'msg_molecules_and_child_atoms_deleted' => ':moleculesCount and :atomsCount have been successfully been deleted',
 	'err_no_atoms_selected' => 'In order to perform this operation, first you have to select some atoms!',
 	'msg_atoms_copied' => ':count :beginning successfully been copied',
 	'msg_atoms_deleted' => ':count :beginning successfully been deleted',
@@ -79,8 +81,9 @@ return [
 	'modal_mass_delete_atom_btn_yes' => 'Yes, I understand, dissolve them in acid!',
 	'modal_mass_delete_atom_btn_no' => 'No, leave them alone!',
 	'modal_mass_delete_molecule_header' => 'Are You sure?',
-	'modal_mass_delete_molecule_content' => 'Are You sure You want to delete the selected molecules?',
+	'modal_mass_delete_molecule_content' => 'Are You sure You want to delete the selected molecules? If you don\'t choose the option to delete child atoms, they\'ll be moved to the default molecule (ID 1).',
 	'modal_mass_delete_molecule_content_2' => 'Remember, this cannot be undone!',
+	'modal_mass_delete_molecule_checkbox_delete_subatoms' => 'Also delete child atoms',
 	'modal_mass_delete_molecule_btn_yes' => 'Yes, I understand, dissolve them in acid!',
 	'modal_mass_delete_molecule_btn_no' => 'No, leave them alone!',
 	'modal_delete_route_header' => 'Are You sure?',
