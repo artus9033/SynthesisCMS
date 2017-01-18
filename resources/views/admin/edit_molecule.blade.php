@@ -24,10 +24,16 @@ label{
 		<div class="row col s12"><div class="divider red col s10 offset-s1" style="height: 2px;"></div></div>
 		<h5>{{ trans('synthesiscms/admin.modal_delete_molecule_content', ['molecule' => $molecule->title]) }}</h5>
 		<h5 class="red-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_delete_molecule_content_2') }}</strong></h5>
+		<div class="col s12 center">
+			<p class="center">
+				<input class="filled-in teal-text" type="checkbox" id="checkboxDeleteAtoms{{ $molecule->id }}" name="checkboxDeleteAtoms{{ $molecule->id }}">
+				<label class="teal-text" for="checkboxDeleteAtoms{{ $molecule->id }}">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_checkbox_delete_subatoms') }}</label>
+			</p>
+		</div>
 	</div>
 	<div class="modal-footer">
 		<a style="margin-right: 9%;" onclick="$('#modalDelete{{ $molecule->id }}').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_no') }}</a>
-		<a style="margin-left: 9%;" href="/admin/manage_molecules/delete/{{ $molecule->id }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
+		<a style="margin-left: 9%;"  onclick="window.location.href = ('/admin/manage_molecules/delete/{{ $molecule->id }},' + $('#checkboxDeleteAtoms{{ $molecule->id }}').prop('checked'));" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
 	</div>
 </div>
 <div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">

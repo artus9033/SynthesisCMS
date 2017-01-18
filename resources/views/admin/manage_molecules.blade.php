@@ -62,10 +62,18 @@
 			<form class="form col s12 row" id="action_form" method="post">
 				{{ csrf_field() }}
 				<script>
+					/**
+					* The following code fixes
+					* the problem with the checkbox value
+					* not being submitted with the form
+					**/
 					$(document).ready(function() {
 						$('#formMassDeleteChildAtomsCheckbox').click();
 						$('#formMassDeleteChildAtomsCheckbox').click();
 					});
+					/**
+					* end of fix
+					**/
 				</script>
 				<div class="col s12" style="display: none;">
 					<p>
@@ -111,16 +119,24 @@
 									<td class="center">{{ $molecule->title }}</td>
 									<td class="center">{{ $molecule->getAmount() }}</td>
 									<td class="center"><a href="/admin/manage_molecules/edit/{{ $molecule->id }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/molecule.edit') }}</a></td>
-									<div id="modalDelete{{ $molecule->id }}" class="modal">
+									<div id="modalDelete{{ $molecule->id }}" class="modal center">
 										<div class="modal-content">
 											<h3>{{ trans('synthesiscms/admin.modal_delete_molecule_header') }}</h3>
 											<div class="row col s12"><div class="divider red col s10 offset-s1" style="height: 2px;"></div></div>
 											<h5>{{ trans('synthesiscms/admin.modal_delete_molecule_content', ['molecule' => $molecule->title]) }}</h5>
 											<h5 class="red-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_delete_molecule_content_2') }}</strong></h5>
+											<div class="col s12 row"></div>
+											<div class="col s12 center">
+												<p class="center">
+													<input class="filled-in teal-text" type="checkbox" id="checkboxDeleteAtoms{{ $molecule->id }}" name="checkboxDeleteAtoms{{ $molecule->id }}">
+													<label class="teal-text" for="checkboxDeleteAtoms{{ $molecule->id }}">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_checkbox_delete_subatoms') }}</label>
+												</p>
+											</div>
+											<div class="col s12 row"></div>
 										</div>
 										<div class="modal-footer">
 											<a style="margin-right: 9%;" onclick="$('#modalDelete{{ $molecule->id }}').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_no') }}</a>
-											<a style="margin-left: 9%;" href="/admin/manage_molecules/delete/{{ $molecule->id }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
+											<a style="margin-left: 9%;" onclick="window.location.href = ('/admin/manage_molecules/delete/{{ $molecule->id }},' + $('#checkboxDeleteAtoms{{ $molecule->id }}').prop('checked'));" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
 										</div>
 									</div>
 									<td class="center"><button @php if($molecule->id == 1){ echo('disabled'); } @endphp data-target="modalDelete{{ $molecule->id }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/molecule.delete_molecule') }}</button></td>
@@ -132,6 +148,7 @@
 						</tr>
 					</tbody>
 				</table>
+			</form>
 			</div>
 		</div>
 	</div>

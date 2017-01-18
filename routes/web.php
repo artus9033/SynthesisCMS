@@ -22,7 +22,7 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::post('/admin/manage_routes/create_route', ['as' => 'create_route_post', 'uses' => 'BackendController@createRoutePost']);
 
 	Route::get('/admin/manage_molecules', ['as' => 'manage_molecules', 'uses' => 'BackendController@manageMoleculesGet']);
-	Route::get('/admin/manage_molecules/delete/{id}', ['as' => 'manage_molecules_delete', 'uses' => 'BackendController@deleteMolecule']);
+	Route::get('/admin/manage_molecules/delete/{id},{atoms}', ['as' => 'manage_molecules_delete', 'uses' => 'BackendController@deleteMolecule']);
 	Route::get('/admin/manage_molecules/edit/{id}', ['as' => 'manage_molecules_edit', 'uses' => 'BackendController@editMoleculeGet']);
 	Route::post('/admin/manage_molecules/edit/{id}', ['as' => 'manage_molecules_edit_post', 'uses' => 'BackendController@editMoleculePost']);
 	Route::post('/admin/manage_molecules/mass_delete', ['as' => 'manage_molecules_mass_delete_post', 'uses' => 'BackendController@massDeleteMolecule']);
