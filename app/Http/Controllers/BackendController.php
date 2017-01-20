@@ -245,20 +245,19 @@ class BackendController extends Controller
 				}
 			}
 		}
-		echo $moleculesCount;
 		if($moleculesCount == 0){
 			array_push($errors, trans('synthesiscms/admin.err_no_molecules_selected'));
 			return \Redirect::route('manage_molecules')->with('errors', $errors);
 		}else{
 			if($bool_delete_child_atoms){
-				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('message', trans('synthesiscms/admin.msg_molecules_and_child_atoms_deleted', ['moleculesCount' => $moleculesCount, 'atomsCount' => $atomsCount]));
+				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('message', trans('synthesiscms/admin.msg_molecules_and_child_atoms_deleted', ['moleculesCount' => $moleculesCount . ($moleculesCount == 1 ? " molecule" : " molecules"), 'atomsCount' => $atomsCount . ($atomsCount == 1 ? " atom" : "atoms")]));
 			}else{
-				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('message', trans('synthesiscms/admin.msg_molecules_deleted', ['count' => $moleculesCount, 'beginning' => $moleculesCount == 1 ? "molecule has" : "molecules have"]));
+				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('message', trans('synthesiscms/admin.msg_molecules_deleted', ['count' => $moleculesCount, 'beginning' => $moleculesCount == 1 ? " molecule has" : " molecules have"]));
 			}
 		}
 	}
 
-	public function massCopyMolecule(BackendRequest $request){
+	public function massCopyMolecule(BackendRequest $request, $childrenAtomsToo){
 		$count = 0;
 		$csrf_token = true; // check if it's the csrf token hidden input
 		foreach ($request->all() as $key => $val) {
@@ -266,7 +265,13 @@ class BackendController extends Controller
 				$csrf_token = false;
 			}else if(starts_with($key, "molecule_checkbox")){
 				$origin = Molecule::find(intval(str_replace("molecule_checkbox", "", $key)));
-				Molecule::create(['title' => trans("synthesiscms/helper.molecule_copy_prefix") . $origin->title, 'description' => $origin->description, 'molecule' => $origin->molecule, 'image' => $origin->image, 'imageSourceType' => $origin->imageSourceType]);
+				$newMolecule = Molecule::create(['title' => trans("synthesiscms/helper.molecule_copy_prefix") . $origin->title, 'description' => $origin->description, 'molecule' => $origin->molecule, 'image' => $origin->image, 'imageSourceType' => $origin->imageSourceType]);
+				if($childrenAtomsToo == "true"){
+					$originAtoms = Atom::where('molecule', $origin->id)->cursor();
+					foreach ($originAtoms as $key => $originAtom) {
+						Atom::create(['title' => $originAtom->title, 'description' => $originAtom->description, 'molecule' => $newMolecule->id, 'image' => $originAtom->image, 'imageSourceType' => $originAtom->imageSourceType]);
+					}
+				}
 				$count++;
 			}
 		}
@@ -359,6 +364,28 @@ class BackendController extends Controller
 			return \Redirect::route('manage_atoms')->with('errors', $errors);
 		}else{
 			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atoms_copied', ['count' => $count, 'beginning' => $count == 1 ? "atom has" : "atoms have"]));
+		}
+	}
+
+	public function massMoveAtom(BackendRequest $request, $moleculeId){
+		$count = 0;
+		$csrf_token = true; // check if it's the csrf token hidden input
+		foreach ($request->all() as $key => $val) {
+			if($csrf_token){
+				$csrf_token = false;
+			}else{
+				$atom = Atom::find(intval(str_replace("atom_checkbox", "", $key)));
+				$atom->molecule = $moleculeId;
+				$atom->save();
+				$count++;
+			}
+		}
+		if($count == 0){
+			$errors = Array();
+			array_push($errors, trans('synthesiscms/admin.err_no_atoms_selected'));
+			return \Redirect::route('manage_atoms')->with('errors', $errors);
+		}else{
+			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atoms_moved', ['count' => $count, 'beginning' => $count == 1 ? "atom has" : "atoms have", 'molecule' => $moleculeId]));
 		}
 	}
 }

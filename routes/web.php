@@ -26,7 +26,7 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin/manage_molecules/edit/{id}', ['as' => 'manage_molecules_edit', 'uses' => 'BackendController@editMoleculeGet']);
 	Route::post('/admin/manage_molecules/edit/{id}', ['as' => 'manage_molecules_edit_post', 'uses' => 'BackendController@editMoleculePost']);
 	Route::post('/admin/manage_molecules/mass_delete', ['as' => 'manage_molecules_mass_delete_post', 'uses' => 'BackendController@massDeleteMolecule']);
-	Route::post('/admin/manage_molecules/mass_copy', ['as' => 'manage_molecules_mass_copy_post', 'uses' => 'BackendController@massCopyMolecule']);
+	Route::post('/admin/manage_molecules/mass_copy/{childrenAtomsToo}', ['as' => 'manage_molecules_mass_copy_post', 'uses' => 'BackendController@massCopyMolecule']);
 	Route::get('/admin/manage_molecules/create_molecule', ['as' => 'create_molecule', 'uses' => 'BackendController@createMoleculeGet']);
 	Route::post('/admin/manage_molecules/create_molecule', ['as' => 'create_molecule_post', 'uses' => 'BackendController@createMoleculePost']);
 
@@ -34,6 +34,7 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin/manage_atoms/delete/{id}', ['as' => 'manage_atoms_delete', 'uses' => 'BackendController@deleteAtom']);
 	Route::post('/admin/manage_atoms/mass_delete', ['as' => 'manage_atoms_mass_delete_post', 'uses' => 'BackendController@massDeleteAtom']);
 	Route::post('/admin/manage_atoms/mass_copy', ['as' => 'manage_atoms_mass_copy_post', 'uses' => 'BackendController@massCopyAtom']);
+	Route::post('/admin/manage_atoms/mass_move/{molecule}', ['as' => 'manage_atoms_mass_move_post', 'uses' => 'BackendController@massMoveAtom']);
 	Route::get('/admin/manage_atoms/edit/{id}', ['as' => 'manage_atoms_edit', 'uses' => 'BackendController@editAtomGet']);
 	Route::post('/admin/manage_atoms/edit/{id}', ['as' => 'manage_atoms_edit_post', 'uses' => 'BackendController@editAtomPost']);
 	Route::get('/admin/manage_atoms/create_atom', ['as' => 'create_atom', 'uses' => 'BackendController@createAtomGet']);

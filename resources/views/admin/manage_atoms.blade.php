@@ -6,6 +6,22 @@
 
 @section('side-nav-active', 'manage_atoms')
 
+	@section('head')
+	<style>
+	#molecule-div .caret {
+		color: teal !important;
+	}
+
+	#molecule-div .select-dropdown {
+		border-bottom-color: teal !important;
+	}
+
+	#molecule-div .select-wrapper {
+		margin-top: 5px !important;
+	}
+	</style>
+@endsection
+
 @section('breadcrumbs')
 	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
 	<a href="/admin/manage_atoms" class="breadcrumb">{{ trans('synthesiscms/admin.manage_atoms') }}</a>
@@ -46,6 +62,28 @@
 			<a style="margin-left: 9%;" onclick="$('#action_form').attr('action', '/admin/manage_atoms/mass_delete').submit();" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_delete_atom_btn_yes') }}</a>
 		</div>
 	</div>
+	<div id="modalMassMove" class="modal">
+		<div class="modal-content">
+			<h3>{{ trans('synthesiscms/admin.modal_mass_move_atom_header') }}</h3>
+			<div class="row col s12"><div class="divider red col s10 offset-s1" style="height: 2px;"></div></div>
+			<h5>{{ trans('synthesiscms/admin.modal_mass_move_atom_content') }}</h5>
+			<h5 class="red-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_mass_move_atom_content_2') }}</strong></h5>
+			<div class="row col s12 center">
+				<div class="input-field col s8 offset-s2 valign" id="molecule-div">
+					<select id="massMoveMolecule" name="massMoveMolecule" class="teal-text">
+						@foreach (App\Molecule::all() as $key => $value)
+							<option value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $value->title }}</h5></option>
+						@endforeach
+					</select>
+					<label>{{ trans('synthesiscms/modules.choose_molecule') }}</label>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a style="margin-right: 9%;" onclick="$('#modalMassMove').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_mass_move_atom_btn_no') }}</a>
+			<a style="margin-left: 9%;" onclick="$('#action_form').attr('action', '/admin/manage_atoms/mass_move/' + $('#massMoveMolecule').val()).submit();" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_move_atom_btn_yes') }}</a>
+		</div>
+	</div>
 	<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 		<div class="card-content">
 			<div class="card-title col s12">
@@ -55,11 +93,18 @@
 			<div class="col s12 row"></div>
 			<form class="form col s12 row" id="action_form" method="post">
 				{{ csrf_field() }}
-				<a href="/admin/manage_atoms/create_atom" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_atom') }}</a>
-				&nbsp;&nbsp;&nbsp;
-				<button data-target="modalMassDelete" type="button" class="btn teal white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/atom.delete_selected') }}</button>
-				&nbsp;&nbsp;&nbsp;
-				<button type="button" onclick="$('#action_form').attr('action', '/admin/manage_atoms/mass_copy').submit();" class="btn teal white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">content_copy</i>{{ trans('synthesiscms/atom.copy_selected') }}</button>
+				<table class="col s12">
+					<tbody>
+						<tr>
+							<td><a href="/admin/manage_atoms/create_atom" class="col s10 offset-s1 btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_atom') }}</a></td>
+							<td><button data-target="modalMassDelete" type="button" class="col s10 offset-s1 btn teal white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/atom.delete_selected') }}</button></td>
+							<td><button type="button" onclick="$('#action_form').attr('action', '/admin/manage_atoms/mass_copy').submit();" class="col s10 offset-s1 btn teal white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">content_copy</i>{{ trans('synthesiscms/atom.copy_selected') }}</button></td>
+						</tr>
+						<tr>
+							<td><button data-target="modalMassMove" type="button" class="col s10 offset-s1 btn teal white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">transform</i>{{ trans('synthesiscms/atom.move_selected') }}</button></td>
+						</tr>
+					</tbody>
+				</table>
 				<div class="col s12 row"></div>
 				<table class="bordered col s12">
 					<thead>

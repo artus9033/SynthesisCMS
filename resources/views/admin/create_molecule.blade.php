@@ -49,6 +49,8 @@
 			        	</div>
 				<button type="submit" class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light teal"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_molecule') }}</button>
 				<div class="col s12 row"></div>
+				<a class="btn-flat waves-effect waves-yellow teal-text col s2 offset-s5" href="{{ URL::previous() }}"><i class="material-icons teal-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_molecule') }}</a>
+				<div class="col s12 row"></div>
 			{!! Form::close() !!}
 			</div>
 		</div>
