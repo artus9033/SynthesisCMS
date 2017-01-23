@@ -12,6 +12,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 	    $this->call(MoleculesSeeder::class);
+	    $this->call(AtomsSeeder::class);
 	    $this->call(UsersSeeder::class);
+	    $this->call(PagesSeeder::class);
     }
 }
+?>

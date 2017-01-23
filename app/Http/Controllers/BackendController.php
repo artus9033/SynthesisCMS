@@ -14,7 +14,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 class BackendController extends Controller
 {
-
+//TODO: all models can be created and edited with empty title/other fields; fix this
 	public function index()
 	{
 		if(Auth::check() && Auth::user()->is_admin){
@@ -269,7 +269,7 @@ class BackendController extends Controller
 				if($childrenAtomsToo == "true"){
 					$originAtoms = Atom::where('molecule', $origin->id)->cursor();
 					foreach ($originAtoms as $key => $originAtom) {
-						Atom::create(['title' => $originAtom->title, 'description' => $originAtom->description, 'molecule' => $newMolecule->id, 'image' => $originAtom->image, 'imageSourceType' => $originAtom->imageSourceType]);
+						Atom::create(['title' => $originAtom->title, 'description' => $originAtom->description, 'molecule' => $newMolecule->id, 'image' => $originAtom->image, 'imageSourceType' => $originAtom->imageSourceType, 'hasImage' => $originAtom->hasImage]);
 					}
 				}
 				$count++;
@@ -293,7 +293,7 @@ class BackendController extends Controller
 	{
 		$title = $request->get('title');
 		$desc = $request->get('description');
-		$atom = Atom::create(['title' => $title, 'description' => $desc, 'molecule' => $request->get('molecule')]);
+		$atom = Atom::create(['title' => $title, 'description' => $desc, 'molecule' => $request->get('molecule')]); //TODO: implement image, imageSourceType & hasImage
 		$name_new = Toolbox::string_truncate($title, 10);
 		return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_created', ['name' => $title]));
 	}
@@ -354,7 +354,7 @@ class BackendController extends Controller
 				$csrf_token = false;
 			}else if(starts_with($key, "atom_checkbox")){
 				$origin = Atom::find(intval(str_replace("atom_checkbox", "", $key)));
-				Atom::create(['title' => trans("synthesiscms/helper.atom_copy_prefix") . $origin->title, 'description' => $origin->description, 'molecule' => $origin->molecule, 'image' => $origin->image, 'imageSourceType' => $origin->imageSourceType]);
+				Atom::create(['title' => trans("synthesiscms/helper.atom_copy_prefix") . $origin->title, 'description' => $origin->description, 'molecule' => $origin->molecule, 'image' => $origin->image, 'imageSourceType' => $origin->imageSourceType, 'hasImage' => $origin->hasImage]);
 				$count++;
 			}
 		}

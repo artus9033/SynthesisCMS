@@ -13,9 +13,11 @@
 @endsection
 
 @section('head')
-	<script>$(document).ready(function() {
-    $('select').material_select();
-});</script>
+<script>
+	$(document).ready(function() {
+		$('select').material_select();
+	});
+</script>
 <style>
 	#molecule-div .caret {
 	  color: teal !important;
@@ -69,6 +71,29 @@
 					<label for="desc">{{ trans('synthesiscms/atom.content') }}</label>
 				</div>
 			</div>
+			<div class="input-field col s8 offset-s2" id="molecule-div">
+		    <select class="teal-text" name="imgSourceType" id="imgSourceType">
+				   <option value="web" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans('synthesiscms/atom.imageSourceTypeWeb') }}</h5></option>
+				   <option value="file" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans('synthesiscms/atom.imageSourceTypeFile') }}</h5></option>
+			</select>
+			<label>{{ trans('synthesiscms/atom.chooseImageSourceType') }}</label>
+		</div>
+				<div class="input-field col s12">
+					<i class="material-icons prefix teal-text">photo</i>
+					<input @if($atom->imageSourceType == 'web') value="{{ $atom->image }}" @endif id="image" name="image" type="text">
+					<label for="image">{{ trans('synthesiscms/atom.imageURL') }}</label>
+				</div>
+				<form action="#" class="col s12">
+    <div class="file-field disabled input-field col s12"><!-- TODO: implement file chooser from ftp with upload -->
+      <div class="btn col s5">
+        <span><i class="material-icons white-text">attachment</i>{{ trans('synthesiscms/atom.imageFile') }}</span>
+        <input type="file">
+      </div>
+      <div class="file-path-wrapper col s7">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+  </form>
 			<div class="row">
 		       <div class="input-field col s8 offset-s2" id="molecule-div">
 		         <select class="teal-text" name="molecule" id="molecule">

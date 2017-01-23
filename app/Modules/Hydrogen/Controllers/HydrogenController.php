@@ -13,6 +13,9 @@ class HydrogenController extends Controller
 {
 	public function index($page)
 	{
-		return \View::make('hydrogen::index')->with(['atoms' => Molecule::all(), 'page' => $page]);
+		return \View::make('hydrogen::index')->with(['atoms' => Molecule::all(), 'page' => $page, 'moduleCallback' => $this]);
+	}
+	public function l(){
+		echo("AA");
 	}
 }

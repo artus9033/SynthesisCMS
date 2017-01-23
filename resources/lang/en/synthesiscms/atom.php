@@ -1,6 +1,11 @@
 <?php
 
 return [
+	'imageFile' => 'Choose or upload a file',
+	'imageURL' => 'Put the link to the image here',
+	'chooseImageSourceType' => 'Choose the type of source for the atom\'s image',
+	'imageSourceTypeWeb' => 'Web',
+	'imageSourceTypeFile' => 'File',
 	'delete_selected' => 'Delete Selected',
 	'copy_selected' => 'Clone Selected',
 	'move_selected' => 'Move Selected To',
