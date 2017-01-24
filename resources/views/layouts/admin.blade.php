@@ -20,12 +20,17 @@
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}"  media="screen,projection"/>
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
 	<title>TODO - @yield('title')</title>
+	<script src="{{ asset('trumbowyg/trumbowyg.min.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('trumbowyg/ui/trumbowyg.min.css') }}">
 	<script>
 	$(document).ready(function(){
 		$('.collapsible').collapsible();
 		var selector = "#@yield('side-nav-active')";
 		$(selector).addClass("active");
 		$(selector).parents('li').children('a').click();
+			$(".editor").trumbowyg({
+				lang: '{{ \App::getLocale() }}'
+			});
 	});
 	</script>
 	<style>
@@ -89,7 +94,7 @@
 						</select>
 					</div>
 					<script>
-					$('#lang-select').val('@php echo(strtoupper(\App::getLocale()));@endphp');
+					$('#lang-select').val("{{ strtoupper(\App::getLocale()) }}");
 					</script>
 					<ul class="col s10 right">
 						@yield('menu')

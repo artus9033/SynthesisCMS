@@ -13,7 +13,7 @@ class AtomsSeeder extends Seeder
     {
 	    DB::table('atoms')->insert([
             'title' => 'Hello World!!!',
-            'description' => 'This is a sample Atom from SynthesisCMS with no image!',
+            'description' => '<p style="text-align: center;">This is a sample Atom from SynthesisCMS with no image!</p>',
 		  'created_at' => '2017-01-01 00:00:00',
 		  'updated_at' => '2017-01-01 00:00:00',
         ]);

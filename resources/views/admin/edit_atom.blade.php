@@ -64,6 +64,7 @@
 				<input value="{{ $atom->title }}" id="title" name="title" type="text">
 				<label for="title">{{ trans('synthesiscms/atom.title') }}</label>
 			</div>
+			<!--
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix teal-text">description</i>
@@ -71,6 +72,16 @@
 					<label for="desc">{{ trans('synthesiscms/atom.content') }}</label>
 				</div>
 			</div>
+		-->
+		<div class="row col s12 container">
+			<label for="desc">{{ trans('synthesiscms/atom.content') }}</label>
+	     	<textarea class="editor" id="desc" name="desc"></textarea>
+	     </div>
+		<script>
+		$(document).ready(function(){
+			$(".editor").trumbowyg('html', '{!! $atom->description !!}');
+		});
+		</script>
 			<div class="input-field col s8 offset-s2" id="molecule-div">
 		    <select class="teal-text" name="imgSourceType" id="imgSourceType">
 				   <option value="web" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans('synthesiscms/atom.imageSourceTypeWeb') }}</h5></option>
@@ -83,7 +94,6 @@
 					<input @if($atom->imageSourceType == 'web') value="{{ $atom->image }}" @endif id="image" name="image" type="text">
 					<label for="image">{{ trans('synthesiscms/atom.imageURL') }}</label>
 				</div>
-				<form action="#" class="col s12">
     <div class="file-field disabled input-field col s12"><!-- TODO: implement file chooser from ftp with upload -->
       <div class="btn col s5">
         <span><i class="material-icons white-text">attachment</i>{{ trans('synthesiscms/atom.imageFile') }}</span>
@@ -93,7 +103,6 @@
         <input class="file-path validate" type="text">
       </div>
     </div>
-  </form>
 			<div class="row">
 		       <div class="input-field col s8 offset-s2" id="molecule-div">
 		         <select class="teal-text" name="molecule" id="molecule">

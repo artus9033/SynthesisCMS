@@ -16,7 +16,7 @@ class CreateAtomsTable extends Migration
 	    Schema::create('atoms', function (Blueprint $table) {
             $table->increments('id');
  		  $table->string('title')->default("SynthesisCMS Atom Sample");
- 		  $table->string('description')->default("SynthesisCMS Atom Sample Description: Lorem ipsum sit dolor amet...");
+ 		  $table->longText('description');
 		  $table->integer('molecule')->default(1);
 		  $table->string('image')->default('');
 		  $table->string('imageSourceType')->default("web");

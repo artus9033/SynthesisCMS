@@ -12,7 +12,7 @@
 				<!-- TODO: add possibility to specify image -->
 			</div>
 			<div class="card-reveal">
-				<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+				<span class="card-title grey-text text-darken-4">{{ $atom->title }}<i class="material-icons right">close</i></span>
 				{{ $atom->content }}
 			</div>
 		@else
@@ -26,17 +26,15 @@
 				<i class="material-icons teal-text">open_in_new</i>
 			</div>
 			</div>
-			<div class="card-content">
-				<p class="truncate">
-					{{ $atom->content }}
-				</p>
-			</div>
 		@endif
 		<div class="card-content">
-			@if($atom->hasImage) <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span> @endif
-			<p class="truncate">
-				{{ $atom->title }}
-			</p>
+			@if($atom->hasImage)
+				<span class="card-title activator grey-text text-darken-4">
+					<i class="material-icons right">more_vert</i>
+				</span>
+			@else
+						{!! $atom->content !!}
+			@endif
 		</div>
 	</div>
 </div>

@@ -308,7 +308,7 @@ class BackendController extends Controller
 		return view('admin.edit_atom', ['atom' => $atom]);
 	}
 
-	public function editAtomPost($id, BackendRequest $request)
+	public function editAtomPost($id, BackendRequest $request) //TODO: implement image, imageSourceType & hasImage
 	{
 		$atom = Atom::find($id);
 		$atom->title = $request->get('title');
