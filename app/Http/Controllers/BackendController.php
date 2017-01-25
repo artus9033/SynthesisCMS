@@ -291,11 +291,21 @@ class BackendController extends Controller
 
 	public function createAtomPost(BackendRequest $request)
 	{
-		$title = $request->get('title');
-		$desc = $request->get('description');
-		$atom = Atom::create(['title' => $title, 'description' => $desc, 'molecule' => $request->get('molecule')]); //TODO: implement image, imageSourceType & hasImage
-		$name_new = Toolbox::string_truncate($title, 10);
-		return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_created', ['name' => $title]));
+		if(!Toolbox::isEmptyString($request->get('title'))){
+			$atom = Atom::create(
+				['title' => $request->get('title'),
+				'description' => $request->get('desc'),
+				'molecule' => $request->get('molecule'),
+				'hasImage' => ($request->get('hasImage') == 'on'),
+				'image' => $request->get('image'),
+				'imageSourceType' => $request->get('imgSourceType'),
+				]
+			);
+			$name_new = Toolbox::string_truncate($atom->title, 10);
+			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_created', ['name' => $atom->title]));
+		}else{
+			return \Redirect::to(\Request::path())->with('errors', [trans('synthesiscms/atom.err_no_title')]);
+		}
 	}
 
 	public function manageAtomsGet()
@@ -308,14 +318,21 @@ class BackendController extends Controller
 		return view('admin.edit_atom', ['atom' => $atom]);
 	}
 
-	public function editAtomPost($id, BackendRequest $request) //TODO: implement image, imageSourceType & hasImage
+	public function editAtomPost($id, BackendRequest $request)
 	{
-		$atom = Atom::find($id);
-		$atom->title = $request->get('title');
-		$atom->description = $request->get('desc');
-		$atom->molecule = $request->get('molecule');
-		$atom->save();
-		return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_saved', ['name' => Toolbox::string_truncate($atom->title, 10)]));
+		if(!Toolbox::isEmptyString($request->get('title'))){
+			$atom = Atom::find($id);
+			$atom->title = $request->get('title');
+			$atom->description = $request->get('desc');
+			$atom->molecule = $request->get('molecule');
+			$atom->hasImage = ($request->get('hasImage') == 'on');
+			$atom->image = $request->get('image');
+			$atom->imageSourceType = $request->get('imgSourceType');
+			$atom->save();
+			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_saved', ['name' => Toolbox::string_truncate($atom->title, 10)]));
+		}else{
+			return \Redirect::to(\Request::path())->with('errors', [trans('synthesiscms/atom.err_no_title')]);
+		}
 	}
 
 	public function deleteAtom($id){

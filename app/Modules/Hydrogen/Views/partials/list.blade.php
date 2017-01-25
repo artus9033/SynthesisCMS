@@ -13,7 +13,7 @@
 			</div>
 			<div class="card-reveal">
 				<span class="card-title grey-text text-darken-4">{{ $atom->title }}<i class="material-icons right">close</i></span>
-				{{ $atom->content }}
+				{{ $atom->description }}
 			</div>
 		@else
 			<div class="card-title">
@@ -23,17 +23,17 @@
 				</p>
 			</div>
 			<div class="col s2">
-				<i class="material-icons teal-text">open_in_new</i>
+				<a href=""><i class="material-icons teal-text">open_in_new</i></a>
 			</div>
 			</div>
 		@endif
 		<div class="card-content">
 			@if($atom->hasImage)
 				<span class="card-title activator grey-text text-darken-4">
-					<i class="material-icons right">more_vert</i>
+					<i class="material-icons right">more_vert</i><!-- TODO: add atom link -->
 				</span>
 			@else
-						{!! $atom->content !!}
+				{!! $atom->description !!}
 			@endif
 		</div>
 	</div>

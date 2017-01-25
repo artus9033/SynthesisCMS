@@ -42,11 +42,57 @@
 				          <input id="title" type="text" name="title" class="validate">
 				          <label for="title">{{ trans('synthesiscms/admin.create_atom_title_label') }}</label>
 			        	</div>
-					<div class="input-field col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.create_atom_description_tooltip') }}">
-						<i class="material-icons prefix teal-text">description</i>
-				          <textarea id="description" type="text" name="description" class="materialize-textarea"></textarea>
-				          <label for="description">{{ trans('synthesiscms/admin.create_atom_description_label') }}</label>
-			        	</div>
+					<div class="row col s12 container">
+						<label for="desc">{{ trans('synthesiscms/atom.content') }}</label>
+						<textarea class="editor" id="desc" name="desc"></textarea>
+					</div>
+					<script>
+					$(document).ready(function(){
+						$(".editor").trumbowyg('html', ''); //empty content
+					});
+					</script>
+					<div class="col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/atom.hasImageTooltip') }}">
+						<p class="col s6 offset-s4">
+							<input class="filled-in" type="checkbox" id="hasImage" name="hasImage">
+							<label for="hasImage" class="teal-text">{{ trans('synthesiscms/atom.hasImage') }}</label>
+						</p>
+					</div>
+					<div class="row"></div>
+					<ul class="collapsible popout col s12 row" data-collapsible="accordion">
+						<li>
+							<div class="collapsible-header teal-text" id="collapsible" style="pointer-events: none;"><i class="material-icons teal-text center">photo</i>{{ trans('synthesiscms/atom.atomImage') }}</div>
+							<div class="collapsible-body col s12 card-panel z-depth-3">
+								<div class="input-field col s8 offset-s2" id="molecule-div">
+									<select class="teal-text" name="imgSourceType" id="imgSourceType">
+										<option selected value="web" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans('synthesiscms/atom.imageSourceTypeWeb') }}</h5></option>
+										<option value="file" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans('synthesiscms/atom.imageSourceTypeFile') }}</h5></option>
+									</select>
+									<label>{{ trans('synthesiscms/atom.chooseImageSourceType') }}</label>
+								</div>
+								<div class="input-field col s6">
+									<i class="material-icons prefix teal-text">link</i>
+									<input id="image" name="image" type="text">
+									<label for="image">{{ trans('synthesiscms/atom.imageURL') }}</label>
+								</div>
+								<div class="btn btn-large center col s6 row waves-effect waves-light teal white-text disabled"> <!-- TODO: implement ftp & uploading image-->
+									<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
+								</div>
+							</div>
+						</li>
+					</ul>
+					<script>
+					var imgCollapsible = false;
+					$("#hasImage").click(function() {
+						imgCollapsible = true;
+						$("#collapsible").click();
+						imgCollapsible = false;
+					});
+					$("#collapsible").click(function( event ) {
+						if(!imgCollapsible){
+							event.preventDefault();
+						}
+					});
+					</script>
 					<div class="row col s12 center">
 						<div class="input-field col s8 offset-s2 valign" id="molecule-div">
 							<select id="molecule" name="molecule" class="teal-text">

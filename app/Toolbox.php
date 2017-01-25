@@ -4,6 +4,10 @@ namespace App;
 
 class Toolbox
 {
+	static function isEmptyString($string){
+		return strlen(trim($string)) == 0;
+	}
+
 	static function string_between($string, $start, $end) {
 		$string = " ".$string;
 		$ini = strpos($string, $start);

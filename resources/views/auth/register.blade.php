@@ -31,7 +31,7 @@
 						<div class='input-field col s12'>
 							<i class="material-icons teal-text prefix">perm_identity</i>
 							<input class='validate' type='text' name='name' id='name' value="{{ old('name') }}" required />
-							<label for='name'  data-error="{{ trans('synthesiscms/auth.name_bad')}}" data-success="{{ trans('synthesiscms/auth.name_ok')}}">{{ trans('synthesiscms/auth.name')}}</label>
+							<label for='name' data-error="{{ trans('synthesiscms/auth.name_bad')}}" data-success="{{ trans('synthesiscms/auth.name_ok')}}">{{ trans('synthesiscms/auth.name')}}</label>
 						</div>
 					</div>
 					<div class='row'>
@@ -43,7 +43,7 @@
 						<div class='input-field col s12'>
 							<i class="material-icons teal-text prefix">mail_outline</i>
 							<input class='validate' type='email' name='email' id='email' value="{{ old('email') }}" required />
-							<label for='email'  data-error="{{ trans('synthesiscms/auth.email_bad')}}" data-success="{{ trans('synthesiscms/auth.email_ok')}}">{{ trans('synthesiscms/auth.email')}}</label>
+							<label for='email' data-error="{{ trans('synthesiscms/auth.email_bad')}}" data-success="{{ trans('synthesiscms/auth.email_ok')}}">{{ trans('synthesiscms/auth.email')}}</label>
 						</div>
 					</div>
 					<div class='row'>

@@ -1,0 +1,107 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "trumbowyg",
+        "scope": null,
+        "escapedName": "trumbowyg",
+        "name": "trumbowyg",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\Artur\\Documents\\Projekty Aplikacji\\Projekty Web\\Synthesis CMS"
+    ]
+  ],
+  "_from": "trumbowyg@latest",
+  "_id": "trumbowyg@2.4.2",
+  "_inCache": true,
+  "_location": "/trumbowyg",
+  "_nodeVersion": "6.4.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/trumbowyg-2.4.2.tgz_1481156496000_0.5195341589860618"
+  },
+  "_npmUser": {
+    "name": "alex-d",
+    "email": "contact@alex-d.fr"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "trumbowyg",
+    "scope": null,
+    "escapedName": "trumbowyg",
+    "name": "trumbowyg",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/trumbowyg/-/trumbowyg-2.4.2.tgz",
+  "_shasum": "6648d2b0d16350da55e646d29535c5aa6638d5b2",
+  "_shrinkwrap": null,
+  "_spec": "trumbowyg",
+  "_where": "C:\\Users\\Artur\\Documents\\Projekty Aplikacji\\Projekty Web\\Synthesis CMS",
+  "author": {
+    "name": "Alexandre Demode",
+    "email": "contact@alex-d.fr",
+    "url": "Alex-D"
+  },
+  "bugs": {
+    "url": "https://github.com/Alex-D/Trumbowyg/issues"
+  },
+  "dependencies": {},
+  "description": "A lightweight WYSIWYG editor",
+  "devDependencies": {
+    "del": "2.0.2",
+    "gulp": "3.9.0",
+    "gulp-autoprefixer": "2.2.0",
+    "gulp-concat": "2.6.0",
+    "gulp-header": "1.7.1",
+    "gulp-jshint": "1.11.2",
+    "gulp-livereload": "3.8.1",
+    "gulp-load-plugins": "1.0.0",
+    "gulp-minify-css": "1.2.1",
+    "gulp-newer": "1.0.0",
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "2.1.0",
+    "gulp-size": "2.0.0",
+    "gulp-svgmin": "^1.2.2",
+    "gulp-svgstore": "^5.0.5",
+    "gulp-uglify": "1.4.2",
+    "jshint-stylish": "2.0.1",
+    "vinyl-paths": "2.0.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "6648d2b0d16350da55e646d29535c5aa6638d5b2",
+    "tarball": "https://registry.npmjs.org/trumbowyg/-/trumbowyg-2.4.2.tgz"
+  },
+  "gitHead": "5ef0a083970415b0f1c52889cce551081b3e546e",
+  "homepage": "http://alex-d.github.io/Trumbowyg",
+  "license": "MIT",
+  "main": "dist/trumbowyg.js",
+  "maintainers": [
+    {
+      "name": "alex-d",
+      "email": "contact@alex-d.fr"
+    }
+  ],
+  "name": "trumbowyg",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-D/Trumbowyg.git"
+  },
+  "scripts": {
+    "build": "npm install && gulp build",
+    "start": "gulp",
+    "test": "gulp test"
+  },
+  "title": "Trumbowyg",
+  "version": "2.4.2"
+}
