@@ -28,9 +28,9 @@
 		var selector = "#@yield('side-nav-active')";
 		$(selector).addClass("active");
 		$(selector).parents('li').children('a').click();
-			$(".editor").trumbowyg({
-				lang: '{{ \App::getLocale() }}'
-			});
+		$(".editor").trumbowyg({
+			lang: '{{ \App::getLocale() }}'
+		});
 	});
 	</script>
 	<style>
@@ -132,6 +132,9 @@
 					@include('partials/message', ['message' => Session::get('message')])
 				@endif
 				@each('partials/error', $errors, 'error')
+				@if(Session::has('toasts'))
+					@each('partials/toast', Session::get('toasts'), 'toast')
+				@endif
 				@yield('main')
 			</div>
 		</div>

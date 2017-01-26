@@ -9,7 +9,6 @@
 		@if($atom->hasImage)
 			<div class="card-image waves-effect waves-block waves-light">
 				<img class="activator" src="{{ $atom->image }}">
-				<!-- TODO: add possibility to specify image -->
 			</div>
 			<div class="card-reveal">
 				<span class="card-title grey-text text-darken-4">{{ $atom->title }}<i class="material-icons right">close</i></span>
@@ -23,14 +22,14 @@
 				</p>
 			</div>
 			<div class="col s2">
-				<a href=""><i class="material-icons teal-text">open_in_new</i></a>
+				<a href="{{ \Request::path() }}/atom/{{ $atom->id }}"><i class="material-icons teal-text">open_in_new</i></a>
 			</div>
 			</div>
 		@endif
 		<div class="card-content">
 			@if($atom->hasImage)
 				<span class="card-title activator grey-text text-darken-4">
-					<i class="material-icons right">more_vert</i><!-- TODO: add atom link -->
+					<a href="{{ \Request::path() }}/atom/{{ $atom->id }}"><i class="material-icons right">more_vert</i></a>
 				</span>
 			@else
 				{!! $atom->description !!}

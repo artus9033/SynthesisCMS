@@ -4,6 +4,31 @@ namespace App;
 
 class Toolbox
 {
+	static function getBeforeContents($str, $startDelimiter, $endDelimiter) {
+	  $contents = array();
+	  $startDelimiterLength = strlen($startDelimiter);
+	  $endDelimiterLength = strlen($endDelimiter);
+	  $startFrom = $contentStart = $contentEnd = 0;
+	  while (false !== ($contentStart = strpos($str, $startDelimiter, $startFrom))) {
+	    $contentStart += $startDelimiterLength;
+	    $contentEnd = strpos($str, $endDelimiter, $contentStart);
+	    if (false === $contentEnd) {
+	      break;
+	    }
+	    $contents[] = substr($str, 0, $contentEnd + 1);
+	    $startFrom = $contentEnd + $endDelimiterLength;
+	  }
+
+	  return $contents;
+	}
+
+	static function str_replace_first($from, $to, $subject)
+	{
+	    $from = '/'.preg_quote($from, '/').'/';
+
+	    return preg_replace($from, $to, $subject, 1);
+	}
+
 	static function isEmptyString($string){
 		return strlen(trim($string)) == 0;
 	}

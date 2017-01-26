@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class HydrogenModule extends Model
 {
-	protected $fillable = array('molecule');
+	protected $fillable = array('id', 'molecule');
 
 	public $timestamps = true;
 }

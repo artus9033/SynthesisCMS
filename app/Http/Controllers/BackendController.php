@@ -132,7 +132,7 @@ class BackendController extends Controller
 		$page = Page::find($id);
 		$route = $page->slug;
 		$page->delete();
-		return \Redirect::back()->with('message', trans('synthesiscms/admin.msg_route_deleted', ['route' => $route]));
+		return \Redirect::route('manage_routes')->with('message', trans('synthesiscms/admin.msg_route_deleted', ['route' => $route]));
 	}
 
 	public function createRouteGet()
@@ -154,7 +154,7 @@ class BackendController extends Controller
 		$kernel = new $kpath;
 		$kernel->create($page->id);
 
-		return \Redirect::route('manage_routes_edit', ['id' => $page->id])->with('message', trans('synthesiscms/admin.msg_route_created', ['route' => $route]));
+		return \Redirect::route('manage_routes_edit', ['id' => $page->id])->with(['message', trans('synthesiscms/admin.msg_route_created', ['route' => $route]), 'toasts' => [trans('synthesiscms/admin.msg_now_edit_route')]]);
 	}
 
 	public function manageMoleculesGet()

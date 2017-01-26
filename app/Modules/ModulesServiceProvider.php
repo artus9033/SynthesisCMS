@@ -3,9 +3,11 @@
 namespace App\Modules;
 
 use Illuminate\Support\ServiceProvider;
+use App\Page;
 
 class ModulesServiceProvider extends ServiceProvider
 {
+
 	/**
 	* Will make sure that the required modules have been fully loaded
 	* @return void
@@ -40,6 +42,19 @@ class ModulesServiceProvider extends ServiceProvider
 			// Load module database migrations
 			if(is_dir(__DIR__.'/'.$module.'/Migrations')) {
 				$this->loadMigrationsFrom(__DIR__.'/'.$module.'/Migrations');
+			}
+		}
+		foreach (Page::all() as $key => $page) {
+			if(is_null($page)){
+				// no pages exist; do nothing
+			}else{
+				$mod_path = app_path() . "/Modules/" . $page->module . "/ModuleKernel.php";
+				$mod_path = str_replace("/", "\\", $mod_path);
+				if(file_exists($mod_path)){
+					\App::make('\App\Modules\\'.$page->module.'\ModuleKernel')->routes($page, $page->slug);
+				}else{
+					return \View::make('errors.cms')->with(['error' => trans("synthesiscms/errors.err_module_not_found"), 'help' => trans("synthesiscms/errors.err_module_not_found_help")]);
+				}
 			}
 		}
 	}

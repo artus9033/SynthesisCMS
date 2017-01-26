@@ -50,6 +50,7 @@ return [
 	'save_route' => 'Save Route',
 	'cancel_route' => 'Cancel',
 	'view_route' => 'View Route',
+	'msg_now_edit_route' => 'Now please edit the route & it\'s module-specific settings',
 	'msg_route_created' => 'Route :route has been successfully created',
 	'msg_route_deleted' => 'Route :route has been successfully deleted',
 	'create_route_slug_tooltip' => 'A route can be a wildcard (e.g. \'mypage\this\is\a\wildcard\')',
