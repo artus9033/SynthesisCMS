@@ -124,6 +124,11 @@ class BackendController extends Controller
 			$page->page_title = $title;
 			$page->page_header = $header;
 			$page->save();
+
+			$kpath = 'App\\Modules\\'.$page->module.'\\ModuleKernel';
+			$kernel = new $kpath;
+			$kernel->editPost($page->id, $request);
+
 			return \Redirect::route("manage_routes")->with('message', trans('synthesiscms/admin.msg_route_saved', ['route' => $page->slug]));
 		}
 	}

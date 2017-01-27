@@ -24,7 +24,7 @@
 
 @section('breadcrumbs')
 	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="/admin/manage_routes" class="breadcrumb">{{ trans('synthesiscms/admin.manage_molecules') }}</a>
+	<a href="/admin/manage_molecules" class="breadcrumb">{{ trans('synthesiscms/admin.manage_molecules') }}</a>
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.create_molecule') }}</a>
 @endsection
 
@@ -42,11 +42,15 @@
 				          <input id="title" type="text" name="title" class="validate">
 				          <label for="title">{{ trans('synthesiscms/admin.create_molecule_title_label') }}</label>
 			        	</div>
-					<div class="input-field col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.create_molecule_description_tooltip') }}">
-						<i class="material-icons prefix teal-text">description</i>
-				          <textarea id="description" type="text" name="description" class="materialize-textarea"></textarea>
-				          <label for="description">{{ trans('synthesiscms/admin.create_molecule_description_label') }}</label>
-			        	</div>
+					<div class="row col s12 container">
+						<label for="description">{{ trans('synthesiscms/molecule.content') }}</label>
+						<textarea class="editor" id="description" name="description"></textarea>
+					</div>
+					<script>
+					$(document).ready(function(){
+						$(".editor").trumbowyg('html', ''); //empty content
+					});
+					</script>
 				<button type="submit" class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light teal"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_molecule') }}</button>
 				<div class="col s12 row"></div>
 				<a class="btn-flat waves-effect waves-yellow teal-text col s2 offset-s5" href="{{ URL::previous() }}"><i class="material-icons teal-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_molecule') }}</a>

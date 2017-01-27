@@ -28,17 +28,25 @@ class ModuleKernel extends Controller
 		$kernel = $this;
 		\Route::group(['middleware' => 'web'], function () use ($page, $kernel, $base_slug) {
 			\Route::get($base_slug, function() use ($page, $kernel, $base_slug) {
-	    			return \App::make('App\Modules\Hydrogen\Controllers\HydrogenController')->index($page, $kernel);
+	    			return \App::make('App\Modules\Hydrogen\Controllers\HydrogenController')->index($page, $kernel, $base_slug);
 			})->middleware('web');
 			\Route::get($base_slug . '/atom/{id}', function() use ($page, $kernel, $base_slug) {
-	    			return \App::make('App\Modules\Hydrogen\Controllers\HydrogenController')->atom(\Route::input('id'), $kernel, $page);
+	    			return \App::make('App\Modules\Hydrogen\Controllers\HydrogenController')->atom(\Route::input('id'), $kernel, $page, $base_slug);
 			})->middleware('web');
 		});
 	}
 
-	//Function used by the route edit app view
-	public function edit($page)
+	//Function used by the route edit app view to render the fields
+	public function editGet($page)
 	{
 		return \View::make('hydrogen::partials/edit')->with(['page' => $page]);
+	}
+
+	//Function used by the route edit app view to commit edit
+	public function editPost($id, $request)
+	{
+		$module = HydrogenModule::where('id', $id)->first();
+		$module->molecule = $request->get('hydrogen-molecule');
+		$module->save();
 	}
 }

@@ -24,7 +24,7 @@
 
 @section('breadcrumbs')
 	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="/admin/manage_routes" class="breadcrumb">{{ trans('synthesiscms/admin.manage_atoms') }}</a>
+	<a href="/admin/manage_atoms" class="breadcrumb">{{ trans('synthesiscms/admin.manage_atoms') }}</a>
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.create_atom') }}</a>
 @endsection
 

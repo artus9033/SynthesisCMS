@@ -78,12 +78,12 @@ label{
 							<label for="header">{{ trans('synthesiscms/modules.header') }}</label>
 						</div>
 					</div>
+					<div class="divider teal col s12 row"></div>
+					<div class="card-panel col s8 offset-s2 z-depth-2 center teal white-text row">
+					<h5>{{ trans('synthesiscms/modules.edit_specific') }}</h5>
+				</div>
+					{!! \App::make('App\Modules\\'.$page->module.'\ModuleKernel')->editGet($page) !!}
 			</form>
-			<div class="divider teal col s12 row"></div>
-			<div class="card-panel col s8 offset-s2 z-depth-2 center teal white-text row">
-			<h5>{{ trans('synthesiscms/modules.edit_specific') }}</h5>
-		</div>
-			{!! \App::make('App\Modules\\'.$page->module.'\ModuleKernel')->edit($page) !!}
 		</div>
 	</div>
 	<div class="card-action">

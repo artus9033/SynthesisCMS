@@ -6,7 +6,6 @@
 
 @section('breadcrumbs')
 	@parent
-	<!-- TODO: add breadcrumbs before and inside module -->
 	@yield('mod_breadcrumbs')
 @endsection
 

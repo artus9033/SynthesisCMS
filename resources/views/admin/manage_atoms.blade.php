@@ -72,7 +72,7 @@
 				<div class="input-field col s8 offset-s2 valign" id="molecule-div">
 					<select id="massMoveMolecule" name="massMoveMolecule" class="teal-text">
 						@foreach (App\Molecule::all() as $key => $value)
-							<option value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $value->title }}</h5></option>
+							<option value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $value->title }}&nbsp;(ID {{ $value->id }})</h5></option>
 						@endforeach
 					</select>
 					<label>{{ trans('synthesiscms/modules.choose_molecule') }}</label>

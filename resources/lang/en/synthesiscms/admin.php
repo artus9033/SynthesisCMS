@@ -31,7 +31,6 @@ return [
 	'cancel_molecule' => 'Cancel',
 	'save_atom' => 'Save Atom',
 	'cancel_atom' => 'Cancel',
-	'edit_atom' => 'Edit Atom',
 	'edit_molecule' => 'Edit Molecule',
 	'choose_molecule' => 'Choose Molecule',
 	'manage_molecules' => 'Manage Molecules',

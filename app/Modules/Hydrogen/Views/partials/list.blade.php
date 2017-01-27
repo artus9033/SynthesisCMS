@@ -3,7 +3,9 @@
 @endphp
 
 @foreach ($atoms as $key => $atom)
-	{{ $ct++ }}
+	@php
+	$ct++
+	@endphp
 	<div class="container col s6 row">
 	<div class="card hoverable z-depth-2 center">
 		@if($atom->hasImage)
@@ -17,21 +19,22 @@
 		@else
 			<div class="card-title">
 				<div class="col s10">
-				<p class="truncate">
+				<p class="truncate left">
 					{{ $atom->title }}
 				</p>
 			</div>
 			<div class="col s2">
-				<a href="{{ \Request::path() }}/atom/{{ $atom->id }}"><i class="material-icons teal-text">open_in_new</i></a>
+				<a href="{{ $base_slug }}/atom/{{ $atom->id }}"><i class="material-icons teal-text">open_in_new</i></a>
 			</div>
 			</div>
 		@endif
 		<div class="card-content">
 			@if($atom->hasImage)
-				<span class="card-title activator grey-text text-darken-4">
-					<a href="{{ \Request::path() }}/atom/{{ $atom->id }}"><i class="material-icons right">more_vert</i></a>
+				<span class="card-title activator grey-text text-darken-4 left">
+					<a href="{{ $base_slug }}/atom/{{ $atom->id }}"><i class="material-icons teal-text right">more_vert</i></a>
 				</span>
 			@else
+				<div class="divider teal col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
 				{!! $atom->description !!}
 			@endif
 		</div>

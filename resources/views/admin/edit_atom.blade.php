@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-	{{ trans('synthesiscms/admin.edit_route', ['route' => $atom->slug]) }}
+	{{ trans('synthesiscms/admin.edit_atom') }}
 @endsection
 
 @section('side-nav-active', 'manage_atoms')

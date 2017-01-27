@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-	{{ trans('synthesiscms/admin.edit_route', ['route' => $molecule->slug]) }}
+	{{ trans('synthesiscms/admin.edit_molecule') }}
 @endsection
 
 @section('side-nav-active', 'manage_molecules')
@@ -51,11 +51,15 @@ label{
 				<label for="title">{{ trans('synthesiscms/molecule.title') }}</label>
 			</div>
 			<div class="row">
-				<div class="input-field col s12">
-					<i class="material-icons prefix teal-text">description</i>
-					<textarea id="desc" name="desc" class="materialize-textarea">{{ $molecule->description }}</textarea>
+				<div class="row col s12 container">
 					<label for="desc">{{ trans('synthesiscms/molecule.content') }}</label>
+					<textarea class="editor" id="desc" name="desc"></textarea>
 				</div>
+				<script>
+				$(document).ready(function(){
+					$(".editor").trumbowyg('html', "{!! addslashes($molecule->description) !!}");
+				});
+				</script>
 			</div>
 		</form>
 	</div>
