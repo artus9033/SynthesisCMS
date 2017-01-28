@@ -18,7 +18,7 @@
 	</div>
 	<div class="footer-copyright">
 		<div class="container">
-			<span>&copy;&nbsp;@php echo(date('Y')); @endphp</span>
+			<span>&copy;&nbsp;@php echo(date('Y')); @endphp&nbsp;</span>
 			<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
 		</div>
 	</div>
