@@ -57,8 +57,15 @@
 				<div class="input-field col s8 valign">
 					<select id="module" name="module" class="teal-text">
 						<optgroup label="{{ trans('synthesiscms/modules.synthesiscms_modules') }}">
-						<option value="Hydrogen">{{ trans('synthesiscms/modules.hydrogen') }}</option>
-						<option value="Lithium">{{ trans('synthesiscms/modules.lithium') }}</option>
+						@php
+						foreach(File::directories(app_path('Modules')) as $file){
+							if(is_dir($file)){
+								$kpath = 'App\\Modules\\' . basename($file) . '\\ModuleKernel';
+								$kernel = new $kpath;
+								echo("<option value='" . basename($file) . "'>" . $kernel->getModuleName() . "</option>");
+							}
+						}
+						@endphp
 					</optgroup>
 					</select>
 					<label>{{ trans('synthesiscms/modules.choose_module') }}</label>

@@ -4,9 +4,7 @@ namespace App\Modules\Hydrogen\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Hydrogen\Models\HydrogenModule;
-use App\SynthesisCMS\API\SynthesisRouter;
-use App\SynthesisCMS\API\RequestMethod;
-use App\SynthesisCMS\API\ResponseMethod;
+use App\SynthesisCMS\API\SynthesisModule;
 use App\Molecule;
 use App\Atom;
 

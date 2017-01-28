@@ -48,7 +48,7 @@
             <div class="card-content">
 			  @if (!$atom->hasImage)
 			  	<span class="card-title" style="font-weight: 400; display: inline;">{{ $atom->title }}</span>
-				<a href="#options" class="btn-floating waves-effect waves-light teal z-depth-2"><i class="material-icons">more_horiz</i></a>
+				<a href="#options" class="btn-floating waves-effect waves-light teal z-depth-2 right"><i class="material-icons">more_horiz</i></a>
 				 <div class="divider teal col s12" style="margin-top: 10px; margin-bottom: 10px;"></div>
 			 @endif
               {!! $atom->description !!}

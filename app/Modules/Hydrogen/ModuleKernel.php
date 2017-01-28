@@ -5,9 +5,7 @@ namespace App\Modules\Hydrogen;
 use App\Http\Controllers\Controller;
 use App\Modules\Hydrogen\Models\HydrogenModule;
 use App\Modules\Hydrogen\Controllers\HydrogenController;
-use App\SynthesisCMS\API\SynthesisRouter;
-use App\SynthesisCMS\API\RequestMethod;
-use App\SynthesisCMS\API\ResponseMethod;
+use App\SynthesisCMS\API\SynthesisModule;
 
 /**
  * ModuleKernel
@@ -17,11 +15,32 @@ use App\SynthesisCMS\API\ResponseMethod;
  * using this module will throw an internal CMS error!
  */
 
-class ModuleKernel extends Controller
+class ModuleKernel extends SynthesisModule
 {
 
 	public function create($id){
 		$module = HydrogenModule::create(['id' => $id]);
+	}
+
+	public function delete($id){
+		$module = HydrogenModule::where(['id' => $id])->first();
+		$module->delete();
+	}
+
+	public function getModuleName(){
+		return trans('synthesiscms/modules.hydrogen');
+	}
+
+	public function editGet($page)
+	{
+		return \View::make('hydrogen::partials/edit')->with(['page' => $page]);
+	}
+
+	public function editPost($id, $request)
+	{
+		$module = HydrogenModule::where('id', $id)->first();
+		$module->molecule = $request->get('hydrogen-molecule');
+		$module->save();
 	}
 
 	public function routes($page, $base_slug){
@@ -34,19 +53,5 @@ class ModuleKernel extends Controller
 	    			return \App::make('App\Modules\Hydrogen\Controllers\HydrogenController')->atom(\Route::input('id'), $kernel, $page, $base_slug);
 			})->middleware('web');
 		});
-	}
-
-	//Function used by the route edit app view to render the fields
-	public function editGet($page)
-	{
-		return \View::make('hydrogen::partials/edit')->with(['page' => $page]);
-	}
-
-	//Function used by the route edit app view to commit edit
-	public function editPost($id, $request)
-	{
-		$module = HydrogenModule::where('id', $id)->first();
-		$module->molecule = $request->get('hydrogen-molecule');
-		$module->save();
 	}
 }
