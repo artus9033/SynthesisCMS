@@ -21,13 +21,19 @@
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
 	<title>TODO - @yield('title')</title>
 	@yield('head')
+	<style>
+	body {
+    min-height: 100vh;
+  }
+
+	</style>
 </head>
 <header>
 	@yield('header')
 </header>
 <body>
 	@yield('body')
-	<div class="col s12 row">
+	<div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh">
 		<nav class="teal col s12 z-depth-3">
 			<div class="nav-wrapper col s12">
 				<a href="/" class="brand-logo" style="margin-left: 10px;">@section('brand-logo'){{ config('app.name') }}@show</a>
@@ -85,5 +91,6 @@
 				@yield('main')
 			</div>
 		</div>
+		@include('partials/footer')
 	</body>
 	</html>
