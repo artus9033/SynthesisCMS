@@ -179,6 +179,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 	   App\Providers\SettingsVariablesProvider::class,
+	   App\Providers\StatsTrackerProvider::class,
 	   App\Modules\ModulesServiceProvider::class,
     ],
 
