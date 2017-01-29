@@ -17,6 +17,9 @@ class PagesSeeder extends Seeder
             'page_header' => 'This is a sample Route from SynthesisCMS with the Hydrogen Module selected as parent!',
             'module' => 'Hydrogen',
         ]);
+	   $kpath = 'App\\Modules\\Hydrogen\\ModuleKernel';
+	   $kernel = new $kpath;
+	   $kernel->create(1);
     }
 }
 ?>

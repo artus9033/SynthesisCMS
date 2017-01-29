@@ -155,7 +155,6 @@ class BackendController extends Controller
 		$route = $request->get('route');
 		$module = $request->get('module');
 		$route = str_replace("\\", "/", $route);
-
 		Toolbox::chkRoute($route);
 
 		$page = Page::create(['slug' => $route, 'module' => $module]);

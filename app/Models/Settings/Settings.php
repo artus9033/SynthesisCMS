@@ -11,7 +11,7 @@ class Settings extends Model
 	//TODO: implement saving settings as different settings profiles
      public $timestamps = false;
 
-	public function getFromActive($field){
+	public static function getFromActive($field){
 		$settings_instance = Settings::where('active', true)->first();
 		return $settings_instance->$field;
 	}
