@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\BackendRequest;
-use App\User;
+use App\Models\Auth\User;
 use App\Page;
 use App\Molecule;
 use App\Atom;

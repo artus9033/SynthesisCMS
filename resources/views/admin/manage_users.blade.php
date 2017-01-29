@@ -33,7 +33,7 @@
 						</thead>
 						<tbody>
 								@php
-									use \App\User;
+									use \App\Models\Auth\User;
 									$usr_count = 0;
 									$all_users = User::all();
 								@endphp

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\Auth\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileFormRequest;
 use Illuminate\Support\Facades\Auth;
