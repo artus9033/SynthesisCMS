@@ -7,8 +7,6 @@ elixir(mix => {
 
 	mix.sass('materializecss/materialize.scss');
 
-	mix.sass('loginregister.scss');
-
 	mix.copy('resources/assets/img', 'public/img');
 
 	mix.copy('node_modules/chart.js/dist/Chart.js', 'public/js');

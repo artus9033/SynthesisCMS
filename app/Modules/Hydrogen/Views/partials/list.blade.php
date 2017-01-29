@@ -33,7 +33,7 @@ $ct = 0;
 			<div class="card-content">
 				@if($atom->hasImage)
 					<span class="card-title activator" style="text-align: left;">
-						Card Title
+						{{ $atom->title }}
 						<i class="material-icons right">more_vert</i>
 					</span>
 					<p class="teal-text" id="artificial-link" style="text-align: left;" onclick="window.location.href='{{ $base_slug }}/atom/{{ $atom->id }}'">{{ trans("hydrogen::hydrogen.atom_card_link_read") }}</p>

@@ -14,5 +14,5 @@
 		   <div class="col s12 row white divider" style="height: 2px;"></div>
 		  <h5 class="col s12">{{ $page->page_header }}</h5>
 	    </div>
-	@include('hydrogen::partials/list', ['atoms' => $atoms])
+		    @include('hydrogen::partials/list', ['atoms' => $atoms])
 @endsection
