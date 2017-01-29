@@ -26,11 +26,13 @@
 	$(document).ready(function(){
 		$('.collapsible').collapsible();
 		var selector = "#@yield('side-nav-active')";
-		$(selector).addClass("active");
-		$(selector).parents('li').children('a').click();
-		$(".editor").trumbowyg({
-			lang: '{{ \App::getLocale() }}'
-		});
+		if(selector != "#"){
+			$(selector).addClass("active");
+			$(selector).parents('li').children('a').click();
+			$(".editor").trumbowyg({
+				lang: '{{ \App::getLocale() }}'
+			});
+		}
 		$('ul:not(.collapsible) > li.active').addClass('lighten-1');
 		$('ul:not(.collapsible) > li.active').addClass('{{ $synthesiscmsMainColor }}');
 	});

@@ -1,10 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\PageController;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Content\Page;
 use App\Toolbox;
+use App\Http\Requests\BackendRequest;
+use App\Models\Auth\User;
+use App\Models\Content\Molecule;
+use App\Models\Content\Atom;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class PageController extends Controller
 {
