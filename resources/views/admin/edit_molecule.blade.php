@@ -26,8 +26,8 @@ label{
 		<h5 class="red-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_delete_molecule_content_2') }}</strong></h5>
 		<div class="col s12 center">
 			<p class="center">
-				<input class="filled-in teal-text" type="checkbox" id="checkboxDeleteAtoms{{ $molecule->id }}" name="checkboxDeleteAtoms{{ $molecule->id }}">
-				<label class="teal-text" for="checkboxDeleteAtoms{{ $molecule->id }}">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_checkbox_delete_subatoms') }}</label>
+				<input class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox" id="checkboxDeleteAtoms{{ $molecule->id }}" name="checkboxDeleteAtoms{{ $molecule->id }}">
+				<label class="{{ $synthesiscmsMainColor }}-text" for="checkboxDeleteAtoms{{ $molecule->id }}">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_checkbox_delete_subatoms') }}</label>
 			</p>
 		</div>
 	</div>
@@ -39,14 +39,14 @@ label{
 <div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 	<div class="card-content">
 		<div class="card-title col s12 row valign-wrapper">
-			<h3 class="teal-text valign-wrapper col s12"><i class="material-icons prefix teal-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_molecule') }}&nbsp;(ID&nbsp;{{ $molecule->id }})</h3>
+			<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s12"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_molecule') }}&nbsp;(ID&nbsp;{{ $molecule->id }})</h3>
 		</div>
-		<div class="divider teal col s12"></div>
+		<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
 		<div class="col s12 row"></div>
 		<form id="edit" role="form" method="post" action="">
 			{{ csrf_field() }}
 			<div class="input-field col s12">
-				<i class="material-icons prefix teal-text">label_outline</i>
+				<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">label_outline</i>
 				<input value="{{ $molecule->title }}" id="title" name="title" type="text">
 				<label for="title">{{ trans('synthesiscms/molecule.title') }}</label>
 			</div>
@@ -64,9 +64,9 @@ label{
 		</form>
 	</div>
 	<div class="card-action">
-		<a onclick="$('#edit').submit()" class="btn-flat waves-effect waves-green teal-text"><i class="material-icons teal-text left">save</i>{{ trans('synthesiscms/admin.save_molecule') }}</a>
-		<a class="btn-flat waves-effect waves-yellow teal-text" href="{{ URL::previous() }}"><i class="material-icons teal-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_molecule') }}</a>
-		<button @php if($molecule->id == 1){ echo('disabled'); } @endphp class="btn-flat waves-effect waves-red teal-text" data-target="modalDelete{{ $molecule->id }}"><i class="material-icons teal-text left">security</i>{{ trans('synthesiscms/molecule.delete_molecule') }}</button>
+		<a onclick="$('#edit').submit()" class="btn-flat waves-effect waves-green {{ $synthesiscmsMainColor }}-text"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">save</i>{{ trans('synthesiscms/admin.save_molecule') }}</a>
+		<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text" href="{{ URL::previous() }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_molecule') }}</a>
+		<button @php if($molecule->id == 1){ echo('disabled'); } @endphp class="btn-flat waves-effect waves-red {{ $synthesiscmsMainColor }}-text" data-target="modalDelete{{ $molecule->id }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">security</i>{{ trans('synthesiscms/molecule.delete_molecule') }}</button>
 	</div>
 </div>
 <script type="text/javascript">

@@ -15,9 +15,9 @@
       <h4 class="col s12">{{ trans('hydrogen::hydrogen.options_modal_header') }}</h4>
 	 <div class="col s12">
 		 <div class="col s12">
-			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-teal teal-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('hydrogen::hydrogen.options_modal_btn_print') }}">print</i>
-			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-teal teal-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('hydrogen::hydrogen.options_modal_btn_share') }}">share</i>
-			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-teal teal-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('hydrogen::hydrogen.options_modal_btn_copy_link') }}">link</i>
+			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('hydrogen::hydrogen.options_modal_btn_print') }}">print</i>
+			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('hydrogen::hydrogen.options_modal_btn_share') }}">share</i>
+			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('hydrogen::hydrogen.options_modal_btn_copy_link') }}">link</i>
 		 </div>
 	 </div>
     </div>
@@ -30,7 +30,7 @@
       $('.modal').modal();
     });
   </script>
-	    <div class="col s10 offset-s1 card-panel white-text teal z-depth-2 hoverable center row">
+	    <div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} z-depth-2 hoverable center row">
 		   <h3 class="col s12">{{ $page->page_title }}</h3>
 		   <div class="col s12 row white divider" style="height: 2px;"></div>
 		  <h5 class="col s12">{{ $page->page_header }}</h5>
@@ -41,15 +41,15 @@
 			@if ($atom->hasImage)
             <div class="card-image">
               <img src="{{ $atom->image }}">
-              <span class="card-title left card-panel white teal-text z-depth-2" style="margin: 10px 10px 10px 10px; font-weight: 400;">{{ $atom->title }}</span>
-              <a href="#options" class="btn-floating btn-large halfway-fab waves-effect waves-light teal z-depth-2"><i class="material-icons">more_horiz</i></a>
+              <span class="card-title left card-panel white {{ $synthesiscmsMainColor }}-text z-depth-2" style="margin: 10px 10px 10px 10px; font-weight: 400;">{{ $atom->title }}</span>
+              <a href="#options" class="btn-floating btn-large halfway-fab waves-effect waves-light {{ $synthesiscmsMainColor }} z-depth-2"><i class="material-icons">more_horiz</i></a>
             </div>
 	  @endif
             <div class="card-content">
 			  @if (!$atom->hasImage)
 			  	<span class="card-title" style="font-weight: 400; display: inline;">{{ $atom->title }}</span>
-				<a href="#options" class="btn-floating waves-effect waves-light teal z-depth-2 right"><i class="material-icons">more_horiz</i></a>
-				 <div class="divider teal col s12" style="margin-top: 10px; margin-bottom: 10px;"></div>
+				<a href="#options" class="btn-floating waves-effect waves-light {{ $synthesiscmsMainColor }} z-depth-2 right"><i class="material-icons">more_horiz</i></a>
+				 <div class="divider {{ $synthesiscmsMainColor }} col s12" style="margin-top: 10px; margin-bottom: 10px;"></div>
 			 @endif
               {!! $atom->description !!}
             </div>

@@ -20,11 +20,11 @@
 		</script>
 		<style>
 		#molecule-div .caret {
-			color: teal !important;
+			color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		#molecule-div .select-dropdown {
-			border-bottom-color: teal !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		#molecule-div .select-wrapper {
@@ -53,14 +53,14 @@
 		<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 			<div class="card-content">
 				<div class="card-title col s12 row valign-wrapper">
-					<h3 class="teal-text valign-wrapper col s12"><i class="material-icons prefix teal-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_atom') }}&nbsp;(ID&nbsp;{{ $atom->id }})</h3>
+					<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s12"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_atom') }}&nbsp;(ID&nbsp;{{ $atom->id }})</h3>
 				</div>
-				<div class="divider teal col s12"></div>
+				<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
 				<div class="col s12 row"></div>
 				<form id="edit" role="form" method="post" action="">
 					{{ csrf_field() }}
 					<div class="input-field col s12">
-						<i class="material-icons prefix teal-text">label_outline</i>
+						<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">label_outline</i>
 						<input value="{{ $atom->title }}" id="title" name="title" type="text">
 						<label for="title">{{ trans('synthesiscms/atom.title') }}</label>
 					</div>
@@ -76,16 +76,16 @@
 		<div class="col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/atom.hasImageTooltip') }}">
 			<p class="col s6 offset-s4">
 				<input class="filled-in" type="checkbox" id="hasImage" name="hasImage">
-				<label for="hasImage" class="teal-text">{{ trans('synthesiscms/atom.hasImage') }}</label>
+				<label for="hasImage" class="{{ $synthesiscmsMainColor }}-text">{{ trans('synthesiscms/atom.hasImage') }}</label>
 			</p>
 		</div>
 		<div class="row"></div>
 		<ul class="collapsible popout col s12 row" data-collapsible="accordion">
 			<li>
-				<div class="collapsible-header teal-text" id="collapsible" style="pointer-events: none;"><i class="material-icons teal-text center">photo</i>{{ trans('synthesiscms/atom.atomImage') }}</div>
+				<div class="collapsible-header {{ $synthesiscmsMainColor }}-text" id="collapsible" style="pointer-events: none;"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans('synthesiscms/atom.atomImage') }}</div>
 				<div class="collapsible-body col s12 card-panel z-depth-3">
 					<div class="input-field col s8 offset-s2" id="molecule-div">
-						<select class="teal-text" name="imgSourceType" id="imgSourceType">
+						<select class="{{ $synthesiscmsMainColor }}-text" name="imgSourceType" id="imgSourceType">
 							@php
 								$optWeb = '';
 								$optFile = '';
@@ -101,11 +101,11 @@
 						<label>{{ trans('synthesiscms/atom.chooseImageSourceType') }}</label>
 					</div>
 					<div class="input-field col s6">
-						<i class="material-icons prefix teal-text">link</i>
+						<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
 						<input id="image" name="image" type="text">
 						<label for="image">{{ trans('synthesiscms/atom.imageURL') }}</label>
 					</div>
-					<div class="btn btn-large center col s6 row waves-effect waves-light teal white-text disabled"> <!-- TODO: implement ftp & uploading image-->
+					<div class="btn btn-large center col s6 row waves-effect waves-light {{ $synthesiscmsMainColor }} white-text disabled"> <!-- TODO: implement ftp & uploading image-->
 						<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
 					</div>
 				</div>
@@ -134,7 +134,7 @@
 		</script>
 		<div class="row">
 			<div class="input-field col s8 offset-s2" id="molecule-div">
-				<select class="teal-text" name="molecule" id="molecule">
+				<select class="{{ $synthesiscmsMainColor }}-text" name="molecule" id="molecule">
 					@foreach (App\Molecule::all() as $key => $value)
 						<option @php if($value->id == $atom->molecule){ echo("selected"); } @endphp value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>ID {{ $value->id }}: {{ $value->title }}</h5></option>
 						@endforeach
@@ -145,9 +145,9 @@
 						</form>
 						</div>
 						<div class="card-action">
-						<a onclick="$('#edit').submit()" class="btn-flat waves-effect waves-green teal-text"><i class="material-icons teal-text left">save</i>{{ trans('synthesiscms/admin.save_atom') }}</a>
-						<a class="btn-flat waves-effect waves-yellow teal-text" href="{{ URL::previous() }}"><i class="material-icons teal-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_atom') }}</a>
-						<button class="btn-flat waves-effect waves-red teal-text" data-target="modalDelete{{ $atom->id }}"><i class="material-icons teal-text left">security</i>{{ trans('synthesiscms/atom.delete_atom') }}</button>
+						<a onclick="$('#edit').submit()" class="btn-flat waves-effect waves-green {{ $synthesiscmsMainColor }}-text"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">save</i>{{ trans('synthesiscms/admin.save_atom') }}</a>
+						<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text" href="{{ URL::previous() }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_atom') }}</a>
+						<button class="btn-flat waves-effect waves-red {{ $synthesiscmsMainColor }}-text" data-target="modalDelete{{ $atom->id }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">security</i>{{ trans('synthesiscms/atom.delete_atom') }}</button>
 						</div>
 						</div>
 						<script type="text/javascript">

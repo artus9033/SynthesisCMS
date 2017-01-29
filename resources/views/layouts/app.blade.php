@@ -23,9 +23,8 @@
 	@yield('head')
 	<style>
 	body {
-    min-height: 100vh;
-  }
-
+		min-height: 100vh;
+	}
 	</style>
 </head>
 <header>
@@ -34,13 +33,13 @@
 <body>
 	@yield('body')
 	<div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh">
-		<nav class="teal col s12 z-depth-3">
+		<nav class="{{ $synthesiscmsMainColor }} col s12 z-depth-3">
 			<div class="nav-wrapper col s12">
 				<a href="/" class="brand-logo" style="margin-left: 10px;">@section('brand-logo'){{ config('app.name') }}@show</a>
 					<div class="input-field right">
 						<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value);">
-							<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="left circle">EN</option>
-							<option value="PL" data-icon="{!! asset('img/langs/PL.png') !!}" class="left circle">PL</option>
+							<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">EN</span></option>
+							<option value="PL" data-icon="{!! asset('img/langs/PL.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">PL</span></option>
 						</select>
 					</div>
 					@php
@@ -58,10 +57,10 @@
 							<ul id="user_dropdown" class="dropdown-content">
 								<li>
 									@if(Auth::user()->is_admin)
-										<a href="{{ url('/admin') }}"><i class="material-icons teal-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}</a>
+										<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/admin') }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}</a>
 									@endif
-									<a href="{{ url('/profile') }}"><i class="material-icons teal-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}</a>
-									<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons teal-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}</a>
+									<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/profile') }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}</a>
+									<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}</a>
 									<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 										{{ csrf_field() }}
 									</form>
@@ -72,7 +71,7 @@
 					</ul>
 				</div>
 			</nav>
-			<nav class="teal lighten-1 col s12 z-depth-2">
+			<nav class="{{ $synthesiscmsMainColor }} lighten-1 col s12 z-depth-2">
 				<div class="nav-wrapper col s12">
 					<div class="col s12">
 						<a href="/" class="breadcrumb"><i class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>

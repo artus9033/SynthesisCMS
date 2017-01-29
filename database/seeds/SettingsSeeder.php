@@ -28,7 +28,7 @@ class SettingsSeeder extends Seeder
  		 'footer_header' => 'SynthesisCMS Footer Content',
  		 'footer_content' => 'You can specify what to show inside the footer in SynthesisCMS Settings in the site backend.',
  		 'tab_color' => '#26a69a',
- 		 'main_color' => '#26a69a',
+ 		 'main_color' => 'teal',
  		 'active' => true,
  	  ]);
     }

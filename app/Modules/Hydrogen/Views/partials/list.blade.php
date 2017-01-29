@@ -13,8 +13,8 @@ $ct = 0;
 					<img class="activator" src="{{ $atom->image }}">
 				</div>
 				<div class="card-reveal">
-					<span class="card-title col s12"><span class="left">{{ $atom->title }}</span><i class="material-icons teal-text right">close</i><a href="{{ $base_slug }}/atom/{{ $atom->id }}"><i class="material-icons right">open_in_new</i></a></span>
-					<div class="divider teal col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
+					<span class="card-title col s12"><span class="left">{{ $atom->title }}</span><i class="material-icons {{ $synthesiscmsMainColor }}-text right">close</i><a href="{{ $base_slug }}/atom/{{ $atom->id }}"><i class="material-icons right">open_in_new</i></a></span>
+					<div class="divider {{ $synthesiscmsMainColor }} col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
 					{!! $atom->description !!}
 				</div>
 			@else
@@ -26,7 +26,7 @@ $ct = 0;
 						</p>
 					</div>
 					<div class="col s2">
-						<a href="{{ $base_slug }}/atom/{{ $atom->id }}"><i class="material-icons teal-text">open_in_new</i></a>
+						<a href="{{ $base_slug }}/atom/{{ $atom->id }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">open_in_new</i></a>
 					</div>
 				</div>
 			@endif
@@ -36,14 +36,14 @@ $ct = 0;
 						{{ $atom->title }}
 						<i class="material-icons right">more_vert</i>
 					</span>
-					<p class="teal-text" id="artificial-link" style="text-align: left;" onclick="window.location.href='{{ $base_slug }}/atom/{{ $atom->id }}'">{{ trans("hydrogen::hydrogen.atom_card_link_read") }}</p>
+					<p class="{{ $synthesiscmsMainColor }}-text" id="artificial-link" style="text-align: left;" onclick="window.location.href='{{ $base_slug }}/atom/{{ $atom->id }}'">{{ trans("hydrogen::hydrogen.atom_card_link_read") }}</p>
 					<style>
 						#artificial-link:hover{
 							cursor: pointer;
 						}
 					</style>
 				@else
-					<div class="divider teal col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
+					<div class="divider {{ $synthesiscmsMainColor }} col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
 					{!! $atom->description !!}
 				@endif
 			</div>

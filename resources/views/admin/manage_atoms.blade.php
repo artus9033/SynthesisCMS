@@ -9,11 +9,11 @@
 	@section('head')
 	<style>
 	#molecule-div .caret {
-		color: teal !important;
+		color: {{ $synthesiscmsMainColor }} !important;
 	}
 
 	#molecule-div .select-dropdown {
-		border-bottom-color: teal !important;
+		border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 	}
 
 	#molecule-div .select-wrapper {
@@ -29,22 +29,22 @@
 
 @section('main')
 	<div class="fixed-action-btn horizontal">
-		<button class="btn-floating btn-large teal white-text waves-effect waves-light z-depth-4 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions') }}">
+		<button class="btn-floating btn-large {{ $synthesiscmsMainColor }} white-text waves-effect waves-light z-depth-4 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions') }}">
 			<i class="large material-icons">menu</i>
 		</button>
 		<ul>
 			<li>
-				<button onclick="toggleAll('.atom_checkbox');" class="btn-floating teal white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_swap_selection') }}">
+				<button onclick="toggleAll('.atom_checkbox');" class="btn-floating {{ $synthesiscmsMainColor }} white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_swap_selection') }}">
 					<i class="large material-icons">swap_horiz</i>
 				</button>
 			</li>
 			<li>
-				<button onclick="unselectAll('.atom_checkbox');" class="btn-floating teal white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_unselect_all') }}">
+				<button onclick="unselectAll('.atom_checkbox');" class="btn-floating {{ $synthesiscmsMainColor }} white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_unselect_all') }}">
 					<i class="large material-icons">tab_unselected</i>
 				</button>
 			</li>
 			<li>
-				<button onclick="selectAll('.atom_checkbox');" class="btn-floating teal white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_select_all') }}">
+				<button onclick="selectAll('.atom_checkbox');" class="btn-floating {{ $synthesiscmsMainColor }} white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_select_all') }}">
 					<i class="large material-icons">select_all</i>
 				</button>
 			</li>
@@ -70,7 +70,7 @@
 			<h5 class="red-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_mass_move_atom_content_2') }}</strong></h5>
 			<div class="row col s12 center">
 				<div class="input-field col s8 offset-s2 valign" id="molecule-div">
-					<select id="massMoveMolecule" name="massMoveMolecule" class="teal-text">
+					<select id="massMoveMolecule" name="massMoveMolecule" class="{{ $synthesiscmsMainColor }}-text">
 						@foreach (App\Molecule::all() as $key => $value)
 							<option value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $value->title }}&nbsp;(ID {{ $value->id }})</h5></option>
 						@endforeach
@@ -87,21 +87,21 @@
 	<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 		<div class="card-content">
 			<div class="card-title col s12">
-				<h3 class="teal-text valign-wrapper"><i class="material-icons prefix teal-text medium valign">donut_large</i>&nbsp;{{ trans('synthesiscms/admin.manage_atoms') }}</h3>
+				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">donut_large</i>&nbsp;{{ trans('synthesiscms/admin.manage_atoms') }}</h3>
 			</div>
-			<div class="divider teal col s12"></div>
+			<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
 			<div class="col s12 row"></div>
 			<form class="form col s12 row" id="action_form" method="post">
 				{{ csrf_field() }}
 				<table class="col s12">
 					<tbody>
 						<tr>
-							<td><a href="/admin/manage_atoms/create_atom" class="col s10 offset-s1 btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_atom') }}</a></td>
-							<td><button data-target="modalMassDelete" type="button" class="col s10 offset-s1 btn teal white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/atom.delete_selected') }}</button></td>
-							<td><button type="button" onclick="$('#action_form').attr('action', '/admin/manage_atoms/mass_copy').submit();" class="col s10 offset-s1 btn teal white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">content_copy</i>{{ trans('synthesiscms/atom.copy_selected') }}</button></td>
+							<td><a href="/admin/manage_atoms/create_atom" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_atom') }}</a></td>
+							<td><button data-target="modalMassDelete" type="button" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/atom.delete_selected') }}</button></td>
+							<td><button type="button" onclick="$('#action_form').attr('action', '/admin/manage_atoms/mass_copy').submit();" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">content_copy</i>{{ trans('synthesiscms/atom.copy_selected') }}</button></td>
 						</tr>
 						<tr>
-							<td><button data-target="modalMassMove" type="button" class="col s10 offset-s1 btn teal white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">transform</i>{{ trans('synthesiscms/atom.move_selected') }}</button></td>
+							<td><button data-target="modalMassMove" type="button" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">transform</i>{{ trans('synthesiscms/atom.move_selected') }}</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -136,7 +136,7 @@
 								<td class="center">{{ $atom->id }}</td>
 								<td class="center">{{ App\Toolbox::string_truncate($atom->title, 34) }}</td>
 								<td class="center">{{ App\Toolbox::string_truncate(('(ID ' . $atom->molecule . ') ' . App\Molecule::find($atom->molecule)->title), 15) }}</td>
-								<td class="center"><a href="/admin/manage_atoms/edit/{{ $atom->id }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/atom.edit') }}</a></td>
+								<td class="center"><a href="/admin/manage_atoms/edit/{{ $atom->id }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/atom.edit') }}</a></td>
 								<div id="modalDelete{{ $atom->id }}" class="modal">
 									<div class="modal-content">
 										<h3>{{ trans('synthesiscms/admin.modal_delete_atom_header') }}</h3>
@@ -149,7 +149,7 @@
 										<a style="margin-left: 9%;" href="/admin/manage_atoms/delete/{{ $atom->id }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_atom_btn_yes') }}</a>
 									</div>
 								</div>
-								<td class="center"><button data-target="modalDelete{{ $atom->id }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">delete</i>{{ trans('synthesiscms/atom.delete_atom') }}</button></td>
+								<td class="center"><button data-target="modalDelete{{ $atom->id }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">delete</i>{{ trans('synthesiscms/atom.delete_atom') }}</button></td>
 							</tr>
 						@endforeach
 						@if ($all_atoms_count == 0)

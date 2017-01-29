@@ -31,6 +31,8 @@
 		$(".editor").trumbowyg({
 			lang: '{{ \App::getLocale() }}'
 		});
+		$('ul:not(.collapsible) > li.active').addClass('lighten-2');
+		$('ul:not(.collapsible) > li.active').addClass('{{ $synthesiscmsMainColor }}');
 	});
 	</script>
 	<style>
@@ -42,37 +44,37 @@
 </head>
 <header>
 	<ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0px);">
-		<li class="logo"><a href="/admin" class="brand-logo teal white-text waves-effect waves-light"><i class="material-icons white-text">verified_user</i>{{ trans('synthesiscms/admin.backend') }}</a></li>
+		<li class="logo"><a href="/admin" class="brand-logo {{ $synthesiscmsMainColor }} white-text waves-effect waves-light"><i class="material-icons white-text">verified_user</i>{{ trans('synthesiscms/admin.backend') }}</a></li>
 		<li>
 			<ul class="collapsible collapsible-accordion">
-				<li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons teal-text">description</i>{{ trans('synthesiscms/admin.section_content') }}</a>
+				<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">description</i>{{ trans('synthesiscms/admin.section_content') }}</a>
 					<div class="collapsible-body">
 						<ul>
-							<li id="manage_atoms"><a class="waves-effect waves-teal" href="/admin/manage_atoms">{{ trans('synthesiscms/admin.manage_atoms') }}</a></li>
-							<li id="manage_molecules"><a class="waves-effect waves-teal" href="/admin/manage_molecules">{{ trans('synthesiscms/admin.manage_molecules') }}</a></li>
+							<li id="manage_atoms"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="/admin/manage_atoms">{{ trans('synthesiscms/admin.manage_atoms') }}</a></li>
+							<li id="manage_molecules"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="/admin/manage_molecules">{{ trans('synthesiscms/admin.manage_molecules') }}</a></li>
 						</ul>
 					</div>
 				</li>
-				<li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons teal-text">supervisor_account</i>{{ trans('synthesiscms/admin.section_users') }}</a>
+				<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">supervisor_account</i>{{ trans('synthesiscms/admin.section_users') }}</a>
 					<div class="collapsible-body">
 						<ul>
-							<li id="profile"><a class="waves-effect waves-teal" href="/profile">{{ trans('synthesiscms/profile.profile') }}</a></li>
-							<li id="manage_users"><a class="waves-effect waves-teal" href="/admin/manage_users">{{ trans('synthesiscms/admin.manage_users') }}</a></li>
+							<li id="profile"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="/profile">{{ trans('synthesiscms/profile.profile') }}</a></li>
+							<li id="manage_users"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="/admin/manage_users">{{ trans('synthesiscms/admin.manage_users') }}</a></li>
 						</ul>
 					</div>
 				</li>
-				<li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons teal-text">pages</i>{{ trans('synthesiscms/admin.section_routes') }}</a>
+				<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">pages</i>{{ trans('synthesiscms/admin.section_routes') }}</a>
 					<div class="collapsible-body">
 						<ul>
-							<li id="manage_routes"><a class="waves-effect waves-teal" href="/admin/manage_routes">{{ trans('synthesiscms/admin.manage_routes') }}</a></li>
-							<li id="manage_extensions"><a class="waves-effect waves-teal" href="/admin/manage_extensions">{{ trans('synthesiscms/admin.manage_extensions') }}</a></li>
+							<li id="manage_routes"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="/admin/manage_routes">{{ trans('synthesiscms/admin.manage_routes') }}</a></li>
+							<li id="manage_extensions"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="/admin/manage_extensions">{{ trans('synthesiscms/admin.manage_extensions') }}</a></li>
 						</ul>
 					</div>
 				</li>
-				<li class="bold active"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons teal-text">settings</i>{{ trans('synthesiscms/admin.section_settings') }}</a>
+				<li class="bold active"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">settings</i>{{ trans('synthesiscms/admin.section_settings') }}</a>
 					<div class="collapsible-body" style="display: block;">
 						<ul>
-							<li id="settings"><a class="waves-effect waves-teal" href="/admin/settings">{{ trans('synthesiscms/admin.settings') }}</a></li>
+							<li id="settings"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="/admin/settings">{{ trans('synthesiscms/admin.settings') }}</a></li>
 						</ul>
 					</div>
 				</li>
@@ -84,13 +86,13 @@
 <body>
 	@yield('body')
 	<div class="col s12 row">
-		<nav class="teal col s12 z-depth-3">
+		<nav class="{{ $synthesiscmsMainColor }} col s12 z-depth-3">
 			<div class="nav-wrapper col s12">
 				<a href="/" class="brand-logo" style="margin-left: 10px;">@section('brand-logo'){{ config('app.name') }}@show</a>
 					<div class="input-field right">
 						<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value);">
-							<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="left circle">EN</option>
-							<option value="PL" data-icon="{!! asset('img/langs/PL.png') !!}" class="left circle">PL</option>
+							<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">EN</span></option>
+							<option value="PL" data-icon="{!! asset('img/langs/PL.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">PL</span></option>
 						</select>
 					</div>
 					<script>
@@ -105,10 +107,10 @@
 							<ul id="user_dropdown" class="dropdown-content">
 								<li>
 									@if(Auth::user()->is_admin)
-										<a href="{{ url('/admin') }}"><i class="material-icons teal-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}</a>
+										<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/admin') }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}</a>
 									@endif
-									<a href="{{ url('/profile') }}"><i class="material-icons teal-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}</a>
-									<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons teal-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}</a>
+									<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/profile') }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}</a>
+									<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}</a>
 									<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 										{{ csrf_field() }}
 									</form>
@@ -119,7 +121,7 @@
 					</ul>
 				</div>
 			</nav>
-			<nav class="teal lighten-1 col s12 z-depth-2">
+			<nav class="{{ $synthesiscmsMainColor }} lighten-1 col s12 z-depth-2">
 				<div class="nav-wrapper col s12">
 					<div class="col s12">
 						<a href="/" class="breadcrumb"><i class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>

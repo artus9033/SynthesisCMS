@@ -16,9 +16,9 @@
 	<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 		<div class="card-content">
 			<div class="card-title col s12">
-				<h3 class="teal-text valign-wrapper"><i class="material-icons prefix teal-text medium valign">supervisor_account</i>&nbsp;{{ trans('synthesiscms/auth.profile') }}</h5>
+				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">supervisor_account</i>&nbsp;{{ trans('synthesiscms/auth.profile') }}</h5>
 				</div>
-				<div class="divider teal col s12"></div>
+				<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
 				<div class="col s12 row"></div>
 				<div class="col s12 row">
 				<table class="bordered col s7">
@@ -42,11 +42,11 @@
       </table>
 	 <div class="col s5 row">
 				<div class="col s10 offset-s1">
-					<a href="/profile/password" class="btn btn-large teal waves-effect waves-light center hoverable col s12"><i class="material-icons white-text left">lock_outline</i>{{ trans('synthesiscms/profile.change_password') }}</a>
+					<a href="/profile/password" class="btn btn-large {{ $synthesiscmsMainColor }} waves-effect waves-light center hoverable col s12"><i class="material-icons white-text left">lock_outline</i>{{ trans('synthesiscms/profile.change_password') }}</a>
 				</div>
 				<div class="col s12 row"></div>
 				<div class="col s10 offset-s1">
-					<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-large col s12 teal waves-effect waves-light center hoverable"><i class="material-icons white-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}</a>
+					<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-large col s12 {{ $synthesiscmsMainColor }} waves-effect waves-light center hoverable"><i class="material-icons white-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}</a>
 					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 						{{ csrf_field() }}
 					</form>

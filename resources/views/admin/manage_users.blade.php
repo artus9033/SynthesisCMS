@@ -15,9 +15,9 @@
 	<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 		<div class="card-content">
 			<div class="card-title col s12">
-				<h3 class="teal-text valign-wrapper"><i class="material-icons prefix teal-text medium valign">supervisor_account</i>&nbsp;{{ trans('synthesiscms/admin.manage_users') }}</h3>
+				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">supervisor_account</i>&nbsp;{{ trans('synthesiscms/admin.manage_users') }}</h3>
 				</div>
-				<div class="divider teal col s12"></div>
+				<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
 				<div class="col s12 row"></div>
 				<div class="col s12 row">
 					<table class="bordered col s12">
@@ -48,7 +48,7 @@
 											<td class="center">{{ $user->name }}</td>
 											<td class="center">{{ $user->email }}</td>
 											<td class="center">@php if($user->is_admin){ echo trans('synthesiscms/profile.admin'); }else{ echo trans('synthesiscms/profile.user'); } @endphp</td>
-											<td class="center"><a href="/admin/user-privileges/{{ $uid }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.change_user_privileges') }}</a></td>
+											<td class="center"><a href="/admin/user-privileges/{{ $uid }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.change_user_privileges') }}</a></td>
 											  <div id="modalDelete" class="modal">
 											    <div class="modal-content">
 											      <h3>{{ trans('synthesiscms/admin.modal_delete_user_header') }}</h3>
@@ -61,7 +61,7 @@
 												 <a style="margin-left: 9%;" href="/profile/delete/{{ $uid }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_user_btn_yes') }}</a>
 											    </div>
 											  </div>
-											<td class="center"><button data-target="modalDelete" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_user') }}</button></td>
+											<td class="center"><button data-target="modalDelete" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_user') }}</button></td>
 										</tr>
 									@endif
 								@endforeach

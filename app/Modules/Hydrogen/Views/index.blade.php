@@ -9,7 +9,7 @@
 @endsection
 
 @section('mod_main')
-	    <div class="col s10 offset-s1 card-panel white-text teal z-depth-2 hoverable center row">
+	    <div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} z-depth-2 hoverable center row">
 		   <h3 class="col s12">{{ $page->page_title }}</h3>
 		   <div class="col s12 row white divider" style="height: 2px;"></div>
 		  <h5 class="col s12">{{ $page->page_header }}</h5>

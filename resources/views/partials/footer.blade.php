@@ -1,4 +1,4 @@
-<footer class="page-footer col s12">
+<footer class="page-footer {{ $synthesiscmsMainColor }} col s12">
 	<div class="container">
 		<div class="row">
 			<div class="col l6 s12">

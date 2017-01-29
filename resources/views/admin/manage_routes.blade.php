@@ -15,11 +15,11 @@
 	<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 		<div class="card-content">
 			<div class="card-title col s12">
-				<h3 class="teal-text valign-wrapper"><i class="material-icons prefix teal-text medium valign">pages</i>&nbsp;{{ trans('synthesiscms/admin.manage_routes') }}</h3>
+				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">pages</i>&nbsp;{{ trans('synthesiscms/admin.manage_routes') }}</h3>
 				</div>
-				<div class="divider teal col s12"></div>
+				<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
 				<div class="col s12 row"></div>
-				<a href="/admin/manage_routes/create_route" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_route') }}</a>
+				<a href="/admin/manage_routes/create_route" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_route') }}</a>
 				<div class="col s12 row"></div>
 				<div class="col s12 row">
 					<table class="bordered col s12">
@@ -45,7 +45,7 @@
 											<td class="center">{{ $route->slug }}</td>
 											<td class="center">{{ $route->page_title }}</td>
 											<td class="center">{{ $route->module }}</td>
-											<td class="center"><a href="/admin/manage_routes/edit/{{ $route->id }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/admin.edit_route', ['route' => '']) }}</a></td>
+											<td class="center"><a href="/admin/manage_routes/edit/{{ $route->id }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/admin.edit_route', ['route' => '']) }}</a></td>
 											  <div id="modalDelete{{ $route->id }}" class="modal">
 											    <div class="modal-content">
 											      <h3>{{ trans('synthesiscms/admin.modal_delete_route_header') }}</h3>
@@ -58,7 +58,7 @@
 												 <a style="margin-left: 9%;" href="/admin/manage_routes/delete/{{ $route->id }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_route_btn_yes') }}</a>
 											    </div>
 											  </div>
-											<td class="center"><button data-target="modalDelete{{ $route->id }}" class="btn teal waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_route') }}</button></td>
+											<td class="center"><button data-target="modalDelete{{ $route->id }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_route') }}</button></td>
 										</tr>
 								@endforeach
 								@if ($all_routes_count == 0)

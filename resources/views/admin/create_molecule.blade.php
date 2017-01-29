@@ -9,11 +9,11 @@
 @section('head')
 <style>
 	.caret {
-	  color: teal !important;
+	  color: {{ $synthesiscmsMainColor }} !important;
 	}
 
 	.select-dropdown {
-	  border-bottom-color: teal !important;
+	  border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 	}
 
 	.select-wrapper {
@@ -32,13 +32,13 @@
 	<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 		<div class="card-content">
 			<div class="card-title col s12">
-				<h3 class="teal-text valign-wrapper"><i class="material-icons prefix teal-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.create_molecule') }}</h3>
+				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.create_molecule') }}</h3>
 				</div>
-				<div class="divider teal col s12"></div>
+				<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
 				<div class="col s12 row"></div>
 				{!! Form::open(array('class' => 'form')) !!}
 					<div class="input-field col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.create_molecule_title_tooltip') }}">
-						<i class="material-icons prefix teal-text">label_outline</i>
+						<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">label_outline</i>
 				          <input id="title" type="text" name="title" class="validate">
 				          <label for="title">{{ trans('synthesiscms/admin.create_molecule_title_label') }}</label>
 			        	</div>
@@ -51,9 +51,9 @@
 						$(".editor").trumbowyg('html', ''); //empty content
 					});
 					</script>
-				<button type="submit" class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light teal"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_molecule') }}</button>
+				<button type="submit" class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_molecule') }}</button>
 				<div class="col s12 row"></div>
-				<a class="btn-flat waves-effect waves-yellow teal-text col s2 offset-s5" href="{{ URL::previous() }}"><i class="material-icons teal-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_molecule') }}</a>
+				<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text col s2 offset-s5" href="{{ URL::previous() }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_molecule') }}</a>
 				<div class="col s12 row"></div>
 			{!! Form::close() !!}
 			</div>
