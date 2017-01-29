@@ -35,7 +35,7 @@
 						</thead>
 						<tbody>
 								@php
-									use \App\Page;
+									use \App\Models\Content\Page;
 									$all_routes = Page::all();
 									$all_routes_count = $all_routes->count();
 								@endphp

@@ -51,7 +51,7 @@ label{
 		<div class="card-title col s12 row valign-wrapper">
 			<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s8"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_route', ['route' => $page->slug]) }}</h3>
 			<div class="col s4 valign row">
-				<a class="col s12 btn-large waves-effect waves-light" href="{{ $page->slug }}" target="_blank" class="btn-large {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">open_in_new</i>{{ trans('synthesiscms/admin.view_route') }}</a>
+				<a class="col s12 btn-large waves-effect waves-light" href="{{ $page->slug }}" target="_blank" class="btn-large {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left" style="line-height: unset !important; font-size: 1.8rem;">open_in_new</i>{{ trans('synthesiscms/admin.view_route') }}</a>
 			</div>
 		</div>
 		<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>

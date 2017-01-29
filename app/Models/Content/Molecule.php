@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models\Content;
 
-use App\Atom;
+use App\Models\Content\Atom;
 use Illuminate\Database\Eloquent\Model;
 
 class Molecule extends Model

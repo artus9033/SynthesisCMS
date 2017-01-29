@@ -96,7 +96,7 @@
 					<div class="row col s12 center">
 						<div class="input-field col s8 offset-s2 valign" id="molecule-div">
 							<select id="molecule" name="molecule" class="{{ $synthesiscmsMainColor }}-text">
-									@foreach (App\Molecule::all() as $key => $value)
+									@foreach (App\Models\Content\Molecule::all() as $key => $value)
 										<option value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $value->title }}</h5></option>
 									@endforeach
 							</select>

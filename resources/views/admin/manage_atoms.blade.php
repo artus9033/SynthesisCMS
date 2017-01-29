@@ -71,7 +71,7 @@
 			<div class="row col s12 center">
 				<div class="input-field col s8 offset-s2 valign" id="molecule-div">
 					<select id="massMoveMolecule" name="massMoveMolecule" class="{{ $synthesiscmsMainColor }}-text">
-						@foreach (App\Molecule::all() as $key => $value)
+						@foreach (App\Models\Content\Molecule::all() as $key => $value)
 							<option value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $value->title }}&nbsp;(ID {{ $value->id }})</h5></option>
 						@endforeach
 					</select>
@@ -119,7 +119,7 @@
 					</thead>
 					<tbody>
 						@php
-						use \App\Atom;
+						use \App\Models\Content\Atom;
 						$all_atoms = Atom::all();
 						$all_atoms_count = $all_atoms->count();
 						@endphp
@@ -135,7 +135,7 @@
 								</td>
 								<td class="center">{{ $atom->id }}</td>
 								<td class="center">{{ App\Toolbox::string_truncate($atom->title, 34) }}</td>
-								<td class="center">{{ App\Toolbox::string_truncate(('(ID ' . $atom->molecule . ') ' . App\Molecule::find($atom->molecule)->title), 15) }}</td>
+								<td class="center">{{ App\Toolbox::string_truncate(('(ID ' . $atom->molecule . ') ' . App\Models\Content\Molecule::find($atom->molecule)->title), 15) }}</td>
 								<td class="center"><a href="/admin/manage_atoms/edit/{{ $atom->id }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/atom.edit') }}</a></td>
 								<div id="modalDelete{{ $atom->id }}" class="modal">
 									<div class="modal-content">

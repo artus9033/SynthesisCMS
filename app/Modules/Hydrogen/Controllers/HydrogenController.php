@@ -5,8 +5,8 @@ namespace App\Modules\Hydrogen\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\Hydrogen\Models\HydrogenModule;
 use App\SynthesisCMS\API\SynthesisModule;
-use App\Molecule;
-use App\Atom;
+use App\Models\Content\Molecule;
+use App\Models\Content\Atom;
 
 class HydrogenController extends Controller
 {

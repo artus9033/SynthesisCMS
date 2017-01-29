@@ -143,7 +143,7 @@
 							</thead>
 							<tbody>
 								@php
-								use \App\Molecule;
+								use \App\Models\Content\Molecule;
 								$all_molecules = Molecule::all();
 								$all_molecules_count = $all_molecules->count();
 								@endphp

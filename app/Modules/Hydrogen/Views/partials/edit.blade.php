@@ -1,6 +1,6 @@
 <div class="input-field col s8 offset-s2 valign" id="molecule-div">
 	<select id="hydrogen-molecule" name="hydrogen-molecule" class="{{ $synthesiscmsMainColor }}-text">
-		@foreach (\App\Molecule::all() as $key => $value)
+		@foreach (\App\Models\Content\Molecule::all() as $key => $value)
 			@php
 				if($value->id == \App\Modules\Hydrogen\Models\HydrogenModule::where('id', $page->id)->first()->molecule){
 					$selected = "selected";

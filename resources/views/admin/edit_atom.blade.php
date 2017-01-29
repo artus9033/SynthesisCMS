@@ -135,7 +135,7 @@
 		<div class="row">
 			<div class="input-field col s8 offset-s2" id="molecule-div">
 				<select class="{{ $synthesiscmsMainColor }}-text" name="molecule" id="molecule">
-					@foreach (App\Molecule::all() as $key => $value)
+					@foreach (App\Models\Content\Molecule::all() as $key => $value)
 						<option @php if($value->id == $atom->molecule){ echo("selected"); } @endphp value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>ID {{ $value->id }}: {{ $value->title }}</h5></option>
 						@endforeach
 						</select>

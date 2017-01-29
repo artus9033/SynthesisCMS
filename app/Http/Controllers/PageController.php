@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Page;
+use App\Models\Content\Page;
 use App\Toolbox;
 
 class PageController extends Controller
