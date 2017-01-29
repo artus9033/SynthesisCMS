@@ -59,7 +59,7 @@ return [
 	'manage_users' => 'Manage Users & Privileges',
 	'manage_extensions' => 'Manage Extensions',
 	'manage_routes' => 'Manage Routes',
-	'settings' => 'Settings',
+	'settings' => 'Site Settings',
 	'section_users' => 'Users & Administration',
 	'section_routes' => 'Routes & Extensions',
 	'section_content' => 'Content Management',

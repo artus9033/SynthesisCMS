@@ -15,7 +15,9 @@ class SettingsVariablesProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->share('synthesiscmsMainColor', Settings::getFromActive('main_color'));
+	    view()->share('synthesiscmsMainColor', Settings::getFromActive('main_color'));
+	    view()->share('synthesiscmsHeaderTitle', Settings::getFromActive('header_title'));
+	    view()->share('synthesiscmsTabColor', Settings::getFromActive('tab_color'));
     }
 
     /**

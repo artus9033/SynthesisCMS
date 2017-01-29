@@ -42,6 +42,9 @@ Route::group(['middleware' => 'admin'], function () {
 
 	Route::get('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'BackendController@privileges']);
 	Route::post('/admin/user-privileges/{id}', ['as' => 'profile_post', 'uses' => 'BackendController@privileges_change']);
+
+	Route::get('/admin/settings', ['as' => 'settings', 'uses' => 'BackendController@settings']);
+	Route::post('/admin/settings', ['as' => 'settings_post', 'uses' => 'BackendController@settingsPost']);
 });
 
 Route::group(['middleware' => 'web'], function () {

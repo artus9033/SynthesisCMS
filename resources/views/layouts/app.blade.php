@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="theme-color" content="#26a69a">
+	<meta name="theme-color" content="{{ $synthesiscmsTabColor }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<script type="text/javascript" src="{!! asset('js/jquery-3.1.1.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/materialize.js') !!}"></script>
@@ -19,7 +19,7 @@
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}"  media="screen,projection"/>
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
-	<title>TODO - @yield('title')</title>
+	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>
 	@yield('head')
 	<style>
 	body {
@@ -35,7 +35,7 @@
 	<div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh">
 		<nav class="{{ $synthesiscmsMainColor }} col s12 z-depth-3">
 			<div class="nav-wrapper col s12">
-				<a href="/" class="brand-logo" style="margin-left: 10px;">@section('brand-logo'){{ config('app.name') }}@show</a>
+				<a href="/" class="brand-logo" style="margin-left: 10px;">@section('brand-logo'){{ $synthesiscmsHeaderTitle }}@show</a>
 					<div class="input-field right">
 						<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value);">
 							<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">EN</span></option>
