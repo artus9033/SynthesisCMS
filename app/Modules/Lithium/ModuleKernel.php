@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\Hydrogen;
+namespace App\Modules\Lithium;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Hydrogen\Models\HydrogenModule;
-use App\Modules\Hydrogen\Controllers\HydrogenController;
+use App\Modules\Lithium\Models\LithiumModule;
+use App\Modules\Lithium\Controllers\LithiumController;
 use App\SynthesisCMS\API\SynthesisModule;
 
 /**
@@ -19,27 +19,27 @@ class ModuleKernel extends SynthesisModule
 {
 
 	public function create($id){
-		$module = HydrogenModule::create(['id' => $id]);
+		$module = LithiumModule::create(['id' => $id]);
 	}
 
 	public function delete($id){
-		$module = HydrogenModule::where(['id' => $id])->first();
+		$module = LithiumModule::where(['id' => $id])->first();
 		$module->delete();
 	}
 
 	public function getModuleName(){
-		return trans('hydrogen::hydrogen.name');
+		return trans('lithium::lithium.name');
 	}
 
 	public function editGet($page)
 	{
-		return \View::make('hydrogen::partials/edit')->with(['page' => $page]);
+		return \View::make('lithium::partials/edit')->with(['page' => $page]);
 	}
 
 	public function editPost($id, $request)
 	{
-		$module = HydrogenModule::where('id', $id)->first();
-		$module->molecule = $request->get('hydrogen-molecule');
+		$module = LithiumModule::where('id', $id)->first();
+		$module->molecule = $request->get('lithium-molecule');
 		$module->save();
 	}
 
@@ -47,10 +47,10 @@ class ModuleKernel extends SynthesisModule
 		$kernel = $this;
 		\Route::group(['middleware' => 'web'], function () use ($page, $kernel, $base_slug) {
 			\Route::get($base_slug, function() use ($page, $kernel, $base_slug) {
-	    			return \App::make('App\Modules\Hydrogen\Controllers\HydrogenController')->index($page, $kernel, $base_slug);
+	    			return \App::make('App\Modules\Lithium\Controllers\LithiumController')->index($page, $kernel, $base_slug);
 			})->middleware('web');
 			\Route::get($base_slug . '/atom/{id}', function() use ($page, $kernel, $base_slug) {
-	    			return \App::make('App\Modules\Hydrogen\Controllers\HydrogenController')->atom(\Route::input('id'), $kernel, $page, $base_slug);
+	    			return \App::make('App\Modules\Lithium\Controllers\LithiumController')->atom(\Route::input('id'), $kernel, $page, $base_slug);
 			})->middleware('web');
 		});
 	}

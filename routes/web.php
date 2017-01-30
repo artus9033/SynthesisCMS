@@ -1,8 +1,8 @@
 <?php
 
-Route::get('/', function () {
+/**Route::get('/', function () {
     return redirect('/home');
-});
+});**/
 
 Route::get('/backend', function () {
     return redirect('/admin');
@@ -57,7 +57,7 @@ Route::group(['middleware' => 'web'], function () {
      Route::get('/profile/password', ['as' => 'profile', 'uses' => 'Auth\\ProfileController@editGet']);
      Route::post('/profile/password', ['as' => 'profile_password', 'uses' => 'Auth\\ProfileController@editPost']);
 
-     Route::get('/home', ['as' => 'home', 'uses' => 'Content\\HomeController@index']);
+     //Route::get('/home', ['as' => 'home', 'uses' => 'Content\\HomeController@index']);
 });
 
 //Route::any('/{slug}', array('as' => 'page.show', 'uses' => 'PageController@show'))->where(['slug' => '(.*)']);

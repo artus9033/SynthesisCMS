@@ -3,8 +3,6 @@
 return [
 	'synthesiscms_modules' => 'SynthesisCMS Built-In Modules',
 	'choose_module' => 'Choose Module',
-	'hydrogen' => 'Hydrogen Single-Molecule Page',
-	'lithium' => 'Lithium Blog Page',
 	'slug' => 'Slug',
      'title' => 'Page Title & Header Title',
      'header' => 'Page Header Content',

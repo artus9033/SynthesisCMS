@@ -70,7 +70,7 @@
 		</div>
 		<script>
 		$(document).ready(function(){
-			$(".editor").trumbowyg('html', "{!! addslashes($atom->description) !!}");
+			$(".editor").trumbowyg('html', "{!! json_encode(addslashes($atom->description)) !!}");
 		});
 		</script>
 		<div class="col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/atom.hasImageTooltip') }}">

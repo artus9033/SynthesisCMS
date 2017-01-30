@@ -72,12 +72,15 @@ label{
 							<label for="title">{{ trans('synthesiscms/modules.title') }}</label>
 						</div>
 					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<textarea id="header" name="header" class="materialize-textarea">{{ $page->page_header }}</textarea>
-							<label for="header">{{ trans('synthesiscms/modules.header') }}</label>
-						</div>
+					<div class="row col s12 container">
+						<label for="header">{{ trans('synthesiscms/modules.header') }}</label>
+						<textarea class="editor" id="header" name="header"></textarea>
 					</div>
+					<script>
+					$(document).ready(function(){
+						$(".editor").trumbowyg('html', {!! json_encode(addslashes($page->page_header)) !!});
+					});
+					</script>
 					<div class="divider {{ $synthesiscmsMainColor }} col s12 row"></div>
 					<div class="card-panel col s8 offset-s2 z-depth-2 center {{ $synthesiscmsMainColor }} white-text row">
 					<h5>{{ trans('synthesiscms/modules.edit_specific') }}</h5>

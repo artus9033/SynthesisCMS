@@ -39,7 +39,7 @@
 				@php
 				//TODO: dynamically check if route free:
 					$routes = \Route::getRoutes();
-					$request = Request::create("/p/1/123/weii21-j-rfi02fn.flkergi-efw+2");
+					$request = Request::create("/p/1");
 					try {
 					    $routes->match($request);
 					    //echo("yes");
@@ -48,7 +48,8 @@
 					    //echo("no");
 					}
 				@endphp
-				{!! Form::open(array('class' => 'form')) !!}
+				<form class="form col s12" role="form" method="POST" action="">
+					{{ csrf_field() }}
 					<div class="input-field col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.create_route_slug_tooltip') }}">
 						<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">label_outline</i>
 				          <input id="route" type="text" name="route" class="validate">
@@ -56,7 +57,7 @@
 			        	</div>
 				<div class="input-field col s8 valign">
 					<select id="module" name="module" class="{{ $synthesiscmsMainColor }}-text">
-						<optgroup label="{{ trans('synthesiscms/modules.synthesiscms_modules') }}">
+						<!-- TODO: add modules groups wiht <optgroup> -->
 						@php
 						foreach(File::directories(app_path('Modules')) as $file){
 							if(is_dir($file)){
@@ -66,12 +67,11 @@
 							}
 						}
 						@endphp
-					</optgroup>
 					</select>
 					<label>{{ trans('synthesiscms/modules.choose_module') }}</label>
 				</div>
 				<button type="submit" class="valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_route') }}</button>
-			{!! Form::close() !!}
+			</form>
 			</div>
 		</div>
 	@endsection
