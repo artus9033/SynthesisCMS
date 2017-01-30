@@ -1,42 +1,38 @@
-@php
-$ct = 0;
-@endphp
-
 @foreach ($atoms as $key => $atom)
 	@php
-	$ct++
+	$ctr++;
 	@endphp
-	<div class="container col s6 row">
+	<div class="container col s12 row">
 		<div class="card hoverable z-depth-2 center">
-			@if($atom->hasImage)
+			@if($atom['hasImage'])
 				<div class="card-image waves-effect waves-block waves-light">
-					<img class="activator" src="{{ $atom->image }}">
+					<img class="activator" src="{{ $atom['image'] }}">
 				</div>
 				<div class="card-reveal">
-					<span class="card-title col s12"><span class="left">{{ $atom->title }}</span><i class="material-icons {{ $synthesiscmsMainColor }}-text right">close</i><a href="{{ $base_slug }}/atom/{{ $atom->id }}"><i class="material-icons right">open_in_new</i></a></span>
+					<span class="card-title col s12"><span class="left">{{ $atom['title'] }}</span><i class="material-icons {{ $synthesiscmsMainColor }}-text right">close</i><a href="{{ $base_slug }}/atom/{{ $atom['id'] }}"><i class="material-icons right">open_in_new</i></a></span>
 					<div class="divider {{ $synthesiscmsMainColor }} col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
-					{!! $atom->description !!}
+					{!! $atom['description'] !!}
 				</div>
 			@else
 				<div class="card-title">
 					<div class="col s12" style="height: 15px;"></div>
 					<div class="col s10">
 						<p class="truncate left">
-							&nbsp;&nbsp;{{ $atom->title }}
+							&nbsp;&nbsp;{{ $atom['title'] }}
 						</p>
 					</div>
 					<div class="col s2">
-						<a href="{{ $base_slug }}/atom/{{ $atom->id }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">open_in_new</i></a>
+						<a href="{{ $base_slug }}/atom/{{ $atom['id'] }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">open_in_new</i></a>
 					</div>
 				</div>
 			@endif
 			<div class="card-content">
-				@if($atom->hasImage)
+				@if($atom['hasImage'])
 					<span class="card-title activator" style="text-align: left;">
-						{{ $atom->title }}
+						{{ $atom['title'] }}
 						<i class="material-icons right">more_vert</i>
 					</span>
-					<p class="{{ $synthesiscmsMainColor }}-text" id="artificial-link" style="text-align: left;" onclick="window.location.href='{{ $base_slug }}/atom/{{ $atom->id }}'">{{ trans("hydrogen::hydrogen.atom_card_link_read") }}</p>
+					<p class="{{ $synthesiscmsMainColor }}-text" id="artificial-link" style="text-align: left;" onclick="window.location.href='{{ $base_slug }}/atom/{{ $atom['id'] }}'">{{ trans("hydrogen::hydrogen.atom_card_link_read") }}</p>
 					<style>
 						#artificial-link:hover{
 							cursor: pointer;
@@ -44,13 +40,9 @@ $ct = 0;
 					</style>
 				@else
 					<div class="divider {{ $synthesiscmsMainColor }} col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
-					{!! $atom->description !!}
+					{!! $atom['description'] !!}
 				@endif
 			</div>
 		</div>
 	</div>
 @endforeach
-
-@if ($ct == 0)
-	@include('partials/error', ['error' => trans("hydrogen::messages.err_no_atoms")])
-@endif

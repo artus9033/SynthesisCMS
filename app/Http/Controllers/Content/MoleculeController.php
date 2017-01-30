@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
 use App\Models\Auth\User;
 use App\Models\Content\Page;

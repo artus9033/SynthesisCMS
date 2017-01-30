@@ -22,7 +22,7 @@ class AtomsSeeder extends Seeder
 		// Cannot be in one DB::table closure, as all rows would need the same columns & values count
 		DB::table('atoms')->insert(
 			[
-				'title' => 'Hello World!!!',
+				'title' => 'Hello World With Image!!!',
 				'description' => '<p style="text-align: center;">This is a sample Atom from SynthesisCMS with no image!</p>',
 				'created_at' => '2017-01-01 00:00:00',
 				'updated_at' => '2017-01-01 00:00:00',

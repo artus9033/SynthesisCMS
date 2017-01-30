@@ -14,5 +14,20 @@
 		   <div class="col s12 row white divider" style="height: 2px;"></div>
 		  <h5 class="col s12">{{ $page->page_header }}</h5>
 	    </div>
-		    @include('hydrogen::partials/list', ['atoms' => $atoms])
+	    @php
+		$ctr = count($atoms->toArray());
+		$one = array();
+		$two = array();
+		list($one, $two) = array_chunk($atoms->toArray(), ceil(count($atoms->toArray()) / 2));
+	    @endphp
+
+	    <div class="container col s6 row">
+		    @include('hydrogen::partials/list', ['atoms' => $one])
+	    </div>
+	    <div class="container col s6 row">
+		    @include('hydrogen::partials/list', ['atoms' => $two])
+	    </div>
+	    @if ($ctr == 0)
+	    	@include('partials/error', ['error' => trans("hydrogen::messages.err_no_atoms")])
+	    @endif
 @endsection
