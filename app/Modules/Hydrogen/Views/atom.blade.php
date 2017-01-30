@@ -5,7 +5,9 @@
 @endsection
 
 @section('mod_breadcrumbs')
-	<a href="{{ $base_slug }}" class="breadcrumb">{{ \App\Toolbox::string_truncate($page->page_title, 25) }}</a>
+	@if($base_slug != "/")
+		<a href="{{ $base_slug }}" class="breadcrumb">{{ \App\Toolbox::string_truncate($page->page_title, 25) }}</a>
+	@endif
 	<a class="breadcrumb">{{ \App\Toolbox::string_truncate($atom->title, 25) }}</a>
 @endsection
 
@@ -33,7 +35,7 @@
 	    <div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} z-depth-2 hoverable center row">
 		   <h3 class="col s12">{{ $page->page_title }}</h3>
 		   <div class="col s12 row white divider" style="height: 2px;"></div>
-		  <h5 class="col s12">{{ $page->page_header }}</h5>
+		  <h5 class="col s12">{!! $page->page_header !!}</h5>
 	    </div>
 	    <div class="row">
         <div class="col s10 offset-s1">

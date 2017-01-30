@@ -90,7 +90,7 @@
 	<div class="col s12 row">
 		<nav class="{{ $synthesiscmsMainColor }} col s12 z-depth-3">
 			<div class="nav-wrapper col s12">
-				<a href="/" class="brand-logo" style="margin-left: 10px;">@section('brand-logo'){{ $synthesiscmsHeaderTitle }} - {{ trans('synthesiscms/admin.backend') }}@show</a>
+				<a href="/" class="brand-logo" style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }} - @section('brand-logo'){{ trans('synthesiscms/admin.backend') }}@show</a>
 					<div class="input-field right">
 						<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value);">
 							<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">EN</span></option>

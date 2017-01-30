@@ -39,7 +39,7 @@ class ModuleKernel extends SynthesisModule
 	public function editPost($id, $request)
 	{
 		$module = LithiumModule::where('id', $id)->first();
-		$module->molecule = $request->get('lithium-molecule');
+		$module->atom = $request->get('lithium-atom');
 		$module->save();
 	}
 

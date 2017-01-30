@@ -2,3 +2,4 @@ storage/
 vendor/
 node_modules/
 .env
+.tags1

@@ -1,6 +1,10 @@
 @foreach ($atoms as $key => $atom)
 	@php
 	$ctr++;
+	$atom_href = "";
+	if($base_slug != "/"){
+		$atom_href = $base_slug;
+	}
 	@endphp
 	<div class="container col s12 row">
 		<div class="card hoverable z-depth-2 center">
@@ -9,7 +13,7 @@
 					<img class="activator" src="{{ $atom['image'] }}">
 				</div>
 				<div class="card-reveal">
-					<span class="card-title col s12"><span class="left">{{ $atom['title'] }}</span><i class="material-icons {{ $synthesiscmsMainColor }}-text right">close</i><a href="{{ $base_slug }}/atom/{{ $atom['id'] }}"><i class="material-icons right">open_in_new</i></a></span>
+					<span class="card-title col s12"><span class="left">{{ $atom['title'] }}</span><i class="material-icons {{ $synthesiscmsMainColor }}-text right">close</i><a href="{{ $atom_href }}/atom/{{ $atom['id'] }}"><i class="material-icons right">open_in_new</i></a></span>
 					<div class="divider {{ $synthesiscmsMainColor }} col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
 					{!! $atom['description'] !!}
 				</div>
@@ -22,7 +26,7 @@
 						</p>
 					</div>
 					<div class="col s2">
-						<a href="{{ $base_slug }}/atom/{{ $atom['id'] }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">open_in_new</i></a>
+						<a href="{{ $atom_href }}/atom/{{ $atom['id'] }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">open_in_new</i></a>
 					</div>
 				</div>
 			@endif
@@ -32,7 +36,7 @@
 						{{ $atom['title'] }}
 						<i class="material-icons right">more_vert</i>
 					</span>
-					<p class="{{ $synthesiscmsMainColor }}-text" id="artificial-link" style="text-align: left;" onclick="window.location.href='{{ $base_slug }}/atom/{{ $atom['id'] }}'">{{ trans("hydrogen::hydrogen.atom_card_link_read") }}</p>
+					<p class="{{ $synthesiscmsMainColor }}-text" id="artificial-link" style="text-align: left;" onclick="window.location.href='{{ $atom_href }}/atom/{{ $atom['id'] }}'">{{ trans("hydrogen::hydrogen.atom_card_link_read") }}</p>
 					<style>
 						#artificial-link:hover{
 							cursor: pointer;

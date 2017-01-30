@@ -16,6 +16,11 @@ class HydrogenController extends Controller
 	}
 
 	public function atom($id, $kernel, $page, $base_slug){
-		return \View::make('hydrogen::atom')->with(['atom' => Atom::where('id', $id)->first(), 'kernel' => $kernel, 'page' => $page, 'moduleCallback' => $this, 'base_slug' => $base_slug]);
+		$atom = Atom::where('id', $id)->first();
+		if($atom == null){
+			return \View::make('errors.cms')->with(['error' => trans("hydrogen::messages.err_atom_not_found"), 'help' => trans("hydrogen::messages.err_atom_not_found_help")]);
+		}else{
+			return \View::make('hydrogen::atom')->with(['atom' => $atom, 'kernel' => $kernel, 'page' => $page, 'moduleCallback' => $this, 'base_slug' => $base_slug]);
+		}
 	}
 }

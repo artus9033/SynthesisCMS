@@ -35,7 +35,7 @@
 	<div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh">
 		<nav class="{{ $synthesiscmsMainColor }} col s12 z-depth-3">
 			<div class="nav-wrapper col s12">
-				<a href="/" class="brand-logo" style="margin-left: 10px;">@section('brand-logo'){{ $synthesiscmsHeaderTitle }}@show</a>
+				<a href="/" class="brand-logo" style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }}</a>
 					<div class="input-field right">
 						<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value);">
 							<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">EN</span></option>

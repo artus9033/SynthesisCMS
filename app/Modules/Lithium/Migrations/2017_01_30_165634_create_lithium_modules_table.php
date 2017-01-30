@@ -15,7 +15,7 @@ class CreateLithiumModulesTable extends Migration
     {
         Schema::create('lithium_modules', function (Blueprint $table) {
             $table->increments('id');
-		  $table->integer('molecule')->default(1);
+		  $table->integer('atom')->default(1);
 		  $table->timestamps();
 		});
     }

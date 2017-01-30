@@ -5,7 +5,9 @@
 @endsection
 
 @section('mod_breadcrumbs')
-	<a href="{{ $base_slug }}" class="breadcrumb">{{ \App\Toolbox::string_truncate($page->page_title, 25) }}</a>
+	@if($base_slug != "/")
+		<a href="{{ $base_slug }}" class="breadcrumb">{{ \App\Toolbox::string_truncate($page->page_title, 25) }}</a>
+	@endif
 	<a class="breadcrumb">{{ \App\Toolbox::string_truncate($atom->title, 25) }}</a>
 @endsection
 

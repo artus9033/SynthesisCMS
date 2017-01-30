@@ -90,14 +90,28 @@ class RouteController extends Controller
 	{
 		$route = $request->get('route');
 		$module = $request->get('module');
-		Toolbox::chkRoute($route);
 
-		$page = Page::create(['slug' => $route, 'module' => $module]);
+		$errors = array();
+		$err = false;
 
-		$kpath = 'App\\Modules\\'.$module.'\\ModuleKernel';
-		$kernel = new $kpath;
-		$kernel->create($page->id);
+		if(strlen($route) == 0 || strlen(trim($route)) == 0){
+			$err = true;
+			array_push($errors, trans("synthesiscms/admin.err_slug_cannot_be_empty"));
+		}
 
-		return \Redirect::route('manage_routes_edit', ['id' => $page->id])->with(['message', trans('synthesiscms/admin.msg_route_created', ['route' => $route]), 'toasts' => [trans('synthesiscms/admin.msg_now_edit_route')]]);
+		if($err){
+			return \Redirect::route('manage_routes_edit', ['id' => $page->id])->with('errors', $errors);
+		}else{
+
+			Toolbox::chkRoute($route);
+
+			$page = Page::create(['slug' => $route, 'module' => $module]);
+
+			$kpath = 'App\\Modules\\'.$module.'\\ModuleKernel';
+			$kernel = new $kpath;
+			$kernel->create($page->id);
+
+			return \Redirect::route('manage_routes_edit', ['id' => $page->id])->with(['message', trans('synthesiscms/admin.msg_route_created', ['route' => $route]), 'toasts' => [trans('synthesiscms/admin.msg_now_edit_route')]]);
+		}
 	}
 }
