@@ -14,8 +14,12 @@ class Settings extends Model
 
      public $timestamps = false;
 
+	public static function getActiveInstance(){
+		return Settings::where('active', true)->first();
+	}
+
 	public static function getFromActive($field){
-		$settings_instance = Settings::where('active', true)->first();
+		$settings_instance = self::getActiveInstance();
 		return $settings_instance->$field;
 	}
 }

@@ -42,7 +42,7 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin/manage_users', ['as' => 'manage_users', 'uses' => 'Auth\\ProfileController@manageUsersGet']);
 	Route::post('/admin/manage_users', ['as' => 'manage_users_post', 'uses' => 'Auth\\ProfileController@manageUsersPost']);
 
-	Route::get('/admin/settings', ['as' => 'settings', 'uses' => 'Backend\\BackendController@settings']);
+	Route::get('/admin/settings', ['as' => 'settings', 'uses' => 'Backend\\BackendController@settingsGet']);
 	Route::post('/admin/settings', ['as' => 'settings_post', 'uses' => 'Backend\\BackendController@settingsPost']);
 });
 

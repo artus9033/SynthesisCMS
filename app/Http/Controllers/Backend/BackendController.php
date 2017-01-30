@@ -7,6 +7,7 @@ use App\Http\Requests\BackendRequest;
 use App\Models\Auth\User;
 use App\Models\Content\Page;
 use App\Models\Content\Molecule;
+use App\Models\Settings\Settings;
 use App\Models\Content\Atom;
 use App\Toolbox;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Controller;
 class BackendController extends Controller
 {
 //TODO: all models can be created and edited with empty title/other fields; fix this
+//TODO: implement multi-instance setting profiles
 	public function index()
 	{
 		if(Auth::check() && Auth::user()->is_admin){
@@ -23,5 +25,14 @@ class BackendController extends Controller
 		}else{
 			return view('auth.error');
 		}
+	}
+
+	public function settingsGet(){
+		return view('admin.settings');
+	}
+
+	public function settingsPost(BackendRequest $request){
+		$settings = Settings::getActiveInstance();
+
 	}
 }
