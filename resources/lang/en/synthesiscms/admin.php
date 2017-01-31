@@ -1,6 +1,8 @@
 <?php
 
 return [
+	'save_settings' => 'Save Settings',
+	'cancel_settings' => 'Cancel',
 	'err_cannot_delete_default_molecule' => 'The default molecule (ID 1) cannot be deleted!',
 	'err_no_molecules_selected' => 'In order to perform this operation, first you have to select some molecules!',
 	'msg_molecules_copied' => ':count :beginning successfully been copied',

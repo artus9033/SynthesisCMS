@@ -33,6 +33,18 @@ class BackendController extends Controller
 
 	public function settingsPost(BackendRequest $request){
 		$settings = Settings::getActiveInstance();
-
+		$settings->header_title = $request->get('header_title');
+		$settings->tab_title = $request->get('tab_title');
+		$settings->footer_copyright = $request->get('footer_copyright');
+		$settings->footer_more_links_bottom_text = $request->get('footer_more_links_bottom_text');
+		$settings->footer_more_links_bottom_href = $request->get('footer_more_links_bottom_href');
+		$settings->footer_links_text = $request->get('footer_links_text');
+		$settings->footer_links_content = $request->get('footer_links_content');
+		$settings->footer_header = $request->get('footer_header');
+		$settings->footer_content = $request->get('footer_content');
+		$settings->tab_color = $request->get('tab_color');
+		$settings->main_color = $request->get('main_color');
+		$settings->save();
+		return \Redirect::route('settings')->with('message', trans('synthesiscms/settings.msg_saved'));
 	}
 }
