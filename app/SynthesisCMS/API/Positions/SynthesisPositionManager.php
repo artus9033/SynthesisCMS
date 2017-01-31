@@ -1,14 +1,14 @@
 <?php
 
-namespace App\SynthesisCMS\API;
+namespace App\SynthesisCMS\API\Positions;
 
-use App\SynthesisCMS\API\SynthesisPositions;
+use App\SynthesisCMS\API\Positions\SynthesisPositions;
 
 class SynthesisPositionManager
 {
 
 	function __construct(){
-		$class = new \ReflectionClass('App\\SynthesisCMS\\API\\SynthesisPositions');
+		$class = new \ReflectionClass('App\\SynthesisCMS\\API\\Positions\\SynthesisPositions');
 		$staticMembers = $class->getStaticProperties();
 		$this->standardPositions = array_fill(1, count($staticMembers), array());
 	}

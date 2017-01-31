@@ -4,7 +4,7 @@ namespace App\Modules;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Content\Page;
-use App\SynthesisCMS\API\SynthesisPositionManager;
+use App\SynthesisCMS\API\Positions\SynthesisPositionManager;
 
 class ModulesServiceProvider extends ServiceProvider
 {

@@ -31,9 +31,9 @@
 	@yield('header')
 </header>
 <body>
-	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\SynthesisPositions::Content, Request::url()) !!}
 	@yield('body')
 	<div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh">
+		{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 		<nav class="{{ $synthesiscmsMainColor }} col s12 z-depth-3">
 			<div class="nav-wrapper col s12">
 				<a href="/" class="brand-logo" style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }}</a>
@@ -51,6 +51,7 @@
 					</script>
 					<ul class="col s10 right">
 						@yield('menu')
+						{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 						@if (Auth::guest())
 							<li class="right col s3 m2 l2"><a class="center" href="{{ url('/register') }}"><i class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}</a></li>
 							<li class="right col s3 m2 l2"><a class="center" href="{{ url('/login') }}"><i class="material-icons white-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}</a></li>
@@ -72,6 +73,8 @@
 					</ul>
 				</div>
 			</nav>
+			{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BelowMenu, Request::url()) !!}
+			{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverBreadcrumbs, Request::url()) !!}
 			<nav class="{{ $synthesiscmsMainColor }} lighten-1 col s12 z-depth-2">
 				<div class="nav-wrapper col s12">
 					<div class="col s12">
@@ -80,6 +83,7 @@
 					</div>
 				</div>
 			</nav>
+			{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BelowBreadcrumbs, Request::url()) !!}
 			<div class="main col s12 row">
 				@if(Session::has('message'))
 					@include('partials/message', ['message' => Session::get('message')])
@@ -88,9 +92,12 @@
 				@if(Session::has('toasts'))
 					@each('partials/toast', Session::get('toasts'), 'toast')
 				@endif
+				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverContent, Request::url()) !!}
 				@yield('main')
+				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BelowContent, Request::url()) !!}
 			</div>
 		</div>
 		@include('partials/footer')
+		{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BelowFooter, Request::url()) !!}
 	</body>
 	</html>

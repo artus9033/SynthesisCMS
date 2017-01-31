@@ -4,6 +4,7 @@ return  [
     'modules' => [
 	  'lithium',
 	  'hydrogen',
+	  'berylium',
     ]
 ]
 

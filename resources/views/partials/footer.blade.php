@@ -11,6 +11,7 @@
 			</div>
 		</div>
 	</div>
+	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::FooterContent, Request::url()) !!}
 	<div class="footer-copyright">
 		<div class="container">
 			<span>&copy;&nbsp;@php echo(date('Y')); @endphp&nbsp;{{ \App\Models\Settings\Settings::getFromActive('footer_copyright') }}</span>

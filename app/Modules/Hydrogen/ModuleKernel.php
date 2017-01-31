@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Modules\Hydrogen\Models\HydrogenModule;
 use App\Modules\Hydrogen\Controllers\HydrogenController;
 use App\SynthesisCMS\API\SynthesisModule;
-use App\SynthesisCMS\API\SynthesisPositions;
-use App\SynthesisCMS\API\SynthesisPositionManager;
+use App\SynthesisCMS\API\Positions\SynthesisPositions;
+use App\SynthesisCMS\API\Positions\SynthesisPositionManager;
 
 /**
  * ModuleKernel
@@ -55,14 +55,5 @@ class ModuleKernel extends SynthesisModule
 	    			return \App::make('App\Modules\Hydrogen\Controllers\HydrogenController')->atom(\Route::input('id'), $kernel, $page, $base_slug);
 			})->middleware('web');
 		});
-	}
-
-	public static function lol($slug){
-		return "LOL~!" . $slug;
-	}
-
-	public function hookPositions(&$manager){
-		$manager->addStandard(SynthesisPositions::Content, $this, 'lol');
-		$manager->addStandard(SynthesisPositions::Content, $this, 'lol');
 	}
 }
