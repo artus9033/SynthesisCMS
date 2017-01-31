@@ -48,10 +48,17 @@ class SynthesisModule extends Controller
      public function getModuleName(){}
 
 	/**
-	* Function used by ModuelesServiceProvider to register app routes
+	* Function used by ModulesServiceProvider to register app routes
 	* @param $page App\Page->id
 	* @param $base_slug base url slug of the module's page (route)
 	* @return nothing
 	**/
      public function routes($page, $base_slug){}
+
+	/**
+	* Function used to register hooks to positions
+	* @return nothing
+	**/
+	public function hookPositions(&$manager){}
+
 }

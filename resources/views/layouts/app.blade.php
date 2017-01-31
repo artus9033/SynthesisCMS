@@ -31,6 +31,7 @@
 	@yield('header')
 </header>
 <body>
+	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\SynthesisPositions::Content, Request::url()) !!}
 	@yield('body')
 	<div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh">
 		<nav class="{{ $synthesiscmsMainColor }} col s12 z-depth-3">

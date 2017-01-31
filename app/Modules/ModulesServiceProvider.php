@@ -4,6 +4,7 @@ namespace App\Modules;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Content\Page;
+use App\SynthesisCMS\API\SynthesisPositionManager;
 
 class ModulesServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,9 @@ class ModulesServiceProvider extends ServiceProvider
 				}
 			}
 		}else{
+
+			$manager = new SynthesisPositionManager();
+
 			// For each of the registered modules, include their routes and Views
 			$modules = config("synthesiscmsmodules.modules");
 
@@ -55,7 +59,15 @@ class ModulesServiceProvider extends ServiceProvider
 				if(is_dir(__DIR__.'/'.$module.'/Migrations')) {
 					$this->loadMigrationsFrom(__DIR__.'/'.$module.'/Migrations');
 				}
+
+				// Load defines & hooks of positions
+				$kpath = 'App\\Modules\\'.$module.'\\ModuleKernel';
+				$kernel = new $kpath;
+				$kernel->hookPositions($manager);
 			}
+
+			view()->share('synthesiscmsPositionManager', $manager);
+			
 			foreach (Page::all() as $key => $page) {
 				if(is_null($page)){
 					// no pages exist; do nothing
