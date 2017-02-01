@@ -11,8 +11,8 @@ use App\SynthesisCMS\API\SynthesisExtensionType;
 /**
  * ExtensionKernel
  *
- * Module Kernel to control all the functionality directly
- * related to the Module. This class is required, otherwise any routes
+ * Extension Kernel to control all the functionality directly
+ * related to the Extension. This class is required, otherwise any routes
  * using this extension will throw an internal CMS error!
  */
 

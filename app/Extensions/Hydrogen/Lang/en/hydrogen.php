@@ -10,6 +10,8 @@ return [
 	'next' => 'Next',
 	'previous' => 'Previous',
 	'name' => 'Hydrogen Single-Molecule Page',
+	'one_column' => 'One Column',
+	'two_columns' => 'Two Columns',
 ];
 
 ?>

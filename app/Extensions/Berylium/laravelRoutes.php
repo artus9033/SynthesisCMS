@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Lithium Module Global Laravel App Routes
+| Lithium Extension Global Laravel App Routes
 |--------------------------------------------------------------------------
 |
 | All the global (laravel app) routes related to the Lithium extension have to go in here.

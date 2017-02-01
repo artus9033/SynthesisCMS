@@ -7,6 +7,7 @@ return [
 	'err_molecule_not_found_help' => 'Contact the site administrator for more information',
 	'err_atom_not_found' => 'The requested Atom does not exist',
 	'err_atom_not_found_help' => 'Please verify that the id of the requested Atom is correct',
+	'choose_list_column_count' => 'Choose the amount of columns in which atoms are listed',
 ];
 
 ?>

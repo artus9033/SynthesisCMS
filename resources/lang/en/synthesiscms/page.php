@@ -4,7 +4,7 @@ return [
     'id' => 'ID',
     'slug' => 'Alias',
     'title' => 'Title',
-    'extension_name' => 'Parent Module Name',
+    'extension_name' => 'Parent Extension Name',
 ];
 
 ?>

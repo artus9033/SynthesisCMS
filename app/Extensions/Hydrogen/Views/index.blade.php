@@ -11,25 +11,36 @@
 @endsection
 
 @section('mod_main')
-	    <div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} z-depth-2 hoverable center row">
-		   <h3 class="col s12">{{ $page->page_title }}</h3>
-		   <div class="col s12 row white divider" style="height: 2px;"></div>
-		  <h5 class="col s12">{!! $page->page_header !!}</h5>
-	    </div>
-	    @php
+	<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} z-depth-2 hoverable center row">
+		<h3 class="col s12">{{ $page->page_title }}</h3>
+		<div class="col s12 row white divider" style="height: 2px;"></div>
+		<h5 class="col s12">{!! $page->page_header !!}</h5>
+	</div>
+	@php
+	$one_column_list = (\App\Extensions\Hydrogen\Models\HydrogenExtension::where('id', $page->id)->first()->list_column_count == 1);
+	if(!$one_column_list){
 		$ctr = count($atoms->toArray());
 		$one = array();
 		$two = array();
 		list($one, $two) = array_chunk($atoms->toArray(), ceil(count($atoms->toArray()) / 2));
-	    @endphp
-
-	    <div class="container col s6 row">
-		    @include('hydrogen::partials/list', ['atoms' => $one])
-	    </div>
-	    <div class="container col s6 row">
-		    @include('hydrogen::partials/list', ['atoms' => $two])
-	    </div>
-	    @if ($ctr == 0)
-	    	@include('partials/error', ['error' => trans("hydrogen::messages.err_no_atoms")])
-	    @endif
+	}else{
+		$ctr = count($atoms->toArray());
+		$all = $atoms->toArray();
+	}
+	@endphp
+	@if (!$one_column_list)
+		<div class="container col s6 row">
+			@include('hydrogen::partials/list', ['atoms' => $one])
+		</div>
+		<div class="container col s6 row">
+			@include('hydrogen::partials/list', ['atoms' => $two])
+		</div>
+	@else
+		<div class="container col s10 offset-s1 row">
+			@include('hydrogen::partials/list', ['atoms' => $all])
+		</div>
+	@endif
+	@if ($ctr == 0)
+		@include('partials/error', ['error' => trans("hydrogen::messages.err_no_atoms")])
+	@endif
 @endsection

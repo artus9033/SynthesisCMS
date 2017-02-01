@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Hydrogen Module Global Laravel App Routes
+| Hydrogen Extension Global Laravel App Routes
 |--------------------------------------------------------------------------
 |
 | All the global (laravel app) routes related to the Hydrogen extension have to go in here.

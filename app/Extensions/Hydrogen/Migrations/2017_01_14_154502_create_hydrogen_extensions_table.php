@@ -16,6 +16,7 @@ class CreateHydrogenExtensionsTable extends Migration
         Schema::create('hydrogen_extensions', function (Blueprint $table) {
             $table->increments('id');
 		  $table->integer('molecule')->default(1);
+		  $table->integer('list_column_count')->default(2);
 		  $table->timestamps();
 		});
     }

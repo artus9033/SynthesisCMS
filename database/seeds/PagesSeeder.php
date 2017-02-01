@@ -14,7 +14,7 @@ class PagesSeeder extends Seeder
 	    DB::table('pages')->insert([
 		  'slug' => '/hydrogen',
             'page_title' => 'The Hydrogen Route',
-            'page_header' => 'This is a sample Route from SynthesisCMS with the Hydrogen Module selected as parent!',
+            'page_header' => 'This is a sample Route from SynthesisCMS with the Hydrogen Extension selected as parent!',
             'extension' => 'hydrogen',
         ]);
 	   $kpath = 'App\\Extensions\\Hydrogen\\ExtensionKernel';

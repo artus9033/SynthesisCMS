@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'name' => 'Berylium Menu Module'
+	'name' => 'Berylium Menu Extension'
 ];
 
 ?>
