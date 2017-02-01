@@ -69,7 +69,7 @@
 					<div class="collapsible-body">
 						<ul>
 							<li id="manage_routes"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="/admin/manage_routes">{{ trans('synthesiscms/admin.manage_routes') }}</a></li>
-							<li id="manage_extensions"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="/admin/manage_extensions">{{ trans('synthesiscms/admin.manage_extensions') }}</a></li>
+							<li id="manage_applets"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="/admin/manage_applets">{{ trans('synthesiscms/admin.manage_applets') }}</a></li>
 						</ul>
 					</div>
 				</li>

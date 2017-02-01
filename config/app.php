@@ -180,7 +180,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 	   App\Providers\SettingsVariablesProvider::class,
 	   App\Providers\StatsTrackerProvider::class,
-	   App\Modules\ModulesServiceProvider::class,
+	   App\Extensions\ExtensionsServiceProvider::class,
     ],
 
     /*

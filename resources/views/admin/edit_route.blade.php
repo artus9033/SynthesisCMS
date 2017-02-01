@@ -60,20 +60,20 @@ label{
 			<form id="edit" role="form" method="post" action="">
 				{{ csrf_field() }}
 				<div class="card-panel col s8 offset-s2 z-depth-2 center {{ $synthesiscmsMainColor }} white-text">
-				<h5>{{ trans('synthesiscms/modules.edit_main') }}</h5>
+				<h5>{{ trans('synthesiscms/extensions.edit_main') }}</h5>
 			</div>
 				<div class="row">
 						<div class="input-field col s6">
 							<input value="{{ $page->slug }}" id="slug" name="slug" type="text">
-							<label for="slug">{{ trans('synthesiscms/modules.slug') }}</label>
+							<label for="slug">{{ trans('synthesiscms/extensions.slug') }}</label>
 						</div>
 						<div class="input-field col s6">
 							<input value="{{ $page->page_title }}" id="title" name="title" type="text">
-							<label for="title">{{ trans('synthesiscms/modules.title') }}</label>
+							<label for="title">{{ trans('synthesiscms/extensions.title') }}</label>
 						</div>
 					</div>
 					<div class="row col s12 container">
-						<label for="header">{{ trans('synthesiscms/modules.header') }}</label>
+						<label for="header">{{ trans('synthesiscms/extensions.header') }}</label>
 						<textarea class="editor" id="header" name="header"></textarea>
 					</div>
 					<script>
@@ -83,9 +83,9 @@ label{
 					</script>
 					<div class="divider {{ $synthesiscmsMainColor }} col s12 row"></div>
 					<div class="card-panel col s8 offset-s2 z-depth-2 center {{ $synthesiscmsMainColor }} white-text row">
-					<h5>{{ trans('synthesiscms/modules.edit_specific') }}</h5>
+					<h5>{{ trans('synthesiscms/extensions.edit_specific') }}</h5>
 				</div>
-					{!! \App::make('App\Modules\\'.$page->module.'\ModuleKernel')->editGet($page) !!}
+					{!! \App::make('App\Extensions\\'.$page->extension.'\ExtensionKernel')->editGet($page) !!}
 			</form>
 		</div>
 	</div>

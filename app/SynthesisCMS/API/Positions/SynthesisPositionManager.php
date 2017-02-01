@@ -25,13 +25,13 @@ class SynthesisPositionManager
 	}
 
 	/**
-	* Function to register a position defined in a custom module
-	* @param $module String source module that defines the position
+	* Function to register a position defined in a custom extension
+	* @param $extension String source extension that defines the position
 	* @param $name String name of the position
 	* @param $callback callback function
 	* @return nothing
 	**/
-	public function addCustom($module, $name, $callback){
+	public function addCustom($extension, $name, $callback){
 		// TODO: implement this
 	}
 

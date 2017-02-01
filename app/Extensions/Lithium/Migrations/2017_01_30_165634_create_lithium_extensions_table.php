@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesTable extends Migration
+class CreateLithiumExtensionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('lithium_extensions', function (Blueprint $table) {
             $table->increments('id');
-		  $table->string('slug');
-		  $table->string('extension');
-		  $table->string('page_title')->default("SynthesisCMS Sample Title");
-		  $table->string('page_header')->default("SynthesisCMS Sample Page Header: Lorem ipsum sit dolor amet...");
-        });
+		  $table->integer('atom')->default(1);
+		  $table->timestamps();
+		});
     }
 
     /**
@@ -29,6 +27,6 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('lithium_extensions');
     }
 }

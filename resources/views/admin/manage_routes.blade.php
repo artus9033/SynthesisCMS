@@ -28,7 +28,7 @@
 								<th data-field="id" class="center">{{ trans('synthesiscms/page.id') }}</th>
 								<th data-field="slug" class="center">{{ trans('synthesiscms/page.slug') }}</th>
 								<th data-field="title" class="center">{{ trans('synthesiscms/page.title') }}</th>
-								<th data-field="module" class="center">{{ trans('synthesiscms/page.module_name') }}</th>
+								<th data-field="extension" class="center">{{ trans('synthesiscms/page.extension_name') }}</th>
 								<th data-field="edit" class="center">{{ trans('synthesiscms/admin.edit_route', ['route' => '']) }}</th>
 								<th data-field="delete" class="center">{{ trans('synthesiscms/admin.delete_route') }}</th>
 							</tr>
@@ -40,11 +40,15 @@
 									$all_routes_count = $all_routes->count();
 								@endphp
 								@foreach ($all_routes as $route)
+									@php
+										$kpath = 'App\\Extensions\\' . $route->extension . '\\ExtensionKernel';
+										$kernel = new $kpath;
+									@endphp
 										<tr>
 											<td class="center">{{ $route->id }}</td>
 											<td class="center">{{ $route->slug }}</td>
 											<td class="center">{{ $route->page_title }}</td>
-											<td class="center">{{ $route->module }}</td>
+											<td class="center tooltipped" data-position="top" data-delay="50" data-tooltip="{{ $kernel->getExtensionName() }}">{{ \App\Toolbox::string_truncate($kernel->getExtensionName(), 17) }}</td><!-- use \App\Exts\$r->extension\kernel new kernel => getExtName*() -->
 											<td class="center"><a href="/admin/manage_routes/edit/{{ $route->id }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/admin.edit_route', ['route' => '']) }}</a></td>
 											  <div id="modalDelete{{ $route->id }}" class="modal">
 											    <div class="modal-content">

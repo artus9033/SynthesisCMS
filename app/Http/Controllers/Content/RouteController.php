@@ -61,7 +61,7 @@ class RouteController extends Controller
 			$page->page_header = $header;
 			$page->save();
 
-			$kpath = 'App\\Modules\\'.$page->module.'\\ModuleKernel';
+			$kpath = 'App\\Extensions\\'.$page->extension.'\\ExtensionKernel';
 			$kernel = new $kpath;
 			$kernel->editPost($page->id, $request);
 
@@ -74,7 +74,7 @@ class RouteController extends Controller
 		$route = $page->slug;
 		$page->delete();
 
-		$kpath = 'App\\Modules\\'.$page->module.'\\ModuleKernel';
+		$kpath = 'App\\Extensions\\'.$page->extension.'\\ExtensionKernel';
 		$kernel = new $kpath;
 		$kernel->delete($page->id);
 
@@ -89,7 +89,7 @@ class RouteController extends Controller
 	public function createRoutePost(BackendRequest $request)
 	{
 		$route = $request->get('route');
-		$module = $request->get('module');
+		$extension = $request->get('extension');
 
 		$errors = array();
 		$err = false;
@@ -105,9 +105,9 @@ class RouteController extends Controller
 
 			Toolbox::chkRoute($route);
 
-			$page = Page::create(['slug' => $route, 'module' => $module]);
+			$page = Page::create(['slug' => $route, 'extension' => $extension]);
 
-			$kpath = 'App\\Modules\\'.$module.'\\ModuleKernel';
+			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
 			$kernel = new $kpath;
 			$kernel->create($page->id);
 

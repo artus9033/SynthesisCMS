@@ -56,19 +56,21 @@
 				          <label for="route">{{ trans('synthesiscms/admin.create_route_slug_label') }}</label>
 			        	</div>
 				<div class="input-field col s8 valign">
-					<select id="module" name="module" class="{{ $synthesiscmsMainColor }}-text">
-						<!-- TODO: add modules groups wiht <optgroup> -->
+					<select id="extension" name="extension" class="{{ $synthesiscmsMainColor }}-text">
+						<!-- TODO: add extensions groups wiht <optgroup> -->
 						@php
-						foreach(File::directories(app_path('Modules')) as $file){
-							if(is_dir($file)){
-								$kpath = 'App\\Modules\\' . basename($file) . '\\ModuleKernel';
-								$kernel = new $kpath;
-								echo("<option value='" . basename($file) . "'>" . $kernel->getModuleName() . "</option>");
+						$extensions = config("synthesiscmsextensions.extensions");
+
+						while (list(,$extension) = each($extensions)) {
+							$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
+							$kernel = new $kpath;
+							if($kernel->getExtensionType() == App\SynthesisCMS\API\SynthesisExtensionType::Module){
+								echo("<option value='" . $extension . "'>" . $kernel->getExtensionName() . "</option>");
 							}
 						}
 						@endphp
 					</select>
-					<label>{{ trans('synthesiscms/modules.choose_module') }}</label>
+					<label>{{ trans('synthesiscms/extensions.choose_extension') }}</label>
 				</div>
 				<button type="submit" class="valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_route') }}</button>
 			</form>

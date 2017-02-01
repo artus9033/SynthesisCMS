@@ -100,7 +100,7 @@
 										<option value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $value->title }}</h5></option>
 									@endforeach
 							</select>
-							<label>{{ trans('synthesiscms/modules.choose_molecule') }}</label>
+							<label>{{ trans('synthesiscms/extensions.choose_molecule') }}</label>
 						</div>
 					</div>
 				<button type="submit" class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_atom') }}</button>

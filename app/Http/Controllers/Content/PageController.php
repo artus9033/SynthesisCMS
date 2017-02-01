@@ -50,12 +50,12 @@ class PageController extends Controller
 		if(is_null($page)){
 			abort(404);
 		}else{
-			$mod_path = app_path() . "/Modules/" . $page->module . "/ModuleKernel.php";
+			$mod_path = app_path() . "/Extensions/" . $page->extension . "/ExtensionKernel.php";
 			$mod_path = str_replace("/", "\\", $mod_path);
 			if(file_exists($mod_path)){
-				echo \App::make('\App\Modules\\'.$page->module.'\ModuleKernel')->index($page, $slug);
+				echo \App::make('\App\Extensions\\'.$page->extension.'\ExtensionKernel')->index($page, $slug);
 			}else{
-				return \View::make('errors.cms')->with(['error' => trans("synthesiscms/errors.err_module_not_found"), 'help' => trans("synthesiscms/errors.err_module_not_found_help")]);
+				return \View::make('errors.cms')->with(['error' => trans("synthesiscms/errors.err_extension_not_found"), 'help' => trans("synthesiscms/errors.err_extension_not_found_help")]);
 			}
 		}
 	}

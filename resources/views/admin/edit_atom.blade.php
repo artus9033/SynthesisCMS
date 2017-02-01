@@ -139,7 +139,7 @@
 						<option @php if($value->id == $atom->molecule){ echo("selected"); } @endphp value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>ID {{ $value->id }}: {{ $value->title }}</h5></option>
 						@endforeach
 						</select>
-						<label>{{ trans('synthesiscms/modules.choose_molecule') }}</label>
+						<label>{{ trans('synthesiscms/extensions.choose_molecule') }}</label>
 						</div>
 						</div>
 						</form>
