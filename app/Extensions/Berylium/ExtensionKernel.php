@@ -51,10 +51,15 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function showMenu($slug){
-		return view('berylium::index');
+		return view('berylium::index')->with('slug', $slug);
+	}
+
+	public function showMenuMobileButton($slug){
+		return view('berylium::mobile_button')->with('slug', $slug);
 	}
 
 	public function hookPositions(&$manager){
 		$manager->addStandard(SynthesisPositions::BelowMenu, $this, 'showMenu');
+		$manager->addStandard(SynthesisPositions::BeforeSiteName, $this, 'showMenuMobileButton');
 	}
 }

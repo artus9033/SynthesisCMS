@@ -12,6 +12,7 @@ abstract class SynthesisPositions {
 	const BelowContent = 7;
 	const FooterContent = 8;
 	const BelowFooter = 9;
+	const BeforeSiteName = 10;
 }
 
 ?>

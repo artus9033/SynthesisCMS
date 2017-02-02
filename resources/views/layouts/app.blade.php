@@ -36,6 +36,9 @@
 		{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 		<nav class="{{ $synthesiscmsMainColor }} col s12 z-depth-3">
 			<div class="nav-wrapper col s12">
+				<div class="left">
+					{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BeforeSiteName, Request::url()) !!}
+				</div>
 				<a href="/" class="brand-logo" style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }}</a>
 					<div class="input-field right">
 						<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value);">
