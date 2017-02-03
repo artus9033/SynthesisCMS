@@ -7,39 +7,7 @@ use App\Http\Controllers\Controller;
 class SynthesisExtension extends Controller
 {
 
-	/**
-	* Function called when a route using this extension is created;
-	* There you can set up a model containing a reference to the parent Page extension
-	* via saving the 'id' param
-	* @param $id App\Page->id
-	* @return nothing
-	**/
-	public function create($id){}
-
-	/**
-	* Function called when a route using this extension is deleted;
-	* There you can destroy any extension models saved earlier
-	* @param $id App\Page->id (parent page id)
-	* @return nothing
-	**/
-	public function delete($id){}
-
-	/**
-	* Function used by the route edit app view to render the fields
-	* @param $page App\Page->id
-	* @return nothing
-	**/
-     public function editGet($page)
-     {}
-
-     /**
-	* Function used by the route edit app view to commit edit
-	* @param $id App\Page->id
-	* @param $request Form Request
-	* @return nothing
-	**/
-     public function editPost($id, $request)
-     {}
+	/** !!! Global Extension Functions Beginning !!! **/
 
 	/**
 	* Function called by create_route & edit_route views to get extension name; can be anything
@@ -68,5 +36,64 @@ class SynthesisExtension extends Controller
 	* @return nothing
 	**/
 	public function hookPositions(&$manager){}
+
+	/** !!! Global Extension Functions End !!! **/
+
+	/**  !!! Module-Only Extension Functions Beginning !!! **/
+
+	/**
+	* Function used by the route edit app view to render the fields
+	* @param $page App\Page->id
+	* @return nothing
+	**/
+	public function editGet($page)
+	{}
+
+	/**
+	* Function used by the route edit app view to commit edit
+	* @param $id App\Page->id
+	* @param $request Form Request
+	* @return nothing
+	**/
+	public function editPost($id, $request)
+	{}
+
+	/**
+	* Function called when a route using this extension is created;
+	* There you can set up a model containing a reference to the parent Page extension
+	* via saving the 'id' param
+	* @param $id App\Page->id
+	* @return nothing
+	**/
+	public function create($id){}
+
+	/**
+	* Function called when a route using this extension is deleted;
+	* There you can destroy any extension models saved earlier
+	* @param $id App\Page->id (parent page id)
+	* @return nothing
+	**/
+	public function delete($id){}
+
+	/** !!! Module-Only Extension Functions End !!! **/
+
+	/** !!! Applet-Only Extension Functions Beginning !!! **/
+
+	/**
+	* Function called when an applet's settings page is opened;
+	* There you can add your applet's settings UI
+	* @return nothing
+	**/
+	public function settingsGet(){}
+
+	/**
+	* Function called when an applet's settings are updated;
+	* There you can add your applet's settings UI
+	* @param $request Request the request
+	* @return nothing
+	**/
+	public function settingsPost($request){}
+
+	/** !!! Applet-Only Extension Functions End !!! **/
 
 }

@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BeryliumExtension extends Model
 {
-	protected $fillable = array('id', 'atom');
+	protected $fillable = array('id', 'enabled');
 
 	public $timestamps = true;
 }

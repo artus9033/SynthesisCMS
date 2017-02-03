@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBeryliumExtensionsTable extends Migration
+class CreateBeryliumItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateBeryliumExtensionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('berylium_extensions', function (Blueprint $table) {
+        Schema::create('berylium_items', function (Blueprint $table) {
             $table->increments('id');
-		  $table->boolean('enabled')->default(true);
-		  $table->timestamps();
+		  $table->integer('type')->default('4');
+		  $table->integer('category')->default('3');
+		  $table->longtext('title');
+		  $table->longtext('href');
 		});
     }
 
@@ -27,6 +29,6 @@ class CreateBeryliumExtensionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('berylium_extensions');
+        Schema::dropIfExists('berylium_items');
     }
 }
