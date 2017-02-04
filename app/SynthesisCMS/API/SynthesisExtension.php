@@ -3,6 +3,7 @@
 namespace App\SynthesisCMS\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BackendRequest;
 
 class SynthesisExtension extends Controller
 {
@@ -92,7 +93,7 @@ class SynthesisExtension extends Controller
 	* @param $request Request the request
 	* @return nothing
 	**/
-	public function settingsPost($request){}
+	public function settingsPost(BackendRequest $request){}
 
 	/** !!! Applet-Only Extension Functions End !!! **/
 

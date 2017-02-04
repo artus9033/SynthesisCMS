@@ -39,7 +39,7 @@
 				@php
 				//TODO: dynamically check if route free:
 					$routes = \Route::getRoutes();
-					$request = Request::create("/p/1");
+					$request = Request::create("TODO");
 					try {
 					    $routes->match($request);
 					    //echo("yes");

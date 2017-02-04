@@ -47,4 +47,30 @@ class BackendController extends Controller
 		$settings->save();
 		return \Redirect::route('settings')->with('message', trans('synthesiscms/settings.msg_saved'));
 	}
+
+	public function manageAppletsGet(){
+		return view('admin.manage_applets');
+	}
+
+	public function appletSettingsGet($extension){
+		return view('admin.applet_settings')->with(['extension' => $extension]);
+	}
+
+	public function appletSettingsPost($extension, BackendRequest $request){
+		$errors = array();
+		$err = false;
+
+		if(!$err){
+			Toolbox::chkRoute($slug);
+		}
+
+		if($err){
+			return \Redirect::to(\Request::path())->with('errors', $extension);
+		}else{
+			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
+			$kernel = new $kpath;
+			$kernel->settingsPost($request);
+			return \Redirect::route("applet_settings")->with('message', trans('synthesiscms/admin.msg_applet_settings_saved', ['applet' => $kernel->getExtensionName()]));
+		}
+	}
 }

@@ -119,6 +119,9 @@ return [
 	'delete_route' => 'Delete Route',
 	'no_routes' => 'No Routes',
 	'no_molecules' => 'No Molecules',
+	'msg_applet_settings_saved' => 'Applet :applet\'s settings have been saved',
+	'msg_no_applets' => 'No applets exist...',
+	'applets' => 'Applets',
 ];
 
 ?>

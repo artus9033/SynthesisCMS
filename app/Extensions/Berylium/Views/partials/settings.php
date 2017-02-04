@@ -1,3 +1,6 @@
+<div class="col s12">
+</div>
+<div class="col s5 card-panel">
 <div class="input-field col s8 offset-s2 valign" id="atom-div">
 	<select id="lithium-atom" name="lithium-atom" class="{{ $synthesiscmsMainColor }}-text">
 		@foreach (\App\Models\Content\Atom::all() as $key => $value)
@@ -12,4 +15,8 @@
 		@endforeach
 	</select>
 	<label>{{ trans("lithium::messages.choose_atom") }}</label>
+</div>
+</div>
+<div class="col s7 card-panel">
+
 </div>

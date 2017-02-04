@@ -40,6 +40,10 @@ Route::group(['middleware' => 'admin'], function () {
 
 	Route::get('/admin/settings', ['as' => 'settings', 'uses' => 'Backend\\BackendController@settingsGet']);
 	Route::post('/admin/settings', ['as' => 'settings_post', 'uses' => 'Backend\\BackendController@settingsPost']);
+
+	Route::get('/admin/manage_applets', ['as' => 'manage_applets', 'uses' => 'Backend\\BackendController@manageAppletsGet']);
+	Route::get('/admin/manage_applets/{extension}', ['as' => 'applet_settings', 'uses' => 'Backend\\BackendController@appletSettingsGet']);
+	Route::post('/admin/manage_applets/{extension}', ['as' => 'applet_settings_post', 'uses' => 'Backend\\BackendController@appletSettingsPost']);
 });
 
 Route::group(['middleware' => 'web'], function () {

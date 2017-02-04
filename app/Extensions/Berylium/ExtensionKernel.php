@@ -25,7 +25,7 @@ use App\Http\Requests\BackendRequest;
 class ExtensionKernel extends SynthesisExtension
 {
 	public function settingsGet(){
-
+		return view('berylium::partials/settings')->with(['model' => $this->findOrCreate()]);
 	}
 
 	public function settingsPost(BackendRequest $request){
@@ -41,7 +41,7 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function showMenu($slug){
-		return view('berylium::index')->with(['slug' => $slug, 'model' => findOrCreate()]);
+		return view('berylium::index')->with(['slug' => $slug, 'model' => $this->findOrCreate()]);
 	}
 
 	public function showMenuMobileButton($slug){
@@ -120,7 +120,7 @@ class ExtensionKernel extends SynthesisExtension
 		return $out;
 	}
 
-	public function hookPositions(SynthesisPositionManager &$manager){
+	public function hookPositions(&$manager){
 		$manager->addStandard(SynthesisPositions::BelowMenu, $this, 'showMenu');
 		$manager->addStandard(SynthesisPositions::BeforeSiteName, $this, 'showMenuMobileButton');
 		$manager->addCustom('berylium', 'mobile-menu', $this, 'getMobileMenuItems()');
@@ -128,7 +128,7 @@ class ExtensionKernel extends SynthesisExtension
 		$manager->addCustom('berylium', 'menu', $this, 'getGeneralMenuItems()');
 	}
 
-	private function findOrCreate(){
+	public function findOrCreate(){
 		$model = BeryliumExtension::find(1);
 		if(!$model){
 			BeryliumExtension::create();
