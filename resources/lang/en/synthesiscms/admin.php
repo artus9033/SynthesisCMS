@@ -1,6 +1,8 @@
 <?php
 
 return [
+	'save_applet' => 'Save',
+	'cancel_applet' => 'Cancel',
 	'save_settings' => 'Save Settings',
 	'cancel_settings' => 'Cancel',
 	'err_cannot_delete_default_molecule' => 'The default molecule (ID 1) cannot be deleted!',
@@ -119,9 +121,10 @@ return [
 	'delete_route' => 'Delete Route',
 	'no_routes' => 'No Routes',
 	'no_molecules' => 'No Molecules',
-	'msg_applet_settings_saved' => 'Applet :applet\'s settings have been saved',
+	'msg_applet_settings_saved' => ':applet Applet\'s settings have been saved',
 	'msg_no_applets' => 'No applets exist...',
 	'applets' => 'Applets',
+	'applet_settings' => ':applet Settings',
 ];
 
 ?>

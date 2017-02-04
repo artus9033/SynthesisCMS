@@ -72,7 +72,7 @@ class SynthesisPositionManager
 			if($ref[0] == $extensionName && $ref[1] == $positionName){
 				$class = $ref[2];
 				$func = $ref[3];
-				$out .= $class->$func($slug);
+				$class->$func($slug);
 			}
 		}
 		return $out;

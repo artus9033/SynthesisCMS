@@ -70,7 +70,7 @@ class BackendController extends Controller
 			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
 			$kernel = new $kpath;
 			$kernel->settingsPost($request);
-			return \Redirect::route("applet_settings")->with('message', trans('synthesiscms/admin.msg_applet_settings_saved', ['applet' => $kernel->getExtensionName()]));
+			return \Redirect::route("applet_settings", $extension)->with(['message' => trans('synthesiscms/admin.msg_applet_settings_saved', ['applet' => $kernel->getExtensionName()])]);
 		}
 	}
 }

@@ -2,6 +2,10 @@ function setLanguage(lang){
 	window.location.href = "/lang/" + lang;
 }
 
+function resizeIframeBasedOnContents(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+ }
+
 function toggleAll(selector){
 	$(selector).each(function(index) {
 		$(this).click();

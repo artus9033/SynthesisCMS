@@ -29,7 +29,9 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function settingsPost(BackendRequest $request){
-
+		$model = $this->findOrCreate();
+		$model->enabled = $request->get('enabled') == "on";
+		$model->save();
 	}
 
 	public function getExtensionName(){
@@ -48,7 +50,7 @@ class ExtensionKernel extends SynthesisExtension
 		return view('berylium::mobile_button')->with('slug', $slug);
 	}
 
-	public function getMobileMenuItems(){
+	public function getMobileMenuItems($slug){
 		$out = "";
 		foreach(BeryliumItem::where('category', BeryliumItemCategory::Mobile)->cursor() as $item){
 			switch($item->type){
@@ -72,7 +74,7 @@ class ExtensionKernel extends SynthesisExtension
 		return $out;
 	}
 
-	public function getDesktopMenuItems(){
+	public function getDesktopMenuItems($slug){
 		$out = "";
 		foreach(BeryliumItem::where('category', BeryliumItemCategory::Desktop)->cursor() as $item){
 			switch($item->type){
@@ -96,7 +98,7 @@ class ExtensionKernel extends SynthesisExtension
 		return $out;
 	}
 
-	public function getGeneralMenuItems(){
+	public function getGeneralMenuItems($slug){
 		$out = "";
 		foreach(BeryliumItem::where('category', BeryliumItemCategory::General)->cursor() as $item){
 			switch($item->type){
@@ -123,15 +125,15 @@ class ExtensionKernel extends SynthesisExtension
 	public function hookPositions(&$manager){
 		$manager->addStandard(SynthesisPositions::BelowMenu, $this, 'showMenu');
 		$manager->addStandard(SynthesisPositions::BeforeSiteName, $this, 'showMenuMobileButton');
-		$manager->addCustom('berylium', 'mobile-menu', $this, 'getMobileMenuItems()');
-		$manager->addCustom('berylium', 'desktop-menu', $this, 'getDesktopMenuItems()');
-		$manager->addCustom('berylium', 'menu', $this, 'getGeneralMenuItems()');
+		$manager->addCustom('berylium', 'mobile-menu', $this, 'getMobileMenuItems');
+		$manager->addCustom('berylium', 'desktop-menu', $this, 'getDesktopMenuItems');
+		$manager->addCustom('berylium', 'menu', $this, 'getGeneralMenuItems');
 	}
 
 	public function findOrCreate(){
 		$model = BeryliumExtension::find(1);
 		if(!$model){
-			BeryliumExtension::create();
+			return BeryliumExtension::create();
 		}else{
 			return $model;
 		}
