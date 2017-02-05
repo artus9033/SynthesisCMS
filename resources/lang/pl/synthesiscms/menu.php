@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'login' => 'Log In',
-    'logout' => 'Log Out',
-    'register' => 'Register',
-    'profile' => 'My Profile',
-    'admin' => 'Site Backend',
+    'login' => 'Zaloguj',
+    'logout' => 'Wyloguj',
+    'register' => 'Zarejestruj',
+    'profile' => 'Mój Profil',
+    'admin' => 'Zaplecze Strony',
 ];
 
 ?>

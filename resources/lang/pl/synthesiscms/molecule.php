@@ -1,18 +1,18 @@
 <?php
 
 return [
-	'delete_selected' => 'Delete Selected',
-	'copy_selected' => 'Clone Selected',
-	'move_selected' => 'Move Selected To',
+	'delete_selected' => 'Usuń Wybrane',
+	'copy_selected' => 'Sklonuj Wybrane',
+	'move_selected' => 'Przenieś Wybrane Do',
 	'id' => 'ID',
-	'title' => 'Title',
-	'content' => 'Content',
-	'edit_molecule' => 'Edit Molecule',
-	'amount' => 'Atoms Amount',
-	'edit' => 'Edit',
-	'delete_molecule' => 'Delete Molecule',
-	'delete' => 'Delete',
-	'check' => 'Select',
+	'title' => 'Tytuł',
+	'content' => 'Zawartość',
+	'edit_molecule' => 'Edytuj Cząsteczkę',
+	'amount' => 'Ilość Atomów',
+	'edit' => 'Edytuj',
+	'delete_molecule' => 'Usuń Cząsteczkę',
+	'delete' => 'Usuń',
+	'check' => 'Wybierz',
 ];
 
 ?>

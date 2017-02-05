@@ -3,7 +3,7 @@
 return [
 	'name' => 'Enter Your Username',
 	'name_ok' => 'Username OK',
-	'name_bad' => 'Invalid E-Mail',
+	'name_bad' => 'Invalid Username',
 	'email_ok' => 'E-Mail OK',
 	'email_bad' => 'Invalid E-Mail',
 	'password_ok' => 'Password OK',

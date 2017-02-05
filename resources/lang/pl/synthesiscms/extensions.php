@@ -1,15 +1,15 @@
 <?php
 
 return [
-	'synthesiscms_extensions' => 'SynthesisCMS Built-In Extensions',
-	'choose_extension' => 'Choose Extension',
-	'slug' => 'Slug',
-     'title' => 'Page Title & Header Title',
-     'header' => 'Page Header Content',
-	'edit_main' => 'Main Route Settings',
-	'edit_specific' => 'Extension Specific Settings',
-	'no_molecules' => 'No Molecules Exist...',
-	'choose_molecule' => 'Choose a molecule',
+	'synthesiscms_extensions' => 'Wbudowane Rozszerzenia SynthesisCMS',
+	'choose_extension' => 'Wybierz Rozszerzenie',
+	'slug' => 'Ścieżka',
+     'title' => 'Tytuł i nagłówek strony',
+     'header' => 'Zawartość Nagłówka Strony',
+	'edit_main' => 'Główne ustawienia ścieżki',
+	'edit_specific' => 'Ustawienia Modułu',
+	'no_molecules' => 'Brak cząsteczek...',
+	'choose_molecule' => 'Wybierz cząsteczkę',
 ];
 
 ?>
