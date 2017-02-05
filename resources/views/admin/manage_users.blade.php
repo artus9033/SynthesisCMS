@@ -7,8 +7,8 @@
 @section('side-nav-active', 'manage_users')
 
 @section('breadcrumbs')
-	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="/admin/manage_users" class="breadcrumb">{{ trans('synthesiscms/admin.manage_users') }}</a>
+	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ url('/admin/manage_users') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_users') }}</a>
 @endsection
 
 @section('main')
@@ -48,7 +48,7 @@
 											<td class="center">{{ $user->name }}</td>
 											<td class="center">{{ $user->email }}</td>
 											<td class="center">@php if($user->is_admin){ echo trans('synthesiscms/profile.admin'); }else{ echo trans('synthesiscms/profile.user'); } @endphp</td>
-											<td class="center"><a href="/admin/user-privileges/{{ $uid }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.change_user_privileges') }}</a></td>
+											<td class="center"><a href="{{ url('/admin/user-privileges') }}/{{ $uid }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.change_user_privileges') }}</a></td>
 											  <div id="modalDelete" class="modal">
 											    <div class="modal-content">
 											      <h3>{{ trans('synthesiscms/admin.modal_delete_user_header') }}</h3>
@@ -58,7 +58,7 @@
 											    </div>
 											    <div class="modal-footer">
 												 <a style="margin-right: 9%;" onclick="$('#modalDelete').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_user_btn_no') }}</a>
-												 <a style="margin-left: 9%;" href="/profile/delete/{{ $uid }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_user_btn_yes') }}</a>
+												 <a style="margin-left: 9%;" href="{{ url('/profile/delete') }}/{{ $uid }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_user_btn_yes') }}</a>
 											    </div>
 											  </div>
 											<td class="center"><button data-target="modalDelete" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_user') }}</button></td>

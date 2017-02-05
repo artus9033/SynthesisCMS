@@ -39,7 +39,7 @@
 				<div class="left">
 					{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BeforeSiteName, Request::url()) !!}
 				</div>
-				<a href="/" class="brand-logo" style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }}</a>
+				<a href="{{ url('/') }}'" class="brand-logo" style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }}</a>
 					<div class="input-field right">
 						<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">
 							<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">EN</span></option>
@@ -71,7 +71,7 @@
 									</form>
 								</li>
 							</ul>
-							<li class="right" style="min-width: 210px;"><a class="dropdown-button center" href="/profile" data-activates="user_dropdown"><i class="material-icons white-text left">account_circle</i>{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
+							<li class="right" style="min-width: 210px;"><a class="dropdown-button center" href="{{ url('/profile') }}" data-activates="user_dropdown"><i class="material-icons white-text left">account_circle</i>{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
 						@endif
 					</ul>
 				</div>
@@ -81,7 +81,7 @@
 			<nav class="{{ $synthesiscmsMainColor }} lighten-1 col s12 z-depth-2">
 				<div class="nav-wrapper col s12">
 					<div class="col s12">
-						<a href="/" class="breadcrumb"><i class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>
+						<a href="{{ url('/') }}'" class="breadcrumb"><i class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>
 						@yield('breadcrumbs')
 					</div>
 				</div>

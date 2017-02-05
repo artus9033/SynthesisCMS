@@ -2,7 +2,7 @@
 	@php
 	$ctr++;
 	$atom_href = "";
-	if($base_slug != "/"){
+	if($base_slug != url("/") || $base_slug != "/"){
 		$atom_href = $base_slug;
 	}
 	@endphp

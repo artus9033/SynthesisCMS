@@ -7,8 +7,8 @@
 @section('side-nav-active', 'manage_applets')
 
 @section('breadcrumbs')
-	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="/admin/manage_applets" class="breadcrumb">{{ trans('synthesiscms/admin.manage_applets') }}</a>
+	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ url('/admin/manage_applets') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_applets') }}</a>
 @endsection
 
 @section('main')
@@ -56,7 +56,7 @@
 			</ul>
 			</div>
 			<div class="col s9">
-				<iframe scrolling="no" onload="resizeIframeBasedOnContents(this)" class="col s12" height="420px" frameBorder="0" id="settings-view" src="/admin/manage_applets/{{ $firstExt }}"></iframe>
+				<iframe scrolling="no" onload="resizeIframeBasedOnContents(this)" class="col s12" height="420px" frameBorder="0" id="settings-view" src="{{ url('/admin/manage_applets') }}/{{ $firstExt }}"></iframe>
 			</div>
 		</div>
 	</div>

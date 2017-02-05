@@ -81,8 +81,10 @@ class ExtensionsServiceProvider extends ServiceProvider
 					$ext_path = str_replace("/", '\\', $ext_path);
 					if(file_exists($ext_path)){
 						\App::make('\App\Extensions\\'.$page->extension.'\ExtensionKernel')->routes($page, $page->slug);
+						echo("{".$page->slug . " vs ". url($page->slug)."}");
 					}else{
-						return \View::make('errors.cms')->with(['error' => trans("synthesiscms/errors.err_extension_not_found"), 'help' => trans("synthesiscms/errors.err_extension_not_found_help")]);
+						echo \View::make('errors.cms')->with(['error' => trans("synthesiscms/errors.err_extension_not_found"), 'help' => trans("synthesiscms/errors.err_extension_not_found_help", ['path' => $ext_path])]);
+						exit;
 					}
 				}
 			}

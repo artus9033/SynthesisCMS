@@ -9,7 +9,7 @@
 @endsection
 
 @section('breadcrumbs')
-<a href="/profile" class="breadcrumb">{{ trans('synthesiscms/main.profile') }}</a>
+<a href="{{ url('/profile') }}" class="breadcrumb">{{ trans('synthesiscms/main.profile') }}</a>
 @endsection
 
 @section('main')
@@ -42,7 +42,7 @@
       </table>
 	 <div class="col s5 row">
 				<div class="col s10 offset-s1">
-					<a href="/profile/password" class="btn btn-large {{ $synthesiscmsMainColor }} waves-effect waves-light center hoverable col s12"><i class="material-icons white-text left">lock_outline</i>{{ trans('synthesiscms/profile.change_password') }}</a>
+					<a href="{{ url('/profile/password') }}" class="btn btn-large {{ $synthesiscmsMainColor }} waves-effect waves-light center hoverable col s12"><i class="material-icons white-text left">lock_outline</i>{{ trans('synthesiscms/profile.change_password') }}</a>
 				</div>
 				<div class="col s12 row"></div>
 				<div class="col s10 offset-s1">

@@ -2,7 +2,7 @@
 
 return [
 	'err_extension_not_found' => 'ExtensionNotFound',
-	'err_extension_not_found_help' => 'The requested extension does not exist or it is missing the ExtensionKernel class. Please contact the site admin to fix this.',
+	'err_extension_not_found_help' => 'The requested extension does not exist or it is missing the ExtensionKernel class (requested path is `:path`). Please contact the site admin to fix this.',
 	'cmserr' => 'SynthesisCMS Error',
 	'cmserr_header' => '&nbsp;Internal SynthesisCMS Error',
      'cmserr_desc'     => 'Sorry, :error error has occured',

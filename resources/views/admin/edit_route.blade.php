@@ -23,8 +23,8 @@
 @endsection
 
 @section('breadcrumbs')
-	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="/admin/manage_routes" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
+	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ url('/admin/manage_routes') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.edit_route', ['route' => $page->slug]) }}</a>
 @endsection
 
@@ -43,7 +43,7 @@ label{
 	</div>
 	<div class="modal-footer">
 		<a style="margin-right: 9%;" onclick="$('#modalDelete').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_route_btn_no') }}</a>
-		<a style="margin-left: 9%;" href="/admin/manage_routes/delete/{{ $page->id }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_route_btn_yes') }}</a>
+		<a style="margin-left: 9%;" href="{{ url('/admin/manage_routes/delete') }}/{{ $page->id }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_route_btn_yes') }}</a>
 	</div>
 </div>
 <div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
@@ -51,7 +51,7 @@ label{
 		<div class="card-title col s12 row valign-wrapper">
 			<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s8"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_route', ['route' => $page->slug]) }}</h3>
 			<div class="col s4 valign row">
-				<a class="col s12 btn-large waves-effect waves-light" href="{{ $page->slug }}" target="_blank" class="btn-large {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left" style="line-height: unset !important; font-size: 1.8rem;">open_in_new</i>{{ trans('synthesiscms/admin.view_route') }}</a>
+				<a class="col s12 btn-large waves-effect waves-light" href="{{ url($page->slug) }}" target="_blank" class="btn-large {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left" style="line-height: unset !important; font-size: 1.8rem;">open_in_new</i>{{ trans('synthesiscms/admin.view_route') }}</a>
 			</div>
 		</div>
 		<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>

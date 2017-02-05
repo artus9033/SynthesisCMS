@@ -7,8 +7,8 @@
 @section('side-nav-active', 'manage_molecules')
 
 	@section('breadcrumbs')
-		<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-		<a href="/admin/manage_molecules" class="breadcrumb">{{ trans('synthesiscms/admin.manage_molecules') }}</a>
+		<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+		<a href="{{ url('/admin/manage_molecules') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_molecules') }}</a>
 	@endsection
 
 	@section('main')
@@ -49,7 +49,7 @@
 			</div>
 			<div class="modal-footer">
 				<a style="margin-right: 9%;" onclick="$('#modalMassDelete').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_btn_no') }}</a>
-				<a style="margin-left: 9%;" onclick="$('#action_form').attr('action', '/admin/manage_molecules/mass_delete').submit();" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_btn_yes') }}</a>
+				<a style="margin-left: 9%;" onclick="$('#action_form').attr('action', '{{ url('/') }}/admin/manage_molecules/mass_delete').submit();" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_btn_yes') }}</a>
 			</div>
 		</div>
 		<div id="modalMassCopy" class="modal">
@@ -67,7 +67,7 @@
 			</div>
 			<div class="modal-footer">
 				<a style="margin-right: 9%;" onclick="$('#modalMassCopy').modal('close');" class="modal-action modal-close waves-effect waves-yellow btn-flat right">{{ trans('synthesiscms/admin.modal_mass_copy_molecule_btn_no') }}</a>
-				<a style="margin-left: 9%;" onclick="$('#action_form').attr('action', '/admin/manage_molecules/mass_copy/' + $('#checkboxMassCopyChildAtomsCheckbox').prop('checked')).submit();" class="modal-action green white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_copy_molecule_btn_yes') }}</a>
+				<a style="margin-left: 9%;" onclick="$('#action_form').attr('action', '{{ url('/') }}/admin/manage_molecules/mass_copy/' + $('#checkboxMassCopyChildAtomsCheckbox').prop('checked')).submit();" class="modal-action green white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_copy_molecule_btn_yes') }}</a>
 			</div>
 		</div>
 		<div id="modalMassMove" class="modal">
@@ -85,7 +85,7 @@
 			</div>
 			<div class="modal-footer">
 				<a style="margin-right: 9%;" onclick="$('#modalMassMove').modal('close');" class="modal-action modal-close waves-effect waves-yellow btn-flat right">{{ trans('synthesiscms/admin.modal_mass_move_molecule_btn_no') }}</a>
-				<a style="margin-left: 9%;" onclick="$('#action_form').attr('action', '/admin/manage_molecules/mass_move/' + $('#checkboxMassMoveChildAtomsCheckbox').prop('checked')).submit();" class="modal-action green white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_move_molecule_btn_yes') }}</a>
+				<a style="margin-left: 9%;" onclick="$('#action_form').attr('action', '{{ url('/') }}/admin/manage_molecules/mass_move/' + $('#checkboxMassMoveChildAtomsCheckbox').prop('checked')).submit();" class="modal-action green white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_move_molecule_btn_yes') }}</a>
 			</div>
 		</div>
 		<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
@@ -122,7 +122,7 @@
 					<table class="col s12">
 						<tbody>
 							<tr>
-								<td><a href="/admin/manage_molecules/create_molecule" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_molecule') }}</a></td>
+								<td><a href="{{ url('/admin/manage_molecules/create_molecule') }}" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_molecule') }}</a></td>
 								<td><button data-target="modalMassDelete" type="button" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/molecule.delete_selected') }}</button></td>
 								<td><button data-target="modalMassCopy" type="button" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">content_copy</i>{{ trans('synthesiscms/molecule.copy_selected') }}</button></td>
 							</tr>
@@ -160,7 +160,7 @@
 										<td class="center">{{ $molecule->id }}</td>
 										<td class="center">{{ $molecule->title }}</td>
 										<td class="center">{{ $molecule->getAmount() }}</td>
-										<td class="center"><a href="/admin/manage_molecules/edit/{{ $molecule->id }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/molecule.edit') }}</a></td>
+										<td class="center"><a href="{{ url('/admin/manage_molecules/edit') }}/{{ $molecule->id }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/molecule.edit') }}</a></td>
 										<div id="modalDelete{{ $molecule->id }}" class="modal center">
 											<div class="modal-content">
 												<h3>{{ trans('synthesiscms/admin.modal_delete_molecule_header') }}</h3>
@@ -178,7 +178,7 @@
 											</div>
 											<div class="modal-footer">
 												<a style="margin-right: 9%;" onclick="$('#modalDelete{{ $molecule->id }}').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_no') }}</a>
-												<a style="margin-left: 9%;" onclick="window.location.href = ('/admin/manage_molecules/delete/{{ $molecule->id }},' + $('#checkboxDeleteAtoms{{ $molecule->id }}').prop('checked'));" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
+												<a style="margin-left: 9%;" onclick="window.location.href = ('{{ url('/') }}/admin/manage_molecules/delete/{{ $molecule->id }},' + $('#checkboxDeleteAtoms{{ $molecule->id }}').prop('checked'));" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
 											</div>
 										</div>
 										<td class="center"><button @php if($molecule->id == 1){ echo('disabled'); } @endphp data-target="modalDelete{{ $molecule->id }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/molecule.delete_molecule') }}</button></td>

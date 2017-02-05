@@ -5,7 +5,7 @@
 @endsection
 
 @section('breadcrumbs')
-	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
 @endsection
 
 @section('brand-logo')

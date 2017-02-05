@@ -23,8 +23,8 @@
 @endsection
 
 @section('breadcrumbs')
-	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="/admin/manage_routes" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
+	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ url('/admin/manage_routes') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.create_route') }}</a>
 @endsection
 

@@ -7,8 +7,8 @@
 @section('side-nav-active', 'manage_atoms')
 
 	@section('breadcrumbs')
-		<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-		<a href="/admin/manage_atoms" class="breadcrumb">{{ trans('synthesiscms/admin.manage_atoms') }}</a>
+		<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+		<a href="{{ url('/admin/manage_atoms') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_atoms') }}</a>
 		<a class="breadcrumb">{{ trans('synthesiscms/admin.edit_atom') }}</a>
 	@endsection
 
@@ -47,7 +47,7 @@
 			</div>
 			<div class="modal-footer">
 				<a style="margin-right: 9%;" onclick="$('#modalDelete{{ $atom->id }}').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_atom_btn_no') }}</a>
-				<a style="margin-left: 9%;" href="/admin/manage_atoms/delete/{{ $atom->id }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_atom_btn_yes') }}</a>
+				<a style="margin-left: 9%;" href="{{ url('/admin/manage_atoms') }}/delete/{{ $atom->id }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_atom_btn_yes') }}</a>
 			</div>
 		</div>
 		<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">

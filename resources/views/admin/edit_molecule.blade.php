@@ -7,8 +7,8 @@
 @section('side-nav-active', 'manage_molecules')
 
 @section('breadcrumbs')
-	<a href="/admin" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="/admin/manage_molecules" class="breadcrumb">{{ trans('synthesiscms/admin.manage_molecules') }}</a>
+	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ url('/admin/manage_molecules') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_molecules') }}</a>
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.edit_molecule') }}</a>
 @endsection
 
@@ -33,7 +33,7 @@ label{
 	</div>
 	<div class="modal-footer">
 		<a style="margin-right: 9%;" onclick="$('#modalDelete{{ $molecule->id }}').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_no') }}</a>
-		<a style="margin-left: 9%;"  onclick="window.location.href = ('/admin/manage_molecules/delete/{{ $molecule->id }},' + $('#checkboxDeleteAtoms{{ $molecule->id }}').prop('checked'));" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
+		<a style="margin-left: 9%;"  onclick="window.location.href = ('{{ url('/') }}/admin/manage_molecules/delete/{{ $molecule->id }},' + $('#checkboxDeleteAtoms{{ $molecule->id }}').prop('checked'));" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
 	</div>
 </div>
 <div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">

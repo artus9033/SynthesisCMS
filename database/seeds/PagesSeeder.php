@@ -15,7 +15,7 @@ class PagesSeeder extends Seeder
 		  'slug' => '/hydrogen',
             'page_title' => 'The Hydrogen Route',
             'page_header' => 'This is a sample Route from SynthesisCMS with the Hydrogen Extension selected as parent!',
-            'extension' => 'hydrogen',
+            'extension' => 'Hydrogen',
         ]);
 	   $kpath = 'App\\Extensions\\Hydrogen\\ExtensionKernel';
 	   $kernel = new $kpath;
