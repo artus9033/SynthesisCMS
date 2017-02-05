@@ -1,4 +1,4 @@
-<div class="input-field col s8 offset-s2 valign" id="atom-div">
+<div class="input-field col s8 offset-s2 valign" id="molecule-div">
 	<select id="lithium-atom" name="lithium-atom" class="{{ $synthesiscmsMainColor }}-text">
 		@foreach (\App\Models\Content\Atom::all() as $key => $value)
 			@php

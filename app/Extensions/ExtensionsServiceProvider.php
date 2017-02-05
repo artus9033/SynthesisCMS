@@ -78,10 +78,8 @@ class ExtensionsServiceProvider extends ServiceProvider
 					// no pages exist; do nothing
 				}else{
 					$ext_path = app_path() . "/Extensions/" . $page->extension . "/ExtensionKernel.php";
-					$ext_path = str_replace("/", '\\', $ext_path);
 					if(file_exists($ext_path)){
 						\App::make('\App\Extensions\\'.$page->extension.'\ExtensionKernel')->routes($page, $page->slug);
-						echo("{".$page->slug . " vs ". url($page->slug)."}");
 					}else{
 						echo \View::make('errors.cms')->with(['error' => trans("synthesiscms/errors.err_extension_not_found"), 'help' => trans("synthesiscms/errors.err_extension_not_found_help", ['path' => $ext_path])]);
 						exit;
@@ -92,4 +90,4 @@ class ExtensionsServiceProvider extends ServiceProvider
 	}
 
 	public function register() {}
-	}
+}
