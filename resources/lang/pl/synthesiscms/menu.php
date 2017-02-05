@@ -1,9 +1,11 @@
 <?php
 
 return [
-    'login' => 'Zaloguj Się',
-    'logout' => 'Wyloguj Się',
-    'register' => 'Załóż Konto'
+    'login' => 'Log In',
+    'logout' => 'Log Out',
+    'register' => 'Register',
+    'profile' => 'My Profile',
+    'admin' => 'Site Backend',
 ];
 
 ?>

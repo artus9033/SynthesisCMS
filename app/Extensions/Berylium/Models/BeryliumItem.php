@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BeryliumItem extends Model
 {
-	protected $fillable = array('id', 'type', 'category', 'title', 'href');
+	protected $fillable = array('id', 'type', 'category', 'title', 'href', 'parent', 'menu');
 
 	public $timestamps = false;
 }

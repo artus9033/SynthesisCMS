@@ -15,10 +15,11 @@ class CreateBeryliumItemsTable extends Migration
     {
         Schema::create('berylium_items', function (Blueprint $table) {
             $table->increments('id');
-		  $table->integer('type')->default('4');
-		  $table->integer('category')->default('3');
+		  $table->integer('type')->default(4);
+		  $table->integer('category')->default(3);
 		  $table->longtext('title');
 		  $table->longtext('href');
+		  $table->integer('parent')->default(0);
 		});
     }
 
