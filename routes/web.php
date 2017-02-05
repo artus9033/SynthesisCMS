@@ -50,7 +50,7 @@ Route::group(['middleware' => 'web'], function () {
 	Auth::routes();
 	Route::auth();
 
-	Route::get('/lang/{language}', [ 'as' => 'lang', 'uses' => 'Content\\HomeController@lang']);
+	Route::get('/lang/{language}', [ 'as' => 'lang', 'uses' => 'Content\\PageController@lang']);
 
 	Route::get('/profile', ['as' => 'profile', 'uses' => 'Auth\\ProfileController@infoGet']);
 	Route::get('/profile/delete/{id}', ['as' => 'profile', 'uses' => 'Auth\\ProfileController@delete']);

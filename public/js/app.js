@@ -1,5 +1,5 @@
-function setLanguage(lang){
-	window.location.href = "/lang/" + lang;
+function setLanguage(lang, base){
+	window.location.href = base + "/lang/" + lang;
 }
 
 function resizeIframeBasedOnContents(obj) {

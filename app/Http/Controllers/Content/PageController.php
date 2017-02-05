@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PageController;
+namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,6 +15,12 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 class PageController extends Controller
 {
+	public function lang($language){
+	    $language2 = strtolower($language);
+	    \Session::put('locale', $language2);
+	    return \Redirect::back()->with('message', trans("synthesiscms/main.msg_language_changed") . $language2);
+    }
+
 	public function show($slug)
 	{
 		$slug = str_replace("\\", "/", $slug);
