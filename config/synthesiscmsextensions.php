@@ -2,9 +2,9 @@
 
 return  [
 	'extensions' => [
-		'lithium',
-		'hydrogen',
-		'berylium',
+		'Lithium',
+		'Hydrogen',
+		'Berylium',
 	],
 ]
 

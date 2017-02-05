@@ -36,7 +36,7 @@
 						{{ $atom['title'] }}
 						<i class="material-icons right">more_vert</i>
 					</span>
-					<p class="{{ $synthesiscmsMainColor }}-text" id="artificial-link" style="text-align: left;" onclick="window.location.href='{{ $atom_href }}/atom/{{ $atom['id'] }}'">{{ trans("hydrogen::hydrogen.atom_card_link_read") }}</p>
+					<p class="{{ $synthesiscmsMainColor }}-text" id="artificial-link" style="text-align: left;" onclick="window.location.href='{{ $atom_href }}/atom/{{ $atom['id'] }}'">{{ trans("Hydrogen::hydrogen.atom_card_link_read") }}</p>
 					<style>
 						#artificial-link:hover{
 							cursor: pointer;

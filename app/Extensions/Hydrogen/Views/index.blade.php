@@ -30,17 +30,17 @@
 	@endphp
 	@if (!$one_column_list)
 		<div class="container col s6 row">
-			@include('hydrogen::partials/list', ['atoms' => $one])
+			@include('Hydrogen::partials/list', ['atoms' => $one])
 		</div>
 		<div class="container col s6 row">
-			@include('hydrogen::partials/list', ['atoms' => $two])
+			@include('Hydrogen::partials/list', ['atoms' => $two])
 		</div>
 	@else
 		<div class="container col s10 offset-s1 row">
-			@include('hydrogen::partials/list', ['atoms' => $all])
+			@include('Hydrogen::partials/list', ['atoms' => $all])
 		</div>
 	@endif
 	@if ($ctr == 0)
-		@include('partials/error', ['error' => trans("hydrogen::messages.err_no_atoms")])
+		@include('partials/error', ['error' => trans("Hydrogen::messages.err_no_atoms")])
 	@endif
 @endsection

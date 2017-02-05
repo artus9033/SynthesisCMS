@@ -14,9 +14,9 @@ class LithiumController extends Controller
 	{
 		$atom = Atom::where('id', LithiumExtension::where('id', $page->id)->first()->atom)->first();
 		if($atom == null){
-			return \View::make('errors.cms')->with(['error' => trans("lithium::messages.err_atom_not_found"), 'help' => trans("lithium::messages.err_atom_not_found_help")]);
+			return \View::make('errors.cms')->with(['error' => trans("Lithium::messages.err_atom_not_found"), 'help' => trans("Lithium::messages.err_atom_not_found_help")]);
 		}else{
-			return \View::make('lithium::index')->with(['atom' => $atom, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug]);
+			return \View::make('Lithium::index')->with(['atom' => $atom, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug]);
 		}
 	}
 }

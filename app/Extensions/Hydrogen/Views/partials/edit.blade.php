@@ -11,7 +11,7 @@
 			<option {{ $selected }} value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text"><h5>{{ App\Toolbox::string_truncate($value->title, 40) }}&nbsp;(ID&nbsp;{{ $value->id }})</h5></option>
 		@endforeach
 	</select>
-	<label>{{ trans("hydrogen::messages.choose_molecule") }}</label>
+	<label>{{ trans("Hydrogen::messages.choose_molecule") }}</label>
 	</div>
 	<div class="input-field col s8 offset-s2 valign" id="molecule-div">
 	<select id="list_column_count" name="list_column_count" class="{{ $synthesiscmsMainColor }}-text">
@@ -25,9 +25,9 @@
 					$selected2 = "selected";
 				}
 			@endphp
-			<option {{ $selected1 }} value="1" class="card-panel col s10 offset-s1 red white-text"><h5>{{ trans('hydrogen::hydrogen.one_column') }}</h5></option>
-			<option {{ $selected2 }} value="2" class="card-panel col s10 offset-s1 red white-text"><h5>{{ trans('hydrogen::hydrogen.two_columns') }}</h5></option>
+			<option {{ $selected1 }} value="1" class="card-panel col s10 offset-s1 red white-text"><h5>{{ trans('Hydrogen::hydrogen.one_column') }}</h5></option>
+			<option {{ $selected2 }} value="2" class="card-panel col s10 offset-s1 red white-text"><h5>{{ trans('Hydrogen::hydrogen.two_columns') }}</h5></option>
 		@endforeach
 	</select>
-	<label>{{ trans("hydrogen::messages.choose_list_column_count") }}</label>
+	<label>{{ trans("Hydrogen::messages.choose_list_column_count") }}</label>
 </div>

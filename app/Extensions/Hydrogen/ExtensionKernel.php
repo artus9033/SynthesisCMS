@@ -31,7 +31,7 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function getExtensionName(){
-		return trans('hydrogen::hydrogen.name');
+		return trans('Hydrogen::hydrogen.name');
 	}
 
 	public function getExtensionType(){
@@ -40,7 +40,7 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function editGet($page)
 	{
-		return \View::make('hydrogen::partials/edit')->with(['page' => $page]);
+		return \View::make('Hydrogen::partials/edit')->with(['page' => $page]);
 	}
 
 	public function editPost($id, $request)

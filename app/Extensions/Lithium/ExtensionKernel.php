@@ -29,7 +29,7 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function getExtensionName(){
-		return trans('lithium::lithium.name');
+		return trans('Lithium::lithium.name');
 	}
 
 	public function getExtensionType(){
@@ -38,7 +38,7 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function editGet($page)
 	{
-		return \View::make('lithium::partials/edit')->with(['page' => $page]);
+		return \View::make('Lithium::partials/edit')->with(['page' => $page]);
 	}
 
 	public function editPost($id, $request)

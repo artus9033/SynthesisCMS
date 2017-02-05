@@ -25,7 +25,7 @@ use App\Http\Requests\BackendRequest;
 class ExtensionKernel extends SynthesisExtension
 {
 	public function settingsGet(){
-		return view('berylium::partials/settings')->with(['model' => $this->findOrCreate()]);
+		return view('Berylium::partials/settings')->with(['model' => $this->findOrCreate()]);
 	}
 
 	public function settingsPost(BackendRequest $request){
@@ -35,7 +35,7 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function getExtensionName(){
-		return trans('berylium::berylium.name');
+		return trans('Berylium::berylium.name');
 	}
 
 	public function getExtensionType(){
@@ -43,11 +43,11 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function showMenu($slug){
-		return view('berylium::index')->with(['slug' => $slug, 'model' => $this->findOrCreate()]);
+		return view('Berylium::index')->with(['slug' => $slug, 'model' => $this->findOrCreate()]);
 	}
 
 	public function showMenuMobileButton($slug){
-		return view('berylium::mobile_button')->with('slug', $slug);
+		return view('Berylium::mobile_button')->with('slug', $slug);
 	}
 
 	public function getMobileMenuItems($slug){

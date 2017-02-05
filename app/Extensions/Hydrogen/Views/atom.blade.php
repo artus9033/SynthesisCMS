@@ -14,17 +14,17 @@
 @section('mod_main')
   <div id="options" class="modal bottom-sheet">
     <div class="modal-content center col s12">
-      <h4 class="col s12">{{ trans('hydrogen::hydrogen.options_modal_header') }}</h4>
+      <h4 class="col s12">{{ trans('Hydrogen::hydrogen.options_modal_header') }}</h4>
 	 <div class="col s12">
 		 <div class="col s12">
-			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('hydrogen::hydrogen.options_modal_btn_print') }}">print</i>
-			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('hydrogen::hydrogen.options_modal_btn_share') }}">share</i>
-			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('hydrogen::hydrogen.options_modal_btn_copy_link') }}">link</i>
+			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_print') }}">print</i>
+			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_share') }}">share</i>
+			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_copy_link') }}">link</i>
 		 </div>
 	 </div>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-yellow btn-flat">{{ trans('hydrogen::hydrogen.options_modal_btn_cancel') }}</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-yellow btn-flat">{{ trans('Hydrogen::hydrogen.options_modal_btn_cancel') }}</a>
     </div>
   </div>
   <script>
