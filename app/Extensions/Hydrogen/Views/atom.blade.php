@@ -19,8 +19,15 @@
 		 <div class="col s12">
 			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_print') }}">print</i>
 			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_share') }}">share</i>
-			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_copy_link') }}">link</i>
+			 <i id="copylink" class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_copy_link') }}">link</i>
 		 </div>
+		 <script>
+				new Clipboard($('#copylink'), {
+				    target: function(trigger) {
+				        return window.location.href;
+				    }
+				});
+		 </script>
 	 </div>
     </div>
     <div class="modal-footer">
