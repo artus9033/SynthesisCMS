@@ -108,9 +108,9 @@ class MoleculeController extends Controller
 			return \Redirect::route('manage_molecules')->with('errors', $errors);
 		}else{
 			if($bool_delete_child_atoms){
-				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('message', trans('synthesiscms/admin.msg_molecules_and_child_atoms_deleted', ['moleculesCount' => $moleculesCount . ($moleculesCount == 1 ? " molecule" : " molecules"), 'atomsCount' => $atomsCount . ($atomsCount == 1 ? " atom" : "atoms")]));
+				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('message', trans('synthesiscms/admin.msg_molecules_and_child_atoms_deleted', ['moleculesCount' => $moleculesCount . ($moleculesCount == 1 ? trans('synthesiscms/helper.space_molecule') : trans('synthesiscms/helper.space_molecules')), 'atomsCount' => $atomsCount . ($atomsCount == 1 ? trans('synthesiscms/helper.space_atom') : trans('synthesiscms/helper.space_atoms'))]));
 			}else{
-				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('message', trans('synthesiscms/admin.msg_molecules_deleted', ['count' => $moleculesCount, 'beginning' => $moleculesCount == 1 ? " molecule has" : " molecules have"]));
+				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('message', trans('synthesiscms/admin.msg_molecules_deleted', ['count' => $moleculesCount, 'beginning' => $moleculesCount == 1 ? trans('synthesiscms/helper.space_molecule_has') : trans('synthesiscms/helper.space_molecules_have')]));
 			}
 		}
 	}
@@ -138,7 +138,7 @@ class MoleculeController extends Controller
 			array_push($errors, trans('synthesiscms/admin.err_no_molecules_selected'));
 			return \Redirect::route('manage_molecules')->with('errors', $errors);
 		}else{
-			return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecules_copied', ['count' => $count, 'beginning' => $count == 1 ? "molecule has" : "molecules have"]));
+			return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecules_copied', ['count' => $count, 'beginning' => $count == 1 ? trans('synthesiscms/helper.space_molecule_has') : trans('synthesiscms/helper.space_molecules_have')]));
 		}
 	}
 }
