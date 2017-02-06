@@ -9,11 +9,11 @@
 @section('head')
 <style>
 	.caret {
-	  color: {{ $synthesiscmsMainColor }} !important;
+	  color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 	}
 
 	.select-dropdown {
-	  border-bottom-color: {{ $synthesiscmsMainColor }} !important;
+	  border-bottom-color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 	}
 
 	.select-wrapper {
@@ -34,7 +34,7 @@
 			<div class="card-title col s12">
 				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.create_molecule') }}</h3>
 				</div>
-				<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
+				<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 				<div class="col s12 row"></div>
 				{!! Form::open(array('class' => 'form')) !!}
 					<div class="input-field col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.create_molecule_title_tooltip') }}">
@@ -51,7 +51,7 @@
 						$(".editor").trumbowyg('html', ''); //empty content
 					});
 					</script>
-				<button type="submit" class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_molecule') }}</button>
+				<button type="submit" class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_molecule') }}</button>
 				<div class="col s12 row"></div>
 				<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text col s2 offset-s5" href="{{ URL::previous() }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_molecule') }}</a>
 				<div class="col s12 row"></div>

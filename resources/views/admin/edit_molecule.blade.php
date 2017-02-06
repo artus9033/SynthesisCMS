@@ -41,7 +41,7 @@ label{
 		<div class="card-title col s12 row valign-wrapper">
 			<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s12"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_molecule') }}&nbsp;(ID&nbsp;{{ $molecule->id }})</h3>
 		</div>
-		<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
+		<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 		<div class="col s12 row"></div>
 		<form id="edit" role="form" method="post" action="">
 			{{ csrf_field() }}

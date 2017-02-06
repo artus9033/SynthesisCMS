@@ -46,37 +46,37 @@
 </head>
 <header>
 	<ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0px);">
-		<li class="logo"><a href="{{ url('/admin') }}" class="brand-logo {{ $synthesiscmsMainColor }} white-text waves-effect waves-light"><i class="material-icons white-text">verified_user</i>{{ trans('synthesiscms/admin.backend') }}</a></li>
+		<li class="logo"><a href="{{ url('/admin') }}" class="brand-logo {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light"><i class="material-icons white-text">verified_user</i>{{ trans('synthesiscms/admin.backend') }}</a></li>
 		<li>
 			<ul class="collapsible collapsible-accordion">
-				<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">description</i>{{ trans('synthesiscms/admin.section_content') }}</a>
+				<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">description</i>{{ trans('synthesiscms/admin.section_content') }}</a>
 					<div class="collapsible-body">
 						<ul>
-							<li id="manage_atoms"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="{{ url('/admin/manage_atoms') }}">{{ trans('synthesiscms/admin.manage_atoms') }}</a></li>
-							<li id="manage_molecules"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="{{ url('/admin/manage_molecules') }}">{{ trans('synthesiscms/admin.manage_molecules') }}</a></li>
+							<li id="manage_atoms"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_atoms') }}">{{ trans('synthesiscms/admin.manage_atoms') }}</a></li>
+							<li id="manage_molecules"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_molecules') }}">{{ trans('synthesiscms/admin.manage_molecules') }}</a></li>
 						</ul>
 					</div>
 				</li>
-				<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">supervisor_account</i>{{ trans('synthesiscms/admin.section_users') }}</a>
+				<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">supervisor_account</i>{{ trans('synthesiscms/admin.section_users') }}</a>
 					<div class="collapsible-body">
 						<ul>
-							<li id="profile"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="{{ url('/profile') }}">{{ trans('synthesiscms/profile.profile') }}</a></li>
-							<li id="manage_users"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="{{ url('/admin/manage_users') }}">{{ trans('synthesiscms/admin.manage_users') }}</a></li>
+							<li id="profile"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/profile') }}">{{ trans('synthesiscms/profile.profile') }}</a></li>
+							<li id="manage_users"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_users') }}">{{ trans('synthesiscms/admin.manage_users') }}</a></li>
 						</ul>
 					</div>
 				</li>
-				<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">pages</i>{{ trans('synthesiscms/admin.section_routes') }}</a>
+				<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">pages</i>{{ trans('synthesiscms/admin.section_routes') }}</a>
 					<div class="collapsible-body">
 						<ul>
-							<li id="manage_routes"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="{{ url('/admin/manage_routes') }}">{{ trans('synthesiscms/admin.manage_routes') }}</a></li>
-							<li id="manage_applets"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="{{ url('/admin/manage_applets') }}">{{ trans('synthesiscms/admin.manage_applets') }}</a></li>
+							<li id="manage_routes"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_routes') }}">{{ trans('synthesiscms/admin.manage_routes') }}</a></li>
+							<li id="manage_applets"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_applets') }}">{{ trans('synthesiscms/admin.manage_applets') }}</a></li>
 						</ul>
 					</div>
 				</li>
-				<li class="bold active"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">settings</i>{{ trans('synthesiscms/admin.section_settings') }}</a>
+				<li class="bold active"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">settings</i>{{ trans('synthesiscms/admin.section_settings') }}</a>
 					<div class="collapsible-body" style="display: block;">
 						<ul>
-							<li id="settings"><a class="waves-effect waves-{{ $synthesiscmsMainColor }}" href="{{ url('/admin/settings') }}">{{ trans('synthesiscms/admin.settings') }}</a></li>
+							<li id="settings"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/settings') }}">{{ trans('synthesiscms/admin.settings') }}</a></li>
 						</ul>
 					</div>
 				</li>
@@ -88,7 +88,7 @@
 <body>
 	@yield('body')
 	<div class="col s12 row">
-		<nav class="{{ $synthesiscmsMainColor }} col s12 z-depth-3">
+		<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 z-depth-3">
 			<div class="nav-wrapper col s12">
 				<a href="{{ url('/') }}" class="brand-logo" style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }} - @section('brand-logo'){{ trans('synthesiscms/admin.backend') }}@show</a>
 					<div class="input-field right">
@@ -123,7 +123,7 @@
 					</ul>
 				</div>
 			</nav>
-			<nav class="{{ $synthesiscmsMainColor }} lighten-1 col s12 z-depth-2">
+			<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} lighten-1 col s12 z-depth-2">
 				<div class="nav-wrapper col s12">
 					<div class="col s12">
 						<a href="{{ url('/') }}" class="breadcrumb"><i class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>

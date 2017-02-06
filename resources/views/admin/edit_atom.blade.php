@@ -20,11 +20,11 @@
 		</script>
 		<style>
 		#molecule-div .caret {
-			color: {{ $synthesiscmsMainColor }} !important;
+			color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 		}
 
 		#molecule-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 		}
 
 		#molecule-div .select-wrapper {
@@ -55,7 +55,7 @@
 				<div class="card-title col s12 row valign-wrapper">
 					<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s12"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_atom') }}&nbsp;(ID&nbsp;{{ $atom->id }})</h3>
 				</div>
-				<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
+				<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 				<div class="col s12 row"></div>
 				<form id="edit" role="form" method="post" action="">
 					{{ csrf_field() }}
@@ -105,7 +105,7 @@
 						<input id="image" name="image" type="text">
 						<label for="image">{{ trans('synthesiscms/atom.imageURL') }}</label>
 					</div>
-					<div class="btn btn-large center col s6 row waves-effect waves-light {{ $synthesiscmsMainColor }} white-text disabled"> <!-- TODO: implement ftp & uploading image-->
+					<div class="btn btn-large center col s6 row waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text disabled"> <!-- TODO: implement ftp & uploading image-->
 						<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
 					</div>
 				</div>

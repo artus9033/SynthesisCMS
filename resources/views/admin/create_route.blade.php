@@ -9,11 +9,11 @@
 @section('head')
 <style>
 	.caret {
-	  color: {{ $synthesiscmsMainColor }} !important;
+	  color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 	}
 
 	.select-dropdown {
-	  border-bottom-color: {{ $synthesiscmsMainColor }} !important;
+	  border-bottom-color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 	}
 
 	.select-wrapper {
@@ -34,7 +34,7 @@
 			<div class="card-title col s12">
 				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.create_route') }}</h3>
 				</div>
-				<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
+				<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 				<div class="col s12 row"></div>
 				@php
 				//TODO: dynamically check if route free:
@@ -72,7 +72,7 @@
 					</select>
 					<label>{{ trans('synthesiscms/extensions.choose_extension') }}</label>
 				</div>
-				<button type="submit" class="valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_route') }}</button>
+				<button type="submit" class="valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_route') }}</button>
 			</form>
 			</div>
 		</div>

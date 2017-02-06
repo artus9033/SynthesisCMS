@@ -17,7 +17,7 @@
 			<div class="card-title col s12">
 				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">extension</i>&nbsp;{{ trans('synthesiscms/admin.manage_applets') }}</h3>
 			</div>
-			<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
+			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 			<div class="col s12 row"></div>
 			<div class="col s3">
 				<ul class="collection with-header">

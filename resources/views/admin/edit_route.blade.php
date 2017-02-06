@@ -9,11 +9,11 @@
 @section('head')
 <style>
 	#molecule-div .caret {
-	  color: {{ $synthesiscmsMainColor }} !important;
+	  color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 	}
 
 	#molecule-div .select-dropdown {
-	  border-bottom-color: {{ $synthesiscmsMainColor }} !important;
+	  border-bottom-color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 	}
 
 	#molecule-div .select-wrapper {
@@ -51,15 +51,15 @@ label{
 		<div class="card-title col s12 row valign-wrapper">
 			<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s8"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_route', ['route' => $page->slug]) }}</h3>
 			<div class="col s4 valign row">
-				<a class="col s12 btn-large waves-effect waves-light" href="{{ url($page->slug) }}" target="_blank" class="btn-large {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left" style="line-height: unset !important; font-size: 1.8rem;">open_in_new</i>{{ trans('synthesiscms/admin.view_route') }}</a>
+				<a class="col s12 btn-large waves-effect waves-light" href="{{ url($page->slug) }}" target="_blank" class="btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i class="material-icons white-text left" style="line-height: unset !important; font-size: 1.8rem;">open_in_new</i>{{ trans('synthesiscms/admin.view_route') }}</a>
 			</div>
 		</div>
-		<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
+		<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 		<div class="col s12 row"></div>
 		<div class="row">
 			<form id="edit" role="form" method="post" action="">
 				{{ csrf_field() }}
-				<div class="card-panel col s8 offset-s2 z-depth-2 center {{ $synthesiscmsMainColor }} white-text">
+				<div class="card-panel col s8 offset-s2 z-depth-2 center {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
 				<h5>{{ trans('synthesiscms/extensions.edit_main') }}</h5>
 			</div>
 				<div class="row">
@@ -81,8 +81,8 @@ label{
 						$(".editor").trumbowyg('html', {!! json_encode(addslashes($page->page_header)) !!});
 					});
 					</script>
-					<div class="divider {{ $synthesiscmsMainColor }} col s12 row"></div>
-					<div class="card-panel col s8 offset-s2 z-depth-2 center {{ $synthesiscmsMainColor }} white-text row">
+					<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 row"></div>
+					<div class="card-panel col s8 offset-s2 z-depth-2 center {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text row">
 					<h5>{{ trans('synthesiscms/extensions.edit_specific') }}</h5>
 				</div>
 					{!! \App::make('App\Extensions\\'.$page->extension.'\ExtensionKernel')->editGet($page) !!}

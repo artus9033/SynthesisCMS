@@ -16,6 +16,7 @@ return [
 	'footer_more_links_bottom_href' => 'Cel (URL) linku na dole stopki',
 	'tab_color' => 'Kolor Karty w Chrome (HEX)',
 	'main_color' => 'Wiodący Kolor Strony (tekst)',
+	'main_color_class' => 'Klasa dodana do koloru',
 	'tooltip_main_color' => 'Można zastosować dowolny kolor ze specyfikacji kolorystyki Google MD: https://material.io/guidelines/style/color.html#color-color-palette',
 	'msg_saved' => 'Ustawienia zostały pomyślnie zapisane',
 ];

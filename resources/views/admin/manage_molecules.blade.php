@@ -13,22 +13,22 @@
 
 	@section('main')
 		<div class="fixed-action-btn horizontal">
-			<button class="btn-floating btn-large {{ $synthesiscmsMainColor }} white-text waves-effect waves-light z-depth-4 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions') }}">
+			<button class="btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light z-depth-4 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions') }}">
 				<i class="large material-icons">menu</i>
 			</button>
 			<ul>
 				<li>
-					<button onclick="toggleAll('.molecule_checkbox');" class="btn-floating {{ $synthesiscmsMainColor }} white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_swap_selection') }}">
+					<button onclick="toggleAll('.molecule_checkbox');" class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_swap_selection') }}">
 						<i class="large material-icons">swap_horiz</i>
 					</button>
 				</li>
 				<li>
-					<button onclick="unselectAll('.molecule_checkbox');" class="btn-floating {{ $synthesiscmsMainColor }} white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_unselect_all') }}">
+					<button onclick="unselectAll('.molecule_checkbox');" class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_unselect_all') }}">
 						<i class="large material-icons">tab_unselected</i>
 					</button>
 				</li>
 				<li>
-					<button onclick="selectAll('.molecule_checkbox');" class="btn-floating {{ $synthesiscmsMainColor }} white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_select_all') }}">
+					<button onclick="selectAll('.molecule_checkbox');" class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_select_all') }}">
 						<i class="large material-icons">select_all</i>
 					</button>
 				</li>
@@ -93,7 +93,7 @@
 				<div class="card-title col s12">
 					<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">group_work</i>&nbsp;{{ trans('synthesiscms/admin.manage_molecules') }}</h3>
 				</div>
-				<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
+				<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 				<div class="col s12 row"></div>
 				<form class="form col s12 row" id="action_form" method="post">
 					{{ csrf_field() }}
@@ -122,9 +122,9 @@
 					<table class="col s12">
 						<tbody>
 							<tr>
-								<td><a href="{{ url('/admin/manage_molecules/create_molecule') }}" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_molecule') }}</a></td>
-								<td><button data-target="modalMassDelete" type="button" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/molecule.delete_selected') }}</button></td>
-								<td><button data-target="modalMassCopy" type="button" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">content_copy</i>{{ trans('synthesiscms/molecule.copy_selected') }}</button></td>
+								<td><a href="{{ url('/admin/manage_molecules/create_molecule') }}" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_molecule') }}</a></td>
+								<td><button data-target="modalMassDelete" type="button" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/molecule.delete_selected') }}</button></td>
+								<td><button data-target="modalMassCopy" type="button" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light"><i class="material-icons white-text left">content_copy</i>{{ trans('synthesiscms/molecule.copy_selected') }}</button></td>
 							</tr>
 						</tbody>
 					</table>
@@ -160,7 +160,7 @@
 										<td class="center">{{ $molecule->id }}</td>
 										<td class="center">{{ $molecule->title }}</td>
 										<td class="center">{{ $molecule->getAmount() }}</td>
-										<td class="center"><a href="{{ url('/admin/manage_molecules/edit') }}/{{ $molecule->id }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/molecule.edit') }}</a></td>
+										<td class="center"><a href="{{ url('/admin/manage_molecules/edit') }}/{{ $molecule->id }}" class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/molecule.edit') }}</a></td>
 										<div id="modalDelete{{ $molecule->id }}" class="modal center">
 											<div class="modal-content">
 												<h3>{{ trans('synthesiscms/admin.modal_delete_molecule_header') }}</h3>
@@ -181,7 +181,7 @@
 												<a style="margin-left: 9%;" onclick="window.location.href = ('{{ url('/') }}/admin/manage_molecules/delete/{{ $molecule->id }},' + $('#checkboxDeleteAtoms{{ $molecule->id }}').prop('checked'));" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
 											</div>
 										</div>
-										<td class="center"><button @php if($molecule->id == 1){ echo('disabled'); } @endphp data-target="modalDelete{{ $molecule->id }}" class="btn {{ $synthesiscmsMainColor }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/molecule.delete_molecule') }}</button></td>
+										<td class="center"><button @php if($molecule->id == 1){ echo('disabled'); } @endphp data-target="modalDelete{{ $molecule->id }}" class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/molecule.delete_molecule') }}</button></td>
 										</tr>
 										@endforeach
 										@if ($all_molecules_count == 0)

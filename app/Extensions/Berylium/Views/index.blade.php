@@ -1,6 +1,6 @@
 @if($model->enabled)
 	@if($synthesiscmsPositionManager->getCustom('berylium', 'desktop-menu', Request::url()) != "")
-	<nav class="col s12 {{ $synthesiscmsMainColor }} darken-1 hide-on-med-and-down">
+	<nav class="col s12 {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} darken-1 hide-on-med-and-down">
 		<div class="nav-wrapper">
 			<ul>
 				{!! $synthesiscmsPositionManager->getCustom('berylium', 'desktop-menu', Request::url()) !!}

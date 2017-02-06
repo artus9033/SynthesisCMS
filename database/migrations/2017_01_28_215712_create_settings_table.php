@@ -26,6 +26,7 @@ class CreateSettingsTable extends Migration
 		  $table->longText('footer_content');
 		  $table->string('tab_color')->default("#26a69a");
 		  $table->string('main_color')->default("teal");
+		  $table->string('color_class')->default("lighten-1");
 		  $table->boolean('active')->default(false);
         });
     }

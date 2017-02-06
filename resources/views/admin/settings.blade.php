@@ -9,11 +9,11 @@
 @section('head')
 <style>
 #settings-div .caret {
-	color: {{ $synthesiscmsMainColor }} !important;
+	color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 }
 
 #settings-div .select-dropdown {
-	border-bottom-color: {{ $synthesiscmsMainColor }} !important;
+	border-bottom-color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 }
 
 #settings-div .select-wrapper {
@@ -42,7 +42,7 @@ label{
 		<div class="card-title col s12 row valign-wrapper">
 			<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s12"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">settings</i>&nbsp;{{ trans('synthesiscms/admin.settings') }}</h3>
 		</div>
-		<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
+		<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 		<div class="col s12 row"></div>
 		<div>
 			<form id="edit" role="form" method="post" action="">
@@ -136,7 +136,12 @@ label{
 									<input value="{{ $synthesiscmsMainColor }}" id="main_color" name="main_color" type="text">
 									<label for="main_color">{{ trans('synthesiscms/settings.main_color') }}</label>
 								</div>
-								<div class="col s2" style="height: 60px;"><div class="{{ $synthesiscmsMainColor }}" id="main_color_probe" style="width: 100%; height: 100%; box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);"></div></div>
+								<div class="col s2" style="height: 60px;"><div class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" id="main_color_probe" style="width: 100%; height: 100%; box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);"></div></div>
+								<div class="input-field col s12">
+									<i class="material-icons prefix">format_color_fill</i>
+									<input value="{{ $synthesiscmsMainColorClass }}" id="main_color_class" name="main_color_class" type="text">
+									<label for="main_color_class">{{ trans('synthesiscms/settings.main_color_class') }}</label>
+								</div>
 								<script>
 								$('#main_color').bind('input', function() {
 									$("#main_color_probe").removeClass();

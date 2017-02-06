@@ -44,6 +44,7 @@ class BackendController extends Controller
 		$settings->footer_content = $request->get('footer_content');
 		$settings->tab_color = $request->get('tab_color');
 		$settings->main_color = $request->get('main_color');
+		$settings->color_class = $request->get('main_color_class');
 		$settings->save();
 		return \Redirect::route('settings')->with('message', trans('synthesiscms/settings.msg_saved'));
 	}

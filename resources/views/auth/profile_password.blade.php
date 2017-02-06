@@ -37,7 +37,7 @@
     <input id="oldpassword" name="oldpassword" type="password" value="">
 </div>
 <div class="col s12 row">
-<button type="submit" class="btn btn-large {{ $synthesiscmsMainColor }} waves-effect waves-light center hoverable"><i class="material-icons white-text left">phonelink_lock</i>{{ trans('synthesiscms/auth.change_password_btn') }}</button>
+<button type="submit" class="btn btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light center hoverable"><i class="material-icons white-text left">phonelink_lock</i>{{ trans('synthesiscms/auth.change_password_btn') }}</button>
 </div>
 {!! Form::close() !!}
 </div>

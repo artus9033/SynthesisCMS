@@ -18,7 +18,7 @@
 			<div class="card-title">
 				<h3 class="{{ $synthesiscmsMainColor }}-text center">{{ trans('synthesiscms/auth.registration')}}</h3>
 				</div>
-				<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
+				<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 				<form class="form-horizontal col s12" role="form" method="POST" action="{{ url('/register') }}">
 					{{ csrf_field() }}
 					<div class='row'></div>
@@ -65,7 +65,7 @@
 								<label for='password_confirmation' data-error="{{ trans('synthesiscms/auth.password_bad')}}" data-success="{{ trans('synthesiscms/auth.password_ok')}}">{{ trans('synthesiscms/auth.password')}}</label>
 							</div>
 						<div class="row"></div>
-						<button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} hoverable'>{{ trans('synthesiscms/auth.register')}}</button>
+						<button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} hoverable'>{{ trans('synthesiscms/auth.register')}}</button>
 						</div>
 				</form>
 			</div>

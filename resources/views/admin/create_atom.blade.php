@@ -9,11 +9,11 @@
 @section('head')
 <style>
 	#molecule-div .caret {
-	  color: {{ $synthesiscmsMainColor }} !important;
+	  color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 	}
 
 	#molecule-div .select-dropdown {
-	  border-bottom-color: {{ $synthesiscmsMainColor }} !important;
+	  border-bottom-color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 	}
 
 	#molecule-div .select-wrapper {
@@ -34,7 +34,7 @@
 			<div class="card-title col s12">
 				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s8"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.create_atom') }}</h3>
 				</div>
-				<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
+				<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 				<div class="col s12 row"></div>
 				{!! Form::open(array('class' => 'form')) !!}
 					<div class="input-field col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.create_atom_title_tooltip') }}">
@@ -74,7 +74,7 @@
 									<input id="image" name="image" type="text">
 									<label for="image">{{ trans('synthesiscms/atom.imageURL') }}</label>
 								</div>
-								<div class="btn btn-large center col s6 row waves-effect waves-light {{ $synthesiscmsMainColor }} white-text disabled"> <!-- TODO: implement ftp & uploading image-->
+								<div class="btn btn-large center col s6 row waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text disabled"> <!-- TODO: implement ftp & uploading image-->
 									<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
 								</div>
 							</div>
@@ -103,7 +103,7 @@
 							<label>{{ trans('synthesiscms/extensions.choose_molecule') }}</label>
 						</div>
 					</div>
-				<button type="submit" class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_atom') }}</button>
+				<button type="submit" class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_atom') }}</button>
 				<div class="col s12 row"></div>
 				<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text col s2 offset-s5" href="{{ URL::previous() }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_atom') }}</a>
 				<div class="col s12 row"></div>

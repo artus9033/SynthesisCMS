@@ -3,11 +3,11 @@
 @section('head')
 	<style>
 		.caret {
-		  color: {{ $synthesiscmsMainColor }} !important;
+		  color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 		}
 
 		.select-dropdown {
-		  border-bottom-color: {{ $synthesiscmsMainColor }} !important;
+		  border-bottom-color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
 		}
 
 		.select-wrapper {
@@ -34,7 +34,7 @@
 		<div class="card-title col s12">
 			<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">security</i>&nbsp;{{ trans('synthesiscms/admin.change_name_privileges', ['name' => $uname]) }}</h5>
 			</div>
-			<div class="divider {{ $synthesiscmsMainColor }} col s12"></div>
+			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 			<div class="col s12 row"></div>
 			<div class="col s12 row">
 				<form class="form-horizontal col s12 valign-wrapper" role="form" method="POST" action="">
@@ -45,7 +45,7 @@
 						<option value="true" @php if($priv == true){ echo("selected"); } @endphp>{{ trans('synthesiscms/profile.admin') }}</option>
 					</select>
 				</div>
-				<button type="submit" class="valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.change_user_privileges') }}</button>
+				<button type="submit" class="valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.change_user_privileges') }}</button>
 			</form>
 			</div>
 		</div>

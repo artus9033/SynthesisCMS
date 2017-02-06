@@ -16,6 +16,7 @@ return [
 	'footer_more_links_bottom_href' => 'Footer Bottom Link URL',
 	'tab_color' => 'Chrome Tab Color (HEX)',
 	'main_color' => 'Website Main Color (text)',
+	'main_color_class' => 'Class added to color',
 	'tooltip_main_color' => 'You can specify any of the color names from the Google MD color specs: https://material.io/guidelines/style/color.html#color-color-palette',
 	'msg_saved' => 'Settings have been succesfully saved',
 ];

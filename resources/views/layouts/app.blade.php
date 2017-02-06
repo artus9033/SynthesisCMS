@@ -34,7 +34,7 @@
 	@yield('body')
 	<div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh;">
 		{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
-		<nav class="{{ $synthesiscmsMainColor }} col s12 z-depth-3">
+		<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 z-depth-3">
 			<div class="nav-wrapper col s12">
 				<div class="left">
 					{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BeforeSiteName, Request::url()) !!}
@@ -78,7 +78,7 @@
 			</nav>
 			{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BelowMenu, Request::url()) !!}
 			{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverBreadcrumbs, Request::url()) !!}
-			<nav class="{{ $synthesiscmsMainColor }} lighten-1 col s12 z-depth-2">
+			<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} lighten-1 col s12 z-depth-2">
 				<div class="nav-wrapper col s12">
 					<div class="col s12">
 						<a href="{{ url('/') }}'" class="breadcrumb"><i class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>

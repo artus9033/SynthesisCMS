@@ -17,7 +17,7 @@
 		<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 			<div class="card-content">
 				<div class="card-title center">
-					<h2 class="card-panel {{ $synthesiscmsMainColor }} white-text"><i class="material-icons white-text medium left valign" style="line-height: unset !important;">graphic_eq</i>{{ trans('synthesiscms/admin.stats') }}</h2>
+					<h2 class="card-panel {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text"><i class="material-icons white-text medium left valign" style="line-height: unset !important;">graphic_eq</i>{{ trans('synthesiscms/admin.stats') }}</h2>
 				</div>
 				<div class="row col s12"></div>
 				<div class="section">
