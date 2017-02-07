@@ -138,4 +138,8 @@ class ExtensionKernel extends SynthesisExtension
 			return $model;
 		}
 	}
+
+	public function settingsCreatePositionGet(){
+		return "TODO";
+	}
 }

@@ -10,6 +10,15 @@
 			</label>
 		</div>
 		<div class="row"></div>
+		<div class="fixed-action-btn toolbar" style="top: 40px;">
+		   <a class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light btn-floating btn-large hoverable">
+		     <i class="large material-icons">mode_edit</i>
+		   </a>
+		   <ul>
+			<li class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light"><a href="{{ url()->current() }}/create"><i class="material-icons">add</i></a></li>
+		     <li class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light"><a href="#!"><i class="material-icons">delete</i></a></li>
+		   </ul>
+		 </div>
 		@php
 		$ct = 0;
 		@endphp
@@ -17,7 +26,6 @@
 			@php
 			$ct++;
 			@endphp
-			<!-- TODO: implement a visual drag-and-drop multi-level menu editor -->
 		@endforeach
 		@if($ct == 0)
 			<div class="col s12 center text-center"><h5>{{ trans("Berylium::berylium.empty") }}</h5></div>

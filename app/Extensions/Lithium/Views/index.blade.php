@@ -16,10 +16,13 @@
       <h4 class="col s12">{{ trans('Lithium::lithium.options_modal_header') }}</h4>
 	 <div class="col s12">
 		 <div class="col s12">
-			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Lithium::lithium.options_modal_btn_print') }}">print</i>
+			 <i onclick="window.print()" class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Lithium::lithium.options_modal_btn_print') }}">print</i>
 			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Lithium::lithium.options_modal_btn_share') }}">share</i>
-			 <i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Lithium::lithium.options_modal_btn_copy_link') }}">link</i>
+			 <i data-clipboard-text="{{ url()->current() }}" class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('Lithium::lithium.options_modal_btn_copy_link') }}">link</i>
 		 </div>
+		 <script>
+		 	new Clipboard('.copylink');
+		 </script>
 	 </div>
     </div>
     <div class="modal-footer">
