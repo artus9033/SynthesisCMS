@@ -7,7 +7,7 @@
 <div class="col s12 row">
  <div class="col s12 m9">
 	 <div class="container">
-   <h2 class="white-text"><i class="material-icons large prefix center-on-small-only" style="vertical-align: middle;">disc_full</i>{{ trans('synthesiscms/errors.404_header') }}</h2>
+   <h2 class="white-text"><i class="material-icons large prefix center-on-small-only" style="vertical-align: middle;">disc_full</i>&nbsp;{{ trans('synthesiscms/errors.404_header') }}</h2>
    <h4 class="light red-text text-lighten-4 center-on-small-only">{{ trans('synthesiscms/errors.404_desc') }}</h4>
    </div>
  </div>
