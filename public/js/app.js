@@ -38,4 +38,5 @@ $(document).ready(function() {
       belowOrigin: true
     });
     $('select').material_select();
+   $('.collapsible').collapsible();
 });
