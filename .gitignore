@@ -1,5 +1,7 @@
 storage/
 vendor/
 node_modules/
+database/database.sqlite
 .env
 .tags1
+composer.phar

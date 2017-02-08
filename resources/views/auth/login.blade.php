@@ -13,7 +13,14 @@
 @endsection
 
 @section('main')
-	<div class="col s6 offset-s3 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+<style>
+@media screen and (min-device-width: 1200px){
+div .main-carf-cont {
+padding: 0px 48px 0px 48px;
+}
+}
+</style>
+	<div class="main-card-cont col s12 l6 offset-l3 z-depth-1 grey lighten-4 row card" style="display: inline-block; border: 1px solid #EEE;">
 		<div class="card-content">
 			<div class="card-title">
 				<h3 class="{{ $synthesiscmsMainColor }}-text center">{{ trans('synthesiscms/auth.login')}}</h3>
