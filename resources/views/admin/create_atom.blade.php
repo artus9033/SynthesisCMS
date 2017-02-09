@@ -9,11 +9,11 @@
 @section('head')
 <style>
 	#molecule-div .caret {
-	  color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
+	  color: {{ $synthesiscmsMainColor }} !important;
 	}
 
 	#molecule-div .select-dropdown {
-	  border-bottom-color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
+	  border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 	}
 
 	#molecule-div .select-wrapper {

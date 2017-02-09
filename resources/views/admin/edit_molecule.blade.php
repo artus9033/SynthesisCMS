@@ -57,7 +57,7 @@ label{
 				</div>
 				<script>
 				$(document).ready(function(){
-					$(".editor").trumbowyg('html', {!! json_encode(addslashes($molecule->description)) !!});
+					$(".editor").trumbowyg('html', {!! json_encode($molecule->description) !!});
 				});
 				</script>
 			</div>

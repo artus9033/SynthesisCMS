@@ -3,11 +3,11 @@
 @section('head')
 	<style>
 		.caret {
-		  color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
+		  color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		.select-dropdown {
-		  border-bottom-color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
+		  border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		.select-wrapper {

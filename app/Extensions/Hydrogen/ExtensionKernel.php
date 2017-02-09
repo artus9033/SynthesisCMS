@@ -55,7 +55,10 @@ class ExtensionKernel extends SynthesisExtension
 		$kernel = $this;
 		\Route::group(['middleware' => 'web'], function () use ($page, $kernel, $base_slug) {
 			\Route::get($base_slug, function() use ($page, $kernel, $base_slug) {
-	    			return \App::make('App\Extensions\Hydrogen\Controllers\HydrogenController')->index($page, $kernel, $base_slug);
+	    			return \App::make('App\Extensions\Hydrogen\Controllers\HydrogenController')->index(1, $page, $kernel, $base_slug);
+			})->middleware('web');
+			\Route::get($base_slug . '/p/{currentPage}', function($currentPage) use ($page, $kernel, $base_slug) {
+	    			return \App::make('App\Extensions\Hydrogen\Controllers\HydrogenController')->index($currentPage, $page, $kernel, $base_slug);
 			})->middleware('web');
 			\Route::get($base_slug . '/atom/{id}', function() use ($page, $kernel, $base_slug) {
 	    			return \App::make('App\Extensions\Hydrogen\Controllers\HydrogenController')->atom(\Route::input('id'), $kernel, $page, $base_slug);

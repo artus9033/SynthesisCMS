@@ -11,6 +11,8 @@ return [
     'space_molecules' => ' Cząsteczki',
     'space_atom' => ' Atom',
     'space_atoms' => ' Atomy',
+    'guest_username' => 'Gość',
+    'guest_email' => 'Proszę się zalogować',
 ];
 
 ?>

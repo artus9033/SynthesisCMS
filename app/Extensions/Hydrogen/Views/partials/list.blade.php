@@ -1,6 +1,5 @@
 @foreach ($atoms as $key => $atom)
 	@php
-	$ctr++;
 	$atom_href = "";
 	if($base_slug != url("/") || $base_slug != "/"){
 		$atom_href = url($base_slug);

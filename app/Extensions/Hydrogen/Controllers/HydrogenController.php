@@ -10,9 +10,14 @@ use App\Models\Content\Atom;
 
 class HydrogenController extends Controller
 {
-	public function index($page, $kernel, $base_slug)
+	public function index($currentPage, $page, $kernel, $base_slug)
 	{
-		return \View::make('Hydrogen::index')->with(['atoms' => Atom::where('molecule', HydrogenExtension::where('id', $page->id)->first()->molecule)->get(), 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug]);
+		$atomsKey = HydrogenExtension::where('id', $page->id)->first()->molecule;
+		if($currentPage > Atom::where('molecule', $atomsKey)->count()){
+			return \App::abort(404);
+		}else{
+			return \View::make('Hydrogen::index')->with(['currentPage' => $currentPage, 'atomsKey' => $atomsKey, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug]);
+		}
 	}
 
 	public function atom($id, $kernel, $page, $base_slug){

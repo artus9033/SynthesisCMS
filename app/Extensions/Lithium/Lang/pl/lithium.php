@@ -7,7 +7,7 @@ return [
 	'options_modal_btn_copy_link' => 'Skopiuj link do tego Atomu',
 	'options_modal_header' => 'Proszę wybrać akcję',
 	'options_modal_btn_cancel' => 'Anuluj',
-	'name' => 'Litowa strona z pojedynczą Atomem',
+	'name' => 'Litowa strona z pojedynczym Atomem',
 ];
 
 ?>

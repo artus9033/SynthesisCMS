@@ -9,11 +9,11 @@
 @section('head')
 <style>
 	#molecule-div .caret {
-	  color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
+	  color: {{ $synthesiscmsMainColor }} !important;
 	}
 
 	#molecule-div .select-dropdown {
-	  border-bottom-color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
+	  border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 	}
 
 	#molecule-div .select-wrapper {
@@ -78,7 +78,7 @@ label{
 					</div>
 					<script>
 					$(document).ready(function(){
-						$(".editor").trumbowyg('html', {!! json_encode(addslashes($page->page_header)) !!});
+						$(".editor").trumbowyg('html', {!! json_encode($page->page_header) !!});
 					});
 					</script>
 					<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 row"></div>

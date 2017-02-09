@@ -9,11 +9,11 @@
 @section('head')
 <style>
 #settings-div .caret {
-	color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
+	color: {{ $synthesiscmsMainColor }} !important;
 }
 
 #settings-div .select-dropdown {
-	border-bottom-color: {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} !important;
+	border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 }
 
 #settings-div .select-wrapper {
@@ -156,7 +156,7 @@ label{
 				</div>
 				<script>
 				$(document).ready(function(){
-					$(".editor").trumbowyg('html', {!! json_encode(addslashes($synthesiscmsFooterLinksContent)) !!});
+					$(".editor").trumbowyg('html', {!! json_encode($synthesiscmsFooterLinksContent) !!});
 				});
 				</script>
 			</div>
