@@ -13,6 +13,8 @@ return [
     'space_atoms' => ' Atomy',
     'guest_username' => 'Gość',
     'guest_email' => 'Proszę się zalogować',
+    'route_occupied' => 'Ścieżka Zajęta',
+    'route_free' => 'Ścieżka Wolna',
 ];
 
 ?>

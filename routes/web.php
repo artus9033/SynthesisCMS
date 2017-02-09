@@ -7,6 +7,8 @@ Route::get('/backend', function () {
 Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin', ['as' => 'admin', 'uses' => 'Backend\\BackendController@index']);
 
+	Route::post('/synthesis-route-check', ['as' => 'synthesis_route_check', 'uses' => 'Content\\RouteController@checkRoute']);
+
 	Route::get('/admin/manage_routes', ['as' => 'manage_routes', 'uses' => 'Content\\RouteController@manageRoutesGet']);
 	Route::get('/admin/manage_routes/edit/{id}', ['as' => 'manage_routes_edit', 'uses' => 'Content\\RouteController@editRouteGet']);
 	Route::post('/admin/manage_routes/edit/{id}', ['as' => 'manage_routes_edit_post', 'uses' => 'Content\\RouteController@editRoutePost']);

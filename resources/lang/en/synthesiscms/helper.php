@@ -13,6 +13,8 @@ return [
     'space_atoms' => ' Atoms',
     'guest_username' => 'Guest',
     'guest_email' => 'Please Sign In',
+    'route_occupied' => 'Route Occupied',
+    'route_free' => 'Route Free',
 ];
 
 ?>

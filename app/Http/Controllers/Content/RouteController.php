@@ -15,6 +15,18 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 class RouteController extends Controller
 {
+	public function checkRoute(BackendRequest $request){
+		$routes = \Route::getRoutes();
+		$request = Request::create($request->get('route'));
+		try {
+		    $routes->match($request);
+		    return array('text' => trans('synthesiscms/helper.route_occupied'), 'color' => 'red', 'valid' => false);
+		}
+		catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
+		    return array('text' => trans('synthesiscms/helper.route_free'), 'color' => 'green', 'valid' => true);
+		}
+	}
+
 	public function manageRoutesGet()
 	{
 		return view('admin.manage_routes');

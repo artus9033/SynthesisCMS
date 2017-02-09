@@ -62,7 +62,6 @@ label{
 				<div class="card-panel col s8 offset-s2 z-depth-2 center {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
 				<h5>{{ trans('synthesiscms/extensions.edit_main') }}</h5>
 			</div>
-				<div class="row">
 						<div class="input-field col s6">
 							<input value="{{ $page->slug }}" id="slug" name="slug" type="text">
 							<label for="slug">{{ trans('synthesiscms/extensions.slug') }}</label>
@@ -71,7 +70,67 @@ label{
 							<input value="{{ $page->page_title }}" id="title" name="title" type="text">
 							<label for="title">{{ trans('synthesiscms/extensions.title') }}</label>
 						</div>
-					</div>
+						<div class="col s12 row">
+							<div style="display: none;" class="progress" id="slug-progress">
+								<div class="indeterminate"></div>
+							</div>
+							<div style="display: none; height: auto;" id="slug-status" class="card-panel col s6 offset-s3 green white-text center hoverable">
+								<h5 id="slug-text" class="center white-text"></h5>
+							</div>
+						</div>
+						<script>
+						ajaxRequests = new Array();
+						$('#slug').bind('input', function() {
+							$('#slug-progress').css("display", "inline-block");
+							$('#slug-status').css("display", "none");
+							if(!$('input[id=slug]').val().startsWith("/")){
+								$('input[id=slug]').val("/" + $('input[id=slug]').val());
+							}
+							$.each(ajaxRequests, function(index, request) {
+								request.abort();
+							});
+							function process(data){
+								$('#slug-progress').css("display", "none");
+								$("#slug-text").html(data['text']);
+								$('#slug-status').removeClass();
+								$('#slug-status').addClass('card-panel');
+								$('#slug-status').addClass('col s12');
+								$('#slug-status').addClass(data['color']);
+								$('#slug-status').css("display", "inline-block");
+								$('input[id=slug]').removeClass('valid');
+								$('input[id=slug]').removeClass('invalid');
+								if(data['valid']){
+									$('input[id=slug]').addClass('valid');
+								}else{
+									$('input[id=slug]').addClass('invalid');
+								}
+							}
+							ajaxReq = $.ajax({
+								url: "{{ url('/synthesis-route-check') }}",
+								type: "post",
+								data: {'route':$('input[id=slug]').val(), '_token': $('input[name=_token]').val()},
+								success: function(data){
+									process(data);
+								},
+								error: function(data){
+									if(data['statusText'] == 'Method Not Allowed'){
+										//Method Not Allowed (error 405) means that the route
+										//is occupied, but not on the GET method, so we treat
+										//it as free
+										arr = new Array();
+										arr['color'] = "green";
+										arr['valid'] = true;
+										arr['text'] = {!! json_encode(trans('synthesiscms/helper.route_free')) !!};
+										process(arr);
+									}
+									if(data['statusText'] != 'abort' && data['statusText'] != 'Method Not Allowed'){
+										console.log(data);
+									}
+								}
+							});
+							ajaxRequests.push(ajaxReq);
+						});
+						</script>
 					<div class="row col s12 container">
 						<label for="header">{{ trans('synthesiscms/extensions.header') }}</label>
 						<textarea class="editor" id="header" name="header"></textarea>

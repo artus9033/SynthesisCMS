@@ -8,17 +8,17 @@
 
 @section('head')
 <style>
-	.caret {
-	  color: {{ $synthesiscmsMainColor }} !important;
-	}
+.caret {
+	color: {{ $synthesiscmsMainColor }} !important;
+}
 
-	.select-dropdown {
-	  border-bottom-color: {{ $synthesiscmsMainColor }} !important;
-	}
+.select-dropdown {
+	border-bottom-color: {{ $synthesiscmsMainColor }} !important;
+}
 
-	.select-wrapper {
-	  margin-top: 5px !important;
-	}
+.select-wrapper {
+	margin-top: 5px !important;
+}
 </style>
 @endsection
 
@@ -33,31 +33,79 @@
 		<div class="card-content">
 			<div class="card-title col s12">
 				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.create_route') }}</h3>
+			</div>
+			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
+			<div class="col s12 row"></div>
+			<form class="form col s12" role="form" method="POST" action="">
+				{{ csrf_field() }}
+				<div class="input-field col s12 tooltipped" id="route-div" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.create_route_slug_tooltip') }}">
+					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">label_outline</i>
+					<input id="route" type="text" name="route">
+					<label for="route">{{ trans('synthesiscms/admin.create_route_slug_label') }}</label>
 				</div>
-				<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
-				<div class="col s12 row"></div>
-				@php
-				//TODO: dynamically check if route free:
-					$routes = \Route::getRoutes();
-					$request = Request::create("TODO");
-					try {
-					    $routes->match($request);
-					    //echo("yes");
+				<div>
+					<div style="display: none;" class="progress" id="route-progress">
+						<div class="indeterminate"></div>
+					</div>
+					<div style="display: none; height: auto;" id="route-status" class="card-panel col s6 offset-s3 green white-text center hoverable">
+						<h5 id="route-text" class="center white-text"></h5>
+					</div>
+				</div>
+				<script>
+				ajaxRequests = new Array();
+				$('#route').bind('input', function() {
+					$('#route-progress').css("display", "inline-block");
+					$('#route-status').css("display", "none");
+					if(!$('input[id=route]').val().startsWith("/")){
+						$('input[id=route]').val("/" + $('input[id=route]').val());
 					}
-					catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
-					    //echo("no");
+					$.each(ajaxRequests, function(index, request) {
+						request.abort();
+					});
+					function process(data){
+						$('#route-progress').css("display", "none");
+						$("#route-text").html(data['text']);
+						$('#route-status').removeClass();
+						$('#route-status').addClass('card-panel');
+						$('#route-status').addClass('col s12');
+						$('#route-status').addClass(data['color']);
+						$('#route-status').css("display", "inline-block");
+						$('input[id=route]').removeClass('valid');
+						$('input[id=route]').removeClass('invalid');
+						if(data['valid']){
+							$('input[id=route]').addClass('valid');
+						}else{
+							$('input[id=route]').addClass('invalid');
+						}
 					}
-				@endphp
-				<form class="form col s12" role="form" method="POST" action="">
-					{{ csrf_field() }}
-					<div class="input-field col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.create_route_slug_tooltip') }}">
-						<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">label_outline</i>
-				          <input id="route" type="text" name="route" class="validate">
-				          <label for="route">{{ trans('synthesiscms/admin.create_route_slug_label') }}</label>
-			        	</div>
+					ajaxReq = $.ajax({
+						url: "{{ url('/synthesis-route-check') }}",
+						type: "post",
+						data: {'route':$('input[id=route]').val(), '_token': $('input[name=_token]').val()},
+						success: function(data){
+							process(data);
+						},
+						error: function(data){
+							if(data['statusText'] == 'Method Not Allowed'){
+								//Method Not Allowed (error 405) means that the route
+								//is occupied, but not on the GET method, so we treat
+								//it as free
+								arr = new Array();
+								arr['color'] = "green";
+								arr['valid'] = true;
+								arr['text'] = {!! json_encode(trans('synthesiscms/helper.route_free')) !!};
+								process(arr);
+							}
+							if(data['statusText'] != 'abort' && data['statusText'] != 'Method Not Allowed'){
+								console.log(data);
+							}
+						}
+					});
+					ajaxRequests.push(ajaxReq);
+				});
+				</script>
 				<div class="input-field col s8 valign">
 					<select id="extension" name="extension" class="{{ $synthesiscmsMainColor }}-text">
-						<!-- TODO: add extensions groups wiht <optgroup> -->
 						@php
 						$extensions = config("synthesiscmsextensions.extensions");
 
@@ -74,6 +122,6 @@
 				</div>
 				<button type="submit" class="valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_route') }}</button>
 			</form>
-			</div>
 		</div>
-	@endsection
+	</div>
+@endsection
