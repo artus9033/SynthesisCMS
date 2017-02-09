@@ -80,9 +80,11 @@ label{
 						</div>
 						<script>
 						ajaxRequests = new Array();
+						formValid = false;
 						$('#slug').bind('input', function() {
 							$('#slug-progress').css("display", "inline-block");
 							$('#slug-status').css("display", "none");
+							$('input[id=slug]').val($('input[id=slug]').val().replace("\\", "/"));
 							if(!$('input[id=slug]').val().startsWith("/")){
 								$('input[id=slug]').val("/" + $('input[id=slug]').val());
 							}
@@ -101,14 +103,16 @@ label{
 								$('input[id=slug]').removeClass('invalid');
 								if(data['valid']){
 									$('input[id=slug]').addClass('valid');
+									formValid = true;
 								}else{
 									$('input[id=slug]').addClass('invalid');
+									formValid = false;
 								}
 							}
 							ajaxReq = $.ajax({
 								url: "{{ url('/synthesis-route-check') }}",
 								type: "post",
-								data: {'route':$('input[id=slug]').val(), '_token': $('input[name=_token]').val()},
+								data: {'source': {!! json_encode($page->slug) !!},'route':$('input[id=slug]').val(), '_token': $('input[name=_token]').val()},
 								success: function(data){
 									process(data);
 								},
@@ -129,6 +133,11 @@ label{
 								}
 							});
 							ajaxRequests.push(ajaxReq);
+						});
+						$("form").submit(function(e){
+							if(!formValid){
+								e.preventDefault();
+							}
 						});
 						</script>
 					<div class="row col s12 container">

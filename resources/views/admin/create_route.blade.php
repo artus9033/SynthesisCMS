@@ -53,9 +53,11 @@
 				</div>
 				<script>
 				ajaxRequests = new Array();
+				formValid = false;
 				$('#route').bind('input', function() {
 					$('#route-progress').css("display", "inline-block");
 					$('#route-status').css("display", "none");
+					$('input[id=route]').val($('input[id=route]').val().replace("\\", "/"));
 					if(!$('input[id=route]').val().startsWith("/")){
 						$('input[id=route]').val("/" + $('input[id=route]').val());
 					}
@@ -74,8 +76,10 @@
 						$('input[id=route]').removeClass('invalid');
 						if(data['valid']){
 							$('input[id=route]').addClass('valid');
+							formValid = true;
 						}else{
 							$('input[id=route]').addClass('invalid');
+							formValid = false;
 						}
 					}
 					ajaxReq = $.ajax({
@@ -102,6 +106,11 @@
 						}
 					});
 					ajaxRequests.push(ajaxReq);
+				});
+				$("form").submit(function(e){
+					if(!formValid){
+						e.preventDefault();
+					}
 				});
 				</script>
 				<div class="input-field col s8 valign">

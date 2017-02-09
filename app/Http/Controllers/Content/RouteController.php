@@ -17,13 +17,18 @@ class RouteController extends Controller
 {
 	public function checkRoute(BackendRequest $request){
 		$routes = \Route::getRoutes();
-		$request = Request::create($request->get('route'));
+		$request2 = Request::create($request->get('route'));
+		if($request->has('source')){
+			if($request->get('source') == $request->get('route')){
+				return array('text' => trans('synthesiscms/helper.route_free'), 'color' => 'green', 'valid' => true);
+			}
+		}
 		try {
-		    $routes->match($request);
-		    return array('text' => trans('synthesiscms/helper.route_occupied'), 'color' => 'red', 'valid' => false);
+			$routes->match($request2);
+			return array('text' => trans('synthesiscms/helper.route_occupied'), 'color' => 'red', 'valid' => false);
 		}
 		catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
-		    return array('text' => trans('synthesiscms/helper.route_free'), 'color' => 'green', 'valid' => true);
+			return array('text' => trans('synthesiscms/helper.route_free'), 'color' => 'green', 'valid' => true);
 		}
 	}
 
