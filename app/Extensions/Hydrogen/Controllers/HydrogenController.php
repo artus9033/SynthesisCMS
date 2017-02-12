@@ -16,7 +16,8 @@ class HydrogenController extends Controller
 		if($currentPage > Atom::where('molecule', $atomsKey)->count()){
 			return \App::abort(404);
 		}else{
-			return \View::make('Hydrogen::index')->with(['currentPage' => $currentPage, 'atomsKey' => $atomsKey, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug]);
+			$extension_instance = \App\Extensions\Hydrogen\Models\HydrogenExtension::find($page->id);
+			return \View::make('Hydrogen::index')->with(['currentPage' => $currentPage, 'atomsKey' => $atomsKey, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug, 'extension_instance' => $extension_instance]);
 		}
 	}
 
@@ -25,7 +26,8 @@ class HydrogenController extends Controller
 		if($atom == null){
 			return \View::make('errors.cms')->with(['error' => trans("Hydrogen::messages.err_atom_not_found"), 'help' => trans("Hydrogen::messages.err_atom_not_found_help")]);
 		}else{
-			return \View::make('Hydrogen::atom')->with(['atom' => $atom, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug]);
+			$extension_instance = \App\Extensions\Hydrogen\Models\HydrogenExtension::find($page->id);
+			return \View::make('Hydrogen::atom')->with(['atom' => $atom, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug, 'extension_instance' => $extension_instance]);
 		}
 	}
 }

@@ -40,7 +40,8 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function editGet($page)
 	{
-		return \View::make('Hydrogen::partials/edit')->with(['page' => $page]);
+		$extension_instance = \App\Extensions\Hydrogen\Models\HydrogenExtension::find($page->id);
+		return \View::make('Hydrogen::partials/edit')->with(['page' => $page, 'extension_instance' => $extension_instance]);
 	}
 
 	public function editPost($id, $request)
@@ -48,6 +49,7 @@ class ExtensionKernel extends SynthesisExtension
 		$extension = HydrogenExtension::where('id', $id)->first();
 		$extension->molecule = $request->get('hydrogen-molecule');
 		$extension->list_column_count = $request->get('list_column_count');
+		$extension->atoms_on_single_page = $request->get('atoms_on_single_page');
 		$extension->save();
 	}
 

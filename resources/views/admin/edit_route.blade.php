@@ -167,8 +167,8 @@ label{
 $(document).ready(function(){
 	$('.modal').modal({
 		dismissible: false
-	}
-);
+	});
+	$('#slug').trigger(jQuery.Event('input'));
 });
 </script>
 @endsection

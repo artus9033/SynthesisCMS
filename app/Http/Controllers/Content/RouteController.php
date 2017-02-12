@@ -16,6 +16,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 class RouteController extends Controller
 {
 	public function checkRoute(BackendRequest $request){
+		//TODO: Add possibility for each extension to check for the form if it's properly filled before saving
 		$routes = \Route::getRoutes();
 		$request2 = Request::create($request->get('route'));
 		if($request->has('source')){

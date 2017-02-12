@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class HydrogenExtension extends Model
 {
-	protected $fillable = array('id', 'molecule', 'list_column_count');
+	protected $fillable = array('id', 'molecule', 'list_column_count', 'atoms_on_single_page');
 
 	public $timestamps = true;
 }

@@ -8,6 +8,7 @@ return [
 	'err_atom_not_found' => 'Żądany Atom nie istnieje',
 	'err_atom_not_found_help' => 'Proszę zweryfikować, czy ID żądanego atomu jest poprawne',
 	'choose_list_column_count' => 'Wybierz ilość kolumn, w których są wyświetlane atomy',
+	'input_atoms_on_single_page' => 'Wybierz, ile atomów wyświetlać na pojedynczej stronie',
 ];
 
 ?>
