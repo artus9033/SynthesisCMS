@@ -8,23 +8,19 @@ function resizeIframeBasedOnContents(obj) {
 
 function toggleAll(selector){
 	$(selector).each(function(index) {
-		$(this).click();
+		$(this).prop('checked', !$(this.prop('checked')));
 	});
 }
 
 function selectAll(selector){
 	$(selector).each(function(index) {
-		if(!$(this).is(":checked")){
-			$(this).click();
-		}
+		$(this).prop('checked', 1);
 	});
 }
 
 function unselectAll(selector){
 	$(selector).each(function(index) {
-		if($(this).is(":checked")){
-			$(this).click();
-		}
+		$(this).prop('checked', 0);
 	});
 }
 

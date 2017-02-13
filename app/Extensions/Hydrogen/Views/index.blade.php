@@ -78,11 +78,28 @@
 					<i class="material-icons">chevron_left</i>
 				</a>
 			</li>
-			@for ($i = 1; $i <= ceil($atomsCount / $atomsPerPage); $i++)
+			@php
+			if(ceil($atomsCount / $atomsPerPage) <= 6){
+				$pagination_limit = ceil($atomsCount / $atomsPerPage);
+				$pagination_divider = false;
+			}else{
+				$pagination_limit = 3;
+				$pagination_divider = true;
+			}
+			@endphp
+			@for ($i = 1; $i <= $pagination_limit; $i++)
 				<li class="waves-effect waves-{{ $synthesiscmsMainColor }} @if($currentPage == $i) active @endif">
 					<a href="{{ url($base_slug) }}/p/{{ $i }}">{{ $i }}</a>
 				</li>
 			@endfor
+			@if($pagination_divider)
+				<span>...</span>
+				@for ($i = ceil($atomsCount / $atomsPerPage) + 1 - $pagination_limit; $i <= ceil($atomsCount / $atomsPerPage); $i++)
+				<li class="waves-effect waves-{{ $synthesiscmsMainColor }} @if($currentPage == $i) active @endif">
+					<a href="{{ url($base_slug) }}/p/{{ $i }}">{{ $i }}</a>
+				</li>
+				@endfor
+			@endif
 			<li @if($currentPage == ceil($atomsCount / $atomsPerPage)) class="disabled" @else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.next") }}" @endif>
 				<a @if($currentPage != ceil($atomsCount / $atomsPerPage)) href="{{ url($base_slug) }}/p/{{ $currentPage + 1 }}" @endif>
 					<i class="material-icons">chevron_right</i>

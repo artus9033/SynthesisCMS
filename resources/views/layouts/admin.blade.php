@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="{!! asset('js/materialize.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/clipboard.min.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('js/checkboxesjs.min.js') !!}"></script>
 	<script type="text/javascript">
 	$.ajaxSetup({
 		headers: {

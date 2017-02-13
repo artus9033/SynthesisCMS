@@ -5,3 +5,4 @@ database/database.sqlite
 .env
 .tags1
 composer.phar
+npm-debug.log
