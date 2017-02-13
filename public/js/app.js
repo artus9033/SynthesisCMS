@@ -8,7 +8,7 @@ function resizeIframeBasedOnContents(obj) {
 
 function toggleAll(selector){
 	$(selector).each(function(index) {
-		$(this).prop('checked', !$(this.prop('checked')));
+		$(this).prop('checked', !$(this).is(":checked"));
 	});
 }
 

@@ -39,13 +39,30 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapAdminRoutes();
+    }
+
+    /**
+     * Define the "admin" routes for the application.
+     *
+     * These routes are forced to check auth, encrypt cookies, use CSRF, etc.
+     *
+     * @return void
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::group([
+            'middleware' => 'admin',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/admin.php');
+        });
     }
 
     /**
      * Define the "web" routes for the application.
      *
-     * These routes all receive session state, CSRF protection, etc.
+     * These routes all receive session state, CSRF protection, a Stats Tracker, etc.
      *
      * @return void
      */

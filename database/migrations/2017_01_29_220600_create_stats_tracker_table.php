@@ -16,9 +16,8 @@ class CreateStatsTrackerTable extends Migration
         Schema::create('synthesiscms_stats_tracker', function (Blueprint $table) {
             $table->increments('id');
 		  $table->string('ip');
-		  $table->string('date');
-		  $table->string('visit_time');
-		  $table->integer('hits');
+		  $table->string('url');
+		  $table->integer('hits')->default(1);
         });
     }
 
