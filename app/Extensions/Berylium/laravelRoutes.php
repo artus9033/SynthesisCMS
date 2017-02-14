@@ -15,6 +15,7 @@
 
 Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin/manage_applets/Berylium/create', ['uses' => 'App\\Extensions\\Berylium\\ExtensionKernel@settingsCreatePositionGet']);
+	Route::post('/admin/manage_applets/Berylium/create', ['uses' => 'App\\Extensions\\Berylium\\ExtensionKernel@settingsCreatePositionPost']);
 });
 
 ?>

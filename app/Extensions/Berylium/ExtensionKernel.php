@@ -24,6 +24,33 @@ use App\Http\Requests\BackendRequest;
 
 class ExtensionKernel extends SynthesisExtension
 {
+	public function settingsCreatePositionPost(BackendRequest $request){
+		$title = $request->get('title');
+		$category = $request->get('category');
+		$type = $request->get('type');
+		$link = $request->get('link');
+		$errors = array();
+		$err = false;
+
+		if(strlen($title) == 0 || strlen(trim($title)) == 0){
+			$err = true;
+			array_push($errors, trans("berylium::messages.err_title_cannot_be_empty"));
+		}
+
+		if($err){
+			return \Redirect::to(\Request::path())->with('errors', $errors);
+		}else{
+			//TODO: add parent choosing
+			BeryliumItem::create(['type' => $type, 'category' => $category, 'title' => $title, 'href' => $link, 'parent' => 0, 'menu' => $this->findOrCreate()->id]);
+
+			return \Redirect::route("manage_routes")->with('message', trans('synthesiscms/admin.msg_route_saved', ['route' => $page->slug]));
+		}
+	}
+
+	public function settingsCreatePositionGet(){
+		return view("Berylium::partials/create_item")->with(['model' => $this->findOrCreate(), 'kernel' => $this]);
+	}
+
 	public function settingsGet(){
 		return view('Berylium::partials/settings')->with(['model' => $this->findOrCreate()]);
 	}
@@ -137,9 +164,5 @@ class ExtensionKernel extends SynthesisExtension
 		}else{
 			return $model;
 		}
-	}
-
-	public function settingsCreatePositionGet(){
-		return "TODO";
 	}
 }

@@ -19,6 +19,7 @@ class CreateBeryliumItemsTable extends Migration
 		  $table->integer('category')->default(3);
 		  $table->longtext('title');
 		  $table->longtext('href');
+		  $table->integer('menu')->default(1);
 		  $table->integer('parent')->default(0);
 		});
     }
