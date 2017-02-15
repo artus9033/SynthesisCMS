@@ -24,6 +24,12 @@ use App\Http\Requests\BackendRequest;
 
 class ExtensionKernel extends SynthesisExtension
 {
+	public function settingsDeletePosition(BackendRequest $request, $id){
+		$item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id]);
+		$item->delete();
+		return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_deleted'));
+	}
+
 	public function settingsCreatePositionPost(BackendRequest $request){
 		$title = $request->get('title');
 		$category = $request->get('category');
@@ -43,7 +49,7 @@ class ExtensionKernel extends SynthesisExtension
 			//TODO: add parent choosing
 			BeryliumItem::create(['type' => $type, 'category' => $category, 'title' => $title, 'href' => $link, 'parent' => 0, 'menu' => $this->findOrCreate()->id]);
 
-			return \Redirect::route("manage_routes")->with('message', trans('synthesiscms/admin.msg_route_saved', ['route' => $page->slug]));
+			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_added'));
 		}
 	}
 
@@ -59,6 +65,20 @@ class ExtensionKernel extends SynthesisExtension
 		$model = $this->findOrCreate();
 		$model->enabled = $request->get('enabled') == "on";
 		$model->save();
+		$count = 0;
+		foreach ($request->all() as $key => $val) {
+			if(starts_with($key, "item_checkbox")){
+				BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => intval(str_replace("item_checkbox", "", $key))])->delete();
+				$count++;
+			}
+		}
+		if($count == 0){
+			$errors = Array();
+			array_push($errors, trans('Berylium::messages.err_no_items_selected'));
+			\Session::put('errors', $errors); //TODO: fix this not being shown
+		}else{
+			\Session::put('message', trans('Berylium::messages.msg_items_deleted')); //TODO: fix this not being shown
+		}
 	}
 
 	public function getExtensionName(){

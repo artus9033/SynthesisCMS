@@ -34,12 +34,12 @@ label{
 					<input name="title" id="title" type="text">
 					<label for="title">{{ trans("Berylium::berylium.item_title") }}</label>
 				</div>
-				<div class="input-field col s6 applet-source-input" id="applet-link" style="display: none;">
+				<div class="input-field col s6 applet-source-input" id="applet-link">
 					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
 					<input name="link" id="link" type="text">
 					<label for="link">{{ trans("Berylium::berylium.item_link") }}</label>
 				</div>
-				<div class="col s6 applet-source-input" id="applet-molecule">
+				<div class="col s6 applet-source-input" id="applet-molecule" style="display: none;">
 					<a class="waves-effect waves-light {{ $synthesiscmsMainColorClass }} btn-large">
 						<i class="material-icons white-text left">group_work</i>
 						{{ trans("Berylium::berylium.item_molecule") }}

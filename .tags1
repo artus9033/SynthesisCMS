@@ -4,6 +4,5 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-CreateBeryliumItemsTable	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\Migrations\2017_03_02_190912_create_berylium_items_table.php	/^class CreateBeryliumItemsTable extends Migration$/;"	class	line:7
-up	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\Migrations\2017_03_02_190912_create_berylium_items_table.php	/^    public function up()$/;"	function	line:14
-down	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\Migrations\2017_03_02_190912_create_berylium_items_table.php	/^    public function down()$/;"	function	line:32
+ct	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\Views\partials\settings.blade.php	/^		$ct = 0;$/;"	variable	line:17
+key	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\Views\partials\settings.blade.php	/^		@foreach (App\\Extensions\\Berylium\\Models\\BeryliumItem::where('menu', $model->id)->get() as $key => $item)$/;"	variable	line:33

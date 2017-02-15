@@ -4,7 +4,7 @@ namespace App\Extensions\Berylium;
 
 class BeryliumItemCategory
 {
-	const Desktop = 1;
+	const General = 1;
 	const Mobile = 2;
-	const General = 3;
+	const Desktop = 3;
 }
