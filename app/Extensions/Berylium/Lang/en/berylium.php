@@ -6,7 +6,9 @@ return [
 	'disable' => 'Disable',
 	'edit' => 'Edit',
 	'delete' => 'Delete',
+	'parent' => 'Parent',
 	'mass_delete' => 'Mass Delete',
+	'option_default_parent' => 'None',
 	'applet_enable_header' => 'Enable The Berylium Menu Applet',
 	'empty' => 'No Berylium Items exist',
 	'category_1' => "General",
@@ -27,6 +29,7 @@ return [
 	'header_title' => 'Title',
 	'header_category' => 'Category',
 	'header_type' => 'Type',
+	'order' => 'Order',
 ];
 
 ?>

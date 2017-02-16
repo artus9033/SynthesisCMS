@@ -6,9 +6,11 @@ return [
 	'disable' => 'Wyłącz',
 	'edit' => 'Edytuj',
 	'delete' => 'Usuń',
+	'parent' => 'Nadrzędny',
 	'mass_delete' => 'Usuń Masowo',
 	'applet_enable_header' => 'Włącz Applet Berylowe Menu',
 	'empty' => 'Brak elementów menu...',
+	'option_default_parent' => 'Brak',
 	'category_1' => "Ogólna",
 	'category_2' => 'Mobilna',
 	'category_3' => 'Desktopowa',
@@ -27,6 +29,7 @@ return [
 	'header_title' => 'Tytuł',
 	'header_category' => 'Kategoria',
 	'header_type' => 'Typ',
+	'order' => 'Kolejność',
 ];
 
 ?>

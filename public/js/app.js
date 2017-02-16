@@ -3,8 +3,13 @@ function setLanguage(lang, base){
 }
 
 function resizeIframeBasedOnContents(obj) {
-    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
- }
+	// Timeout makes sure that if the document contains JS that changes
+	// UI, it will be executed before resizing the iframe,
+	// thus the new content won't appear outside the iframe's borders
+	setTimeout(function(){
+		obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+	}, 600);
+}
 
 function toggleAll(selector){
 	$(selector).each(function(index) {
@@ -26,13 +31,13 @@ function unselectAll(selector){
 
 $(document).ready(function() {
 	$('.dropdown-button').dropdown({
-      inDuration: 500,
-      outDuration: 350,
-      constrain_width: true,
-      hover: true,
-      gutter: 0,
-      belowOrigin: true
-    });
-    $('select').material_select();
-   $('.collapsible').collapsible();
+		inDuration: 500,
+		outDuration: 350,
+		constrain_width: true,
+		hover: true,
+		gutter: 0,
+		belowOrigin: true
+	});
+	$('select').material_select();
+	$('.collapsible').collapsible();
 });

@@ -56,8 +56,28 @@
 			</ul>
 			</div>
 			<div class="col s9">
-				<iframe scrolling="no" onload="resizeIframeBasedOnContents(this)" class="col s12" height="420px" frameBorder="0" id="settings-view" src="{{ url('/admin/manage_applets') }}/{{ $firstExt }}"></iframe>
+				<iframe scrolling="no" onchange="resizeIframeBasedOnContents(this)" onload="resizeIframeBasedOnContents(this)" class="col s12" height="420px" frameBorder="0" id="settings-view" src="{{ url('/admin/manage_applets') }}/{{ $firstExt }}"></iframe>
 			</div>
 		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	</div>
 @endsection
