@@ -7,59 +7,57 @@
 is	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^* related to the Extension. This class is required, otherwise any routes$/;"	class	line:21
 ExtensionKernel	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^class ExtensionKernel extends SynthesisExtension$/;"	class	line:25
 settingsPositionUp	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsPositionUp(BackendRequest $request, $id){$/;"	function	line:27
-has_children	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$has_children = false;$/;"	variable	line:31
-item	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id])->first();$/;"	variable	line:32
-item_before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item_before_id = $item->before;$/;"	variable	line:33
-item_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item_id = $item->id;$/;"	variable	line:34
-before	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $item_before_id])->first();$/;"	variable	line:36
-before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before_id = $before->id;$/;"	variable	line:37
-before_before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before_before_id = $before->before;$/;"	variable	line:38
-has_children	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$has_children = true;$/;"	variable	line:43
+item	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id])->first();$/;"	variable	line:33
+item_before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item_before_id = $item->before;$/;"	variable	line:34
+item_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item_id = $item->id;$/;"	variable	line:35
+before	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $item_before_id])->first();$/;"	variable	line:37
+before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before_id = $before->id;$/;"	variable	line:38
+before_before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before_before_id = $before->before;$/;"	variable	line:39
 child_item	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$child_item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $item->id])->first();$/;"	variable	line:44
 settingsPositionDown	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsPositionDown(BackendRequest $request, $id){$/;"	function	line:55
-has_children	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$has_children = false;$/;"	variable	line:59
-item	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id])->first();$/;"	variable	line:60
-item_before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item_before_id = $item->before;$/;"	variable	line:61
-item_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item_id = $item->id;$/;"	variable	line:62
-before	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $item_before_id])->first();$/;"	variable	line:64
-before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before_id = $before->id;$/;"	variable	line:65
-before_before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before_before_id = $before->before;$/;"	variable	line:66
-has_children	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$has_children = true;$/;"	variable	line:71
+item	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id])->first();$/;"	variable	line:61
+item_before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item_before_id = $item->before;$/;"	variable	line:62
+item_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item_id = $item->id;$/;"	variable	line:63
+before	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $item_before_id])->first();$/;"	variable	line:65
+before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before_id = $before->id;$/;"	variable	line:66
+before_before_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$before_before_id = $before->before;$/;"	variable	line:67
 child_item	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$child_item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $item->id])->first();$/;"	variable	line:72
-settingsDeletePosition	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsDeletePosition(BackendRequest $request, $id){$/;"	function	line:83
-item	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id]);$/;"	variable	line:84
-settingsCreatePositionPost	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsCreatePositionPost(BackendRequest $request){$/;"	function	line:89
-title	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$title = $request->get('title');$/;"	variable	line:90
-category	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$category = $request->get('category');$/;"	variable	line:91
-type	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$type = $request->get('type');$/;"	variable	line:92
-link	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$link = $request->get('link');$/;"	variable	line:93
-errors	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$errors = array();$/;"	variable	line:94
-err	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$err = false;$/;"	variable	line:95
-err	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$err = true;$/;"	variable	line:98
-items_raw	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^				$items_raw = BeryliumItem::where('menu', $this->findOrCreate()->id);$/;"	variable	line:106
-items_count	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^				$items_count = $items_raw->count();$/;"	variable	line:107
-posctr	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^				$posctr = 0;$/;"	variable	line:108
-before	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^					$before = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $id])->first()->id;$/;"	variable	line:110
-id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^					$id = $before;$/;"	variable	line:111
-before	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^				$before = 0;$/;"	variable	line:114
-settingsCreatePositionGet	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsCreatePositionGet(){$/;"	function	line:121
-settingsGet	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsGet(){$/;"	function	line:125
-settingsPost	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsPost(BackendRequest $request){$/;"	function	line:129
-model	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$model = $this->findOrCreate();$/;"	variable	line:130
-count	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$count = 0;$/;"	variable	line:133
-key	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		foreach ($request->all() as $key => $val) {$/;"	variable	line:134
-errors	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$errors = Array();$/;"	variable	line:141
-getExtensionName	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function getExtensionName(){$/;"	function	line:149
-getExtensionType	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function getExtensionType(){$/;"	function	line:153
-showMenu	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function showMenu($slug){$/;"	function	line:157
-showMenuMobileButton	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function showMenuMobileButton($slug){$/;"	function	line:161
-getMobileMenuItems	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function getMobileMenuItems($slug){$/;"	function	line:165
-out	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$out = "";$/;"	variable	line:166
-getDesktopMenuItems	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function getDesktopMenuItems($slug){$/;"	function	line:189
-out	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$out = "";$/;"	variable	line:190
-getGeneralMenuItems	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function getGeneralMenuItems($slug){$/;"	function	line:213
-out	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$out = "";$/;"	variable	line:214
-hookPositions	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function hookPositions(&$manager){$/;"	function	line:237
-findOrCreate	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function findOrCreate(){$/;"	function	line:245
-model	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$model = BeryliumExtension::find(1);$/;"	variable	line:246
-model	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$model = BeryliumExtension::create();$/;"	variable	line:248
+child_item_id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$child_item_id = $child_item->id;$/;"	variable	line:75
+child_item2	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^				$child_item2 = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $child_item_id])->first();$/;"	variable	line:77
+settingsDeletePosition	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsDeletePosition(BackendRequest $request, $id){$/;"	function	line:89
+item	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id]);$/;"	variable	line:90
+settingsCreatePositionPost	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsCreatePositionPost(BackendRequest $request){$/;"	function	line:95
+title	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$title = $request->get('title');$/;"	variable	line:96
+category	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$category = $request->get('category');$/;"	variable	line:97
+type	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$type = $request->get('type');$/;"	variable	line:98
+link	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$link = $request->get('link');$/;"	variable	line:99
+errors	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$errors = array();$/;"	variable	line:100
+err	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$err = false;$/;"	variable	line:101
+err	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$err = true;$/;"	variable	line:104
+items_raw	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^				$items_raw = BeryliumItem::where('menu', $this->findOrCreate()->id);$/;"	variable	line:112
+items_count	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^				$items_count = $items_raw->count();$/;"	variable	line:113
+posctr	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^				$posctr = 0;$/;"	variable	line:114
+before	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^					$before = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $id])->first()->id;$/;"	variable	line:116
+id	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^					$id = $before;$/;"	variable	line:117
+before	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^				$before = 0;$/;"	variable	line:120
+settingsCreatePositionGet	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsCreatePositionGet(){$/;"	function	line:127
+settingsGet	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsGet(){$/;"	function	line:131
+settingsPost	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function settingsPost(BackendRequest $request){$/;"	function	line:135
+model	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$model = $this->findOrCreate();$/;"	variable	line:136
+count	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$count = 0;$/;"	variable	line:139
+key	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		foreach ($request->all() as $key => $val) {$/;"	variable	line:140
+errors	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$errors = Array();$/;"	variable	line:147
+getExtensionName	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function getExtensionName(){$/;"	function	line:155
+getExtensionType	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function getExtensionType(){$/;"	function	line:159
+showMenu	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function showMenu($slug){$/;"	function	line:163
+showMenuMobileButton	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function showMenuMobileButton($slug){$/;"	function	line:167
+getMobileMenuItems	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function getMobileMenuItems($slug){$/;"	function	line:171
+out	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$out = "";$/;"	variable	line:172
+getDesktopMenuItems	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function getDesktopMenuItems($slug){$/;"	function	line:195
+out	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$out = "";$/;"	variable	line:196
+getGeneralMenuItems	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function getGeneralMenuItems($slug){$/;"	function	line:219
+out	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$out = "";$/;"	variable	line:220
+hookPositions	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function hookPositions(&$manager){$/;"	function	line:243
+findOrCreate	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^	public function findOrCreate(){$/;"	function	line:251
+model	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^		$model = BeryliumExtension::find(1);$/;"	variable	line:252
+model	C:\xampp\htdocs\synthesiscms\app\Extensions\Berylium\ExtensionKernel.php	/^			$model = BeryliumExtension::create();$/;"	variable	line:254
