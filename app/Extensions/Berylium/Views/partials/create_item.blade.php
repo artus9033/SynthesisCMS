@@ -84,9 +84,9 @@ label{
 				</div>
 				<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="molecule-div">
 					<select id="parent" name="parent">
-						<option value="0">{{ trans("Berylium::berylium.option_default_parent") }}</option>
+						<option value="{{ $model->id }};0">{{ trans("Berylium::berylium.option_default_parent") }}</option>
 						@foreach (App\Extensions\Berylium\Models\BeryliumItem::where('menu', $model->id)->get() as $key => $item)
-							<option value="{{ $item }}">{{ App\Toolbox::string_truncate($item->title, 20) }}</option>
+							<option value="{{ $item->parentOf }};{{ $item->id }}">{{ App\Toolbox::string_truncate($item->title, 20) }}</option>
 						@endforeach
 					</select>
 					<label>{{ trans("Berylium::berylium.parent") }}</label>

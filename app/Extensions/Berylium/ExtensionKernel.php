@@ -25,28 +25,28 @@ use App\Http\Requests\BackendRequest;
 class ExtensionKernel extends SynthesisExtension
 {
 	public function settingsPositionUp(BackendRequest $request, $id){
-		if(BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id])->count() == 0){
-			if(BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id])->get()->before == 0){
+		if(BeryliumItem::where(['id' => $id])->count() == 0){
+			if(BeryliumItem::where(['id' => BeryliumItem::where(['id' => $id])->first()->before])->count() == 0){
 				return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('errors', array(trans('Berylium::messages.err_item_doesnt_exist')));
 			}
 		}
-		$item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id])->first();
+		$item = BeryliumItem::where(['menu' => BeryliumItem::where(['id' => $id])->first()->menu, 'id' => $id])->first();
+		$menu = $item->menu;
 		$item_before_id = $item->before;
-		$item_id = $item->id;
-		if(BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $item_before_id])->count() != 0){
-			$before = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $item_before_id])->first();
+		if(BeryliumItem::where(['menu' => $menu, 'id' => $item_before_id])->count() != 0){
+			$before = BeryliumItem::where(['menu' => $menu, 'id' => $item_before_id])->first();
 			$before_id = $before->id;
 			$before_before_id = $before->before;
 		}else{
 			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('errors', array(trans('Berylium::messages.err_item_cannot_be_moved')));
 		}
-		if(BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $item->id])->count() != 0){
-			$child_item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $item->id])->first();
+		if(BeryliumItem::where(['menu' => $menu, 'before' => $item->id])->count() != 0){
+			$child_item = BeryliumItem::where(['menu' => $menu, 'before' => $item->id])->first();
 			$child_item->before = $before_id;
 			$child_item->save();
 		}
 		$item->before = $before_before_id;
-		$before->before = $item_id;
+		$before->before = $id;
 		$item->save();
 		$before->save();
 		return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_moved'));
@@ -84,7 +84,18 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function settingsDeletePosition(BackendRequest $request, $id){
-		$item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id]);
+		$item = BeryliumItem::where(['id' => $id])->first();
+		$after_query = BeryliumItem::where(['menu' => $item->menu, 'before' => $item->id]);
+		if($after_query->count()){
+			$after = $after_query->first();
+			$after->before = $item->before;
+			$after->save();
+		}
+		$menu = $item->parentOf;
+		$children = BeryliumItem::where(['menu' => $menu, 'before' => $id])->get();
+		foreach($children as $child){
+			$child->delete();
+		}
 		$item->delete();
 		return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_deleted'));
 	}
@@ -94,6 +105,8 @@ class ExtensionKernel extends SynthesisExtension
 		$category = $request->get('category');
 		$type = $request->get('type');
 		$link = $request->get('link');
+		$menu_and_id = $request->get('parent');
+		list($menu, $parent_id) = explode(";", $menu_and_id);
 		$errors = array();
 		$err = false;
 
@@ -105,18 +118,20 @@ class ExtensionKernel extends SynthesisExtension
 		if($err){
 			return \Redirect::to(\Request::path())->with('errors', $errors);
 		}else{
-			if(BeryliumItem::where(['menu' => $this->findOrCreate()->id])->count()){
-				$items_raw = BeryliumItem::where('menu', $this->findOrCreate()->id);
+			if(BeryliumItem::where(['menu' => $menu, 'before' => $parent_id])->count()){
+				$items_raw = BeryliumItem::where('menu', $menu);
 				$items_count = $items_raw->count();
 				$posctr = 0;
-				for($id = 0; $posctr < $items_count; $posctr++){
-					$before = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $id])->first()->id;
+				for( $id = $parent_id; $posctr < $items_count; $posctr++){
+					$before = BeryliumItem::where(['menu' => $menu, 'before' => $id])->first()->id;
 					$id = $before;
 				}
 			}else{
-				$before = 0;
+				$before = $parent_id;
 			}
-			BeryliumItem::create(['type' => $type, 'category' => $category, 'title' => $title, 'href' => $link, 'parent' => 0, 'before' => $before, 'menu' => $this->findOrCreate()->id]);
+			$created = BeryliumItem::create(['type' => $type, 'category' => $category, 'title' => $title, 'href' => $link, 'before' => $before, 'menu' => $menu]);
+			$created->parentOf = $created->id + 1;
+			$created->save();
 			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_added'));
 		}
 	}
@@ -136,7 +151,19 @@ class ExtensionKernel extends SynthesisExtension
 		$count = 0;
 		foreach ($request->all() as $key => $val) {
 			if(starts_with($key, "item_checkbox")){
-				BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => intval(str_replace("item_checkbox", "", $key))])->delete();
+				$item = BeryliumItem::where(['id' => intval(str_replace("item_checkbox", "", $key))])->first();
+				$after_query = BeryliumItem::where(['menu' => $item->menu, 'before' => $item->id]);
+				if($after_query->count()){
+					$after = $after_query->first();
+					$after->before = $item->before;
+					$after->save();
+				}
+				$menu = $item->parentOf;
+				$children = BeryliumItem::where(['menu' => $menu, 'before' => $item->id])->get();
+				foreach($children as $child){
+					$child->delete();
+				}
+				$item->delete();
 				$count++;
 			}
 		}
