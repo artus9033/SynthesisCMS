@@ -16,8 +16,6 @@ use App\Http\Controllers\Controller;
 
 class BackendController extends Controller
 {
-//TODO: all models can be created and edited with empty title/other fields; fix this
-//TODO: implement multi-instance setting profiles
 	public function index()
 	{
 		if(Auth::check() && Auth::user()->is_admin){

@@ -24,6 +24,7 @@ use App\Http\Requests\BackendRequest;
 
 class ExtensionKernel extends SynthesisExtension
 {
+	//TODO: IMPLEMENT EDITING AND CREATING WITH DIFFERENT SOURCES (BOTH FORMS & QUERIES TO EDIT!!!)
 	public function settingsPositionUp(BackendRequest $request, $id){
 		if(BeryliumItem::where(['id' => $id])->count() == 0){
 			if(BeryliumItem::where(['id' => BeryliumItem::where(['id' => $id])->first()->before])->count() == 0){
@@ -100,11 +101,54 @@ class ExtensionKernel extends SynthesisExtension
 		return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_deleted'));
 	}
 
+	public function settingsEditPositionPost(BackendRequest $request, $id){
+		$title = $request->get('title');
+		$category = $request->get('category');
+		$type = $request->get('type');
+		/**switch(type){
+		$data = $request->get('link');
+	}TODO: implement this**/
+		$errors = array();
+		$err = false;
+
+		$query = BeryliumItem::where(['id' => $id]);
+
+		if($query->count() == 0){
+			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('errors', array(trans('Berylium::messages.err_item_doesnt_exist')));
+		}
+
+		if(strlen($title) == 0 || strlen(trim($title)) == 0){
+			$err = true;
+			array_push($errors, trans("Berylium::messages.err_title_cannot_be_empty"));
+		}
+
+		if($err){
+			return \Redirect::to(\Request::path())->with('errors', $errors);
+		}else{
+			$item = $query->first();
+			$item->title = $title;
+			$item->category = $category;
+			$item->type = $type;
+			$item->data = $data;
+			$item->save();
+			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_saved'));
+		}
+	}
+
+	public function settingsEditPositionGet($id){
+		$query = BeryliumItem::where(['id' => $id]);
+		if($query->count() == 0){
+			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('errors', array(trans('Berylium::messages.err_item_doesnt_exist')));
+		}else{
+			return view("Berylium::partials/edit_item")->with(['model' => $this->findOrCreate(), 'kernel' => $this, 'item' => $query->first()]);
+		}
+	}
+
 	public function settingsCreatePositionPost(BackendRequest $request){
 		$title = $request->get('title');
 		$category = $request->get('category');
 		$type = $request->get('type');
-		$link = $request->get('link');
+		$data = $request->get('link');
 		$menu_and_id = $request->get('parent');
 		list($menu, $parent_id) = explode(";", $menu_and_id);
 		$errors = array();
@@ -129,7 +173,7 @@ class ExtensionKernel extends SynthesisExtension
 			}else{
 				$before = $parent_id;
 			}
-			$created = BeryliumItem::create(['type' => $type, 'category' => $category, 'title' => $title, 'href' => $link, 'before' => $before, 'menu' => $menu]);
+			$created = BeryliumItem::create(['type' => $type, 'category' => $category, 'title' => $title, 'data' => $data, 'before' => $before, 'menu' => $menu]);
 			$created->parentOf = $created->id + 1;
 			$created->save();
 			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_added'));
@@ -197,15 +241,15 @@ class ExtensionKernel extends SynthesisExtension
 		foreach(BeryliumItem::where('category', BeryliumItemCategory::Mobile)->cursor() as $item){
 			switch($item->type){
 				case BeryliumItemType::Atom:
-				$out .= "<li><a href='" . $item->href . "'>" . $item->title . "</a></li>";
+				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
 				break;
 
 				case BeryliumItemType::Molecule:
-				$out .= "<li><a href='" . $item->href . "'>" . $item->title . "</a></li>";
+				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
 				break;
 
 				case BeryliumItemType::Link:
-				$out .= "<li><a href='" . $item->href . "'>" . $item->title . "</a></li>";
+				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
 				break;
 
 				case BeryliumItemType::Placeholder:
@@ -221,15 +265,15 @@ class ExtensionKernel extends SynthesisExtension
 		foreach(BeryliumItem::where('category', BeryliumItemCategory::Desktop)->cursor() as $item){
 			switch($item->type){
 				case BeryliumItemType::Atom:
-				$out .= "<li><a href='" . $item->href . "'>" . $item->title . "</a></li>";
+				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
 				break;
 
 				case BeryliumItemType::Molecule:
-				$out .= "<li><a href='" . $item->href . "'>" . $item->title . "</a></li>";
+				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
 				break;
 
 				case BeryliumItemType::Link:
-				$out .= "<li><a href='" . $item->href . "'>" . $item->title . "</a></li>";
+				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
 				break;
 
 				case BeryliumItemType::Placeholder:
@@ -245,15 +289,15 @@ class ExtensionKernel extends SynthesisExtension
 		foreach(BeryliumItem::where('category', BeryliumItemCategory::General)->cursor() as $item){
 			switch($item->type){
 				case BeryliumItemType::Atom:
-				$out .= "<li><a href='" . $item->href . "'>" . $item->title . "</a></li>";
+				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
 				break;
 
 				case BeryliumItemType::Molecule:
-				$out .= "<li><a href='" . $item->href . "'>" . $item->title . "</a></li>";
+				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
 				break;
 
 				case BeryliumItemType::Link:
-				$out .= "<li><a href='" . $item->href . "'>" . $item->title . "</a></li>";
+				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
 				break;
 
 				case BeryliumItemType::Placeholder:

@@ -19,6 +19,8 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin/manage_applets/Berylium/delete/{id}', ['uses' => 'App\\Extensions\\Berylium\\ExtensionKernel@settingsDeletePosition']);
 	Route::get('/admin/manage_applets/Berylium/up/{id}', ['uses' => 'App\\Extensions\\Berylium\\ExtensionKernel@settingsPositionUp']);
 	Route::get('/admin/manage_applets/Berylium/down/{id}', ['uses' => 'App\\Extensions\\Berylium\\ExtensionKernel@settingsPositionDown']);
+	Route::get('/admin/manage_applets/Berylium/edit/{id}', ['uses' => 'App\\Extensions\\Berylium\\ExtensionKernel@settingsEditPositionGet']);
+	Route::post('/admin/manage_applets/Berylium/edit/{id}', ['uses' => 'App\\Extensions\\Berylium\\ExtensionKernel@settingsEditPositionPost']);
 });
 
 ?>
