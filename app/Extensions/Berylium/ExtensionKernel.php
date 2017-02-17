@@ -59,30 +59,27 @@ class ExtensionKernel extends SynthesisExtension
 			}
 		}
 		$item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id])->first();
-		$item_before_id = $item->before;
-		$item_id = $item->id;
-		if(BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $id])->count() != 0){
-			$before = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $item_before_id])->first();
+		if(BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $item->before])->count() != 0){
+			$before = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $item->before])->first();
 			$before_id = $before->id;
-			$before_before_id = $before->before;
 		}else{
-			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('errors', array(trans('Berylium::messages.err_item_cannot_be_moved')));
+			$before_id = 0;
 		}
-		if(BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $item->id])->count() != 0){
-			$child_item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $item->id])->first();
-			$child_item->before = $before_before_id;
+		if(BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $id])->count() != 0){
+			$child_item = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $id])->first();
+			$child_item->before = $before_id;
 			$child_item->save();
 			$child_item_id = $child_item->id;
 			if(BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $child_item_id])->count() != 0){
 				$child_item2 = BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $child_item_id])->first();
-				$child_item2->before = $item_id;
+				$child_item2->before = $id;
 				$child_item2->save();
 			}
+		}else{
+			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('errors', array(trans('Berylium::messages.err_item_cannot_be_moved')));
 		}
 		$item->before = $child_item_id;
-		$before->before = $item_id;
 		$item->save();
-		$before->save();
 		return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_moved'));
 	}
 
