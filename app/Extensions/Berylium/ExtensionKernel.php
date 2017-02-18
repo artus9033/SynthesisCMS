@@ -13,6 +13,9 @@ use App\SynthesisCMS\API\Positions\SynthesisPositions;
 use App\SynthesisCMS\API\Positions\SynthesisPositionManager;
 use App\SynthesisCMS\API\SynthesisExtensionType;
 use App\Http\Requests\BackendRequest;
+use App\Models\Settings\Settings;
+use App\Models\Content\Atom;
+use App\Models\Content\Molecule;
 
 /**
 * ExtensionKernel
@@ -105,9 +108,20 @@ class ExtensionKernel extends SynthesisExtension
 		$title = $request->get('title');
 		$category = $request->get('category');
 		$type = $request->get('type');
-		/**switch(type){
-		$data = $request->get('link');
-	}TODO: implement this**/
+		switch($type){
+			case 1:
+			$data = $request->get('link');
+			break;
+			case 2:
+			$data = $request->get('atom');
+			break;
+			case 3:
+			$data = $request->get('molecule');
+			break;
+			case 4:
+			$data = "";
+			break;
+		}
 		$errors = array();
 		$err = false;
 
@@ -148,7 +162,21 @@ class ExtensionKernel extends SynthesisExtension
 		$title = $request->get('title');
 		$category = $request->get('category');
 		$type = $request->get('type');
-		$data = $request->get('link');
+		switch($type){
+			case 1:
+			$data = $request->get('link');
+			echo "link";
+			break;
+			case 2:
+			$data = $request->get('atom');
+			break;
+			case 3:
+			$data = $request->get('molecule');
+			break;
+			case 4:
+			$data = "";
+			break;
+		}
 		$menu_and_id = $request->get('parent');
 		list($menu, $parent_id) = explode(";", $menu_and_id);
 		$errors = array();
@@ -236,74 +264,74 @@ class ExtensionKernel extends SynthesisExtension
 		return view('Berylium::mobile_button')->with('slug', $slug);
 	}
 
+	public function returnItem($item, $url){
+		$synthesiscmsMainColor = Settings::getFromActive('tab_color');
+		switch($item->type){
+			//TODO: DELETE ATOM, MOLECULE TYPE & add Page type
+			case BeryliumItemType::Atom:
+			$href = "todo";
+			$out = "<a href='$href'>" . $item->title . "</a>";
+			break;
+
+			case BeryliumItemType::Molecule:
+			$href = "todo";
+			$out = "<a href='$href'>" . $item->title . "</a>";
+			break;
+
+			case BeryliumItemType::Link:
+			$href = $item->data;
+			$out = "<a href='$href'>" . $item->title . "</a>";
+			break;
+
+			case BeryliumItemType::Placeholder:
+			$href = $url;
+			$out = "<a>" . $item->title . "</a>";
+			break;
+		}
+		if($href == $url){
+			$active = " active ";
+		}else{
+			$active = "";
+		}
+		return ['data' => $out, 'active' => $active];
+	}
+
 	public function getMobileMenuItems($slug){
 		$out = "";
 		foreach(BeryliumItem::where('category', BeryliumItemCategory::Mobile)->cursor() as $item){
-			switch($item->type){
-				case BeryliumItemType::Atom:
-				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
-				break;
-
-				case BeryliumItemType::Molecule:
-				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
-				break;
-
-				case BeryliumItemType::Link:
-				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
-				break;
-
-				case BeryliumItemType::Placeholder:
-				$out .= "<li><span>" . $item->title . "</span></li>";
-				break;
-			}
+			$itemdata = $this->returnItem($item, $slug);
+			$active = $itemdata['active'];
+			$out .= "<li class='$active'>" . $itemdata['data'] . "</li>";
 		}
 		return $out;
 	}
 
 	public function getDesktopMenuItems($slug){
 		$out = "";
+		$synthesiscmsMainColor = Settings::getFromActive('tab_color');
 		foreach(BeryliumItem::where('category', BeryliumItemCategory::Desktop)->cursor() as $item){
-			switch($item->type){
-				case BeryliumItemType::Atom:
-				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
-				break;
-
-				case BeryliumItemType::Molecule:
-				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
-				break;
-
-				case BeryliumItemType::Link:
-				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
-				break;
-
-				case BeryliumItemType::Placeholder:
-				$out .= "<li><span>" . $item->title . "</span></li>";
-				break;
-			}
+			$itemdata = $this->returnItem($item, $slug);
+			$active = $itemdata['active'];
+			$out .= "<li class='$active'>" . $itemdata['data'] . "</li>";
 		}
 		return $out;
 	}
 
-	public function getGeneralMenuItems($slug){
+	public function getGeneralMenuItems($slug, $menuType){
 		$out = "";
+		$synthesiscmsMainColor = Settings::getFromActive('main_color');
+		switch($menuType){
+			case 'mobile':
+			$li_class = "col s12 waves-effect waves-$synthesiscmsMainColor";
+			break;
+			case 'desktop':
+			$li_class = "";
+			break;
+		}
 		foreach(BeryliumItem::where('category', BeryliumItemCategory::General)->cursor() as $item){
-			switch($item->type){
-				case BeryliumItemType::Atom:
-				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
-				break;
-
-				case BeryliumItemType::Molecule:
-				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
-				break;
-
-				case BeryliumItemType::Link:
-				$out .= "<li><a href='" . $item->data . "'>" . $item->title . "</a></li>";
-				break;
-
-				case BeryliumItemType::Placeholder:
-				$out .= "<li><span>" . $item->title . "</span></li>";
-				break;
-			}
+			$itemdata = $this->returnItem($item, $slug);
+			$active = $itemdata['active'];
+			$out .= "<li class='$active $li_class'>" . $itemdata['data'] . "</li>";
 		}
 		return $out;
 	}

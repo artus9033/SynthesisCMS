@@ -54,9 +54,6 @@ label{
 					<input name="atom" id="atom" type="text" hidden="hidden" @if($item->type == 2) value="{{ $item->data }}" @endif>
 				</div>
 				<div class="input-field col s6 applet-source-input" id="applet-placeholder" style="display: none;">
-					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">subtitles</i>
-					<input name="placeholder" id="placeholder" type="text" @if($item->type == 4) value="{{ $item->data }}" @endif>
-					<label for="placeholder">{{ trans("Berylium::berylium.item_placeholder") }}</label>
 				</div>
 				<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="molecule-div">
 					<select id="category" name="category">
@@ -87,13 +84,13 @@ label{
 			$('#type').on('change', function() {
 				if(this.value == 1){
 					$('.applet-source-input').css("display", "none");
-					$('#applet-molecule').fadeIn();
+					$('#applet-link').fadeIn();
 				}else if(this.value == 2){
 					$('.applet-source-input').css("display", "none");
 					$('#applet-atom').fadeIn();
 				}else if(this.value == 3){
 					$('.applet-source-input').css("display", "none");
-					$('#applet-link').fadeIn();
+					$('#applet-molecule').fadeIn();
 				}else if(this.value == 4){
 					$('.applet-source-input').css("display", "none");
 					$('#applet-placeholder').fadeIn();

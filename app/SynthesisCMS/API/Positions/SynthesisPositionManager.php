@@ -63,16 +63,16 @@ class SynthesisPositionManager
 	* Function to retrieve a standard position
 	* @param $positionName String name of extension which defines the position
 	* @param $positionName String name of position
-	* @param $slug String current URL
+	* @param $params Array parameters for target function
 	* @return String all registered hooks' output
 	**/
-	public function getCustom($extensionName, $positionName, $slug){
+	public function getCustom($extensionName, $positionName, $params = []){
 		$out = "";
 		foreach($this->customPositions as $ref){
 			if($ref[0] == $extensionName && $ref[1] == $positionName){
 				$class = $ref[2];
 				$func = $ref[3];
-				$class->$func($slug);
+				$out .= call_user_func_array(array($class, $func), $params);
 			}
 		}
 		return $out;

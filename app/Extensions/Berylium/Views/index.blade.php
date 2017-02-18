@@ -1,10 +1,15 @@
-@if($model->enabled)
-	@if($synthesiscmsPositionManager->getCustom('berylium', 'desktop-menu', Request::url()) != "")
+	@php
+	$desktopMenu = $synthesiscmsPositionManager->getCustom('berylium', 'desktop-menu', array(Request::url()));
+	$generalMenuForDesktop = $synthesiscmsPositionManager->getCustom('berylium', 'menu', array(Request::url(), 'desktop'));
+	$generalMenuForMobile = $synthesiscmsPositionManager->getCustom('berylium', 'menu', array(Request::url(), 'mobile'));
+	$mobileMenu = $synthesiscmsPositionManager->getCustom('berylium', 'mobile-menu', array(Request::url()));
+	@endphp
+	@if((count($generalMenuForDesktop) || count($desktopMenu)) && $model->enabled)
 		<nav class="col s12 {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} darken-1 hide-on-med-and-down">
 			<div class="nav-wrapper">
 				<ul>
-					{!! $synthesiscmsPositionManager->getCustom('berylium', 'desktop-menu', Request::url()) !!}
-					{!! $synthesiscmsPositionManager->getCustom('berylium', 'menu', Request::url()) !!}
+					{!! $generalMenuForDesktop !!}
+					{!! $desktopMenu !!}
 				</ul>
 			</div>
 		</nav>
@@ -64,8 +69,10 @@ $(document).ready(function(){
 	$('#lang-select-mobile').val('{{ $app_locale }}');
 });
 </script>
-{!! $synthesiscmsPositionManager->getCustom('berylium', 'mobile-menu', Request::url()) !!}
-{!! $synthesiscmsPositionManager->getCustom('berylium', 'menu', Request::url()) !!}
+@if($model->enabled)
+	{!! $generalMenuForMobile !!}
+	{!! $mobileMenu !!}
+@endif
 </ul>
 
 <script>
@@ -79,4 +86,3 @@ $(document).ready(function(){
 );
 });
 </script>
-@endif
