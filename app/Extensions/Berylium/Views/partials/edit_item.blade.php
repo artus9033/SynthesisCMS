@@ -39,19 +39,12 @@ label{
 					<input name="link" id="link" type="text" @if($item->type == 1) value="{{ $item->data }}" @endif>
 					<label for="link">{{ trans("Berylium::berylium.item_link") }}</label>
 				</div>
-				<div class="col s6 applet-source-input" id="applet-molecule" style="display: none;">
+				<div class="input-field col s6 applet-source-input" id="applet-page" style="display: none;">
 					<a class="waves-effect waves-light {{ $synthesiscmsMainColorClass }} btn-large">
-						<i class="material-icons white-text left">group_work</i>
-						{{ trans("Berylium::berylium.item_molecule") }}
+						<i class="material-icons white-text left">pages</i>
+						{{ trans("Berylium::berylium.item_page") }}
 					</a>
-					<input name="molecule" id="molecule" type="text" hidden="hidden" @if($item->type == 3) value="{{ $item->data }}" @endif>
-				</div>
-				<div class="input-field col s6 applet-source-input" id="applet-atom" style="display: none;">
-					<a class="waves-effect waves-light {{ $synthesiscmsMainColorClass }} btn-large">
-						<i class="material-icons white-text left">donut_large</i>
-						{{ trans("Berylium::berylium.item_atom") }}
-					</a>
-					<input name="atom" id="atom" type="text" hidden="hidden" @if($item->type == 2) value="{{ $item->data }}" @endif>
+					<input name="page" id="page" type="text" hidden="hidden" @if($item->type == 2) value="{{ $item->data }}" @endif>
 				</div>
 				<div class="input-field col s6 applet-source-input" id="applet-placeholder" style="display: none;">
 				</div>
@@ -87,11 +80,8 @@ label{
 					$('#applet-link').fadeIn();
 				}else if(this.value == 2){
 					$('.applet-source-input').css("display", "none");
-					$('#applet-atom').fadeIn();
+					$('#applet-page').fadeIn();
 				}else if(this.value == 3){
-					$('.applet-source-input').css("display", "none");
-					$('#applet-molecule').fadeIn();
-				}else if(this.value == 4){
 					$('.applet-source-input').css("display", "none");
 					$('#applet-placeholder').fadeIn();
 				}

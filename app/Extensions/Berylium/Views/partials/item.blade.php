@@ -37,10 +37,7 @@
 						echo "link";
 						break;
 						case 2:
-						echo "donut_large";
-						break;
-						case 3:
-						echo "group_work";
+						echo "pages";
 						break;
 						case 3:
 						echo "subtitles";

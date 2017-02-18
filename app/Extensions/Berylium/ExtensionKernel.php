@@ -165,15 +165,11 @@ class ExtensionKernel extends SynthesisExtension
 		switch($type){
 			case 1:
 			$data = $request->get('link');
-			echo "link";
 			break;
 			case 2:
-			$data = $request->get('atom');
+			$data = $request->get('page');
 			break;
 			case 3:
-			$data = $request->get('molecule');
-			break;
-			case 4:
 			$data = "";
 			break;
 		}
@@ -267,14 +263,8 @@ class ExtensionKernel extends SynthesisExtension
 	public function returnItem($item, $url){
 		$synthesiscmsMainColor = Settings::getFromActive('tab_color');
 		switch($item->type){
-			//TODO: DELETE ATOM, MOLECULE TYPE & add Page type
-			case BeryliumItemType::Atom:
-			$href = "todo";
-			$out = "<a href='$href'>" . $item->title . "</a>";
-			break;
-
-			case BeryliumItemType::Molecule:
-			$href = "todo";
+			case BeryliumItemType::Page:
+			$href = "todo: implement self";
 			$out = "<a href='$href'>" . $item->title . "</a>";
 			break;
 
