@@ -46,7 +46,7 @@ label{
 		<a style="margin-left: 9%;" href="{{ url('/admin/manage_routes/delete') }}/{{ $page->id }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_route_btn_yes') }}</a>
 	</div>
 </div>
-<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+<div>
 	<div class="card-content">
 		<div class="card-title col s12 row valign-wrapper">
 			<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s8"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_route', ['route' => $page->slug]) }}</h3>

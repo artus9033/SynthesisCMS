@@ -37,7 +37,7 @@ label{
 	text-align: left !important;
 }
 </style>
-<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+<div>
 	<div class="card-content">
 		<div class="card-title col s12 row valign-wrapper">
 			<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s12"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">settings</i>&nbsp;{{ trans('synthesiscms/admin.settings') }}</h3>

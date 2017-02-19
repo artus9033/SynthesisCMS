@@ -5,7 +5,7 @@
 @endsection
 
 @section('breadcrumbs')
-	<a href="{{ url('/admin') }}" class="breadcrumb">a{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
 @endsection
 
 @section('brand-logo')
@@ -14,7 +14,7 @@
 
 @section('main')
 	<div class="container col s12 row">
-		<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+		<div>
 			<div class="card-content">
 				<div class="card-title center">
 					<h2 class="card-panel {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text"><i class="material-icons white-text medium left valign" style="line-height: unset !important;">graphic_eq</i>{{ trans('synthesiscms/admin.stats') }}</h2>

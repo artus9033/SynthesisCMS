@@ -140,8 +140,16 @@
 				@if(Session::has('toasts'))
 					@each('partials/toast', Session::get('toasts'), 'toast')
 				@endif
-				@yield('main')
-			</div>
-		</div>
-	</body>
-	</html>
+				@if($synthesiscmsClientIsAnyMobile)
+					<div class="col s12 m12 l12 z-depth-1 grey lighten-4 row card z-depth-5 no-padding" style="display: inline-block; padding: 0px 0px 0px 0px; border: 1px solid #EEE;">
+						<div class="card-content no-padding">
+						@else
+							<div class="col s12 m12 l12 z-depth-1 grey lighten-4 row card z-depth-5" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+								<div class="card-content">
+								@endif
+								@yield('main')
+							</div>
+						</div>
+					</div>
+				</body>
+				</html>

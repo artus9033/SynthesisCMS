@@ -29,7 +29,7 @@
 @endsection
 
 @section('main')
-	<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+	<div>
 		<div class="card-content">
 			<div class="card-title col s12">
 				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s8"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.create_atom') }}</h3>

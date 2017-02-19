@@ -88,7 +88,7 @@
 				<a style="margin-left: 9%;" onclick="$('#action_form').attr('action', '{{ url('/') }}/admin/manage_molecules/mass_move/' + $('#checkboxMassMoveChildAtomsCheckbox').prop('checked')).submit();" class="modal-action green white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_move_molecule_btn_yes') }}</a>
 			</div>
 		</div>
-		<div class="col s12 z-depth-1 grey lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+		<div>
 			<div class="card-content">
 				<div class="card-title col s12">
 					<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">group_work</i>&nbsp;{{ trans('synthesiscms/admin.manage_molecules') }}</h3>
