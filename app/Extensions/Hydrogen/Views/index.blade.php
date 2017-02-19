@@ -41,6 +41,9 @@
 	</div>
 	@php
 	$one_column_list = ($extension_instance->list_column_count == 1);
+	if($synthesiscmsClientIsAnyMobile){
+		$one_column_list = true;
+	}
 	if(!$one_column_list){
 		if($atoms->count() == 1){
 			$one = $atoms->toArray();

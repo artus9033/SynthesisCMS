@@ -6,126 +6,92 @@ use Illuminate\Support\ServiceProvider;
 
 class MobileDetectionProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-	    if(!\App::runningInConsole()){
+	/**
+	* Bootstrap the application services.
+	*
+	* @return void
+	*/
+	public function boot()
+	{
+		if(!\App::runningInConsole()){
+			$tablet_browser = 0;
+			$mobile_browser = 0;
 
-$tablet_browser = 0;
+			if(preg_match("/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone|android|iemobile)/i", strtolower($_SERVER["HTTP_USER_AGENT"]))) {
+				$mobile_browser++;
+			}
 
-$mobile_browser = 0;
+			if((strpos(strtolower($_SERVER["HTTP_ACCEPT"]),"application/vnd.wap.xhtml+xml") > 0) or ((isset($_SERVER["HTTP_X_WAP_PROFILE"]) or isset($_SERVER["HTTP_PROFILE"])))) {
+				$mobile_browser++;
+			}
 
- 
+			$mobile_ua = strtolower(substr($_SERVER["HTTP_USER_AGENT"], 0, 4));
 
-if (preg_match('/(tablet|ipad|playbook)|(android(?!.*(mobi|opera mini)))/i', strtolower($_SERVER['HTTP_USER_AGENT']))) {
+			$mobile_agents = array(
 
-    $tablet_browser++;
+				"w3c ","acs-","alav","alca","amoi","audi","avan","benq","bird","blac",
 
-}
+				"blaz","brew","cell","cldc","cmd-","dang","doco","eric","hipt","inno",
 
- 
+				"ipaq","java","jigs","kddi","keji","leno","lg-c","lg-d","lg-g","lge-",
 
-if (preg_match('/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone|android|iemobile)/i', strtolower($_SERVER['HTTP_USER_AGENT']))) {
+				"maui","maxo","midp","mits","mmef","mobi","mot-","moto","mwbp","nec-",
 
-    $mobile_browser++;
+				"newt","noki","palm","pana","pant","phil","play","port","prox",
 
-}
+				"qwap","sage","sams","sany","sch-","sec-","send","seri","sgh-","shar",
 
- 
+				"sie-","siem","smal","smar","sony","sph-","symb","t-mo","teli","tim-",
 
-if ((strpos(strtolower($_SERVER['HTTP_ACCEPT']),'application/vnd.wap.xhtml+xml') > 0) or ((isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE'])))) {
+				"tosh","tsm-","upg1","upsi","vk-v","voda","wap-","wapa","wapi","wapp",
 
-    $mobile_browser++;
+				"wapr","webc","winw","winw","xda ","xda-");
 
-}
+				if(in_array($mobile_ua,$mobile_agents)) {
+					$mobile_browser++;
+				}
 
- 
+				if(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]),"opera mini") > 0) {
+					$mobile_browser++;
+					$stock_ua = strtolower(isset($_SERVER["HTTP_X_OPERAMINI_PHONE_UA"])?$_SERVER["HTTP_X_OPERAMINI_PHONE_UA"]:(isset($_SERVER["HTTP_DEVICE_STOCK_UA"])?$_SERVER["HTTP_DEVICE_STOCK_UA"]:""));
+					if(preg_match("/(tablet|ipad|playbook)|(android(?!.*mobile))/i", $stock_ua)) {
+						$tablet_browser++;
+					}
+				}
 
-$mobile_ua = strtolower(substr($_SERVER['HTTP_USER_AGENT'], 0, 4));
+				$bIsTablet = false;
+				$bIsPhone = false;
+				$bIsPc = false;
 
-$mobile_agents = array(
+				if($tablet_browser > 0) {
+					$bIsTablet = true;
+				}
 
-    'w3c ','acs-','alav','alca','amoi','audi','avan','benq','bird','blac',
+				else if($mobile_browser > 0) {
+					$bIsPhone = true;
+				}
 
-    'blaz','brew','cell','cldc','cmd-','dang','doco','eric','hipt','inno',
+				else{
+					$bIsPc = true;
+				}
 
-    'ipaq','java','jigs','kddi','keji','leno','lg-c','lg-d','lg-g','lge-',
+				view()->share("synthesiscmsClientIsPhone", $bIsPhone ? 1 : 0);
 
-    'maui','maxo','midp','mits','mmef','mobi','mot-','moto','mwbp','nec-',
+				view()->share("synthesiscmsClientIsTablet", $bIsTablet ? 1 : 0);
 
-    'newt','noki','palm','pana','pant','phil','play','port','prox',
+				view()->share("synthesiscmsClientIsDesktop", $bIsPc ? 1 : 0);
 
-    'qwap','sage','sams','sany','sch-','sec-','send','seri','sgh-','shar',
+				view()->share("synthesiscmsClientIsAnyMobile", ($bIsPhone || $bIsTablet) ? 1 : 0);
+			}
+		}
 
-    'sie-','siem','smal','smar','sony','sph-','symb','t-mo','teli','tim-',
-
-    'tosh','tsm-','upg1','upsi','vk-v','voda','wap-','wapa','wapi','wapp',
-
-    'wapr','webc','winw','winw','xda ','xda-');
-
-if (in_array($mobile_ua,$mobile_agents)) {
-
-    $mobile_browser++;
-
-}
-
-if (strpos(strtolower($_SERVER['HTTP_USER_AGENT']),'opera mini') > 0) {
-
-    $mobile_browser++;
-
-    //Check for tablets on opera mini alternative headers
-
-    $stock_ua = strtolower(isset($_SERVER['HTTP_X_OPERAMINI_PHONE_UA'])?$_SERVER['HTTP_X_OPERAMINI_PHONE_UA']:(isset($_SERVER['HTTP_DEVICE_STOCK_UA'])?$_SERVER['HTTP_DEVICE_STOCK_UA']:''));
-
-    if (preg_match('/(tablet|ipad|playbook)|(android(?!.*mobile))/i', $stock_ua)) {
-
-      $tablet_browser++;
-
-    }
-
-}
-
-$bIsTablet = false;
-$bIsPhone = false;
-$bIsPc = false;
-
-if ($tablet_browser > 0) {
-
-   $bIsTablet = true;
-
-}
-
-else if ($mobile_browser > 0) {
-
-   $bIsPhone = true;
-
-}
-
-else {
-
-   $bIsPc = true;
-
-}
-
-view()->share('synthesiscmsClientIsPhone', $bIsPhone);
-
-view()->share('synthesiscmsClientIsTablet', $bIsTablet);
-
-view()->share('synthesiscmsClientIsDesktop', $bIsPc);
-	    }
-    }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
-}
+		/**
+		* Register the application services.
+		*
+		* @return void
+		*/
+		public function register()
+		{
+			//
+		}
+	}
