@@ -15,7 +15,7 @@ class Settings extends Model
 	public static function getActiveInstance(){
 		return Settings::where('active', true)->first();
 	}
-
+	//TODO: implement choosing a Page as the target of the 404 page "Home Page" button
 	public static function getFromActive($field){
 		$settings_instance = self::getActiveInstance();
 		return $settings_instance->$field;
