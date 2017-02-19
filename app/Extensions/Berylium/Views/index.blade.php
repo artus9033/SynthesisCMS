@@ -49,6 +49,7 @@
 								{{ csrf_field() }}
 							</form>
 						</li>
+						{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::InsideMenu, Request::url()) !!}
 					</ul>
 				</div>
 			</li>
@@ -82,7 +83,6 @@ $(document).ready(function(){
 		edge: 'left',
 		closeOnClick: true,
 		draggable: true
-	}
-);
+	});
 });
 </script>
