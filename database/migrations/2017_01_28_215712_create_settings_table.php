@@ -15,6 +15,7 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('synthesiscms_settings', function (Blueprint $table) {
             $table->increments('id');
+		  $table->string('home_page')->default('/hydrogen');
 		  $table->string('header_title')->default("SynthesisCMS");
 		  $table->string('tab_title')->default("SynthesisCMS");
 		  $table->string('footer_copyright')->default("by artus9033");

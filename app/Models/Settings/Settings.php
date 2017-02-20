@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Settings extends Model
 {
-	protected $fillable = array('header_title', 'tab_title', 'footer_copyright', 'footer_more_links_bottom_text', 'footer_more_links_bottom_href', 'footer_links_text', 'footer_links_content', 'footer_header', 'footer_content', 'tab_color', 'main_color', 'color_class');
+	protected $fillable = array('home_page', 'header_title', 'tab_title', 'footer_copyright', 'footer_more_links_bottom_text', 'footer_more_links_bottom_href', 'footer_links_text', 'footer_links_content', 'footer_header', 'footer_content', 'tab_color', 'main_color', 'color_class');
 
 	protected $table = 'synthesiscms_settings';
 
@@ -15,7 +15,7 @@ class Settings extends Model
 	public static function getActiveInstance(){
 		return Settings::where('active', true)->first();
 	}
-	//TODO: implement choosing a Page as the target of the 404 page "Home Page" button
+
 	public static function getFromActive($field){
 		$settings_instance = self::getActiveInstance();
 		return $settings_instance->$field;

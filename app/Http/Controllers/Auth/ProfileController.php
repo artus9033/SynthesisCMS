@@ -63,14 +63,14 @@ class ProfileController extends Controller
 			return \Redirect::route('profile')->with('errors', $errors);
 		}else{
 			Auth::user()->save();
-			return \Redirect::route('profile')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
+			return \Redirect::route('profile')->with('messages', array(trans('synthesiscms/auth.msg_changed_passwd')));
 		}
 	}
 
 	public function delete($id){
 		$user = User::find($id);
 		$user->delete();
-		return \Redirect::back()->with('message', trans('synthesiscms/profile.msg_user_deleted'));
+		return \Redirect::back()->with('messages', array(trans('synthesiscms/profile.msg_user_deleted')));
 	}
 
 	public function manageUsersGet()
@@ -107,7 +107,7 @@ class ProfileController extends Controller
 			return \Redirect::route('profile')->with('errors', $errors);
 		}else{
 			Auth::user()->save();
-			return \Redirect::route('profile')->with('message', trans('synthesiscms/auth.msg_changed_passwd'));
+			return \Redirect::route('profile')->with('messages', array(trans('synthesiscms/auth.msg_changed_passwd')));
 		}
 	}
 
@@ -125,6 +125,6 @@ class ProfileController extends Controller
 		$usr = User::find($id);
 		$usr->is_admin = $is_admin_new;
 		$usr->save();
-		return \Redirect::route('manage_users')->with('message', trans('synthesiscms/admin.msg_user_privileges_successfully_changed', ['name' => $usr->name]));
+		return \Redirect::route('manage_users')->with('messages', array(trans('synthesiscms/admin.msg_user_privileges_successfully_changed', ['name' => $usr->name])));
 	}
 }

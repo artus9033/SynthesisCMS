@@ -63,7 +63,7 @@
 			<li>
 				<ul class="collapsible collapsible-accordion">
 					<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">description</i>{{ trans('synthesiscms/admin.section_content') }}</a>
-						<div class="collapsible-body">
+						<div class="collapsible-body" style="padding: unset !important;">
 							<ul>
 								<li id="manage_atoms"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_atoms') }}">{{ trans('synthesiscms/admin.manage_atoms') }}</a></li>
 								<li id="manage_molecules"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_molecules') }}">{{ trans('synthesiscms/admin.manage_molecules') }}</a></li>
@@ -71,7 +71,7 @@
 						</div>
 					</li>
 					<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">supervisor_account</i>{{ trans('synthesiscms/admin.section_users') }}</a>
-						<div class="collapsible-body">
+						<div class="collapsible-body" style="padding: unset !important;">
 							<ul>
 								<li id="profile"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/profile') }}">{{ trans('synthesiscms/profile.profile') }}</a></li>
 								<li id="manage_users"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_users') }}">{{ trans('synthesiscms/admin.manage_users') }}</a></li>
@@ -79,7 +79,7 @@
 						</div>
 					</li>
 					<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">pages</i>{{ trans('synthesiscms/admin.section_routes') }}</a>
-						<div class="collapsible-body">
+						<div class="collapsible-body" style="padding: unset !important;">
 							<ul>
 								<li id="manage_routes"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_routes') }}">{{ trans('synthesiscms/admin.manage_routes') }}</a></li>
 								<li id="manage_applets"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_applets') }}">{{ trans('synthesiscms/admin.manage_applets') }}</a></li>
@@ -87,7 +87,7 @@
 						</div>
 					</li>
 					<li class="bold active"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">settings</i>{{ trans('synthesiscms/admin.section_settings') }}</a>
-						<div class="collapsible-body" style="display: block;">
+						<div class="collapsible-body" style="padding: unset !important;">
 							<ul>
 								<li id="settings"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/settings') }}">{{ trans('synthesiscms/admin.settings') }}</a></li>
 							</ul>
@@ -152,8 +152,8 @@
 					</div>
 				</nav>
 				<div class="main col s12 row center">
-					@if(Session::has('message'))
-						@include('partials/message', ['message' => Session::get('message')])
+					@if(Session::has('messages'))
+						@each('partials/message', Session::get('messages'), 'message')
 					@endif
 					@each('partials/error', $errors, 'error')
 					@if(Session::has('toasts'))

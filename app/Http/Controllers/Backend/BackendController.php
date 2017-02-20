@@ -29,8 +29,9 @@ class BackendController extends Controller
 		return view('admin.settings');
 	}
 
-	public function settingsPost(BackendRequest $request){
+	public function settingsPost(BackendRequest $request, &$errors_array_ptr){
 		$settings = Settings::getActiveInstance();
+		$settings->home_page = $request->get('home_page');
 		$settings->header_title = $request->get('header_title');
 		$settings->tab_title = $request->get('tab_title');
 		$settings->footer_copyright = $request->get('footer_copyright');
@@ -44,7 +45,7 @@ class BackendController extends Controller
 		$settings->main_color = $request->get('main_color');
 		$settings->color_class = $request->get('main_color_class');
 		$settings->save();
-		return \Redirect::route('settings')->with('message', trans('synthesiscms/settings.msg_saved'));
+		return \Redirect::route('settings')->with('messages', array(trans('synthesiscms/settings.msg_saved')));
 	}
 
 	public function manageAppletsGet(){
@@ -68,8 +69,11 @@ class BackendController extends Controller
 		}else{
 			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
 			$kernel = new $kpath;
-			$kernel->settingsPost($request);
-			return \Redirect::route("applet_settings", $extension)->with(['message' => trans('synthesiscms/admin.msg_applet_settings_saved', ['applet' => $kernel->getExtensionName()])]);
+			$errors = Array();
+			$messages = Array();
+			array_push($messages, trans('synthesiscms/admin.msg_applet_settings_saved', ['applet' => $kernel->getExtensionName()]));
+			$kernel->settingsPost($request, $errors, $messages);
+			return \Redirect::route("applet_settings", $extension)->with(['messages' => $messages, 'errors' => $errors]);
 		}
 	}
 }

@@ -4,13 +4,3 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-Settings	C:\xampp\htdocs\synthesiscms\app\Models\Settings\Settings.php	/^class Settings extends Model$/;"	class	line:7
-fillable	C:\xampp\htdocs\synthesiscms\app\Models\Settings\Settings.php	/^	protected $fillable = array('header_title', 'tab_title', 'footer_copyright', 'footer_more_links_bottom_text', 'footer_more_links_bottom_href', 'footer_links_text', 'footer_links_content', 'footer_header', 'footer_content', 'tab_color', 'main_color', 'color_class');$/;"	variable	line:9
-fillable	C:\xampp\htdocs\synthesiscms\app\Models\Settings\Settings.php	/^	protected $fillable = array('header_title', 'tab_title', 'footer_copyright', 'footer_more_links_bottom_text', 'footer_more_links_bottom_href', 'footer_links_text', 'footer_links_content', 'footer_header', 'footer_content', 'tab_color', 'main_color', 'color_class');$/;"	variable	line:9
-table	C:\xampp\htdocs\synthesiscms\app\Models\Settings\Settings.php	/^	protected $table = 'synthesiscms_settings';$/;"	variable	line:11
-table	C:\xampp\htdocs\synthesiscms\app\Models\Settings\Settings.php	/^	protected $table = 'synthesiscms_settings';$/;"	variable	line:11
-timestamps	C:\xampp\htdocs\synthesiscms\app\Models\Settings\Settings.php	/^     public $timestamps = false;$/;"	variable	line:13
-timestamps	C:\xampp\htdocs\synthesiscms\app\Models\Settings\Settings.php	/^     public $timestamps = false;$/;"	variable	line:13
-getActiveInstance	C:\xampp\htdocs\synthesiscms\app\Models\Settings\Settings.php	/^	public static function getActiveInstance(){$/;"	function	line:15
-getFromActive	C:\xampp\htdocs\synthesiscms\app\Models\Settings\Settings.php	/^	public static function getFromActive($field){$/;"	function	line:19
-settings_instance	C:\xampp\htdocs\synthesiscms\app\Models\Settings\Settings.php	/^		$settings_instance = self::getActiveInstance();$/;"	variable	line:20

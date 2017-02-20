@@ -22,6 +22,7 @@ class SettingsVariablesProvider extends ServiceProvider
 
 		    view()->share('synthesiscmsHeaderTitle', Settings::getFromActive('header_title'));
 		    view()->share('synthesiscmsTabTitle', Settings::getFromActive('tab_title'));
+		    view()->share('synthesiscmsHomePage', Settings::getFromActive('home_page'));
 
 		    view()->share('synthesiscmsFooterCopyright', Settings::getFromActive('footer_copyright'));
 		    view()->share('synthesiscmsFooterMoreLinksBottomText', Settings::getFromActive('footer_more_links_bottom_text'));

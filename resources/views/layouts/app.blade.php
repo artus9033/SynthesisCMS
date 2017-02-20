@@ -90,8 +90,8 @@
 			</nav>
 			{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BelowBreadcrumbs, Request::url()) !!}
 			<div class="main col s12 row">
-				@if(Session::has('message'))
-					@include('partials/message', ['message' => Session::get('message')])
+				@if(Session::has('messages'))
+					@each('partials/message', Session::get('messages'), 'message')
 				@endif
 				@each('partials/error', $errors, 'error')
 				@if(Session::has('toasts'))

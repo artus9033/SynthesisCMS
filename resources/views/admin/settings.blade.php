@@ -38,7 +38,7 @@ label{
 }
 </style>
 <div>
-	<div class="card-content">
+	<div class="card-content @if($synthesiscmsClientIsAnyMobile) no-padding @endif">
 		<div class="card-title col s12 row valign-wrapper">
 			<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s12"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">settings</i>&nbsp;{{ trans('synthesiscms/admin.settings') }}</h3>
 		</div>
@@ -50,10 +50,10 @@ label{
 				<div class="row">
 					<div class="col s12">
 						<ul class="tabs z-depth-2">
-							<li class="tab col s3"><a class="active" href="#settings-main"><i class="material-icons">format_paint</i>&nbsp;{{ trans('synthesiscms/settings.tab_main') }}</a></li>
-							<li class="tab col s3"><a href="#settings-footer-body"><i class="material-icons">border_horizontal</i>&nbsp;{{ trans('synthesiscms/settings.tab_footer_body') }}</a></li>
-							<li class="tab col s3"><a href="#settings-footer-bottom"><i class="material-icons">border_bottom</i>&nbsp;{{ trans('synthesiscms/settings.tab_footer_bottom') }}</a></li>
-							<li class="tab col s3"><a href="#settings-colors"><i class="material-icons">color_lens</i>&nbsp;{{ trans('synthesiscms/settings.tab_colors') }}</a></li>
+							<li class="tab col s3"><a class="active waves-effect" href="#settings-main"><i class="material-icons">format_paint</i>&nbsp;{{ trans('synthesiscms/settings.tab_main') }}</a></li>
+							<li class="tab col s3"><a class="waves-effect" href="#settings-footer-body"><i class="material-icons">border_horizontal</i>&nbsp;{{ trans('synthesiscms/settings.tab_footer_body') }}</a></li>
+							<li class="tab col s3"><a class="waves-effect" href="#settings-footer-bottom"><i class="material-icons">border_bottom</i>&nbsp;{{ trans('synthesiscms/settings.tab_footer_bottom') }}</a></li>
+							<li class="tab col s3"><a class="waves-effect" href="#settings-colors"><i class="material-icons">color_lens</i>&nbsp;{{ trans('synthesiscms/settings.tab_colors') }}</a></li>
 						</ul>
 					</div>
 					<div class="row col s12"></div>
@@ -72,24 +72,31 @@ label{
 									<label for="tab_title">{{ trans('synthesiscms/settings.tab_title') }}</label>
 								</div>
 							</div>
+							<div>
+								<div class="input-field col s12">
+									<i class="material-icons prefix">home</i>
+									<input value="{{ $synthesiscmsHomePage }}" id="home_page" name="home_page" type="text">
+									<label for="home_page">{{ trans('synthesiscms/settings.home_page_button_link') }}</label>
+								</div>
+							</div>
 						</div>
 						<div id="settings-footer-body" class="col s12">
 							<div>
-								<div class="input-field col s6">
+								<div class="input-field col s12 l6">
 									<i class="material-icons prefix">title</i>
 									<input value="{{ $synthesiscmsFooterHeader }}" id="footer_header" name="footer_header" type="text">
 									<label for="footer_header">{{ trans('synthesiscms/settings.footer_header') }}</label>
 								</div>
 							</div>
 							<div>
-								<div class="input-field col s6">
+								<div class="input-field col s12 l6">
 									<i class="material-icons prefix">subtitles</i>
 									<input value="{{ $synthesiscmsFooterContent }}" id="footer_content" name="footer_content" type="text">
 									<label for="footer_content">{{ trans('synthesiscms/settings.footer_content') }}</label>
 								</div>
 							</div>
 							<div>
-								<div class="input-field col s6">
+								<div class="input-field col s12 l6">
 									<i class="material-icons prefix">line_style</i>
 									<input value="{{ $synthesiscmsFooterLinksText }}" id="footer_links_text" name="footer_links_text" type="text">
 									<label for="footer_links_text">{{ trans('synthesiscms/settings.footer_links_text') }}</label>
@@ -102,21 +109,21 @@ label{
 						</div>
 						<div id="settings-footer-bottom" class="col s12">
 							<div>
-								<div class="input-field col s6">
+								<div class="input-field col s12 l6">
 									<i class="material-icons prefix">copyright</i>
 									<input value="{{ $synthesiscmsFooterCopyright }}" id="footer_copyright" name="footer_copyright" type="text">
 									<label for="footer_copyright">{{ trans('synthesiscms/settings.footer_copyright') }}</label>
 								</div>
 							</div>
 							<div>
-								<div class="input-field col s6">
+								<div class="input-field col s12 l6">
 									<i class="material-icons prefix">title</i>
 									<input value="{{ $synthesiscmsFooterMoreLinksBottomText }}" id="footer_more_links_bottom_text" name="footer_more_links_bottom_text" type="text">
 									<label for="footer_more_links_bottom_text">{{ trans('synthesiscms/settings.footer_more_links_bottom_text') }}</label>
 								</div>
 							</div>
 							<div>
-								<div class="input-field col s6">
+								<div class="input-field col s12 l6">
 									<i class="material-icons prefix">open_in_new</i>
 									<input value="{{ $synthesiscmsFooterMoreLinksBottomHref }}" id="footer_more_links_bottom_href" name="footer_more_links_bottom_href" type="text">
 									<label for="footer_more_links_bottom_href">{{ trans('synthesiscms/settings.footer_more_links_bottom_href') }}</label>

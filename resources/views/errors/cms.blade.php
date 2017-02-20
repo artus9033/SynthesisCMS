@@ -15,7 +15,7 @@
       <div class="container" style="margin-top: 40px; margin-bottom: 50px;">
         <h2 class="header red-text text-lighten-2">{{ trans('synthesiscms/errors.cmserr_header2') }}</h2>
         <p class="caption">{{ trans('synthesiscms/errors.cmserr_desc2', ['error' => $error, 'help' => $help]) }}</p>
-        <a href="{{ url('/') }}" class="btn-large waves-effect waves-light">{{ trans('synthesiscms/errors.cmserr_link') }}</a>
+        <a href="{{ url($synthesiscmsHomePage) }}" class="btn-large waves-effect waves-light">{{ trans('synthesiscms/errors.cmserr_link') }}</a>
       </div>
     </div>
 </div>

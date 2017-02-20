@@ -33,7 +33,7 @@ class AtomController extends Controller
 				]
 			);
 			$name_new = Toolbox::string_truncate($atom->title, 10);
-			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_created', ['name' => $atom->title]));
+			return \Redirect::route('manage_atoms')->with('messages', array(trans('synthesiscms/admin.msg_atom_created', ['name' => $atom->title])));
 		}else{
 			return \Redirect::to(\Request::path())->with('errors', [trans('synthesiscms/atom.err_no_title')]);
 		}
@@ -60,7 +60,7 @@ class AtomController extends Controller
 			$atom->image = $request->get('image');
 			$atom->imageSourceType = $request->get('imgSourceType');
 			$atom->save();
-			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_saved', ['name' => Toolbox::string_truncate($atom->title, 10)]));
+			return \Redirect::route('manage_atoms')->with('messages', array(trans('synthesiscms/admin.msg_atom_saved', ['name' => Toolbox::string_truncate($atom->title, 10)])));
 		}else{
 			return \Redirect::to(\Request::path())->with('errors', [trans('synthesiscms/atom.err_no_title')]);
 		}
@@ -71,7 +71,7 @@ class AtomController extends Controller
 		$name_orig = $atom->title;
 		$name_new = Toolbox::string_truncate($name_orig, 10);
 		$atom->delete();
-		return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atom_deleted', ['name' => $name_new]));
+		return \Redirect::route('manage_atoms')->with('messages', array(trans('synthesiscms/admin.msg_atom_deleted', ['name' => $name_new])));
 	}
 
 	public function massDeleteAtom(BackendRequest $request){
@@ -90,7 +90,7 @@ class AtomController extends Controller
 			array_push($errors, trans('synthesiscms/admin.err_no_atoms_selected'));
 			return \Redirect::route('manage_atoms')->with('errors', $errors);
 		}else{
-			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atoms_deleted', ['count' => $count, 'beginning' => $count == 1 ? trans('synthesiscms/helper.atom_has') : trans('synthesiscms/helper.atoms_have')]));
+			return \Redirect::route('manage_atoms')->with('messages', array(trans('synthesiscms/admin.msg_atoms_deleted', ['count' => $count, 'beginning' => $count == 1 ? trans('synthesiscms/helper.atom_has') : trans('synthesiscms/helper.atoms_have')])));
 		}
 	}
 
@@ -111,7 +111,7 @@ class AtomController extends Controller
 			array_push($errors, trans('synthesiscms/admin.err_no_atoms_selected'));
 			return \Redirect::route('manage_atoms')->with('errors', $errors);
 		}else{
-			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atoms_copied', ['count' => $count, 'beginning' => $count == 1 ? trans('synthesiscms/helper.atom_has') : trans('synthesiscms/helper.atoms_have')]));
+			return \Redirect::route('manage_atoms')->with('messages', array(trans('synthesiscms/admin.msg_atoms_copied', ['count' => $count, 'beginning' => $count == 1 ? trans('synthesiscms/helper.atom_has') : trans('synthesiscms/helper.atoms_have')])));
 		}
 	}
 
@@ -133,7 +133,7 @@ class AtomController extends Controller
 			array_push($errors, trans('synthesiscms/admin.err_no_atoms_selected'));
 			return \Redirect::route('manage_atoms')->with('errors', $errors);
 		}else{
-			return \Redirect::route('manage_atoms')->with('message', trans('synthesiscms/admin.msg_atoms_moved', ['count' => $count, 'beginning' => $count == 1 ? trans('synthesiscms/helper.atom_has') : trans('synthesiscms/helper.atoms_have'), 'molecule' => $moleculeId]));
+			return \Redirect::route('manage_atoms')->with('messages', array(trans('synthesiscms/admin.msg_atoms_moved', ['count' => $count, 'beginning' => $count == 1 ? trans('synthesiscms/helper.atom_has') : trans('synthesiscms/helper.atoms_have'), 'molecule' => $moleculeId])));
 		}
 	}
 }

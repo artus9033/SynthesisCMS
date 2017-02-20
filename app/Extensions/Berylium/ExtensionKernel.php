@@ -53,7 +53,7 @@ class ExtensionKernel extends SynthesisExtension
 		$before->before = $id;
 		$item->save();
 		$before->save();
-		return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_moved'));
+		return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('messages', array(trans('Berylium::messages.msg_item_moved')));
 	}
 
 	public function settingsPositionDown(BackendRequest $request, $id){
@@ -84,7 +84,7 @@ class ExtensionKernel extends SynthesisExtension
 		}
 		$item->before = $child_item_id;
 		$item->save();
-		return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_moved'));
+		return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('messages', array(trans('Berylium::messages.msg_item_moved')));
 	}
 
 	public function settingsDeletePosition(BackendRequest $request, $id){
@@ -101,7 +101,7 @@ class ExtensionKernel extends SynthesisExtension
 			$child->delete();
 		}
 		$item->delete();
-		return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_deleted'));
+		return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('messages', array(trans('Berylium::messages.msg_item_deleted')));
 	}
 
 	public function settingsEditPositionPost(BackendRequest $request, $id){
@@ -145,7 +145,7 @@ class ExtensionKernel extends SynthesisExtension
 			$item->type = $type;
 			$item->data = $data;
 			$item->save();
-			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_saved'));
+			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('messages', array(trans('Berylium::messages.msg_item_saved')));
 		}
 	}
 
@@ -200,7 +200,7 @@ class ExtensionKernel extends SynthesisExtension
 			$created = BeryliumItem::create(['type' => $type, 'category' => $category, 'title' => $title, 'data' => $data, 'before' => $before, 'menu' => $menu]);
 			$created->parentOf = $created->id + 1;
 			$created->save();
-			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('message', trans('Berylium::messages.msg_item_added'));
+			return \Redirect::route("applet_settings", [ 'extension' => 'Berylium' ])->with('messages', array(trans('Berylium::messages.msg_item_added')));
 		}
 	}
 
@@ -212,7 +212,7 @@ class ExtensionKernel extends SynthesisExtension
 		return view('Berylium::partials/settings')->with(['model' => $this->findOrCreate()]);
 	}
 
-	public function settingsPost(BackendRequest $request){
+	public function settingsPost(BackendRequest $request, &$errors_array_ptr){
 		$model = $this->findOrCreate();
 		$model->enabled = $request->get('enabled') == "on";
 		$model->save();
@@ -236,11 +236,10 @@ class ExtensionKernel extends SynthesisExtension
 			}
 		}
 		if($count == 0){
-			$errors = Array();
-			array_push($errors, trans('Berylium::messages.err_no_items_selected'));
-			\Session::put('errors', $errors); //TODO: fix this not being shown
+			array_push($errors_array_ptr, trans('Berylium::messages.err_no_items_selected'));
+			//TODO: fix this not being shown
 		}else{
-			\Session::put('message', trans('Berylium::messages.msg_items_deleted')); //TODO: fix this not being shown
+			//TODO: fix this not being shown
 		}
 	}
 

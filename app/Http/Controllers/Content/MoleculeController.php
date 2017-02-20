@@ -31,7 +31,7 @@ class MoleculeController extends Controller
 		$molecule->title = $request->get('title');
 		$molecule->description = $request->get('desc');
 		$molecule->save();
-		return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecule_saved', ['name' => Toolbox::string_truncate($molecule->title, 10)]));
+		return \Redirect::route('manage_molecules')->with('messages', array(trans('synthesiscms/admin.msg_molecule_saved', ['name' => Toolbox::string_truncate($molecule->title, 10)])));
 	}
 
 	public function deleteMolecule($id, $atoms){
@@ -52,7 +52,7 @@ class MoleculeController extends Controller
 				}
 			}
 			$molecule->delete();
-			return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecule_deleted', ['name' => $name_new]));
+			return \Redirect::route('manage_molecules')->with('messages', array(trans('synthesiscms/admin.msg_molecule_deleted', ['name' => $name_new])));
 		}
 	}
 
@@ -67,7 +67,7 @@ class MoleculeController extends Controller
 		$desc = $request->get('description');
 		$molecule = Molecule::create(['title' => $title, 'description' => $desc]);
 		$name_new = Toolbox::string_truncate($title, 10);
-		return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecule_created', ['name' => $title]));
+		return \Redirect::route('manage_molecules')->with('messages', array(trans('synthesiscms/admin.msg_molecule_created', ['name' => $title])));
 	}
 
 	public function massDeleteMolecule(BackendRequest $request){
@@ -108,9 +108,9 @@ class MoleculeController extends Controller
 			return \Redirect::route('manage_molecules')->with('errors', $errors);
 		}else{
 			if($bool_delete_child_atoms){
-				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('message', trans('synthesiscms/admin.msg_molecules_and_child_atoms_deleted', ['moleculesCount' => $moleculesCount . ($moleculesCount == 1 ? trans('synthesiscms/helper.space_molecule') : trans('synthesiscms/helper.space_molecules')), 'atomsCount' => $atomsCount . ($atomsCount == 1 ? trans('synthesiscms/helper.space_atom') : trans('synthesiscms/helper.space_atoms'))]));
+				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('messages', array(trans('synthesiscms/admin.msg_molecules_and_child_atoms_deleted', ['moleculesCount' => $moleculesCount . ($moleculesCount == 1 ? trans('synthesiscms/helper.space_molecule') : trans('synthesiscms/helper.space_molecules')), 'atomsCount' => $atomsCount . ($atomsCount == 1 ? trans('synthesiscms/helper.space_atom') : trans('synthesiscms/helper.space_atoms'))])));
 			}else{
-				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('message', trans('synthesiscms/admin.msg_molecules_deleted', ['count' => $moleculesCount, 'beginning' => $moleculesCount == 1 ? trans('synthesiscms/helper.space_molecule_has') : trans('synthesiscms/helper.space_molecules_have')]));
+				return \Redirect::route('manage_molecules')->with('errors', $errors)->with('messages', array(trans('synthesiscms/admin.msg_molecules_deleted', ['count' => $moleculesCount, 'beginning' => $moleculesCount == 1 ? trans('synthesiscms/helper.space_molecule_has') : trans('synthesiscms/helper.space_molecules_have')])));
 			}
 		}
 	}
@@ -138,7 +138,7 @@ class MoleculeController extends Controller
 			array_push($errors, trans('synthesiscms/admin.err_no_molecules_selected'));
 			return \Redirect::route('manage_molecules')->with('errors', $errors);
 		}else{
-			return \Redirect::route('manage_molecules')->with('message', trans('synthesiscms/admin.msg_molecules_copied', ['count' => $count, 'beginning' => $count == 1 ? trans('synthesiscms/helper.space_molecule_has') : trans('synthesiscms/helper.space_molecules_have')]));
+			return \Redirect::route('manage_molecules')->with('messages', array(trans('synthesiscms/admin.msg_molecules_copied', ['count' => $count, 'beginning' => $count == 1 ? trans('synthesiscms/helper.space_molecule_has') : trans('synthesiscms/helper.space_molecules_have')])));
 		}
 	}
 }

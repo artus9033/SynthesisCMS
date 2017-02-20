@@ -91,9 +91,10 @@ class SynthesisExtension extends Controller
 	* Function called when an applet's settings are updated;
 	* There you can add your applet's settings UI
 	* @param $request Request the request
+	* @param &$errors_array_ptr Pointer(Array) a pointer to the errors array
 	* @return nothing
 	**/
-	public function settingsPost(BackendRequest $request){}
+	public function settingsPost(BackendRequest $request, &$errors_array_ptr){}
 
 	/** !!! Applet-Only Extension Functions End !!! **/
 

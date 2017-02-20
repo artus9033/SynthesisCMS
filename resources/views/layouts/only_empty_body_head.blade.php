@@ -30,8 +30,8 @@
 <body>
 	@yield('body')
 	<div class="col s12">
-		@if(Session::has('message'))
-			@include('partials/message', ['message' => Session::get('message')])
+		@if(Session::has('messages'))
+			@each('partials/message', Session::get('messages'), 'message')
 		@endif
 		@each('partials/error', $errors, 'error')
 		@if(Session::has('toasts'))
