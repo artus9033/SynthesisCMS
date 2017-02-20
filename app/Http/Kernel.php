@@ -14,9 +14,9 @@ class Kernel extends HttpKernel
 	* @var array
 	*/
 	protected $middleware = [
+		\App\Http\Middleware\Locale::class,
 		\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
 		\Illuminate\Session\Middleware\StartSession::class,
-		\App\Http\Middleware\Locale::class,
 	];
 
 	/**
