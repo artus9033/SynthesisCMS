@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	@todo
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
 	<meta name="theme-color" content="{{ $synthesiscmsTabColor }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<script type="text/javascript" src="{!! asset('js/jquery-3.1.1.min.js') !!}"></script>
@@ -89,7 +90,7 @@
 				</div>
 			</nav>
 			{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BelowBreadcrumbs, Request::url()) !!}
-			<div class="main col s12 row">
+			<div class="main col s12 row no-padding">
 				@if(Session::has('messages'))
 					@each('partials/message', Session::get('messages'), 'message')
 				@endif
