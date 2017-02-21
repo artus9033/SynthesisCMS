@@ -21,7 +21,7 @@
 				<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 				<div class="col s12 row"></div>
 				<div class="col s12 row">
-					<table class="bordered col s7 striped responsive-table">
+					<table class="bordered col s7 striped hide-on-small-only">
 						<thead>
 							<tr>
 								<th data-field="id">{{ trans('synthesiscms/profile.id') }}</th>
@@ -40,12 +40,19 @@
 							</tr>
 						</tbody>
 					</table>
-					<div class="col s5 row">
-						<div class="col s10 offset-s1">
+					<div class="col s12 l5 row">
+						<div class="col s12 hide-on-med-and-up">
+							<span class="col s12"><span class="{{ $synthesiscmsMainColor }}-text">{{ trans('synthesiscms/profile.id') }}:&nbsp;</span>{{ \Auth::user()->id }}</span>
+							<span class="col s12"><span class="{{ $synthesiscmsMainColor }}-text">{{ trans('synthesiscms/profile.name') }}:&nbsp;</span>{{ \Auth::user()->name }}</span>
+							<span class="col s12"><span class="{{ $synthesiscmsMainColor }}-text">{{ trans('synthesiscms/profile.email') }}:&nbsp;</span>{{ \Auth::user()->email }}</span>
+							<span class="col s12"><span class="{{ $synthesiscmsMainColor }}-text">{{ trans('synthesiscms/profile.rights') }}:&nbsp;</span>@php if(\Auth::user()->is_admin){ echo trans('synthesiscms/profile.admin'); }else{ echo trans('synthesiscms/profile.user'); } @endphp</span>
+						</div>
+						<div class="col s12 row"></div>
+						<div class="col s12 l10 offset-l1">
 							<a href="{{ url('/profile/password') }}" class="btn btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light center hoverable col s12"><i class="material-icons white-text left">lock_outline</i>{{ trans('synthesiscms/profile.change_password') }}</a>
 						</div>
 						<div class="col s12 row"></div>
-						<div class="col s10 offset-s1">
+						<div class="col s12 l10 offset-l1">
 							<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-large col s12 {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light center hoverable"><i class="material-icons white-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}</a>
 							<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 								{{ csrf_field() }}
@@ -53,7 +60,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="col s12 row"></div>
 			</div>
 		</div>
 	@endsection

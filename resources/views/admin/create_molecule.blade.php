@@ -36,7 +36,8 @@
 				</div>
 				<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 				<div class="col s12 row"></div>
-				{!! Form::open(array('class' => 'form')) !!}
+				<form id="form" class="col s12 row" method="post" action="">
+					{{ csrf_field() }}
 					<div class="input-field col s12 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.create_molecule_title_tooltip') }}">
 						<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">label_outline</i>
 				          <input id="title" type="text" name="title" class="validate">
@@ -55,7 +56,7 @@
 				<div class="col s12 row"></div>
 				<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text col s2 offset-s5" href="{{ URL::previous() }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_molecule') }}</a>
 				<div class="col s12 row"></div>
-			{!! Form::close() !!}
+			</form>
 			</div>
 		</div>
 	@endsection

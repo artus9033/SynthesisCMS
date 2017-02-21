@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'language' => 'Language',
 	'name' => 'Berylium Menu',
 	'enable' => 'Enable',
 	'disable' => 'Disable',

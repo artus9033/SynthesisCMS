@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'language' => 'Język',
 	'name' => 'Berylowe Menu',
 	'enable' => 'Włącz',
 	'disable' => 'Wyłącz',

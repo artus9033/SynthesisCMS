@@ -3,8 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	@todo
-	<meta name="viewport" content="width=device-width, initial-scale=0.5">
+	<meta name="viewport" content="width=device-width, initial-scale=0.7">
 	<meta name="theme-color" content="{{ $synthesiscmsTabColor }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<script type="text/javascript" src="{!! asset('js/jquery-3.1.1.min.js') !!}"></script>
