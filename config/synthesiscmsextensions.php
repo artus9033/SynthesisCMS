@@ -5,6 +5,7 @@ return  [
 		'Lithium',
 		'Hydrogen',
 		'Berylium',
+		'Nitrogen',
 	],
 ]
 
