@@ -237,9 +237,9 @@ class ExtensionKernel extends SynthesisExtension
 		}
 		if($count == 0){
 			array_push($errors_array_ptr, trans('Berylium::messages.err_no_items_selected'));
-			//TODO: fix this not being shown
+			 
 		}else{
-			//TODO: fix this not being shown
+			 
 		}
 	}
 

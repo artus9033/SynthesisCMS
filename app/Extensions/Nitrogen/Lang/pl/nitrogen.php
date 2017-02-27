@@ -1,0 +1,35 @@
+<?php
+
+return [
+	'language' => 'Język',
+	'name' => 'Azotowy Slider',
+	'enable' => 'Włącz',
+	'disable' => 'Wyłącz',
+	'edit' => 'Edytuj',
+	'delete' => 'Usuń',
+	'parent' => 'Nadrzędny',
+	'mass_delete' => 'Usuń Masowo',
+	'applet_enable_header' => 'Włącz Applet Azotowy Slider',
+	'empty' => 'Brak elementów slidera...',
+	'item_content' => 'Zawartość elementu',
+	'item_hasButton' => 'Przycisk',
+	'item_title' => 'Tytuł Elementu',
+	'item_link' => 'Łącze Elementu',
+	'item_placeholder' => 'Nagłówek Elementu',
+	'item_page' => 'Wybierz Stronę',
+	'header_id' => 'ID',
+	'header_title' => 'Tytuł',
+	'header_hasButton' => 'Przycisk',
+	'button_text' => 'Tekst Przycisku',
+	'button_link' => 'Link Przycisku',
+	'button_waves_color' => 'Kolor Efektu Fali Przycisku',
+	'button_color' => 'Kolor Przycisku',
+	'button_class' => 'Klasa Przycisku',
+	'order' => 'Kolejność',
+	'item_sourceHeader' => 'Wybierz źródło',
+	'item_typeFolder' => 'Folder',
+	'item_typeSingle' => 'Pojedynczy Plik',
+	'item_image' => 'Obraz Elementu',
+];
+
+?>

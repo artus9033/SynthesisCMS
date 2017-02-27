@@ -12,38 +12,11 @@
 		<td class="center">
 			<p class="center">
 				<i class="material-icons {{ $synthesiscmsMainColor }}-text">
-					@php
-					switch($item->category){
-						case 1:
-						echo "phonelink";
-						break;
-						case 2:
-						echo "smartphone";
-						break;
-						case 3:
-						echo "desktop_windows";
-						break;
-					}
-					@endphp
-				</i>
-			</p>
-		</td>
-		<td class="center">
-			<p class="center">
-				<i class="material-icons {{ $synthesiscmsMainColor }}-text">
-					@php
-					switch($item->category){
-						case 1:
-						echo "link";
-						break;
-						case 2:
-						echo "pages";
-						break;
-						case 3:
-						echo "subtitles";
-						break;
-					}
-					@endphp
+					@if($item->hasButton)
+						done
+					@else
+						highlight_off
+					@endif
 				</i>
 			</p>
 		</td>

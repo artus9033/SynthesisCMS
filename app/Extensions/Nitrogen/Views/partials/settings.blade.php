@@ -23,8 +23,7 @@
 					<th class="center"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">delete_sweep</i></td>
 					<th class="center"><p class="center">{{ trans('Nitrogen::nitrogen.header_id') }}</p></td>
 					<th class="center"><p class="center">{{ trans('Nitrogen::nitrogen.header_title') }}</p></td>
-					<th class="center"><p class="center">{{ trans('Nitrogen::nitrogen.header_category') }}</p></td>
-					<th class="center"><p class="center">{{ trans('Nitrogen::nitrogen.header_type') }}</p></td>
+					<th class="center"><p class="center">{{ trans('Nitrogen::nitrogen.header_hasButton') }}</p></td>
 					<th class="center"><p class="center">{{ trans('Nitrogen::nitrogen.edit') }}</p></td>
 					<th class="center"><p class="center">{{ trans('Nitrogen::nitrogen.delete') }}</p></td>
 					<th class="center"><p class="center">{{ trans('Nitrogen::nitrogen.order') }}</p></td>
@@ -44,29 +43,20 @@
 				}
 				$items = collect($array);
 				$mainctr = 0;
-				function printItem($item, $ct, $items_count, $model, $first, $last){
+				function printItemWorker($item, $ct, $items_count, $model, $first, $last){
 					return view()->make('Nitrogen::partials.item')->with(['item' => $item, 'ct' => $ct, 'items_count' => $items_count, 'model' => $model, 'first' => $first, 'last' => $last]);
 				}
-				function printItemWithChildren($item, $ct, $items_count, $model, &$mainctr){
+				function printItem($item, $ct, $items_count, $model, &$mainctr){
 					$out = "";
 					$mainctr++;
-					$out .= printItem($item, $ct, $items_count, $model, $mainctr == 1, $mainctr == $items_count);
-					$query = NitrogenItem::where(['slider' => $item->parentOf]);
-					$childrenctr = 0;
-					$children_count = $query->count();
-					if($children_count){
-						foreach($query->get() as $key => $itm){
-							$childrenctr++;
-							$out .= printItem($itm, $ct, $items_count, $model, $childrenctr == 1, $childrenctr == $children_count);
-						}
-					}
+					$out .= printItemWorker($item, $ct, $items_count, $model, $mainctr == 1, $mainctr == $items_count);
 					echo $out;
 				}
 				@endphp
 				@foreach ($items as $key => $item)
 					@php
 					$ct++;
-					echo printItemWithChildren($item, $ct, $items_count, $model, $mainctr);
+					echo printItem($item, $ct, $items_count, $model, $mainctr);
 					@endphp
 				@endforeach
 				@if($ct == 0)

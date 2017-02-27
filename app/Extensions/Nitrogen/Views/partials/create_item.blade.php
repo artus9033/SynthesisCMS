@@ -18,6 +18,23 @@ label{
 	text-align: left !important;
 }
 </style>
+<script src="{{ asset('trumbowyg/trumbowyg.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('trumbowyg/ui/trumbowyg.min.css') }}">
+<script>
+$(document).ready(function(){
+	$('.collapsible').collapsible();
+	var selector = "#@yield('side-nav-active')";
+	if(selector != "#"){
+		$(selector).addClass("active");
+		$(selector).parents('li').children('a').click();
+		$(".editor").trumbowyg({
+			lang: '{{ \App::getLocale() }}'
+		});
+	}
+	$('ul:not(.collapsible) > li.active').addClass('lighten-1');
+	$('ul:not(.collapsible) > li.active').addClass('{{ $synthesiscmsMainColor }}');
+});
+</script>
 @endsection
 
 @section('main')
@@ -29,75 +46,87 @@ label{
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 			<form id="form" class="col s12 row" method="post" action="">
 				{{ csrf_field() }}
-				<div class="input-field col s6">
+				<div class="input-field col s12">
 					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">title</i>
 					<input name="title" id="title" type="text">
 					<label for="title">{{ trans("Nitrogen::nitrogen.item_title") }}</label>
 				</div>
-				<div class="input-field col s6 applet-source-input" id="applet-link">
-					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
-					<input name="link" id="link" type="text">
-					<label for="link">{{ trans("Nitrogen::nitrogen.item_link") }}</label>
+				<div class="row"></div>
+				<div class="row col s12 container">
+					<label for="content">{{ trans("Nitrogen::nitrogen.item_content") }}</label>
+					<textarea class="editor" id="content" name="content"></textarea>
 				</div>
-				<div class="input-field col s6 applet-source-input" id="applet-page" style="display: none;">
-					<a class="waves-effect waves-light {{ $synthesiscmsMainColorClass }} btn-large">
-						<i class="material-icons white-text left">pages</i>
-						{{ trans("Nitrogen::nitrogen.item_page") }}
-					</a>
-					<input name="page" id="page" type="text" hidden="hidden">
-				</div>
-				<div class="input-field col s6 applet-source-input" id="applet-placeholder" style="display: none;">
-				</div>
-				<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="molecule-div">
-					<select id="category" name="category">
-						@php
-						$categoryClass = new \ReflectionClass('App\\Extensions\\Nitrogen\\NitrogenItemCategory');
-						$categoryClassConstants = $categoryClass->getConstants();
-						@endphp
-						@foreach ($categoryClassConstants as $key => $cat)
-							<option value="{{ $cat }}">{{ trans("Nitrogen::nitrogen.category_" . $cat) }}</option>
-						@endforeach
+				<script>
+				$(document).ready(function(){
+					$("#content").trumbowyg(); //empty content
+				});
+				</script>
+				<div class="collapsible-header {{ $synthesiscmsMainColor }}-text"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans("Nitrogen::nitrogen.item_image") }}</div>
+				<div class="input-field col s12 l8 offset-l2" id="molecule-div">
+					<select class="{{ $synthesiscmsMainColor }}-text" name="type" id="type">
+						<option selected value="single" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans("Nitrogen::nitrogen.item_typeSingle") }}</h5></option>
+						<option value="folder" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans("Nitrogen::nitrogen.item_typeFolder") }}</h5></option>
 					</select>
-					<label>{{ trans("Nitrogen::nitrogen.item_category") }}</label>
+					<label>{{ trans("Nitrogen::nitrogen.item_sourceHeader") }}</label>
 				</div>
-				<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="molecule-div">
-					<select id="type" name="type">
-						@php
-						$typeClass = new \ReflectionClass('App\\Extensions\\Nitrogen\\NitrogenItemType');
-						$typeClassConstants = $typeClass->getConstants();
-						@endphp
-						@foreach ($typeClassConstants as $key => $type)
-							<option value="{{ $type }}">{{ trans("Nitrogen::nitrogen.type_" . $type) }}</option>
-						@endforeach
-					</select>
-					<label>{{ trans("Nitrogen::nitrogen.item_type") }}</label>
+				<!-- TODO: implement ftp & uploading image-->
+				<div class="btn btn-large center col s12 l8 offset-l2 row waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text disabled">
+					<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
 				</div>
-				<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="molecule-div">
-					<select id="parent" name="parent">
-						<option value="{{ $model->id }};0">{{ trans("Nitrogen::nitrogen.option_default_parent") }}</option>
-						@foreach (App\Extensions\Nitrogen\Models\NitrogenItem::where('slider', $model->id)->get() as $key => $item)
-							<option value="{{ $item->parentOf }};{{ $item->id }}">{{ App\Toolbox::string_truncate($item->title, 20) }}</option>
-						@endforeach
-					</select>
-					<label>{{ trans("Nitrogen::nitrogen.parent") }}</label>
+				<div class="row"></div>
+				<div class="col s12">
+					<p class="col s6 center">
+						<input class="filled-in" type="checkbox" id="hasButton" name="hasButton">
+						<label for="hasButton" class="{{ $synthesiscmsMainColor }}-text">{{ trans("Nitrogen::nitrogen.item_hasButton") }}</label>
+					</p>
 				</div>
-			</div>
-			<script>
-			$('#type').on('change', function() {
-				if(this.value == 1){
-					$('.applet-source-input').css("display", "none");
-					$('#applet-link').fadeIn();
-				}else if(this.value == 2){
-					$('.applet-source-input').css("display", "none");
-					$('#applet-page').fadeIn();
-				}else if(this.value == 3){
-					$('.applet-source-input').css("display", "none");
-					$('#applet-placeholder').fadeIn();
-				}
-			});
-			</script>
-			<button type="submit" class="col s12 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
-			<div class="row"></div>
-		</form>
+				<ul class="collapsible popout col s12 row" data-collapsible="accordion">
+					<li>
+						<div class="collapsible-header {{ $synthesiscmsMainColor }}-text" id="buttonCollapsible" style="pointer-events: none;"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">radio_button_checked</i>{{ trans("Nitrogen::nitrogen.item_hasButton") }}</div>
+						<div class="collapsible-body col s12 card-panel z-depth-3">
+							<div class="input-field col s12 l6">
+								<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
+								<input id="button_text" name="button_text" type="text">
+								<label for="button_text">{{ trans("Nitrogen::nitrogen.button_text") }}</label>
+							</div>
+							<div class="input-field col s12 l6">
+								<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
+								<input id="button_link" name="button_link" type="text">
+								<label for="button_link">{{ trans("Nitrogen::nitrogen.button_link") }}</label>
+							</div>
+							<div class="input-field col s12 l6">
+								<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
+								<input id="button_waves_color" name="button_waves_color" type="text" value="{{ $synthesiscmsMainColor }}">
+								<label for="button_waves_color">{{ trans("Nitrogen::nitrogen.button_waves_color") }}</label>
+							</div>
+							<div class="input-field col s12 l6">
+								<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
+								<input id="button_color" name="button_color" type="text" value="white">
+								<label for="button_color">{{ trans("Nitrogen::nitrogen.button_color") }}</label>
+							</div>
+							<div class="input-field col s12 l6">
+								<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
+								<input id="button_class" name="button_class" type="text" value="grey-text text-darken-3">
+								<label for="button_class">{{ trans("Nitrogen::nitrogen.button_class") }}</label>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<script>
+				var buttonCollapsible = false;
+				$("#hasButton").click(function() {
+					buttonCollapsible = true;
+					$("#buttonCollapsible").click();
+					buttonCollapsible = false;
+				});
+				$("#buttonCollapsible").click(function( event ) {
+					if(!buttonCollapsible){
+						event.preventDefault();
+					}
+				});
+				</script>
+				<button type="submit" class="col s12 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
+			</form>
+		</div>
 	</div>
 @endsection

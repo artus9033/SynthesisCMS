@@ -94,7 +94,7 @@ class ExtensionKernel extends SynthesisExtension
 			$after->before = $item->before;
 			$after->save();
 		}
-		$slider = $item->parentOf;
+		$slider = $this->findOrCreate()->id;
 		$children = NitrogenItem::where(['slider' => $slider, 'before' => $id])->get();
 		foreach($children as $child){
 			$child->delete();
@@ -105,22 +105,22 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function settingsEditPositionPost(BackendRequest $request, $id){
 		$title = $request->get('title');
-		$category = $request->get('category');
-		$type = $request->get('type');
-		switch($type){
-			case 1:
-			$data = $request->get('link');
+		$content = $request->get('content');
+		$type_raw = $request->get('type');
+		switch($type_raw){
+			case "single":
+			$type = NitrogenItemType::FtpSingleImage;
 			break;
-			case 2:
-			$data = $request->get('atom');
-			break;
-			case 3:
-			$data = $request->get('molecule');
-			break;
-			case 4:
-			$data = "";
+			case "folder":
+			$type = NitrogenItemType::FtpFolder;
 			break;
 		}
+		$hasButton = $request->has('hasButton');
+		$buttonText = $request->get('button_text');
+		$buttonLink = $request->get('button_link');
+		$buttonWavesColor = $request->get('button_waves_color');
+		$buttonColor = $request->get('button_color');
+		$buttonClass = $request->get('button_class');
 		$errors = array();
 		$err = false;
 
@@ -140,9 +140,14 @@ class ExtensionKernel extends SynthesisExtension
 		}else{
 			$item = $query->first();
 			$item->title = $title;
-			$item->category = $category;
+			$item->content = $content;
 			$item->type = $type;
-			$item->data = $data;
+			$item->hasButton = $hasButton;
+			$item->buttonText = $buttonText;
+			$item->buttonLink = $buttonLink;
+			$item->buttonWavesColor = $buttonWavesColor;
+			$item->buttonColor = $buttonColor;
+			$item->buttonClass = $buttonClass;
 			$item->save();
 			return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('messages', array(trans('Nitrogen::messages.msg_item_saved')));
 		}
@@ -159,21 +164,22 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function settingsCreatePositionPost(BackendRequest $request){
 		$title = $request->get('title');
-		$category = $request->get('category');
-		$type = $request->get('type');
-		switch($type){
-			case 1:
-			$data = $request->get('link');
+		$content = $request->get('content');
+		$type_raw = $request->get('type');
+		switch($type_raw){
+			case "single":
+			$type = NitrogenItemType::FtpSingleImage;
 			break;
-			case 2:
-			$data = $request->get('page');
-			break;
-			case 3:
-			$data = "";
+			case "folder":
+			$type = NitrogenItemType::FtpFolder;
 			break;
 		}
-		$slider_and_id = $request->get('parent');
-		list($slider, $parent_id) = explode(";", $slider_and_id);
+		$hasButton = $request->has('hasButton');
+		$buttonText = $request->get('button_text');
+		$buttonLink = $request->get('button_link');
+		$buttonWavesColor = $request->get('button_waves_color');
+		$buttonColor = $request->get('button_color');
+		$buttonClass = $request->get('button_class');
 		$errors = array();
 		$err = false;
 
@@ -185,18 +191,19 @@ class ExtensionKernel extends SynthesisExtension
 		if($err){
 			return \Redirect::to(\Request::path())->with('errors', $errors);
 		}else{
-			if(NitrogenItem::where(['slider' => $slider, 'before' => $parent_id])->count()){
-				$items_raw = NitrogenItem::where('slider', $slider);
+			$parent_id = 0;
+			if(NitrogenItem::where(['slider' => $this->findOrCreate()->id, 'before' => $parent_id])->count()){
+				$items_raw = NitrogenItem::where('slider', $this->findOrCreate()->id);
 				$items_count = $items_raw->count();
 				$posctr = 0;
 				for( $id = $parent_id; $posctr < $items_count; $posctr++){
-					$before = NitrogenItem::where(['slider' => $slider, 'before' => $id])->first()->id;
+					$before = NitrogenItem::where(['slider' => $this->findOrCreate()->id, 'before' => $id])->first()->id;
 					$id = $before;
 				}
 			}else{
 				$before = $parent_id;
 			}
-			$created = NitrogenItem::create(['type' => $type, 'category' => $category, 'title' => $title, 'data' => $data, 'before' => $before, 'slider' => $slider]);
+			$created = NitrogenItem::create(['buttonText' => $buttonText, 'buttonLink' => $buttonLink, 'buttonWavesColor' => $buttonWavesColor, 'buttonColor' => $buttonColor, 'buttonClass' => $buttonClass, 'type' => $type, 'hasButton' => $hasButton, 'title' => $title, 'content' => $content, 'before' => $before, 'slider' => $this->findOrCreate()->id]);
 			$created->parentOf = $created->id + 1;
 			$created->save();
 			return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('messages', array(trans('Nitrogen::messages.msg_item_added')));
@@ -225,7 +232,7 @@ class ExtensionKernel extends SynthesisExtension
 					$after->before = $item->before;
 					$after->save();
 				}
-				$slider = $item->parentOf;
+				$slider = $this->findOrCreate()->id;
 				$children = NitrogenItem::where(['slider' => $slider, 'before' => $item->id])->get();
 				foreach($children as $child){
 					$child->delete();
@@ -236,9 +243,6 @@ class ExtensionKernel extends SynthesisExtension
 		}
 		if($count == 0){
 			array_push($errors_array_ptr, trans('Nitrogen::messages.err_no_items_selected'));
-			//TODO: fix this not being shown
-		}else{
-			//TODO: fix this not being shown
 		}
 	}
 
@@ -251,85 +255,28 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function showSlider($slug){
-		return view('Nitrogen::index')->with(['slug' => $slug, 'model' => $this->findOrCreate()]);
+		return view('Nitrogen::index')->with(['kernel' => $this, 'slug' => $slug, 'model' => $this->findOrCreate()]);
 	}
 
-	public function showSliderMobileButton($slug){
-		return view('Nitrogen::mobile_button')->with('slug', $slug);
-	}
-
-	public function returnItem($item, $url){
-		$synthesiscmsMainColor = Settings::getFromActive('tab_color');
-		switch($item->type){
-			case NitrogenItemType::Page:
-			$href = "todo: implement self";
-			$out = "<a href='$href'>" . $item->title . "</a>";
-			break;
-
-			case NitrogenItemType::Link:
-			$href = $item->data;
-			$out = "<a href='$href'>" . $item->title . "</a>";
-			break;
-
-			case NitrogenItemType::Placeholder:
-			$href = $url;
-			$out = "<a>" . $item->title . "</a>";
-			break;
-		}
-		if($href == $url){
-			$active = " active ";
-		}else{
-			$active = "";
-		}
-		return ['data' => $out, 'active' => $active];
-	}
-
-	public function getMobileSliderItems($slug){
+	public function getSliderItems($slug){
 		$out = "";
-		foreach(NitrogenItem::where('category', NitrogenItemCategory::Mobile)->cursor() as $item){
-			$itemdata = $this->returnItem($item, $slug);
-			$active = $itemdata['active'];
-			$out .= "<li class='$active'>" . $itemdata['data'] . "</li>";
+		$model = $this->findOrCreate();
+		if($model->hasButton){
+			$out .= "<div class='carousel-fixed-item center'>
+			<a href='$model->buttonLink' class='btn waves-effect waves-$model->buttonWavesColor $model->buttonColor $model->buttonClass'>$model->buttonText</a>
+			</div>";
 		}
-		return $out;
-	}
-
-	public function getDesktopSliderItems($slug){
-		$out = "";
-		$synthesiscmsMainColor = Settings::getFromActive('tab_color');
-		foreach(NitrogenItem::where('category', NitrogenItemCategory::Desktop)->cursor() as $item){
-			$itemdata = $this->returnItem($item, $slug);
-			$active = $itemdata['active'];
-			$out .= "<li class='$active'>" . $itemdata['data'] . "</li>";
-		}
-		return $out;
-	}
-
-	public function getGeneralSliderItems($slug, $sliderType){
-		$out = "";
-		$synthesiscmsMainColor = Settings::getFromActive('main_color');
-		switch($sliderType){
-			case 'mobile':
-			$li_class = "col s12 waves-effect waves-$synthesiscmsMainColor";
-			break;
-			case 'desktop':
-			$li_class = "";
-			break;
-		}
-		foreach(NitrogenItem::where('category', NitrogenItemCategory::General)->cursor() as $item){
-			$itemdata = $this->returnItem($item, $slug);
-			$active = $itemdata['active'];
-			$out .= "<li class='$active $li_class'>" . $itemdata['data'] . "</li>";
+		foreach(NitrogenItem::all() as $item){
+			$out .= "<div class='carousel-item'>
+			<h2>$item->title</h2>
+			<p class='white-text'>$item->content</p>
+			</div>";
 		}
 		return $out;
 	}
 
 	public function hookPositions(&$manager){
 		$manager->addStandard(SynthesisPositions::BelowMenu, $this, 'showSlider');
-		$manager->addStandard(SynthesisPositions::BeforeSiteName, $this, 'showSliderMobileButton');
-		$manager->addCustom('nitrogen', 'mobile-slider', $this, 'getMobileSliderItems');
-		$manager->addCustom('nitrogen', 'desktop-slider', $this, 'getDesktopSliderItems');
-		$manager->addCustom('nitrogen', 'slider', $this, 'getGeneralSliderItems');
 	}
 
 	public function findOrCreate(){
