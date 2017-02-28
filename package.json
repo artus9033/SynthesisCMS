@@ -17,6 +17,7 @@
 	},
 	"dependencies": {
 		"hammerjs": "^2.0.8",
-		"clipboard": "^1.5.16"
+		"clipboard": "^1.5.16",
+		"trumbowyg": "*"
 	}
 }

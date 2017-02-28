@@ -11,11 +11,12 @@
 	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/clipboard.min.js') !!}"></script>
 	<script type="text/javascript">
-	$.ajaxSetup({
+	/**$.ajaxSetup({
+	//this collides with Trumbowyg's noEmbed & upload plugins
 		headers: {
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		}
-	});
+	});**/
 	</script>
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}"  media="screen,projection"/>
@@ -23,6 +24,14 @@
 	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>
 	<script src="{{ asset('trumbowyg/trumbowyg.min.js') }}"></script>
 	<link rel="stylesheet" href="{{ asset('trumbowyg/ui/trumbowyg.min.css') }}">
+	<script src="{{ asset('trumbowyg/plugins/base64/trumbowyg.base64.min.js') }}"></script>
+	<script src="{{ asset('trumbowyg/plugins/colors/trumbowyg.colors.min.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('trumbowyg/plugins/colors/ui/trumbowyg.colors.min.css') }}">
+	<script src="{{ asset('trumbowyg/plugins/emoji/trumbowyg.emoji.min.js') }}"></script>
+	<script src="{{ asset('trumbowyg/plugins/pasteimage/trumbowyg.pasteimage.min.js') }}"></script>
+	<script src="{{ asset('trumbowyg/plugins/table/trumbowyg.table.min.js') }}"></script>
+	<script src="{{ asset('trumbowyg/plugins/upload/trumbowyg.upload.js') }}"></script>
+	<script src="{{ asset('trumbowyg/plugins/noembed/trumbowyg.noembed.js') }}"></script>
 	<script>
 	$(document).ready(function(){
 		$('.collapsible').collapsible();
@@ -31,6 +40,43 @@
 			$(selector).addClass("active");
 			$(selector).parents('li').children('a').click();
 			$(".editor").trumbowyg({
+				autogrow: true,
+            fullscreenable: false,
+		  btnsDef: {
+                    // Customizables dropdowns
+                    image: {
+                        dropdown: ['insertImage', 'upload', 'base64', 'noembed'],
+                        ico: 'insertImage'
+			    },
+			    link: {
+                        dropdown: ['createLink', 'unlink', 'noembed'],
+                        ico: 'link'
+                    }
+                },
+                btns: [
+                    ['viewHTML'],
+                    ['undo', 'redo'],
+                    ['formatting'],
+                    'btnGrp-design',
+                    ['link'],
+                    ['image'],
+                    'btnGrp-justify',
+                    'btnGrp-lists',
+                    ['foreColor', 'backColor'],
+                    ['preformatted'],
+                    ['horizontalRule'],
+                    ['fullscreen']
+                ],
+                plugins: {
+                    // Add imagur parameters to upload plugin
+                    upload: {
+                        serverPath: {!! json_encode(url("/") . "/SynthesisApi/trumbowyg-upload.php") !!},
+                        fileFieldName: 'file',
+                        headers: {
+                            'synthesiscms_public_url': {!! json_encode(url("/")) !!}
+                        },
+                    }
+			},
 				lang: '{{ \App::getLocale() }}'
 			});
 		}

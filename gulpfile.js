@@ -13,5 +13,5 @@ elixir(mix => {
 
 	mix.copy('node_modules/clipboard/dist/clipboard.min.js', 'public/js/clipboard.min.js');
 
-	mix.copy('resources/assets/sass/trumbowyg/dist', 'public/trumbowyg');
+	mix.copy('node_modules/trumbowyg/dist', 'public/trumbowyg');
 });

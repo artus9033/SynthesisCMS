@@ -6,3 +6,5 @@ database/database.sqlite
 .tags1
 composer.phar
 npm-debug.log
+public/synthesis-uploads/*
+!public/synthesis-uploads/.gitkeep
