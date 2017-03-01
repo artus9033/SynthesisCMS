@@ -16,13 +16,10 @@ use App\Http\Controllers\Controller;
 
 class TrumbowygUpload extends Controller
 {
-
-
-
 	function uploadPost(BackendRequest $request){
 		function getNewFileName($path, $filename_original){
 			if(file_exists($path . $filename_original)){
-				return md5(date('Y-m-d H:i:s:u'));
+				return $filename_original . md5(date('Y-m-d H:i:s:u'));
 			}else{
 				return $filename_original;
 			}

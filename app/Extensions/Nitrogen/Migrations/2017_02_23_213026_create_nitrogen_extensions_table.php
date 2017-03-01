@@ -16,6 +16,13 @@ class CreateNitrogenExtensionsTable extends Migration
         Schema::create('nitrogen_extensions', function (Blueprint $table) {
             $table->increments('id');
 		  $table->boolean('enabled')->default(true);
+		  $table->longText('buttonTextColor');
+		  $table->longText('buttonLink');
+		  $table->longText('buttonText');
+		  $table->longText('buttonWavesColor');
+		  $table->longText('buttonColor');
+		  $table->longText('buttonClass');
+		  $table->boolean('hasButton')->default(false);
 		  $table->timestamps();
 		});
     }

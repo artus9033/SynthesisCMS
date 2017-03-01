@@ -51,6 +51,14 @@ $(document).ready(function(){
 					<input name="title" id="title" type="text" value="{!! $item->title !!}">
 					<label for="title">{{ trans("Nitrogen::nitrogen.item_title") }}</label>
 				</div>
+				<div class="input-field col s12 l6">
+					<input name="titleTextColor" id="titleTextColor" type="text" value="{!! $item->titleTextColor !!}">
+					<label for="titleTextColor">{{ trans("Nitrogen::nitrogen.title_text_color") }}</label>
+				</div>
+				<div class="input-field col s12 l6">
+					<input name="contentTextColor" id="contentTextColor" type="text" value="{!! $item->contentTextColor !!}">
+					<label for="contentTextColor">{{ trans("Nitrogen::nitrogen.content_text_color") }}</label>
+				</div>
 				<div class="row"></div>
 				<div class="row col s12 container">
 					<label for="content">{{ trans("Nitrogen::nitrogen.item_content") }}</label>
@@ -77,65 +85,6 @@ $(document).ready(function(){
 				<div class="btn btn-large center col s12 l8 offset-l2 row waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text disabled">
 					<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
 				</div>
-				<div class="row"></div>
-				<div class="col s12">
-					<p class="col s6 center">
-						<input class="filled-in" type="checkbox" id="hasButton" name="hasButton" @if($item->hasButton) checked="checked" @endif>
-						<label for="hasButton" class="{{ $synthesiscmsMainColor }}-text">{{ trans("Nitrogen::nitrogen.item_hasButton") }}</label>
-					</p>
-				</div>
-				<ul class="collapsible popout col s12 row" data-collapsible="accordion">
-					<li>
-						<div class="collapsible-header {{ $synthesiscmsMainColor }}-text" id="buttonCollapsible" style="pointer-events: none;"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">radio_button_checked</i>{{ trans("Nitrogen::nitrogen.item_hasButton") }}</div>
-						<div class="collapsible-body col s12 card-panel z-depth-3">
-							<div class="input-field col s12 l6">
-								<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
-								<input id="button_text" name="button_text" type="text" value="{{ $item->buttonText }}">
-								<label for="button_text">{{ trans("Nitrogen::nitrogen.button_text") }}</label>
-							</div>
-							<div class="input-field col s12 l6">
-								<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
-								<input id="button_link" name="button_link" type="text" value="{{ $item->buttonLink }}">
-								<label for="button_link">{{ trans("Nitrogen::nitrogen.button_link") }}</label>
-							</div>
-							<div class="input-field col s12 l6">
-								<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
-								<input id="button_waves_color" name="button_waves_color" type="text" value="{{ $item->buttonWavesColor }}">
-								<label for="button_waves_color">{{ trans("Nitrogen::nitrogen.button_waves_color") }}</label>
-							</div>
-							<div class="input-field col s12 l6">
-								<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
-								<input id="button_color" name="button_color" type="text" value="{{ $item->buttonColor }}">
-								<label for="button_color">{{ trans("Nitrogen::nitrogen.button_color") }}</label>
-							</div>
-							<div class="input-field col s12 l6">
-								<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
-								<input id="button_class" name="button_class" type="text" value="{{ $item->buttonClass }}">
-								<label for="button_class">{{ trans("Nitrogen::nitrogen.button_class") }}</label>
-							</div>
-						</div>
-					</li>
-				</ul>
-				<script>
-				var buttonCollapsible = false;
-				$(document).ready(function(){
-					if({!! json_encode($item->hasButton) !!}){
-						buttonCollapsible = true;
-						$("#buttonCollapsible").click();
-						buttonCollapsible = false;
-					}
-				});
-				$("#hasButton").click(function() {
-					buttonCollapsible = true;
-					$("#buttonCollapsible").click();
-					buttonCollapsible = false;
-				});
-				$("#buttonCollapsible").click(function( event ) {
-					if(!buttonCollapsible){
-						event.preventDefault();
-					}
-				});
-				</script>
 				<button type="submit" class="col s12 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
 			</form>
 		</div>

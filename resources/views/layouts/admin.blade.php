@@ -43,7 +43,6 @@
 				autogrow: true,
             fullscreenable: false,
 		  btnsDef: {
-                    // Customizables dropdowns
                     image: {
                         dropdown: ['insertImage', 'upload', 'base64', 'noembed'],
                         ico: 'insertImage'
@@ -68,7 +67,6 @@
                     ['fullscreen']
                 ],
                 plugins: {
-                    // Add imagur parameters to upload plugin
                     upload: {
                         serverPath: {!! json_encode(url("/") . "/admin/upload") !!},
                         fileFieldName: 'file',

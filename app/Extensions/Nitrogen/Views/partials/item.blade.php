@@ -10,17 +10,6 @@
 		<p class="center">@if($item->slider != $model->id) <i class="material-icons {{ $synthesiscmsMainColor }}-text">subdirectory_arrow_right</i> @endif{{ App\Toolbox::string_truncate($item->title, 7) }}</p>
 		</td>
 		<td class="center">
-			<p class="center">
-				<i class="material-icons {{ $synthesiscmsMainColor }}-text">
-					@if($item->hasButton)
-						done
-					@else
-						highlight_off
-					@endif
-				</i>
-			</p>
-		</td>
-		<td class="center">
 			<a href="{{ url()->current() }}/edit/{{ $item->id }}" class="center btn-large btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
 				<i class="material-icons white-text center">mode_edit</i>
 			</a>

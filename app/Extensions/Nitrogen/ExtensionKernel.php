@@ -107,6 +107,8 @@ class ExtensionKernel extends SynthesisExtension
 		$title = $request->get('title');
 		$content = $request->get('content');
 		$type_raw = $request->get('type');
+		$titleTextColor = $request->get('titleTextColor');
+		$contentTextColor = $request->get('contentTextColor');
 		switch($type_raw){
 			case "single":
 			$type = NitrogenItemType::FtpSingleImage;
@@ -115,12 +117,6 @@ class ExtensionKernel extends SynthesisExtension
 			$type = NitrogenItemType::FtpFolder;
 			break;
 		}
-		$hasButton = $request->has('hasButton');
-		$buttonText = $request->get('button_text');
-		$buttonLink = $request->get('button_link');
-		$buttonWavesColor = $request->get('button_waves_color');
-		$buttonColor = $request->get('button_color');
-		$buttonClass = $request->get('button_class');
 		$errors = array();
 		$err = false;
 
@@ -142,12 +138,8 @@ class ExtensionKernel extends SynthesisExtension
 			$item->title = $title;
 			$item->content = $content;
 			$item->type = $type;
-			$item->hasButton = $hasButton;
-			$item->buttonText = $buttonText;
-			$item->buttonLink = $buttonLink;
-			$item->buttonWavesColor = $buttonWavesColor;
-			$item->buttonColor = $buttonColor;
-			$item->buttonClass = $buttonClass;
+			$item->titleTextColor = $titleTextColor;
+			$item->contentTextColor = $contentTextColor;
 			$item->save();
 			return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('messages', array(trans('Nitrogen::messages.msg_item_saved')));
 		}
@@ -166,6 +158,8 @@ class ExtensionKernel extends SynthesisExtension
 		$title = $request->get('title');
 		$content = $request->get('content');
 		$type_raw = $request->get('type');
+		$titleTextColor = $request->get('titleTextColor');
+		$contentTextColor = $request->get('contentTextColor');
 		switch($type_raw){
 			case "single":
 			$type = NitrogenItemType::FtpSingleImage;
@@ -174,12 +168,6 @@ class ExtensionKernel extends SynthesisExtension
 			$type = NitrogenItemType::FtpFolder;
 			break;
 		}
-		$hasButton = $request->has('hasButton');
-		$buttonText = $request->get('button_text');
-		$buttonLink = $request->get('button_link');
-		$buttonWavesColor = $request->get('button_waves_color');
-		$buttonColor = $request->get('button_color');
-		$buttonClass = $request->get('button_class');
 		$errors = array();
 		$err = false;
 
@@ -203,7 +191,7 @@ class ExtensionKernel extends SynthesisExtension
 			}else{
 				$before = $parent_id;
 			}
-			$created = NitrogenItem::create(['buttonText' => $buttonText, 'buttonLink' => $buttonLink, 'buttonWavesColor' => $buttonWavesColor, 'buttonColor' => $buttonColor, 'buttonClass' => $buttonClass, 'type' => $type, 'hasButton' => $hasButton, 'title' => $title, 'content' => $content, 'before' => $before, 'slider' => $this->findOrCreate()->id]);
+			$created = NitrogenItem::create(['type' => $type, 'title' => $title, 'content' => $content, 'before' => $before, 'slider' => $this->findOrCreate()->id, 'contentTextColor' => $contentTextColor, 'titleTextColor' => $titleTextColor]);
 			$created->parentOf = $created->id + 1;
 			$created->save();
 			return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('messages', array(trans('Nitrogen::messages.msg_item_added')));
@@ -219,8 +207,22 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function settingsPost(BackendRequest $request, &$errors_array_ptr){
+		$hasButton = $request->has('hasButton');
+		$buttonText = $request->get('button_text');
+		$buttonLink = $request->get('button_link');
+		$buttonWavesColor = $request->get('button_waves_color');
+		$buttonColor = $request->get('button_color');
+		$buttonClass = $request->get('button_class');
+		$buttonTextColor = $request->get('button_text_color');
 		$model = $this->findOrCreate();
 		$model->enabled = $request->get('enabled') == "on";
+		$model->buttonText = $buttonText;
+		$model->buttonLink = $buttonLink;
+		$model->buttonWavesColor = $buttonWavesColor;
+		$model->buttonColor = $buttonColor;
+		$model->buttonClass = $buttonClass;
+		$model->hasButton = $hasButton;
+		$model->buttonTextColor = $buttonTextColor;
 		$model->save();
 		$count = 0;
 		foreach ($request->all() as $key => $val) {
@@ -263,13 +265,23 @@ class ExtensionKernel extends SynthesisExtension
 		$model = $this->findOrCreate();
 		if($model->hasButton){
 			$out .= "<div class='carousel-fixed-item center'>
-			<a href='$model->buttonLink' class='btn waves-effect waves-$model->buttonWavesColor $model->buttonColor $model->buttonClass'>$model->buttonText</a>
+			<a href='$model->buttonLink' class='btn waves-effect waves-$model->buttonWavesColor $model->buttonColor $model->buttonClass $model->buttonTextColor-text'>$model->buttonText</a>
 			</div>";
 		}
-		foreach(NitrogenItem::all() as $item){
-			$out .= "<div class='carousel-item'>
-			<h2>$item->title</h2>
-			<p class='white-text'>$item->content</p>
+		$items_raw = NitrogenItem::where('slider', $model->id);
+		$items_count = $items_raw->count();
+		$array = array();
+		$posctr = 0;
+		for($id = 0; $posctr < $items_count; $posctr++){
+			$itm = NitrogenItem::where(['slider' => $model->id, 'before' => $id])->first();
+			array_push($array, $itm);
+			$id = $itm->id;
+		}
+		$items = collect($array);
+		foreach($items as $item){
+			$out .= "<div class='carousel-item red'>
+			<h2 class='$item->titleTextColor-text'>$item->title</h2>
+			<p class='$item->contentTextColor-text'>$item->content</p>
 			</div>";
 		}
 		return $out;
@@ -282,7 +294,7 @@ class ExtensionKernel extends SynthesisExtension
 	public function findOrCreate(){
 		$model = NitrogenExtension::find(1);
 		if(!$model){
-			$model = NitrogenExtension::create();
+			$model = NitrogenExtension::create(['buttonLink' => url("/admin"), 'buttonText' => 'Admin', 'buttonTextColor' => 'teal', 'buttonWavesColor' => 'teal', 'buttonColor' => 'white', 'buttonClass' => 'text-darken-1', 'hasButton' => true]);
 			return $this->findOrCreate();
 		}else{
 			return $model;

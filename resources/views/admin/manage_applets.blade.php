@@ -78,7 +78,7 @@
 					<div class="progress">
 						<div id="loader-div" class="indeterminate"></div>
 					</div>
-					<iframe scrolling="no" onload="resizeIframeBasedOnContents(this); $('#loader-div').css('display', 'none');" class="col s12" height="420px" frameBorder="0" id="settings-view" src="{{ url('/admin/manage_applets') }}/{{ $firstExt }}"></iframe>
+					<iframe scrolling="no" onchange="resizeIframeBasedOnContents(this);" onload="resizeIframeBasedOnContents(this); $('#loader-div').css('display', 'none');" class="col s12" height="600px" frameBorder="0" id="settings-view" src="{{ url('/admin/manage_applets') }}/{{ $firstExt }}"></iframe>
 				@else
 					@include('partials/error', ['error' => trans('synthesiscms/admin.msg_no_applets')])
 				@endif

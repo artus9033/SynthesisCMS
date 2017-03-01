@@ -7,7 +7,10 @@ function resizeIframeBasedOnContents(obj) {
 	// UI, it will be executed before resizing the iframe,
 	// thus the new content won't appear outside the iframe's borders
 	setTimeout(function(){
-		obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+		/**
+		obj.style.height = 2 * obj.contentWindow.document.body.scrollHeight + 'px';
+		alert(2 * obj.contentWindow.document.body.scrollHeight + " \ " + obj.style.height);**/
+		$(obj).height( $(obj).contents().find("body").height() );
 	}, 600);
 }
 
