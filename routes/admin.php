@@ -2,6 +2,8 @@
 
 Route::get('/admin', ['as' => 'admin', 'uses' => 'Backend\\BackendController@index']);
 
+Route::post('/admin/upload', ['as' => 'upload', 'uses' => 'Backend\\TrumbowygUpload@uploadPost']);
+
 Route::post('/synthesis-route-check', ['as' => 'synthesis_route_check', 'uses' => 'Content\\RouteController@checkRoute']);
 
 Route::get('/admin/manage_routes', ['as' => 'manage_routes', 'uses' => 'Content\\RouteController@manageRoutesGet']);

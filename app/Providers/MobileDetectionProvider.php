@@ -13,7 +13,7 @@ class MobileDetectionProvider extends ServiceProvider
 	*/
 	public function boot()
 	{
-		if(!\App::runningInConsole()){
+		if(!\App::runningInConsole() && !\Request::ajax()){
 			$tablet_browser = 0;
 			$mobile_browser = 0;
 

@@ -70,10 +70,10 @@
                 plugins: {
                     // Add imagur parameters to upload plugin
                     upload: {
-                        serverPath: {!! json_encode(url("/") . "/SynthesisApi/trumbowyg-upload.php") !!},
+                        serverPath: {!! json_encode(url("/") . "/admin/upload") !!},
                         fileFieldName: 'file',
                         headers: {
-                            'synthesiscms_public_url': {!! json_encode(url("/")) !!}
+					   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                     }
 			},
