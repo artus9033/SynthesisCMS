@@ -23,6 +23,8 @@ class CreateNitrogenExtensionsTable extends Migration
 		  $table->longText('buttonColor');
 		  $table->longText('buttonClass');
 		  $table->boolean('hasButton')->default(false);
+		  $table->longText('assignedPages');
+		  $table->boolean('assignedToAllPages')->default(true);
 		  $table->timestamps();
 		});
     }

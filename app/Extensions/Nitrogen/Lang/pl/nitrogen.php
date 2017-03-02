@@ -33,6 +33,8 @@ return [
 	'item_typeFolder' => 'Folder',
 	'item_typeSingle' => 'Pojedynczy Plik',
 	'item_image' => 'Obraz Elementu',
+	'assigned_to_all_pages' => 'Przypisany do wszystkich stron',
+	'assigned_pages' => 'Przypisane Strony',
 ];
 
 ?>

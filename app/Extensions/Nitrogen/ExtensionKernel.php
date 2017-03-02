@@ -16,6 +16,7 @@ use App\Http\Requests\BackendRequest;
 use App\Models\Settings\Settings;
 use App\Models\Content\Atom;
 use App\Models\Content\Molecule;
+use App\Models\Content\Page;
 
 /**
 * ExtensionKernel
@@ -214,6 +215,15 @@ class ExtensionKernel extends SynthesisExtension
 		$buttonColor = $request->get('button_color');
 		$buttonClass = $request->get('button_class');
 		$buttonTextColor = $request->get('button_text_color');
+		$assignedPages = "";
+		$ctr = 0;
+		foreach($request->get('assigned_pages') as $v){
+			$ctr++;
+			if($ctr > 1){
+				$assignedPages .= ";";
+			}
+			$assignedPages .= $v;
+		}
 		$model = $this->findOrCreate();
 		$model->enabled = $request->get('enabled') == "on";
 		$model->buttonText = $buttonText;
@@ -223,6 +233,8 @@ class ExtensionKernel extends SynthesisExtension
 		$model->buttonClass = $buttonClass;
 		$model->hasButton = $hasButton;
 		$model->buttonTextColor = $buttonTextColor;
+		$model->assignedToAllPages = $request->get('assignedToAllPages') == "on";
+		$model->assignedPages = $assignedPages;
 		$model->save();
 		$count = 0;
 		foreach ($request->all() as $key => $val) {
@@ -257,7 +269,23 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function showSlider($slug){
-		return view('Nitrogen::index')->with(['kernel' => $this, 'slug' => $slug, 'model' => $this->findOrCreate()]);
+		$show = false;
+		$model = $this->findOrCreate();
+		if($model->assignedToAllPages){
+			$show = true;
+		}else{
+			$pages_assigned = $model->assignedPages;
+			$pages_assigned_array = explode(";", $pages_assigned);
+			foreach($pages_assigned_array as $page_id){
+				$page = Page::where(['id' => $page_id])->first();
+				if(url($page->slug) == $slug){
+					$show = true;
+				}
+			}
+		}
+		if($show){
+			return view('Nitrogen::index')->with(['kernel' => $this, 'slug' => $slug, 'model' => $this->findOrCreate()]);
+		}
 	}
 
 	public function getSliderItems($slug){
@@ -294,7 +322,7 @@ class ExtensionKernel extends SynthesisExtension
 	public function findOrCreate(){
 		$model = NitrogenExtension::find(1);
 		if(!$model){
-			$model = NitrogenExtension::create(['buttonLink' => url("/admin"), 'buttonText' => 'Admin', 'buttonTextColor' => 'teal', 'buttonWavesColor' => 'teal', 'buttonColor' => 'white', 'buttonClass' => 'text-darken-1', 'hasButton' => true]);
+			$model = NitrogenExtension::create(['assignedPages' => '', 'buttonLink' => url("/admin"), 'buttonText' => 'Admin', 'buttonTextColor' => 'teal', 'buttonWavesColor' => 'teal', 'buttonColor' => 'white', 'buttonClass' => 'text-darken-1', 'hasButton' => true]);
 			return $this->findOrCreate();
 		}else{
 			return $model;

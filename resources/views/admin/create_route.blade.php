@@ -8,16 +8,20 @@
 
 @section('head')
 <style>
-.caret {
+#route-sel .caret {
 	color: {{ $synthesiscmsMainColor }} !important;
 }
 
-.select-dropdown {
+#route-sel .select-dropdown {
 	border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 }
 
-.select-wrapper {
+#route-sel .select-wrapper {
 	margin-top: 5px !important;
+}
+
+label{
+	text-align: left !important;
 }
 </style>
 @endsection
@@ -113,7 +117,7 @@
 					}
 				});
 				</script>
-				<div class="input-field col s8 valign">
+				<div class="input-field col s8 valign" id="route-sel">
 					<select id="extension" name="extension" class="{{ $synthesiscmsMainColor }}-text">
 						@php
 						$extensions = config("synthesiscmsextensions.extensions");

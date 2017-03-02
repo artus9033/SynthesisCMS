@@ -33,6 +33,8 @@ return [
 	'item_typeFolder' => 'Folder',
 	'item_typeSingle' => 'Single File',
 	'item_image' => 'Item Image',
+	'assigned_to_all_pages' => 'Assigned to all pages',
+	'assigned_pages' => 'Assigned pages',
 ];
 
 ?>
