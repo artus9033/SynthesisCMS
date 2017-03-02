@@ -25,9 +25,9 @@
 				$selected2 = "selected";
 			}
 			@endphp
-			<option {{ $selected1 }} value="1" class="card-panel col s10 offset-s1 red white-text"><h5>{{ trans('Hydrogen::hydrogen.one_column') }}</h5></option>
-			<option {{ $selected2 }} value="2" class="card-panel col s10 offset-s1 red white-text"><h5>{{ trans('Hydrogen::hydrogen.two_columns') }}</h5></option>
 		@endforeach
+		<option {{ $selected1 }} value="1" class="card-panel col s10 offset-s1 red white-text"><h5>{{ trans('Hydrogen::hydrogen.one_column') }}</h5></option>
+		<option {{ $selected2 }} value="2" class="card-panel col s10 offset-s1 red white-text"><h5>{{ trans('Hydrogen::hydrogen.two_columns') }}</h5></option>
 	</select>
 	<label>{{ trans("Hydrogen::messages.choose_list_column_count") }}</label>
 </div>

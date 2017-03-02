@@ -1,6 +1,14 @@
 <?php
 
 return [
+	'chooser_upload' => 'Wyślij',
+	'chosen_image_none' => 'Brak',
+	'choose' => 'Wybierz',
+	'chooser_cancel' => 'Anuluj',
+	'chooser_path' => 'Ścieżka: ',
+	'chooser_path_root' => 'Główny',
+	'chosen_image' => 'Wybrano: ',
+	'choose_image' => 'Wybierz Obraz',
 	'save_applet' => 'Zapisz',
 	'cancel_applet' => 'Anuluj',
 	'save_settings' => 'Zapisz Ustawienia',

@@ -77,10 +77,18 @@ $(document).ready(function(){
 					</select>
 					<label>{{ trans("Nitrogen::nitrogen.item_sourceHeader") }}</label>
 				</div>
-				<!-- TODO: implement ftp & uploading image-->
-				<div class="btn btn-large center col s12 l8 offset-l2 row waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text disabled">
-					<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
+				<div class="col s12 l8 offset-l2 input-field">
+					<a href="#image-picker" class="btn btn-large center waves-effect col s2 l4 waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
+						<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
+					</a>
+					<input id="image-tv" name="image-tv" class="col s10 l8" type="text">
 				</div>
+				<script>
+				function imagePickerCallback(txt){
+					$('#image-tv').val(txt);
+				}
+				</script>
+				@include('partials/image-picker')
 				<div class="row"></div>
 				<button type="submit" class="col s12 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
 			</form>

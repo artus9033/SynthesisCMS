@@ -29,7 +29,7 @@ class BackendController extends Controller
 		return view('admin.settings');
 	}
 
-	public function settingsPost(BackendRequest $request, &$errors_array_ptr){
+	public function settingsPost(BackendRequest $request){
 		$settings = Settings::getActiveInstance();
 		$settings->home_page = $request->get('home_page');
 		$settings->header_title = $request->get('header_title');

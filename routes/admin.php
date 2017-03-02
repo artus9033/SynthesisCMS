@@ -2,9 +2,14 @@
 
 Route::get('/admin', ['as' => 'admin', 'uses' => 'Backend\\BackendController@index']);
 
-Route::post('/admin/upload', ['as' => 'upload', 'uses' => 'Backend\\TrumbowygUpload@uploadPost']);
+Route::get('/admin/list', ['as' => 'list', 'uses' => 'Backend\\SynthesisFilesystemController@list']);
+Route::post('/admin/upload', ['as' => 'upload', 'uses' => 'Backend\\SynthesisFilesystemController@uploadPost']);
 
 Route::post('/synthesis-route-check', ['as' => 'synthesis_route_check', 'uses' => 'Content\\RouteController@checkRoute']);
+
+Route::get('/admin/lol', function(){
+	return view('partials/image-picker');
+});
 
 Route::get('/admin/manage_routes', ['as' => 'manage_routes', 'uses' => 'Content\\RouteController@manageRoutesGet']);
 Route::get('/admin/manage_routes/edit/{id}', ['as' => 'manage_routes_edit', 'uses' => 'Content\\RouteController@editRouteGet']);

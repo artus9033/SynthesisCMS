@@ -15,6 +15,7 @@ class CreateNitrogenItemsTable extends Migration
     {
         Schema::create('nitrogen_items', function (Blueprint $table) {
             $table->increments('id');
+		  $table->longText('image');
 		  $table->longText('title');
 		  $table->longText('content');
 		  $table->integer('type')->default(1);

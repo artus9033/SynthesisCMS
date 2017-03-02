@@ -53,6 +53,8 @@ class PageController extends Controller
 				$slug = substr($slug, 0, -1);
 			}
 		}
+		echo Page::where('slug', $slug)->count();
+		exit;
 		$page = Page::where('slug', $slug)->first();
 		if(is_null($page)){
 			abort(404);

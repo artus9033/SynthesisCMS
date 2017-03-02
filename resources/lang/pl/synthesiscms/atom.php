@@ -12,7 +12,7 @@ return [
 	'imageSourceTypeFile' => 'Plik',
 	'delete_selected' => 'Usuń Wybrane',
 	'copy_selected' => 'Sklonuj Wybrane',
-	'move_selected' => 'Przenieś Wybrane To',
+	'move_selected' => 'Przenieś Wybrane Do',
 	'id' => 'ID',
 	'title' => 'Tytuł',
 	'content' => 'Zawartość',

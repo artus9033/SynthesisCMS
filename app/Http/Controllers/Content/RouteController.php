@@ -123,7 +123,7 @@ class RouteController extends Controller
 
 			Toolbox::chkRoute($route);
 
-			$page = Page::create(['slug' => $route, 'extension' => $extension]);
+			$page = Page::create(['slug' => $route, 'extension' => $extension, 'page_title' => 'SynthesisCMS Sample Title', 'page_header' => 'SynthesisCMS Sample Page Header: Lorem ipsum sit dolor amet...']);
 
 			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
 			$kernel = new $kpath;

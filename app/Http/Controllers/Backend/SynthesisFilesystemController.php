@@ -14,12 +14,23 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\Http\Controllers\Controller;
 
-class TrumbowygUpload extends Controller
+class SynthesisFilesystemController extends Controller
 {
+	function list(BackendRequest $request){
+		$dir = public_path() . "\\synthesis-uploads\\";
+		$imgs = array();
+		foreach (glob($dir . '*.{jpg,png,gif,jpeg}', GLOB_BRACE) as $file) {
+			array_push($imgs, ['name' => basename($file), 'path' => url('/') . '/synthesis-uploads/' . basename($file)]);
+		}
+		$dirs = glob($dir . '*', GLOB_ONLYDIR);
+		$data = ['imgs' => $imgs, 'dirs' => $dirs];
+		return response($data);
+	}
+
 	function uploadPost(BackendRequest $request){
 		function getNewFileName($path, $filename_original){
 			if(file_exists($path . $filename_original)){
-				return $filename_original . md5(date('Y-m-d H:i:s:u'));
+				return pathinfo($filename_original, PATHINFO_FILENAME) . md5(date('Y-m-d H:i:s:u')) . "." . pathinfo($path . $filename_original, PATHINFO_EXTENSION);
 			}else{
 				return $filename_original;
 			}

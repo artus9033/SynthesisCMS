@@ -13,7 +13,7 @@ class HydrogenController extends Controller
 	public function index($currentPage, $page, $kernel, $base_slug)
 	{
 		$atomsKey = HydrogenExtension::where('id', $page->id)->first()->molecule;
-		if($currentPage > Atom::where('molecule', $atomsKey)->count()){
+		if($currentPage > Atom::where('molecule', $atomsKey)->count() && Atom::where('molecule', $atomsKey)->count()){
 			return \App::abort(404);
 		}else{
 			$extension_instance = \App\Extensions\Hydrogen\Models\HydrogenExtension::find($page->id);

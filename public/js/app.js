@@ -2,18 +2,6 @@ function setLanguage(lang, base){
 	window.location.href = base + "/lang/" + lang;
 }
 
-function resizeIframeBasedOnContents(obj) {
-	// Timeout makes sure that if the document contains JS that changes
-	// UI, it will be executed before resizing the iframe,
-	// thus the new content won't appear outside the iframe's borders
-	setTimeout(function(){
-		/**
-		obj.style.height = 2 * obj.contentWindow.document.body.scrollHeight + 'px';
-		alert(2 * obj.contentWindow.document.body.scrollHeight + " \ " + obj.style.height);**/
-		$(obj).height( $(obj).contents().find("body").height() );
-	}, 600);
-}
-
 function toggleAll(selector){
 	$(selector).each(function(index) {
 		$(this).prop('checked', !$(this).is(":checked"));

@@ -237,9 +237,9 @@ class ExtensionKernel extends SynthesisExtension
 		}
 		if($count == 0){
 			array_push($errors_array_ptr, trans('Berylium::messages.err_no_items_selected'));
-			 
+
 		}else{
-			 
+
 		}
 	}
 
@@ -308,6 +308,7 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function getGeneralMenuItems($slug, $menuType){
 		$out = "";
+		$model = $this->findOrCreate();
 		$synthesiscmsMainColor = Settings::getFromActive('main_color');
 		switch($menuType){
 			case 'mobile':
@@ -317,7 +318,17 @@ class ExtensionKernel extends SynthesisExtension
 			$li_class = "";
 			break;
 		}
-		foreach(BeryliumItem::where('category', BeryliumItemCategory::General)->cursor() as $item){
+		$items_raw = BeryliumItem::where('menu', $model->id);
+		$items_count = $items_raw->count();
+		$array = array();
+		$posctr = 0;
+		for($id = 0; $posctr < $items_count; $posctr++){
+			$itm = BeryliumItem::where(['menu' => $model->id, 'before' => $id, 'category' => BeryliumItemCategory::General])->first();
+			array_push($array, $itm);
+			$id = $itm->id;
+		}
+		$items = collect($array);
+		foreach($items as $item){
 			$itemdata = $this->returnItem($item, $slug);
 			$active = $itemdata['active'];
 			$out .= "<li class='$active $li_class'>" . $itemdata['data'] . "</li>";

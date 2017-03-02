@@ -61,11 +61,15 @@ class Toolbox
 	}
 
 	static function string_truncate($str, $length){
+		/**
+		* faulty!
 		$retstr = substr($str, 0 , $length);
 		if(strlen($str) > $length){
 			$retstr .= "...";
 		}
 		return $retstr;
+		**/
+		return mb_strimwidth($str, 0, $length, "...");
 	}
 
 	static function isEven($number){

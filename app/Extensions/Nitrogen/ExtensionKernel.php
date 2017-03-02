@@ -110,6 +110,7 @@ class ExtensionKernel extends SynthesisExtension
 		$type_raw = $request->get('type');
 		$titleTextColor = $request->get('titleTextColor');
 		$contentTextColor = $request->get('contentTextColor');
+		$image = $request->get('image-tv');
 		switch($type_raw){
 			case "single":
 			$type = NitrogenItemType::FtpSingleImage;
@@ -141,6 +142,7 @@ class ExtensionKernel extends SynthesisExtension
 			$item->type = $type;
 			$item->titleTextColor = $titleTextColor;
 			$item->contentTextColor = $contentTextColor;
+			$item->image = $image;
 			$item->save();
 			return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('messages', array(trans('Nitrogen::messages.msg_item_saved')));
 		}
@@ -161,6 +163,7 @@ class ExtensionKernel extends SynthesisExtension
 		$type_raw = $request->get('type');
 		$titleTextColor = $request->get('titleTextColor');
 		$contentTextColor = $request->get('contentTextColor');
+		$image = $request->get('image-tv');
 		switch($type_raw){
 			case "single":
 			$type = NitrogenItemType::FtpSingleImage;
@@ -192,7 +195,7 @@ class ExtensionKernel extends SynthesisExtension
 			}else{
 				$before = $parent_id;
 			}
-			$created = NitrogenItem::create(['type' => $type, 'title' => $title, 'content' => $content, 'before' => $before, 'slider' => $this->findOrCreate()->id, 'contentTextColor' => $contentTextColor, 'titleTextColor' => $titleTextColor]);
+			$created = NitrogenItem::create(['image' => $image, 'type' => $type, 'title' => $title, 'content' => $content, 'before' => $before, 'slider' => $this->findOrCreate()->id, 'contentTextColor' => $contentTextColor, 'titleTextColor' => $titleTextColor]);
 			$created->parentOf = $created->id + 1;
 			$created->save();
 			return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('messages', array(trans('Nitrogen::messages.msg_item_added')));
@@ -217,12 +220,14 @@ class ExtensionKernel extends SynthesisExtension
 		$buttonTextColor = $request->get('button_text_color');
 		$assignedPages = "";
 		$ctr = 0;
-		foreach($request->get('assigned_pages') as $v){
-			$ctr++;
-			if($ctr > 1){
-				$assignedPages .= ";";
+		if($request->get('assignedToAllPages') != "on"){
+			foreach($request->get('assigned_pages') as $v){
+				$ctr++;
+				if($ctr > 1){
+					$assignedPages .= ";";
+				}
+				$assignedPages .= $v;
 			}
-			$assignedPages .= $v;
 		}
 		$model = $this->findOrCreate();
 		$model->enabled = $request->get('enabled') == "on";
@@ -234,7 +239,9 @@ class ExtensionKernel extends SynthesisExtension
 		$model->hasButton = $hasButton;
 		$model->buttonTextColor = $buttonTextColor;
 		$model->assignedToAllPages = $request->get('assignedToAllPages') == "on";
-		$model->assignedPages = $assignedPages;
+		if($request->get('assignedToAllPages') != "on"){
+			$model->assignedPages = $assignedPages;
+		}
 		$model->save();
 		$count = 0;
 		foreach ($request->all() as $key => $val) {
@@ -307,8 +314,21 @@ class ExtensionKernel extends SynthesisExtension
 		}
 		$items = collect($array);
 		foreach($items as $item){
-			$out .= "<div class='carousel-item red'>
-			<h2 class='$item->titleTextColor-text'>$item->title</h2>
+			$out .= "<div class='carousel-item' style=\"background-image: url('" . $item->image . "');
+			background-repeat: no-repeat;
+			background-size: cover;
+    			background-attachment: fixed;
+    			background-position: center; \">
+			<h2 class='$item->titleTextColor-text' style='text-shadow:
+    /* Outline */
+    -1px -1px 0 #FFFAF0,
+    1px -1px 0 #FFFAF0,
+    -1px 1px 0 #FFFAF0,
+    1px 1px 0 #FFFAF0,
+    -1px 0 0 #FFFAF0,
+    1px 0 0 #FFFAF0,
+    0 1px 0 #FFFAF0,
+    0 -1px 0 #FFFAF0; '>$item->title</h2>
 			<p class='$item->contentTextColor-text'>$item->content</p>
 			</div>";
 		}

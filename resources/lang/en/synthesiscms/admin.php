@@ -1,6 +1,14 @@
 <?php
 
 return [
+	'chooser_upload' => 'Upload',
+	'chosen_image_none' => 'None',
+	'choose' => 'Choose',
+	'chooser_cancel' => 'Cancel',
+	'chooser_path' => 'Path: ',
+	'chooser_path_root' => 'Root',
+	'chosen_image' => 'Chosen: ',
+	'choose_image' => 'Choose an Image',
 	'save_applet' => 'Save',
 	'cancel_applet' => 'Cancel',
 	'save_settings' => 'Save Settings',
