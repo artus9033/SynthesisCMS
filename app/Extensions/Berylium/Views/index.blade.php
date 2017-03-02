@@ -1,14 +1,11 @@
 @php
 $desktopMenu = $synthesiscmsPositionManager->getCustom('berylium', 'desktop-menu', array(Request::url()));
-$generalMenuForDesktop = $synthesiscmsPositionManager->getCustom('berylium', 'menu', array(Request::url(), 'desktop'));
-$generalMenuForMobile = $synthesiscmsPositionManager->getCustom('berylium', 'menu', array(Request::url(), 'mobile'));
 $mobileMenu = $synthesiscmsPositionManager->getCustom('berylium', 'mobile-menu', array(Request::url()));
 @endphp
-@if((count($generalMenuForDesktop) || count($desktopMenu)) && $model->enabled)
+@if(count($desktopMenu) && $model->enabled)
 	<nav class="col s12 {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} darken-1 hide-on-med-and-down">
 		<div class="nav-wrapper">
 			<ul>
-				{!! $generalMenuForDesktop !!}
 				{!! $desktopMenu !!}
 			</ul>
 		</div>
@@ -91,7 +88,6 @@ $mobileMenu = $synthesiscmsPositionManager->getCustom('berylium', 'mobile-menu',
 				</ul>
 			</li>
 			@if($model->enabled)
-				{!! $generalMenuForMobile !!}
 				{!! $mobileMenu !!}
 			@endif
 			{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::InsideMenu, Request::url()) !!}

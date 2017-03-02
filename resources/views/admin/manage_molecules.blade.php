@@ -158,7 +158,7 @@
 											</div>
 										</td>
 										<td class="center">{{ $molecule->id }}</td>
-										<td class="center">{{ $molecule->title }}</td>
+										<td class="center">{{ \App\Toolbox::string_truncate($molecule->title, 15) }}</td>
 										<td class="center">{{ $molecule->getAmount() }}</td>
 										<td class="center"><a href="{{ url('/admin/manage_molecules/edit') }}/{{ $molecule->id }}" class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/molecule.edit') }}</a></td>
 										<div id="modalDelete{{ $molecule->id }}" class="modal center">

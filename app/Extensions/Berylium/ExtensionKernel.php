@@ -287,51 +287,48 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function getMobileMenuItems($slug){
 		$out = "";
-		foreach(BeryliumItem::where('category', BeryliumItemCategory::Mobile)->cursor() as $item){
-			$itemdata = $this->returnItem($item, $slug);
-			$active = $itemdata['active'];
-			$out .= "<li class='$active'>" . $itemdata['data'] . "</li>";
-		}
-		return $out;
-	}
-
-	public function getDesktopMenuItems($slug){
-		$out = "";
-		$synthesiscmsMainColor = Settings::getFromActive('tab_color');
-		foreach(BeryliumItem::where('category', BeryliumItemCategory::Desktop)->cursor() as $item){
-			$itemdata = $this->returnItem($item, $slug);
-			$active = $itemdata['active'];
-			$out .= "<li class='$active'>" . $itemdata['data'] . "</li>";
-		}
-		return $out;
-	}
-
-	public function getGeneralMenuItems($slug, $menuType){
-		$out = "";
 		$model = $this->findOrCreate();
 		$synthesiscmsMainColor = Settings::getFromActive('main_color');
-		switch($menuType){
-			case 'mobile':
-			$li_class = "col s12 waves-effect waves-$synthesiscmsMainColor";
-			break;
-			case 'desktop':
-			$li_class = "";
-			break;
-		}
 		$items_raw = BeryliumItem::where('menu', $model->id);
 		$items_count = $items_raw->count();
 		$array = array();
 		$posctr = 0;
 		for($id = 0; $posctr < $items_count; $posctr++){
-			$itm = BeryliumItem::where(['menu' => $model->id, 'before' => $id, 'category' => BeryliumItemCategory::General])->first();
-			array_push($array, $itm);
+			$itm = BeryliumItem::where(['menu' => $model->id, 'before' => $id])->first();
+			if($itm->category == BeryliumItemCategory::Mobile || $itm->category == BeryliumItemCategory::General){
+				array_push($array, $itm);
+			}
 			$id = $itm->id;
 		}
 		$items = collect($array);
 		foreach($items as $item){
 			$itemdata = $this->returnItem($item, $slug);
 			$active = $itemdata['active'];
-			$out .= "<li class='$active $li_class'>" . $itemdata['data'] . "</li>";
+			$out .= "<li class='col s12 waves-effect waves-$synthesiscmsMainColor $active'>" . $itemdata['data'] . "</li>";
+		}
+		return $out;
+	}
+
+	public function getDesktopMenuItems($slug){
+		$out = "";
+		$model = $this->findOrCreate();
+		$synthesiscmsMainColor = Settings::getFromActive('main_color');
+		$items_raw = BeryliumItem::where('menu', $model->id);
+		$items_count = $items_raw->count();
+		$array = array();
+		$posctr = 0;
+		for($id = 0; $posctr < $items_count; $posctr++){
+			$itm = BeryliumItem::where(['menu' => $model->id, 'before' => $id])->first();
+			if($itm->category == BeryliumItemCategory::Desktop || $itm->category == BeryliumItemCategory::General){
+				array_push($array, $itm);
+			}
+			$id = $itm->id;
+		}
+		$items = collect($array);
+		foreach($items as $item){
+			$itemdata = $this->returnItem($item, $slug);
+			$active = $itemdata['active'];
+			$out .= "<li class='$active'>" . $itemdata['data'] . "</li>";
 		}
 		return $out;
 	}
@@ -341,7 +338,6 @@ class ExtensionKernel extends SynthesisExtension
 		$manager->addStandard(SynthesisPositions::BeforeSiteName, $this, 'showMenuMobileButton');
 		$manager->addCustom('berylium', 'mobile-menu', $this, 'getMobileMenuItems');
 		$manager->addCustom('berylium', 'desktop-menu', $this, 'getDesktopMenuItems');
-		$manager->addCustom('berylium', 'menu', $this, 'getGeneralMenuItems');
 	}
 
 	public function findOrCreate(){

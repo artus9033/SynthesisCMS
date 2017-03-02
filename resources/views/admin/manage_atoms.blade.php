@@ -134,7 +134,7 @@
 									</div>
 								</td>
 								<td class="center">{{ $atom->id }}</td>
-								<td class="center">{{ App\Toolbox::string_truncate($atom->title, 34) }}</td>
+								<td class="center">{{ App\Toolbox::string_truncate($atom->title, 15) }}</td>
 								<td class="center">{{ App\Toolbox::string_truncate(('(ID ' . $atom->molecule . ') ' . App\Models\Content\Molecule::find($atom->molecule)->title), 15) }}</td>
 								<td class="center"><a href="{{ url('/admin/manage_atoms/edit') }}/{{ $atom->id }}" class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i class="material-icons white-text left">create</i>{{ trans('synthesiscms/atom.edit') }}</a></td>
 								<div id="modalDelete{{ $atom->id }}" class="modal">
