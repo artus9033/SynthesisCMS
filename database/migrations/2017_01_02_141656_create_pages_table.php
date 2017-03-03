@@ -13,7 +13,7 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('synthesiscms_pages', function (Blueprint $table) {
             $table->increments('id');
 		  $table->longText('slug');
 		  $table->longText('extension');
@@ -29,6 +29,6 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('synthesiscms_pages');
     }
 }

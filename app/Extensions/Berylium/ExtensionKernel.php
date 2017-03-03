@@ -259,22 +259,23 @@ class ExtensionKernel extends SynthesisExtension
 		return view('Berylium::mobile_button')->with('slug', $slug);
 	}
 
-	public function returnItem($item, $url){
+	public function returnItem($item, $url, $children_dropdown_caret, $type){
+		//implement collapsible-accordion for mobile type
 		$synthesiscmsMainColor = Settings::getFromActive('tab_color');
 		switch($item->type){
 			case BeryliumItemType::Page:
 			$href = "todo: implement self";
-			$out = "<a href='$href'>" . $item->title . "</a>";
+			$out = "<a href='$href'>" . $item->title . $children_dropdown_caret . "</a>";
 			break;
 
 			case BeryliumItemType::Link:
 			$href = $item->data;
-			$out = "<a href='$href'>" . $item->title . "</a>";
+			$out = "<a href='$href'>" . $item->title . $children_dropdown_caret . "</a>";
 			break;
 
 			case BeryliumItemType::Placeholder:
 			$href = $url;
-			$out = "<a>" . $item->title . "</a>";
+			$out = "<a>" . $item->title . $children_dropdown_caret . "</a>";
 			break;
 		}
 		if($href == $url){
@@ -283,6 +284,14 @@ class ExtensionKernel extends SynthesisExtension
 			$active = "";
 		}
 		return ['data' => $out, 'active' => $active];
+	}
+
+	public function returnChildren($query, $slug, $class){
+		$out = "";
+		foreach($query->get() as $key => $itm){
+			$out .= "<li class='$class'>" . $this->returnItem($itm, $slug, "", "desktop")['data'] . "</li>";
+		}
+		return $out;
 	}
 
 	public function getMobileMenuItems($slug){
@@ -302,9 +311,22 @@ class ExtensionKernel extends SynthesisExtension
 		}
 		$items = collect($array);
 		foreach($items as $item){
-			$itemdata = $this->returnItem($item, $slug);
+			$mcount = BeryliumItem::where(['menu' => $item->parentOf])->count();
+			if($mcount){
+				$children_dropdown_btn = "dropdown-button-berylium";
+				$children_dropdown_activates = "berylium-dropdown" . $item->id;
+				$children_dropdown_caret = "<i class='material-icons right'>arrow_drop_down</i>";
+			}else{
+				$children_dropdown_btn = $children_dropdown_activates = $children_dropdown_caret = "";
+			}
+			$itemdata = $this->returnItem($item, $slug, $children_dropdown_caret, "mobile");
 			$active = $itemdata['active'];
-			$out .= "<li class='col s12 waves-effect waves-$synthesiscmsMainColor $active'>" . $itemdata['data'] . "</li>";
+			$out .= "<li class='col s12 waves-effect waves-$synthesiscmsMainColor $active $children_dropdown_btn' data-activates='$children_dropdown_activates'>" . $itemdata['data'] . "</li>";
+			if($mcount){
+				$out .= "<ul id='berylium-dropdown" . $item->id . "' class='dropdown-content'>";
+				$out .=  $this->returnChildren(BeryliumItem::where(['menu' => $item->parentOf]), $slug, "col s12 waves-effect waves-$synthesiscmsMainColor $active");
+				$out .= "</ul>";
+			}
 		}
 		return $out;
 	}
@@ -326,9 +348,22 @@ class ExtensionKernel extends SynthesisExtension
 		}
 		$items = collect($array);
 		foreach($items as $item){
-			$itemdata = $this->returnItem($item, $slug);
+			$mcount = BeryliumItem::where(['menu' => $item->parentOf])->count();
+			if($mcount){
+				$children_dropdown_btn = "dropdown-button-berylium";
+				$children_dropdown_activates = "berylium-dropdown" . $item->id;
+				$children_dropdown_caret = "<i class='material-icons right'>arrow_drop_down</i>";
+			}else{
+				$children_dropdown_btn = $children_dropdown_activates = $children_dropdown_caret = "";
+			}
+			$itemdata = $this->returnItem($item, $slug, $children_dropdown_caret, "desktop");
 			$active = $itemdata['active'];
-			$out .= "<li class='$active'>" . $itemdata['data'] . "</li>";
+			$out .= "<li class='$active $children_dropdown_btn' data-activates='$children_dropdown_activates'>" . $itemdata['data'] . "</li>";
+			if($mcount){
+				$out .= "<ul id='berylium-dropdown" . $item->id . "' class='dropdown-content'>";
+				$out .=  $this->returnChildren(BeryliumItem::where(['menu' => $item->parentOf]), $slug, '');
+				$out .= "</ul>";
+			}
 		}
 		return $out;
 	}
