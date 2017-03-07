@@ -21,7 +21,7 @@
         headers: {},                    // Additional headers
         xhrFields: {},                  // Additional fields
         urlPropertyName: 'file',        // How to get url from the json response (for instance 'url' for {url: ....})
-        statusPropertyName: 'success',  // How to get status from the json response
+        statusPropertyName: 'success',  // How to get status from the json response 
         success: undefined,             // Success callback: function (data, trumbowyg, $modal, values) {}
         error: undefined                // Error callback: function () {}
     };
@@ -131,7 +131,7 @@
                                                 )
                                             );
                                     }
-console.log(trumbowyg.o.plugins.upload.headers);
+
                                     $.ajax({
                                         url: trumbowyg.o.plugins.upload.serverPath,
                                         headers: trumbowyg.o.plugins.upload.headers,

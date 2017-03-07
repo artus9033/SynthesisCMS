@@ -180,6 +180,7 @@ return [
 	   App\Providers\SettingsVariablesProvider::class,
 	   App\Extensions\ExtensionsServiceProvider::class,
 	   App\Providers\MobileDetectionProvider::class,
+	   //Witty\LaravelDbBackup\DBBackupServiceProvider::class
     ],
 
     /*

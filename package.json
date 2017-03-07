@@ -1,23 +1,23 @@
 {
-	"private": true,
-	"scripts": {
-		"prod": "gulp --production",
-		"dev": "gulp watch"
-	},
-	"devDependencies": {
-		"gulp": "^3.9.1",
-		"jquery": "^3.1.0",
-		"laravel-elixir": "^6.0.0-9",
-		"laravel-elixir-vue-2": "^0.2.0",
-		"laravel-elixir-webpack-official": "^1.0.2",
-		"lodash": "^4.16.2",
-		"vue": "^2.0.1",
-		"chart.js": "^2.4.0",
-		"vue-resource": "^1.0.3"
-	},
-	"dependencies": {
-		"hammerjs": "^2.0.8",
-		"clipboard": "^1.5.16",
-		"trumbowyg": "*"
-	}
+  "private": true,
+  "scripts": {
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
+  "devDependencies": {
+    "chart.js": "^2.4.0",
+    "gulp": "^3.9.1",
+    "jquery": "^3.1.0",
+    "laravel-elixir": "^6.0.0-9",
+    "laravel-elixir-vue-2": "^0.2.0",
+    "laravel-elixir-webpack-official": "^1.0.2",
+    "lodash": "^4.16.2",
+    "vue": "^2.0.1",
+    "vue-resource": "^1.0.3"
+  },
+  "dependencies": {
+    "hammerjs": "^2.0.8",
+    "clipboard": "^1.5.16",
+    "trumbowyg": "*"
+  }
 }

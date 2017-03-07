@@ -78,7 +78,14 @@
 					<div class="progress">
 						<div id="loader-div" class="indeterminate"></div>
 					</div>
-					<iframe onchange="this.style.height = 3 * this.contentWindow.document.body.scrollHeight + 'px'" onload="this.style.height = 3 * this.contentWindow.document.body.scrollHeight + 'px'; $('#loader-div').css('display', 'none');" class="col s12" height="900px" frameBorder="0" id="settings-view" src="{{ url('/admin/manage_applets') }}/{{ $firstExt }}"></iframe>
+					<script>
+						function resizeIframe(obj){
+							setTimeout(function(){
+								obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+							}, 600);
+						}
+					</script>
+					<iframe onchange="resizeIframe(this)" onload="resizeIframe(this); $('#loader-div').css('display', 'none');" class="col s12" height="900px" frameBorder="0" id="settings-view" src="{{ url('/admin/manage_applets') }}/{{ $firstExt }}"></iframe>
 				@else
 					@include('partials/error', ['error' => trans('synthesiscms/admin.msg_no_applets')])
 				@endif

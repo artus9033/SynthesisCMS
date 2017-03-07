@@ -5,7 +5,9 @@ database/database.sqlite
 .env
 .tags1
 composer.phar
+composer.lock
 npm-debug.log
 public/synthesis-uploads/*
 !public/synthesis-uploads/.gitkeep
 !public/synthesis-uploads/.htaccess
+public/favicon.ico
