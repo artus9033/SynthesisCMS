@@ -50,10 +50,12 @@ $(document).ready(function() {
 	$.getScript('//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.8', function(){
 		FB.init({
 			appId: 'TODO', //TODO: add facebook app id
-			version: 'v2.7' // or v2.1, v2.2, v2.3, ...
+			version: 'v2.7'
 		});
 		$('#loginbutton,#feedbutton').removeAttr('disabled');
-		FB.getLoginStatus(updateStatusCallback);
+		FB.getLoginStatus(function(){
+
+		});
 	});
 });
 </script>

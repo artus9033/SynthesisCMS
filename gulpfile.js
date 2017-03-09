@@ -8,6 +8,8 @@ require('laravel-elixir-vue-2');
 elixir(mix => {
 mix.sass('app.scss');
 
+mix.sass('login-register.scss');
+
 mix.sass('materializecss/materialize.scss');
 
 mix.sass('facebook-likebox-slideout.scss');
