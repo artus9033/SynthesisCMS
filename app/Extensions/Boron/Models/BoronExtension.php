@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BoronExtension extends Model
 {
-	protected $fillable = array('id', 'enabled');
+	protected $fillable = array('id', 'enabled', 'url');
 
 	public $timestamps = false;
 }

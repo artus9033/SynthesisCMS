@@ -106,6 +106,12 @@ label{
 								<label for="footer_links_content">{{ trans('synthesiscms/settings.footer_links_content') }}</label>
 								<textarea class="editor" id="footer_links_content" name="footer_links_content"></textarea>
 							</div>
+							<style>
+								.trumbowyg-editor{
+									background-color: grey;
+									cursor: default;
+								}
+							</style>
 						</div>
 						<div id="settings-footer-bottom" class="col s12">
 							<div>
