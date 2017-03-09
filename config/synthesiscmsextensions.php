@@ -6,6 +6,7 @@ return  [
 		'Hydrogen',
 		'Berylium',
 		'Nitrogen',
+		'Boron'
 	],
 ]
 

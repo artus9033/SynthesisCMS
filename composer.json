@@ -5,16 +5,17 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.6.4",
-        "laravel/framework": "5.4.*",
-	   "doctrine/dbal": "*"
+        "php": "*",
+        "laravel/framework": "*",
+	   "doctrine/dbal": "*",
+        "nesbot/carbon": "*"
     },
     "require-dev": {
-        "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.0",
-        "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "fzaninotto/faker": "*",
+        "mockery/mockery": "*",
+        "phpunit/phpunit": "*",
+        "symfony/css-selector": "*",
+        "symfony/dom-crawler": "*"
     },
     "autoload": {
         "classmap": [

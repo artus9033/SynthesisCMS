@@ -33,10 +33,18 @@ class SynthesisExtension extends Controller
      public function routes($page, $base_slug){}
 
 	/**
-	* Function used to register hooks to positions
+	* Function used to register hooks for positions
 	* @return nothing
 	**/
 	public function hookPositions(&$manager){}
+
+	/**
+	* Function used to register middleware
+	* @return boolean should execute next middleware
+	**/
+	public function registerMiddleware(){
+		return true;
+	}
 
 	/** !!! Global Extension Functions End !!! **/
 

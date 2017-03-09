@@ -69,6 +69,7 @@ class ExtensionsServiceProvider extends ServiceProvider
 				$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
 				$kernel = new $kpath;
 				$kernel->hookPositions($manager);
+				$kernel->registerMiddleware();
 			}
 
 			view()->share('synthesiscmsPositionManager', $manager);
