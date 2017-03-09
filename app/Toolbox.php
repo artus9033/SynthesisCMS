@@ -61,14 +61,6 @@ class Toolbox
 	}
 
 	static function string_truncate($str, $length){
-		/**
-		* faulty!
-		$retstr = substr($str, 0 , $length);
-		if(strlen($str) > $length){
-			$retstr .= "...";
-		}
-		return $retstr;
-		**/
 		return mb_strimwidth($str, 0, $length, "...");
 	}
 
@@ -78,6 +70,20 @@ class Toolbox
 		}
 		if($number % 2 == 1 ) {
 			return false;
+		}
+	}
+
+	static function getDoubleLocale($locale){
+		switch($locale){
+			case "pl":
+			return "pl_PL";
+			break;
+			case "en":
+			return "en_US";
+			break;
+			default:
+			return "en_US";
+			break;
 		}
 	}
 

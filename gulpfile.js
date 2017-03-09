@@ -12,8 +12,6 @@ elixir(mix => {
 
 	mix.sass('materializecss/materialize.scss');
 
-	mix.sass('facebook-likebox-slideout.scss');
-
 	mix.copy('resources/assets/img', 'public/img');
 
 	mix.copy('resources/assets/fonts', 'public/fonts');

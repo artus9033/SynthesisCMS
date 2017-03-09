@@ -21,7 +21,6 @@
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}"  media="screen,projection"/>
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
-	<link href="{!! asset('css/facebook-likebox-slideout.css') !!}" rel="stylesheet">
 	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>
 	@yield('head')
 	<style>
@@ -34,31 +33,6 @@
 	@yield('header')
 </header>
 <body>
-<div id="like-box">
-	<div class="outside">
-		<div class="inside">
-			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fszkola.dla.niepelnosprawnych%2F&tabs=timeline%2C%20events&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-		</div>
-	</div>
-	<div class="belt">Facebook</div>
-</div>
-
-<script>
-$(document).ready(function() {
-	$.ajaxSetup({ cache: true });
-	//TODO: add language to script url
-	$.getScript('//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.8', function(){
-		FB.init({
-			appId: 'TODO', //TODO: add facebook app id
-			version: 'v2.7'
-		});
-		$('#loginbutton,#feedbutton').removeAttr('disabled');
-		FB.getLoginStatus(function(){
-
-		});
-	});
-});
-</script>
 @yield('body')
 <div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh;">
 	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}

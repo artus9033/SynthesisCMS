@@ -16,6 +16,7 @@ class CreateBoronExtensionsTable extends Migration
         Schema::create('boron_extensions', function (Blueprint $table) {
             $table->increments('id');
 		  $table->boolean('enabled')->default(true);
+		  $table->longText('url');
 		});
     }
 

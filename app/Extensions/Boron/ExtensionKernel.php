@@ -32,6 +32,7 @@ class ExtensionKernel extends SynthesisExtension
 	public function settingsPost(BackendRequest $request, &$errors_array_ptr){
 		$model = $this->findOrCreate();
 		$model->enabled = $request->get('enabled') == "on";
+		$model->url = $request->get('url');
 		$model->save();
 	}
 
@@ -43,19 +44,18 @@ class ExtensionKernel extends SynthesisExtension
 		return SynthesisExtensionType::Applet;
 	}
 
-	public function hookPositions(&$manager){
-		//$manager->addStandard(SynthesisPositions::BelowMenu, $this, 'showSlider');
+	public function showSlideout($slug){
+		return view('Boron::index')->with(['slug' => $slug, 'model' => $this->findOrCreate()]);
 	}
 
-	public function registerMiddleware(){
-		//TODO: find a working way to do that
-		return true;
+	public function hookPositions(&$manager){
+		$manager->addStandard(SynthesisPositions::OverContent, $this, 'showSlideout');
 	}
 
 	public function findOrCreate(){
 		$model = BoronExtension::find(1);
 		if(!$model){
-			$model = BoronExtension::create(['assignedPages' => '', 'buttonLink' => url("/admin"), 'buttonText' => 'Admin', 'buttonTextColor' => 'teal', 'buttonWavesColor' => 'teal', 'buttonColor' => 'white', 'buttonClass' => 'text-darken-1', 'hasButton' => true]);
+			$model = BoronExtension::create(['enabled' => true, 'url' => 'https://www.facebook.com/LaravelCommunity']);
 			return $this->findOrCreate();
 		}else{
 			return $model;
