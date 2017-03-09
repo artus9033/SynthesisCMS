@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNitrogenExtensionsTable extends Migration
+class CreateBoronExtensionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateNitrogenExtensionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('nitrogen_extensions', function (Blueprint $table) {
+        Schema::create('boron_extensions', function (Blueprint $table) {
             $table->increments('id');
 		  $table->boolean('enabled')->default(true);
 		});
@@ -26,6 +26,6 @@ class CreateNitrogenExtensionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nitrogen_extensions');
+        Schema::dropIfExists('boron_extensions');
     }
 }
