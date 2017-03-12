@@ -38,7 +38,7 @@ class ExtensionKernel extends SynthesisExtension
 	}
 
 	public function getExtensionName(){
-		return trans('Boron::Boron.name');
+		return trans('Boron::boron.name');
 	}
 
 	public function getExtensionType(){

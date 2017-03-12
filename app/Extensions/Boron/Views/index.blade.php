@@ -50,7 +50,7 @@
 			<iframe src="https://www.facebook.com/plugins/page.php?locale={!! \App\Toolbox::getDoubleLocale(\App::getLocale()) !!}&href={!! $model->url !!}&tabs=timeline%2C%20events&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 		</div>
 	</div>
-	<div class="boron-belt">{{ trans('Boron::Boron.facebook') }}</div>
+	<div class="boron-belt">{{ trans('Boron::boron.facebook') }}</div>
 </div>
 <script>
 function changeCSS(sheetId, selector, property, value){
