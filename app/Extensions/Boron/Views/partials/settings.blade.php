@@ -16,4 +16,11 @@
 				<label for="url">{{ trans('Boron::boron.url') }}</label>
 			</div>
 		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">vpn_key</i>
+				<input value="{!! $model->facebookAppId !!}" id="facebookAppId" name="facebookAppId" type="text" class="validate">
+				<label for="facebookAppId">{{ trans('Boron::boron.facebookAppId') }}</label>
+			</div>
+		</div>
 	</div>

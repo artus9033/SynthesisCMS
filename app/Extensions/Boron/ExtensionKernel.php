@@ -33,6 +33,7 @@ class ExtensionKernel extends SynthesisExtension
 		$model = $this->findOrCreate();
 		$model->enabled = $request->get('enabled') == "on";
 		$model->url = $request->get('url');
+		$model->facebookAppId = $request->get('facebookAppId');
 		$model->save();
 	}
 
@@ -55,7 +56,7 @@ class ExtensionKernel extends SynthesisExtension
 	public function findOrCreate(){
 		$model = BoronExtension::find(1);
 		if(!$model){
-			$model = BoronExtension::create(['enabled' => true, 'url' => 'https://www.facebook.com/LaravelCommunity']);
+			$model = BoronExtension::create(['enabled' => true, 'url' => 'https://www.facebook.com/LaravelCommunity', 'facebookAppId' => 'Enter Your Key Here']);
 			return $this->findOrCreate();
 		}else{
 			return $model;

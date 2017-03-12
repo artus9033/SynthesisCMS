@@ -7,6 +7,7 @@ return [
 	'url' => 'Url to the facebook profile page',
 	'applet_enable_header' => 'Enable the Boron Applet',
 	'facebook' => 'Facebook',
+	'facebookAppId' => 'Facebook App ID',
 ];
 
 ?>

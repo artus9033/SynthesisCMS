@@ -17,6 +17,7 @@ class CreateBoronExtensionsTable extends Migration
             $table->increments('id');
 		  $table->boolean('enabled')->default(true);
 		  $table->longText('url');
+		  $table->longText('facebookAppId');
 		});
     }
 

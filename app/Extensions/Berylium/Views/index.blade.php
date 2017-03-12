@@ -77,7 +77,7 @@ $('.dropdown-button-berylium').dropdown({
 				<ul class="collapsible collapsible-accordion col s12">
 					<li class="col s12">
 						<a class="collapsible-header {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">
-							<i class="material-icons left {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">language</i>
+							<i class="material-icons left {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">public</i>
 							{{ trans('Berylium::berylium.language') }}
 							<i class="material-icons right {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">arrow_drop_down</i>
 						</a>
