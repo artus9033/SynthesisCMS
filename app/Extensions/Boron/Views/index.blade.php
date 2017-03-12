@@ -9,7 +9,7 @@
 #boron-like-box:hover {
 	bottom: unset;
 	top: 150px;
-	left: 0px;
+	left: 0;
 }
 
 #boron-like-box .boron-outside {
@@ -34,12 +34,12 @@
 	float: left;
 	width: 120px;
 	height: 40px;
-	padding: 5px 0px 0px 20px;
-	margin: 50px 0px 0px -46px;
+	padding: 5px 0 0 20px;
+	margin: 50px 0 0 -46px;
 	background: #3b5999;
 	color: #fff;
 	font-weight: bold;
-	font-family: Roboto;
+	font-family: Roboto, serif;
 	font-size: 19px;
 	border-radius: 6px;
 }
