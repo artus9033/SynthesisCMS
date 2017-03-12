@@ -73,7 +73,7 @@ $(document).ready(function() {
 	$.ajaxSetup({ cache: true });
 	$.getScript('//connect.facebook.net/{!! \App::getLocale() !!}/sdk.js#xfbml=1&version=v2.8', function(){
 		FB.init({
-			appId: {{ json_encode($model->facebookAppId) }},
+			appId: "{{ $model->facebookAppId }}",
 			version: 'v2.7'
 		});
 		$('#loginbutton,#feedbutton').removeAttr('disabled');

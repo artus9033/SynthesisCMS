@@ -8,7 +8,8 @@
         "php": "*",
         "laravel/framework": "*",
 	   "doctrine/dbal": "*",
-        "nesbot/carbon": "*"
+        "nesbot/carbon": "*",
+        "barryvdh/laravel-ide-helper": "v2.3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "*",
