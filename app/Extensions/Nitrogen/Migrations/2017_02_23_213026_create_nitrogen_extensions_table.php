@@ -25,6 +25,9 @@ class CreateNitrogenExtensionsTable extends Migration
 		  $table->boolean('hasButton')->default(false);
 		  $table->longText('assignedPages');
 		  $table->boolean('assignedToAllPages')->default(true);
+		  $table->boolean('autoplay')->default(true);
+		  $table->boolean('buttons')->default(true);
+		  $table->integer('interval')->default(7000);
 		  $table->timestamps();
 		});
     }

@@ -65,7 +65,7 @@
 							}
 							$ct++;
 							@endphp
-							<div onclick="loadIframeContents('{{ $extension }}', this);" class="card-panel {{ $class }} {{ $class2 }}">{{ $kernel->getExtensionName() }}</div>
+							<div onclick="loadIframeContents('{{ $extension }}', this);" style="width: 85%;" class="card-panel {{ $class }} {{ $class2 }}">{{ $kernel->getExtensionName() }}</div>
 						@endif
 					@endforeach
 					@if ($ct == 0)

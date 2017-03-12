@@ -12,14 +12,14 @@ return [
 	'applet_enable_header' => 'Enable The Nitrogen Slider Applet',
 	'empty' => 'No Nitrogen Items exist',
 	'item_content' => 'Item Content',
-	'item_hasButton' => 'Has Button',
+	'item_hasButton' => 'Branding Button',
 	'item_title' => 'Item Title',
 	'item_link' => 'Item Link',
 	'item_placeholder' => 'Item Placeholder',
 	'item_page' => 'Choose a Page',
 	'header_id' => 'ID',
 	'header_title' => 'Title',
-	'header_hasButton' => 'Has Button',
+	'header_hasButton' => 'Has Branding Button',
 	'button_text' => 'Button Text',
 	'button_link' => 'Button Link',
 	'button_waves_color' => 'Button Waves Effect Color',
@@ -35,6 +35,11 @@ return [
 	'item_image' => 'Item Image',
 	'assigned_to_all_pages' => 'Assigned to all pages',
 	'assigned_pages' => 'Assigned pages',
+	'item_autoplay' => 'Autoplay',
+	'header_autoplay' => 'Enable Autoplay',
+	'interval' => 'Autoplay Interval (in milliseconds)',
+	'choose_pages' => 'Choose Pages',
+	'header_buttons' => 'Show Navigation Buttons',
 ];
 
 ?>

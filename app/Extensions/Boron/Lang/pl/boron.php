@@ -5,7 +5,8 @@ return [
 	'enable' => 'Włącz',
 	'disable' => 'Wyłącz',
 	'url' => 'Url do strony profilu na Facebooku',
-	'applet_enable_header' => 'Włącz Borowy Applet'
+	'applet_enable_header' => 'Włącz Borowy Applet',
+	'facebook' => 'Facebook',
 ];
 
 ?>

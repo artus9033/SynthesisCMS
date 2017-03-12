@@ -218,6 +218,9 @@ class ExtensionKernel extends SynthesisExtension
 		$buttonColor = $request->get('button_color');
 		$buttonClass = $request->get('button_class');
 		$buttonTextColor = $request->get('button_text_color');
+		$buttons = $request->get('buttons');
+		$autoplay = $request->get('autoplay');
+		$interval = $request->get('interval');
 		$assignedPages = "";
 		$ctr = 0;
 		if($request->get('assignedToAllPages') != "on"){
@@ -242,6 +245,9 @@ class ExtensionKernel extends SynthesisExtension
 		if($request->get('assignedToAllPages') != "on"){
 			$model->assignedPages = $assignedPages;
 		}
+		$model->buttons = $buttons == "on";
+		$model->autoplay = $autoplay == "on";
+		$model->interval = $interval;
 		$model->save();
 		$count = 0;
 		foreach ($request->all() as $key => $val) {
