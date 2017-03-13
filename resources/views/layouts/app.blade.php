@@ -36,15 +36,15 @@
 @yield('body')
 <div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh;">
 	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
-	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 z-depth-3">
-		<div class="nav-wrapper col s12">
+	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 no-padding z-depth-3">
+		<div class="nav-wrapper col s12 no-padding">
 			<div class="left">
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BeforeSiteName, Request::url()) !!}
 			</div>
 			<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down" style="z-index: 99999999999999999999999999999999999999999999999999999999999999999 !important; position: relative;">
-				<img style="width: auto; height: 50%; border-radius: 50%; background-color: rgba(255, 255, 255, 1); box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); margin-top: 5px;" src="{{ url('/favicon.ico') }}">
+				<img style="width: auto; height: 50%; background-color: rgba(255, 255, 255, 1); box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);" src="{{ url('/favicon.ico') }}">
 			</a>
-			<a href="{{ url('/') }}" style="position: relative;" class="brand-logo left">{{ $synthesiscmsHeaderTitle }}</a>
+			<a href="{{ url('/') }}" style="position: relative; margin-left: 8px;" class="brand-logo left">{{ $synthesiscmsHeaderTitle }}</a>
 			<div class="input-field right hide-on-med-and-down">
 				<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">
 					<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">EN</span></option>
