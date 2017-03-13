@@ -7,7 +7,7 @@
 	<meta name="theme-color" content="#db5945">
      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}"  media="screen,projection"/>
-	<title>TODO - @yield('title')</title>
+	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>
 	@yield('head')
 </head>
 <body>

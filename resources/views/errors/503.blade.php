@@ -14,7 +14,7 @@
 			<div class="col s12 white darken-1 z-depth-3" style="margin-top: 10px;">
 				<div class="container" style="margin-top: 40px; margin-bottom: 50px;">
 					<h2 class="header red-text text-lighten-2">{{ trans('synthesiscms/errors.503_desc2') }}</h2>
-					<button onclick="location.reload()" class="btn-large waves-effect waves-light">{{ trans('synthesiscms/errors.refresh_btn') }}</a>
+					<button onclick="location.reload()" class="btn-large waves-effect waves-light">{{ trans('synthesiscms/errors.refresh_btn') }}</button>
 					</div>
 				</div>
 			</div>

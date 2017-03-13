@@ -11,3 +11,6 @@ public/synthesis-uploads/*
 !public/synthesis-uploads/.htaccess
 public/favicon.ico
 .idea
+.phpstorm.meta.php
+_ide_helper.php
+_ide_helper_models.php
