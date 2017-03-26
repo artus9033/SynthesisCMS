@@ -38,13 +38,19 @@
 	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 no-padding z-depth-3">
 		<div class="nav-wrapper col s12 no-padding">
-			<div class="left">
+			<div class="left synthesiscms-mobile-btn-wrapper">
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BeforeSiteName, Request::url()) !!}
 			</div>
-			<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down" style="z-index: 99999999999999999999999999999999999999999999999999999999999999999 !important; position: relative;">
-				<img style="width: auto; height: 50%; background-color: rgba(255, 255, 255, 1); box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);" src="{{ url('/favicon.ico') }}">
+			<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down" style="position: relative; background-color: rgb(255, 255, 255); box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 2147483647 !important; height: 220%; width: 125px;">
+				<img style="width: 85%; height: auto; margin-top: 10%; margin-left: 2%;" src="{{ url('/favicon.ico') }}">
 			</a>
-			<a href="{{ url('/') }}" style="position: relative; margin-left: 8px;" class="brand-logo left">{{ $synthesiscmsHeaderTitle }}</a>
+			<a href="{{ url('/') }}" style="margin-left: 25px; font-size: 2em !important;" class="hide-on-med-and-down brand-logo truncate col s7">{{ $synthesiscmsHeaderTitle }}</a>
+			<a href="{{ url('/') }}" style="width:100%;" class="hide-on-large-only brand-logo truncate synthesiscms-mobile-brand-logo">{{ $synthesiscmsHeaderTitle }}</a>
+			<script>
+				$(document).ready(function(){
+					$(".synthesiscms-mobile-brand-logo").css('margin-left', $('.synthesiscms-mobile-btn-wrapper').width() + 2); // 2 more pixels
+				})
+			</script>
 			<div class="input-field right hide-on-med-and-down">
 				<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">
 					<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">EN</span></option>
@@ -57,7 +63,7 @@
 			<script>
 			$('#lang-select').val('{{ $app_locale }}');
 			</script>
-			<ul class="hide-on-med-and-down">
+			<ul class="hide-on-med-and-down col s2 right">
 				@yield('menu')
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 				@if (Auth::guest())

@@ -32,7 +32,6 @@ class ExtensionsServiceProvider extends ServiceProvider
 				}
 			}
 		}else{
-
 			$manager = new SynthesisPositionManager();
 
 			// For each of the registered extensions, include their routes and Views

@@ -11,6 +11,28 @@ class SynthesisExtension extends Controller
 	/** !!! Global Extension Functions Beginning !!! **/
 
 	/**
+	 * Function called after an atom is deleted by the user
+	 * @param $id int id of the atom
+	 * @return nothing
+	 **/
+	public function onAtomDeleted($id){}
+
+	/**
+	 * Function called after a molecule is deleted by the user
+	 * @param $id int id of the molecule
+	 * @return nothing
+	 **/
+	public function onMoleculeDeleted($id){}
+
+	/**
+	 * Function called after a route using this extension is deleted;
+	 * There you can destroy any extension models saved earlier
+	 * @param $id \App\Page->id (parent page id)
+	 * @return nothing
+	 **/
+	public function onPageDeleted($id){}
+
+	/**
 	* Function called by create_route & edit_route views to get extension name; can be anything
 	* @return String extension name
 	**/
@@ -26,7 +48,7 @@ class SynthesisExtension extends Controller
 
 	/**
 	* Function used by extensionsServiceProvider to register app routes
-	* @param $page App\Page->id
+	* @param $page \App\Page->id
 	* @param $base_slug base url slug of the extension's page (route)
 	* @return nothing
 	**/
@@ -52,7 +74,7 @@ class SynthesisExtension extends Controller
 
 	/**
 	* Function used by the route edit app view to render the fields
-	* @param $page App\Page->id
+	* @param $page \App\Page->id
 	* @return nothing
 	**/
 	public function editGet($page)
@@ -60,7 +82,7 @@ class SynthesisExtension extends Controller
 
 	/**
 	* Function used by the route edit app view to commit edit
-	* @param $id App\Page->id
+	* @param $id \App\Page->id
 	* @param $request Form Request
 	* @return nothing
 	**/
@@ -71,18 +93,10 @@ class SynthesisExtension extends Controller
 	* Function called when a route using this extension is created;
 	* There you can set up a model containing a reference to the parent Page extension
 	* via saving the 'id' param
-	* @param $id App\Page->id
+	* @param $id \App\Page->id
 	* @return nothing
 	**/
 	public function create($id){}
-
-	/**
-	* Function called when a route using this extension is deleted;
-	* There you can destroy any extension models saved earlier
-	* @param $id App\Page->id (parent page id)
-	* @return nothing
-	**/
-	public function delete($id){}
 
 	/** !!! Module-Only Extension Functions End !!! **/
 

@@ -23,7 +23,7 @@ class ExtensionKernel extends SynthesisExtension
 		$extension = LithiumExtension::create(['id' => $id]);
 	}
 
-	public function delete($id){
+	public function onPageDeleted($id){
 		$extension = LithiumExtension::where(['id' => $id])->first();
 		$extension->delete();
 	}
@@ -38,13 +38,14 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function editGet($page)
 	{
-		return \View::make('Lithium::partials/edit')->with(['page' => $page]);
+		return \View::make('Lithium::partials/edit')->with(['page' => $page, 'extension_instance' => LithiumExtension::where('id', $page->id)->first()]);
 	}
 
 	public function editPost($id, $request)
 	{
 		$extension = LithiumExtension::where('id', $id)->first();
 		$extension->atom = $request->get('lithium-atom');
+		$extension->showHeader = $request->get('showHeader') == "on";
 		$extension->save();
 	}
 

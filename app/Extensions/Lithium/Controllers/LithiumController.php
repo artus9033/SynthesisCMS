@@ -12,11 +12,12 @@ class LithiumController extends Controller
 {
 	public function index($page, $kernel, $base_slug)
 	{
-		$atom = Atom::where('id', LithiumExtension::where('id', $page->id)->first()->atom)->first();
+		$extension_instance = LithiumExtension::where('id', $page->id)->first();
+		$atom = Atom::where('id', $extension_instance->atom)->first();
 		if($atom == null){
 			return \View::make('errors.cms')->with(['error' => trans("Lithium::messages.err_atom_not_found"), 'help' => trans("Lithium::messages.err_atom_not_found_help")]);
 		}else{
-			return \View::make('Lithium::index')->with(['atom' => $atom, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug]);
+			return \View::make('Lithium::index')->with(['atom' => $atom, 'kernel' => $kernel, 'page' => $page, 'extension_instance' => $extension_instance, 'extensionCallback' => $this, 'base_slug' => $base_slug]);
 		}
 	}
 }

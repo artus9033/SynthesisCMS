@@ -12,6 +12,7 @@ use App\Models\Content\Atom;
 use App\Toolbox;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
+use App\Extensions\ExtensionsCallbacksBridge;
 
 class AtomController extends Controller
 {
@@ -71,6 +72,7 @@ class AtomController extends Controller
 		$name_orig = $atom->title;
 		$name_new = Toolbox::string_truncate($name_orig, 10);
 		$atom->delete();
+		ExtensionsCallbacksBridge::handleOnAtomDeleted($id);
 		return \Redirect::route('manage_atoms')->with('messages', array(trans('synthesiscms/admin.msg_atom_deleted', ['name' => $name_new])));
 	}
 

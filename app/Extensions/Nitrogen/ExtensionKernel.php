@@ -5,7 +5,6 @@ namespace App\Extensions\Nitrogen;
 use App\Http\Controllers\Controller;
 use App\Extensions\Nitrogen\Models\NitrogenExtension;
 use App\Extensions\Nitrogen\Models\NitrogenItem;
-use App\Extensions\Nitrogen\Controllers\NitrogenController;
 use App\Extensions\Nitrogen\NitrogenItemType;
 use App\Extensions\Nitrogen\NitrogenItemCategory;
 use App\SynthesisCMS\API\SynthesisExtension;
@@ -289,12 +288,14 @@ class ExtensionKernel extends SynthesisExtension
 		}else{
 			$pages_assigned = $model->assignedPages;
 			$pages_assigned_array = explode(";", $pages_assigned);
-			foreach($pages_assigned_array as $page_id){
-				$page = Page::where(['id' => $page_id])->first();
-				if(url($page->slug) == $slug){
-					$show = true;
-				}
-			}
+			if(!emptyArray($pages_assigned_array)) {
+                foreach ($pages_assigned_array as $page_id) {
+                    $page = Page::where(['id' => $page_id])->first();
+                    if (url($page->slug) == $slug) {
+                        $show = true;
+                    }
+                }
+            }
 		}
 		if($show){
 			return view('Nitrogen::index')->with(['kernel' => $this, 'slug' => $slug, 'model' => $this->findOrCreate()]);

@@ -16,8 +16,8 @@ use App\Http\Controllers\Controller;
 
 class SynthesisFilesystemController extends Controller
 {
-	function list(BackendRequest $request){
-		$dir = public_path() . "\\synthesis-uploads\\";
+	function files_list(BackendRequest $request){
+		$dir = public_path() . "/synthesis-uploads/";
 		$imgs = array();
 		foreach (glob($dir . '*.{jpg,png,gif,jpeg}', GLOB_BRACE) as $file) {
 			array_push($imgs, ['name' => basename($file), 'path' => url('/') . '/synthesis-uploads/' . basename($file)]);
@@ -36,7 +36,7 @@ class SynthesisFilesystemController extends Controller
 			}
 		}
 
-		$uploadDir = public_path() . "\\synthesis-uploads\\";
+		$uploadDir = public_path() . '/synthesis-uploads/';
 
 		if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 			$file = array_shift($_FILES);

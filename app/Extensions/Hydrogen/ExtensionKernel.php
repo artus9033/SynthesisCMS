@@ -25,8 +25,8 @@ class ExtensionKernel extends SynthesisExtension
 		$extension = HydrogenExtension::create(['id' => $id]);
 	}
 
-	public function delete($id){
-		$extension = HydrogenExtension::where(['id' => $id])->first();
+	public function onPageDeleted($id){
+		$extension = HydrogenExtension::where(['id' => $id]);
 		$extension->delete();
 	}
 
@@ -50,6 +50,7 @@ class ExtensionKernel extends SynthesisExtension
 		$extension->molecule = $request->get('hydrogen-molecule');
 		$extension->list_column_count = $request->get('list_column_count');
 		$extension->atoms_on_single_page = $request->get('atoms_on_single_page');
+		$extension->showHeader = $request->get('showHeader') == "on";
 		$extension->save();
 	}
 

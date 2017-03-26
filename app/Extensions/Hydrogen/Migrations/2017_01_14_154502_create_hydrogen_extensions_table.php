@@ -18,6 +18,7 @@ class CreateHydrogenExtensionsTable extends Migration
 			$table->integer('molecule')->default(1);
 			$table->integer('list_column_count')->default(2);
 			$table->integer('atoms_on_single_page')->default(14);
+			$table->boolean('showHeader')->default(true);
 			$table->timestamps();
 		});
 	}

@@ -12,6 +12,7 @@ use App\Models\Content\Atom;
 use App\Toolbox;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
+use App\Extensions\ExtensionsCallbacksBridge;
 
 class RouteController extends Controller
 {
@@ -92,9 +93,7 @@ class RouteController extends Controller
 		$route = $page->slug;
 		$page->delete();
 
-		$kpath = 'App\\Extensions\\'.$page->extension.'\\ExtensionKernel';
-		$kernel = new $kpath;
-		$kernel->delete($page->id);
+		ExtensionsCallbacksBridge::handleOnPageDeleted($page->id);
 
 		return \Redirect::route('manage_routes')->with('messages', array(trans('synthesiscms/admin.msg_route_deleted', ['route' => $route])));
 	}

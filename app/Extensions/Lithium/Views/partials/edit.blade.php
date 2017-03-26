@@ -13,3 +13,12 @@
 	</select>
 	<label>{{ trans("Lithium::messages.choose_atom") }}</label>
 </div>
+<div class="col s12">{{ trans("Lithium::messages.showHeader") }}</div>
+<div class="switch col s12">
+	<label>
+		Off
+		<input type="checkbox" name="showHeader" @if($extension_instance->showHeader) checked @endif>
+		<span class="lever"></span>
+		On
+	</label>
+</div>

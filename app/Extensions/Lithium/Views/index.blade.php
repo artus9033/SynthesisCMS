@@ -34,11 +34,13 @@
       $('.modal').modal();
     });
   </script>
-	    <div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
-		   <h3 class="col s12">{{ $page->page_title }}</h3>
-		   <div class="col s12 row white divider" style="height: 2px;"></div>
-		  <h5 class="col s12">{!! $page->page_header !!}</h5>
-	    </div>
+  		@if($extension_instance->showHeader)
+			<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
+				<h3 class="col s12">{{ $page->page_title }}</h3>
+				<div class="col s12 row white divider" style="height: 2px;"></div>
+				<h5 class="col s12">{!! $page->page_header !!}</h5>
+			</div>
+		@endif
 	    <div class="row">
         <div class="col s10 offset-s1">
           <div class="card z-depth-3">

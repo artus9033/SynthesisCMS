@@ -12,6 +12,7 @@ use App\Models\Content\Atom;
 use App\Toolbox;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
+use App\Extensions\ExtensionsCallbacksBridge;
 
 class MoleculeController extends Controller
 {
@@ -52,6 +53,7 @@ class MoleculeController extends Controller
 				}
 			}
 			$molecule->delete();
+			ExtensionsCallbacksBridge::handleOnMoleculeDeleted($id);
 			return \Redirect::route('manage_molecules')->with('messages', array(trans('synthesiscms/admin.msg_molecule_deleted', ['name' => $name_new])));
 		}
 	}
