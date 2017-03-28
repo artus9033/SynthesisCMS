@@ -28,9 +28,9 @@ class SettingsVariablesProvider extends ServiceProvider
 		    view()->share('synthesiscmsFooterMoreLinksBottomText', Settings::getFromActive('footer_more_links_bottom_text'));
 		    view()->share('synthesiscmsFooterMoreLinksBottomHref', Settings::getFromActive('footer_more_links_bottom_href'));
 
-    		    view()->share('synthesiscmsFooterLinksText', Settings::getFromActive('footer_links_text'));
-    		    view()->share('synthesiscmsFooterLinksContent', Settings::getFromActive('footer_links_content'));
-    		    view()->share('synthesiscmsFooterHeader', Settings::getFromActive('footer_header'));
+			view()->share('synthesiscmsFooterLinksText', Settings::getFromActive('footer_links_text'));
+			view()->share('synthesiscmsFooterLinksContent', Settings::getFromActive('footer_links_content'));
+			view()->share('synthesiscmsFooterHeader', Settings::getFromActive('footer_header'));
 		    view()->share('synthesiscmsFooterContent', Settings::getFromActive('footer_content'));
 	    }
     }

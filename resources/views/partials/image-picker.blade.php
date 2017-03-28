@@ -78,7 +78,7 @@ function setPickerPath(path){
 	$('#loading').css('display', 'block');
 	$.ajax(
 		{
-			url: {!! json_encode(url('/admin/list')) !!},
+			url: {!! json_encode(url('/admin/uploads_list')) !!},
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			},

@@ -29,6 +29,9 @@ return [
 	'header_category' => 'Category',
 	'header_type' => 'Type',
 	'order' => 'Order',
+	'item_page_choose_help' => 'Expand a route by clicking on it in order to see a list of sub-routes to choose from',
+	'page_modal_button_choose' => 'Choose',
+	'page_modal_button_cancel' => 'Cancel',
 ];
 
 ?>

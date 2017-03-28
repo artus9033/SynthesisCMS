@@ -9,6 +9,7 @@ use App\SynthesisCMS\API\SynthesisExtension;
 use App\SynthesisCMS\API\Positions\SynthesisPositions;
 use App\SynthesisCMS\API\Positions\SynthesisPositionManager;
 use App\SynthesisCMS\API\SynthesisExtensionType;
+use App\Models\Content\Page;
 
 /**
  * ExtensionKernel
@@ -36,6 +37,16 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function getExtensionType(){
 		return SynthesisExtensionType::Module;
+	}
+
+	public function getRoutesAndSubroutes(){
+		$pages = Array();
+		foreach(HydrogenExtension::all() as $extensions_instance){
+			foreach(Page::where('id', $extensions_instance->id)->cursor() as $page){
+				array_push($pages, Array($page->page_header, $page->id, $this->getExtensionName()));
+			}
+		}
+		return Array($pages);
 	}
 
 	public function editGet($page)

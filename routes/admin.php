@@ -2,13 +2,13 @@
 
 Route::get('/admin', ['as' => 'admin', 'uses' => 'Backend\\BackendController@index']);
 
-Route::get('/admin/list', ['as' => 'list', 'uses' => 'Backend\\SynthesisFilesystemController@files_list']);
+Route::get('/admin/uploads_list', ['as' => 'list', 'uses' => 'Backend\\SynthesisFilesystemController@files_list']);
 Route::post('/admin/upload', ['as' => 'upload', 'uses' => 'Backend\\SynthesisFilesystemController@uploadPost']);
 
 Route::post('/synthesis-route-check', ['as' => 'synthesis_route_check', 'uses' => 'Content\\RouteController@checkRoute']);
 
-Route::get('/admin/lol', function(){
-	return view('partials/image-picker'); //TODO: implement this
+Route::get('/admin/image-picker', function(){
+	return view('partials/image-picker'); //TODO: finish implementing this
 });
 
 Route::get('/admin/manage_routes', ['as' => 'manage_routes', 'uses' => 'Content\\RouteController@manageRoutesGet']);

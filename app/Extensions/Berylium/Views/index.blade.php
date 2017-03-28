@@ -20,6 +20,11 @@ $mobileMenu = $synthesiscmsPositionManager->getCustom('berylium', 'mobile-menu',
 		</div>
 	</nav>
 @endif
+<style>
+	.berylium-icon-dropdown {
+		position: relative;
+	}
+</style>
 <script>
 $('.dropdown-button-berylium').dropdown({
       inDuration: 300,

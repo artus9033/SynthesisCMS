@@ -23,12 +23,15 @@ return [
 	'item_title' => 'Tytuł Elementu',
 	'item_link' => 'Łącze Elementu',
 	'item_placeholder' => 'Nagłówek Elementu',
+	'page_modal_button_choose' => 'Wybierz',
+	'page_modal_button_cancel' => 'Anuluj',
 	'item_page' => 'Wybierz Stronę',
 	'header_id' => 'ID',
 	'header_title' => 'Tytuł',
 	'header_category' => 'Kategoria',
 	'header_type' => 'Typ',
 	'order' => 'Kolejność',
+	'item_page_choose_help' => 'Kliknij na ścieżkę, by rozwinąć listę podstron do wyboru',
 ];
 
 ?>

@@ -63,7 +63,7 @@
 			<script>
 			$('#lang-select').val('{{ $app_locale }}');
 			</script>
-			<ul class="hide-on-med-and-down col s2 right">
+			<ul class="hide-on-med-and-down right">
 				@yield('menu')
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 				@if (Auth::guest())

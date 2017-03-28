@@ -73,7 +73,7 @@ $(document).ready(function(){
 				<div class="collapsible-header {{ $synthesiscmsMainColor }}-text"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans("Nitrogen::nitrogen.item_image") }}</div>
 				<div class="input-field col s12 l8 offset-l2" id="molecule-div">
 					@php
-					use App\Extensions\Nitrogen\NitrogenItemType;
+						use App\Extensions\Nitrogen\NitrogenItemType;
 					@endphp
 					<select class="{{ $synthesiscmsMainColor }}-text" name="type" id="type">
 						<option @if($item->type == NitrogenItemType::FtpSingleImage) selected @endif value="single" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans("Nitrogen::nitrogen.item_typeSingle") }}</h5></option>
@@ -83,7 +83,8 @@ $(document).ready(function(){
 				</div>
 				<div class="col s12 l8 offset-l2 input-field">
 					<a href="#image-picker" class="btn btn-large center waves-effect col s2 l4 waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
-						<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
+						<i class="material-icons white-text">attachment</i>
+						&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
 					</a>
 					<input id="image-tv" name="image-tv" value="{!! $item->image !!}" class="col s10 l8" type="text">
 				</div>

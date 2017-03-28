@@ -7,6 +7,7 @@ use App\Extensions\Lithium\Models\LithiumExtension;
 use App\Extensions\Lithium\Controllers\LithiumController;
 use App\SynthesisCMS\API\SynthesisExtension;
 use App\SynthesisCMS\API\SynthesisExtensionType;
+use App\Models\Content\Page;
 
 /**
  * ExtensionKernel
@@ -34,6 +35,16 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function getExtensionType(){
 		return SynthesisExtensionType::Module;
+	}
+
+	public function getRoutesAndSubroutes(){
+		$pages = Array();
+		foreach(LithiumExtension::all() as $extensions_instance){
+			foreach(Page::where('id', $extensions_instance->id)->cursor() as $page){
+				array_push($pages, Array($page->page_header, $page->id, $this->getExtensionName()));
+			}
+		}
+		return Array($pages);
 	}
 
 	public function editGet($page)

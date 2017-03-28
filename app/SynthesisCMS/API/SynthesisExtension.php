@@ -13,14 +13,12 @@ class SynthesisExtension extends Controller
 	/**
 	 * Function called after an atom is deleted by the user
 	 * @param $id int id of the atom
-	 * @return nothing
 	 **/
 	public function onAtomDeleted($id){}
 
 	/**
 	 * Function called after a molecule is deleted by the user
 	 * @param $id int id of the molecule
-	 * @return nothing
 	 **/
 	public function onMoleculeDeleted($id){}
 
@@ -28,7 +26,6 @@ class SynthesisExtension extends Controller
 	 * Function called after a route using this extension is deleted;
 	 * There you can destroy any extension models saved earlier
 	 * @param $id \App\Page->id (parent page id)
-	 * @return nothing
 	 **/
 	public function onPageDeleted($id){}
 
@@ -36,7 +33,9 @@ class SynthesisExtension extends Controller
 	* Function called by create_route & edit_route views to get extension name; can be anything
 	* @return String extension name
 	**/
-     public function getExtensionName(){}
+     public function getExtensionName(){
+     	return "The extension author has forgotten to implement this ;-)";
+	 }
 
 	/**
 	* Function called by create_route view to get extension type; can be either 'applet' or 'extension'
@@ -44,19 +43,19 @@ class SynthesisExtension extends Controller
 	* but it can be customized in it's settings in edit_applet
 	* @return SynthesisExtensionType::const extension type
 	**/
-     public function getExtensionType(){}
+     public function getExtensionType(){
+     	return SynthesisExtensionType::Applet;
+	 }
 
 	/**
 	* Function used by extensionsServiceProvider to register app routes
 	* @param $page \App\Page->id
 	* @param $base_slug base url slug of the extension's page (route)
-	* @return nothing
 	**/
      public function routes($page, $base_slug){}
 
 	/**
 	* Function used to register hooks for positions
-	* @return nothing
 	**/
 	public function hookPositions(&$manager){}
 
@@ -73,28 +72,34 @@ class SynthesisExtension extends Controller
 	/**  !!! Module-Only Extension Functions Beginning !!! **/
 
 	/**
+	 * Function used for retrieving all user-exposed routes
+	 * @return array(Array($pageTitle, $pageId, $extensionName))
+	 * $pageTitle String page title
+	 * $pageId int page id
+	 * $extensionName String extension name
+	 **/
+	public function getRoutesAndSubroutes(){
+		return Array(Array());
+	}
+
+	/**
 	* Function used by the route edit app view to render the fields
 	* @param $page \App\Page->id
-	* @return nothing
 	**/
-	public function editGet($page)
-	{}
+	public function editGet($page){}
 
 	/**
 	* Function used by the route edit app view to commit edit
 	* @param $id \App\Page->id
 	* @param $request Form Request
-	* @return nothing
 	**/
-	public function editPost($id, $request)
-	{}
+	public function editPost($id, $request){}
 
 	/**
 	* Function called when a route using this extension is created;
 	* There you can set up a model containing a reference to the parent Page extension
 	* via saving the 'id' param
 	* @param $id \App\Page->id
-	* @return nothing
 	**/
 	public function create($id){}
 
@@ -105,7 +110,6 @@ class SynthesisExtension extends Controller
 	/**
 	* Function called when an applet's settings page is opened;
 	* There you can add your applet's settings UI
-	* @return nothing
 	**/
 	public function settingsGet(){}
 
@@ -114,7 +118,6 @@ class SynthesisExtension extends Controller
 	* There you can add your applet's settings UI
 	* @param $request Request the request
 	* @param &$errors_array_ptr Pointer(Array) a pointer to the errors array
-	* @return nothing
 	**/
 	public function settingsPost(BackendRequest $request, &$errors_array_ptr){}
 

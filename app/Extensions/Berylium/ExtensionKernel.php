@@ -5,7 +5,7 @@ namespace App\Extensions\Berylium;
 use App\Http\Controllers\Controller;
 use App\Extensions\Berylium\Models\BeryliumExtension;
 use App\Extensions\Berylium\Models\BeryliumItem;
-use App\Extensions\Berylium\Controllers\BeryliumController;
+use App\Models\Content\Page;
 use App\Extensions\Berylium\BeryliumItemType;
 use App\Extensions\Berylium\BeryliumItemCategory;
 use App\SynthesisCMS\API\SynthesisExtension;
@@ -27,7 +27,6 @@ use App\Models\Content\Molecule;
 
 class ExtensionKernel extends SynthesisExtension
 {
-	//TODO: IMPLEMENT EDITING AND CREATING WITH DIFFERENT SOURCES (BOTH FORMS & QUERIES TO EDIT!!!)
 	public function settingsPositionUp(BackendRequest $request, $id){
 		if(BeryliumItem::where(['id' => $id])->count() == 0){
 			if(BeryliumItem::where(['id' => BeryliumItem::where(['id' => $id])->first()->before])->count() == 0){
@@ -110,17 +109,14 @@ class ExtensionKernel extends SynthesisExtension
 		$type = $request->get('type');
 		switch($type){
 			case 1:
-			$data = $request->get('link');
-			break;
+				$data = $request->get('link');
+				break;
 			case 2:
-			$data = $request->get('atom');
-			break;
+				$data = $request->get('page');
+				break;
 			case 3:
-			$data = $request->get('molecule');
-			break;
-			case 4:
-			$data = "";
-			break;
+				$data = "";
+				break;
 		}
 		$errors = array();
 		$err = false;
@@ -259,12 +255,25 @@ class ExtensionKernel extends SynthesisExtension
 		return view('Berylium::mobile_button')->with('slug', $slug);
 	}
 
+	public function onPageDeleted($id)
+	{
+		foreach(BeryliumItem::where(['type' => BeryliumItemType::Page, 'id' => $id])->get() as $item){
+			$item->type = BeryliumItemType::Link;
+			$item->data = url(Settings::getFromActive('home_page'));
+			$item->save();
+		}
+	}
+
 	public function returnItem($item, $url, $children_dropdown_caret, $type){
-		//implement collapsible-accordion for mobile type
-		$synthesiscmsMainColor = Settings::getFromActive('tab_color');
+		//TODO: implement collapsible-accordion for mobile type (that will not activate the link!!!)
 		switch($item->type){
 			case BeryliumItemType::Page:
-			$href = "todo: implement self";
+			$selector = Page::where('id', $item->data);
+			if($selector->count()){
+				$href = url($selector->first()->slug);
+			}else{
+				$href = url("/");
+			}
 			$out = "<a href='$href'>" . $item->title . $children_dropdown_caret . "</a>";
 			break;
 
@@ -274,7 +283,7 @@ class ExtensionKernel extends SynthesisExtension
 			break;
 
 			case BeryliumItemType::Placeholder:
-			$href = $url;
+			$href = "";
 			$out = "<a>" . $item->title . $children_dropdown_caret . "</a>";
 			break;
 		}
@@ -286,10 +295,10 @@ class ExtensionKernel extends SynthesisExtension
 		return ['data' => $out, 'active' => $active];
 	}
 
-	public function returnChildren($query, $slug, $class){
+	public function returnChildren($query, $slug, $class, $type){
 		$out = "";
 		foreach($query->get() as $key => $itm){
-			$out .= "<li class='$class'>" . $this->returnItem($itm, $slug, "", "desktop")['data'] . "</li>";
+			$out .= "<li class='$class'>" . $this->returnItem($itm, $slug, "", $type)['data'] . "</li>";
 		}
 		return $out;
 	}
@@ -324,7 +333,7 @@ class ExtensionKernel extends SynthesisExtension
 			$out .= "<li class='col s12 waves-effect waves-$synthesiscmsMainColor $active $children_dropdown_btn' data-activates='$children_dropdown_activates'>" . $itemdata['data'] . "</li>";
 			if($mcount){
 				$out .= "<ul id='berylium-dropdown" . $item->id . "' class='dropdown-content'>";
-				$out .=  $this->returnChildren(BeryliumItem::where(['menu' => $item->parentOf]), $slug, "col s12 waves-effect waves-$synthesiscmsMainColor $active");
+				$out .=  $this->returnChildren(BeryliumItem::where(['menu' => $item->parentOf]), $slug, "col s12 waves-effect waves-$synthesiscmsMainColor $active", "mobile");
 				$out .= "</ul>";
 			}
 		}
@@ -361,7 +370,7 @@ class ExtensionKernel extends SynthesisExtension
 			$out .= "<li class='$active $children_dropdown_btn' data-activates='$children_dropdown_activates'>" . $itemdata['data'] . "</li>";
 			if($mcount){
 				$out .= "<ul id='berylium-dropdown" . $item->id . "' class='dropdown-content'>";
-				$out .=  $this->returnChildren(BeryliumItem::where(['menu' => $item->parentOf]), $slug, '');
+				$out .=  $this->returnChildren(BeryliumItem::where(['menu' => $item->parentOf]), $slug, '', "desktop");
 				$out .= "</ul>";
 			}
 		}
