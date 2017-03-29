@@ -27,15 +27,14 @@ $mobileMenu = $synthesiscmsPositionManager->getCustom('berylium', 'mobile-menu',
 </style>
 <script>
 $('.dropdown-button-berylium').dropdown({
-      inDuration: 300,
-      outDuration: 225,
-      constrainWidth: true,
-      hover: true,
-      gutter: 0,
-      belowOrigin: true,
-      stopPropagation: false
-    }
-  );
+    inDuration: 300,
+    outDuration: 225,
+    constrainWidth: true,
+    hover: true,
+    gutter: 0,
+    belowOrigin: true,
+    stopPropagation: false
+});
 </script>
 <ul id="berylium-mobile-menu" class="side-nav">
 	<li class="no-padding">
@@ -49,8 +48,14 @@ $('.dropdown-button-berylium').dropdown({
 				</div>
 			</li>
 			@if (Auth::guest())
-				<li class="{{ $synthesiscmsMainColor }}-text col s12 row waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><a class="" href="{{ url('/register') }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">create</i>{!! trans('synthesiscms/menu.register') !!}</a></li>
-				<li class="{{ $synthesiscmsMainColor }}-text col s12 row waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><a class="" href="{{ url('/login') }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}</a></li>
+		<li class="{{ $synthesiscmsMainColor }}-text col s12 row waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
+			<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/register') }}"><i
+						class="material-icons {{ $synthesiscmsMainColor }}-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
+			</a></li>
+		<li class="{{ $synthesiscmsMainColor }}-text col s12 row waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
+			<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/login') }}"><i
+						class="material-icons {{ $synthesiscmsMainColor }}-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
+			</a></li>
 			@else
 				<li class="col s12 no-padding waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
 					<ul class="collapsible collapsible-accordion col s12">
