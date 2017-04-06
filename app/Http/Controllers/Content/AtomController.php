@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers\Content;
 
+use App\Extensions\ExtensionsCallbacksBridge;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\BackendRequest;
-use App\Models\Auth\User;
-use App\Models\Content\Page;
-use App\Models\Content\Molecule;
 use App\Models\Content\Atom;
 use App\Toolbox;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Auth\Authenticatable;
-use App\Extensions\ExtensionsCallbacksBridge;
 
 class AtomController extends Controller
 {
@@ -26,11 +20,10 @@ class AtomController extends Controller
 		if(!Toolbox::isEmptyString($request->get('title'))){
 			$atom = Atom::create(
 				['title' => $request->get('title'),
-				'description' => $request->get('desc'),
-				'molecule' => $request->get('molecule'),
-				'hasImage' => ($request->get('hasImage') == 'on'),
-				'image' => $request->get('image'),
-				'imageSourceType' => $request->get('imgSourceType'),
+					'description' => $request->get('desc'),
+					'molecule' => $request->get('molecule'),
+					'hasImage' => ($request->get('hasImage') == 'on'),
+					'image' => $request->get('image'),
 				]
 			);
 			$name_new = Toolbox::string_truncate($atom->title, 10);
@@ -59,7 +52,6 @@ class AtomController extends Controller
 			$atom->molecule = $request->get('molecule');
 			$atom->hasImage = ($request->get('hasImage') == 'on');
 			$atom->image = $request->get('image');
-			$atom->imageSourceType = $request->get('imgSourceType');
 			$atom->save();
 			return \Redirect::route('manage_atoms')->with('messages', array(trans('synthesiscms/admin.msg_atom_saved', ['name' => Toolbox::string_truncate($atom->title, 10)])));
 		}else{
@@ -104,7 +96,7 @@ class AtomController extends Controller
 				$csrf_token = false;
 			}else if(starts_with($key, "atom_checkbox")){
 				$origin = Atom::find(intval(str_replace("atom_checkbox", "", $key)));
-				Atom::create(['title' => trans("synthesiscms/helper.atom_copy_prefix") . $origin->title, 'description' => $origin->description, 'molecule' => $origin->molecule, 'image' => $origin->image, 'imageSourceType' => $origin->imageSourceType, 'hasImage' => $origin->hasImage]);
+				Atom::create(['title' => trans("synthesiscms/helper.atom_copy_prefix") . $origin->title, 'description' => $origin->description, 'molecule' => $origin->molecule, 'image' => $origin->image, 'hasImage' => $origin->hasImage]);
 				$count++;
 			}
 		}

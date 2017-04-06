@@ -78,17 +78,18 @@ $(document).ready(function(){
 					<label>{{ trans("Nitrogen::nitrogen.item_sourceHeader") }}</label>
 				</div>
 				<div class="col s12 l8 offset-l2 input-field">
-					<a href="#image-picker" class="btn btn-large center waves-effect col s2 l4 waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
+					<a href="#nitrogen_create_item_picker"
+					   class="btn btn-large center waves-effect col s2 l4 waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
 						<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
 					</a>
 					<input id="image-tv" name="image-tv" class="col s10 l8" type="text">
 				</div>
 				<script>
-				function imagePickerCallback(txt){
+                    function nitrogenImagePickerCallback(txt) {
 					$('#image-tv').val(txt);
 				}
 				</script>
-				@include('partials/image-picker')
+				@include('partials/image-picker', ['picker_modal_id' => 'nitrogen_create_item_picker', 'callback_function_name' => 'nitrogenImagePickerCallback', 'followIframeParentHeight' => true])
 				<div class="row"></div>
 				<button type="submit" class="col s12 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
 			</form>

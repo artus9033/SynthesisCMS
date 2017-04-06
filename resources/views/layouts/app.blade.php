@@ -7,10 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=0.7">
 	<meta name="theme-color" content="{{ $synthesiscmsTabColor }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="synthesiscms-public-root" content="{{ url('/') }}">
 	<script type="text/javascript" src="{!! asset('js/jquery-3.1.1.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/materialize.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/clipboard.min.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
 	<script type="text/javascript">
 	$.ajaxSetup({
 		headers: {
@@ -19,7 +21,7 @@
 	});
 	</script>
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}" media="screen,projection"/>
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
 	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>
 	@yield('head')
@@ -47,9 +49,15 @@
 			<a href="{{ url('/') }}" style="margin-left: 25px; font-size: 2em !important;" class="hide-on-med-and-down brand-logo truncate col s7">{{ $synthesiscmsHeaderTitle }}</a>
 			<a href="{{ url('/') }}" style="width:100%;" class="hide-on-large-only brand-logo truncate synthesiscms-mobile-brand-logo">{{ $synthesiscmsHeaderTitle }}</a>
 			<script>
-				$(document).ready(function(){
-					$(".synthesiscms-mobile-brand-logo").css('margin-left', $('.synthesiscms-mobile-btn-wrapper').width() + 2); // 2 more pixels
-				})
+                function synthesiscmsResizeBrandLogoMargin() {
+                    $(".synthesiscms-mobile-brand-logo").css('margin-left', $('.synthesiscms-mobile-btn-wrapper').width() + 2); // 2 more pixels
+                }
+                $(document).ready(function () {
+                    synthesiscmsResizeBrandLogoMargin();
+                });
+                $(window).resize(function () {
+                    synthesiscmsResizeBrandLogoMargin();
+                });
 			</script>
 			<div class="input-field right hide-on-med-and-down">
 				<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">

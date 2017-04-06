@@ -4,13 +4,15 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="shortcut icon" type="image/ico" href="{{ url('/favicon.ico') }}"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=0.7">
 	<meta name="theme-color" content="{{ $synthesiscmsTabColor }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="synthesiscms-public-root" content="{{ url('/') }}">
 	<script type="text/javascript" src="{!! asset('js/jquery-3.1.1.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/materialize.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/clipboard.min.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
 	<script type="text/javascript">
 	/**$.ajaxSetup({
 	//this collides with Trumbowyg's noEmbed & upload plugins
@@ -20,7 +22,7 @@
 	});**/
 	</script>
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}" media="screen,projection"/>
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
 	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>
 	<script src="{{ asset('trumbowyg/trumbowyg.min.js') }}"></script>
@@ -33,6 +35,11 @@
 	<script src="{{ asset('trumbowyg/plugins/table/trumbowyg.table.min.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/upload/trumbowyg.upload.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/noembed/trumbowyg.noembed.js') }}"></script>
+	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.imagepicker.js') }}"></script>
+	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.table_artus9033.js') }}"></script>
+	@foreach (glob(public_path('trumbowyg/langs/') . '*.js') as $file)
+		<script src='{{ asset('trumbowyg/langs/' . basename($file)) }}'></script>
+	@endforeach
 	<script>
 	$(document).ready(function(){
 		$('.collapsible').collapsible();
@@ -42,15 +49,18 @@
 			$(selector).parents('li').children('a').click();
 			$(".editor").trumbowyg({
 				autogrow: true,
-            fullscreenable: false,
-		  btnsDef: {
+                fullscreenable: false,
+                btnsDef: {
                     image: {
                         dropdown: ['insertImage', 'upload', 'base64', 'noembed'],
                         ico: 'insertImage'
-			    },
-			    link: {
+                    },
+                    link: {
                         dropdown: ['createLink', 'unlink', 'noembed'],
                         ico: 'link'
+                    },
+                    insertImageFromServer: {
+                        ico: 'insertImageFromServer'
                     }
                 },
                 btns: [
@@ -65,6 +75,8 @@
                     ['foreColor', 'backColor'],
                     ['preformatted'],
                     ['horizontalRule'],
+                    ['table'],
+                    ['insertImageFromServer'],
                     ['fullscreen']
                 ],
                 plugins: {

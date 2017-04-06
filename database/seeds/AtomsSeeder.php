@@ -27,7 +27,6 @@ class AtomsSeeder extends Seeder
 				'created_at' => '2017-01-01 00:00:00',
 				'updated_at' => '2017-01-01 00:00:00',
 				'hasImage' => true,
-				'imageSourceType' => 'web',
 				'image' => 'http://materializecss.com/images/sample-1.jpg',
 			]
 		);

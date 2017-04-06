@@ -84,30 +84,22 @@
 					<li>
 						<div class="collapsible-header {{ $synthesiscmsMainColor }}-text" id="collapsible" style="pointer-events: none;"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans('synthesiscms/atom.atomImage') }}</div>
 						<div class="collapsible-body col s12 card-panel z-depth-3">
-							<div class="input-field col s8 offset-s2" id="molecule-div">
-								<select class="{{ $synthesiscmsMainColor }}-text" name="imgSourceType" id="imgSourceType">
-									@php
-									$optWeb = '';
-									$optFile = '';
-									if($atom->imageSourceType == 'web'){
-										$optWeb = 'selected';
-									}else{
-										$optFile = 'selected';
-									}
-									@endphp
-									<option {{ $optWeb }} value="web" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans('synthesiscms/atom.imageSourceTypeWeb') }}</h5></option>
-									<option {{ $optFile }} value="file" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans('synthesiscms/atom.imageSourceTypeFile') }}</h5></option>
-								</select>
-								<label>{{ trans('synthesiscms/atom.chooseImageSourceType') }}</label>
-							</div>
+							<div class="col s12 row"></div>
 							<div class="input-field col s6">
 								<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
 								<input id="image" name="image" type="text">
 								<label for="image">{{ trans('synthesiscms/atom.imageURL') }}</label>
 							</div>
-							<div class="btn btn-large center col s6 row waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text disabled"> <!-- TODO: implement ftp & uploading image-->
+							<script>
+                                function atomImagePickerCallback(url) {
+                                    $('#image').val(url);
+                                }
+							</script>
+							@include('partials/image-picker', ['picker_modal_id' => 'atom_edit_item_picker', 'callback_function_name' => 'atomImagePickerCallback', 'followIframeParentHeight' => false])
+							<a href="#atom_edit_item_picker"
+							   class="btn btn-large center col s6 row waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
 								<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
-							</div>
+							</a>
 						</div>
 					</li>
 				</ul>

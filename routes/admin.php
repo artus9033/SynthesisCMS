@@ -7,8 +7,8 @@ Route::post('/admin/upload', ['as' => 'upload', 'uses' => 'Backend\\SynthesisFil
 
 Route::post('/synthesis-route-check', ['as' => 'synthesis_route_check', 'uses' => 'Content\\RouteController@checkRoute']);
 
-Route::get('/admin/image-picker', function(){
-	return view('partials/image-picker'); //TODO: finish implementing this
+Route::post('/admin/image-picker', function (\App\Http\Requests\BackendRequest $request) {
+	return view('partials/image-picker')->with(['picker_modal_id' => $request->get('picker_modal_id'), 'callback_function_name' => $request->get('callback_function_name'), 'followIframeParentHeight' => $request->get('followIframeParentHeight')])->render();
 });
 
 Route::get('/admin/manage_routes', ['as' => 'manage_routes', 'uses' => 'Content\\RouteController@manageRoutesGet']);

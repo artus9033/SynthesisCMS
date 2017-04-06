@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\Content;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Requests\BackendRequest;
-use App\Models\Auth\User;
-use App\Models\Content\Page;
-use App\Models\Content\Molecule;
-use App\Models\Content\Atom;
-use App\Toolbox;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Auth\Authenticatable;
 use App\Extensions\ExtensionsCallbacksBridge;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\BackendRequest;
+use App\Models\Content\Atom;
+use App\Models\Content\Molecule;
+use App\Toolbox;
 
 class MoleculeController extends Controller
 {
@@ -125,11 +120,11 @@ class MoleculeController extends Controller
 				$csrf_token = false;
 			}else if(starts_with($key, "molecule_checkbox")){
 				$origin = Molecule::find(intval(str_replace("molecule_checkbox", "", $key)));
-				$newMolecule = Molecule::create(['title' => trans("synthesiscms/helper.molecule_copy_prefix") . $origin->title, 'description' => $origin->description, 'molecule' => $origin->molecule, 'image' => $origin->image, 'imageSourceType' => $origin->imageSourceType]);
+				$newMolecule = Molecule::create(['title' => trans("synthesiscms/helper.molecule_copy_prefix") . $origin->title, 'description' => $origin->description, 'molecule' => $origin->molecule, 'image' => $origin->image]);
 				if($childrenAtomsToo == "true"){
 					$originAtoms = Atom::where('molecule', $origin->id)->cursor();
 					foreach ($originAtoms as $key => $originAtom) {
-						Atom::create(['title' => $originAtom->title, 'description' => $originAtom->description, 'molecule' => $newMolecule->id, 'image' => $originAtom->image, 'imageSourceType' => $originAtom->imageSourceType, 'hasImage' => $originAtom->hasImage]);
+						Atom::create(['title' => $originAtom->title, 'description' => $originAtom->description, 'molecule' => $newMolecule->id, 'image' => $originAtom->image, 'hasImage' => $originAtom->hasImage]);
 					}
 				}
 				$count++;
