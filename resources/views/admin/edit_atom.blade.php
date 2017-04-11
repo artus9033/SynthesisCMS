@@ -91,11 +91,11 @@
 								<label for="image">{{ trans('synthesiscms/atom.imageURL') }}</label>
 							</div>
 							<script>
-                                function atomImagePickerCallback(url) {
+                                function atomImagePickerCallback(url, fsize) {
                                     $('#image').val(url);
                                 }
 							</script>
-							@include('partials/image-picker', ['picker_modal_id' => 'atom_edit_item_picker', 'callback_function_name' => 'atomImagePickerCallback', 'followIframeParentHeight' => false])
+							@include('partials.file-picker', ['picker_modal_id' => 'atom_edit_item_picker', 'callback_function_name' => 'atomImagePickerCallback', 'followIframeParentHeight' => false, 'fileExtensions' => ['jpg', 'png', 'gif', 'jpeg']])
 							<a href="#atom_edit_item_picker"
 							   class="btn btn-large center col s6 row waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
 								<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
@@ -142,11 +142,4 @@
 								<button class="btn-flat waves-effect waves-red {{ $synthesiscmsMainColor }}-text" data-target="modalDelete{{ $atom->id }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">security</i>{{ trans('synthesiscms/atom.delete_atom') }}</button>
 								</div>
 								</div>
-								<script type="text/javascript">
-								$(document).ready(function(){
-									$('.modal').modal({
-										dismissible: false
-									});
-								});
-								</script>
 								@endsection

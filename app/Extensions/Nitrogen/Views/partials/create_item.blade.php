@@ -85,11 +85,11 @@ $(document).ready(function(){
 					<input id="image-tv" name="image-tv" class="col s10 l8" type="text">
 				</div>
 				<script>
-                    function nitrogenImagePickerCallback(txt) {
+                    function nitrogenImagePickerCallback(txt, fsize) {
 					$('#image-tv').val(txt);
 				}
 				</script>
-				@include('partials/image-picker', ['picker_modal_id' => 'nitrogen_create_item_picker', 'callback_function_name' => 'nitrogenImagePickerCallback', 'followIframeParentHeight' => true])
+				@include('partials/file-picker', ['picker_modal_id' => 'nitrogen_create_item_picker', 'callback_function_name' => 'nitrogenImagePickerCallback', 'followIframeParentHeight' => true, 'fileExtensions' => ['jpg', 'png', 'gif', 'jpeg']])
 				<div class="row"></div>
 				<button type="submit" class="col s12 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
 			</form>

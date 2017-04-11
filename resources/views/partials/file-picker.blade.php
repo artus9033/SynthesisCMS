@@ -5,9 +5,10 @@
 			<nav>
 				<div class="nav-wrapper">
 					<div class="col s12" id="{{ $picker_modal_id }}_path">
-						<a class="white-text breadcrumb"
-						   onclick="{{ $picker_modal_id }}_setPickerPath('/')">{{ trans('synthesiscms/admin.chooser_path') }}
-							&nbsp;{{ trans('synthesiscms/admin.chooser_path_root') }}</a>
+						<a class="white-text breadcrumb" onclick="{{ $picker_modal_id }}_setPickerPath('/')">
+							{{ trans('synthesiscms/admin.chooser_path') }}
+							&nbsp;{{ trans('synthesiscms/admin.chooser_path_root') }}
+						</a>
 					</div>
 				</div>
 			</nav>
@@ -28,7 +29,7 @@
 				   onclick="{{ $picker_modal_id }}_uploadPickerNow()">{{ trans('synthesiscms/admin.chooser_upload') }}</a>
 			</div>
 		<script>
-		function uploadPickerNow(){
+            function {{ $picker_modal_id }}_uploadPickerNow() {
 			var formData = new FormData();
             formData.append('file', $("#{{ $picker_modal_id }}_fileinput")[0].files[0])
 			$.ajax({
@@ -53,12 +54,14 @@
 		<div class="col s12 row" id="{{ $picker_modal_id }}_manager"></div>
 	</div>
 	<div class="modal-footer">
-		<div class="col s12 divider {{ $synthesiscmsMainColor }}"></div>
-		<span class="valign">{{ trans('synthesiscms/admin.chosen_image') }}<span
-					id="{{ $picker_modal_id }}_chosen-image">{{ trans('synthesiscms/admin.chosen_image_none') }}</span><span
-					style="display: none;" id="{{ $picker_modal_id }}_chosen-image-data"></span></span>
+		<span class="valign">
+			{{ trans('synthesiscms/admin.chosen_image') }}
+			<span id="{{ $picker_modal_id }}_chosen-image">{{ trans('synthesiscms/admin.chosen_image_none') }}</span>
+			<span style="display: none;" id="{{ $picker_modal_id }}_chosen-image-data"></span>
+			<span style="display: none;" id="{{ $picker_modal_id }}_chosen-image-size"></span>
+		</span>
 		<a class="modal-action modal-close waves-effect waves-red btn-flat">{{ trans('synthesiscms/admin.chooser_cancel') }}</a>
-		<a onclick="{{ $callback_function_name }}($('#{{ $picker_modal_id }}_chosen-image-data').text())"
+		<a onclick="{{ $callback_function_name }}($('#{{ $picker_modal_id }}_chosen-image-data').text(), $('#{{ $picker_modal_id }}_chosen-image-size').text())"
 		   class="modal-action modal-close waves-effect waves-green btn-flat">{{ trans('synthesiscms/admin.choose') }}</a>
 	</div>
 </div>
@@ -72,16 +75,16 @@
     $('#{{ $picker_modal_id }}').css('height', mNitrogenHeight);
     @endif
 @endif
-$(document).ready(function(){
-        $('#{{ $picker_modal_id }}').modal({
+	$('#{{ $picker_modal_id }}').modal({
 		ready: function(modal, trigger) {
             {{ $picker_modal_id }}_setPickerPath('/');
 		}
 	});
-});//folder_open
-    function {{ $picker_modal_id }}_selectImage(name, path) {
+    //folder_open
+    function {{ $picker_modal_id }}_selectFile(name, path, size) {
         $("#{{ $picker_modal_id }}_chosen-image").text(name);
         $("#{{ $picker_modal_id }}_chosen-image-data").text(path);
+        $("#{{ $picker_modal_id }}_chosen-image-size").text(size);
 }
     function {{ $picker_modal_id }}_setPickerPath(path) {
 	//TODO: add path handling in fsctrl and implement exploding the path string in js ad showing in breadcrumbs
@@ -95,21 +98,34 @@ $(document).ready(function(){
 			},
 			data: {
 				path: path,
+                extensions: {!! json_encode($fileExtensions) !!}
 			},
 			success: function(dane) {
 				var mgrHtml = "";
 				$.each(dane['imgs'], function(index, value){
-                    mgrHtml += "<div class='col s4' onclick=\"{{ $picker_modal_id }}_selectImage('";
-					mgrHtml += value['name'] + "', '";
-					mgrHtml += value['path'] + "')\"><div class='card'><div class='card-image'><img src='" + value['path'] + "'><span class='card-title card-panel truncate no-padding white {{ $synthesiscmsMainColor }}-text'>" + value['name'] + "</span></div></div></div>"
+                    if (value['mime_type'].includes('image')) {
+                        mgrHtml += "<div class='col s4' onclick=\"{{ $picker_modal_id }}_selectFile('";
+                        mgrHtml += value['name'] + "', '";
+                        mgrHtml += value['path'] + "', '" + value['size'] + "')\"><div class='card synthesiscms-file-picker-pointer-element hoverable'><div class='card-image'><img src='" + value['path'] + "'><span class='card-title card-panel truncate no-padding white {{ $synthesiscmsMainColor }}-text'>" + value['name'] + "</span></div></div></div>";
+                    } else {
+                        mgrHtml += "<div class='col s4' onclick=\"{{ $picker_modal_id }}_selectFile('";
+                        mgrHtml += value['name'] + "', '";
+                        mgrHtml += value['path'] + "')\"><div class='card-panel synthesiscms-file-picker-pointer-element hoverable {{ $synthesiscmsMainColor }}-text truncate'>" + value['name'] + "</div></div>";
+                    }
 				});
                 $('#{{ $picker_modal_id }}_manager').html(mgrHtml);
                 $('#{{ $picker_modal_id }}_loading').css('display', 'none');
 			},
 			error: function() {
-				alert("Error");
+                console.error("Error retrieving SynthesisCMS file picker data");
 			}
 		}
 	);
 }
 </script>
+<style>
+	.synthesiscms-file-picker-pointer-element {
+		cursor: pointer;
+		cursor: hand;
+	}
+</style>

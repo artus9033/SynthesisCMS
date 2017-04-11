@@ -8,7 +8,7 @@ return [
 	'chooser_path' => 'Ścieżka: ',
 	'chooser_path_root' => 'Główny',
 	'chosen_image' => 'Wybrano: ',
-	'choose_image' => 'Wybierz Obraz',
+	'choose_image' => 'Wybierz plik',
 	'save_applet' => 'Zapisz',
 	'cancel_applet' => 'Anuluj',
 	'save_settings' => 'Zapisz Ustawienia',

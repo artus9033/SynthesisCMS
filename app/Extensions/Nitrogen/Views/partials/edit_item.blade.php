@@ -89,11 +89,12 @@ $(document).ready(function(){
 					<input id="image-tv" name="image-tv" value="{!! $item->image !!}" class="col s10 l8" type="text">
 				</div>
 				<script>
-				function imagePickerCallback(txt){
+                    function imagePickerCallback(txt, fsize) {
 					$('#image-tv').val(txt);
 				}
 				</script>
-				@include('partials/image-picker')
+				@include('partials/file-picker')
+				//TODO: does this work?!
 				<button type="submit" class="col s12 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
 			</form>
 		</div>

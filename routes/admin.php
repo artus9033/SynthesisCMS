@@ -7,8 +7,8 @@ Route::post('/admin/upload', ['as' => 'upload', 'uses' => 'Backend\\SynthesisFil
 
 Route::post('/synthesis-route-check', ['as' => 'synthesis_route_check', 'uses' => 'Content\\RouteController@checkRoute']);
 
-Route::post('/admin/image-picker', function (\App\Http\Requests\BackendRequest $request) {
-	return view('partials/image-picker')->with(['picker_modal_id' => $request->get('picker_modal_id'), 'callback_function_name' => $request->get('callback_function_name'), 'followIframeParentHeight' => $request->get('followIframeParentHeight')])->render();
+Route::post('/admin/file-picker', function (\App\Http\Requests\BackendRequest $request) {
+	return view('partials/file-picker')->with(['picker_modal_id' => $request->get('picker_modal_id'), 'callback_function_name' => $request->get('callback_function_name'), 'followIframeParentHeight' => $request->get('followIframeParentHeight'), 'fileExtensions' => $request->get('fileExtensions')])->render();
 });
 
 Route::get('/admin/manage_routes', ['as' => 'manage_routes', 'uses' => 'Content\\RouteController@manageRoutesGet']);

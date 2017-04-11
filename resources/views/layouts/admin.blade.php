@@ -38,6 +38,7 @@
 	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.imagepicker.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.table_artus9033.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.insertFacebookAlbum.js') }}"></script>
+	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.fileEmbed.js') }}"></script>
 	@foreach (glob(public_path('trumbowyg/langs/') . '*.js') as $file)
 		<script src='{{ asset('trumbowyg/langs/' . basename($file)) }}'></script>
 	@endforeach
@@ -73,12 +74,9 @@
                     ['image'],
                     'btnGrp-justify',
                     'btnGrp-lists',
-                    ['foreColor', 'backColor'],
-                    ['preformatted'],
-                    ['horizontalRule'],
-                    ['table'],
-                    ['insertImageFromServer'],
-                    ['insertFacebookAlbum'],
+                    ['foreColor', 'backColor', 'preformatted'],
+                    ['horizontalRule', 'table'],
+                    ['insertImageFromServer', 'insertFacebookAlbum', 'fileEmbed'],
                     ['fullscreen']
                 ],
                 plugins: {

@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\BackendRequest;
-use App\Models\Auth\User;
-use App\Models\Content\Page;
-use App\Models\Content\Molecule;
-use App\Models\Settings\Settings;
-use App\Models\Content\Atom;
-use App\Toolbox;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Auth\Authenticatable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BackendRequest;
+use App\Toolbox;
 
 class SynthesisFilesystemController extends Controller
 {
 	function files_list(BackendRequest $request){
 		$dir = public_path() . "/synthesis-uploads/";
+		$exts = $request->get('extensions');
+		$ext_str = "";
+		$len = count($exts);
+		foreach ($exts as $i => $ext) {
+			$ext_str .= $ext;
+			if ($i != $len - 1) {
+				$ext_str .= ',';
+			}
+		}
 		$imgs = array();
-		foreach (glob($dir . '*.{jpg,png,gif,jpeg}', GLOB_BRACE) as $file) {
-			array_push($imgs, ['name' => basename($file), 'path' => url('/') . '/synthesis-uploads/' . basename($file)]);
+		foreach (glob($dir . '*.{' . $ext_str . '}', GLOB_BRACE) as $file) {
+			array_push($imgs, ['name' => basename($file), 'path' => url('/') . '/synthesis-uploads/' . basename($file), 'extension' => pathinfo($file, PATHINFO_EXTENSION), 'mime_type' => mime_content_type($file), 'size' => Toolbox::human_filesize(filesize($file))]);
 		}
 		$dirs = glob($dir . '*', GLOB_ONLYDIR);
 		$data = ['imgs' => $imgs, 'dirs' => $dirs];

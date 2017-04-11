@@ -8,7 +8,7 @@ return [
 	'chooser_path' => 'Path: ',
 	'chooser_path_root' => 'Root',
 	'chosen_image' => 'Chosen: ',
-	'choose_image' => 'Choose an Image',
+	'choose_image' => 'Choose a file',
 	'save_applet' => 'Save',
 	'cancel_applet' => 'Cancel',
 	'save_settings' => 'Save Settings',

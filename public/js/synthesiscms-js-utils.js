@@ -1,6 +1,6 @@
 class SynthesisCmsJsUtils {
-    static includeImagePickerDynamically(picker_modal_id, callback_function_name, followIframeParentHeight = false) {
-        var mUrl = $('meta[name="synthesiscms-public-root"]').attr('content') + '/admin/image-picker';
+    static includeFilePickerDynamically(picker_modal_id, callback_function_name, followIframeParentHeight = false, fileExtensions = ['jpg', 'png', 'gif', 'jpeg']) {
+        var mUrl = $('meta[name="synthesiscms-public-root"]').attr('content') + '/admin/file-picker';
         $.ajax(
             {
                 url: mUrl,
@@ -11,14 +11,15 @@ class SynthesisCmsJsUtils {
                 data: {
                     picker_modal_id: picker_modal_id,
                     callback_function_name: callback_function_name,
-                    followIframeParentHeight: followIframeParentHeight
+                    followIframeParentHeight: followIframeParentHeight,
+                    fileExtensions: fileExtensions
                 },
                 success: function (dane) {
                     $("body").append(dane);
-                    console.log("SynthesiscmsJsUtils succesfully loaded an image picker element and injected it to the page!");
+                    console.log("SynthesiscmsJsUtils succesfully loaded a file picker element and injected it to the page!");
                 },
                 error: function () {
-                    alert("Error");
+                    alert("Error while retrieving the SynthesisCMS file picker!");
                 }
             }
         );

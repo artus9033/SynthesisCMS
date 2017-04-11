@@ -1,10 +1,10 @@
 var mImagePickerTrumbowyg;
 
-function nitrogenImagePickerCallback(url) {
+function trumbowygImagePickerCallback(url, fsize) {
     mImagePickerTrumbowyg.execCmd('insertImage', url, false, true);
 }
 
-SynthesisCmsJsUtils.includeImagePickerDynamically('nitrogen_create_item_picker', 'nitrogenImagePickerCallback', true);
+SynthesisCmsJsUtils.includeFilePickerDynamically('trumbowyg_image_picker', 'trumbowygImagePickerCallback', true, ['jpg', 'png', 'gif', 'jpeg']);
 
 (function ($) {
     'use strict';
@@ -30,7 +30,7 @@ SynthesisCmsJsUtils.includeImagePickerDynamically('nitrogen_create_item_picker',
                     mImagePickerTrumbowyg = trumbowyg;
                     var btnDef = {
                         fn: function () {
-                            $("#nitrogen_create_item_picker").modal("open");
+                            $("#trumbowyg_image_picker").modal("open");
                         }
                     };
                     trumbowyg.addBtnDef("insertImageFromServer", btnDef);
