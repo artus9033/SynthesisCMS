@@ -16,7 +16,7 @@ return [
 	'404_link' => 'Strona Główna',
 	'503_header' => 'Zaraz Wracam',
 	'503_desc' => 'Wystąpił błąd 503 (Serwer Nieaktywny).',
-	'503_desc2' => 'To oznacza, że trwa przerwa techniczna. Spróbuj ponownie później.',
+	'503_desc2' => 'Trwa przerwa techniczna. Spróbuj ponownie później.',
 	'privileges_logout_btn' => 'Mój Profil',
 	'user_no_privileges' => 'Nie posiadasz odpowiednich uprawnień, by zobaczyć tą zawartość',
 	'user_no_privileges_help' => 'Proszę się wylogować, a następnie zalogować się jako administrator',

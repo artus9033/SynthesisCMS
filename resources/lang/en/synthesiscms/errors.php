@@ -16,7 +16,7 @@ return [
 	'404_link' => 'Home Page',
 	'503_header' => 'Be right back',
 	'503_desc' => 'A 503 (Server Down) error has occured.',
-	'503_desc2' => 'This means a maintenance break, please try again later.',
+	'503_desc2' => 'Maintenance break in progress, please try again later.',
 	'privileges_logout_btn' => 'My Profile',
 	'refresh_btn' => 'Refresh',
 	'user_no_privileges' => 'You don\t have proper privileges to enter this area',

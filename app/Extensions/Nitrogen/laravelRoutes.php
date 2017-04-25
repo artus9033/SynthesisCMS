@@ -21,7 +21,7 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin/manage_applets/Nitrogen/{nr}/down/{id}', ['uses' => 'App\\Extensions\\Nitrogen\\ExtensionKernel@settingsPositionDown']);
 	Route::get('/admin/manage_applets/Nitrogen/{nr}/edit/{id}', ['uses' => 'App\\Extensions\\Nitrogen\\ExtensionKernel@settingsEditPositionGet']);
 	Route::post('/admin/manage_applets/Nitrogen/{nr}/edit/{id}', ['uses' => 'App\\Extensions\\Nitrogen\\ExtensionKernel@settingsEditPositionPost']);
-	//TODO: implement deleting & creating topmost extension instances & their' edit views
+	//TODO: implement 'return back' buttons
 	Route::get('/admin/manage_applets/Nitrogen/create', ['uses' => 'App\\Extensions\\Nitrogen\\ExtensionKernel@settingsCreateInstanceGet']);
 	Route::post('/admin/manage_applets/Nitrogen/create', ['uses' => 'App\\Extensions\\Nitrogen\\ExtensionKernel@settingsCreateInstancePost']);
 	Route::get('/admin/manage_applets/Nitrogen/{nr}', ['uses' => 'App\\Extensions\\Nitrogen\\ExtensionKernel@settingsInstanceGet']);
