@@ -27,7 +27,7 @@
 		<div onclick="nitrogen_left();" class="waves-effect waves-light btn-floating {{ $synthesiscmsMainColor }} nitrogen-nav-button nitrogen-left"><i class="material-icons white-text">chevron_left</i></div>
 		<div onclick="nitrogen_right();" class="waves-effect waves-light btn-floating {{ $synthesiscmsMainColor }} nitrogen-nav-button nitrogen-right"><i class="material-icons white-text">chevron_right</i></div>
 	@endif
-	{!! $kernel->getSliderItems($slug) !!}
+	{!! $kernel->getSliderItems($slug, $nr) !!}
 </div>
 <script>
 var nitrogen_timer_max = {{ $model->interval }};

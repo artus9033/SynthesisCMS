@@ -47,10 +47,12 @@
 				<img style="width: 85%; height: auto; margin-top: 10%; margin-left: 2%;" src="{{ url('/favicon.ico') }}">
 			</a>
 			<a href="{{ url('/') }}" style="margin-left: 25px; font-size: 2em !important;" class="hide-on-med-and-down brand-logo truncate col s7">{{ $synthesiscmsHeaderTitle }}</a>
-			<a href="{{ url('/') }}" style="width:100%;" class="hide-on-large-only brand-logo truncate synthesiscms-mobile-brand-logo">{{ $synthesiscmsHeaderTitle }}</a>
+			<a id="synthesiscms-slogan-large-screens" href="{{ url('/') }}" style="width:100%;"
+			   class="hide-on-large-only brand-logo truncate synthesiscms-mobile-brand-logo">{{ $synthesiscmsHeaderTitle }}</a>
 			<script>
                 function synthesiscmsResizeBrandLogoMargin() {
                     $(".synthesiscms-mobile-brand-logo").css('margin-left', $('.synthesiscms-mobile-btn-wrapper').width() + 2); // 2 more pixels
+                    $("#synthesiscms-slogan-large-screens").css('max-width', $(document).width() - $('#synthesiscms-large-screens-menu-part-right').width());
                 }
                 $(document).ready(function () {
                     synthesiscmsResizeBrandLogoMargin();
@@ -59,19 +61,24 @@
                     synthesiscmsResizeBrandLogoMargin();
                 });
 			</script>
-			<div class="input-field right hide-on-med-and-down">
-				<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">
-					<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">EN</span></option>
-					<option value="PL" data-icon="{!! asset('img/langs/PL.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">PL</span></option>
-				</select>
-			</div>
 			@php
 			$app_locale = strtoupper(\App::getLocale());
 			@endphp
 			<script>
 			$('#lang-select').val('{{ $app_locale }}');
 			</script>
-			<ul class="hide-on-med-and-down right">
+			<ul class="hide-on-med-and-down right" id="synthesiscms-large-screens-menu-part-right">
+				<li class="input-field right hide-on-med-and-down">
+					<select id="lang-select" class="icons white-text"
+							onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">
+						<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}"
+								class="{{ $synthesiscmsMainColor }}-text left circle"><span
+									class="{{ $synthesiscmsMainColor }}-text">EN</span></option>
+						<option value="PL" data-icon="{!! asset('img/langs/PL.png') !!}"
+								class="{{ $synthesiscmsMainColor }}-text left circle"><span
+									class="{{ $synthesiscmsMainColor }}-text">PL</span></option>
+					</select>
+				</li>
 				@yield('menu')
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 				@if (Auth::guest())

@@ -31,6 +31,14 @@
 @endsection
 
 @section('main')
+	<div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
+		<a onclick='window.open($("#settings-view").contents().get(0).location.href);'
+		   class="pulse btn-floating btn-large {{ $synthesiscmsMainColor }} waves-effect tooltipped"
+		   data-position="left" data-delay="50"
+		   data-tooltip="{{ trans("synthesiscms/admin.open_applet_settings_fullscreen") }}">
+			<i class="material-icons">fullscreen</i>
+		</a>
+	</div>
 	<div>
 		<div class="card-content">
 			<div class="card-title col s12">

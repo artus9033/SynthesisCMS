@@ -5,7 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class NitrogenItem extends Model
 {
-	protected $fillable = array('id', 'image', 'type', 'title', 'content', 'before', 'slider', 'titleTextColor', 'contentTextColor');
-
 	public $timestamps = false;
+	protected $fillable = array('id', 'image', 'type', 'title', 'content', 'before', 'slider', 'titleTextColor', 'contentTextColor', 'parentInstance');
 }

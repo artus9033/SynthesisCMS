@@ -4,16 +4,17 @@ return [
 	'choose_atom' => 'Choose an Atom',
 	'err_atom_not_found' => 'The requested Atom does not exist',
 	'err_atom_not_found_help' => 'Contact the site administrator for more information',
-	'err_title_cannot_be_empty' => 'The Item\'s title cannot be empty',
+	'err_title_cannot_be_empty' => 'The title cannot be empty',
+	'err_interval_must_be_numeric' => 'Interval\'s value must be numeric',
 	'msg_item_added' => 'The item has been created',
 	'msg_item_saved' => 'The item has been saved',
 	'msg_item_deleted' => 'The item has been removed',
 	'msg_items_deleted' => 'The selected items have been removed',
 	'msg_item_moved' => 'Item has been moved',
-	'err_title_cannot_be_empty' => 'The item\'s title cannot be empty',
 	'err_no_items_selected' => 'No items have been selected',
 	'err_item_cannot_be_moved' => 'This item cannot be moved there',
 	'err_item_doesnt_exist' => 'The requested item does not exist',
+	'msg_element_added' => 'Element successfully created',
 ];
 
 ?>

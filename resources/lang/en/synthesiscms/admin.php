@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'open_applet_settings_fullscreen' => 'Open applet settings in fullscreen mode',
 	'chooser_upload' => 'Upload',
 	'chosen_image_none' => 'None',
 	'choose' => 'Choose',

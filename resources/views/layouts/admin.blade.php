@@ -168,16 +168,21 @@
 						</div>
 					@endif
 					<a style="max-width: 50%;" href="{{ url('/') }}" class="brand-logo truncate" style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }} - @section('brand-logo'){{ trans('synthesiscms/admin.backend') }}@show</a>
-						<div class="input-field right hide-on-med-and-down">
-							<select id="lang-select" class="icons white-text" onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">
-								<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">EN</span></option>
-								<option value="PL" data-icon="{!! asset('img/langs/PL.png') !!}" class="{{ $synthesiscmsMainColor }}-text left circle"><span class="{{ $synthesiscmsMainColor }}-text">PL</span></option>
+					<script>
+                        $('#lang-select').val("{{ strtoupper(\App::getLocale()) }}");
+					</script>
+					<ul style="max-width: 50%;" class="right hide-on-med-and-down">
+						<li class="input-field right hide-on-med-and-down">
+							<select id="lang-select" class="icons white-text"
+									onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">
+								<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}"
+										class="{{ $synthesiscmsMainColor }}-text left circle"><span
+											class="{{ $synthesiscmsMainColor }}-text">EN</span></option>
+								<option value="PL" data-icon="{!! asset('img/langs/PL.png') !!}"
+										class="{{ $synthesiscmsMainColor }}-text left circle"><span
+											class="{{ $synthesiscmsMainColor }}-text">PL</span></option>
 							</select>
-						</div>
-						<script>
-						$('#lang-select').val("{{ strtoupper(\App::getLocale()) }}");
-						</script>
-						<ul class="col s10 right hide-on-med-and-down">
+						</li>
 							@yield('menu')
 							@if (Auth::guest())
 								<li class="right col s3 m2 l2"><a class="center" href="{{ url('/register') }}"><i class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}</a></li>

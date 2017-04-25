@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'open_applet_settings_fullscreen' => 'Otwórz ustawienia appletu w trybie pełnoekranowym',
 	'chooser_upload' => 'Wyślij',
 	'chosen_image_none' => 'Brak',
 	'choose' => 'Wybierz',

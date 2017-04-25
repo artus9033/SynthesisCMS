@@ -2,7 +2,7 @@ var mFileEmbedPickerTrumbowyg;
 
 function trumbowygFilePickerCallback(url, fsize) {
     var fname = url.substring(url.lastIndexOf('/') + 1);
-    var div = $('<div class="row"><div class="col s12"><div class="card small"><div class="card-content"><p>' + fname + '</p></div><div class="card-action"><a class="truncate" href="' + url + '"><i class="material-icons">file_download</i> ' + fname + '</a></div></div></div></div>');
+    var div = $('<div class="row"><div class="col s12"><div class="card"><div class="card-content"><p>' + fname + '</p></div><div class="card-action"><a class="truncate" href="' + url + '"><i class="material-icons">file_download</i> ' + fname + '</a></div></div></div></div>');
     mFileEmbedPickerTrumbowyg.range.deleteContents();
     mFileEmbedPickerTrumbowyg.range.insertNode(div[0]);
 }
