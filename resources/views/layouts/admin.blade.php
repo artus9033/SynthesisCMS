@@ -8,6 +8,7 @@
 	<meta name="theme-color" content="{{ $synthesiscmsTabColor }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="synthesiscms-public-root" content="{{ url('/') }}">
+	<meta name="synthesiscms-asset-root" content="{{ asset('/') }}">
 	<script type="text/javascript" src="{!! asset('js/jquery-3.1.1.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/materialize.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
@@ -168,18 +169,17 @@
 						</div>
 					@endif
 					<a style="max-width: 50%;" href="{{ url('/') }}" class="brand-logo truncate" style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }} - @section('brand-logo'){{ trans('synthesiscms/admin.backend') }}@show</a>
-					<script>
-                        $('#lang-select').val("{{ strtoupper(\App::getLocale()) }}");
-					</script>
 					<ul style="max-width: 50%;" class="right hide-on-med-and-down">
 						<li class="input-field right hide-on-med-and-down">
 							<select id="lang-select" class="icons white-text"
 									onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">
 								<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}"
-										class="{{ $synthesiscmsMainColor }}-text left circle"><span
+										class="{{ $synthesiscmsMainColor }}-text left circle"
+										@if(mb_strtoupper(\App::getLocale()) == "EN") selected @endif><span
 											class="{{ $synthesiscmsMainColor }}-text">EN</span></option>
 								<option value="PL" data-icon="{!! asset('img/langs/PL.png') !!}"
-										class="{{ $synthesiscmsMainColor }}-text left circle"><span
+										class="{{ $synthesiscmsMainColor }}-text left circle"
+										@if(mb_strtoupper(\App::getLocale()) == "PL") selected @endif><span
 											class="{{ $synthesiscmsMainColor }}-text">PL</span></option>
 							</select>
 						</li>

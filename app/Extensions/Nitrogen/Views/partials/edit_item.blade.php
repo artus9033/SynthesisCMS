@@ -66,7 +66,9 @@ $(document).ready(function(){
 				</div>
 				<script>
 				$(document).ready(function(){
-					$('#content').trumbowyg();
+                    $('#content').trumbowyg({
+                        lang: '{{ \App::getLocale() }}'
+                    });
 					$("#content").trumbowyg('html', {!! json_encode($item->content) !!});
 				});
 				</script>

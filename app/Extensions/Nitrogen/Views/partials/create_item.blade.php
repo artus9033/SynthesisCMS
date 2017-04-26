@@ -66,7 +66,9 @@ $(document).ready(function(){
 				</div>
 				<script>
 				$(document).ready(function(){
-					$("#content").trumbowyg(); //empty content
+                    $("#content").trumbowyg({
+                        lang: '{{ \App::getLocale() }}'
+                    }); //empty content
 				});
 				</script>
 				<div class="collapsible-header {{ $synthesiscmsMainColor }}-text"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans("Nitrogen::nitrogen.item_image") }}</div>
