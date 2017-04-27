@@ -119,18 +119,9 @@ class ExtensionKernel extends SynthesisExtension
 	{
 		$title = $request->get('title');
 		$content = $request->get('content');
-		$type_raw = $request->get('type');
 		$titleTextColor = $request->get('titleTextColor');
 		$contentTextColor = $request->get('contentTextColor');
 		$image = $request->get('image-tv');
-		switch($type_raw){
-			case "single":
-			$type = NitrogenItemType::FtpSingleImage;
-			break;
-			case "folder":
-			$type = NitrogenItemType::FtpFolder;
-			break;
-		}
 		$errors = array();
 		$err = false;
 
@@ -151,7 +142,6 @@ class ExtensionKernel extends SynthesisExtension
 			$item = $query->first();
 			$item->title = $title;
 			$item->content = $content;
-			$item->type = $type;
 			$item->titleTextColor = $titleTextColor;
 			$item->contentTextColor = $contentTextColor;
 			$item->image = $image;
@@ -171,18 +161,9 @@ class ExtensionKernel extends SynthesisExtension
 		$instanceModel = NitrogenExtension::find($nr);
 		$title = $request->get('title');
 		$content = $request->get('content');
-		$type_raw = $request->get('type');
 		$titleTextColor = $request->get('titleTextColor');
 		$contentTextColor = $request->get('contentTextColor');
 		$image = $request->get('image-tv');
-		switch($type_raw){
-			case "single":
-			$type = NitrogenItemType::FtpSingleImage;
-			break;
-			case "folder":
-			$type = NitrogenItemType::FtpFolder;
-			break;
-		}
 		$errors = array();
 		$err = false;
 
@@ -206,7 +187,7 @@ class ExtensionKernel extends SynthesisExtension
 			}else{
 				$before = $parent_id;
 			}
-			$created = NitrogenItem::create(['parentInstance' => $nr, 'image' => $image, 'type' => $type, 'title' => $title, 'content' => $content, 'before' => $before, 'slider' => $instanceModel->id, 'contentTextColor' => $contentTextColor, 'titleTextColor' => $titleTextColor]);
+			$created = NitrogenItem::create(['parentInstance' => $nr, 'image' => $image, 'title' => $title, 'content' => $content, 'before' => $before, 'slider' => $instanceModel->id, 'contentTextColor' => $contentTextColor, 'titleTextColor' => $titleTextColor]);
 			$created->parentOf = $created->id + 1;
 			$created->save();
 			return view("Nitrogen::partials/instance_settings")->with(['nr' => $nr, 'model' => $instanceModel, 'kernel' => $this, 'messages' => array(trans('Nitrogen::messages.msg_item_added'))]);

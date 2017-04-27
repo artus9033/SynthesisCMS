@@ -110,7 +110,7 @@
                     } else {
                         mgrHtml += "<div class='col s4' onclick=\"{{ $picker_modal_id }}_selectFile('";
                         mgrHtml += value['name'] + "', '";
-                        mgrHtml += value['path'] + "')\"><div class='card-panel synthesiscms-file-picker-pointer-element hoverable {{ $synthesiscmsMainColor }}-text truncate'>" + value['name'] + "</div></div>";
+                        mgrHtml += value['path'] + "', '" + value['size'] + "')\"><div class='card-panel synthesiscms-file-picker-pointer-element hoverable {{ $synthesiscmsMainColor }}-text truncate'>" + value['name'] + "</div></div>";
                     }
 				});
                 $('#{{ $picker_modal_id }}_manager').html(mgrHtml);

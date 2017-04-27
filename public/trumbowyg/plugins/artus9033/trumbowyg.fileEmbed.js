@@ -3,7 +3,7 @@ var mFileEmbedPickerTrumbowyg;
 function trumbowygFilePickerCallback(url, fsize) {
     var fname = url.substring(url.lastIndexOf('/') + 1);
     var mAssetBaseUrl = $('meta[name="synthesiscms-asset-root"]').attr('content')
-    var div = $('<iframe srcdoc=\'<html>' +
+    var div = $('<iframe class="col s12 l8 offset-l2" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" srcdoc=\'<html>' +
         '<head>' +
         '<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">' +
         '<link type="text/css" rel="stylesheet" href="' + mAssetBaseUrl + 'css/materialize.css" media="screen,projection"/>' +
@@ -17,10 +17,10 @@ function trumbowygFilePickerCallback(url, fsize) {
         '<body>' +
         '<div class="card">' +
         '<div class="card-content">' +
-        '<p>content</p>' +
+        '<p>' + fname + " (" + fsize + ")" + '</p>' +
         '</div>' +
         '<div class="card-action">' +
-        '<a class="truncate" href="url"><i class="material-icons">file_download</i>name</a>' +
+        '<a class="truncate" href="' + url + '" download><i class="material-icons">file_download</i>' + fname + '</a>' +
         '</div>' +
         '</div>' +
         '</body>' +

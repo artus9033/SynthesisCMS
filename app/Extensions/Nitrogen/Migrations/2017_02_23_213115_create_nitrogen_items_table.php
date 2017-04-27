@@ -18,7 +18,6 @@ class CreateNitrogenItemsTable extends Migration
 			$table->longText('image');
 			$table->longText('title');
 			$table->longText('content');
-			$table->integer('type')->default(1);
 			$table->integer('slider')->default(1);
 			$table->integer('parentOf')->default(0);
 			$table->integer('before')->default(0);
