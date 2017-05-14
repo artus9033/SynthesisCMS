@@ -2,12 +2,10 @@
 
 namespace App\Extensions\Lithium;
 
-use App\Http\Controllers\Controller;
 use App\Extensions\Lithium\Models\LithiumExtension;
-use App\Extensions\Lithium\Controllers\LithiumController;
+use App\Models\Content\Page;
 use App\SynthesisCMS\API\SynthesisExtension;
 use App\SynthesisCMS\API\SynthesisExtensionType;
-use App\Models\Content\Page;
 
 /**
  * ExtensionKernel
@@ -20,17 +18,9 @@ use App\Models\Content\Page;
 class ExtensionKernel extends SynthesisExtension
 {
 
-	public function create($id){
-		$extension = LithiumExtension::create(['id' => $id]);
-	}
-
 	public function onPageDeleted($id){
 		$extension = LithiumExtension::where(['id' => $id])->first();
 		$extension->delete();
-	}
-
-	public function getExtensionName(){
-		return trans('Lithium::lithium.name');
 	}
 
 	public function getExtensionType(){
@@ -47,9 +37,25 @@ class ExtensionKernel extends SynthesisExtension
 		return Array($pages);
 	}
 
+	public function getExtensionName()
+	{
+		return trans('Lithium::lithium.name');
+	}
+
 	public function editGet($page)
 	{
-		return \View::make('Lithium::partials/edit')->with(['page' => $page, 'extension_instance' => LithiumExtension::where('id', $page->id)->first()]);
+		if (LithiumExtension::where(['id' => $page->id])->exists()) {
+			$extension_instance = LithiumExtension::find($page->id);
+		} else {
+			$extension_instance = $this->create($page->id);
+		}
+		return \View::make('Lithium::partials/edit')->with(['page' => $page, 'extension_instance' => $extension_instance]);
+	}
+
+	public function create($id)
+	{
+		LithiumExtension::create(['id' => $id]);
+		return LithiumExtension::find($id);
 	}
 
 	public function editPost($id, $request)

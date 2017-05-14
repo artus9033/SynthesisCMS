@@ -7,7 +7,9 @@ return [
 	'options_modal_btn_copy_link' => 'Copy Link to this Atom',
 	'options_modal_header' => 'Please choose an action',
 	'options_modal_btn_cancel' => 'Cancel',
-	'name' => 'Lithium Single-Atom Page'
+	'name' => 'Lithium Single-Atom Page',
+	'switch_on' => 'On',
+	'switch_off' => 'Off',
 ];
 
 ?>

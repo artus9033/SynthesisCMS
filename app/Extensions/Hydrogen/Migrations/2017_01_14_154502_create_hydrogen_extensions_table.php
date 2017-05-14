@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateHydrogenExtensionsTable extends Migration
 {
@@ -19,6 +19,8 @@ class CreateHydrogenExtensionsTable extends Migration
 			$table->integer('list_column_count')->default(2);
 			$table->integer('atoms_on_single_page')->default(14);
 			$table->boolean('showHeader')->default(true);
+			$table->integer('default_sorting_type')->default(1);
+			$table->integer('default_sorting_direction')->default(1);
 			$table->timestamps();
 		});
 	}

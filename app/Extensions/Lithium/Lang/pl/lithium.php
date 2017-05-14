@@ -8,6 +8,8 @@ return [
 	'options_modal_header' => 'Proszę wybrać akcję',
 	'options_modal_btn_cancel' => 'Anuluj',
 	'name' => 'Litowa strona z pojedynczym Atomem',
+	'switch_on' => 'Włączony',
+	'switch_off' => 'Wyłączony',
 ];
 
 ?>

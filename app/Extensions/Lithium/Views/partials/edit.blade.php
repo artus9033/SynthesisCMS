@@ -1,3 +1,12 @@
+<div class="col s12 grey-text text-darken-2">{{ trans("Lithium::messages.showHeader") }}</div>
+<div class="switch col s12">
+	<label>
+		{!! trans("Lithium::lithium.switch_off") !!}
+		<input type="checkbox" name="showHeader" @if($extension_instance->showHeader) checked @endif>
+		<span class="lever"></span>
+		{!! trans("Lithium::lithium.switch_on") !!}
+	</label>
+</div>
 <div class="input-field col s8 offset-s2 valign" id="molecule-div">
 	<select id="lithium-atom" name="lithium-atom" class="{{ $synthesiscmsMainColor }}-text">
 		@foreach (\App\Models\Content\Atom::all() as $key => $value)
@@ -12,13 +21,4 @@
 		@endforeach
 	</select>
 	<label>{{ trans("Lithium::messages.choose_atom") }}</label>
-</div>
-<div class="col s12">{{ trans("Lithium::messages.showHeader") }}</div>
-<div class="switch col s12">
-	<label>
-		Off
-		<input type="checkbox" name="showHeader" @if($extension_instance->showHeader) checked @endif>
-		<span class="lever"></span>
-		On
-	</label>
 </div>

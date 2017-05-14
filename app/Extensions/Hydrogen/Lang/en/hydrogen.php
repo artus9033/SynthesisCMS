@@ -16,6 +16,13 @@ return [
 	'two_columns' => 'Two Columns',
 	'switch_on' => 'On',
 	'switch_off' => 'Off',
+	'choose_default_sorting_type' => 'Choose default sorting type of elements',
+	'default_sorting_type_1' => 'Alphabetical',
+	'default_sorting_type_2' => 'Creation Date',
+	'default_sorting_type_3' => 'Modification Date',
+	'choose_default_sorting_direction' => 'Choose default sorting direction',
+	'default_sorting_direction_1' => 'Ascending',
+	'default_sorting_direction_2' => 'Descending',
 ];
 
 ?>

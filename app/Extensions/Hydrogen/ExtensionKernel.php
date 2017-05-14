@@ -2,14 +2,10 @@
 
 namespace App\Extensions\Hydrogen;
 
-use App\Http\Controllers\Controller;
 use App\Extensions\Hydrogen\Models\HydrogenExtension;
-use App\Extensions\Hydrogen\Controllers\HydrogenController;
-use App\SynthesisCMS\API\SynthesisExtension;
-use App\SynthesisCMS\API\Positions\SynthesisPositions;
-use App\SynthesisCMS\API\Positions\SynthesisPositionManager;
-use App\SynthesisCMS\API\SynthesisExtensionType;
 use App\Models\Content\Page;
+use App\SynthesisCMS\API\SynthesisExtension;
+use App\SynthesisCMS\API\SynthesisExtensionType;
 
 /**
  * ExtensionKernel
@@ -22,17 +18,9 @@ use App\Models\Content\Page;
 class ExtensionKernel extends SynthesisExtension
 {
 
-	public function create($id){
-		$extension = HydrogenExtension::create(['id' => $id]);
-	}
-
 	public function onPageDeleted($id){
 		$extension = HydrogenExtension::where(['id' => $id]);
 		$extension->delete();
-	}
-
-	public function getExtensionName(){
-		return trans('Hydrogen::hydrogen.name');
 	}
 
 	public function getExtensionType(){
@@ -49,10 +37,25 @@ class ExtensionKernel extends SynthesisExtension
 		return Array($pages);
 	}
 
+	public function getExtensionName()
+	{
+		return trans('Hydrogen::hydrogen.name');
+	}
+
 	public function editGet($page)
 	{
-		$extension_instance = \App\Extensions\Hydrogen\Models\HydrogenExtension::find($page->id);
+		if (HydrogenExtension::where(['id' => $page->id])->exists()) {
+			$extension_instance = HydrogenExtension::find($page->id);
+		} else {
+			$extension_instance = $this->create($page->id);
+		}
 		return \View::make('Hydrogen::partials/edit')->with(['page' => $page, 'extension_instance' => $extension_instance]);
+	}
+
+	public function create($id)
+	{
+		HydrogenExtension::create(['id' => $id]);
+		return HydrogenExtension::find($id);
 	}
 
 	public function editPost($id, $request)
@@ -60,6 +63,8 @@ class ExtensionKernel extends SynthesisExtension
 		$extension = HydrogenExtension::where('id', $id)->first();
 		$extension->molecule = $request->get('hydrogen-molecule');
 		$extension->list_column_count = $request->get('list_column_count');
+		$extension->default_sorting_type = $request->get('default_sorting_type');
+		$extension->default_sorting_direction = $request->get('default_sorting_direction');
 		$extension->atoms_on_single_page = $request->get('atoms_on_single_page');
 		$extension->showHeader = $request->get('showHeader') == "on";
 		$extension->save();
