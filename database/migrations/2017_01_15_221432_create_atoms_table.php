@@ -20,6 +20,7 @@ class CreateAtomsTable extends Migration
 			$table->integer('molecule')->default(1);
 			$table->string('image')->default('');
 			$table->boolean('hasImage')->default(false);
+			$table->string('cardSize')->default('medium');
 			$table->timestamps();
 		});
     }

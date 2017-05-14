@@ -14,6 +14,8 @@ return [
 	'name' => 'Hydrogen Single-Molecule Page',
 	'one_column' => 'One Column',
 	'two_columns' => 'Two Columns',
+	'switch_on' => 'On',
+	'switch_off' => 'Off',
 ];
 
 ?>

@@ -20,6 +20,10 @@ return [
 	'delete' => 'Usuń',
 	'molecule' => 'Nadrzędna Cząsteczka',
 	'check' => 'Wybierz',
+	'choose_card_size' => 'Wybierz rozmiar karty atomu (http://materializecss.com/cards.html#sizes)',
+	'card_size_small' => 'Mały (max 300px wysokości)',
+	'card_size_medium' => 'Średni (max 400px wysokości)',
+	'card_size_large' => 'Duży (max 500px wysokości)',
 ];
 
 ?>

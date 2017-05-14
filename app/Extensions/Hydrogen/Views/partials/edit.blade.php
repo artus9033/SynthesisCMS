@@ -39,9 +39,9 @@
 <div class="col s12">{{ trans("Hydrogen::messages.showHeader") }}</div>
 <div class="switch col s12">
     <label>
-      Off
+		{!! trans("Hydrogen::hydrogen.switch_off") !!}
       <input type="checkbox" name="showHeader" @if($extension_instance->showHeader) checked @endif>
       <span class="lever"></span>
-      On
+		{!! trans("Hydrogen::hydrogen.switch_on") !!}
     </label>
 </div>

@@ -14,6 +14,8 @@ return [
 	'name' => 'Wodorowa strona z pojedynczą Cząsteczką',
 	'one_column' => 'Jedna Kolumna',
 	'two_columns' => 'Dwie Kolumny',
+	'switch_on' => 'Włączony',
+	'switch_off' => 'Wyłączony',
 ];
 
 ?>

@@ -67,16 +67,16 @@
 			$all = $atoms->toArray();
 		}
 		@endphp
-		@if (!$one_column_list)
+		@if ($one_column_list)
+			<div class="container col s10 offset-s1 row">
+				@include('Hydrogen::partials/list', ['atoms' => $all])
+			</div>
+		@else
 			<div class="container col s6 row">
 				@include('Hydrogen::partials/list', ['atoms' => $one])
 			</div>
 			<div class="container col s6 row">
 				@include('Hydrogen::partials/list', ['atoms' => $two])
-			</div>
-		@else
-			<div class="container col s10 offset-s1 row">
-				@include('Hydrogen::partials/list', ['atoms' => $all])
 			</div>
 		@endif
 		@if($atomsCount > $atomsPerPage)

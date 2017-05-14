@@ -24,10 +24,11 @@ class AtomController extends Controller
 					'molecule' => $request->get('molecule'),
 					'hasImage' => ($request->get('hasImage') == 'on'),
 					'image' => $request->get('image'),
+					'cardSize' => Atom::getCardSizeFromNumber(intval($request->get('cardSize')))
 				]
 			);
 			$name_new = Toolbox::string_truncate($atom->title, 10);
-			return \Redirect::route('manage_atoms')->with('messages', array(trans('synthesiscms/admin.msg_atom_created', ['name' => $atom->title])));
+			return \Redirect::route('manage_atoms')->with('messages', array(trans('synthesiscms/admin.msg_atom_created', ['name' => $name_new])));
 		}else{
 			return \Redirect::to(\Request::path())->with('errors', [trans('synthesiscms/atom.err_no_title')]);
 		}
@@ -51,6 +52,7 @@ class AtomController extends Controller
 			$atom->description = $request->get('desc');
 			$atom->molecule = $request->get('molecule');
 			$atom->hasImage = ($request->get('hasImage') == 'on');
+			$atom->cardSize = Atom::getCardSizeFromNumber(intval($request->get('cardSize')));
 			$atom->image = $request->get('image');
 			$atom->save();
 			return \Redirect::route('manage_atoms')->with('messages', array(trans('synthesiscms/admin.msg_atom_saved', ['name' => Toolbox::string_truncate($atom->title, 10)])));

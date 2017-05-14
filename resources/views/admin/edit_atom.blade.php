@@ -129,17 +129,39 @@
 						<select class="{{ $synthesiscmsMainColor }}-text" name="molecule" id="molecule">
 							@foreach (App\Models\Content\Molecule::all() as $key => $value)
 								<option @php if($value->id == $atom->molecule){ echo("selected"); } @endphp value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text truncate"><h5>ID {{ $value->id }}: {{ $value->title }}</h5></option>
-								@endforeach
-								</select>
-								<label>{{ trans('synthesiscms/extensions.choose_molecule') }}</label>
-								</div>
-								</div>
-								</form>
-								</div>
-								<div class="card-action">
-								<a onclick="$('#edit').submit()" class="btn-flat waves-effect waves-green {{ $synthesiscmsMainColor }}-text"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">save</i>{{ trans('synthesiscms/admin.save_atom') }}</a>
-								<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text" href="{{ URL::previous() }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_atom') }}</a>
-								<button class="btn-flat waves-effect waves-red {{ $synthesiscmsMainColor }}-text" data-target="modalDelete{{ $atom->id }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">security</i>{{ trans('synthesiscms/atom.delete_atom') }}</button>
-								</div>
-								</div>
-								@endsection
+							@endforeach
+						</select>
+						<label>{{ trans('synthesiscms/extensions.choose_molecule') }}</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s8 offset-s2" id="molecule-div">
+						<select class="{{ $synthesiscmsMainColor }}-text" name="molecule" id="molecule">
+							<option value="0" class="card-panel col s10 offset-s1 red white-text truncate">
+								<h5>{{ trans('synthesiscms/atom.card_size_small') }}</h5></option>
+							<option value="1" class="card-panel col s10 offset-s1 red white-text truncate">
+								<h5>{{ trans('synthesiscms/atom.card_size_medium') }}</h5></option>
+							<option value="2" class="card-panel col s10 offset-s1 red white-text truncate">
+								<h5>{{ trans('synthesiscms/atom.card_size_large') }}</h5></option>
+						</select>
+						<label>{{ trans('synthesiscms/atom.choose_card_size') }}</label>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="card-action">
+			<a onclick="$('#edit').submit()"
+			   class="btn-flat waves-effect waves-green {{ $synthesiscmsMainColor }}-text"><i
+						class="material-icons {{ $synthesiscmsMainColor }}-text left">save</i>{{ trans('synthesiscms/admin.save_atom') }}
+			</a>
+			<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text"
+			   href="{{ URL::previous() }}"><i
+						class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_atom') }}
+			</a>
+			<button class="btn-flat waves-effect waves-red {{ $synthesiscmsMainColor }}-text"
+					data-target="modalDelete{{ $atom->id }}"><i
+						class="material-icons {{ $synthesiscmsMainColor }}-text left">security</i>{{ trans('synthesiscms/atom.delete_atom') }}
+			</button>
+		</div>
+	</div>
+@endsection
