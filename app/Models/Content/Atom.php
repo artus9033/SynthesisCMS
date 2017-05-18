@@ -26,4 +26,15 @@ class Atom extends Model
 				return Atom::cardSizeLarge;
 		}
 	}
+
+	static function getCardSizeFromName($name)
+	{
+		if ($name == Atom::cardSizeSmall) {
+			return 0;
+		} else if ($name == Atom::cardSizeMedium) {
+			return 1;
+		} else if ($name == Atom::cardSizeLarge) {
+			return 2;
+		}
+	}
 }

@@ -80,6 +80,8 @@
 					</p>
 				</div>
 				<div class="row"></div>
+				<!-- TODO: add <select> for choosing sorting -->
+				<!-- TODO: in list.blade.php implement $atom->cardSize (just echo) -->
 				<ul class="collapsible popout col s12 row" data-collapsible="accordion">
 					<li>
 						<div class="collapsible-header {{ $synthesiscmsMainColor }}-text" id="collapsible" style="pointer-events: none;"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans('synthesiscms/atom.atomImage') }}</div>
@@ -136,13 +138,14 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s8 offset-s2" id="molecule-div">
-						<select class="{{ $synthesiscmsMainColor }}-text" name="molecule" id="molecule">
-							<option value="0" class="card-panel col s10 offset-s1 red white-text truncate">
-								<h5>{{ trans('synthesiscms/atom.card_size_small') }}</h5></option>
-							<option value="1" class="card-panel col s10 offset-s1 red white-text truncate">
-								<h5>{{ trans('synthesiscms/atom.card_size_medium') }}</h5></option>
-							<option value="2" class="card-panel col s10 offset-s1 red white-text truncate">
-								<h5>{{ trans('synthesiscms/atom.card_size_large') }}</h5></option>
+						<select class="{{ $synthesiscmsMainColor }}-text" name="cardSize" id="cardSize">
+							<option @if($atom->cardSize == 0) selected @endif value="0"
+									class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_small') }}</option>
+							<option @if($atom->cardSize == 1) selected @endif value="1"
+									class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_medium') }}</option>
+							<option @if(\App\Models\Content\Atom::getCardSizeFromName($atom->cardSize) == \App\Models\Content\Atom::getCardSizeFromName($atom->cardSize)) selected
+									@endif value="2"
+									class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_large') }}</option>
 						</select>
 						<label>{{ trans('synthesiscms/atom.choose_card_size') }}</label>
 					</div>

@@ -56,8 +56,8 @@
 					$selected = "";
 				}
 			@endphp
-			<option {{ $selected }} value="{!! $value !!}" class="card-panel col s10 offset-s1 red white-text">
-				<h5>{{ trans('Hydrogen::hydrogen.default_sorting_type_' . $value) }}</h5></option>
+			<option {{ $selected }} value="{!! $value !!}"
+					class="card-panel col s10 offset-s1 red white-text">{!! trans('Hydrogen::hydrogen.default_sorting_type_' . $value) !!}</option>
 		@endforeach
 
 	</select>
@@ -74,8 +74,8 @@
 					$selected = "";
 				}
 			@endphp
-			<option {{ $selected }} value="{!! $value !!}" class="card-panel col s10 offset-s1 red white-text">
-				<h5>{{ trans('Hydrogen::hydrogen.default_sorting_direction_' . $value) }}</h5></option>
+			<option {{ $selected }} value="{!! $value !!}"
+					class="card-panel col s10 offset-s1 red white-text">{{ trans('Hydrogen::hydrogen.default_sorting_direction_' . $value) }}</option>
 		@endforeach
 
 	</select>

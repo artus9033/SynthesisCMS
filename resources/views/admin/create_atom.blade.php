@@ -105,6 +105,19 @@
 							<label>{{ trans('synthesiscms/extensions.choose_molecule') }}</label>
 						</div>
 					</div>
+					<div class="row">
+						<div class="input-field col s8 offset-s2" id="molecule-div">
+							<select class="{{ $synthesiscmsMainColor }}-text" name="cardSize" id="cardSize">
+								<option value="0"
+										class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_small') }}</option>
+								<option value="1"
+										class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_medium') }}</option>
+								<option value="2"
+										class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_large') }}</option>
+							</select>
+							<label>{{ trans('synthesiscms/atom.choose_card_size') }}</label>
+						</div>
+					</div>
 				<button type="submit" class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_atom') }}</button>
 				<div class="col s12 row"></div>
 				<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text col s2 offset-s5" href="{{ URL::previous() }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_atom') }}</a>

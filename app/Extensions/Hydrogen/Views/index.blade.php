@@ -13,12 +13,27 @@
 @section('mod_main')
 	@php
 	use App\Models\Content\Atom;
+	use App\Extensions\Hydrogen\HydrogenSortingType;
+	use App\Extensions\Hydrogen\HydrogenSortingDirection;
 	$hasAnyAtomsInside = true;
 	$atomsPerPage = $extension_instance->atoms_on_single_page;
 	$atomsCount = Atom::where('molecule', $atomsKey)->count();
 	if($atomsCount > 0){
 		if($atomsCount <= $atomsPerPage){
-			$atoms = Atom::where('molecule', $atomsKey)->get();
+			if($extension_instance->default_sorting_type == HydrogenSortingType::Alphabetical){
+				$order_field = 'name';
+			}else if($extension_instance->default_sorting_type == HydrogenSortingType::CreationDate){
+				$order_field = 'created_at';
+			}else if($extension_instance->default_sorting_type == HydrogenSortingType::ModificationDate){
+				$order_field = 'updated_at';
+			}
+
+			if($extension_instance->default_sorting_direction == HydrogenSortingDirection::Ascending){
+				$order_direction = 'asc';
+			}else{
+				$order_direction = 'desc';
+			}
+			$atoms = Atom::where('molecule', $atomsKey)->orderBy($order_field, $order_direction)->get();
 		}else{
 			$atomsArray = [];
 			$chunkCounter = 1;
