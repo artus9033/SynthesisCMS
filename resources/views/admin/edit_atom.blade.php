@@ -80,8 +80,6 @@
 					</p>
 				</div>
 				<div class="row"></div>
-				<!-- TODO: add <select> for choosing sorting -->
-				<!-- TODO: in list.blade.php implement $atom->cardSize (just echo) -->
 				<ul class="collapsible popout col s12 row" data-collapsible="accordion">
 					<li>
 						<div class="collapsible-header {{ $synthesiscmsMainColor }}-text" id="collapsible" style="pointer-events: none;"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans('synthesiscms/atom.atomImage') }}</div>

@@ -373,18 +373,17 @@ class ExtensionKernel extends SynthesisExtension
 					$show = true;
 				} else {
 					$pages_assigned_array = explode(";", $model->assignedPages);
-					if (!emptyArray($pages_assigned_array)) {
+					if (!empty($pages_assigned_array)) {
 						foreach ($pages_assigned_array as $page_id) {
 							$page = Page::where(['id' => $page_id])->first();
-							print(url($page)) . ";";
-							if (url($page->slug) == $slug) {
+							if (url($page->slug) === $slug) {
 								$show = true;
 							}
 						}
 					} else {
 						if (!empty($model->assignedPages)) {
 							$page = Page::where(['id' => $model->assignedPages])->first();
-							if (url($page->slug) == $slug) {
+							if (url($page->slug) === $slug) {
 								$show = true;
 							}
 						}

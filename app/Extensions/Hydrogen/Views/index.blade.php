@@ -21,7 +21,7 @@
 	if($atomsCount > 0){
 		if($atomsCount <= $atomsPerPage){
 			if($extension_instance->default_sorting_type == HydrogenSortingType::Alphabetical){
-				$order_field = 'name';
+				$order_field = 'title';
 			}else if($extension_instance->default_sorting_type == HydrogenSortingType::CreationDate){
 				$order_field = 'created_at';
 			}else if($extension_instance->default_sorting_type == HydrogenSortingType::ModificationDate){
