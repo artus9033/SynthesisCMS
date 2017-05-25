@@ -137,12 +137,17 @@
 				<div class="row">
 					<div class="input-field col s8 offset-s2" id="molecule-div">
 						<select class="{{ $synthesiscmsMainColor }}-text" name="cardSize" id="cardSize">
-							<option @if($atom->cardSize == 0) selected @endif value="0"
+							<option @if($atom->cardSize === \App\Models\Content\Atom::cardSizeNotDefined) selected
+									@endif value="0"
+									class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_not_defined') }}</option>
+							<option @if($atom->cardSize === \App\Models\Content\Atom::cardSizeSmall) selected
+									@endif value="1"
 									class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_small') }}</option>
-							<option @if($atom->cardSize == 1) selected @endif value="1"
-									class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_medium') }}</option>
-							<option @if(\App\Models\Content\Atom::getCardSizeFromName($atom->cardSize) == \App\Models\Content\Atom::getCardSizeFromName($atom->cardSize)) selected
+							<option @if($atom->cardSize === \App\Models\Content\Atom::cardSizeMedium) selected
 									@endif value="2"
+									class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_medium') }}</option>
+							<option @if($atom->cardSize === \App\Models\Content\Atom::cardSizeLarge) selected
+									@endif value="3"
 									class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_large') }}</option>
 						</select>
 						<label>{{ trans('synthesiscms/atom.choose_card_size') }}</label>

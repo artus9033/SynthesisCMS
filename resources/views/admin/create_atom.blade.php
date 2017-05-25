@@ -109,10 +109,12 @@
 						<div class="input-field col s8 offset-s2" id="molecule-div">
 							<select class="{{ $synthesiscmsMainColor }}-text" name="cardSize" id="cardSize">
 								<option value="0"
-										class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_small') }}</option>
+										class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_not_defined') }}</option>
 								<option value="1"
-										class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_medium') }}</option>
+										class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_small') }}</option>
 								<option value="2"
+										class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_medium') }}</option>
+								<option value="3"
 										class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/atom.card_size_large') }}</option>
 							</select>
 							<label>{{ trans('synthesiscms/atom.choose_card_size') }}</label>

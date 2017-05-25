@@ -6,13 +6,16 @@
 	}
 	@endphp
 	<div class="container col s12 row">
-		<div class="card hoverable z-depth-2 center">
+		<div class="card {{ $atom['cardSize'] }} hoverable z-depth-2 center">
 			@if($atom['hasImage'])
 				<div class="card-image waves-effect waves-block waves-light">
 					<img class="activator" src="{{ $atom['image'] }}">
 				</div>
 				<div class="card-reveal">
-					<span class="card-title col s12"><span class="left">{{ $atom['title'] }}</span><i class="material-icons {{ $synthesiscmsMainColor }}-text right">close</i><a href="{{ url($atom_href) }}/atom/{{ $atom['id'] }}"><i class="material-icons right">open_in_new</i></a></span>
+					<span class="card-title col s12"><span class="left">{{ $atom['title'] }}</span><i
+								class="material-icons {{ $synthesiscmsMainColor }}-text right">close</i><a
+								href="{{ url($atom_href) }}/atom/{{ $atom['id'] }}"><i
+									class="material-icons {{ $synthesiscmsMainColor }}-text right">open_in_new</i></a></span>
 					<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
 					{!! $atom['description'] !!}
 				</div>

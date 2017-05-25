@@ -29,7 +29,9 @@
 
 @section('main')
 	<div class="fixed-action-btn horizontal">
-		<button class="btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light z-depth-4 tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions') }}">
+		<button class="btn-floating btn-large pulse {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light z-depth-4 tooltipped"
+				data-position="top" data-delay="50"
+				data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions') }}">
 			<i class="large material-icons">menu</i>
 		</button>
 		<ul>

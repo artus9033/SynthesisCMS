@@ -21,6 +21,7 @@ return [
 	'molecule' => 'Parent Molecule',
 	'check' => 'Select',
 	'choose_card_size' => 'Choose atom card size (http://materializecss.com/cards.html#sizes)',
+	'card_size_not_defined' => 'Undefined (default size)',
 	'card_size_small' => 'Small (max 300px height)',
 	'card_size_medium' => 'Medium (max 400px height)',
 	'card_size_large' => 'Large (max 500px height)',
