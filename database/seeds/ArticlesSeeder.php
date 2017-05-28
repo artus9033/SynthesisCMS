@@ -11,7 +11,7 @@ class ArticlesSeeder extends Seeder
 	 */
 	public function run()
 	{
-		DB::table('articles')->insert(
+		DB::table('synthesiscms_articles')->insert(
 			[
 				'title' => 'Hello World!!!',
 				'description' => '<p style="text-align: center;">This is a sample Article from SynthesisCMS with no image!</p>',
@@ -20,7 +20,7 @@ class ArticlesSeeder extends Seeder
 			]
 		);
 		// Cannot be in one DB::table closure, as all rows would need the same columns & values count
-		DB::table('articles')->insert(
+		DB::table('synthesiscms_articles')->insert(
 			[
 				'title' => 'Hello World With Image!!!',
 				'description' => '<p style="text-align: center;">This is a sample Article from SynthesisCMS with no image!</p>',

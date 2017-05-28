@@ -11,7 +11,7 @@ class ArticleCategoriesSeeder extends Seeder
 	 */
 	public function run()
 	{
-		DB::table('article_categories')->insert([
+		DB::table('synthesiscms_article_categories')->insert([
 			'title' => 'Default',
 			'description' => 'This is the default SynthesisCMS ArticleCategory. It is not deleteable, but it\'s name and description are customizable. Have fun!',
 		]);

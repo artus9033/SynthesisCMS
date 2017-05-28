@@ -13,7 +13,7 @@ class CreateArticleCategoriesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('article_categories', function (Blueprint $table) {
+		Schema::create('synthesiscms_article_categories', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('title')->default("SynthesisCMS ArticleCategory Sample");
 			$table->string('description')->default("SynthesisCMS ArticleCategory Sample Description: Lorem ipsum sit dolor amet...");
@@ -28,6 +28,6 @@ class CreateArticleCategoriesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('articleCategories');
+		Schema::dropIfExists('synthesiscms_article_categories');
 	}
 }
