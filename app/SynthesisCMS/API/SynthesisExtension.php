@@ -11,10 +11,12 @@ class SynthesisExtension extends Controller
 	/** !!! Global Extension Functions Beginning !!! **/
 
 	/**
-	 * Function called after an atom is deleted by the user
-	 * @param $id int id of the atom
+	 * Function called after an article is deleted by the user
+	 * @param $id int id of the article
 	 **/
-	public function onAtomDeleted($id){}
+	public function onArticleDeleted($id)
+	{
+	}
 
 	/**
 	 * Function called after a molecule is deleted by the user

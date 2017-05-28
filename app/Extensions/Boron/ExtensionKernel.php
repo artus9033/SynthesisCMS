@@ -2,18 +2,11 @@
 
 namespace App\Extensions\Boron;
 
-use App\Http\Controllers\Controller;
 use App\Extensions\Boron\Models\BoronExtension;
-use App\SynthesisCMS\API\SynthesisExtension;
-use App\SynthesisCMS\API\Positions\SynthesisPositions;
-use App\SynthesisCMS\API\Positions\SynthesisPositionManager;
-use App\SynthesisCMS\API\SynthesisExtensionType;
 use App\Http\Requests\BackendRequest;
-use App\Models\Settings\Settings;
-use App\Models\Content\Atom;
-use App\Models\Content\Molecule;
-use App\Models\Content\Page;
-use Carbon\Carbon;
+use App\SynthesisCMS\API\Positions\SynthesisPositions;
+use App\SynthesisCMS\API\SynthesisExtension;
+use App\SynthesisCMS\API\SynthesisExtensionType;
 
 /**
 * ExtensionKernel
@@ -27,6 +20,17 @@ class ExtensionKernel extends SynthesisExtension
 {
 	public function settingsGet(){
 		return view('Boron::partials/settings')->with(['model' => $this->findOrCreate()]);
+	}
+
+	public function findOrCreate()
+	{
+		$model = BoronExtension::find(1);
+		if (!$model) {
+			$model = BoronExtension::create(['enabled' => true, 'url' => 'https://www.facebook.com/LaravelCommunity', 'facebookAppId' => 'Enter Your Key Here']);
+			return $this->findOrCreate();
+		} else {
+			return $model;
+		}
 	}
 
 	public function settingsPost(BackendRequest $request, &$errors_array_ptr){
@@ -51,15 +55,5 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function hookPositions(&$manager){
 		$manager->addStandard(SynthesisPositions::OverContent, $this, 'showSlideout');
-	}
-
-	public function findOrCreate(){
-		$model = BoronExtension::find(1);
-		if(!$model){
-			$model = BoronExtension::create(['enabled' => true, 'url' => 'https://www.facebook.com/LaravelCommunity', 'facebookAppId' => 'Enter Your Key Here']);
-			return $this->findOrCreate();
-		}else{
-			return $model;
-		}
 	}
 }

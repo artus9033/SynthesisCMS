@@ -26,14 +26,18 @@ label{
 		<h5 class="red-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_delete_molecule_content_2') }}</strong></h5>
 		<div class="col s12 center">
 			<p class="center">
-				<input class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox" id="checkboxDeleteAtoms{{ $molecule->id }}" name="checkboxDeleteAtoms{{ $molecule->id }}">
-				<label class="{{ $synthesiscmsMainColor }}-text" for="checkboxDeleteAtoms{{ $molecule->id }}">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_checkbox_delete_subatoms') }}</label>
+				<input class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
+					   id="checkboxDeleteArticles{{ $molecule->id }}" name="checkboxDeleteArticles{{ $molecule->id }}">
+				<label class="{{ $synthesiscmsMainColor }}-text"
+					   for="checkboxDeleteArticles{{ $molecule->id }}">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_checkbox_delete_subarticles') }}</label>
 			</p>
 		</div>
 	</div>
 	<div class="modal-footer">
 		<a style="margin-right: 9%;" onclick="$('#modalDelete{{ $molecule->id }}').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_no') }}</a>
-		<a style="margin-left: 9%;"  onclick="window.location.href = ('{{ url('/') }}/admin/manage_molecules/delete/{{ $molecule->id }},' + $('#checkboxDeleteAtoms{{ $molecule->id }}').prop('checked'));" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
+		<a style="margin-left: 9%;"
+		   onclick="window.location.href = ('{{ url('/') }}/admin/manage_molecules/delete/{{ $molecule->id }},' + $('#checkboxDeleteArticles{{ $molecule->id }}').prop('checked'));"
+		   class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
 	</div>
 </div>
 <div>

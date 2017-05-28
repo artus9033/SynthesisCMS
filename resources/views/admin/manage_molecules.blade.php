@@ -42,8 +42,11 @@
 				<h5 class="red-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_mass_delete_molecule_content_2') }}</strong></h5>
 				<div class="col s12">
 					<p>
-						<input onclick="$('#formMassDeleteChildAtomsCheckbox').prop('checked', $(this).prop('checked'));" class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox" id="checkboxDeleteAtoms" name="checkboxDeleteAtoms">
-						<label class="{{ $synthesiscmsMainColor }}-text" for="checkboxDeleteAtoms">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_checkbox_delete_subatoms') }}</label>
+						<input onclick="$('#formMassDeleteChildArticlesCheckbox').prop('checked', $(this).prop('checked'));"
+							   class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
+							   id="checkboxDeleteArticles" name="checkboxDeleteArticles">
+						<label class="{{ $synthesiscmsMainColor }}-text"
+							   for="checkboxDeleteArticles">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_checkbox_delete_subarticles') }}</label>
 					</p>
 				</div>
 			</div>
@@ -60,14 +63,19 @@
 				<h5 class="green-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_mass_copy_molecule_content_2') }}</strong></h5>
 				<div class="col s12">
 					<p>
-						<input onclick="$('#checkboxMassCopyChildAtomsCheckbox').prop('checked', $(this).prop('checked'));" class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox" id="checkboxMassCopyChildAtomsCheckbox" name="checkboxMassCopyChildAtomsCheckbox">
-						<label class="{{ $synthesiscmsMainColor }}-text" for="checkboxMassCopyChildAtomsCheckbox">{{ trans('synthesiscms/admin.modal_mass_copy_molecule_checkbox_copy_subatoms') }}</label>
+						<input onclick="$('#checkboxMassCopyChildArticlesCheckbox').prop('checked', $(this).prop('checked'));"
+							   class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
+							   id="checkboxMassCopyChildArticlesCheckbox" name="checkboxMassCopyChildArticlesCheckbox">
+						<label class="{{ $synthesiscmsMainColor }}-text"
+							   for="checkboxMassCopyChildArticlesCheckbox">{{ trans('synthesiscms/admin.modal_mass_copy_molecule_checkbox_copy_subarticles') }}</label>
 					</p>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<a style="margin-right: 9%;" onclick="$('#modalMassCopy').modal('close');" class="modal-action modal-close waves-effect waves-yellow btn-flat right">{{ trans('synthesiscms/admin.modal_mass_copy_molecule_btn_no') }}</a>
-				<a style="margin-left: 9%;" onclick="$('#action_form').attr('action', '{{ url('/') }}/admin/manage_molecules/mass_copy/' + $('#checkboxMassCopyChildAtomsCheckbox').prop('checked')).submit();" class="modal-action green white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_copy_molecule_btn_yes') }}</a>
+				<a style="margin-left: 9%;"
+				   onclick="$('#action_form').attr('action', '{{ url('/') }}/admin/manage_molecules/mass_copy/' + $('#checkboxMassCopyChildArticlesCheckbox').prop('checked')).submit();"
+				   class="modal-action green white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_copy_molecule_btn_yes') }}</a>
 			</div>
 		</div>
 		<div id="modalMassMove" class="modal">
@@ -78,14 +86,19 @@
 				<h5 class="green-text darken-1"><strong>{{ trans('synthesiscms/admin.modal_mass_move_molecule_content_2') }}</strong></h5>
 				<div class="col s12">
 					<p>
-						<input onclick="$('#checkboxMassMoveChildAtomsCheckbox').prop('checked', $(this).prop('checked'));" class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox" id="checkboxMassMoveChildAtomsCheckbox" name="checkboxMassMoveChildAtomsCheckbox">
-						<label class="{{ $synthesiscmsMainColor }}-text" for="checkboxMassMoveChildAtomsCheckbox">{{ trans('synthesiscms/admin.modal_mass_move_molecule_checkbox_move_subatoms') }}</label>
+						<input onclick="$('#checkboxMassMoveChildArticlesCheckbox').prop('checked', $(this).prop('checked'));"
+							   class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
+							   id="checkboxMassMoveChildArticlesCheckbox" name="checkboxMassMoveChildArticlesCheckbox">
+						<label class="{{ $synthesiscmsMainColor }}-text"
+							   for="checkboxMassMoveChildArticlesCheckbox">{{ trans('synthesiscms/admin.modal_mass_move_molecule_checkbox_move_subarticles') }}</label>
 					</p>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<a style="margin-right: 9%;" onclick="$('#modalMassMove').modal('close');" class="modal-action modal-close waves-effect waves-yellow btn-flat right">{{ trans('synthesiscms/admin.modal_mass_move_molecule_btn_no') }}</a>
-				<a style="margin-left: 9%;" onclick="$('#action_form').attr('action', '{{ url('/') }}/admin/manage_molecules/mass_move/' + $('#checkboxMassMoveChildAtomsCheckbox').prop('checked')).submit();" class="modal-action green white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_move_molecule_btn_yes') }}</a>
+				<a style="margin-left: 9%;"
+				   onclick="$('#action_form').attr('action', '{{ url('/') }}/admin/manage_molecules/mass_move/' + $('#checkboxMassMoveChildArticlesCheckbox').prop('checked')).submit();"
+				   class="modal-action green white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_move_molecule_btn_yes') }}</a>
 			</div>
 		</div>
 		<div>
@@ -104,10 +117,10 @@
 					* not being submitted with the form
 					**/
 					$(document).ready(function() {
-						$('#formMassDeleteChildAtomsCheckbox').click();
-						$('#formMassDeleteChildAtomsCheckbox').click();
-						$('#checkboxMassCopyChildAtomsCheckbox').click();
-						$('#checkboxMassCopyChildAtomsCheckbox').click();
+                        $('#formMassDeleteChildArticlesCheckbox').click();
+                        $('#formMassDeleteChildArticlesCheckbox').click();
+                        $('#checkboxMassCopyChildArticlesCheckbox').click();
+                        $('#checkboxMassCopyChildArticlesCheckbox').click();
 					});
 					/**
 					* end of fix
@@ -115,8 +128,10 @@
 					</script>
 					<div class="col s12" style="display: none;">
 						<p>
-							<input id="formMassDeleteChildAtomsCheckbox" name="formMassDeleteChildAtomsCheckbox" class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox">
-							<label class="{{ $synthesiscmsMainColor }}-text" for="checkboxDeleteAtoms">You should not see this</label>
+							<input id="formMassDeleteChildArticlesCheckbox" name="formMassDeleteChildArticlesCheckbox"
+								   class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox">
+							<label class="{{ $synthesiscmsMainColor }}-text" for="checkboxDeleteArticles">You should not
+								see this</label>
 						</p>
 					</div>
 					<table class="col s12">
@@ -170,15 +185,21 @@
 												<div class="col s12 row"></div>
 												<div class="col s12 center">
 													<p class="center">
-														<input class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox" id="checkboxDeleteAtoms{{ $molecule->id }}" name="checkboxDeleteAtoms{{ $molecule->id }}">
-														<label class="{{ $synthesiscmsMainColor }}-text" for="checkboxDeleteAtoms{{ $molecule->id }}">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_checkbox_delete_subatoms') }}</label>
+														<input class="filled-in {{ $synthesiscmsMainColor }}-text"
+															   type="checkbox"
+															   id="checkboxDeleteArticles{{ $molecule->id }}"
+															   name="checkboxDeleteArticles{{ $molecule->id }}">
+														<label class="{{ $synthesiscmsMainColor }}-text"
+															   for="checkboxDeleteArticles{{ $molecule->id }}">{{ trans('synthesiscms/admin.modal_mass_delete_molecule_checkbox_delete_subarticles') }}</label>
 													</p>
 												</div>
 												<div class="col s12 row"></div>
 											</div>
 											<div class="modal-footer">
 												<a style="margin-right: 9%;" onclick="$('#modalDelete{{ $molecule->id }}').modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_no') }}</a>
-												<a style="margin-left: 9%;" onclick="window.location.href = ('{{ url('/') }}/admin/manage_molecules/delete/{{ $molecule->id }},' + $('#checkboxDeleteAtoms{{ $molecule->id }}').prop('checked'));" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
+												<a style="margin-left: 9%;"
+												   onclick="window.location.href = ('{{ url('/') }}/admin/manage_molecules/delete/{{ $molecule->id }},' + $('#checkboxDeleteArticles{{ $molecule->id }}').prop('checked'));"
+												   class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_molecule_btn_yes') }}</a>
 											</div>
 										</div>
 										<td class="center"><button @php if($molecule->id == 1){ echo('disabled'); } @endphp data-target="modalDelete{{ $molecule->id }}" class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/molecule.delete_molecule') }}</button></td>

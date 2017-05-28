@@ -1,9 +1,9 @@
 <?php
 
 return [
-	'choose_atom' => 'Wybierz Atom',
-	'err_atom_not_found' => 'Żądany atom nie został odnaleziony',
-	'err_atom_not_found_help' => 'Skontaktuj się z administratorem strony, by uzyskać więcej informacji',
+	'choose_article' => 'Wybierz Article',
+	'err_article_not_found' => 'Żądany article nie został odnaleziony',
+	'err_article_not_found_help' => 'Skontaktuj się z administratorem strony, by uzyskać więcej informacji',
 	'err_title_cannot_be_empty' => 'Tytuł elementu nie może być pusty',
 	'msg_item_added' => 'Element został utworzony',
 	'msg_item_saved' => 'Element został zapisany',

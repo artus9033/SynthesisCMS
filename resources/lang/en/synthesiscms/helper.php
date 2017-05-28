@@ -1,16 +1,16 @@
 <?php
 
 return [
-    'atom_copy_prefix' => 'Copy of ',
+	'article_copy_prefix' => 'Copy of ',
     'molecule_copy_prefix' => 'Copy of ',
-    'atom_has' => 'Atom has',
-    'atoms_have' => 'Atoms have',
+	'article_has' => 'Article has',
+	'articles_have' => 'Articles have',
     'space_molecules_have' => ' Molecules have',
     'space_molecule_has' => ' Molecule has',
     'space_molecule' => ' Molecule',
     'space_molecules' => ' Molecules',
-    'space_atom' => ' Atom',
-    'space_atoms' => ' Atoms',
+	'space_article' => ' Article',
+	'space_articles' => ' Articles',
     'guest_username' => 'Guest',
     'guest_email' => 'Please Sign In',
     'route_occupied' => 'Route Occupied',

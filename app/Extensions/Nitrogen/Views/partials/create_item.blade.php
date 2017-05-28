@@ -82,7 +82,7 @@ $(document).ready(function(){
 				<div class="col s12 l8 offset-l2 input-field">
 					<a href="#nitrogen_create_item_picker"
 					   class="btn btn-large center waves-effect col s2 l4 waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
-						<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/atom.imageFile') }}
+						<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/article.imageFile') }}
 					</a>
 					<input id="image-tv" name="image-tv" class="col s10 l8" type="text">
 				</div>

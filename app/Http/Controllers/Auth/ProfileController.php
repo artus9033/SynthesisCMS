@@ -3,16 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Auth\User;
-use Illuminate\Http\Request;
-use App\Http\Requests\ProfileFormRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Auth\Authenticatable;
 use App\Http\Requests\BackendRequest;
-use App\Models\Content\Page;
-use App\Models\Content\Molecule;
-use App\Models\Content\Atom;
-use App\Toolbox;
+use App\Http\Requests\ProfileFormRequest;
+use App\Models\Auth\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {

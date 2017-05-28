@@ -8,7 +8,7 @@ return [
 	'title' => 'Tytuł',
 	'content' => 'Zawartość',
 	'edit_molecule' => 'Edytuj Cząsteczkę',
-	'amount' => 'Ilość Atomów',
+	'amount' => 'Ilość Artykułów',
 	'edit' => 'Edytuj',
 	'delete_molecule' => 'Usuń Cząsteczkę',
 	'delete' => 'Usuń',

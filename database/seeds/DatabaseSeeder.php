@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
 	    $this->call(SettingsSeeder::class);
 	    $this->call(MoleculesSeeder::class);
-	    $this->call(AtomsSeeder::class);
+		$this->call(ArticlesSeeder::class);
 	    $this->call(UsersSeeder::class);
 	    $this->call(PagesSeeder::class);
     }

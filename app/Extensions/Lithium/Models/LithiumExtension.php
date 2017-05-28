@@ -5,7 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class LithiumExtension extends Model
 {
-	protected $fillable = array('id', 'atom', 'showHeader');
-
 	public $timestamps = true;
+	protected $fillable = array('id', 'article', 'showHeader');
 }

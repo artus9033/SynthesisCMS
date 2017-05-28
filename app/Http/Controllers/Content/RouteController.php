@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\Content;
 
-use Illuminate\Http\Request;
+use App\Extensions\ExtensionsCallbacksBridge;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
-use App\Models\Auth\User;
 use App\Models\Content\Page;
-use App\Models\Content\Molecule;
-use App\Models\Content\Atom;
 use App\Toolbox;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Auth\Authenticatable;
-use App\Extensions\ExtensionsCallbacksBridge;
+use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {

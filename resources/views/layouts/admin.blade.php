@@ -123,7 +123,10 @@
 					<li class="bold"><a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text">description</i>{{ trans('synthesiscms/admin.section_content') }}</a>
 						<div class="collapsible-body" style="padding: unset !important;">
 							<ul>
-								<li id="manage_atoms"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_atoms') }}">{{ trans('synthesiscms/admin.manage_atoms') }}</a></li>
+								<li id="manage_articles"><a
+											class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
+											href="{{ url('/admin/manage_articles') }}">{{ trans('synthesiscms/admin.manage_articles') }}</a>
+								</li>
 								<li id="manage_molecules"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_molecules') }}">{{ trans('synthesiscms/admin.manage_molecules') }}</a></li>
 							</ul>
 						</div>

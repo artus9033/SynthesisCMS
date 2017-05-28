@@ -42,8 +42,10 @@
 </div>
 <div class="input-field col s8 offset-s2">
 	<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">view_column</i>
-	<input id="atoms_on_single_page" onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="atoms_on_single_page" type="number" min="1" value="{{ $extension_instance->atoms_on_single_page }}">
-	<label for="atoms_on_single_page">{{ trans("Hydrogen::messages.input_atoms_on_single_page") }}</label>
+	<input id="articles_on_single_page" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+		   name="articles_on_single_page" type="number" min="1"
+		   value="{{ $extension_instance->articles_on_single_page }}">
+	<label for="articles_on_single_page">{{ trans("Hydrogen::messages.input_articles_on_single_page") }}</label>
 </div>
 <div class="input-field col s8 offset-s2 valign" id="molecule-div">
 	<select id="default_sorting_type" name="default_sorting_type" class="{{ $synthesiscmsMainColor }}-text">

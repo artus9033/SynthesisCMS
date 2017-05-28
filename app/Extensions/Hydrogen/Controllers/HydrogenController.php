@@ -2,32 +2,31 @@
 
 namespace App\Extensions\Hydrogen\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Extensions\Hydrogen\Models\HydrogenExtension;
-use App\SynthesisCMS\API\SynthesisExtension;
-use App\Models\Content\Molecule;
-use App\Models\Content\Atom;
+use App\Http\Controllers\Controller;
+use App\Models\Content\Article;
 
 class HydrogenController extends Controller
 {
 	public function index($currentPage, $page, $kernel, $base_slug)
 	{
-		$atomsKey = HydrogenExtension::where('id', $page->id)->first()->molecule;
-		if($currentPage > Atom::where('molecule', $atomsKey)->count() && Atom::where('molecule', $atomsKey)->count()){
+		$articlesKey = HydrogenExtension::where('id', $page->id)->first()->molecule;
+		if ($currentPage > Article::where('molecule', $articlesKey)->count() && Article::where('molecule', $articlesKey)->count()) {
 			return \App::abort(404);
 		}else{
 			$extension_instance = \App\Extensions\Hydrogen\Models\HydrogenExtension::find($page->id);
-			return \View::make('Hydrogen::index')->with(['currentPage' => $currentPage, 'atomsKey' => $atomsKey, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug, 'extension_instance' => $extension_instance]);
+			return \View::make('Hydrogen::index')->with(['currentPage' => $currentPage, 'articlesKey' => $articlesKey, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug, 'extension_instance' => $extension_instance]);
 		}
 	}
 
-	public function atom($id, $kernel, $page, $base_slug){
-		$atom = Atom::where('id', $id)->first();
-		if($atom == null){
-			return \View::make('errors.cms')->with(['error' => trans("Hydrogen::messages.err_atom_not_found"), 'help' => trans("Hydrogen::messages.err_atom_not_found_help")]);
+	public function article($id, $kernel, $page, $base_slug)
+	{
+		$article = Article::where('id', $id)->first();
+		if ($article == null) {
+			return \View::make('errors.cms')->with(['error' => trans("Hydrogen::messages.err_article_not_found"), 'help' => trans("Hydrogen::messages.err_article_not_found_help")]);
 		}else{
 			$extension_instance = \App\Extensions\Hydrogen\Models\HydrogenExtension::find($page->id);
-			return \View::make('Hydrogen::atom')->with(['atom' => $atom, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug, 'extension_instance' => $extension_instance]);
+			return \View::make('Hydrogen::article')->with(['article' => $article, 'kernel' => $kernel, 'page' => $page, 'extensionCallback' => $this, 'base_slug' => $base_slug, 'extension_instance' => $extension_instance]);
 		}
 	}
 }

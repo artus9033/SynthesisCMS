@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
-use App\Models\Auth\User;
-use App\Models\Content\Page;
-use App\Models\Content\Molecule;
 use App\Models\Settings\Settings;
-use App\Models\Content\Atom;
 use App\Toolbox;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Auth\Authenticatable;
-use App\Http\Controllers\Controller;
 
 class BackendController extends Controller
 {

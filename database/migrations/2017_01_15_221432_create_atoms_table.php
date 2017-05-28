@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAtomsTable extends Migration
+class CreateArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateAtomsTable extends Migration
      */
     public function up()
     {
-	    Schema::create('atoms', function (Blueprint $table) {
+		Schema::create('articles', function (Blueprint $table) {
 			$table->increments('id');
-			$table->string('title')->default("SynthesisCMS Atom Sample");
+			$table->string('title')->default("SynthesisCMS Article Sample");
 			$table->longText('description');
 			$table->integer('molecule')->default(1);
 			$table->string('image')->default('');
@@ -32,6 +32,6 @@ class CreateAtomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('atoms');
+		Schema::dropIfExists('articles');
     }
 }

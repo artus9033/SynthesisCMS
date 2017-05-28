@@ -61,7 +61,7 @@ class ExtensionKernel extends SynthesisExtension
 	public function editPost($id, $request)
 	{
 		$extension = LithiumExtension::where('id', $id)->first();
-		$extension->atom = $request->get('lithium-atom');
+		$extension->article = $request->get('lithium-article');
 		$extension->showHeader = $request->get('showHeader') == "on";
 		$extension->save();
 	}
@@ -72,8 +72,8 @@ class ExtensionKernel extends SynthesisExtension
 			\Route::get($base_slug, function() use ($page, $kernel, $base_slug) {
 	    			return \App::make('App\Extensions\Lithium\Controllers\LithiumController')->index($page, $kernel, $base_slug);
 			})->middleware('web');
-			\Route::get($base_slug . '/atom/{id}', function() use ($page, $kernel, $base_slug) {
-	    			return \App::make('App\Extensions\Lithium\Controllers\LithiumController')->atom(\Route::input('id'), $kernel, $page, $base_slug);
+			\Route::get($base_slug . '/article/{id}', function () use ($page, $kernel, $base_slug) {
+				return \App::make('App\Extensions\Lithium\Controllers\LithiumController')->article(\Route::input('id'), $kernel, $page, $base_slug);
 			})->middleware('web');
 		});
 	}

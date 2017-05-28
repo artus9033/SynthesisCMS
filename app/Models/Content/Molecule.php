@@ -10,6 +10,6 @@ class Molecule extends Model
 	protected $fillable = array('title', 'description');
 
 	public function getAmount(){
-		return Atom::where('molecule', $this->id)->count();
+		return Article::where('molecule', $this->id)->count();
 	}
 }

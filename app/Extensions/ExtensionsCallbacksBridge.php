@@ -12,17 +12,18 @@ namespace App\Extensions;
 class ExtensionsCallbacksBridge
 {
 	/**
-	 * Function that executes onAtomDeleted function on every extension that overrides this method
-	 * @param $id int id of the atom deleted
+	 * Function that executes onArticleDeleted function on every extension that overrides this method
+	 * @param $id int id of the article deleted
 	 */
-	public static function handleOnAtomDeleted($id){
+	public static function handleOnArticleDeleted($id)
+	{
 		// For each of the registered extensions, include their routes and Views
 		$extensions = config("synthesiscmsextensions.extensions");
 
 		while (list(,$extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
 			$kernel = new $kpath;
-			$kernel->onAtomDeleted($id);
+			$kernel->onArticleDeleted($id);
 		}
 	}
 

@@ -44,20 +44,21 @@
 	    <div class="row">
         <div class="col s10 offset-s1">
           <div class="card z-depth-3">
-			@if ($atom->hasImage)
+			  @if ($article->hasImage)
             <div class="card-image">
-              <img src="{{ $atom->image }}">
-              <span class="card-title left card-panel white {{ $synthesiscmsMainColor }}-text z-depth-2" style="margin: 10px 10px 10px 10px; font-weight: 400;">{{ $atom->title }}</span>
+				<img src="{{ $article->image }}">
+				<span class="card-title left card-panel white {{ $synthesiscmsMainColor }}-text z-depth-2"
+					  style="margin: 10px 10px 10px 10px; font-weight: 400;">{{ $article->title }}</span>
               <a href="#options" class="btn-floating btn-large halfway-fab waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2"><i class="material-icons">more_horiz</i></a>
             </div>
 	  @endif
             <div class="card-content">
-			  @if (!$atom->hasImage)
-			  	<span class="card-title" style="font-weight: 400; display: inline;">{{ $atom->title }}</span>
+				@if (!$article->hasImage)
+					<span class="card-title" style="font-weight: 400; display: inline;">{{ $article->title }}</span>
 				<a href="#options" class="btn-floating waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 right"><i class="material-icons">more_horiz</i></a>
 				 <div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12" style="margin-top: 10px; margin-bottom: 10px;"></div>
 			 @endif
-              {!! $atom->description !!}
+				{!! $article->description !!}
             </div>
           </div>
         </div>

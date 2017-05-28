@@ -8,7 +8,7 @@ return [
 	'title' => 'Title',
 	'content' => 'Content',
 	'edit_molecule' => 'Edit Molecule',
-	'amount' => 'Atoms Amount',
+	'amount' => 'Articles Amount',
 	'edit' => 'Edit',
 	'delete_molecule' => 'Delete Molecule',
 	'delete' => 'Delete',

@@ -65,7 +65,7 @@ class ExtensionKernel extends SynthesisExtension
 		$extension->list_column_count = $request->get('list_column_count');
 		$extension->default_sorting_type = $request->get('default_sorting_type');
 		$extension->default_sorting_direction = $request->get('default_sorting_direction');
-		$extension->atoms_on_single_page = $request->get('atoms_on_single_page');
+		$extension->articles_on_single_page = $request->get('articles_on_single_page');
 		$extension->showHeader = $request->get('showHeader') == "on";
 		$extension->save();
 	}
@@ -79,8 +79,8 @@ class ExtensionKernel extends SynthesisExtension
 			\Route::get($base_slug . '/p/{currentPage}', function($currentPage) use ($page, $kernel, $base_slug) {
 	    			return \App::make('App\Extensions\Hydrogen\Controllers\HydrogenController')->index($currentPage, $page, $kernel, $base_slug);
 			})->middleware('web');
-			\Route::get($base_slug . '/atom/{id}', function() use ($page, $kernel, $base_slug) {
-	    			return \App::make('App\Extensions\Hydrogen\Controllers\HydrogenController')->atom(\Route::input('id'), $kernel, $page, $base_slug);
+			\Route::get($base_slug . '/article/{id}', function () use ($page, $kernel, $base_slug) {
+				return \App::make('App\Extensions\Hydrogen\Controllers\HydrogenController')->article(\Route::input('id'), $kernel, $page, $base_slug);
 			})->middleware('web');
 		});
 	}

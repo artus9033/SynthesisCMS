@@ -1,9 +1,9 @@
 <?php
 
 return [
-	'choose_atom' => 'Choose an Atom',
-	'err_atom_not_found' => 'The requested Atom does not exist',
-	'err_atom_not_found_help' => 'Contact the site administrator for more information',
+	'choose_article' => 'Choose an Article',
+	'err_article_not_found' => 'The requested Article does not exist',
+	'err_article_not_found_help' => 'Contact the site administrator for more information',
 	'err_title_cannot_be_empty' => 'The Item\'s title cannot be empty',
 	'msg_item_added' => 'The item has been created',
 	'msg_item_saved' => 'The item has been saved',

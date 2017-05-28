@@ -12,50 +12,52 @@
 
 @section('mod_main')
 	@php
-	use App\Models\Content\Atom;
-	use App\Extensions\Hydrogen\HydrogenSortingType;
-	use App\Extensions\Hydrogen\HydrogenSortingDirection;
-	$hasAnyAtomsInside = true;
-	$atomsPerPage = $extension_instance->atoms_on_single_page;
-	$atomsCount = Atom::where('molecule', $atomsKey)->count();
-	if($atomsCount > 0){
-		if($atomsCount <= $atomsPerPage){
-			if($extension_instance->default_sorting_type == HydrogenSortingType::Alphabetical){
-				$order_field = 'title';
-			}else if($extension_instance->default_sorting_type == HydrogenSortingType::CreationDate){
-				$order_field = 'created_at';
-			}else if($extension_instance->default_sorting_type == HydrogenSortingType::ModificationDate){
-				$order_field = 'updated_at';
-			}
+		use App\Models\Content\Article;
+		use App\Extensions\Hydrogen\HydrogenSortingType;
+		use App\Extensions\Hydrogen\HydrogenSortingDirection;
+		$hasAnyArticlesInside = true;
+		$articlesPerPage = $extension_instance->articles_on_single_page;
+		$articlesCount = Article::where('molecule', $articlesKey)->count();
+		if($articlesCount > 0){
+			if($articlesCount <= $articlesPerPage){
+				if($extension_instance->default_sorting_type == HydrogenSortingType::Alphabetical){
+					$order_field = 'title';
+				}else if($extension_instance->default_sorting_type == HydrogenSortingType::CreationDate){
+					$order_field = 'created_at';
+				}else if($extension_instance->default_sorting_type == HydrogenSortingType::ModificationDate){
+					$order_field = 'updated_at';
+				}
 
-			if($extension_instance->default_sorting_direction == HydrogenSortingDirection::Ascending){
-				$order_direction = 'asc';
+				if($extension_instance->default_sorting_direction == HydrogenSortingDirection::Ascending){
+					$order_direction = 'asc';
+				}else{
+					$order_direction = 'desc';
+				}
+				$articles = Article::where('molecule', $articlesKey)->orderBy($order_field, $order_direction)->get();
 			}else{
-				$order_direction = 'desc';
+				$articlesArray = [];
+				$chunkCounter = 1;
+				$articleCounter = 0;
+				foreach(Article::where('molecule', $articlesKey)->cursor() as $as){
+					if($articleCounter == $articlesPerPage){
+						$chunkCounter++;
+						$articleCounter = 0;
+					}
+					if($chunkCounter == $currentPage){
+						array_push($articlesArray, $as);
+					}
+					$articleCounter++;
+				}
+				$articles = collect($articlesArray);
+				echo(count($articles->toArray()));
+				exit;
 			}
-			$atoms = Atom::where('molecule', $atomsKey)->orderBy($order_field, $order_direction)->get();
 		}else{
-			$atomsArray = [];
-			$chunkCounter = 1;
-			$atomCounter = 0;
-			foreach(Atom::where('molecule', $atomsKey)->cursor() as $as){
-				if($atomCounter == $atomsPerPage){
-					$chunkCounter++;
-					$atomCounter = 0;
-				}
-				if($chunkCounter == $currentPage){
-					array_push($atomsArray, $as);
-				}
-				$atomCounter++;
-			}
-			$atoms = collect($atomsArray);
+			$hasAnyArticlesInside = false;
 		}
-	}else{
-		$hasAnyAtomsInside = false;
-	}
 	@endphp
-	@if(!$hasAnyAtomsInside)
-		@include('partials/error', ['error' => trans("Hydrogen::messages.err_no_atoms")]);
+	@if(!$hasAnyArticlesInside)
+		@include('partials/error', ['error' => trans("Hydrogen::messages.err_no_articles")]);
 	@else
 		@if($extension_instance->showHeader)
 			<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
@@ -70,31 +72,31 @@
 			$one_column_list = true;
 		}
 		if(!$one_column_list){
-			if($atoms->count() == 1){
-				$one = $atoms->toArray();
+			if($articles->count() == 1){
+				$one = $articles->toArray();
 				$two = array();
 			}else{
 				$one = array();
 				$two = array();
-				list($one, $two) = array_chunk($atoms->toArray(), ceil(count($atoms->toArray()) / 2));
+				list($one, $two) = array_chunk($articles->toArray(), ceil(count($articles->toArray()) / 2));
 			}
 		}else{
-			$all = $atoms->toArray();
+			$all = $articles->toArray();
 		}
 		@endphp
 		@if ($one_column_list)
 			<div class="container col s10 offset-s1 row">
-				@include('Hydrogen::partials/list', ['atoms' => $all])
+				@include('Hydrogen::partials/list', ['articles' => $all])
 			</div>
 		@else
 			<div class="container col s6 row">
-				@include('Hydrogen::partials/list', ['atoms' => $one])
+				@include('Hydrogen::partials/list', ['articles' => $one])
 			</div>
 			<div class="container col s6 row">
-				@include('Hydrogen::partials/list', ['atoms' => $two])
+				@include('Hydrogen::partials/list', ['articles' => $two])
 			</div>
 		@endif
-		@if($atomsCount > $atomsPerPage)
+		@if($articlesCount > $articlesPerPage)
 			<ul class="pagination col s12 row center">
 				<li @if($currentPage == 1) class="disabled" @else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.first") }}" @endif>
 					<a @if($currentPage != 1) href="{{ url($base_slug) }}/p/1" @endif>
@@ -107,8 +109,8 @@
 					</a>
 				</li>
 				@php
-					if(ceil($atomsCount / $atomsPerPage) <= 6){
-						$pagination_limit = ceil($atomsCount / $atomsPerPage);
+					if(ceil($articlesCount / $articlesPerPage) <= 6){
+						$pagination_limit = ceil($articlesCount / $articlesPerPage);
 						$pagination_divider = false;
 					}else{
 						$pagination_limit = 3;
@@ -122,26 +124,30 @@
 				@endfor
 				@if($pagination_divider)
 					<span>...</span>
-					@for ($i = ceil($atomsCount / $atomsPerPage) + 1 - $pagination_limit; $i <= ceil($atomsCount / $atomsPerPage); $i++)
+					@for ($i = ceil($articlesCount / $articlesPerPage) + 1 - $pagination_limit; $i <= ceil($articlesCount / $articlesPerPage); $i++)
 						<li class="waves-effect waves-{{ $synthesiscmsMainColor }} @if($currentPage == $i) active @endif">
 							<a href="{{ url($base_slug) }}/p/{{ $i }}">{{ $i }}</a>
 						</li>
 					@endfor
 				@endif
-				<li @if($currentPage == ceil($atomsCount / $atomsPerPage)) class="disabled" @else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.next") }}" @endif>
-					<a @if($currentPage != ceil($atomsCount / $atomsPerPage)) href="{{ url($base_slug) }}/p/{{ $currentPage + 1 }}" @endif>
+				<li @if($currentPage == ceil($articlesCount / $articlesPerPage)) class="disabled"
+					@else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top"
+					data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.next") }}" @endif>
+					<a @if($currentPage != ceil($articlesCount / $articlesPerPage)) href="{{ url($base_slug) }}/p/{{ $currentPage + 1 }}" @endif>
 						<i class="material-icons">chevron_right</i>
 					</a>
 				</li>
-				<li @if($currentPage == ceil($atomsCount / $atomsPerPage)) class="disabled" @else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.last") }}" @endif>
-					<a @if($currentPage != ceil($atomsCount / $atomsPerPage)) href="{{ url($base_slug) }}/p/{{ ceil($atomsCount / $atomsPerPage) }}" @endif>
+				<li @if($currentPage == ceil($articlesCount / $articlesPerPage)) class="disabled"
+					@else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top"
+					data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.last") }}" @endif>
+					<a @if($currentPage != ceil($articlesCount / $articlesPerPage)) href="{{ url($base_slug) }}/p/{{ ceil($articlesCount / $articlesPerPage) }}" @endif>
 						<i class="material-icons">last_page</i>
 					</a>
 				</li>
 				</ul>
 		@endif
-		@if ($atomsCount == 0)
-			@include('partials/error', ['error' => trans("Hydrogen::messages.err_no_atoms")])
+		@if ($articlesCount == 0)
+			@include('partials/error', ['error' => trans("Hydrogen::messages.err_no_articles")])
 		@endif
 	@endif
 @endsection

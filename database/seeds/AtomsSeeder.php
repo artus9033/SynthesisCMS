@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AtomsSeeder extends Seeder
+class ArticlesSeeder extends Seeder
 {
 	/**
 	* Run the database seeds.
@@ -11,19 +11,19 @@ class AtomsSeeder extends Seeder
 	*/
 	public function run()
 	{
-		DB::table('atoms')->insert(
+		DB::table('articles')->insert(
 			[
 				'title' => 'Hello World!!!',
-				'description' => '<p style="text-align: center;">This is a sample Atom from SynthesisCMS with no image!</p>',
+				'description' => '<p style="text-align: center;">This is a sample Article from SynthesisCMS with no image!</p>',
 				'created_at' => '2017-01-01 00:00:00',
 				'updated_at' => '2017-01-01 00:00:00',
 			]
 		);
 		// Cannot be in one DB::table closure, as all rows would need the same columns & values count
-		DB::table('atoms')->insert(
+		DB::table('articles')->insert(
 			[
 				'title' => 'Hello World With Image!!!',
-				'description' => '<p style="text-align: center;">This is a sample Atom from SynthesisCMS with no image!</p>',
+				'description' => '<p style="text-align: center;">This is a sample Article from SynthesisCMS with no image!</p>',
 				'created_at' => '2017-01-01 00:00:00',
 				'updated_at' => '2017-01-01 00:00:00',
 				'hasImage' => true,
