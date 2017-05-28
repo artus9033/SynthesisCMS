@@ -2,10 +2,10 @@
 
 namespace App\Models\Auth;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Auth\UserInterface;
 use Illuminate\Foundation\Auth\User as Authenticable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticable
 {
@@ -19,6 +19,8 @@ class User extends Authenticable
 	protected $fillable = [
 		'name', 'email', 'password', 'is_admin',
 	];
+
+	protected $table = 'synthesiscms_users';
 
 	/**
 	* The attributes that should be hidden for arrays.

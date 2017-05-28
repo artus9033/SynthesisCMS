@@ -13,6 +13,8 @@ class Article extends Model
 
 	public $timestamps = true;
 
+	protected $table = 'synthesiscms_articles';
+
 	protected $fillable = array('title', 'description', 'articleCategory', 'image', 'hasImage', 'cardSize');
 
 	static function getCardSizeFromNumber($index)
