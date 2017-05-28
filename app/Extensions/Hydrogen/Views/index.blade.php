@@ -17,7 +17,7 @@
 		use App\Extensions\Hydrogen\HydrogenSortingDirection;
 		$hasAnyArticlesInside = true;
 		$articlesPerPage = $extension_instance->articles_on_single_page;
-		$articlesCount = Article::where('molecule', $articlesKey)->count();
+		$articlesCount = Article::where('articleCategory', $articlesKey)->count();
 		if($articlesCount > 0){
 			if($articlesCount <= $articlesPerPage){
 				if($extension_instance->default_sorting_type == HydrogenSortingType::Alphabetical){
@@ -33,12 +33,12 @@
 				}else{
 					$order_direction = 'desc';
 				}
-				$articles = Article::where('molecule', $articlesKey)->orderBy($order_field, $order_direction)->get();
+				$articles = Article::where('articleCategory', $articlesKey)->orderBy($order_field, $order_direction)->get();
 			}else{
 				$articlesArray = [];
 				$chunkCounter = 1;
 				$articleCounter = 0;
-				foreach(Article::where('molecule', $articlesKey)->cursor() as $as){
+				foreach(Article::where('articleCategory', $articlesKey)->cursor() as $as){
 					if($articleCounter == $articlesPerPage){
 						$chunkCounter++;
 						$articleCounter = 0;

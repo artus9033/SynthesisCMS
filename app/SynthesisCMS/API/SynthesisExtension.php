@@ -19,10 +19,12 @@ class SynthesisExtension extends Controller
 	}
 
 	/**
-	 * Function called after a molecule is deleted by the user
-	 * @param $id int id of the molecule
+	 * Function called after a articleCategory is deleted by the user
+	 * @param $id int id of the articleCategory
 	 **/
-	public function onMoleculeDeleted($id){}
+	public function onArticleCategoryDeleted($id)
+	{
+	}
 
 	/**
 	 * Function called after a route using this extension is deleted;

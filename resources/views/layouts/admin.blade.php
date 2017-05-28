@@ -127,7 +127,10 @@
 											class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
 											href="{{ url('/admin/manage_articles') }}">{{ trans('synthesiscms/admin.manage_articles') }}</a>
 								</li>
-								<li id="manage_molecules"><a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}" href="{{ url('/admin/manage_molecules') }}">{{ trans('synthesiscms/admin.manage_molecules') }}</a></li>
+								<li id="manage_article_categories"><a
+											class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
+											href="{{ url('/admin/manage_article_categories') }}">{{ trans('synthesiscms/admin.manage_article_categories') }}</a>
+								</li>
 							</ul>
 						</div>
 					</li>

@@ -7,10 +7,10 @@ return [
 	'id' => 'ID',
 	'title' => 'Title',
 	'content' => 'Content',
-	'edit_molecule' => 'Edit Molecule',
+	'edit_article_category' => 'Edit category',
 	'amount' => 'Articles Amount',
 	'edit' => 'Edit',
-	'delete_molecule' => 'Delete Molecule',
+	'delete_article_category' => 'Delete category',
 	'delete' => 'Delete',
 	'check' => 'Select',
 ];

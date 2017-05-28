@@ -10,8 +10,8 @@ class HydrogenController extends Controller
 {
 	public function index($currentPage, $page, $kernel, $base_slug)
 	{
-		$articlesKey = HydrogenExtension::where('id', $page->id)->first()->molecule;
-		if ($currentPage > Article::where('molecule', $articlesKey)->count() && Article::where('molecule', $articlesKey)->count()) {
+		$articlesKey = HydrogenExtension::where('id', $page->id)->first()->articleCategory;
+		if ($currentPage > Article::where('articleCategory', $articlesKey)->count() && Article::where('articleCategory', $articlesKey)->count()) {
 			return \App::abort(404);
 		}else{
 			$extension_instance = \App\Extensions\Hydrogen\Models\HydrogenExtension::find($page->id);

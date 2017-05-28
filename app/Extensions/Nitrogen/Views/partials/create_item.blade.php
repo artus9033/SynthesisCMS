@@ -2,15 +2,15 @@
 
 @section('head')
 <style>
-#molecule-div .caret {
+	#articleCategory-div .caret {
 	color: {{ $synthesiscmsMainColor }} !important;
 }
 
-#molecule-div .select-dropdown {
+	#articleCategory-div .select-dropdown {
 	border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 }
 
-#molecule-div .select-wrapper {
+	#articleCategory-div .select-wrapper {
 	margin-top: 5px !important;
 }
 
@@ -72,7 +72,7 @@ $(document).ready(function(){
 				});
 				</script>
 				<div class="collapsible-header {{ $synthesiscmsMainColor }}-text"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans("Nitrogen::nitrogen.item_image") }}</div>
-				<div class="input-field col s12 l8 offset-l2" id="molecule-div">
+				<div class="input-field col s12 l8 offset-l2" id="articleCategory-div">
 					<select class="{{ $synthesiscmsMainColor }}-text" name="type" id="type">
 						<option selected value="single" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans("Nitrogen::nitrogen.item_typeSingle") }}</h5></option>
 						<option value="folder" class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ trans("Nitrogen::nitrogen.item_typeFolder") }}</h5></option>

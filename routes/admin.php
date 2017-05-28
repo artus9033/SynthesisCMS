@@ -18,20 +18,20 @@ Route::get('/admin/manage_routes/delete/{id}', ['as' => 'manage_routes_delete', 
 Route::get('/admin/manage_routes/create_route', ['as' => 'create_route', 'uses' => 'Content\\RouteController@createRouteGet']);
 Route::post('/admin/manage_routes/create_route', ['as' => 'create_route_post', 'uses' => 'Content\\RouteController@createRoutePost']);
 
-Route::get('/admin/manage_molecules', ['as' => 'manage_molecules', 'uses' => 'Content\\MoleculeController@manageMoleculesGet']);
-Route::get('/admin/manage_molecules/delete/{id},{articles}', ['as' => 'manage_molecules_delete', 'uses' => 'Content\\MoleculeController@deleteMolecule']);
-Route::get('/admin/manage_molecules/edit/{id}', ['as' => 'manage_molecules_edit', 'uses' => 'Content\\MoleculeController@editMoleculeGet']);
-Route::post('/admin/manage_molecules/edit/{id}', ['as' => 'manage_molecules_edit_post', 'uses' => 'Content\\MoleculeController@editMoleculePost']);
-Route::post('/admin/manage_molecules/mass_delete', ['as' => 'manage_molecules_mass_delete_post', 'uses' => 'Content\\MoleculeController@massDeleteMolecule']);
-Route::post('/admin/manage_molecules/mass_copy/{childrenArticlesToo}', ['as' => 'manage_molecules_mass_copy_post', 'uses' => 'Content\\MoleculeController@massCopyMolecule']);
-Route::get('/admin/manage_molecules/create_molecule', ['as' => 'create_molecule', 'uses' => 'Content\\MoleculeController@createMoleculeGet']);
-Route::post('/admin/manage_molecules/create_molecule', ['as' => 'create_molecule_post', 'uses' => 'Content\\MoleculeController@createMoleculePost']);
+Route::get('/admin/manage_article_categories', ['as' => 'manage_article_categories', 'uses' => 'Content\\ArticleCategoryController@manageArticleCategoriesGet']);
+Route::get('/admin/manage_article_categories/delete/{id},{articles}', ['as' => 'manage_article_categories_delete', 'uses' => 'Content\\ArticleCategoryController@deleteArticleCategory']);
+Route::get('/admin/manage_article_categories/edit/{id}', ['as' => 'manage_article_categories_edit', 'uses' => 'Content\\ArticleCategoryController@editArticleCategoryGet']);
+Route::post('/admin/manage_article_categories/edit/{id}', ['as' => 'manage_article_categories_edit_post', 'uses' => 'Content\\ArticleCategoryController@editArticleCategoryPost']);
+Route::post('/admin/manage_article_categories/mass_delete', ['as' => 'manage_article_categories_mass_delete_post', 'uses' => 'Content\\ArticleCategoryController@massDeleteArticleCategory']);
+Route::post('/admin/manage_article_categories/mass_copy/{childrenArticlesToo}', ['as' => 'manage_article_categories_mass_copy_post', 'uses' => 'Content\\ArticleCategoryController@massCopyArticleCategory']);
+Route::get('/admin/manage_article_categories/create_article_category', ['as' => 'create_article_category', 'uses' => 'Content\\ArticleCategoryController@createArticleCategoryGet']);
+Route::post('/admin/manage_article_categories/create_article_category', ['as' => 'create_article_category_post', 'uses' => 'Content\\ArticleCategoryController@createArticleCategoryPost']);
 
 Route::get('/admin/manage_articles', ['as' => 'manage_articles', 'uses' => 'Content\\ArticleController@manageArticlesGet']);
 Route::get('/admin/manage_articles/delete/{id}', ['as' => 'manage_articles_delete', 'uses' => 'Content\\ArticleController@deleteArticle']);
 Route::post('/admin/manage_articles/mass_delete', ['as' => 'manage_articles_mass_delete_post', 'uses' => 'Content\\ArticleController@massDeleteArticle']);
 Route::post('/admin/manage_articles/mass_copy', ['as' => 'manage_articles_mass_copy_post', 'uses' => 'Content\\ArticleController@massCopyArticle']);
-Route::post('/admin/manage_articles/mass_move/{molecule}', ['as' => 'manage_articles_mass_move_post', 'uses' => 'Content\\ArticleController@massMoveArticle']);
+Route::post('/admin/manage_articles/mass_move/{articleCategory}', ['as' => 'manage_articles_mass_move_post', 'uses' => 'Content\\ArticleController@massMoveArticle']);
 Route::get('/admin/manage_articles/edit/{id}', ['as' => 'manage_articles_edit', 'uses' => 'Content\\ArticleController@editArticleGet']);
 Route::post('/admin/manage_articles/edit/{id}', ['as' => 'manage_articles_edit_post', 'uses' => 'Content\\ArticleController@editArticlePost']);
 Route::get('/admin/manage_articles/create_article', ['as' => 'create_article', 'uses' => 'Content\\ArticleController@createArticleGet']);

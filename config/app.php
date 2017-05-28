@@ -190,7 +190,7 @@
            App\Providers\SettingsVariablesProvider::class,
            App\Extensions\ExtensionsServiceProvider::class,
            App\Providers\MobileDetectionProvider::class,
-           Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, // Laravel IDE helper
+			Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         ],
 
         /*

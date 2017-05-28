@@ -7,7 +7,7 @@
 		{!! trans("Lithium::lithium.switch_on") !!}
 	</label>
 </div>
-<div class="input-field col s8 offset-s2 valign" id="molecule-div">
+<div class="input-field col s8 offset-s2 valign" id="articleCategory-div">
 	<select id="lithium-article" name="lithium-article" class="{{ $synthesiscmsMainColor }}-text">
 		@foreach (\App\Models\Content\Article::all() as $key => $value)
 			@php

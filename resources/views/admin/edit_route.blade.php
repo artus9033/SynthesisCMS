@@ -8,15 +8,15 @@
 
 @section('head')
 <style>
-	#molecule-div .caret {
+	#articleCategory-div .caret {
 	  color: {{ $synthesiscmsMainColor }} !important;
 	}
 
-	#molecule-div .select-dropdown {
+	#articleCategory-div .select-dropdown {
 	  border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 	}
 
-	#molecule-div .select-wrapper {
+	#articleCategory-div .select-wrapper {
 	  margin-top: 5px !important;
 	}
 </style>

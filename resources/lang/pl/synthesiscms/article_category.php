@@ -7,10 +7,10 @@ return [
 	'id' => 'ID',
 	'title' => 'Tytuł',
 	'content' => 'Zawartość',
-	'edit_molecule' => 'Edytuj Cząsteczkę',
-	'amount' => 'Ilość Artykułów',
+	'edit_article_category' => 'Edytuj kategorię',
+	'amount' => 'Ilość artykułów',
 	'edit' => 'Edytuj',
-	'delete_molecule' => 'Usuń Cząsteczkę',
+	'delete_article_category' => 'Usuń kategorię',
 	'delete' => 'Usuń',
 	'check' => 'Wybierz',
 ];

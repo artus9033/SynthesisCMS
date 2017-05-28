@@ -61,7 +61,7 @@ class ExtensionKernel extends SynthesisExtension
 	public function editPost($id, $request)
 	{
 		$extension = HydrogenExtension::where('id', $id)->first();
-		$extension->molecule = $request->get('hydrogen-molecule');
+		$extension->articleCategory = $request->get('hydrogen-articleCategory');
 		$extension->list_column_count = $request->get('list_column_count');
 		$extension->default_sorting_type = $request->get('default_sorting_type');
 		$extension->default_sorting_direction = $request->get('default_sorting_direction');

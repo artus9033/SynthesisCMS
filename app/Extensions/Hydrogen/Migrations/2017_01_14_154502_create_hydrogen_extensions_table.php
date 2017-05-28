@@ -15,7 +15,7 @@ class CreateHydrogenExtensionsTable extends Migration
 	{
 		Schema::create('hydrogen_extensions', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('molecule')->default(1);
+			$table->integer('articleCategory')->default(1);
 			$table->integer('list_column_count')->default(2);
 			$table->integer('articles_on_single_page')->default(14);
 			$table->boolean('showHeader')->default(true);

@@ -2,15 +2,15 @@
 
 	@section('head')
 	<style>
-	#molecule-div .caret {
+		#articleCategory-div .caret {
 		color: {{ $synthesiscmsMainColor }} !important;
 	}
 
-	#molecule-div .select-dropdown {
+		#articleCategory-div .select-dropdown {
 		border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 	}
 
-	#molecule-div .select-wrapper {
+		#articleCategory-div .select-wrapper {
 		margin-top: 5px !important;
 	}
 
@@ -109,7 +109,7 @@
 						</script>
 					</div>
 					<div class="input-field col s6 applet-source-input" id="applet-placeholder" style="display: none;"></div>
-					<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="molecule-div">
+					<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="articleCategory-div">
 						<select id="category" name="category">
 							@php
 							$categoryClass = new \ReflectionClass('App\\Extensions\\Berylium\\BeryliumItemCategory');
@@ -121,7 +121,7 @@
 						</select>
 						<label>{{ trans("Berylium::berylium.item_category") }}</label>
 					</div>
-					<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="molecule-div">
+					<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="articleCategory-div">
 						<select id="type" name="type">
 							@php
 							$typeClass = new \ReflectionClass('App\\Extensions\\Berylium\\BeryliumItemType');

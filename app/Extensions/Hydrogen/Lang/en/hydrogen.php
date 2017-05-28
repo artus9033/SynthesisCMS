@@ -11,7 +11,7 @@ return [
 	'previous' => 'Previous Page',
 	'first' => 'First Page',
 	'last' => 'Last Page',
-	'name' => 'Hydrogen Single-Molecule Page',
+	'name' => 'Hydrogen Single-Category Page',
 	'one_column' => 'One Column',
 	'two_columns' => 'Two Columns',
 	'switch_on' => 'On',

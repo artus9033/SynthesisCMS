@@ -28,17 +28,18 @@ class ExtensionsCallbacksBridge
 	}
 
 	/**
-	 * Function that executes onMoleculeDeleted function on every extension that overrides this method
-	 * @param $id int id of the molecule deleted
+	 * Function that executes onArticleCategoryDeleted function on every extension that overrides this method
+	 * @param $id int id of the articleCategory deleted
 	 */
-	public static function handleOnMoleculeDeleted($id){
+	public static function handleOnArticleCategoryDeleted($id)
+	{
 		// For each of the registered extensions, include their routes and Views
 		$extensions = config("synthesiscmsextensions.extensions");
 
 		while (list(,$extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
 			$kernel = new $kpath;
-			$kernel->onMoleculeDeleted($id);
+			$kernel->onArticleCategoryDeleted($id);
 		}
 	}
 

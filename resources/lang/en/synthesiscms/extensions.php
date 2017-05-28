@@ -8,8 +8,8 @@ return [
      'header' => 'Page Header Content',
 	'edit_main' => 'Main Route Settings',
 	'edit_specific' => 'Extension Specific Settings',
-	'no_molecules' => 'No Molecules Exist...',
-	'choose_molecule' => 'Choose a molecule',
+	'no_article_categories' => 'No ArticleCategories Exist...',
+	'choose_article_category' => 'Choose a category',
 ];
 
 ?>
