@@ -39,7 +39,6 @@
   left: auto;
   right: auto;
 }
-
 @mixin grid-classes($size, $i, $perc) {
   &.offset-#{$size}#{$i} {
     margin-left: $perc;

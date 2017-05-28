@@ -1,11 +1,10 @@
 {
-  "require": {
-    "php": "*",
-    "laravel/framework": "*",
-      "doctrine/dbal": "*",
-    "nesbot/carbon": "*",
-    "barryvdh/laravel-ide-helper": "*"
-
+    "require": {
+        "php": "*",
+        "laravel/framework": "*",
+        "doctrine/dbal": "*",
+        "nesbot/carbon": "*",
+        "barryvdh/laravel-ide-helper": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "*",
