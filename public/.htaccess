@@ -18,3 +18,8 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 </IfModule>
+
+#<IfModule mod_php5.c>
+#	php_flag log_errors on 
+#	php_value error_log /full/path/to/synthesiscms_error.log
+#</IfModule>

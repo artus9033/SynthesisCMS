@@ -8,7 +8,7 @@ mix.sass('resources/assets/sass/app.scss', 'public/css/app.css');
 mix.sass('resources/assets/sass/login-register.scss', 'public/css/login-register.css');
 
 //MaterializeCSS SASS + JS
-mix.sass('resources/assets/sass/materializecss/materialize.scss', 'public/css/materialize.css');
+mix.sass('resources/assets/sass/materializecss/materialize.scss', 'public/css');
 mix.js('resources/assets/js-webpack-only/materializecss/bin/materialize.js', 'public/js/materialize.js');
 
 //Chart.js, Clipboard.js & Trumbowyg

@@ -14,20 +14,19 @@ use App\SynthesisCMS\API\SynthesisExtensionType;
 use App\Toolbox;
 
 /**
-* ExtensionKernel
-*
-* Extension Kernel to control all the functionality directly
-* related to the Extension. This class is required, otherwise any routes
-* using this extension will throw an internal CMS error!
-*/
-
+ * ExtensionKernel
+ *
+ * Extension Kernel to control all the functionality directly
+ * related to the Extension. This class is required, otherwise any routes
+ * using this extension will throw an internal CMS error!
+ */
 class ExtensionKernel extends SynthesisExtension
 {
 	public function settingsPositionUp(BackendRequest $request, $nr, $id)
 	{
 		if (NitrogenItem::where(['id' => $id, 'parentInstance' => $nr])->count() == 0) {
 			if (NitrogenItem::where(['id' => NitrogenItem::where(['id' => $id, 'parentInstance' => $nr])->first()->before, 'parentInstance' => $nr])->count() == 0) {
-				return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('errors', array(trans('Nitrogen::messages.err_item_doesnt_exist')));
+				return \Redirect::route("applet_settings", ['extension' => 'Nitrogen'])->with('errors', array(trans('Nitrogen::messages.err_item_doesnt_exist')));
 			}
 		}
 		$item = NitrogenItem::where(['slider' => NitrogenItem::where(['id' => $id, 'parentInstance' => $nr])->first()->slider, 'id' => $id, 'parentInstance' => $nr])->first();
@@ -37,8 +36,8 @@ class ExtensionKernel extends SynthesisExtension
 			$before = NitrogenItem::where(['slider' => $slider, 'id' => $item_before_id, 'parentInstance' => $nr])->first();
 			$before_id = $before->id;
 			$before_before_id = $before->before;
-		}else{
-			return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('errors', array(trans('Nitrogen::messages.err_item_cannot_be_moved')));
+		} else {
+			return \Redirect::route("applet_settings", ['extension' => 'Nitrogen'])->with('errors', array(trans('Nitrogen::messages.err_item_cannot_be_moved')));
 		}
 		if (NitrogenItem::where(['slider' => $slider, 'before' => $item->id, 'parentInstance' => $nr])->count() != 0) {
 			$child_item = NitrogenItem::where(['slider' => $slider, 'before' => $item->id, 'parentInstance' => $nr])->first();
@@ -57,14 +56,14 @@ class ExtensionKernel extends SynthesisExtension
 		$instanceModel = NitrogenExtension::find($nr);
 		if (NitrogenItem::where(['slider' => $instanceModel->id, 'id' => $id, 'parentInstance' => $nr])->count() == 0) {
 			if (NitrogenItem::where(['slider' => $instanceModel->id, 'before' => $id, 'parentInstance' => $nr])->count() == 0) {
-				return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('errors', array(trans('Nitrogen::messages.err_item_doesnt_exist')));
+				return \Redirect::route("applet_settings", ['extension' => 'Nitrogen'])->with('errors', array(trans('Nitrogen::messages.err_item_doesnt_exist')));
 			}
 		}
 		$item = NitrogenItem::where(['slider' => $instanceModel->id, 'id' => $id, 'parentInstance' => $nr])->first();
 		if (NitrogenItem::where(['slider' => $instanceModel->id, 'id' => $item->before, 'parentInstance' => $nr])->count() != 0) {
 			$before = NitrogenItem::where(['slider' => $instanceModel->id, 'id' => $item->before, 'parentInstance' => $nr])->first();
 			$before_id = $before->id;
-		}else{
+		} else {
 			$before_id = 0;
 		}
 		if (NitrogenItem::where(['slider' => $instanceModel->id, 'before' => $id, 'parentInstance' => $nr])->count() != 0) {
@@ -77,8 +76,8 @@ class ExtensionKernel extends SynthesisExtension
 				$child_item2->before = $id;
 				$child_item2->save();
 			}
-		}else{
-			return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('errors', array(trans('Nitrogen::messages.err_item_cannot_be_moved')));
+		} else {
+			return \Redirect::route("applet_settings", ['extension' => 'Nitrogen'])->with('errors', array(trans('Nitrogen::messages.err_item_cannot_be_moved')));
 		}
 		$item->before = $child_item_id;
 		$item->save();
@@ -90,18 +89,18 @@ class ExtensionKernel extends SynthesisExtension
 		$instanceModel = NitrogenExtension::find($nr);
 		$item = NitrogenItem::where(['id' => $id, 'parentInstance' => $nr])->first();
 		$after_query = NitrogenItem::where(['slider' => $item->slider, 'before' => $item->id, 'parentInstance' => $nr]);
-		if($after_query->count()){
+		if ($after_query->count()) {
 			$after = $after_query->first();
 			$after->before = $item->before;
 			$after->save();
 		}
 		$slider = $instanceModel->id;
 		$children = NitrogenItem::where(['slider' => $slider, 'before' => $id, 'parentInstance' => $nr])->get();
-		foreach($children as $child){
+		foreach ($children as $child) {
 			$child->delete();
 		}
 		$item->delete();
-		return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('messages', array(trans('Nitrogen::messages.msg_item_deleted')));
+		return \Redirect::route("applet_settings", ['extension' => 'Nitrogen'])->with('messages', array(trans('Nitrogen::messages.msg_item_deleted')));
 	}
 
 	public function settingsEditPositionGet($nr, $id)
@@ -127,18 +126,18 @@ class ExtensionKernel extends SynthesisExtension
 
 		$query = NitrogenItem::where(['id' => $id, 'parentInstance' => $nr]);
 
-		if($query->count() == 0){
-			return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('errors', array(trans('Nitrogen::messages.err_item_doesnt_exist')));
+		if ($query->count() == 0) {
+			return \Redirect::route("applet_settings", ['extension' => 'Nitrogen'])->with('errors', array(trans('Nitrogen::messages.err_item_doesnt_exist')));
 		}
 
-		if(strlen($title) == 0 || strlen(trim($title)) == 0){
+		if (strlen($title) == 0 || strlen(trim($title)) == 0) {
 			$err = true;
 			array_push($errors, trans("Nitrogen::messages.err_title_cannot_be_empty"));
 		}
 
-		if($err){
+		if ($err) {
 			return \Redirect::to(\Request::path())->with('errors', $errors);
-		}else{
+		} else {
 			$item = $query->first();
 			$item->title = $title;
 			$item->content = $content;
@@ -146,7 +145,7 @@ class ExtensionKernel extends SynthesisExtension
 			$item->contentTextColor = $contentTextColor;
 			$item->image = $image;
 			$item->save();
-			return \Redirect::route("applet_settings", [ 'extension' => 'Nitrogen' ])->with('messages', array(trans('Nitrogen::messages.msg_item_saved')));
+			return \Redirect::route("applet_settings", ['extension' => 'Nitrogen'])->with('messages', array(trans('Nitrogen::messages.msg_item_saved')));
 		}
 	}
 
@@ -167,24 +166,24 @@ class ExtensionKernel extends SynthesisExtension
 		$errors = array();
 		$err = false;
 
-		if(strlen($title) == 0 || strlen(trim($title)) == 0){
+		if (strlen($title) == 0 || strlen(trim($title)) == 0) {
 			$err = true;
 			array_push($errors, trans("Nitrogen::messages.err_title_cannot_be_empty"));
 		}
 
-		if($err){
+		if ($err) {
 			return \Redirect::to(\Request::path())->with('errors', $errors);
-		}else{
+		} else {
 			$parent_id = 0;
 			if (NitrogenItem::where(['slider' => $instanceModel->id, 'before' => $parent_id, 'parentInstance' => $nr])->count()) {
 				$items_raw = NitrogenItem::where(['slider' => $instanceModel->id, 'parentInstance' => $nr]);
 				$items_count = $items_raw->count();
 				$posctr = 0;
-				for( $id = $parent_id; $posctr < $items_count; $posctr++){
+				for ($id = $parent_id; $posctr < $items_count; $posctr++) {
 					$before = NitrogenItem::where(['slider' => $instanceModel->id, 'before' => $id, 'parentInstance' => $nr])->first()->id;
 					$id = $before;
 				}
-			}else{
+			} else {
 				$before = $parent_id;
 			}
 			$created = NitrogenItem::create(['parentInstance' => $nr, 'image' => $image, 'title' => $title, 'content' => $content, 'before' => $before, 'slider' => $instanceModel->id, 'contentTextColor' => $contentTextColor, 'titleTextColor' => $titleTextColor]);
@@ -210,7 +209,7 @@ class ExtensionKernel extends SynthesisExtension
 		$title = $request->get("title");
 		$assignedPages = "";
 		$ctr = 0;
-		if($request->get('assignedToAllPages') != "on"){
+		if ($request->get('assignedToAllPages') != "on") {
 			if (!empty($request->get('assigned_pages'))) {
 				foreach ($request->get('assigned_pages') as $v) {
 					$ctr++;
@@ -302,7 +301,7 @@ class ExtensionKernel extends SynthesisExtension
 		$model->hasButton = $hasButton;
 		$model->buttonTextColor = $buttonTextColor;
 		$model->assignedToAllPages = $request->get('assignedToAllPages') == "on";
-		if($request->get('assignedToAllPages') != "on"){
+		if ($request->get('assignedToAllPages') != "on") {
 			$model->assignedPages = $assignedPages;
 		}
 		$model->buttons = $buttons == "on";
@@ -312,24 +311,24 @@ class ExtensionKernel extends SynthesisExtension
 		$model->save();
 		$count = 0;
 		foreach ($request->all() as $key => $val) {
-			if(starts_with($key, "item_checkbox")){
+			if (starts_with($key, "item_checkbox")) {
 				$item = NitrogenItem::where(['id' => intval(str_replace("item_checkbox", "", $key)), 'parentInstance' => $nr])->first();
 				$after_query = NitrogenItem::where(['slider' => $item->slider, 'before' => $item->id, 'parentInstance' => $nr]);
-				if($after_query->count()){
+				if ($after_query->count()) {
 					$after = $after_query->first();
 					$after->before = $item->before;
 					$after->save();
 				}
 				$slider = $model->id;
 				$children = NitrogenItem::where(['slider' => $slider, 'before' => $item->id, 'parentInstance' => $nr])->get();
-				foreach($children as $child){
+				foreach ($children as $child) {
 					$child->delete();
 				}
 				$item->delete();
 				$count++;
 			}
 		}
-		if($count == 0){
+		if ($count == 0) {
 			array_push($errors_array_ptr, trans('Nitrogen::messages.err_no_items_selected'));
 		}
 		return redirect()->back()->with(['messages' => array(trans('Nitrogen::messages.msg_item_saved')), 'errors' => $errors_array_ptr]);
@@ -354,15 +353,18 @@ class ExtensionKernel extends SynthesisExtension
 	{
 	}
 
-	public function getExtensionName(){
+	public function getExtensionName()
+	{
 		return trans('Nitrogen::nitrogen.name');
 	}
 
-	public function getExtensionType(){
+	public function getExtensionType()
+	{
 		return SynthesisExtensionType::Applet;
 	}
 
-	public function showSlider($slug){
+	public function showSlider($slug)
+	{
 		$nr = 0;
 		$ret = "";
 		foreach (NitrogenExtension::all() as $model) {
@@ -401,7 +403,11 @@ class ExtensionKernel extends SynthesisExtension
 	{
 		$out = "";
 		$model = NitrogenExtension::find($nr);
-		if($model->hasButton){
+		if (!$model) {
+			//TODO: implement throwing cms-custom error with added error trace from here
+			return $out;
+		}
+		if ($model->hasButton) {
 			$out .= "<div class='carousel-fixed-item center'>
 			<a href='$model->buttonLink' class='btn waves-effect waves-$model->buttonWavesColor $model->buttonColor $model->buttonClass $model->buttonTextColor-text'>$model->buttonText</a>
 			</div>";
@@ -410,13 +416,13 @@ class ExtensionKernel extends SynthesisExtension
 		$items_count = $items_raw->count();
 		$array = array();
 		$posctr = 0;
-		for($id = 0; $posctr < $items_count; $posctr++){
+		for ($id = 0; $posctr < $items_count; $posctr++) {
 			$itm = NitrogenItem::where(['slider' => $model->id, 'before' => $id, 'parentInstance' => $nr])->first();
 			array_push($array, $itm);
 			$id = $itm->id;
 		}
 		$items = collect($array);
-		foreach($items as $item){
+		foreach ($items as $item) {
 			if (empty($item->image)) {
 				$background_out = "background-color: " . Toolbox::hex2rgba(Settings::getFromActive('tab_color'), 0.8) . ";";
 			} else {
@@ -442,7 +448,8 @@ class ExtensionKernel extends SynthesisExtension
 		return $out;
 	}
 
-	public function hookPositions(&$manager){
+	public function hookPositions(&$manager)
+	{
 		$manager->addStandard(SynthesisPositions::BelowMenu, $this, 'showSlider');
 	}
 }

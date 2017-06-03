@@ -15,7 +15,26 @@
 	<div class="footer-copyright">
 		<div class="container">
 			<span>&copy;&nbsp;@php echo(date('Y')); @endphp&nbsp;{{ \App\Models\Settings\Settings::getFromActive('footer_copyright') }}</span>
-			<a class="grey-text text-lighten-4 right" href="{{ \App\Models\Settings\Settings::getFromActive('footer_more_links_bottom_href') }}">{{ \App\Models\Settings\Settings::getFromActive('footer_more_links_bottom_text') }}</a>
+			<a class="grey-text text-lighten-4 right valign-wrapper"
+			   href="{{ \App\Models\Settings\Settings::getFromActive('footer_more_links_bottom_href') }}"><i
+						class="material-icons">open_in_new</i>&nbsp;{{ \App\Models\Settings\Settings::getFromActive('footer_more_links_bottom_text') }}
+			</a>
+		</div>
+	</div>
+	<div class="footer-copyright">
+		<div class="container">
+			<span class="grey-text text-lighten-4">Powered by <a style="text-decoration: underline;"
+																 class="grey-text text-lighten-4"
+																 href="https://github.com/artus9033/SynthesisCMS">SynthesisCMS</a>, the blazing simple, fast, extendable open-source CMS by <a
+						style="text-decoration: underline;" class="grey-text text-lighten-4"
+						href="https://github.com/artus9033">artus9033</a></span>
+			<span class="right">
+				<a class="github-button" href="https://github.com/artus9033" data-size="large"
+				   aria-label="Follow @artus9033 on GitHub">Follow @artus9033</a>
+				<a class="github-button" href="https://github.com/artus9033/SynthesisCMS" data-icon="octicon-star"
+				   data-size="large" aria-label="Star artus9033/SynthesisCMS on GitHub">Star</a>
+			</span>
 		</div>
 	</div>
 </footer>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
