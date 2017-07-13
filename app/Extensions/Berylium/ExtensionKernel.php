@@ -314,7 +314,6 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function returnItem($item, $url, $children_dropdown_caret, $class, $type)
 	{
-		//TODO: implement adding active class to item parent (if present)
 		switch($item->type){
 			case BeryliumItemType::Page:
 			$selector = Page::where('id', $item->data);

@@ -134,6 +134,7 @@ return [
 	'msg_no_applets' => 'No applets exist...',
 	'applets' => 'Applets',
 	'applet_settings' => ':applet Settings',
+	'applet_return' => 'Back',
 ];
 
 ?>

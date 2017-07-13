@@ -93,6 +93,8 @@ $(document).ready(function(){
 				</script>
 				@include('partials/file-picker', ['picker_modal_id' => 'nitrogen_create_item_picker', 'callback_function_name' => 'nitrogenImagePickerCallback', 'followIframeParentHeight' => true, 'fileExtensions' => ['jpg', 'png', 'gif', 'jpeg']])
 				<div class="row"></div>
+				<a href="{{ url()->previous() }}"
+				   class="col s6 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.applet_return') }}</a>
 				<button type="submit" class="col s12 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
 			</form>
 		</div>

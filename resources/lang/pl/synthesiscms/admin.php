@@ -134,6 +134,7 @@ return [
 	'msg_no_applets' => 'Brak appletów...',
 	'applets' => 'Applety',
 	'applet_settings' => 'Ustawienia :applet',
+	'applet_return' => 'Powrót',
 ];
 
 ?>

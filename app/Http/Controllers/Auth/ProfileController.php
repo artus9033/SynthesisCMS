@@ -33,6 +33,7 @@ class ProfileController extends Controller
 		$passwd = $request->get('newpassword');
 		$passwd2 = $request->get('newpassword2');
 		$passwd_old = $request->get('oldpassword');
+
 		$errors = array();
 		$err = false;
 

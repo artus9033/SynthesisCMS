@@ -23,7 +23,7 @@
 				<div class="card-title">
 					<div class="col s12" style="height: 15px;"></div>
 					<div class="col s10">
-						<p class="truncate left">
+						<p class="truncate">
 							&nbsp;&nbsp;{{ $article['title'] }}
 						</p>
 					</div>

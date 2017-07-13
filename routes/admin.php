@@ -37,8 +37,8 @@ Route::post('/admin/manage_articles/edit/{id}', ['as' => 'manage_articles_edit_p
 Route::get('/admin/manage_articles/create_article', ['as' => 'create_article', 'uses' => 'Content\\ArticleController@createArticleGet']);
 Route::post('/admin/manage_articles/create_article', ['as' => 'create_article_post', 'uses' => 'Content\\ArticleController@createArticlePost']);
 
-Route::get('/admin/user-privileges/{id}', ['as' => 'profile', 'uses' => 'Auth\\ProfileController@privilegesGet']);
-Route::post('/admin/user-privileges/{id}', ['as' => 'profile_post', 'uses' => 'Auth\\ProfileController@changePrivilegesGet']);
+Route::get('/admin/user-privileges/{id}', ['as' => 'user_privileges', 'uses' => 'Auth\\ProfileController@privilegesGet']);
+Route::post('/admin/user-privileges/{id}', ['as' => 'user_privileges_post', 'uses' => 'Auth\\ProfileController@changePrivilegesGet']);
 Route::get('/admin/manage_users', ['as' => 'manage_users', 'uses' => 'Auth\\ProfileController@manageUsersGet']);
 Route::post('/admin/manage_users', ['as' => 'manage_users_post', 'uses' => 'Auth\\ProfileController@manageUsersPost']);
 

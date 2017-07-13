@@ -49,8 +49,6 @@
 					$articleCounter++;
 				}
 				$articles = collect($articlesArray);
-				echo(count($articles->toArray()));
-				exit;
 			}
 		}else{
 			$hasAnyArticlesInside = false;

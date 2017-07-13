@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class RouteController extends Controller
 {
 	public function checkRoute(BackendRequest $request){
-		//TODO: Add possibility for each extension to check for the form if it's properly filled before saving
+		//TODO: Add possibility for each extension to check for the form if it's properly filled before saving (laravel error bag -> validator ?)
 		$routes = \Route::getRoutes();
 		$request2 = Request::create($request->get('route'));
 		if($request->has('source')){

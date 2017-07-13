@@ -334,7 +334,6 @@ class ExtensionKernel extends SynthesisExtension
 		return redirect()->back()->with(['messages' => array(trans('Nitrogen::messages.msg_item_saved')), 'errors' => $errors_array_ptr]);
 	}
 
-	//TODO: delete the type of item (folder / single) => unneeded!!
 	public function settingsDeleteInstance($id)
 	{
 		NitrogenExtension::find($id)->delete();
