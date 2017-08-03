@@ -39,7 +39,7 @@
                                     },
                                 },
                                 function (v) { // v is value
-                                    var frame = $('<iframe class="card-panel z-depth-1 no-padding col s12" src="http://embedsocial.com/facebook_album/album_photos/' + v.urler + '" frameborder="0" scrolling="yes" height="450px" marginheight="0" marginwidth="0"></iframe>');
+                                    var frame = $('<iframe style="width: 100%;" src="http://embedsocial.com/facebook_album/album_photos/' + v.urler + '" frameborder="0" scrolling="yes" height="450px" marginheight="0" marginwidth="0"></iframe>');
                                     trumbowyg.range.deleteContents();
                                     trumbowyg.range.insertNode(frame[0]);
                                     return true;

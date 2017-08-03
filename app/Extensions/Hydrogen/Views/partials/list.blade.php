@@ -12,28 +12,32 @@
 					<img class="activator" src="{{ $article['image'] }}">
 				</div>
 				<div class="card-reveal">
-					<span class="card-title col s12"><span class="left">{{ $article['title'] }}</span><i
-								class="material-icons {{ $synthesiscmsMainColor }}-text right">close</i><a
-								href="{{ url($article_href) }}/article/{{ $article['id'] }}"><i
-									class="material-icons {{ $synthesiscmsMainColor }}-text right">open_in_new</i></a></span>
+					<span class="card-title col s12">
+						<span class="truncate col s10">{{ $article['title'] }}</span>
+						<i class="col s1 material-icons {{ $synthesiscmsMainColor }}-text right">close</i>
+						<a href="{{ url($article_href) }}/article/{{ $article['id'] }}">
+							<i class="col s1 material-icons {{ $synthesiscmsMainColor }}-text right">open_in_new</i>
+						</a>
+					</span>
 					<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
 					{!! $article['description'] !!}
 				</div>
 			@else
 				<div class="card-title">
 					<div class="col s12" style="height: 15px;"></div>
-					<div class="col s10">
+					<div class="col s11">
 						<p class="truncate">
 							&nbsp;&nbsp;{{ $article['title'] }}
 						</p>
 					</div>
-					<div class="col s2">
+					<div class="col s1">
 						<a href="{{ url($article_href) }}/article/{{ $article['id'] }}"><i
 									class="material-icons {{ $synthesiscmsMainColor }}-text">open_in_new</i></a>
 					</div>
 				</div>
 			@endif
-			<div class="card-content">
+			<div class="card-content"
+				 @if(!$article['hasImage']) style="padding-top: 5px !important; padding-bottom: 15px !important;" @endif>
 				@if($article['hasImage'])
 					<span class="card-title activator" style="text-align: left;">
 						{{ $article['title'] }}
@@ -49,6 +53,9 @@
 				@else
 					<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
 					{!! $article['description'] !!}
+					@if(strlen(trim($article['description'])) == 0)
+						. . .
+					@endif
 				@endif
 			</div>
 		</div>

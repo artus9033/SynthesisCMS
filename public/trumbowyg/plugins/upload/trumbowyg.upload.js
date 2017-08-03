@@ -76,7 +76,17 @@
                 upload: 'Загрузка',
                 file: 'Файл',
                 uploadError: 'Ошибка'
-            }
+            },
+            ja: {
+                upload: 'アップロード',
+                file: 'ファイル',
+                uploadError: 'エラー'
+            },
+            pt_br: {
+                upload: 'Enviar do local',
+                file: 'Arquivo',
+                uploadError: 'Erro'
+            },
         },
         // jshint camelcase:true
 
@@ -117,6 +127,12 @@
 
                                     trumbowyg.o.plugins.upload.data.map(function (cur) {
                                         data.append(cur.name, cur.value);
+                                    });
+
+                                    $.map(values, function (curr, key) {
+                                        if (key !== 'file') {
+                                            data.append(key, curr);
+                                        }
                                     });
 
                                     if ($('.' + prefix + 'progress', $modal).length === 0) {
