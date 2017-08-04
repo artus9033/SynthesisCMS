@@ -39,12 +39,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-    cursor: default;
+  cursor: default;
 
-    .toast-action {
-        color: $toast-action-color;
-        font-weight: 500;
-        margin-right: -25px;
+  .toast-action {
+    color: $toast-action-color;
+    font-weight: 500;
+    margin-right: -25px;
     margin-left: 3rem;
   }
 
@@ -53,7 +53,7 @@
   }
 
   @media #{$small-and-down} {
-      width: 100%;
+    width: 100%;
     border-radius: 0;
   }
 }

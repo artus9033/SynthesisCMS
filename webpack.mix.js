@@ -6,9 +6,11 @@ mix.options({processCssUrls: false});
 mix.sass('resources/assets/sass/app.scss', 'public/css/app.css');
 mix.sass('resources/assets/sass/login-register.scss', 'public/css/login-register.css');
 
-//MaterializeCSS SASS + JS
+//MaterializeCSS SASS + JS + Roboto font
 mix.sass('resources/assets/materializecss/sass/materialize.scss', 'public/css/materialize.css');
-mix.js('resources/assets/materializecss/js/bin/materialize.js', 'public/js/materialize.js');
+//mix.js('resources/assets/materializecss/js/bin/materialize.js', 'public/js/materialize.js');
+//TODO: fix this, because self compiling causes problems with Jquery's velocity animations
+mix.copy('resources/assets/materializecss/dist-js', 'public/js', false);
 mix.copy('resources/assets/materializecss/fonts', 'public/fonts', false);
 
 //Chart.js, Clipboard.js & Trumbowyg

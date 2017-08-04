@@ -13,7 +13,7 @@
 @endsection
 
 @section('mod_main')
-	<div id="options" class="modal bottom-sheet">
+	<div id="options" class="modal bottom-sheet" style="height: 100vh;">
 		<div class="modal-content center col s12">
 			<h4 class="col s12">{{ trans('Hydrogen::hydrogen.options_modal_header') }}</h4>
 			<div class="col s12">
@@ -58,7 +58,7 @@
 						<img src="{{ $article->image }}">
 						<span class="card-title left card-panel white {{ $synthesiscmsMainColor }}-text z-depth-2"
 							  style="margin: 10px 10px 10px 10px; font-weight: 400;">{{ $article->title }}</span>
-						<a href="#options"
+						<a onclick="$('#options').modal('open');"
 						   class="btn-floating btn-large halfway-fab waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2"><i
 									class="material-icons">more_horiz</i></a>
 					</div>
@@ -68,7 +68,7 @@
 						<div class="col s12">
 							<span class="card-title"
 								  style="font-weight: 400; display: inline;">{{ $article->title }}</span>
-							<a href="#options"
+							<a onclick="$('#options').modal('open');"
 							   class="btn-floating waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 right"><i
 										class="material-icons">more_horiz</i></a>
 						</div>

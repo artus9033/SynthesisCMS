@@ -22,7 +22,7 @@ ul {
     padding-left: 0;
     list-style-type: none;
 
-      & > li {
+    & > li {
       list-style-type: none;
     }
   }
@@ -76,9 +76,9 @@ a {
 .hoverable {
   transition: box-shadow .25s;
 
-    &:hover {
-        box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
+  &:hover {
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 }
 
 // Dividers
@@ -230,24 +230,24 @@ video.responsive-video {
   overflow: hidden;
   height: 500px;
 
-    .parallax {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
+  .parallax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 
-        img {
-            display: none;
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            transform: translate3d(0, 0, 0);
-            transform: translateX(-50%);
-        }
+    img {
+      display: none;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate3d(0,0,0);
+      transform: translateX(-50%);
+    }
   }
 }
 
@@ -338,7 +338,7 @@ ul.staggered-list li {
 // Footer
 .page-footer {
   padding-top: 20px;
-    color: $footer-font-color;
+  color: $footer-font-color;
   background-color: $footer-bg-color;
 
   .footer-copyright {
@@ -347,8 +347,8 @@ ul.staggered-list li {
     display: flex;
     align-items: center;
     padding: 10px 0px;
-      color: $footer-copyright-font-color;
-      background-color: $footer-copyright-bg-color;
+    color: $footer-copyright-font-color;
+    background-color: $footer-copyright-bg-color;
     @extend .light;
   }
 }
@@ -500,9 +500,9 @@ td, th{
       padding-left: 72px;
       position: relative;
 
-        // Don't style circles inside preloader classes.
-        &:not(.circle-clipper) > .circle,
-        :not(.circle-clipper) > .circle {
+      // Don't style circles inside preloader classes.
+      &:not(.circle-clipper) > .circle,
+      :not(.circle-clipper) > .circle {
         position: absolute;
         width: 42px;
         height: 42px;

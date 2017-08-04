@@ -79,7 +79,7 @@ label{
 							</div>
 						</div>
 						<script>
-						ajaxRequests = new Array();
+                            ajaxRequests = [];
 						formValid = false;
 						$('#slug').bind('input', function() {
 							$('#slug-progress').css("display", "inline-block");
@@ -121,7 +121,7 @@ label{
 										//Method Not Allowed (error 405) means that the route
 										//is occupied, but not on the GET method, so we treat
 										//it as free
-										arr = new Array();
+                                        arr = [];
 										arr['color'] = "green";
 										arr['valid'] = true;
 										arr['text'] = {!! json_encode(trans('synthesiscms/helper.route_free')) !!};
@@ -159,8 +159,14 @@ label{
 	</div>
 	<div class="card-action">
 		<a onclick="$('#edit').submit()" class="btn-flat waves-effect waves-green {{ $synthesiscmsMainColor }}-text"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">save</i>{{ trans('synthesiscms/admin.save_route') }}</a>
-		<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text" href="{{ URL::previous() }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_route') }}</a>
-		<button class="btn-flat waves-effect waves-red {{ $synthesiscmsMainColor }}-text" data-target="modalDelete{{ $page->id }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">security</i>{{ trans('synthesiscms/admin.delete_route') }}</button>
+		<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text"
+		   href="{{ route('manage_routes') }}"><i
+					class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_route') }}
+		</a>
+		<button class="btn-flat waves-effect waves-red {{ $synthesiscmsMainColor }}-text"
+				onclick="$('#modalDelete{{ $page->id }}').modal('open');"><i
+					class="material-icons {{ $synthesiscmsMainColor }}-text left">security</i>{{ trans('synthesiscms/admin.delete_route') }}
+		</button>
 	</div>
 </div>
 <script type="text/javascript">

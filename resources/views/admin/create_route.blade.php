@@ -56,7 +56,7 @@ label{
 					</div>
 				</div>
 				<script>
-				ajaxRequests = new Array();
+                    ajaxRequests = [];
 				formValid = false;
 				$('#route').bind('input', function() {
 					$('#route-progress').css("display", "inline-block");
@@ -98,7 +98,7 @@ label{
 								//Method Not Allowed (error 405) means that the route
 								//is occupied, but not on the GET method, so we treat
 								//it as free
-								arr = new Array();
+                                arr = [];
 								arr['color'] = "green";
 								arr['valid'] = true;
 								arr['text'] = {!! json_encode(trans('synthesiscms/helper.route_free')) !!};
@@ -120,15 +120,15 @@ label{
 				<div class="input-field col s8 valign" id="route-sel">
 					<select id="extension" name="extension" class="{{ $synthesiscmsMainColor }}-text">
 						@php
-						$extensions = config("synthesiscmsextensions.extensions");
+							$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 
-						while (list(,$extension) = each($extensions)) {
-							$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
-							$kernel = new $kpath;
-							if($kernel->getExtensionType() == App\SynthesisCMS\API\SynthesisExtensionType::Module){
-								echo("<option value='" . $extension . "'>" . $kernel->getExtensionName() . "</option>");
+							while (list(,$extension) = each($extensions)) {
+								$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
+								$kernel = new $kpath;
+								if($kernel->getExtensionType() == App\SynthesisCMS\API\SynthesisExtensionType::Module){
+									echo("<option value='" . $extension . "'>" . $kernel->getExtensionName() . "</option>");
+								}
 							}
-						}
 						@endphp
 					</select>
 					<label>{{ trans('synthesiscms/extensions.choose_extension') }}</label>

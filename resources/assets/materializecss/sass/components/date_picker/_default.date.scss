@@ -5,9 +5,9 @@
  * The picker box.
  */
 .picker__box {
-    padding: 0;
-    border-radius: 2px;
-    overflow: hidden;
+  padding: 0;
+  border-radius: 2px;
+  overflow: hidden;
 }
 /**
  * The header containing the month and year stuff.
@@ -231,7 +231,7 @@
  * The footer containing the "today", "clear", and "close" buttons.
  */
 .picker__footer {
-    text-align: right;
+  text-align: right;
 }
 .picker__button--today,
 .picker__button--clear,
@@ -311,23 +311,23 @@
 }*/
 
 .picker__date-display {
-    text-align: left;
+  text-align: left;
   background-color: $datepicker-date-bg;
   color: #fff;
-    padding: 18px;
+  padding: 18px;
   font-weight: 300;
 }
 
 @media only screen and (min-width: 601px) {
-    .picker__date-display {
-        flex: 1;
-    }
-    .picker__weekday-display {
-        display: block;
-    }
-    .picker__container__wrapper {
-        flex: 2
-    }
+	.picker__date-display {
+		flex:1;
+	}
+	.picker__weekday-display {
+		display:block;
+	}
+	.picker__container__wrapper {
+		flex:2
+	}
 }
 
 .picker__nav--prev:hover,
@@ -338,25 +338,25 @@
 }
 
 .picker__weekday-display {
-    font-weight: 500;
-    font-size: $datepicker-display-font-size;
-    margin-right: 5px;
-    margin-top: 4px;
+  font-weight: 500;
+  font-size: $datepicker-display-font-size;
+  margin-right: 5px;
+  margin-top: 4px;
 }
 
 .picker__month-display {
-    //text-transform: uppercase;
-    font-size: $datepicker-display-font-size;
-    font-weight: 500;
+  //text-transform: uppercase;
+  font-size: $datepicker-display-font-size;
+  font-weight: 500;
 }
 .picker__day-display {
-    font-size: $datepicker-display-font-size;
-    font-weight: 500;
-    margin-right: 5px;
+  font-size: $datepicker-display-font-size;
+  font-weight: 500;
+  margin-right: 5px;
 }
 .picker__year-display {
-    font-size: 1.5rem;
-    font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 500;
   color: $datepicker-year;
 }
 
@@ -378,17 +378,16 @@
 }
 
 .picker__day--infocus {
-    color: $datepicker-weekday-color;
-    letter-spacing: -.3px;
-    padding: 0.75rem 0;
+  color: $datepicker-weekday-color;
+  letter-spacing: -.3px;
+  padding: 0.75rem 0;
   font-weight: 400;
   border: 1px solid transparent;
 }
-
 @media only screen and (min-width: 601px) {
-    .picker__day--infocus {
-        padding: 1.1rem 0;
-    }
+	.picker__day--infocus {
+		padding: 1.1rem 0;
+	}
 }
 
 
@@ -431,10 +430,9 @@
   padding: 0 1rem;
   color: $datepicker-selected;
 }
-
 .picker__clear {
-    color: #f44336;
-    float: left;
+	color:#f44336;
+	float:left;
 }
 
 //month nav buttons

@@ -20,5 +20,9 @@
       "laravel-mix": "*",
       "lodash": "*",
       "vue": "*"
+  },
+    "dependencies": {
+        "jquery-easing": "*",
+        "pickadate": "*"
   }
 }

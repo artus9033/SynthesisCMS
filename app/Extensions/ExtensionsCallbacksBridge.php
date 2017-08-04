@@ -18,7 +18,7 @@ class ExtensionsCallbacksBridge
 	public static function handleOnArticleDeleted($id)
 	{
 		// For each of the registered extensions, include their routes and Views
-		$extensions = config("synthesiscmsextensions.extensions");
+		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 
 		while (list(,$extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
@@ -34,7 +34,7 @@ class ExtensionsCallbacksBridge
 	public static function handleOnArticleCategoryDeleted($id)
 	{
 		// For each of the registered extensions, include their routes and Views
-		$extensions = config("synthesiscmsextensions.extensions");
+		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 
 		while (list(,$extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
@@ -49,7 +49,7 @@ class ExtensionsCallbacksBridge
 	 */
 	public static function handleOnPageDeleted($id){
 		// For each of the registered extensions, include their routes and Views
-		$extensions = config("synthesiscmsextensions.extensions");
+		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 
 		while (list(,$extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';

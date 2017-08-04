@@ -33,7 +33,7 @@
 @section('main')
 	<div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
 		<a onclick='window.open($("#settings-view").contents().get(0).location.href);'
-		   class="pulse btn-floating btn-large {{ $synthesiscmsMainColor }} waves-effect tooltipped"
+		   class="pulse btn-floating btn-large pulse {{ $synthesiscmsMainColor }} waves-effect tooltipped"
 		   data-position="left" data-delay="50"
 		   data-tooltip="{{ trans("synthesiscms/admin.open_applet_settings_fullscreen") }}">
 			<i class="material-icons">fullscreen</i>
@@ -55,7 +55,7 @@
 					</li>
 					@php
 					$ct = 0;
-					$extensions = config("synthesiscmsextensions.extensions");
+					$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 					@endphp
 					@foreach ($extensions as $extension)
 						@php
@@ -77,7 +77,10 @@
 						@endif
 					@endforeach
 					@if ($ct == 0)
-						<li class="collection-item"><div class="col s12 center">{{ trans('synthesiscms/admin.msg_no_applets') }}</div></li>
+						<li class="collection-item">
+							<div style="padding-bottom: 15px;"
+								 class="col s12 center">{{ trans('synthesiscms/admin.msg_no_applets') }}</div>
+						</li>
 					@endif
 				</ul>
 			</div>
@@ -95,7 +98,7 @@
 					</script>
 					<iframe onchange="resizeIframe(this)" onload="resizeIframe(this); $('#loader-div').css('display', 'none');" class="col s12" height="900px" frameBorder="0" id="settings-view" src="{{ url('/admin/manage_applets') }}/{{ $firstExt }}"></iframe>
 				@else
-					@include('partials/error', ['error' => trans('synthesiscms/admin.msg_no_applets')])
+					@include('partials/error', ['error' => "<i class='material-icons white-text'>filter_none</i>&nbsp;&nbsp;" . trans('synthesiscms/admin.msg_no_applets')])
 				@endif
 			</div>
 		</div>

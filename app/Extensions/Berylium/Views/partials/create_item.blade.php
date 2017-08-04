@@ -40,7 +40,8 @@ label{
 					<label for="link">{{ trans("Berylium::berylium.item_link") }}</label>
 				</div>
 				<div class="input-field col s6 applet-source-input" id="applet-page" style="display: none;">
-					<a href="#berylium-modal-choose-page" class="waves-effect waves-light {{ $synthesiscmsMainColorClass }} btn-large">
+					<a onclick="$('#berylium-modal-choose-page').modal('open');"
+					   class="waves-effect waves-light {{ $synthesiscmsMainColorClass }} btn-large">
 						<i class="material-icons white-text left">pages</i>
 						{{ trans("Berylium::berylium.item_page") }}
 					</a>
@@ -68,7 +69,7 @@ label{
                                 }
 							</script>
 							@php
-								$extensions = config("synthesiscmsextensions.extensions");
+								$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 								$routes_data = Array();
 								while(list(,$extension) = each($extensions)) {
 									$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';

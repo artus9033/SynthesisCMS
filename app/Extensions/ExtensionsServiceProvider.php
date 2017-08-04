@@ -2,9 +2,9 @@
 
 namespace App\Extensions;
 
-use Illuminate\Support\ServiceProvider;
 use App\Models\Content\Page;
 use App\SynthesisCMS\API\Positions\SynthesisPositionManager;
+use Illuminate\Support\ServiceProvider;
 
 class ExtensionsServiceProvider extends ServiceProvider
 {
@@ -18,7 +18,7 @@ class ExtensionsServiceProvider extends ServiceProvider
 		if(\App::runningInConsole()){
 			// For each of the registered extensions, include ONLY their migrations
 			// as the app is running in a command line
-			$extensions = config("synthesiscmsextensions.extensions");
+			$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 
 			while (list(,$extension) = each($extensions)) {
 				// Load extension database migrations
@@ -35,7 +35,7 @@ class ExtensionsServiceProvider extends ServiceProvider
 			$manager = new SynthesisPositionManager();
 
 			// For each of the registered extensions, include their routes and Views
-			$extensions = config("synthesiscmsextensions.extensions");
+			$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 
 			while (list(,$extension) = each($extensions)) {
 

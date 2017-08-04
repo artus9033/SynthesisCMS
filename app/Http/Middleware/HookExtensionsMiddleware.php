@@ -16,7 +16,7 @@ class HookExtensionsMiddleware
 	public function handle($request, Closure $next)
 	{
 		// For each of the registered extensions, include their middleware
-		$extensions = config("synthesiscmsextensions.extensions");
+		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 		$exec_next = true;
 		while (list(,$extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';

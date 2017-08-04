@@ -1,9 +1,7 @@
 {
-    "/js/materialize.min.js": "/js/materialize.min.js",
     "/css/app.css": "/css/app.css",
     "/css/login-register.css": "/css/login-register.css",
     "/css/materialize.css": "/css/materialize.css",
-    "/js/materialize.js": "/js/materialize.js",
     "/js/Chart.js": "/js/Chart.js",
     "/js/clipboard.min.js": "/js/clipboard.min.js",
     "/trumbowyg/ui/icons.svg": "/trumbowyg/ui/icons.svg"

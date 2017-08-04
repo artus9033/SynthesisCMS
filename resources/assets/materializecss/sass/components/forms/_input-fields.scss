@@ -65,25 +65,25 @@ textarea.materialize-textarea {
   // Valid Input Style
   &.valid,
   &:focus.valid {
-      @extend %valid-input-style;
+    @extend %valid-input-style;
   }
 
   // Custom Success Message
   &.valid + label:after,
   &:focus.valid + label:after {
-      @extend %custom-success-message;
+    @extend %custom-success-message;
   }
 
   // Invalid Input Style
   &.invalid,
   &:focus.invalid {
-      @extend %invalid-input-style;
+    @extend %invalid-input-style;
   }
 
   // Custom Error message
   &.invalid + label:after,
   &:focus.invalid + label:after {
-      @extend %custom-error-message;
+    @extend %custom-error-message;
   }
 
   // Full width label when using validate for error messages
@@ -93,54 +93,51 @@ textarea.materialize-textarea {
 
   // Form Message Shared Styles
   & + label:after {
-      @extend %input-after-style;
+    @extend %input-after-style;
   }
 
-    // TODO: Remove once input fields are reworked to support validation messages better
-    &.invalid + label:after,
-    &.valid + label:after {
-        display: none;
-    }
+  // TODO: Remove once input fields are reworked to support validation messages better
+  &.invalid + label:after,
+  &.valid + label:after{
+    display: none;
+  }
 
-    &.invalid + label.active:after,
-    &.valid + label.active:after {
-        display: block;
-    }
+  &.invalid + label.active:after,
+  &.valid + label.active:after{
+    display: block;
+  }
 }
+
 
 /* Validation Sass Placeholders */
 %valid-input-style {
-    border-bottom: 1px solid $input-success-color;
-    box-shadow: 0 1px 0 0 $input-success-color;
+  border-bottom: 1px solid $input-success-color;
+  box-shadow: 0 1px 0 0 $input-success-color;
 }
-
 %invalid-input-style {
-    border-bottom: $input-invalid-border;
-    box-shadow: 0 1px 0 0 $input-error-color;
+  border-bottom: $input-invalid-border;
+  box-shadow: 0 1px 0 0 $input-error-color;
 }
-
 %custom-success-message {
-    content: attr(data-success);
-    color: $input-success-color;
-    opacity: 1;
-    transform: translateY(9px);
+  content: attr(data-success);
+  color: $input-success-color;
+  opacity: 1;
+  transform: translateY(9px);
 }
-
 %custom-error-message {
-    content: attr(data-error);
-    color: $input-error-color;
-    opacity: 1;
-    transform: translateY(9px);
+  content: attr(data-error);
+  color: $input-error-color;
+  opacity: 1;
+  transform: translateY(9px);
 }
-
 %input-after-style {
-    display: block;
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    opacity: 0;
-    transition: .2s opacity ease-out, .2s color ease-out;
+  display: block;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  opacity: 0;
+  transition: .2s opacity ease-out, .2s color ease-out;
 }
 
 
@@ -176,20 +173,20 @@ textarea.materialize-textarea {
   label {
     color: $input-border-color;
     position: absolute;
-      top: 0;
+    top: 0;
     left: 0;
-      height: 100%;
+    height: 100%;
     font-size: 1rem;
     cursor: text;
-      transition: transform .2s ease-out;
-      transform-origin: 0% 100%;
+    transition: transform .2s ease-out;
+    transform-origin: 0% 100%;
     text-align: initial;
-      transform: translateY(12px);
-      pointer-events: none;
+    transform: translateY(12px);
+    pointer-events: none;
 
     &:not(.label-icon).active {
-        transform: translateY(-14px) scale(.8);
-        transform-origin: 0 0;
+      transform: translateY(-14px) scale(.8);
+      transform-origin: 0 0;
     }
   }
 
@@ -237,13 +234,13 @@ textarea.materialize-textarea {
   display: block;
   line-height: inherit;
 
-    .nav-wrapper & {
-        height: inherit;
-        padding-left: 4rem;
-        width: calc(100% - 4rem);
-        border: 0;
-        box-shadow: none;
-    }
+  .nav-wrapper & {
+    height: inherit;
+    padding-left: 4rem;
+    width: calc(100% - 4rem);
+    border: 0;
+    box-shadow: none;
+  }
 
   &:focus {
     background-color: $input-background;
@@ -284,16 +281,16 @@ textarea {
   background-color: transparent;
 
   &.materialize-textarea {
-      // Fixes validation messages for dynamic textareas
-      &.validate + label {
-          &::after {
-              top: calc(100% - 12px);
-          }
-          &:not(.label-icon).active {
-              transform: translateY(-25px);
-          }
-          height: 100%;
+    // Fixes validation messages for dynamic textareas
+    &.validate + label {
+      &::after {
+        top: calc(100% - 12px);
       }
+      &:not(.label-icon).active {
+        transform: translateY(-25px);
+      }
+      height: 100%;
+    }
 
     overflow-y: hidden; /* prevents scroll bar flash */
     padding: .8rem 0 1.6rem 0; /* prevents text jump on Enter keypress */
@@ -319,7 +316,7 @@ textarea {
 /* Autocomplete */
 .autocomplete-content {
   margin-top: -1 * $input-margin-bottom;
-    margin-bottom: $input-margin-bottom;
+  margin-bottom: $input-margin-bottom;
   display: block;
   opacity: 1;
   position: static;

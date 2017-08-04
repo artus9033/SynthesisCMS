@@ -7,18 +7,18 @@
 }
 
 .collapsible-header {
-    display: flex;
+  display: flex;
   cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    line-height: 1.5;
-    padding: 1rem;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.5;
+  padding: 1rem;
   background-color: $collapsible-header-color;
   border-bottom: 1px solid $collapsible-border-color;
 
   i {
     width: 2rem;
     font-size: 1.6rem;
-      display: inline-block;
+    display: inline-block;
     text-align: center;
     margin-right: 1rem;
   }

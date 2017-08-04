@@ -23,10 +23,10 @@
 
   input[type=file] {
 
-      // Needed to override webkit button
-      &::-webkit-file-upload-button {
-          display: none;
-      }
+    // Needed to override webkit button
+    &::-webkit-file-upload-button {
+      display: none;
+    }
 
     position: absolute;
     top: 0;

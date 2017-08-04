@@ -62,7 +62,12 @@
 												 <a style="margin-left: 9%;" href="{{ url('/admin/manage_routes/delete') }}/{{ $route->id }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_route_btn_yes') }}</a>
 											    </div>
 											  </div>
-											<td class="center"><button data-target="modalDelete{{ $route->id }}" class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_route') }}</button></td>
+											<td class="center">
+												<button onclick="$('#modalDelete{{ $route->id }}').modal('open');"
+														class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
+													<i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_route') }}
+												</button>
+											</td>
 										</tr>
 								@endforeach
 								@if ($all_routes_count == 0)

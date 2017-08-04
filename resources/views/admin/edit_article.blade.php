@@ -109,7 +109,7 @@
                                 }
 							</script>
 							@include('partials.file-picker', ['picker_modal_id' => 'article_edit_item_picker', 'callback_function_name' => 'articleImagePickerCallback', 'followIframeParentHeight' => false, 'fileExtensions' => ['jpg', 'png', 'gif', 'jpeg']])
-							<a href="#article_edit_item_picker"
+							<a onclick="$('#article_edit_item_picker').modal('open');"
 							   class="btn btn-large center col s6 row waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
 								<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/article.imageFile') }}
 							</a>
@@ -176,11 +176,11 @@
 						class="material-icons {{ $synthesiscmsMainColor }}-text left">save</i>{{ trans('synthesiscms/admin.save_article') }}
 			</a>
 			<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text"
-			   href="{{ URL::previous() }}"><i
+			   href="{{ route('manage_articels') }}"><i
 						class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_article') }}
 			</a>
 			<button class="btn-flat waves-effect waves-red {{ $synthesiscmsMainColor }}-text"
-					data-target="modalDelete{{ $article->id }}"><i
+					onclick="$('#modalDelete{{ $article->id }}').modal('open');"><i
 						class="material-icons {{ $synthesiscmsMainColor }}-text left">security</i>{{ trans('synthesiscms/article.delete_article') }}
 			</button>
 		</div>

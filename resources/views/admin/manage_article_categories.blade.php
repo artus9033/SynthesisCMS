@@ -14,7 +14,7 @@
 
 @section('main')
 	<div class="fixed-action-btn horizontal">
-		<button class="btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light z-depth-4 tooltipped"
+		<button class="btn-floating btn-large pulse {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light z-depth-4 tooltipped"
 				data-position="top" data-delay="50"
 				data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions') }}">
 			<i class="large material-icons">menu</i>
@@ -170,13 +170,13 @@
 										class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_article_category') }}
 							</a></td>
 						<td>
-							<button data-target="modalMassDelete" type="button"
+							<button onclick="$('#modalMassDelete').modal('open');" type="button"
 									class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
 								<i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/article_category.delete_selected') }}
 							</button>
 						</td>
 						<td>
-							<button data-target="modalMassCopy" type="button"
+							<button onclick="$('#modalMassCopy').modal('open');" type="button"
 									class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
 								<i class="material-icons white-text left">content_copy</i>{{ trans('synthesiscms/article_category.copy_selected') }}
 							</button>
@@ -261,7 +261,7 @@
 									</div>
 								</div>
 								<td class="center">
-									<button @php if($articleCategory->id == 1){ echo('disabled'); } @endphp data-target="modalDelete{{ $articleCategory->id }}"
+									<button @php if($articleCategory->id == 1){ echo('disabled'); } @endphp onclick="$('#modalDelete{{ $articleCategory->id }}').modal('open');"
 											class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
 										<i class="material-icons white-text left">security</i>{{ trans('synthesiscms/article_category.delete_article_category') }}
 									</button>

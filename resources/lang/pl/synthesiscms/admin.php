@@ -46,7 +46,7 @@ return [
 	'cancel_article' => 'Anuluj',
 	'edit_article_category' => 'Edytuj kategorię',
 	'choose_article_category' => 'Wybierz kategorię',
-	'manage_article_categories' => 'Zarządzaj Kategoriami artykułów',
+	'manage_article_categories' => 'Zarządzaj kategoriami artykułów',
 	'create_article_category' => 'Utwórz kategorię',
 	'create_article_category_title_tooltip' => 'Nazwij kategorię artykułów (to będzie tytuł wyświetlany na stronie)',
 	'create_article_category_title_label' => 'Tytuł kategorii artykułów',

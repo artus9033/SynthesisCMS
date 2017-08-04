@@ -137,7 +137,7 @@
 				</button>
 				<div class="col s12 row"></div>
 				<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text col s2 offset-s5"
-				   href="{{ URL::previous() }}"><i
+				   href="{{ route('manage_articles') }}"><i
 							class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_article') }}
 				</a>
 				<div class="col s12 row"></div>

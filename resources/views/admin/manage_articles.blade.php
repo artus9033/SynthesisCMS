@@ -130,7 +130,7 @@
 										class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_article') }}
 							</a></td>
 						<td>
-							<button data-target="modalMassDelete" type="button"
+							<button onclick="$('#modalMassDelete').modal('open');" type="button"
 									class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
 								<i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/article.delete_selected') }}
 							</button>
@@ -145,7 +145,7 @@
 					</tr>
 					<tr>
 						<td>
-							<button data-target="modalMassMove" type="button"
+							<button onclick="$('#modalMassMove').modal('open');" type="button"
 									class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
 								<i class="material-icons white-text left">transform</i>{{ trans('synthesiscms/article.move_selected') }}
 							</button>
@@ -212,7 +212,7 @@
 								</div>
 							</div>
 							<td class="center">
-								<button data-target="modalDelete{{ $article->id }}"
+								<button onclick="$('#modalDelete{{ $article->id }}').modal('open');"
 										class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
 									<i class="material-icons white-text left">delete</i>{{ trans('synthesiscms/article.delete_article') }}
 								</button>

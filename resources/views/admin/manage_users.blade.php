@@ -61,7 +61,12 @@
 												 <a style="margin-left: 9%;" href="{{ url('/profile/delete') }}/{{ $uid }}" class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_user_btn_yes') }}</a>
 											    </div>
 											  </div>
-											<td class="center"><button data-target="modalDelete" class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_user') }}</button></td>
+											<td class="center">
+												<button onclick="$('#modalDelete').modal('open');"
+														class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
+													<i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_user') }}
+												</button>
+											</td>
 										</tr>
 									@endif
 								@endforeach

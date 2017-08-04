@@ -81,11 +81,11 @@
 						class="material-icons {{ $synthesiscmsMainColor }}-text left">save</i>{{ trans('synthesiscms/admin.save_article_category') }}
 			</a>
 			<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text"
-			   href="{{ URL::previous() }}"><i
+			   href="{{ route('manage_article_categories') }}"><i
 						class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_article_category') }}
 			</a>
 			<button @php if($articleCategory->id == 1){ echo('disabled'); } @endphp class="btn-flat waves-effect waves-red {{ $synthesiscmsMainColor }}-text"
-					data-target="modalDelete{{ $articleCategory->id }}"><i
+					onclick="$('#modalDelete{{ $articleCategory->id }}').modal('open');"><i
 						class="material-icons {{ $synthesiscmsMainColor }}-text left">security</i>{{ trans('synthesiscms/article_category.delete_article_category') }}
 			</button>
 		</div>
