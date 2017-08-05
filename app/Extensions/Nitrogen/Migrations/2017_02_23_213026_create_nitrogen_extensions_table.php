@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateNitrogenExtensionsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('nitrogen_extensions', function (Blueprint $table) {
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('nitrogen_extensions', function (Blueprint $table) {
 			$table->increments('id');
 			$table->boolean('enabled')->default(true);
 			$table->longText('buttonTextColor');
@@ -31,15 +31,15 @@ class CreateNitrogenExtensionsTable extends Migration
 			$table->boolean('assignedToAllPages')->default(false);
 			$table->timestamps();
 		});
-    }
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('nitrogen_extensions');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('nitrogen_extensions');
+	}
 }

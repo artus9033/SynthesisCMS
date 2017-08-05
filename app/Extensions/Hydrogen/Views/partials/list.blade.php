@@ -19,7 +19,8 @@
 							<i class="col s1 material-icons {{ $synthesiscmsMainColor }}-text right">open_in_new</i>
 						</a>
 					</span>
-					<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
+					<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"
+						 style="margin-top: 5px; margin-bottom: 10px;"></div>
 					{!! $article['description'] !!}
 				</div>
 			@else
@@ -46,12 +47,13 @@
 					<p class="{{ $synthesiscmsMainColor }}-text" id="artificial-link" style="text-align: left;"
 					   onclick="window.location.href='{{ url($article_href) }}/article/{{ $article['id'] }}'">{{ trans("Hydrogen::hydrogen.article_card_link_read") }}</p>
 					<style>
-						#artificial-link:hover{
+						#artificial-link:hover {
 							cursor: pointer;
 						}
 					</style>
 				@else
-					<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12" style="margin-top: 5px; margin-bottom: 10px;"></div>
+					<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"
+						 style="margin-top: 5px; margin-bottom: 10px;"></div>
 					{!! $article['description'] !!}
 					@if(strlen(trim($article['description'])) == 0)
 						. . .

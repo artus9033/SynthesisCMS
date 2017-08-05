@@ -67,11 +67,11 @@
 			</div>
 			<style>
 				#page-div .caret {
-					color: {{ $synthesiscmsMainColor }}  !important;
+					color: {{ $synthesiscmsMainColor }}    !important;
 				}
 
 				#page-div .select-dropdown {
-					border-bottom-color: {{ $synthesiscmsMainColor }}  !important;
+					border-bottom-color: {{ $synthesiscmsMainColor }}    !important;
 				}
 
 				#page-div .select-wrapper {
@@ -146,7 +146,7 @@
                 var pagesCollapsible = false;
                 $(document).ready(function () {
                     $("#pagesCollapsible").click();
-                })
+                });
                 $("#assignedToAllPages").click(function () {
                     pagesCollapsible = true;
                     $("#pagesCollapsible").click();

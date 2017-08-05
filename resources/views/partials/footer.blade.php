@@ -14,7 +14,8 @@
 	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::FooterContent, Request::url()) !!}
 	<div class="footer-copyright">
 		<div class="container">
-			<span>&copy;&nbsp;@php echo(date('Y')); @endphp&nbsp;{{ \App\Models\Settings\Settings::getFromActive('footer_copyright') }}</span>
+			<span>&copy;&nbsp;@php echo(date('Y')); @endphp
+				&nbsp;{{ \App\Models\Settings\Settings::getFromActive('footer_copyright') }}</span>
 			<a class="grey-text text-lighten-4 right valign-wrapper"
 			   href="{{ \App\Models\Settings\Settings::getFromActive('footer_more_links_bottom_href') }}"><i
 						class="material-icons">open_in_new</i>&nbsp;{{ \App\Models\Settings\Settings::getFromActive('footer_more_links_bottom_text') }}

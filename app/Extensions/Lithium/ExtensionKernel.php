@@ -14,23 +14,25 @@ use App\SynthesisCMS\API\SynthesisExtensionType;
  * related to the Extension. This class is required, otherwise any routes
  * using this extension will throw an internal CMS error!
  */
-
 class ExtensionKernel extends SynthesisExtension
 {
 
-	public function onPageDeleted($id){
+	public function onPageDeleted($id)
+	{
 		$extension = LithiumExtension::where(['id' => $id])->first();
 		$extension->delete();
 	}
 
-	public function getExtensionType(){
+	public function getExtensionType()
+	{
 		return SynthesisExtensionType::Module;
 	}
 
-	public function getRoutesAndSubroutes(){
+	public function getRoutesAndSubroutes()
+	{
 		$pages = Array();
-		foreach(LithiumExtension::all() as $extensions_instance){
-			foreach(Page::where('id', $extensions_instance->id)->cursor() as $page){
+		foreach (LithiumExtension::all() as $extensions_instance) {
+			foreach (Page::where('id', $extensions_instance->id)->cursor() as $page) {
 				array_push($pages, Array($page->page_header, $page->id, $this->getExtensionName()));
 			}
 		}
@@ -66,11 +68,12 @@ class ExtensionKernel extends SynthesisExtension
 		$extension->save();
 	}
 
-	public function routes($page, $base_slug){
+	public function routes($page, $base_slug)
+	{
 		$kernel = $this;
 		\Route::group(['middleware' => 'web'], function () use ($page, $kernel, $base_slug) {
-			\Route::get($base_slug, function() use ($page, $kernel, $base_slug) {
-	    			return \App::make('App\Extensions\Lithium\Controllers\LithiumController')->index($page, $kernel, $base_slug);
+			\Route::get($base_slug, function () use ($page, $kernel, $base_slug) {
+				return \App::make('App\Extensions\Lithium\Controllers\LithiumController')->index($page, $kernel, $base_slug);
 			})->middleware('web');
 			\Route::get($base_slug . '/article/{id}', function () use ($page, $kernel, $base_slug) {
 				return \App::make('App\Extensions\Lithium\Controllers\LithiumController')->article(\Route::input('id'), $kernel, $page, $base_slug);

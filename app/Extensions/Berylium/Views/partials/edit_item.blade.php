@@ -1,162 +1,174 @@
-	@extends('layouts/only_empty_body_head')
+@extends('layouts/only_empty_body_head')
 
-	@section('head')
+@section('head')
 	<style>
 		#articleCategory-div .caret {
-		color: {{ $synthesiscmsMainColor }} !important;
-	}
+			color: {{ $synthesiscmsMainColor }}   !important;
+		}
 
 		#articleCategory-div .select-dropdown {
-		border-bottom-color: {{ $synthesiscmsMainColor }} !important;
-	}
+			border-bottom-color: {{ $synthesiscmsMainColor }}   !important;
+		}
 
 		#articleCategory-div .select-wrapper {
-		margin-top: 5px !important;
-	}
+			margin-top: 5px !important;
+		}
 
-	label{
-		text-align: left !important;
-	}
+		label {
+			text-align: left !important;
+		}
 	</style>
-	@endsection
+@endsection
 
-	@section('main')
-		<div class="col s12 z-depth-1 lighten-4 row card" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
-			<form id="form" class="col s12 row" method="post" action="">
-				{{ csrf_field() }}
-				<div class="card-content">
-					<div class="card-title col s12">
-						<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">settings</i>&nbsp;{{ trans('synthesiscms/admin.applet_settings', ['applet' => $kernel->getExtensionName()]) }}</h3>
-					</div>
-					<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
-					<div class="input-field col s6">
-						<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">title</i>
-						<input name="title" id="title" type="text" value="{{ $item->title }}">
-						<label for="title">{{ trans("Berylium::berylium.item_title") }}</label>
-					</div>
-					<div class="input-field col s6 applet-source-input" id="applet-link">
-						<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
-						<input name="link" id="link" type="text" @if($item->type == 1) value="{{ $item->data }}" @endif>
-						<label for="link">{{ trans("Berylium::berylium.item_link") }}</label>
-					</div>
-					<div class="input-field col s6 applet-source-input" id="applet-page" style="display: none;">
-						<a onclick="$('#berylium-modal-choose-page').modal('open');"
-						   class="waves-effect waves-light {{ $synthesiscmsMainColorClass }} btn-large">
-							<i class="material-icons white-text left">pages</i>
-							{{ trans("Berylium::berylium.item_page") }}
-						</a>
-						<input name="page" id="page" type="text" hidden="hidden" @if($item->type == 2) value="{{ $item->data }}" @endif>
-						<div id="berylium-modal-choose-page" class="modal modal-fixed-footer">
-							<div class="modal-content">
-								<h4>{{ trans("Berylium::berylium.item_page") }}</h4>
-								<p>{{ trans("Berylium::berylium.item_page_choose_help") }}</p>
-								<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
-								<style>
-									.selected-berylium {
-										text-color: white;
-										background-color: red;
-									}
-									.selectable-berylium {
-										cursor: pointer;
-									}
-								</style>
-								<script>
-                                    var berylium_selected_page_buffer;
-                                    function beryliumSelectPage(id, ref){
-                                        berylium_selected_page_buffer = id;
-                                        $('.selected-berylium').removeClass('selected-berylium');
-                                        $(ref).addClass('selected-berylium');
-                                    }
-								</script>
-								@php
-									$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
-									$routes_data = Array();
-									while(list(,$extension) = each($extensions)) {
-										$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
-										$kernel = new $kpath;
-										foreach($kernel->getRoutesAndSubroutes() as $routes_packed){
-											if(!empty($routes_packed)){
-												foreach($routes_packed as $routes_unpacked){
-													if(!empty($routes_unpacked)){
-														array_push($routes_data, $routes_unpacked);
-													}
+@section('main')
+	<div class="col s12 z-depth-1 lighten-4 row card"
+		 style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+		<form id="form" class="col s12 row" method="post" action="">
+			{{ csrf_field() }}
+			<div class="card-content">
+				<div class="card-title col s12">
+					<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i
+								class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">settings</i>&nbsp;{{ trans('synthesiscms/admin.applet_settings', ['applet' => $kernel->getExtensionName()]) }}
+					</h3>
+				</div>
+				<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">title</i>
+					<input name="title" id="title" type="text" value="{{ $item->title }}">
+					<label for="title">{{ trans("Berylium::berylium.item_title") }}</label>
+				</div>
+				<div class="input-field col s6 applet-source-input" id="applet-link">
+					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">link</i>
+					<input name="link" id="link" type="text" @if($item->type == 1) value="{{ $item->data }}" @endif>
+					<label for="link">{{ trans("Berylium::berylium.item_link") }}</label>
+				</div>
+				<div class="input-field col s6 applet-source-input" id="applet-page" style="display: none;">
+					<a onclick="$('#berylium-modal-choose-page').modal('open');"
+					   class="waves-effect waves-light {{ $synthesiscmsMainColorClass }} btn-large">
+						<i class="material-icons white-text left">pages</i>
+						{{ trans("Berylium::berylium.item_page") }}
+					</a>
+					<input name="page" id="page" type="text" hidden="hidden"
+						   @if($item->type == 2) value="{{ $item->data }}" @endif>
+					<div id="berylium-modal-choose-page" class="modal modal-fixed-footer">
+						<div class="modal-content">
+							<h4>{{ trans("Berylium::berylium.item_page") }}</h4>
+							<p>{{ trans("Berylium::berylium.item_page_choose_help") }}</p>
+							<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
+							<style>
+								.selected-berylium {
+									text-color: white;
+									background-color: red;
+								}
+
+								.selectable-berylium {
+									cursor: pointer;
+								}
+							</style>
+							<script>
+                                var berylium_selected_page_buffer;
+                                function beryliumSelectPage(id, ref) {
+                                    berylium_selected_page_buffer = id;
+                                    $('.selected-berylium').removeClass('selected-berylium');
+                                    $(ref).addClass('selected-berylium');
+                                }
+							</script>
+							@php
+								$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+								$routes_data = Array();
+								while(list(,$extension) = each($extensions)) {
+									$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
+									$kernel = new $kpath;
+									foreach($kernel->getRoutesAndSubroutes() as $routes_packed){
+										if(!empty($routes_packed)){
+											foreach($routes_packed as $routes_unpacked){
+												if(!empty($routes_unpacked)){
+													array_push($routes_data, $routes_unpacked);
 												}
 											}
 										}
 									}
-								@endphp
-								@foreach($routes_data as $route_pack)
-									@if(!empty($route_pack))
-										@php
-											list($title, $id, $extension) = $route_pack;
-										@endphp
-										<div class="col s6 l4 tooltipped @if($item->type == \App\Extensions\Berylium\BeryliumItemType::Page && $item->data == $id) selected-berylium @endif" data-position="top" data-delay="50" data-tooltip="{!! $extension !!}" onclick="beryliumSelectPage('{!! $id !!}', this)">
-											<div style="width: 100%;" class='card-panel hoverable white waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text selectable-berylium'>
-												{!! $title !!}
-											</div>
+								}
+							@endphp
+							@foreach($routes_data as $route_pack)
+								@if(!empty($route_pack))
+									@php
+										list($title, $id, $extension) = $route_pack;
+									@endphp
+									<div class="col s6 l4 tooltipped @if($item->type == \App\Extensions\Berylium\BeryliumItemType::Page && $item->data == $id) selected-berylium @endif"
+										 data-position="top" data-delay="50" data-tooltip="{!! $extension !!}"
+										 onclick="beryliumSelectPage('{!! $id !!}', this)">
+										<div style="width: 100%;"
+											 class='card-panel hoverable white waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text selectable-berylium'>
+											{!! $title !!}
 										</div>
-									@endif
-								@endforeach
-							</div>
-							<div class="modal-footer">
-								<a onclick="$('#page').attr('value', berylium_selected_page_buffer);" class="modal-action modal-close waves-effect waves-green btn-flat">{{ trans("Berylium::berylium.page_modal_button_choose") }}</a>
-								<a class="modal-action modal-close waves-effect waves-red btn-flat">{{ trans("Berylium::berylium.page_modal_button_cancel") }}</a>
-							</div>
+									</div>
+								@endif
+							@endforeach
 						</div>
-						<script>
-                            $(document).ready(function(){
-                                $('.modal').modal({dismissible: false});
-                            });
-						</script>
+						<div class="modal-footer">
+							<a onclick="$('#page').attr('value', berylium_selected_page_buffer);"
+							   class="modal-action modal-close waves-effect waves-green btn-flat">{{ trans("Berylium::berylium.page_modal_button_choose") }}</a>
+							<a class="modal-action modal-close waves-effect waves-red btn-flat">{{ trans("Berylium::berylium.page_modal_button_cancel") }}</a>
+						</div>
 					</div>
-					<div class="input-field col s6 applet-source-input" id="applet-placeholder" style="display: none;"></div>
-					<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="articleCategory-div">
-						<select id="category" name="category">
-							@php
+					<script>
+                        $(document).ready(function () {
+                            $('.modal').modal({dismissible: false});
+                        });
+					</script>
+				</div>
+				<div class="input-field col s6 applet-source-input" id="applet-placeholder"
+					 style="display: none;"></div>
+				<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="articleCategory-div">
+					<select id="category" name="category">
+						@php
 							$categoryClass = new \ReflectionClass('App\\Extensions\\Berylium\\BeryliumItemCategory');
 							$categoryClassConstants = $categoryClass->getConstants();
-							@endphp
-							@foreach ($categoryClassConstants as $key => $cat)
-								<option @if($item->category == $cat) selected @endif value="{{ $cat }}">{{ trans("Berylium::berylium.category_" . $cat) }}</option>
-							@endforeach
-						</select>
-						<label>{{ trans("Berylium::berylium.item_category") }}</label>
-					</div>
-					<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="articleCategory-div">
-						<select id="type" name="type">
-							@php
+						@endphp
+						@foreach ($categoryClassConstants as $key => $cat)
+							<option @if($item->category == $cat) selected
+									@endif value="{{ $cat }}">{{ trans("Berylium::berylium.category_" . $cat) }}</option>
+						@endforeach
+					</select>
+					<label>{{ trans("Berylium::berylium.item_category") }}</label>
+				</div>
+				<div class="input-field col s12 {{ $synthesiscmsMainColor }}-text" id="articleCategory-div">
+					<select id="type" name="type">
+						@php
 							$typeClass = new \ReflectionClass('App\\Extensions\\Berylium\\BeryliumItemType');
 							$typeClassConstants = $typeClass->getConstants();
-							@endphp
-							@foreach ($typeClassConstants as $key => $type)
-								<option @if($item->type == $type) selected @endif value="{{ $type }}">{{ trans("Berylium::berylium.type_" . $type) }}</option>
-							@endforeach
-						</select>
-						<label>{{ trans("Berylium::berylium.item_type") }}</label>
-					</div>
+						@endphp
+						@foreach ($typeClassConstants as $key => $type)
+							<option @if($item->type == $type) selected
+									@endif value="{{ $type }}">{{ trans("Berylium::berylium.type_" . $type) }}</option>
+						@endforeach
+					</select>
+					<label>{{ trans("Berylium::berylium.item_type") }}</label>
 				</div>
-				<script>
-					$('#type').on('change', function() {
-						if(this.value == 1){
-							$('.applet-source-input').css("display", "none");
-							$('#applet-link').fadeIn();
-						}else if(this.value == 2){
-							$('.applet-source-input').css("display", "none");
-							$('#applet-page').fadeIn();
-						}else if(this.value == 3){
-							$('.applet-source-input').css("display", "none");
-							$('#applet-placeholder').fadeIn();
-						}
-					});
-                    $(document).ready(function(){
-                        $('#type').trigger('change');
-                    });
-				</script>
-				<a href="{{ url()->previous() }}"
-				   class="col s6 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.applet_return') }}</a>
-				<button type="submit"
-						class="col s6 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
-				<div class="row"></div>
-			</form>
-		</div>
-	@endsection
+			</div>
+			<script>
+                $('#type').on('change', function () {
+                    if (this.value == 1) {
+                        $('.applet-source-input').css("display", "none");
+                        $('#applet-link').fadeIn();
+                    } else if (this.value == 2) {
+                        $('.applet-source-input').css("display", "none");
+                        $('#applet-page').fadeIn();
+                    } else if (this.value == 3) {
+                        $('.applet-source-input').css("display", "none");
+                        $('#applet-placeholder').fadeIn();
+                    }
+                });
+                $(document).ready(function () {
+                    $('#type').trigger('change');
+                });
+			</script>
+			<a href="{{ url()->previous() }}"
+			   class="col s6 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.applet_return') }}</a>
+			<button type="submit"
+					class="col s6 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
+			<div class="row"></div>
+		</form>
+	</div>
+@endsection

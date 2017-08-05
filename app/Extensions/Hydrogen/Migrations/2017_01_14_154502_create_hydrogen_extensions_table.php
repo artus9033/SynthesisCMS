@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Schema;
 class CreateHydrogenExtensionsTable extends Migration
 {
 	/**
-	* Run the migrations.
-	*
-	* @return void
-	*/
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
 	public function up()
 	{
 		Schema::create('hydrogen_extensions', function (Blueprint $table) {
@@ -26,10 +26,10 @@ class CreateHydrogenExtensionsTable extends Migration
 	}
 
 	/**
-	* Reverse the migrations.
-	*
-	* @return void
-	*/
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
 	public function down()
 	{
 		Schema::dropIfExists('hydrogen_extensions');

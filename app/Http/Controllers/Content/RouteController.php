@@ -11,20 +11,20 @@ use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-	public function checkRoute(BackendRequest $request){
+	public function checkRoute(BackendRequest $request)
+	{
 		//TODO: Add possibility for each extension to check for the form if it's properly filled before saving (laravel error bag -> validator ?)
 		$routes = \Route::getRoutes();
 		$request2 = Request::create($request->get('route'));
-		if($request->has('source')){
-			if($request->get('source') == $request->get('route')){
+		if ($request->has('source')) {
+			if ($request->get('source') == $request->get('route')) {
 				return array('text' => trans('synthesiscms/helper.route_free'), 'color' => 'green', 'valid' => true);
 			}
 		}
 		try {
 			$routes->match($request2);
 			return array('text' => trans('synthesiscms/helper.route_occupied'), 'color' => 'red', 'valid' => false);
-		}
-		catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
+		} catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
 			return array('text' => trans('synthesiscms/helper.route_free'), 'color' => 'green', 'valid' => true);
 		}
 	}
@@ -34,7 +34,8 @@ class RouteController extends Controller
 		return view('admin.manage_routes');
 	}
 
-	public function editRouteGet($id){
+	public function editRouteGet($id)
+	{
 		$page = Page::find($id);
 		return view('admin.edit_route', ['page' => $page]);
 	}
@@ -47,35 +48,35 @@ class RouteController extends Controller
 		$errors = array();
 		$err = false;
 
-		if(strlen($slug) == 0 || strlen(trim($slug)) == 0){
+		if (strlen($slug) == 0 || strlen(trim($slug)) == 0) {
 			$err = true;
 			array_push($errors, trans("synthesiscms/admin.err_slug_cannot_be_empty"));
 		}
 
-		if(strlen($title) == 0 || strlen(trim($title)) == 0){
+		if (strlen($title) == 0 || strlen(trim($title)) == 0) {
 			$err = true;
 			array_push($errors, trans("synthesiscms/admin.err_title_cannot_be_empty"));
 		}
 
-		if(strlen($header) == 0 || strlen(trim($header)) == 0){
+		if (strlen($header) == 0 || strlen(trim($header)) == 0) {
 			$err = true;
 			array_push($errors, trans("synthesiscms/admin.err_header_cannot_be_empty"));
 		}
 
-		if(!$err){
+		if (!$err) {
 			Toolbox::chkRoute($slug);
 		}
 
-		if($err){
+		if ($err) {
 			return \Redirect::to(\Request::path())->with('errors', $errors);
-		}else{
+		} else {
 			$page = Page::find($id);
 			$page->slug = $slug;
 			$page->page_title = $title;
 			$page->page_header = $header;
 			$page->save();
 
-			$kpath = 'App\\Extensions\\'.$page->extension.'\\ExtensionKernel';
+			$kpath = 'App\\Extensions\\' . $page->extension . '\\ExtensionKernel';
 			$kernel = new $kpath;
 			$kernel->editPost($page->id, $request);
 
@@ -83,7 +84,8 @@ class RouteController extends Controller
 		}
 	}
 
-	public function deleteRoute($id){
+	public function deleteRoute($id)
+	{
 		$page = Page::find($id);
 		$route = $page->slug;
 		$page->delete();
@@ -106,20 +108,20 @@ class RouteController extends Controller
 		$errors = array();
 		$err = false;
 
-		if(strlen($route) == 0 || strlen(trim($route)) == 0){
+		if (strlen($route) == 0 || strlen(trim($route)) == 0) {
 			$err = true;
 			array_push($errors, trans("synthesiscms/admin.err_slug_cannot_be_empty"));
 		}
 
-		if($err){
+		if ($err) {
 			return \Redirect::route('manage_routes_edit', ['id' => $page->id])->with('errors', $errors);
-		}else{
+		} else {
 
 			Toolbox::chkRoute($route);
 
 			$page = Page::create(['slug' => $route, 'extension' => $extension, 'page_title' => 'SynthesisCMS Sample Title', 'page_header' => 'SynthesisCMS Sample Page Header: Lorem ipsum sit dolor amet...']);
 
-			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
+			$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
 			$kernel = new $kpath;
 			$kernel->create($page->id);
 

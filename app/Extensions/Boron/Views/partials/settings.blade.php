@@ -5,22 +5,23 @@
 		<label>
 			{{ trans('Boron::boron.disable') }}
 			<input type="checkbox" name="enabled" id="enabled" @if($model->enabled) checked @endif>
-				<span class="lever"></span>
-				{{ trans('Boron::boron.enable') }}
-			</label>
-		</div>
-		<div class="row">
-			<div class="input-field col s12">
-				<i class="material-icons prefix">link</i>
-				<input value="{!! $model->url !!}" id="url" name="url" type="text" class="validate">
-				<label for="url">{{ trans('Boron::boron.url') }}</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="input-field col s12">
-				<i class="material-icons prefix">vpn_key</i>
-				<input value="{!! $model->facebookAppId !!}" id="facebookAppId" name="facebookAppId" type="text" class="validate">
-				<label for="facebookAppId">{{ trans('Boron::boron.facebookAppId') }}</label>
-			</div>
+			<span class="lever"></span>
+			{{ trans('Boron::boron.enable') }}
+		</label>
+	</div>
+	<div class="row">
+		<div class="input-field col s12">
+			<i class="material-icons prefix">link</i>
+			<input value="{!! $model->url !!}" id="url" name="url" type="text" class="validate">
+			<label for="url">{{ trans('Boron::boron.url') }}</label>
 		</div>
 	</div>
+	<div class="row">
+		<div class="input-field col s12">
+			<i class="material-icons prefix">vpn_key</i>
+			<input value="{!! $model->facebookAppId !!}" id="facebookAppId" name="facebookAppId" type="text"
+				   class="validate">
+			<label for="facebookAppId">{{ trans('Boron::boron.facebookAppId') }}</label>
+		</div>
+	</div>
+</div>

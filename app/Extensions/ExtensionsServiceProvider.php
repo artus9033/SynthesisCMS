@@ -10,62 +10,62 @@ class ExtensionsServiceProvider extends ServiceProvider
 {
 
 	/**
-	* Will make sure that the required extensions have been fully loaded
-	* @return void
-	*/
+	 * Will make sure that the required extensions have been fully loaded
+	 * @return void
+	 */
 	public function boot()
 	{
-		if(\App::runningInConsole()){
+		if (\App::runningInConsole()) {
 			// For each of the registered extensions, include ONLY their migrations
 			// as the app is running in a command line
 			$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 
-			while (list(,$extension) = each($extensions)) {
+			while (list(, $extension) = each($extensions)) {
 				// Load extension database migrations
-				if(is_dir(__DIR__.'/'.$extension.'/Migrations')) {
-					$this->loadMigrationsFrom(__DIR__.'/'.$extension.'/Migrations');
+				if (is_dir(__DIR__ . '/' . $extension . '/Migrations')) {
+					$this->loadMigrationsFrom(__DIR__ . '/' . $extension . '/Migrations');
 				}
 
 				// Load the extension config file
-				if(file_exists(__DIR__.'/'.$extension.'/Lang/'.$extension.".php")) {
-					$this->publishes([__DIR__.'/'.$extension.'/Lang/'.$extension.".php" => config_path(strtolower($extension).".php")]);
+				if (file_exists(__DIR__ . '/' . $extension . '/Lang/' . $extension . ".php")) {
+					$this->publishes([__DIR__ . '/' . $extension . '/Lang/' . $extension . ".php" => config_path(strtolower($extension) . ".php")]);
 				}
 			}
-		}else{
+		} else {
 			$manager = new SynthesisPositionManager();
 
 			// For each of the registered extensions, include their routes and Views
 			$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 
-			while (list(,$extension) = each($extensions)) {
+			while (list(, $extension) = each($extensions)) {
 
 				// Load the routes for each of the extensions
-				if(file_exists(__DIR__.'/'.$extension.'/laravelRoutes.php')) {
-					include __DIR__.'/'.$extension.'/laravelRoutes.php';
+				if (file_exists(__DIR__ . '/' . $extension . '/laravelRoutes.php')) {
+					include __DIR__ . '/' . $extension . '/laravelRoutes.php';
 				}
 
 				// Load the views
-				if(is_dir(__DIR__.'/'.$extension.'/Views')) {
-					$this->loadViewsFrom(__DIR__.'/'.$extension.'/Views', $extension);
+				if (is_dir(__DIR__ . '/' . $extension . '/Views')) {
+					$this->loadViewsFrom(__DIR__ . '/' . $extension . '/Views', $extension);
 				}
 				// Load the translation files, then callable by trans("extension::path.to.file.and.value.from.extension.lang")
 				// where 'extension' is the name of extension starting with lower case!
-				if(is_dir(__DIR__.'/'.$extension.'/Lang')) {
-					$this->loadTranslationsFrom(__DIR__.'/'.$extension.'/Lang', $extension);
+				if (is_dir(__DIR__ . '/' . $extension . '/Lang')) {
+					$this->loadTranslationsFrom(__DIR__ . '/' . $extension . '/Lang', $extension);
 				}
 
 				// Load the extension config file
-				if(file_exists(__DIR__.'/'.$extension.'/Lang/'.$extension.".php")) {
-					$this->publishes([__DIR__.'/'.$extension.'/Lang/'.$extension.".php" => config_path(strtolower($extension).".php")]);
+				if (file_exists(__DIR__ . '/' . $extension . '/Lang/' . $extension . ".php")) {
+					$this->publishes([__DIR__ . '/' . $extension . '/Lang/' . $extension . ".php" => config_path(strtolower($extension) . ".php")]);
 				}
 
 				// Load extension database migrations
-				if(is_dir(__DIR__.'/'.$extension.'/Migrations')) {
-					$this->loadMigrationsFrom(__DIR__.'/'.$extension.'/Migrations');
+				if (is_dir(__DIR__ . '/' . $extension . '/Migrations')) {
+					$this->loadMigrationsFrom(__DIR__ . '/' . $extension . '/Migrations');
 				}
 
 				// Load defines & hooks of positions
-				$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
+				$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
 				$kernel = new $kpath;
 				$kernel->hookPositions($manager);
 				$kernel->registerMiddleware();
@@ -74,13 +74,13 @@ class ExtensionsServiceProvider extends ServiceProvider
 			view()->share('synthesiscmsPositionManager', $manager);
 
 			foreach (Page::all() as $key => $page) {
-				if(is_null($page)){
+				if (is_null($page)) {
 					// no pages exist; do nothing
-				}else{
+				} else {
 					$ext_path = app_path() . "/Extensions/" . $page->extension . "/ExtensionKernel.php";
-					if(file_exists($ext_path)){
-						\App::make('\App\Extensions\\'.$page->extension.'\ExtensionKernel')->routes($page, $page->slug);
-					}else{
+					if (file_exists($ext_path)) {
+						\App::make('\App\Extensions\\' . $page->extension . '\ExtensionKernel')->routes($page, $page->slug);
+					} else {
 						echo \View::make('errors.cms')->with(['error' => trans("synthesiscms/errors.err_extension_not_found"), 'help' => trans("synthesiscms/errors.err_extension_not_found_help", ['path' => $ext_path])]);
 						exit;
 					}
@@ -89,5 +89,7 @@ class ExtensionsServiceProvider extends ServiceProvider
 		}
 	}
 
-	public function register() {}
+	public function register()
+	{
+	}
 }

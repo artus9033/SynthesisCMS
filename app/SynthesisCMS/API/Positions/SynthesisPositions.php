@@ -2,7 +2,8 @@
 
 namespace App\SynthesisCMS\API\Positions;
 
-abstract class SynthesisPositions {
+abstract class SynthesisPositions
+{
 	const OverMenu = 1;
 	const InsideMenu = 2;
 	const BelowMenu = 3;

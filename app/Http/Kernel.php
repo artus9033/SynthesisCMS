@@ -7,12 +7,12 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 class Kernel extends HttpKernel
 {
 	/**
-	* The application's global HTTP middleware stack.
-	*
-	* These middleware are run during every request to your application.
-	*
-	* @var array
-	*/
+	 * The application's global HTTP middleware stack.
+	 *
+	 * These middleware are run during every request to your application.
+	 *
+	 * @var array
+	 */
 	protected $middleware = [
 		\Illuminate\Session\Middleware\StartSession::class,
 		\App\Http\Middleware\Locale::class,
@@ -20,10 +20,10 @@ class Kernel extends HttpKernel
 	];
 
 	/**
-	* The application's route middleware groups.
-	*
-	* @var array
-	*/
+	 * The application's route middleware groups.
+	 *
+	 * @var array
+	 */
 	protected $middlewareGroups = [
 		'web' => [
 			\App\Http\Middleware\EncryptCookies::class,
@@ -51,12 +51,12 @@ class Kernel extends HttpKernel
 	];
 
 	/**
-	* The application's route middleware.
-	*
-	* These middleware may be assigned to groups or used individually.
-	*
-	* @var array
-	*/
+	 * The application's route middleware.
+	 *
+	 * These middleware may be assigned to groups or used individually.
+	 *
+	 * @var array
+	 */
 	protected $routeMiddleware = [
 		'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
 		'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
@@ -64,6 +64,6 @@ class Kernel extends HttpKernel
 		'can' => \Illuminate\Auth\Middleware\Authorize::class,
 		'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
 		'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-		'adminRole'  => \App\Http\Middleware\Admin::class,
+		'adminRole' => \App\Http\Middleware\Admin::class,
 	];
 }

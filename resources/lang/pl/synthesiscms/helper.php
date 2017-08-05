@@ -11,10 +11,10 @@ return [
 	'space_article_categories' => ' kategorie',
 	'space_article' => ' artykuł',
 	'space_articles' => ' artykuły',
-    'guest_username' => 'Gość',
-    'guest_email' => 'Proszę się zalogować',
-    'route_occupied' => 'Ścieżka Zajęta',
-    'route_free' => 'Ścieżka Wolna',
+	'guest_username' => 'Gość',
+	'guest_email' => 'Proszę się zalogować',
+	'route_occupied' => 'Ścieżka Zajęta',
+	'route_free' => 'Ścieżka Wolna',
 ];
 
 ?>

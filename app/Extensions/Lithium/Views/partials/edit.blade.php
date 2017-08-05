@@ -17,7 +17,8 @@
 					$selected = "";
 				}
 			@endphp
-			<option {{ $selected }} value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text"><h5>{{ App\Toolbox::string_truncate($value->title, 40) }}&nbsp;(ID&nbsp;{{ $value->id }})</h5></option>
+			<option {{ $selected }} value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text">
+				<h5>{{ App\Toolbox::string_truncate($value->title, 40) }}&nbsp;(ID&nbsp;{{ $value->id }})</h5></option>
 		@endforeach
 	</select>
 	<label>{{ trans("Lithium::messages.choose_article") }}</label>

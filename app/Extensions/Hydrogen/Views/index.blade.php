@@ -6,7 +6,8 @@
 
 @section('mod_breadcrumbs')
 	@if($base_slug != url("/") || $base_slug != "/")
-		<a href="{{ url($base_slug) }}" class="breadcrumb">{{ \App\Toolbox::string_truncate($page->page_title, 25) }}</a>
+		<a href="{{ url($base_slug) }}"
+		   class="breadcrumb">{{ \App\Toolbox::string_truncate($page->page_title, 25) }}</a>
 	@endif
 @endsection
 
@@ -65,22 +66,22 @@
 			</div>
 		@endif
 		@php
-		$one_column_list = ($extension_instance->list_column_count == 1);
-		if($synthesiscmsClientIsAnyMobile){
-			$one_column_list = true;
-		}
-		if(!$one_column_list){
-			if($articles->count() == 1){
-				$one = $articles->toArray();
-				$two = array();
-			}else{
-				$one = array();
-				$two = array();
-				list($one, $two) = array_chunk($articles->toArray(), ceil(count($articles->toArray()) / 2));
+			$one_column_list = ($extension_instance->list_column_count == 1);
+			if($synthesiscmsClientIsAnyMobile){
+				$one_column_list = true;
 			}
-		}else{
-			$all = $articles->toArray();
-		}
+			if(!$one_column_list){
+				if($articles->count() == 1){
+					$one = $articles->toArray();
+					$two = array();
+				}else{
+					$one = array();
+					$two = array();
+					list($one, $two) = array_chunk($articles->toArray(), ceil(count($articles->toArray()) / 2));
+				}
+			}else{
+				$all = $articles->toArray();
+			}
 		@endphp
 		@if ($one_column_list)
 			<div class="container col s10 offset-s1 row">
@@ -96,12 +97,16 @@
 		@endif
 		@if($articlesCount > $articlesPerPage)
 			<ul class="pagination col s12 row center">
-				<li @if($currentPage == 1) class="disabled" @else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.first") }}" @endif>
+				<li @if($currentPage == 1) class="disabled"
+					@else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top"
+					data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.first") }}" @endif>
 					<a @if($currentPage != 1) href="{{ url($base_slug) }}/p/1" @endif>
 						<i class="material-icons">first_page</i>
 					</a>
 				</li>
-				<li @if($currentPage == 1) class="disabled" @else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.previous") }}" @endif>
+				<li @if($currentPage == 1) class="disabled"
+					@else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top"
+					data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.previous") }}" @endif>
 					<a @if($currentPage != 1) href="{{ url($base_slug) }}/p/{{ $currentPage - 1 }}" @endif>
 						<i class="material-icons">chevron_left</i>
 					</a>
@@ -142,7 +147,7 @@
 						<i class="material-icons">last_page</i>
 					</a>
 				</li>
-				</ul>
+			</ul>
 		@endif
 		@if ($articlesCount == 0)
 			@include('partials/error', ['error' => trans("Hydrogen::messages.err_no_articles")])

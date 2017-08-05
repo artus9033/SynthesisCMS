@@ -12,18 +12,20 @@ class BackendController extends Controller
 {
 	public function index()
 	{
-		if(Auth::check() && Auth::user()->is_admin){
+		if (Auth::check() && Auth::user()->is_admin) {
 			return view('admin.admin');
-		}else{
+		} else {
 			return view('auth.error');
 		}
 	}
 
-	public function settingsGet(){
+	public function settingsGet()
+	{
 		return view('admin.settings');
 	}
 
-	public function settingsPost(BackendRequest $request){
+	public function settingsPost(BackendRequest $request)
+	{
 		$settings = Settings::getActiveInstance();
 		$settings->home_page = $request->get('home_page');
 		$settings->header_title = $request->get('header_title');
@@ -42,26 +44,29 @@ class BackendController extends Controller
 		return \Redirect::route('settings')->with('messages', array(trans('synthesiscms/settings.msg_saved')));
 	}
 
-	public function manageAppletsGet(){
+	public function manageAppletsGet()
+	{
 		return view('admin.manage_applets');
 	}
 
-	public function appletSettingsGet($extension){
+	public function appletSettingsGet($extension)
+	{
 		return view('admin.applet_settings')->with(['extension' => $extension]);
 	}
 
-	public function appletSettingsPost($extension, BackendRequest $request){
+	public function appletSettingsPost($extension, BackendRequest $request)
+	{
 		$errors = array();
 		$err = false;
 
-		if(!$err){
+		if (!$err) {
 			Toolbox::chkRoute($slug);
 		}
 
-		if($err){
+		if ($err) {
 			return \Redirect::to(\Request::path())->with('errors', $extension);
-		}else{
-			$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
+		} else {
+			$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
 			$kernel = new $kpath;
 			$errors = Array();
 			$messages = Array();

@@ -9,11 +9,11 @@
 @section('head')
 	<style>
 		#articleCategory-div .caret {
-			color: {{ $synthesiscmsMainColor }}  !important;
+			color: {{ $synthesiscmsMainColor }}     !important;
 		}
 
 		#articleCategory-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}  !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }}     !important;
 		}
 
 		#articleCategory-div .select-wrapper {

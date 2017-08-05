@@ -12,18 +12,18 @@ class ProfileController extends Controller
 {
 	public function infoGet()
 	{
-		if(Auth::check()){
+		if (Auth::check()) {
 			return view('auth.profile');
-		}else{
+		} else {
 			return view('auth.error');
 		}
 	}
 
 	public function editGet()
 	{
-		if(Auth::check()){
+		if (Auth::check()) {
 			return view('auth.profile_password');
-		}else{
+		} else {
 			return view('auth.error');
 		}
 	}
@@ -37,32 +37,33 @@ class ProfileController extends Controller
 		$errors = array();
 		$err = false;
 
-		if($passwd != $passwd2){
+		if ($passwd != $passwd2) {
 			$err = true;
 			array_push($errors, trans('synthesiscms/auth.err_passwords_differ'));
 		}
 
-		if(!($passwd != "" && strlen($passwd) >= 6)){
+		if (!($passwd != "" && strlen($passwd) >= 6)) {
 			$err = true;
 			array_push($errors, trans('synthesiscms/auth.err_password_too_short'));
 		}
 
-		if(\Hash::check($passwd_old, Auth::user()->getAuthPassword())){
+		if (\Hash::check($passwd_old, Auth::user()->getAuthPassword())) {
 			Auth::user()->password = \Hash::make($passwd);
-		}else{
+		} else {
 			$err = true;
 			array_push($errors, trans('synthesiscms/auth.err_password_original_bad'));
 		}
 
-		if($err){
+		if ($err) {
 			return \Redirect::route('profile')->with('errors', $errors);
-		}else{
+		} else {
 			Auth::user()->save();
 			return \Redirect::route('profile')->with('messages', array(trans('synthesiscms/auth.msg_changed_passwd')));
 		}
 	}
 
-	public function delete($id){
+	public function delete($id)
+	{
 		$user = User::find($id);
 		$user->delete();
 		return \Redirect::back()->with('messages', array(trans('synthesiscms/profile.msg_user_deleted')));
@@ -81,32 +82,33 @@ class ProfileController extends Controller
 		$errors = array();
 		$err = false;
 
-		if($passwd != $passwd2){
+		if ($passwd != $passwd2) {
 			$err = true;
 			array_push($errors, trans('synthesiscms/auth.err_passwords_differ'));
 		}
 
-		if(!($passwd != "" && strlen($passwd) >= 6)){
+		if (!($passwd != "" && strlen($passwd) >= 6)) {
 			$err = true;
 			array_push($errors, trans('synthesiscms/auth.err_password_too_short'));
 		}
 
-		if(\Hash::check($passwd_old, Auth::user()->getAuthPassword())){
+		if (\Hash::check($passwd_old, Auth::user()->getAuthPassword())) {
 			Auth::user()->password = \Hash::make($passwd);
-		}else{
+		} else {
 			$err = true;
 			array_push($errors, trans('synthesiscms/auth.err_password_original_bad'));
 		}
 
-		if($err){
+		if ($err) {
 			return \Redirect::route('profile')->with('errors', $errors);
-		}else{
+		} else {
 			Auth::user()->save();
 			return \Redirect::route('profile')->with('messages', array(trans('synthesiscms/auth.msg_changed_passwd')));
 		}
 	}
 
-	public function privilegesGet($id){
+	public function privilegesGet($id)
+	{
 		if ($id == Auth::user()->id) {
 			return view('errors.generic')->with(['error' => trans("synthesiscms/admin.err_cant_edit_self_privileges")]);
 		}
@@ -126,7 +128,7 @@ class ProfileController extends Controller
 		if (!\App\Models\Auth\User::where(['id' => $id])->exists()) {
 			return view('errors.generic')->with(['error' => trans("synthesiscms/admin.err_cant_edit_inexistent_user_privileges")]);
 		}
-		$is_admin_new = $request->input("is_admin") === 'true'? true : false;
+		$is_admin_new = $request->input("is_admin") === 'true' ? true : false;
 		$usr = User::find($id);
 		$usr->is_admin = $is_admin_new;
 		$usr->save();

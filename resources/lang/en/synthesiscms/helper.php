@@ -11,10 +11,10 @@ return [
 	'space_article_categories' => ' categories',
 	'space_article' => ' article',
 	'space_articles' => ' articles',
-    'guest_username' => 'Guest',
-    'guest_email' => 'Please Sign In',
-    'route_occupied' => 'Route Occupied',
-    'route_free' => 'Route Free',
+	'guest_username' => 'Guest',
+	'guest_email' => 'Please Sign In',
+	'route_occupied' => 'Route Occupied',
+	'route_free' => 'Route Free',
 ];
 
 ?>

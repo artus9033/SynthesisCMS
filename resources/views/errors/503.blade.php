@@ -7,7 +7,9 @@
 		<div class="col s12 row">
 			<div class="col s12">
 				<div class="container">
-					<h2 class="white-text"><i class="material-icons large prefix center-on-small-only" style="vertical-align: middle;">build</i>&nbsp;{{ trans('synthesiscms/errors.503_header') }}</h2>
+					<h2 class="white-text"><i class="material-icons large prefix center-on-small-only"
+											  style="vertical-align: middle;">build</i>&nbsp;{{ trans('synthesiscms/errors.503_header') }}
+					</h2>
 					<h4 class="light red-text text-lighten-4 center-on-small-only">{{ trans('synthesiscms/errors.503_desc') }}</h4>
 				</div>
 			</div>
@@ -17,8 +19,8 @@
 					<button onclick="location.reload()" class="btn-large waves-effect waves-light"><i
 								class="material-icons white-text left">refresh</i>&nbsp;{{ trans('synthesiscms/errors.refresh_btn') }}
 					</button>
-					</div>
 				</div>
 			</div>
 		</div>
-	@endsection
+	</div>
+@endsection

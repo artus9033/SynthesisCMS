@@ -10,34 +10,34 @@
 	<script type="text/javascript" src="{!! asset('js/materialize.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
 	<script type="text/javascript">
-	$.ajaxSetup({
-		headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		}
-	});
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 	</script>
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}" media="screen,projection"/>
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
 	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>
 	@yield('head')
 	<style>
-	body {
-		min-height: 100vh;
-	}
+		body {
+			min-height: 100vh;
+		}
 	</style>
 </head>
 <body>
-	@yield('body')
-	<div class="col s12">
-		@if(Session::has('messages'))
-			@each('partials/message', Session::get('messages'), 'message')
-		@endif
-		@each('partials/error', $errors, 'error')
-		@if(Session::has('toasts'))
-			@each('partials/toast', Session::get('toasts'), 'toast')
-		@endif
-		@yield('main')
-	</div>
+@yield('body')
+<div class="col s12">
+	@if(Session::has('messages'))
+		@each('partials/message', Session::get('messages'), 'message')
+	@endif
+	@each('partials/error', $errors, 'error')
+	@if(Session::has('toasts'))
+		@each('partials/toast', Session::get('toasts'), 'toast')
+	@endif
+	@yield('main')
+</div>
 </body>
 </html>

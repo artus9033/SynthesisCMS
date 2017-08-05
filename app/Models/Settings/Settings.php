@@ -15,7 +15,8 @@ class Settings extends Model
 		return self::getActiveInstance()->$field;
 	}
 
-	public static function getActiveInstance(){
+	public static function getActiveInstance()
+	{
 		return Settings::where('active', true)->first();
 	}
 

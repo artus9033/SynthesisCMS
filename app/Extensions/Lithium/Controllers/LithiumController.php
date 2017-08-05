@@ -14,7 +14,7 @@ class LithiumController extends Controller
 		$article = Article::where('id', $extension_instance->article)->first();
 		if ($article == null) {
 			return \View::make('errors.cms')->with(['error' => trans("Lithium::messages.err_article_not_found"), 'help' => trans("Lithium::messages.err_article_not_found_help")]);
-		}else{
+		} else {
 			return \View::make('Lithium::index')->with(['article' => $article, 'kernel' => $kernel, 'page' => $page, 'extension_instance' => $extension_instance, 'extensionCallback' => $this, 'base_slug' => $base_slug]);
 		}
 	}

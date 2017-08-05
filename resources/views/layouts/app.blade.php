@@ -15,11 +15,11 @@
 	<script type="text/javascript" src="{!! asset('js/clipboard.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
 	<script type="text/javascript">
-	$.ajaxSetup({
-		headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		}
-	});
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 	</script>
 	<link type="text/css" rel="stylesheet" href="{!! asset("fonts/material-icons/material-icons.css") !!}">
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}" media="screen,projection"/>
@@ -27,9 +27,9 @@
 	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>
 	@yield('head')
 	<style>
-	body {
-		min-height: 100vh;
-	}
+		body {
+			min-height: 100vh;
+		}
 	</style>
 </head>
 <header>
@@ -44,10 +44,13 @@
 			<div class="left synthesiscms-mobile-btn-wrapper">
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BeforeSiteName, Request::url()) !!}
 			</div>
-			<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down" style="position: relative; background-color: rgb(255, 255, 255); box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 2147483647 !important; height: 220%; width: 125px;">
-				<img style="width: 85%; height: auto; margin-top: 10%; margin-left: 2%;" src="{{ url('/favicon.ico') }}">
+			<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down"
+			   style="position: relative; background-color: rgb(255, 255, 255); box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 2147483647 !important; height: 220%; width: 125px;">
+				<img style="width: 85%; height: auto; margin-top: 10%; margin-left: 2%;"
+					 src="{{ url('/favicon.ico') }}">
 			</a>
-			<a href="{{ url('/') }}" style="margin-left: 25px; font-size: 2em !important;" class="hide-on-med-and-down brand-logo truncate col s7">{{ $synthesiscmsHeaderTitle }}</a>
+			<a href="{{ url('/') }}" style="margin-left: 25px; font-size: 2em !important;"
+			   class="hide-on-med-and-down brand-logo truncate col s7">{{ $synthesiscmsHeaderTitle }}</a>
 			<a id="synthesiscms-slogan-large-screens" href="{{ url('/') }}" style="width:100%;"
 			   class="hide-on-large-only brand-logo truncate synthesiscms-mobile-brand-logo">{{ $synthesiscmsHeaderTitle }}</a>
 			<script>
@@ -63,7 +66,7 @@
                 });
 			</script>
 			@php
-			$app_locale = strtoupper(\App::getLocale());
+				$app_locale = strtoupper(\App::getLocale());
 			@endphp
 			<ul class="hide-on-med-and-down right" id="synthesiscms-large-screens-menu-part-right">
 				<li class="input-field right hide-on-med-and-down">
@@ -82,22 +85,37 @@
 				@yield('menu')
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 				@if (Auth::guest())
-					<li class="right"><a class="center" href="{{ url('/register') }}"><i class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}</a></li>
-					<li class="right"><a class="center" href="{{ url('/login') }}"><i class="material-icons white-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}</a></li>
+					<li class="right"><a class="center" href="{{ url('/register') }}"><i
+									class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
+						</a></li>
+					<li class="right"><a class="center" href="{{ url('/login') }}"><i
+									class="material-icons white-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
+						</a></li>
 				@else
 					<ul id="user_dropdown" class="dropdown-content">
 						<li>
 							@if(Auth::user()->is_admin)
-								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/admin') }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}</a>
+								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/admin') }}"><i
+											class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
+								</a>
 							@endif
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/profile') }}"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}</a>
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons {{ $synthesiscmsMainColor }}-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}</a>
+							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/profile') }}"><i
+										class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
+							</a>
+							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/logout') }}"
+							   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+										class="material-icons {{ $synthesiscmsMainColor }}-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}
+							</a>
 							<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 								{{ csrf_field() }}
 							</form>
 						</li>
 					</ul>
-					<li class="right" style="min-width: 210px;"><a class="dropdown-button center" href="{{ url('/profile') }}" data-activates="user_dropdown"><i class="material-icons white-text left">account_circle</i>{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
+					<li class="right" style="min-width: 210px;"><a class="dropdown-button center"
+																   href="{{ url('/profile') }}"
+																   data-activates="user_dropdown"><i
+									class="material-icons white-text left">account_circle</i>{{ Auth::user()->name }}<i
+									class="material-icons right">arrow_drop_down</i></a></li>
 				@endif
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::InsideMenu, Request::url()) !!}
 			</ul>
@@ -108,7 +126,8 @@
 	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} lighten-1 col s12 z-depth-2">
 		<div class="nav-wrapper col s12">
 			<div class="col s12">
-				<a href="{{ url('/') }}" class="breadcrumb"><i class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>
+				<a href="{{ url('/') }}" class="breadcrumb"><i
+							class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>
 				@yield('breadcrumbs')
 			</div>
 		</div>

@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateNitrogenItemsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('nitrogen_items', function (Blueprint $table) {
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('nitrogen_items', function (Blueprint $table) {
 			$table->increments('id');
 			$table->longText('image');
 			$table->longText('title');
@@ -25,15 +25,15 @@ class CreateNitrogenItemsTable extends Migration
 			$table->longText('contentTextColor');
 			$table->integer('parentInstance');
 		});
-    }
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('nitrogen_items');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('nitrogen_items');
+	}
 }

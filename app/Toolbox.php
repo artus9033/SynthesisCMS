@@ -37,7 +37,8 @@ class Toolbox
 		return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
 	}
 
-	static function getBeforeContents($str, $startDelimiter, $endDelimiter) {
+	static function getBeforeContents($str, $startDelimiter, $endDelimiter)
+	{
 		$contents = array();
 		$startDelimiterLength = strlen($startDelimiter);
 		$endDelimiterLength = strlen($endDelimiter);
@@ -57,17 +58,19 @@ class Toolbox
 
 	static function str_replace_first($from, $to, $subject)
 	{
-		$from = '/'.preg_quote($from, '/').'/';
+		$from = '/' . preg_quote($from, '/') . '/';
 
 		return preg_replace($from, $to, $subject, 1);
 	}
 
-	static function isEmptyString($string){
+	static function isEmptyString($string)
+	{
 		return strlen(trim($string)) == 0;
 	}
 
-	static function string_between($string, $start, $end) {
-		$string = " ".$string;
+	static function string_between($string, $start, $end)
+	{
+		$string = " " . $string;
 		$ini = strpos($string, $start);
 		if ($ini == 0) return "";
 		$ini += strlen($start);
@@ -75,48 +78,52 @@ class Toolbox
 		return substr($string, $ini, $len);
 	}
 
-	static function chkRoute(&$route){
+	static function chkRoute(&$route)
+	{
 		$ret = false;
 		$route = str_replace("\\", "/", $route);
-		if(!starts_with($route, "/")){
+		if (!starts_with($route, "/")) {
 			$ret = true;
 			$route = "/" . $route;
 		}
-		if(!strlen($route) == 1){
-			if(ends_with($route, "/")){
+		if (!strlen($route) == 1) {
+			if (ends_with($route, "/")) {
 				$ret = true;
 				$route = substr($route, 0, -1);
 			}
 		}
-		if($ret){
+		if ($ret) {
 			Toolbox::chkRoute($route);
 		}
 	}
 
-	static function string_truncate($str, $length){
+	static function string_truncate($str, $length)
+	{
 		return mb_strimwidth($str, 0, $length, "...");
 	}
 
-	static function isEven($number){
-		if ($number % 2 == 0 ) {
+	static function isEven($number)
+	{
+		if ($number % 2 == 0) {
 			return true;
 		}
-		if($number % 2 == 1 ) {
+		if ($number % 2 == 1) {
 			return false;
 		}
 	}
 
-	static function getDoubleLocale($locale){
-		switch($locale){
+	static function getDoubleLocale($locale)
+	{
+		switch ($locale) {
 			case "pl":
-			return "pl_PL";
-			break;
+				return "pl_PL";
+				break;
 			case "en":
-			return "en_US";
-			break;
+				return "en_US";
+				break;
 			default:
-			return "en_US";
-			break;
+				return "en_US";
+				break;
 		}
 	}
 
@@ -134,41 +141,38 @@ class Toolbox
 			$_SERVER['HTTP_ACCEPT_LANGUAGE'],
 			$langParse);
 
-			$langs = $langParse[1]; // M1 - First part of language
-			$quals = $langParse[4]; // M4 - Quality Factor
+		$langs = $langParse[1]; // M1 - First part of language
+		$quals = $langParse[4]; // M4 - Quality Factor
 
-			$numLanguages = count($langs);
-			$langArr = array();
+		$numLanguages = count($langs);
+		$langArr = array();
 
-			for ($num = 0; $num < $numLanguages; $num++)
-			{
-				$newLang = strtoupper($langs[$num]);
-				$newQual = isset($quals[$num]) ?
+		for ($num = 0; $num < $numLanguages; $num++) {
+			$newLang = strtoupper($langs[$num]);
+			$newQual = isset($quals[$num]) ?
 				(empty($quals[$num]) ? 1.0 : floatval($quals[$num])) : 0.0;
 
-				// Choose whether to upgrade or set the quality factor for the
-				// primary language.
-				$langArr[$newLang] = (isset($langArr[$newLang])) ?
+			// Choose whether to upgrade or set the quality factor for the
+			// primary language.
+			$langArr[$newLang] = (isset($langArr[$newLang])) ?
 				max($langArr[$newLang], $newQual) : $newQual;
-			}
+		}
 
-			// sort list based on value
-			// langArr will now be an array like: array('EN' => 1, 'ES' => 0.5)
-			arsort($langArr, SORT_NUMERIC);
+		// sort list based on value
+		// langArr will now be an array like: array('EN' => 1, 'ES' => 0.5)
+		arsort($langArr, SORT_NUMERIC);
 
-			// The languages the client accepts in order of preference.
-			$acceptedLanguages = array_keys($langArr);
+		// The languages the client accepts in order of preference.
+		$acceptedLanguages = array_keys($langArr);
 
-			// Set the most preferred language that we have a translation for.
-			foreach ($acceptedLanguages as $preferredLanguage)
-			{
-				if (in_array($preferredLanguage, $websiteLanguages))
-				{
-					$_SESSION['lang'] = $preferredLanguage;
-					return strtolower($preferredLanguage);
-				}
+		// Set the most preferred language that we have a translation for.
+		foreach ($acceptedLanguages as $preferredLanguage) {
+			if (in_array($preferredLanguage, $websiteLanguages)) {
+				$_SESSION['lang'] = $preferredLanguage;
+				return strtolower($preferredLanguage);
 			}
 		}
 	}
+}
 
-	?>
+?>
