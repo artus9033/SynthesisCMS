@@ -107,14 +107,24 @@ class ProfileController extends Controller
 	}
 
 	public function privilegesGet($id){
+		if ($id == Auth::user()->id) {
+			return view('errors.generic')->with(['error' => trans("synthesiscms/admin.err_cant_edit_self_privileges")]);
+		}
+		if (!\App\Models\Auth\User::where(['id' => $id])->exists()) {
+			return view('errors.generic')->with(['error' => trans("synthesiscms/admin.err_cant_edit_inexistent_user_privileges")]);
+		}
 		$uname = User::select('name')->where('id', $id)->first()['name'];
 		$privs = User::select('is_admin')->where('id', $id)->first()['is_admin'] == true;
 		return view('admin.change_user_privileges', ['priv' => $privs, 'uid' => $id, 'uname' => $uname]);
 	}
 
-	public function changePrivilegesGet($id, BackendRequest $request){
+	public function changePrivilegesPost($id, BackendRequest $request)
+	{
 		if($id == Auth::user()->id){
 			return view('admin.change_user_privileges')->with('errors', trans("admin.err_cant_edit_self_privileges"));
+		}
+		if (!\App\Models\Auth\User::where(['id', $id])->exists()) {
+			return view('admin.change_user_privileges')->with('errors', trans("admin.err_cant_edit_inexistent_user_privileges"));
 		}
 		$is_admin_new = $request->input("is_admin") === 'true'? true : false;
 		$usr = User::find($id);
