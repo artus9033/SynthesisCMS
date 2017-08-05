@@ -15,7 +15,7 @@ class CreateFerrumExtensionsTable extends Migration
 	{
 		Schema::create('ferrum_extensions', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('article')->default(1);
+			$table->longText('formInJson');
 			$table->boolean('showHeader')->default(true);
 			$table->timestamps();
 		});

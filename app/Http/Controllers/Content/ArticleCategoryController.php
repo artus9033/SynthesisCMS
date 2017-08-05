@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Content;
 
-use App\Extensions\ExtensionsCallbacksBridge;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
 use App\Models\Content\Article;
 use App\Models\Content\ArticleCategory;
+use App\SynthesisCMS\API\ExtensionsCallbacksBridge;
 use App\Toolbox;
 
 class ArticleCategoryController extends Controller

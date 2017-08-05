@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Content;
 
-use App\Extensions\ExtensionsCallbacksBridge;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
 use App\Models\Content\Page;
+use App\SynthesisCMS\API\ExtensionsCallbacksBridge;
 use App\Toolbox;
 use Illuminate\Http\Request;
 

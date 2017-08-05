@@ -6,7 +6,7 @@
  * Time: 17:02
  */
 
-namespace App\Extensions;
+namespace App\SynthesisCMS\API;
 
 
 class ExtensionsCallbacksBridge

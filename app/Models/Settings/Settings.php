@@ -24,4 +24,14 @@ class Settings extends Model
 	{
 		return array_filter(explode(';', self::getActiveInstance()->synthesiscms_installed_extensions));
 	}
+
+	public static function installExtension($extensionName)
+	{
+
+	}
+
+	public static function unInstallExtension($extensionName)
+	{
+
+	}
 }
