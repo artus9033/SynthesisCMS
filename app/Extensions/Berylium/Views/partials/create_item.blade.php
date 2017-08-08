@@ -3,11 +3,11 @@
 @section('head')
 	<style>
 		#articleCategory-div .caret {
-			color: {{ $synthesiscmsMainColor }}   !important;
+			color: {{ $synthesiscmsMainColor }}          !important;
 		}
 
 		#articleCategory-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}   !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }}          !important;
 		}
 
 		#articleCategory-div .select-wrapper {
@@ -25,7 +25,7 @@
 		 style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 		<div class="card-content">
 			<div class="card-title col s12">
-				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i
+				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper center"><i
 							class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">settings</i>&nbsp;{{ trans('synthesiscms/admin.applet_settings', ['applet' => $kernel->getExtensionName()]) }}
 				</h3>
 			</div>

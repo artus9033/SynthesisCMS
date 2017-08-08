@@ -3,11 +3,11 @@
 @section('head')
 	<style>
 		.caret {
-			color: {{ $synthesiscmsMainColor }}    !important;
+			color: {{ $synthesiscmsMainColor }}        !important;
 		}
 
 		.select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}    !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }}        !important;
 		}
 
 		.select-wrapper {
@@ -30,10 +30,11 @@
 
 @section('main')
 	<div>
-		<div class="card-content">
+		<div class="card-content  no-padding">
 			<div class="card-title col s12">
-				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i
-							class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">security</i>&nbsp;{{ trans('synthesiscms/admin.change_name_privileges', ['name' => $uname]) }}</h5>
+				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper">
+					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">security</i>&nbsp;{{ trans('synthesiscms/admin.change_name_privileges', ['name' => $uname]) }}
+				</h3>
 			</div>
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 			<div class="col s12 row"></div>

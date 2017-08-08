@@ -1,4 +1,4 @@
-<div class="col s12 grey-text text-darken-2">{{ trans("Ferrum::messages.showHeader") }}</div>
+<div class="col s12 grey-text text-darken-2">{{ trans("Ferrum::messages.show_header") }}</div>
 <div class="switch col s12">
 	<label>
 		{!! trans("Ferrum::ferrum.switch_off") !!}
@@ -7,4 +7,10 @@
 		{!! trans("Ferrum::ferrum.switch_on") !!}
 	</label>
 </div>
-@include('Ferrum::partials/visual_form_editor', ['formInJson' => $extension_instance->formInJson])
+<div class="col s12 row"></div>
+<div class="col s12 grey-text text-darken-2">{{ trans("Ferrum::messages.edit_form") }}</div>
+@include('Ferrum::js/libArtusVisualFormEditor', ['mode' => 'editor'])
+<script>
+    var ferrumVisualFormEditor = new FerrumVisualFormEditor({!! json_encode($extension_instance->formInJson) !!});
+    ferrumVisualFormEditor.renderEditor();
+</script>

@@ -1,1 +1,0 @@
-@include('Ferrum::js/libArtusVisualFormEditor')

@@ -6,6 +6,10 @@ mix.options({processCssUrls: false});
 mix.sass('resources/assets/sass/app.scss', 'public/css/app.css');
 mix.sass('resources/assets/sass/login-register.scss', 'public/css/login-register.css');
 
+//Dragula JS + CSS
+mix.copy('node_modules/dragula/dist/dragula.js', 'public/js/dragula.js');
+mix.copy('node_modules/dragula/dist/dragula.css', 'public/css/dragula.css');
+
 //MaterializeCSS SASS + JS + Roboto font
 mix.sass('resources/assets/materializecss/sass/materialize.scss', 'public/css/materialize.css');
 //mix.js('resources/assets/materializecss/js/bin/materialize.js', 'public/js/materialize.js');

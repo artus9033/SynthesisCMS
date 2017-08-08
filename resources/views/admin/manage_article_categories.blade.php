@@ -128,10 +128,10 @@
 		</div>
 	</div>
 	<div>
-		<div class="card-content">
+		<div class="card-content no-padding">
 			<div class="card-title col s12">
-				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i
-							class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">group_work</i>&nbsp;{{ trans('synthesiscms/admin.manage_article_categories') }}
+				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper">
+					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">group_work</i>&nbsp;{{ trans('synthesiscms/admin.manage_article_categories') }}
 				</h3>
 			</div>
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>

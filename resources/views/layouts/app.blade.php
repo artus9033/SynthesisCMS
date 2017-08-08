@@ -14,6 +14,8 @@
 	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/clipboard.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('js/dragula.js') !!}"></script>
+	<link type="text/css" rel="stylesheet" href="{!! asset("css/dragula.css") !!}">
 	<script type="text/javascript">
         $.ajaxSetup({
             headers: {

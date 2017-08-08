@@ -19,8 +19,9 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function onPageDeleted($id)
 	{
-		$extension = FerrumExtension::where(['id' => $id])->first();
-		$extension->delete();
+		foreach (FerrumExtension::where(['id' => $id])->get() as $item) {
+			$item->delete();
+		}
 	}
 
 	public function getExtensionType()
@@ -56,14 +57,14 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function create($id)
 	{
-		FerrumExtension::create(['id' => $id]);
+		FerrumExtension::create(['id' => $id, 'formInJson' => '']);
 		return FerrumExtension::find($id);
 	}
 
 	public function editPost($id, $request)
 	{
 		$extension = FerrumExtension::where('id', $id)->first();
-		$extension->article = $request->get('ferrum-article');
+		$extension->formInJson = $request->get('formInJson');
 		$extension->showHeader = $request->get('showHeader') == "on";
 		$extension->save();
 	}

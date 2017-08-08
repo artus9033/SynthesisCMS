@@ -31,7 +31,7 @@
 
 @section('main')
 	<div>
-		<div class="card-content">
+		<div class="card-content no-padding">
 			<div class="card-title col s12">
 				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i
 							class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.create_article_category') }}

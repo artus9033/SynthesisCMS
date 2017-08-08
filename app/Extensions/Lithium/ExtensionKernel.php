@@ -19,8 +19,9 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function onPageDeleted($id)
 	{
-		$extension = LithiumExtension::where(['id' => $id])->first();
-		$extension->delete();
+		foreach (LithiumExtension::where(['id' => $id])->get() as $item) {
+			$item->delete();
+		}
 	}
 
 	public function getExtensionType()

@@ -1,8 +1,8 @@
 <div class="col s12 row">
 	<div class="row"></div>
-	<p class="center text-center"
+	<p class="center text-center col s10"
 	   style="margin-bottom: 10px;">{{ trans('Berylium::berylium.applet_enable_header') }}</p>
-	<div class="switch center">
+	<div class="switch center col s10">
 		<label>
 			{{ trans('Berylium::berylium.disable') }}
 			<input type="checkbox" name="enabled" id="enabled" @if($model->enabled) checked @endif>
@@ -10,12 +10,11 @@
 			{{ trans('Berylium::berylium.enable') }}
 		</label>
 	</div>
-	<div class="row"></div>
 	<a href="{{ url()->current() }}/create"
-	   class="waves-effect waves-light btn-large btn-floating {{ $synthesiscmsMainColor }} white-text {{ $synthesiscmsMainColorClass }}"
-	   style="position: absolute; top: 40px; right: 40px;">
+	   class="waves-effect waves-light btn-large btn-floating {{ $synthesiscmsMainColor }} white-text {{ $synthesiscmsMainColorClass }}">
 		<i class="material-icons">add</i>
 	</a>
+	<div class="row"></div>
 	@php
 		$ct = 0;
 	@endphp

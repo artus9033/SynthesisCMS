@@ -2,12 +2,11 @@
 
 //TODO: add a generic favicon.ico to /public and add it to git
 
-//redirect backend to admin
-Route::get('/backend', function () {
-	return redirect('/admin');
+//redirect /backend to /admin
+Route::get('/backend/{anything}', function ($anything) {
+	return redirect('/admin/' . $anything);
 });
 
-Auth::routes();
 Route::auth();
 
 Route::get('/lang/{language}', ['as' => 'lang', 'uses' => 'Content\\PageController@lang']);

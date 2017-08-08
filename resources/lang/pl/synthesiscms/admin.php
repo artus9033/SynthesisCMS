@@ -68,6 +68,8 @@ return [
 	'create_route_slug_tooltip' => 'Ścieżka może być subdomeną (e.g. \'mypage\this\is\a\wildcard\')',
 	'create_route_slug_label' => 'Ścieżka Strony',
 	'create_route' => 'Utwórz Ścieżkę',
+	'msg_create_route_wait_for_end_of_check' => 'Proszę poczekać aż dostępność tej ścieżki zostanie sprawdzona!',
+	'msg_choose_another_route_because_selected_is_occupied' => 'Proszę wybrać inny adres ścieżki, ponieważ podany jest już zajęty!',
 	'stats' => 'Statystyki Odwiedzających',
 	'manage_users' => 'Użytkownicy i Uprawnienia',
 	'manage_applets' => 'Zarządzaj Appletami',
@@ -134,7 +136,7 @@ return [
 	'msg_applet_settings_saved' => 'Ustawienia appletu :applet zostały zapisane',
 	'msg_no_applets' => 'Brak appletów...',
 	'applets' => 'Applety',
-	'applet_settings' => 'Ustawienia :applet',
+	'applet_settings' => ':applet - Ustawienia',
 	'applet_return' => 'Powrót',
 ];
 

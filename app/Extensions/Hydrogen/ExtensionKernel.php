@@ -19,8 +19,9 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function onPageDeleted($id)
 	{
-		$extension = HydrogenExtension::where(['id' => $id]);
-		$extension->delete();
+		foreach (HydrogenExtension::where(['id' => $id])->get() as $item) {
+			$item->delete();
+		}
 	}
 
 	public function getExtensionType()

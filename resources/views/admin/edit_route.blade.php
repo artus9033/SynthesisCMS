@@ -52,7 +52,7 @@
 		</div>
 	</div>
 	<div>
-		<div class="card-content">
+		<div class="card-content no-padding">
 			<div class="card-title col s12 row valign-wrapper">
 				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s8"><i
 							class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">create</i>&nbsp;{{ trans('synthesiscms/admin.edit_route', ['route' => $page->slug]) }}
@@ -132,9 +132,11 @@
                                     '_token': $('input[name=_token]').val()
                                 },
                                 success: function (data) {
+                                    ajaxRequests.shift();
                                     process(data);
                                 },
                                 error: function (data) {
+                                    ajaxRequests.shift();
                                     if (data['statusText'] == 'Method Not Allowed') {
                                         //Method Not Allowed (error 405) means that the route
                                         //is occupied, but not on the GET method, so we treat
@@ -153,7 +155,12 @@
                             ajaxRequests.push(ajaxReq);
                         });
                         $("form").submit(function (e) {
+                            if (ajaxRequests.length > 0) {
+                                Materialize.toast({!! json_encode(trans('synthesiscms/admin.msg_create_route_wait_for_end_of_check')) !!}, 3500);
+                                e.preventDefault();
+                            }
                             if (!formValid) {
+                                Materialize.toast({!! json_encode(trans('synthesiscms/admin.msg_choose_another_route_because_selected_is_occupied')) !!}, 3500);
                                 e.preventDefault();
                             }
                         });

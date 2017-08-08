@@ -2,6 +2,8 @@
     "/css/app.css": "/css/app.css",
     "/css/login-register.css": "/css/login-register.css",
     "/css/materialize.css": "/css/materialize.css",
+    "/js/dragula.js": "/js/dragula.js",
+    "/css/dragula.css": "/css/dragula.css",
     "/js/Chart.js": "/js/Chart.js",
     "/js/clipboard.min.js": "/js/clipboard.min.js",
     "/trumbowyg/ui/icons.svg": "/trumbowyg/ui/icons.svg"

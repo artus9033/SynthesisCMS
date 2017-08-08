@@ -68,6 +68,8 @@ return [
 	'create_route_slug_tooltip' => 'A route can be a wildcard (e.g. \'mypage\this\is\a\wildcard\')',
 	'create_route_slug_label' => 'Page Route',
 	'create_route' => 'Create Route',
+	'msg_create_route_wait_for_end_of_check' => 'Please wait for until the availability of this route is checked!',
+	'msg_choose_another_route_because_selected_is_occupied' => 'Please choose another route, because this one is already occupied!',
 	'stats' => 'Visitors Statistics',
 	'manage_users' => 'Manage Users & Privileges',
 	'manage_applets' => 'Manage Applets',

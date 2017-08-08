@@ -14,6 +14,8 @@
 	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/clipboard.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('js/dragula.js') !!}"></script>
+	<link type="text/css" rel="stylesheet" href="{!! asset("css/dragula.css") !!}">
 	<script type="text/javascript">
         /**$.ajaxSetup({
 	//this collides with Trumbowyg's noEmbed & upload plugins
@@ -22,7 +24,7 @@
 		}
 	});**/
 	</script>
-	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="{!! asset("fonts/material-icons/material-icons.css") !!}">
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}" media="screen,projection"/>
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
 	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>

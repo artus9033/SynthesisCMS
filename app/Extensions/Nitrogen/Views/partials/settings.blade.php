@@ -1,7 +1,7 @@
 <a href="{{ url()->current() }}/create"
-   class="waves-effect waves-light btn-large btn-floating {{ $synthesiscmsMainColor }} white-text {{ $synthesiscmsMainColorClass }}"
-   style="position: absolute; top: 40px; right: 40px;">
-	<i class="material-icons">add</i>
+   class="waves-effect waves-light btn-large col s4 push-s4 {{ $synthesiscmsMainColor }} white-text {{ $synthesiscmsMainColorClass }}"
+   style="margin-top: 10px; margin-bottom: 10px;">
+	<i class="material-icons valign">add</i>
 </a>
 <table class="col s12 highlight centered">
 	<thead>

@@ -38,7 +38,7 @@
 		}
 	</style>
 	<div>
-		<div class="card-content @if($synthesiscmsClientIsAnyMobile) no-padding @endif">
+		<div class="card-content no-padding">
 			<div class="card-title col s12 row valign-wrapper">
 				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper col s12"><i
 							class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">settings</i>&nbsp;{{ trans('synthesiscms/admin.settings') }}

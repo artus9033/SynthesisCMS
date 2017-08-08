@@ -15,7 +15,7 @@
 @section('main')
 	<div class="container col s12 row">
 		<div>
-			<div class="card-content">
+			<div class="card-content no-padding">
 				<div class="card-title center">
 					<h2 class="card-panel {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text"><i
 								class="material-icons white-text medium left valign"

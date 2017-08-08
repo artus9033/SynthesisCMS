@@ -67,11 +67,11 @@
 			</div>
 			<style>
 				#page-div .caret {
-					color: {{ $synthesiscmsMainColor }}    !important;
+					color: {{ $synthesiscmsMainColor }}      !important;
 				}
 
 				#page-div .select-dropdown {
-					border-bottom-color: {{ $synthesiscmsMainColor }}    !important;
+					border-bottom-color: {{ $synthesiscmsMainColor }}      !important;
 				}
 
 				#page-div .select-wrapper {
@@ -174,6 +174,6 @@
 		<a href="{{ url()->previous() }}"
 		   class="col s6 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.applet_return') }}</a>
 		<button type="submit"
-				class="col s12 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
+				class="col s6 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
 	</form>
 @endsection

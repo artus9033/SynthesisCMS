@@ -84,11 +84,11 @@
 			</div>
 			<style>
 				#page-div .caret {
-					color: {{ $synthesiscmsMainColor }}    !important;
+					color: {{ $synthesiscmsMainColor }}       !important;
 				}
 
 				#page-div .select-dropdown {
-					border-bottom-color: {{ $synthesiscmsMainColor }}    !important;
+					border-bottom-color: {{ $synthesiscmsMainColor }}       !important;
 				}
 
 				#page-div .select-wrapper {
@@ -213,8 +213,7 @@
 			</script>
 			<div class="row"></div>
 			<a href="{{ url()->current() }}/create"
-			   class="waves-effect waves-light btn-large btn-floating {{ $synthesiscmsMainColor }} white-text {{ $synthesiscmsMainColorClass }}"
-			   style="position: absolute; right: 40px;">
+			   class="waves-effect waves-light btn-large col s4 push-s4 {{ $synthesiscmsMainColor }} white-text {{ $synthesiscmsMainColorClass }}">
 				<i class="material-icons">add</i>
 			</a>
 			<table class="col s12 highlight centered">
@@ -272,7 +271,7 @@
 			<a href="{{ url()->previous() }}"
 			   class="col s6 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.applet_return') }}</a>
 			<button onclick="$('form').submit()"
-					class="col s12 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
+					class="col s6 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.save_applet') }}</button>
 		</form>
 	</div>
 @endsection
