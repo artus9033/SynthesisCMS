@@ -9,11 +9,11 @@
 @section('head')
 	<style>
 		#articleCategory-div .caret {
-			color: {{ $synthesiscmsMainColor }}    !important;
+			color: {{ $synthesiscmsMainColor }}      !important;
 		}
 
 		#articleCategory-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}    !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }}      !important;
 		}
 
 		#articleCategory-div .select-wrapper {
@@ -123,36 +123,41 @@
                                 }
                             }
 
-                            ajaxReq = $.ajax({
-                                url: "{{ url('/synthesis-route-check') }}",
-                                type: "post",
-                                data: {
-                                    'source': {!! json_encode($page->slug) !!},
-                                    'route': $('input[id=slug]').val(),
-                                    '_token': $('input[name=_token]').val()
-                                },
-                                success: function (data) {
-                                    ajaxRequests.shift();
-                                    process(data);
-                                },
-                                error: function (data) {
-                                    ajaxRequests.shift();
-                                    if (data['statusText'] == 'Method Not Allowed') {
-                                        //Method Not Allowed (error 405) means that the route
-                                        //is occupied, but not on the GET method, so we treat
-                                        //it as free
-                                        arr = [];
-                                        arr['color'] = "green";
-                                        arr['valid'] = true;
-                                        arr['text'] = {!! json_encode(trans('synthesiscms/helper.route_free')) !!};
-                                        process(arr);
+                            function makeAjaxRouteCheck() {
+                                ajaxReq = $.ajax({
+                                    url: "{{ url('/synthesis-route-check') }}",
+                                    type: "post",
+                                    data: {
+                                        'route': $('input[id=route]').val(),
+                                        '_token': $('input[name=_token]').val()
+                                    },
+                                    success: function (data) {
+                                        ajaxRequests.shift();
+                                        process(data);
+                                    },
+                                    error: function (data) {
+                                        ajaxRequests.shift();
+                                        if (data['statusText'] == 'Method Not Allowed') {
+                                            //Method Not Allowed (error 405) means that the route
+                                            //is occupied, but not on the GET method, so we treat
+                                            //it as free
+                                            arr = [];
+                                            arr['color'] = "green";
+                                            arr['valid'] = true;
+                                            arr['text'] = {!! json_encode(trans('synthesiscms/helper.route_free')) !!};
+                                            process(arr);
+                                        }
+                                        var retryDelay = 2000;
+                                        if (data['statusText'] != 'abort' && data['statusText'] != 'Method Not Allowed') {
+                                            console.warn("SynthesisCMS route availability check error: `" + data + "`. Retrying in " + retryDelay + "ms.");
+                                        }
+                                        setTimeout(makeAjaxRouteCheck, retryDelay);
                                     }
-                                    if (data['statusText'] != 'abort' && data['statusText'] != 'Method Not Allowed') {
-                                        console.log(data);
-                                    }
-                                }
-                            });
-                            ajaxRequests.push(ajaxReq);
+                                });
+                                ajaxRequests.push(ajaxReq);
+                            }
+
+                            makeAjaxRouteCheck();
                         });
                         $("form").submit(function (e) {
                             if (ajaxRequests.length > 0) {

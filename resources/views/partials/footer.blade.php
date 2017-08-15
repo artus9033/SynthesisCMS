@@ -24,11 +24,18 @@
 	</div>
 	<div class="footer-copyright">
 		<div class="container">
-			<span class="grey-text text-lighten-4">Powered by <a style="text-decoration: underline;"
-																 class="grey-text text-lighten-4"
-																 href="https://github.com/artus9033/SynthesisCMS">SynthesisCMS</a>, the blazing simple, fast, extendable open-source CMS by <a
-						style="text-decoration: underline;" class="grey-text text-lighten-4"
-						href="https://github.com/artus9033">artus9033</a></span>
+			<span class="grey-text text-lighten-4">
+				{!! trans('synthesiscms/main.footer_powered_by') !!}
+				<a style="text-decoration: underline;" class="grey-text text-lighten-4"
+				   href="https://github.com/artus9033/SynthesisCMS">
+					SynthesisCMS
+				</a>
+				{!! trans('synthesiscms/main.footer_description') !!}
+				<a style="text-decoration: underline;" class="grey-text text-lighten-4"
+				   href="https://github.com/artus9033">
+					artus9033
+				</a>
+			</span>
 			<span class="right">
 				<a class="github-button" href="https://github.com/artus9033" data-size="large"
 				   aria-label="Follow @artus9033 on GitHub">Follow @artus9033</a>

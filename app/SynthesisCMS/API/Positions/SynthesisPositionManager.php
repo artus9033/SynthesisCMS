@@ -8,7 +8,7 @@ class SynthesisPositionManager
 	/**
 	 * Class constructor
 	 **/
-	function __construct()
+	public function __construct()
 	{
 		$class = new \ReflectionClass('App\\SynthesisCMS\\API\\Positions\\SynthesisPositions');
 		$staticMembers = $class->getStaticProperties();

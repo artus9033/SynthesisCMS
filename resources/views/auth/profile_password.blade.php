@@ -9,7 +9,7 @@
 @endsection
 
 @section('breadcrumbs')
-	<a href="{{ url('/profile') }}" class="breadcrumb">{{ trans('synthesiscms/main.profile')}}</a>
+	<a href="{{ route('profile') }}" class="breadcrumb">{{ trans('synthesiscms/main.profile')}}</a>
 	<a href="{{ url('/profile/password') }}"
 	   class="breadcrumb">{{ trans('synthesiscms/main.profile_change_password')}}</a>
 @endsection

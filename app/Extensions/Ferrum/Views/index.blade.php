@@ -51,30 +51,33 @@
 			<h5 class="col s12">{!! $page->page_header !!}</h5>
 		</div>
 	@endif
-	<div class="row">
-		<div class="col s10 offset-s1">
-			<div class="card z-depth-3">
-				@if ($article->hasImage)
-					<div class="card-image">
-						<img src="{{ $article->image }}">
-						<span class="card-title left card-panel white {{ $synthesiscmsMainColor }}-text z-depth-2"
-							  style="margin: 10px 10px 10px 10px; font-weight: 400;">{{ $article->title }}</span>
-						<a onclick="$('#options').modal('open');"
-						   class="btn-floating btn-large halfway-fab waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2"><i
-									class="material-icons">more_horiz</i></a>
-					</div>
-				@endif
-				<div class="card-content">
-					@if (!$article->hasImage)
-						<span class="card-title" style="font-weight: 400; display: inline;">{{ $article->title }}</span>
-						<a onclick="$('#options').modal('open');"
-						   class="btn-floating waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 right"><i
-									class="material-icons">more_horiz</i></a>
-						<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"
-							 style="margin-top: 10px; margin-bottom: 10px;"></div>
-					@endif
-					{!! $article->description !!}
-				</div>
-			</div>
-		</div>
+	@php
+		use App\Extensions\Ferrum\FerrumIdManager;
+
+		$ferrumIdManager = new FerrumIdManager();
+		$parsedJson = json_decode($formInJson);
+		$base_href = "";
+		if($base_slug != url("/") || $base_slug != "/"){
+			$base_href = url($base_slug);
+		}
+	@endphp
+	<form action="{{ $base_href . '/apply' }}" method="POST">
+		{{ csrf_field() }}
+		@foreach($parsedJson as $node)
+			@if($node->elementType == "ferrum-label-element")
+				@include('Ferrum::items/labelTitle', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemTitle' => $node->elementValuesArray[0]])
+			@endif
+			@if($node->elementType == "ferrum-label-with-description-element")
+				@include('Ferrum::items/labelWithDescription', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemTitle' => $node->elementValuesArray[0], 'itemDescription' => $node->elementValuesArray[1]])
+			@endif
+			@if($node->elementType == "ferrum-text-input-with-hint-element")
+				@include('Ferrum::items/textInput', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemFieldName' => $node->elementValuesArray[0], 'itemInputLabel' => $node->elementValuesArray[1]])
+			@endif
+			@if($node->elementType == "ferrum-number-input-with-hint-element")
+				@include('Ferrum::items/numberInput', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemFieldName' => $node->elementValuesArray[0], 'itemInputLabel' => $node->elementValuesArray[1]])
+			@endif
+		@endforeach
+		<input style="display: none;" val="{!! $ferrumIdManager->ferrumGetAllIdsAsJson() !!}"
+			   name="ferrum-all-form-ids-jsonified">
+	</form>
 @endsection

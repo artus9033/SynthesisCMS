@@ -403,7 +403,6 @@ class ExtensionKernel extends SynthesisExtension
 		$out = "";
 		$model = NitrogenExtension::find($nr);
 		if (!$model) {
-			//TODO: implement throwing cms-custom error with added error trace from here
 			return $out;
 		}
 		if ($model->hasButton) {
@@ -433,14 +432,16 @@ class ExtensionKernel extends SynthesisExtension
     			background-attachment: fixed;
     			background-position: center; \">
 			<h2 class='$item->titleTextColor-text' style='text-shadow:
-    -1px -1px 0 #FFFAF0,
-    1px -1px 0 #FFFAF0,
-    -1px 1px 0 #FFFAF0,
-    1px 1px 0 #FFFAF0,
-    -1px 0 0 #FFFAF0,
-    1px 0 0 #FFFAF0,
-    0 1px 0 #FFFAF0,
-    0 -1px 0 #FFFAF0;'>$item->title</h2>
+				-1px -1px 0 #FFFAF0,
+				1px -1px 0 #FFFAF0,
+				-1px 1px 0 #FFFAF0,
+				1px 1px 0 #FFFAF0,
+				-1px 0 0 #FFFAF0,
+				1px 0 0 #FFFAF0,
+				0 1px 0 #FFFAF0,
+				0 -1px 0 #FFFAF0;'>
+				$item->title
+			</h2>
 			<p class='$item->contentTextColor-text'>$item->content</p>
 			</div>";
 		}

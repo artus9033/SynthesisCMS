@@ -42,11 +42,27 @@
 			<div class="background">
 				<img src="{!! asset('img/office.jpg') !!}">
 			</div>
-			<a href="{{ url('/profile') }}"><img class="circle" src="{!! asset('img/cms-icon.png') !!}"></a>
-			<a href="{{ url('/profile') }}"><span
-						class="white-text name truncate">@if(Auth::guest()) {{ trans('synthesiscms/helper.guest_username') }} @else {{ Auth::user()->name }} @endif</span></a>
-			<a href="{{ url('/profile') }}"><span
-						class="white-text email truncate">@if(Auth::guest()) {{ trans('synthesiscms/helper.guest_email') }} @else {{ Auth::user()->email }} @endif</span></a>
+			<a href="{{ route('profile') }}">
+				<img class="circle" src="{!! asset('img/cms-icon.png') !!}">
+			</a>
+			<a href="{{ route('profile') }}">
+				<span class="white-text name truncate">
+					@if(Auth::guest())
+						{{ trans('synthesiscms/helper.guest_username') }}
+					@else
+						{{ Auth::user()->name }}
+					@endif
+				</span>
+			</a>
+			<a href="{{ route('profile') }}">
+				<span class="white-text email truncate">
+					@if(Auth::guest())
+						{{ trans('synthesiscms/helper.guest_email') }}
+					@else
+						{{ Auth::user()->email }}
+					@endif
+				</span>
+			</a>
 		</div>
 	</li>
 	@if (Auth::guest())
@@ -76,7 +92,7 @@
 												class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
 									</a>
 								@endif
-								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/profile') }}"><i
+								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}"><i
 											class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
 								</a>
 								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/logout') }}"

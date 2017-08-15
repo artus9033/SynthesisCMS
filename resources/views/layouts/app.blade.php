@@ -101,7 +101,7 @@
 											class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
 								</a>
 							@endif
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/profile') }}"><i
+							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}"><i
 										class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
 							</a>
 							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/logout') }}"
@@ -114,7 +114,7 @@
 						</li>
 					</ul>
 					<li class="right" style="min-width: 210px;"><a class="dropdown-button center"
-																   href="{{ url('/profile') }}"
+																   href="{{ route('profile') }}"
 																   data-activates="user_dropdown"><i
 									class="material-icons white-text left">account_circle</i>{{ Auth::user()->name }}<i
 									class="material-icons right">arrow_drop_down</i></a></li>

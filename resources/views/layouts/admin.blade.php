@@ -150,7 +150,7 @@
 									<ul>
 										<li id="profile"><a
 													class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-													href="{{ url('/profile') }}">{{ trans('synthesiscms/profile.profile') }}</a>
+													href="{{ route('profile') }}">{{ trans('synthesiscms/profile.profile') }}</a>
 										</li>
 										<li id="manage_users"><a
 													class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
@@ -240,7 +240,7 @@
 											class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
 								</a>
 							@endif
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/profile') }}"><i
+							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}"><i
 										class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
 							</a>
 							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/logout') }}"
@@ -253,7 +253,7 @@
 						</li>
 					</ul>
 					<li class="right" style="min-width: 210px;"><a class="dropdown-button center"
-																   href="{{ url('/profile') }}"
+																   href="{{ route('profile') }}"
 																   data-activates="user_dropdown"><i
 									class="material-icons white-text left">account_circle</i>{{ Auth::user()->name }}<i
 									class="material-icons right">arrow_drop_down</i></a></li>
@@ -279,7 +279,7 @@
 			@each('partials/toast', Session::get('toasts'), 'toast')
 		@endif
 		@if(!$synthesiscmsClientIsAnyMobile)
-			<div class="col s12 m12 l12 z-depth-1 grey lighten-4 row card z-depth-5"
+			<div class="col s12 m12 l12 z-depth-1 grey lighten-4 row card z-depth-5 no-padding"
 				 style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 				<div class="card-content">
 					@else

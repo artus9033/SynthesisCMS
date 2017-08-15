@@ -9,8 +9,4 @@
 </div>
 <div class="col s12 row"></div>
 <div class="col s12 grey-text text-darken-2">{{ trans("Ferrum::messages.edit_form") }}</div>
-@include('Ferrum::js/libArtusVisualFormEditor', ['mode' => 'editor'])
-<script>
-    var ferrumVisualFormEditor = new FerrumVisualFormEditor({!! json_encode($extension_instance->formInJson) !!});
-    ferrumVisualFormEditor.renderEditor();
-</script>
+@include('Ferrum::lib/libArtusVisualFormEditor', ['mode' => 'editor', 'formInJson' => $extension_instance->formInJson])

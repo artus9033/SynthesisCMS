@@ -64,7 +64,7 @@ class ExtensionKernel extends SynthesisExtension
 	public function editPost($id, $request)
 	{
 		$extension = FerrumExtension::where('id', $id)->first();
-		$extension->formInJson = $request->get('formInJson');
+		$extension->formInJson = $request->get('ferrumJsonifiedFormFromEditor');
 		$extension->showHeader = $request->get('showHeader') == "on";
 		$extension->save();
 	}
@@ -76,8 +76,8 @@ class ExtensionKernel extends SynthesisExtension
 			\Route::get($base_slug, function () use ($page, $kernel, $base_slug) {
 				return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->index($page, $kernel, $base_slug);
 			})->middleware('web');
-			\Route::get($base_slug . '/article/{id}', function () use ($page, $kernel, $base_slug) {
-				return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->article(\Route::input('id'), $kernel, $page, $base_slug);
+			\Route::post($base_slug . '/apply/', function () use ($page, $kernel, $base_slug) {
+				return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->apply($page, $kernel, $base_slug);
 			})->middleware('web');
 		});
 	}

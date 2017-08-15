@@ -9,11 +9,11 @@
 @section('head')
 	<style>
 		#articleCategory-div .caret {
-			color: {{ $synthesiscmsMainColor }}     !important;
+			color: {{ $synthesiscmsMainColor }}       !important;
 		}
 
 		#articleCategory-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}     !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }}       !important;
 		}
 
 		#articleCategory-div .select-wrapper {
@@ -114,8 +114,8 @@
 	<div>
 		<div class="card-content no-padding">
 			<div class="card-title col s12">
-				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i
-							class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">donut_large</i>&nbsp;{{ trans('synthesiscms/admin.manage_articles') }}
+				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper">
+					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">donut_large</i>&nbsp;{{ trans('synthesiscms/admin.manage_articles') }}
 				</h3>
 			</div>
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>

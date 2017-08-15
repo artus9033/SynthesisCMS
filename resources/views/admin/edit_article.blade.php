@@ -176,7 +176,7 @@
 						class="material-icons {{ $synthesiscmsMainColor }}-text left">save</i>{{ trans('synthesiscms/admin.save_article') }}
 			</a>
 			<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text"
-			   href="{{ route('manage_articels') }}"><i
+			   href="{{ route('manage_articles') }}"><i
 						class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_article') }}
 			</a>
 			<button class="btn-flat waves-effect waves-red {{ $synthesiscmsMainColor }}-text"
