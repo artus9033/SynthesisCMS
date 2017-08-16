@@ -13,7 +13,7 @@ return [
 	|
 	*/
 
-	'failed' => 'Podane dane nie pokrywają się z naszą bazą danych.',
+	'failed' => 'Podane hasło lub e-mail są błędne.',
 	'throttle' => 'Zbyt dużo nieudanych prób logowania. Spróbuj ponownie za :seconds sekund.',
 
 ];

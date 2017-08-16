@@ -15,13 +15,13 @@ class Admin
 	 */
 	public function handle($request, Closure $next, $guard = null)
 	{
-		if (\Auth::guard($guard)->guest()) {
+		if (\Auth::guest()) {
 			if ($request->ajax()) {
 				return response("Unathorized", 401);
 			} else {
 				return response(view('auth.error'));
 			}
-		} else if (!\Auth::guard($guard)->user()->is_admin) {
+		} else if (!\Auth::user()->is_admin) {
 			return \App::abort(401);
 		}
 

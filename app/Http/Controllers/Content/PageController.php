@@ -8,9 +8,9 @@ class PageController extends Controller
 {
 	public function lang($language)
 	{
-		$language2 = strtolower($language);
-		\Session::put('locale', $language2);
-		\App::setLocale($language2);
-		return \Redirect::back()->with('messages', array(trans("synthesiscms/main.msg_language_changed") . $language2));
+		$languageLowerCase = strtolower($language);
+		\Session::put('locale', $languageLowerCase);
+		\App::setLocale($languageLowerCase);
+		return \Redirect::back()->with('messages', array(trans("synthesiscms/main.msg_language_changed") . $languageLowerCase));
 	}
 }

@@ -7,8 +7,8 @@
 @section('side-nav-active', 'manage_article_categories')
 
 @section('breadcrumbs')
-	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="{{ url('/admin/manage_article_categories') }}"
+	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ route('manage_article_categories') }}"
 	   class="breadcrumb">{{ trans('synthesiscms/admin.manage_article_categories') }}</a>
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.edit_article_category') }}</a>
 @endsection

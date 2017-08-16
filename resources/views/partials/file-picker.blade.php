@@ -36,7 +36,7 @@
                 var formData = new FormData();
                 formData.append('file', $("#{{ $picker_modal_id }}_fileinput")[0].files[0]);
                 $.ajax({
-                    url: {!! json_encode(url('/admin/upload')) !!},
+                    url: {!! json_encode(route('admin_upload_post')) !!},
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -95,7 +95,7 @@
         $('#{{ $picker_modal_id }}_loading').css('display', 'block');
         $.ajax(
             {
-                url: {!! json_encode(url('/admin/uploads_list')) !!},
+                url: {!! json_encode(route('admin_uploads_list')) !!},
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },

@@ -15,11 +15,11 @@
 		<div class="card-content">
 			<div class="card-title col s12 no-padding">
 				<h5 class="{{ $synthesiscmsMainColor }}-text valign-wrapper ferrum-inline-editable">
-					{!! $itemTitle !!}
+					{{ $itemTitle }}
 				</h5>
 			</div>
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 row"></div>
-			<p class="ferrum-inline-editable">{!! $itemDescription !!}</p>
+			<p class="ferrum-inline-editable">{{ $itemDescription }}</p>
 		</div>
 	</div>
 @else
@@ -27,11 +27,11 @@
 		<div class="card-content">
 			<div class="card-title col s12 no-padding">
 				<h5 class="{{ $synthesiscmsMainColor }}-text valign-wrapper">
-					{!! $itemTitle !!}
+					{{ $itemTitle }}
 				</h5>
 			</div>
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 row"></div>
-			<p>{!! $itemDescription !!}</p>
+			<p>{{ $itemDescription }}</p>
 		</div>
 	</div>
 @endif

@@ -7,8 +7,8 @@
 @section('side-nav-active', 'manage_articles')
 
 @section('breadcrumbs')
-	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="{{ url('/admin/manage_articles') }}"
+	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ route('manage_articles') }}"
 	   class="breadcrumb">{{ trans('synthesiscms/admin.manage_articles') }}</a>
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.edit_article') }}</a>
 @endsection
@@ -52,7 +52,7 @@
 		<div class="modal-footer">
 			<a style="margin-right: 9%;" onclick="$('#modalDelete{{ $article->id }}').modal('close');"
 			   class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_article_btn_no') }}</a>
-			<a style="margin-left: 9%;" href="{{ url('/admin/manage_articles') }}/delete/{{ $article->id }}"
+			<a style="margin-left: 9%;" href="{{ route('manage_articles') }}/delete/{{ $article->id }}"
 			   class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_article_btn_yes') }}</a>
 		</div>
 	</div>
@@ -142,8 +142,8 @@
 						<select class="{{ $synthesiscmsMainColor }}-text" name="articleCategory" id="articleCategory">
 							@foreach (App\Models\Content\ArticleCategory::all() as $key => $value)
 								<option @php if($value->id == $article->articleCategory){ echo("selected"); } @endphp value="{{ $value->id }}"
-										class="card-panel col s10 offset-s1 red white-text truncate"><h5>
-										ID {{ $value->id }}: {{ $value->title }}</h5></option>
+										class="card-panel col s10 offset-s1 red white-text truncate">ID {{ $value->id }}
+									: {{ $value->title }}</option>
 							@endforeach
 						</select>
 						<label>{{ trans('synthesiscms/extensions.choose_article_category') }}</label>

@@ -7,8 +7,8 @@
 @section('side-nav-active', 'manage_applets')
 
 @section('breadcrumbs')
-	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="{{ url('/admin/manage_applets') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_applets') }}</a>
+	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ route('manage_applets') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_applets') }}</a>
 @endsection
 
 @section('head')
@@ -25,7 +25,7 @@
                 activeItem.addClass({!! json_encode(" " . $synthesiscmsMainColor . "-text waves-effect waves-" . $synthesiscmsMainColor) !!})
             }
             $('#loader-div').css('display', 'inline-block');
-            $('#settings-view').attr('src', "{{ url('/admin/manage_applets') }}/" + extension);
+            $('#settings-view').attr('src', "{{ route('manage_applets') }}/" + extension);
         }
 	</script>
 @endsection
@@ -102,7 +102,7 @@
 					<iframe onchange="resizeIframe(this)"
 							onload="resizeIframe(this); $('#loader-div').css('display', 'none');" class="col s12"
 							height="900px" frameBorder="0" id="settings-view"
-							src="{{ url('/admin/manage_applets') }}/{{ $firstExt }}"></iframe>
+							src="{{ route('applet_settings', ['extension' => $firstExt]) }}"></iframe>
 				@else
 					@include('partials/error', ['error' => "<i class='material-icons white-text'>filter_none</i>&nbsp;&nbsp;" . trans('synthesiscms/admin.msg_no_applets')])
 				@endif

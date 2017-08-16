@@ -47,7 +47,8 @@
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BeforeSiteName, Request::url()) !!}
 			</div>
 			<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down"
-			   style="position: relative; background-color: rgb(255, 255, 255); box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 2147483647 !important; height: 220%; width: 125px;">
+			   style="position: relative; background-color: rgb(255, 255, 255); box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 2147483647 !important; height: 220%; width: 125px;"
+			   href="{!! url($synthesiscmsHomePage) !!}">
 				<img style="width: 85%; height: auto; margin-top: 10%; margin-left: 2%;"
 					 src="{{ url('/favicon.ico') }}">
 			</a>
@@ -97,7 +98,7 @@
 					<ul id="user_dropdown" class="dropdown-content">
 						<li>
 							@if(Auth::user()->is_admin)
-								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/admin') }}"><i
+								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('admin') }}"><i
 											class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
 								</a>
 							@endif
@@ -128,7 +129,7 @@
 	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} lighten-1 col s12 z-depth-2">
 		<div class="nav-wrapper col s12">
 			<div class="col s12">
-				<a href="{{ url('/') }}" class="breadcrumb"><i
+				<a href="{{ url($synthesiscmsHomePage) }}" class="breadcrumb"><i
 							class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>
 				@yield('breadcrumbs')
 			</div>
@@ -138,10 +139,12 @@
 	<div class="main col s12 row no-padding">
 		@if(Session::has('messages'))
 			@each('partials/message', Session::get('messages'), 'message')
+			@php(Session::forget('messages'))
 		@endif
 		@each('partials/error', $errors, 'error')
 		@if(Session::has('toasts'))
 			@each('partials/toast', Session::get('toasts'), 'toast')
+			@php(Session::forget('toasts'))
 		@endif
 		{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverContent, Request::url()) !!}
 		@yield('main')

@@ -13,6 +13,7 @@ return [
 	'delete_article_category' => 'Delete category',
 	'delete' => 'Delete',
 	'check' => 'Select',
+	'err_article_category_does_not_exist' => 'The requested article category does not exist!',
 ];
 
 ?>

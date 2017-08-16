@@ -27,8 +27,8 @@
 @endsection
 
 @section('breadcrumbs')
-	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="{{ url('/admin/manage_routes') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
+	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ route('manage_routes') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.create_route') }}</a>
 @endsection
 
@@ -92,7 +92,7 @@
 
                     function makeAjaxRouteCheck() {
                         ajaxReq = $.ajax({
-                            url: "{{ url('/synthesis-route-check') }}",
+                            url: "{{ route('synthesis_route_check') }}",
                             type: "post",
                             data: {'route': $('input[id=route]').val(), '_token': $('input[name=_token]').val()},
                             success: function (data) {

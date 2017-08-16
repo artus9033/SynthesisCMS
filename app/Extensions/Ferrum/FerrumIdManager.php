@@ -35,8 +35,8 @@ class FerrumIdManager
 		return $this->ferrumIdRandomizedPart . $this->ferrumIdCounter;
 	}
 
-	public function ferrumGetAllIdsAsJson()
+	public function ferrumGetAllIdsArrayImploded()
 	{
-		return json_encode($this->ferrumIdsTable);
+		return implode(',', $this->ferrumIdsTable);
 	}
 }

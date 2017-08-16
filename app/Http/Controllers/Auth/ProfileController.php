@@ -10,22 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('basic_auth');
+	}
+
 	public function infoGet()
 	{
-		if (Auth::check()) {
-			return view('auth.profile');
-		} else {
-			return view('auth.error');
-		}
+		return view('auth.profile');
 	}
 
 	public function editGet()
 	{
-		if (Auth::check()) {
-			return view('auth.profile_password');
-		} else {
-			return view('auth.error');
-		}
+		return view('auth.profile_password');
 	}
 
 	public function editPost(ProfileFormRequest $request)

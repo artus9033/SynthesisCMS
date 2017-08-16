@@ -1,7 +1,10 @@
 var mImagePickerTrumbowyg;
 
 function trumbowygImagePickerCallback(url, fsize) {
-    mImagePickerTrumbowyg.execCmd('insertImage', url, false, true);
+    var div = $("<span><div class='col s12 row'><img class='col s10 offset-s1' src='" + url + "'></div></span>");
+    mImagePickerTrumbowyg.range.deleteContents();
+    mImagePickerTrumbowyg.range.insertNode(div[0]);
+    //mImagePickerTrumbowyg.execCmd('insertImage', url, false, true);
 }
 
 SynthesisCmsJsUtils.includeFilePickerDynamically('trumbowyg_image_picker', 'trumbowygImagePickerCallback', true, ['jpg', 'png', 'gif', 'jpeg']);
@@ -30,6 +33,7 @@ SynthesisCmsJsUtils.includeFilePickerDynamically('trumbowyg_image_picker', 'trum
                     mImagePickerTrumbowyg = trumbowyg;
                     var btnDef = {
                         fn: function () {
+                            trumbowyg.saveRange();
                             $("#trumbowyg_image_picker").modal("open");
                         }
                     };

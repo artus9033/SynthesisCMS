@@ -7,42 +7,42 @@
 @section('side-nav-active', 'manage_article_categories')
 
 @section('breadcrumbs')
-	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="{{ url('/admin/manage_article_categories') }}"
+	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ route('manage_article_categories') }}"
 	   class="breadcrumb">{{ trans('synthesiscms/admin.manage_article_categories') }}</a>
 @endsection
 
 @section('main')
 	<div class="fixed-action-btn horizontal">
-		<button class="btn-floating btn-large pulse {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light z-depth-4 tooltipped"
-				data-position="top" data-delay="50"
-				data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions') }}">
+		<span class="btn-floating btn-large pulse {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light z-depth-4 tooltipped"
+			  data-position="top" data-delay="50"
+			  data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions') }}">
 			<i class="large material-icons">menu</i>
-		</button>
+		</span>
 		<ul>
 			<li>
-				<button onclick="toggleAll('.articleCategory_checkbox');"
-						class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
-						data-position="top" data-delay="50"
-						data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_swap_selection') }}">
+				<span onclick="toggleAll('.articleCategory_checkbox');"
+					  class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
+					  data-position="top" data-delay="50"
+					  data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_swap_selection') }}">
 					<i class="large material-icons">swap_horiz</i>
-				</button>
+				</span>
 			</li>
 			<li>
-				<button onclick="unselectAll('.articleCategory_checkbox');"
-						class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
-						data-position="top" data-delay="50"
-						data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_unselect_all') }}">
+				<span onclick="unselectAll('.articleCategory_checkbox');"
+					  class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
+					  data-position="top" data-delay="50"
+					  data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_unselect_all') }}">
 					<i class="large material-icons">tab_unselected</i>
-				</button>
+				</span>
 			</li>
 			<li>
-				<button onclick="selectAll('.articleCategory_checkbox');"
-						class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
-						data-position="top" data-delay="50"
-						data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_select_all') }}">
+				<span onclick="selectAll('.articleCategory_checkbox');"
+					  class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
+					  data-position="top" data-delay="50"
+					  data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_select_all') }}">
 					<i class="large material-icons">select_all</i>
-				</button>
+				</span>
 			</li>
 		</ul>
 	</div>
@@ -69,7 +69,7 @@
 			<a style="margin-right: 9%;" onclick="$('#modalMassDelete').modal('close');"
 			   class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_mass_delete_article_category_btn_no') }}</a>
 			<a style="margin-left: 9%;"
-			   onclick="$('#action_form').attr('action', '{{ url('/') }}/admin/manage_article_categories/mass_delete').submit();"
+			   onclick="$('#action_form').attr('action', '{{ route('manage_article_categories_mass_delete_post') }}').submit();"
 			   class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_delete_article_category_btn_yes') }}</a>
 		</div>
 	</div>
@@ -165,21 +165,21 @@
 				<table class="col s12">
 					<tbody>
 					<tr>
-						<td><a href="{{ url('/admin/manage_article_categories/create_article_category') }}"
+						<td><a href="{{ route('create_article_category') }}"
 							   class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i
 										class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_article_category') }}
 							</a></td>
 						<td>
-							<button onclick="$('#modalMassDelete').modal('open');" type="button"
-									class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
+							<span onclick="$('#modalMassDelete').modal('open');" type="button"
+								  class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
 								<i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/article_category.delete_selected') }}
-							</button>
+							</span>
 						</td>
 						<td>
-							<button onclick="$('#modalMassCopy').modal('open');" type="button"
-									class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
+							<span onclick="$('#modalMassCopy').modal('open');" type="button"
+								  class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
 								<i class="material-icons white-text left">content_copy</i>{{ trans('synthesiscms/article_category.copy_selected') }}
-							</button>
+							</span>
 						</td>
 					</tr>
 					</tbody>
@@ -224,7 +224,7 @@
 								<td class="center">{{ \App\Toolbox::string_truncate($articleCategory->title, 15) }}</td>
 								<td class="center">{{ $articleCategory->getAmount() }}</td>
 								<td class="center"><a
-											href="{{ url('/admin/manage_article_categories/edit') }}/{{ $articleCategory->id }}"
+											href="{{ route('manage_article_categories_edit', ['id' => $articleCategory->id]) }}"
 											class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i
 												class="material-icons white-text left">create</i>{{ trans('synthesiscms/article_category.edit') }}
 									</a></td>
@@ -261,10 +261,11 @@
 									</div>
 								</div>
 								<td class="center">
-									<button @php if($articleCategory->id == 1){ echo('disabled'); } @endphp onclick="$('#modalDelete{{ $articleCategory->id }}').modal('open');"
-											class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
+									<span @if($articleCategory->id == 1) disabled
+										  @endif onclick="$('#modalDelete{{ $articleCategory->id }}').modal('open');"
+										  class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
 										<i class="material-icons white-text left">security</i>{{ trans('synthesiscms/article_category.delete_article_category') }}
-									</button>
+									</span>
 								</td>
 							</tr>
 						@endforeach

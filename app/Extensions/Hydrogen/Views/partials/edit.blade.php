@@ -64,7 +64,6 @@
 			<option {{ $selected }} value="{!! $value !!}"
 					class="card-panel col s10 offset-s1 red white-text">{!! trans('Hydrogen::hydrogen.default_sorting_type_' . $value) !!}</option>
 		@endforeach
-
 	</select>
 	<label>{{ trans("Hydrogen::hydrogen.choose_default_sorting_type") }}</label>
 </div>

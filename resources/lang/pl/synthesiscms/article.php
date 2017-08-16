@@ -1,10 +1,10 @@
 <?php
 
 return [
-	'err_no_title' => 'Tytuł dla articleu jest wymagany!',
-	'articleImage' => 'Ikonka Articleu',
-	'hasImageTooltip' => 'Wybrana grafika może zostać wykorzystana jako ikona articleu przez wyświetlający go moduł',
-	'hasImage' => 'Czy article ma ikonkę?',
+	'err_no_title' => 'Tytuł dla artykułu jest wymagany!',
+	'articleImage' => 'Ikonka artykułu',
+	'hasImageTooltip' => 'Wybrana grafika może zostać wykorzystana jako ikona artykułu przez wyświetlający go moduł',
+	'hasImage' => 'Czy artykuł ma ikonkę?',
 	'imageFile' => 'Wybierz plik',
 	'imageURL' => 'Wstaw link do grafiki tutaj',
 	'delete_selected' => 'Usuń Wybrane',
@@ -20,11 +20,12 @@ return [
 	'delete' => 'Usuń',
 	'articleCategory' => 'Nadrzędna kategoria',
 	'check' => 'Wybierz',
-	'choose_card_size' => 'Wybierz rozmiar karty articleu (http://materializecss.com/cards.html#sizes)',
+	'choose_card_size' => 'Wybierz rozmiar karty artykułu (http://materializecss.com/cards.html#sizes)',
 	'card_size_not_defined' => 'Niezdefiniowany (domyślny rozmiar)',
 	'card_size_small' => 'Mały (max 300px wysokości)',
 	'card_size_medium' => 'Średni (max 400px wysokości)',
 	'card_size_large' => 'Duży (max 500px wysokości)',
+	'err_article_does_not_exist' => 'Żądany artykuł nie istnieje!',
 ];
 
 ?>

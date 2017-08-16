@@ -18,12 +18,18 @@ class ArticleCategoryController extends Controller
 
 	public function editArticleCategoryGet($id)
 	{
+		if (!ArticleCategory::where(['id' => $id])->exists()) {
+			return \Redirect::route('manage_article_categories')->with('errors', [trans('synthesiscms/article_category.err_article_category_does_not_exist')]);
+		}
 		$articleCategory = ArticleCategory::find($id);
 		return view('admin.edit_article_category', ['articleCategory' => $articleCategory]);
 	}
 
 	public function editArticleCategoryPost($id, BackendRequest $request)
 	{
+		if (!ArticleCategory::where(['id' => $id])->exists()) {
+			return \Redirect::route('manage_article_categories')->with('errors', [trans('synthesiscms/article_category.err_article_category_does_not_exist')]);
+		}
 		$articleCategory = ArticleCategory::find($id);
 		$articleCategory->title = $request->get('title');
 		$articleCategory->description = $request->get('desc');
@@ -64,9 +70,9 @@ class ArticleCategoryController extends Controller
 	{
 		$title = $request->get('title');
 		$desc = $request->get('description');
-		$articleCategory = ArticleCategory::create(['title' => $title, 'description' => $desc]);
-		$name_new = Toolbox::string_truncate($title, 10);
-		return \Redirect::route('manage_article_categories')->with('messages', array(trans('synthesiscms/admin.msg_article_category_created', ['name' => $title])));
+		ArticleCategory::create(['title' => $title, 'description' => $desc]);
+		$name_new = Toolbox::string_truncate($title, 15);
+		return \Redirect::route('manage_article_categories')->with('messages', array(trans('synthesiscms/admin.msg_article_category_created', ['name' => $name_new])));
 	}
 
 	public function massDeleteArticleCategory(BackendRequest $request)

@@ -4,6 +4,38 @@ namespace App;
 
 class Toolbox
 {
+	static function addMessageToBag($message)
+	{
+		$array = (count(\Session::get('messages')) ? \Session::get('messages') : Array());
+		array_push($array, $message);
+		\Session::put('messages', $array);
+	}
+
+	static function addMessagesToBag($messages)
+	{
+		$array = (count(\Session::get('messages')) ? \Session::get('messages') : Array());
+		foreach ($messages as $message) {
+			array_push($array, $message);
+		}
+		\Session::put('messages', $array);
+	}
+
+	static function addToastToBag($toast)
+	{
+		$array = (count(\Session::get('toasts')) ? \Session::get('toasts') : Array());
+		array_push($array, $toast);
+		\Session::put('toasts', $array);
+	}
+
+	static function addToastsToBag($toasts)
+	{
+		$array = (count(\Session::get('toasts')) ? \Session::get('toasts') : Array());
+		foreach ($toasts as $toast) {
+			array_push($array, $toast);
+		}
+		\Session::put('toasts', $array);
+	}
+
 	static function hex2rgba($color, $opacity = false)
 	{
 		$default = 'rgb(0,0,0)';

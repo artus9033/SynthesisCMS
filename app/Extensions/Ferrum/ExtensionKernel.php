@@ -57,7 +57,7 @@ class ExtensionKernel extends SynthesisExtension
 
 	public function create($id)
 	{
-		FerrumExtension::create(['id' => $id, 'formInJson' => '']);
+		FerrumExtension::create(['id' => $id, 'formInJson' => '', 'submitButtonText' => trans('Ferrum::ferrum.default_value_submit_button_text'), 'applicationConfirmationText' => trans('Ferrum::ferrum.default_value_application_confirmation_text')]);
 		return FerrumExtension::find($id);
 	}
 
@@ -66,6 +66,8 @@ class ExtensionKernel extends SynthesisExtension
 		$extension = FerrumExtension::where('id', $id)->first();
 		$extension->formInJson = $request->get('ferrumJsonifiedFormFromEditor');
 		$extension->showHeader = $request->get('showHeader') == "on";
+		$extension->submitButtonText = $request->get('ferrum-submit-button-text-editor');
+		$extension->applicationConfirmationText = $request->get('applicationConfirmationText');
 		$extension->save();
 	}
 
@@ -75,6 +77,9 @@ class ExtensionKernel extends SynthesisExtension
 		\Route::group(['middleware' => 'web'], function () use ($page, $kernel, $base_slug) {
 			\Route::get($base_slug, function () use ($page, $kernel, $base_slug) {
 				return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->index($page, $kernel, $base_slug);
+			})->middleware('web');
+			\Route::get($base_slug . '/confirm/', function () use ($page, $kernel, $base_slug) {
+				return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->confirm($page, $kernel, $base_slug);
 			})->middleware('web');
 			\Route::post($base_slug . '/apply/', function () use ($page, $kernel, $base_slug) {
 				return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->apply($page, $kernel, $base_slug);

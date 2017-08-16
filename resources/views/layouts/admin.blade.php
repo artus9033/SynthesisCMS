@@ -84,7 +84,7 @@
                     ],
                     plugins: {
                         upload: {
-                            serverPath: {!! json_encode(url("/") . "/admin/upload") !!},
+                            serverPath: {!! json_encode(route('admin_upload_post')) !!},
                             fileFieldName: 'file',
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -119,7 +119,7 @@
 			@else
 				<ul id="nav-mobile" class="side-nav">
 					@endif
-					<li class="logo truncate"><a href="{{ url('/admin') }}"
+					<li class="logo truncate"><a href="{{ route('admin') }}"
 												 class="brand-logo truncate {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light"><i
 									class="material-icons white-text">verified_user</i>{{ trans('synthesiscms/admin.backend') }}
 						</a></li>
@@ -207,7 +207,7 @@
 					</button>
 				</div>
 			@endif
-			<a style="max-width: 50%;" href="{{ url('/') }}" class="brand-logo truncate"
+			<a style="max-width: 50%;" href="{{ route('admin') }}" class="brand-logo truncate"
 			   style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }}
 				- @section('brand-logo'){{ trans('synthesiscms/admin.backend') }}@show</a>
 			<ul style="max-width: 50%;" class="right hide-on-med-and-down">
@@ -236,7 +236,7 @@
 					<ul id="user_dropdown" class="dropdown-content">
 						<li>
 							@if(Auth::user()->is_admin)
-								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/admin') }}"><i
+								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('admin') }}"><i
 											class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
 								</a>
 							@endif
@@ -273,10 +273,12 @@
 	<div class="main col s12 row center">
 		@if(Session::has('messages'))
 			@each('partials/message', Session::get('messages'), 'message')
+			@php(Session::forget('messages'))
 		@endif
 		@each('partials/error', $errors, 'error')
 		@if(Session::has('toasts'))
 			@each('partials/toast', Session::get('toasts'), 'toast')
+			@php(Session::forget('toasts'))
 		@endif
 		@if(!$synthesiscmsClientIsAnyMobile)
 			<div class="col s12 m12 l12 z-depth-1 grey lighten-4 row card z-depth-5 no-padding"

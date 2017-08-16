@@ -44,6 +44,10 @@ class Kernel extends HttpKernel
 			\App\Http\Middleware\Admin::class,
 		],
 
+		'basic_auth' => [
+			\App\Http\Middleware\BasicProfileMiddleware::class,
+		],
+
 		'api' => [
 			'throttle:60,1',
 			'bindings',

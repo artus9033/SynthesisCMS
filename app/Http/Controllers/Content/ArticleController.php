@@ -10,6 +10,7 @@ use App\Toolbox;
 
 class ArticleController extends Controller
 {
+
 	public function createArticleGet()
 	{
 		return view('admin.create_article');
@@ -41,12 +42,18 @@ class ArticleController extends Controller
 
 	public function editArticleGet($id)
 	{
+		if (!Article::where(['id' => $id])->exists()) {
+			return \Redirect::route('manage_articles')->with('errors', [trans('synthesiscms/article.err_article_does_not_exist')]);
+		}
 		$article = Article::find($id);
 		return view('admin.edit_article', ['article' => $article]);
 	}
 
 	public function editArticlePost($id, BackendRequest $request)
 	{
+		if (!Article::where(['id' => $id])->exists()) {
+			return \Redirect::route('manage_articles')->with('errors', [trans('synthesiscms/article.err_article_does_not_exist')]);
+		}
 		if (!Toolbox::isEmptyString($request->get('title'))) {
 			$article = Article::find($id);
 			$article->title = $request->get('title');
@@ -64,6 +71,9 @@ class ArticleController extends Controller
 
 	public function deleteArticle($id)
 	{
+		if (!Article::where(['id' => $id])->exists()) {
+			return \Redirect::route('manage_articles')->with('errors', [trans('synthesiscms/article.err_article_does_not_exist')]);
+		}
 		$article = Article::find($id);
 		$name_orig = $article->title;
 		$name_new = Toolbox::string_truncate($name_orig, 10);
@@ -80,8 +90,10 @@ class ArticleController extends Controller
 			if ($csrf_token) {
 				$csrf_token = false;
 			} else if (starts_with($key, "article_checkbox")) {
-				Article::find(intval(str_replace("article_checkbox", "", $key)))->delete();
-				$count++;
+				if (Article::where(['id' => intval(str_replace("article_checkbox", "", $key))])->exists()) {
+					Article::find(intval(str_replace("article_checkbox", "", $key)))->delete();
+					$count++;
+				}
 			}
 		}
 		if ($count == 0) {
@@ -101,9 +113,11 @@ class ArticleController extends Controller
 			if ($csrf_token) {
 				$csrf_token = false;
 			} else if (starts_with($key, "article_checkbox")) {
-				$origin = Article::find(intval(str_replace("article_checkbox", "", $key)));
-				Article::create(['title' => trans("synthesiscms/helper.article_copy_prefix") . $origin->title, 'description' => $origin->description, 'articleCategory' => $origin->articleCategory, 'image' => $origin->image, 'hasImage' => $origin->hasImage]);
-				$count++;
+				if (Article::where(['id' => intval(str_replace("article_checkbox", "", $key))])->exists()) {
+					$origin = Article::find(intval(str_replace("article_checkbox", "", $key)));
+					Article::create(['title' => trans("synthesiscms/helper.article_copy_prefix") . $origin->title, 'description' => $origin->description, 'articleCategory' => $origin->articleCategory, 'image' => $origin->image, 'hasImage' => $origin->hasImage]);
+					$count++;
+				}
 			}
 		}
 		if ($count == 0) {
@@ -123,10 +137,12 @@ class ArticleController extends Controller
 			if ($csrf_token) {
 				$csrf_token = false;
 			} else {
-				$article = Article::find(intval(str_replace("article_checkbox", "", $key)));
-				$article->articleCategory = $articleCategoryId;
-				$article->save();
-				$count++;
+				if (Article::where(['id' => intval(str_replace("article_checkbox", "", $key))])->exists()) {
+					$article = Article::find(intval(str_replace("article_checkbox", "", $key)));
+					$article->articleCategory = $articleCategoryId;
+					$article->save();
+					$count++;
+				}
 			}
 		}
 		if ($count == 0) {

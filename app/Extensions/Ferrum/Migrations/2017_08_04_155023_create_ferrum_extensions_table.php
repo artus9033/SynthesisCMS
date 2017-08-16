@@ -17,6 +17,7 @@ class CreateFerrumExtensionsTable extends Migration
 			$table->increments('id');
 			$table->longText('formInJson');
 			$table->boolean('showHeader')->default(true);
+			$table->longText('applicationsInJson');
 			$table->timestamps();
 		});
 	}

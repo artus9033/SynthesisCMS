@@ -88,7 +88,7 @@
 							<li>
 								@if(Auth::user()->is_admin)
 									<a class="{{ $synthesiscmsMainColor }}-text waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-									   href="{{ url('/admin') }}"><i
+									   href="{{ route('admin') }}"><i
 												class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
 									</a>
 								@endif

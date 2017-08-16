@@ -7,8 +7,8 @@
 @section('side-nav-active', 'manage_routes')
 
 @section('breadcrumbs')
-	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="{{ url('/admin/manage_routes') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
+	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ route('manage_routes') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
 @endsection
 
 @section('main')
@@ -21,7 +21,7 @@
 			</div>
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 			<div class="col s12 row"></div>
-			<a href="{{ url('/admin/manage_routes/create_route') }}"
+			<a href="{{ route('create_route') }}"
 			   class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i
 						class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_route') }}</a>
 			<div class="col s12 row"></div>
@@ -34,7 +34,7 @@
 						<th data-field="title" class="center">{{ trans('synthesiscms/page.title') }}</th>
 						<th data-field="extension" class="center">{{ trans('synthesiscms/page.extension_name') }}</th>
 						<th data-field="edit"
-							class="center">{{ trans('synthesiscms/admin.edit_route', ['route' => '']) }}</th>
+							class="center">{{ trans('synthesiscms/admin.edit_route') }}</th>
 						<th data-field="delete" class="center">{{ trans('synthesiscms/admin.delete_route') }}</th>
 					</tr>
 					</thead>
@@ -55,11 +55,15 @@
 							<td class="center">{{ $route->page_title }}</td>
 							<td class="center tooltipped" data-position="top" data-delay="50"
 								data-tooltip="{{ $kernel->getExtensionName() }}">{{ \App\Toolbox::string_truncate($kernel->getExtensionName(), 17) }}</td>
-							<!-- use \App\Exts\$r->extension\kernel new kernel => getExtName*() -->
-							<td class="center"><a href="{{ url('/admin/manage_routes/edit') }}/{{ $route->id }}"
-												  class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i
-											class="material-icons white-text left">create</i>{{ trans('synthesiscms/admin.edit_route', ['route' => '']) }}
-								</a></td>
+							<td class="center">
+								<a href="{{ route('manage_routes_edit', ['id' => $route->id]) }}"
+								   class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable truncate">
+									<i class="material-icons white-text left">
+										create
+									</i>
+									{{ trans('synthesiscms/admin.edit_route') }}
+								</a>
+							</td>
 							<div id="modalDelete{{ $route->id }}" class="modal">
 								<div class="modal-content">
 									<h3>{{ trans('synthesiscms/admin.modal_delete_route_header') }}</h3>
@@ -75,7 +79,7 @@
 									<a style="margin-right: 9%;" onclick="$('#modalDelete').modal('close');"
 									   class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_route_btn_no') }}</a>
 									<a style="margin-left: 9%;"
-									   href="{{ url('/admin/manage_routes/delete') }}/{{ $route->id }}"
+									   href="{{ route('manage_routes_delete', ['id' => $route->id]) }}"
 									   class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_route_btn_yes') }}</a>
 								</div>
 							</div>

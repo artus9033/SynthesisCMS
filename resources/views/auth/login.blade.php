@@ -20,6 +20,14 @@
 			}
 		}
 	</style>
+	@if ($errors->has('email'))
+		@include('partials/error', ['error' => $errors->first('email')])
+	@endif
+	@if ($errors->has('password'))
+		<h5 class="red-text center">
+			@include('partials/error', ['error' => $errors->first('password')])
+		</h5>
+	@endif
 	<div class="main-card-cont col s12 l6 offset-l3 z-depth-1 grey lighten-4 row card"
 		 style="display: inline-block; border: 1px solid #EEE;">
 		<div class="card-content">
@@ -30,16 +38,6 @@
 			<form class="form-horizontal col s12" role="form" method="POST" action="{{ url('/login') }}">
 				{{ csrf_field() }}
 				<div class='row'>
-					<div class='col s12'>
-					</div>
-				</div>
-
-				<div class='row'>
-					@if ($errors->has('email'))
-						<h5 class="red-text center">
-							<strong>{{ $errors->first('email') }}</strong>
-						</h5>
-					@endif
 					<div class='input-field col s12'>
 						<i class="material-icons {{ $synthesiscmsMainColor }}-text prefix">account_circle</i>
 						<input class='validate' type='email' name='email' id='email'/>
@@ -47,13 +45,7 @@
 							   data-success="{{ trans('synthesiscms/auth.email_ok')}}">{{ trans('synthesiscms/auth.email')}}</label>
 					</div>
 				</div>
-
 				<div class='row'>
-					@if ($errors->has('password'))
-						<h5 class="red-text center">
-							<strong>{{ $errors->first('password') }}</strong>
-						</h5>
-					@endif
 					<div class='input-field col s12'>
 						<i class="material-icons {{ $synthesiscmsMainColor }}-text prefix">lock_outline</i>
 						<input class='validate' type='password' name='password' id='password'/>

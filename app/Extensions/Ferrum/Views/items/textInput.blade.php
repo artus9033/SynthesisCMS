@@ -4,7 +4,7 @@
 		<div class="input-field col s12">
 			<input data-ferrum-tree-role="field-name-editor" class="ferrum-editable"
 				   id="ferrum-input-{{ $ferrumIdManagerInstance->ferrumGetCurrentUniqueId() }}-field-name-editor"
-				   type="text" value={!! json_encode(trans('Ferrum::items.field_name')) !!}>
+				   type="text" value="{{ trans('Ferrum::items.field_name') }}">
 			<label for="ferrum-input-{{ $ferrumIdManagerInstance->ferrumGetCurrentUniqueId() }}-field-name-editor"
 				   class="ferrum-editable">{{ trans('Ferrum::items.field_name') }}</label>
 		</div>
@@ -28,7 +28,7 @@
 		<div class="input-field col s12">
 			<input data-ferrum-tree-role="field-name-editor" class="ferrum-editable"
 				   id="ferrum-input-{{ $ferrumIdManagerInstance->ferrumGetCurrentUniqueId() }}-field-name-editor"
-				   type="text" value={!! json_encode($itemFieldName) !!}>
+				   type="text" value="{{ $itemFieldName }}">
 			<label for="ferrum-input-{{ $ferrumIdManagerInstance->ferrumGetCurrentUniqueId() }}-field-name-editor"
 				   class="ferrum-editable">{{ trans('Ferrum::items.field_name') }}</label>
 		</div>
@@ -36,7 +36,7 @@
 		<div class="input-field col s12">
 			<input data-ferrum-tree-role="label-editor" class="ferrum-editable"
 				   id="ferrum-input-{{ $ferrumIdManagerInstance->ferrumGetCurrentUniqueId() }}-label-editor"
-				   type="text" value={!! json_encode($itemInputLabel) !!}>
+				   type="text" value="{{ $itemInputLabel }}">
 			<label for="ferrum-input-{{ $ferrumIdManagerInstance->ferrumGetCurrentUniqueId() }}-label-editor"
 				   class="ferrum-editable">{{ trans('Ferrum::items.item_text_input_with_label_editor_hint') }}</label>
 		</div>
@@ -54,7 +54,7 @@
 				   type="text"
 				   name="ferrum-input-{{ $ferrumIdManagerInstance->ferrumGetCurrentUniqueId() }}" required>
 			<label for="ferrum-input-{{ $ferrumIdManagerInstance->ferrumGetCurrentUniqueId() }}"
-				   class="ferrum-editable">{!! $itemInputLabel !!}</label>
+				   class="ferrum-editable">{{ $itemInputLabel }}</label>
 		</div>
 	</div>
 @endif

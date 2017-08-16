@@ -9,11 +9,11 @@
 @section('head')
 	<style>
 		#articleCategory-div .caret {
-			color: {{ $synthesiscmsMainColor }}       !important;
+			color: {{ $synthesiscmsMainColor }}                 !important;
 		}
 
 		#articleCategory-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}       !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }}                 !important;
 		}
 
 		#articleCategory-div .select-wrapper {
@@ -23,42 +23,42 @@
 @endsection
 
 @section('breadcrumbs')
-	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="{{ url('/admin/manage_articles') }}"
+	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ route('manage_articles') }}"
 	   class="breadcrumb">{{ trans('synthesiscms/admin.manage_articles') }}</a>
 @endsection
 
 @section('main')
 	<div class="fixed-action-btn horizontal">
-		<button class="btn-floating btn-large pulse {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light z-depth-4 tooltipped"
-				data-position="top" data-delay="50"
-				data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions') }}">
+		<span class="btn-floating btn-large pulse {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light z-depth-4 tooltipped"
+			  data-position="top" data-delay="50"
+			  data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions') }}">
 			<i class="large material-icons">menu</i>
-		</button>
+		</span>
 		<ul>
 			<li>
-				<button onclick="toggleAll('.article_checkbox');"
-						class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
-						data-position="top" data-delay="50"
-						data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_swap_selection') }}">
+				<span onclick="toggleAll('.article_checkbox');"
+					  class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
+					  data-position="top" data-delay="50"
+					  data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_swap_selection') }}">
 					<i class="large material-icons">swap_horiz</i>
-				</button>
+				</span>
 			</li>
 			<li>
-				<button onclick="unselectAll('.article_checkbox');"
-						class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
-						data-position="top" data-delay="50"
-						data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_unselect_all') }}">
+				<span onclick="unselectAll('.article_checkbox');"
+					  class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
+					  data-position="top" data-delay="50"
+					  data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_unselect_all') }}">
 					<i class="large material-icons">tab_unselected</i>
-				</button>
+				</span>
 			</li>
 			<li>
-				<button onclick="selectAll('.article_checkbox');"
-						class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
-						data-position="top" data-delay="50"
-						data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_select_all') }}">
+				<span onclick="selectAll('.article_checkbox');"
+					  class="btn-floating {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light tooltipped"
+					  data-position="top" data-delay="50"
+					  data-tooltip="{{ trans('synthesiscms/admin.menu_select_actions_select_all') }}">
 					<i class="large material-icons">select_all</i>
-				</button>
+				</span>
 			</li>
 		</ul>
 	</div>
@@ -76,7 +76,7 @@
 			<a style="margin-right: 9%;" onclick="$('#modalMassDelete').modal('close');"
 			   class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_mass_delete_article_btn_no') }}</a>
 			<a style="margin-left: 9%;"
-			   onclick="$('#action_form').attr('action', '{{ url('/') }}/admin/manage_articles/mass_delete').submit();"
+			   onclick="$('#action_form').attr('action', '{{ route('manage_articles_mass_delete_post') }}').submit();"
 			   class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_mass_delete_article_btn_yes') }}</a>
 		</div>
 	</div>
@@ -94,9 +94,10 @@
 					<select id="massMoveArticleCategory" name="massMoveArticleCategory"
 							class="{{ $synthesiscmsMainColor }}-text">
 						@foreach (App\Models\Content\ArticleCategory::all() as $key => $value)
+							@php($option = $value->title . "&nbsp;(ID $value->id)")
 							<option value="{{ $value->id }}"
-									class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $value->title }}
-									&nbsp;(ID {{ $value->id }})</h5></option>
+									class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $option }}</h5>
+							</option>
 						@endforeach
 					</select>
 					<label>{{ trans('synthesiscms/extensions.choose_article_category') }}</label>
@@ -125,30 +126,32 @@
 				<table class="col s12">
 					<tbody>
 					<tr>
-						<td><a href="{{ url('/admin/manage_articles/create_article') }}"
+						<td>
+							<a href="{{ route('create_article') }}"
 							   class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i
 										class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_article') }}
-							</a></td>
-						<td>
-							<button onclick="$('#modalMassDelete').modal('open');" type="button"
-									class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
-								<i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/article.delete_selected') }}
-							</button>
+							</a>
 						</td>
 						<td>
-							<button type="button"
-									onclick="$('#action_form').attr('action', '{{ url('/') }}/admin/manage_articles/mass_copy').submit();"
+							<span onclick="$('#modalMassDelete').modal('open');"
+								  class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
+								<i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/article.delete_selected') }}
+							</span>
+						</td>
+						<td>
+							<span
+									onclick="$('#action_form').attr('action', '{{ route('manage_articles_mass_copy_post') }}').submit();"
 									class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
 								<i class="material-icons white-text left">content_copy</i>{{ trans('synthesiscms/article.copy_selected') }}
-							</button>
+							</span>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<button onclick="$('#modalMassMove').modal('open');" type="button"
-									class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
+							<span onclick="$('#modalMassMove').modal('open');"
+								  class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
 								<i class="material-icons white-text left">transform</i>{{ trans('synthesiscms/article.move_selected') }}
-							</button>
+							</span>
 						</td>
 					</tr>
 					</tbody>
@@ -187,7 +190,7 @@
 							<td class="center">{{ $article->id }}</td>
 							<td class="center">{{ App\Toolbox::string_truncate($article->title, 15) }}</td>
 							<td class="center">{{ App\Toolbox::string_truncate(('(ID ' . $article->articleCategory . ') ' . App\Models\Content\ArticleCategory::find($article->articleCategory)->title), 15) }}</td>
-							<td class="center"><a href="{{ url('/admin/manage_articles/edit') }}/{{ $article->id }}"
+							<td class="center"><a href="{{ route('manage_articles_edit', ['id' => $article->id]) }}"
 												  class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i
 											class="material-icons white-text left">create</i>{{ trans('synthesiscms/article.edit') }}
 								</a></td>
@@ -207,15 +210,15 @@
 									   onclick="$('#modalDelete{{ $article->id }}').modal('close');"
 									   class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_article_btn_no') }}</a>
 									<a style="margin-left: 9%;"
-									   href="{{ url('/admin/manage_articles/delete') }}/{{ $article->id }}"
+									   href="{{ route('manage_articles_delete', ['id' => $article->id]) }}"
 									   class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_article_btn_yes') }}</a>
 								</div>
 							</div>
 							<td class="center">
-								<button onclick="$('#modalDelete{{ $article->id }}').modal('open');"
-										class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
+								<span onclick="$('#modalDelete{{ $article->id }}').modal('open');"
+									  class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
 									<i class="material-icons white-text left">delete</i>{{ trans('synthesiscms/article.delete_article') }}
-								</button>
+								</span>
 							</td>
 						</tr>
 					@endforeach

@@ -23,8 +23,8 @@
 @section('side-nav-active', 'manage_users')
 
 @section('breadcrumbs')
-	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="{{ url('/admin/manage_users') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_users') }}</a>
+	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ route('manage_users') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_users') }}</a>
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.change_user_privileges') }}</a>
 @endsection
 

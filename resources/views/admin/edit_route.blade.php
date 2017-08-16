@@ -23,8 +23,8 @@
 @endsection
 
 @section('breadcrumbs')
-	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="{{ url('/admin/manage_routes') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
+	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ route('manage_routes') }}" class="breadcrumb">{{ trans('synthesiscms/admin.manage_routes') }}</a>
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.edit_route', ['route' => $page->slug]) }}</a>
 @endsection
 
@@ -47,7 +47,7 @@
 		<div class="modal-footer">
 			<a style="margin-right: 9%;" onclick="$('#modalDelete').modal('close');"
 			   class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_route_btn_no') }}</a>
-			<a style="margin-left: 9%;" href="{{ url('/admin/manage_routes/delete') }}/{{ $page->id }}"
+			<a style="margin-left: 9%;" href="{{ route('manage_routes_delete', ['id' => $page->id]) }}"
 			   class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_route_btn_yes') }}</a>
 		</div>
 	</div>
@@ -125,7 +125,7 @@
 
                             function makeAjaxRouteCheck() {
                                 ajaxReq = $.ajax({
-                                    url: "{{ url('/synthesis-route-check') }}",
+                                    url: "{{ route('synthesis_route_check') }}",
                                     type: "post",
                                     data: {
                                         'route': $('input[id=route]').val(),

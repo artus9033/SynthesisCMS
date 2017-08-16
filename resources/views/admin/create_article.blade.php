@@ -23,8 +23,8 @@
 @endsection
 
 @section('breadcrumbs')
-	<a href="{{ url('/admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
-	<a href="{{ url('/admin/manage_articles') }}"
+	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
+	<a href="{{ route('manage_articles') }}"
 	   class="breadcrumb">{{ trans('synthesiscms/admin.manage_articles') }}</a>
 	<a class="breadcrumb">{{ trans('synthesiscms/admin.create_article') }}</a>
 @endsection
@@ -109,8 +109,7 @@
 						<select id="articleCategory" name="articleCategory" class="{{ $synthesiscmsMainColor }}-text">
 							@foreach (App\Models\Content\ArticleCategory::all() as $key => $value)
 								<option value="{{ $value->id }}"
-										class="card-panel col s10 offset-s1 red white-text truncate">
-									<h5>{{ $value->title }}</h5></option>
+										class="card-panel col s10 offset-s1 red white-text truncate">{{ $value->title }}</option>
 							@endforeach
 						</select>
 						<label>{{ trans('synthesiscms/extensions.choose_article_category') }}</label>

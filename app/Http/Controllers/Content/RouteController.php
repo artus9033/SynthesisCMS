@@ -36,12 +36,18 @@ class RouteController extends Controller
 
 	public function editRouteGet($id)
 	{
+		if (!Page::where(['id' => $id])->exists()) {
+			return \Redirect::route('manage_routes')->with('errors', [trans('synthesiscms/page.err_route_does_not_exist')]);
+		}
 		$page = Page::find($id);
 		return view('admin.edit_route', ['page' => $page]);
 	}
 
 	public function editRoutePost($id, BackendRequest $request)
 	{
+		if (!Page::where(['id' => $id])->exists()) {
+			return \Redirect::route('manage_routes')->with('errors', [trans('synthesiscms/page.err_route_does_not_exist')]);
+		}
 		$slug = $request->get('slug');
 		$title = $request->get('title');
 		$header = $request->get('header');
@@ -86,6 +92,9 @@ class RouteController extends Controller
 
 	public function deleteRoute($id)
 	{
+		if (!Page::where(['id' => $id])->exists()) {
+			return \Redirect::route('manage_routes')->with('errors', [trans('synthesiscms/page.err_route_does_not_exist')]);
+		}
 		$page = Page::find($id);
 		$route = $page->slug;
 		$page->delete();

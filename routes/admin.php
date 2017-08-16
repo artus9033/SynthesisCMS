@@ -2,8 +2,8 @@
 
 Route::get('/admin', ['as' => 'admin', 'uses' => 'Backend\\BackendController@index']);
 
-Route::get('/admin/uploads_list', ['as' => 'list', 'uses' => 'Backend\\SynthesisFilesystemController@files_list']);
-Route::post('/admin/upload', ['as' => 'upload', 'uses' => 'Backend\\SynthesisFilesystemController@uploadPost']);
+Route::get('/admin/uploads_list', ['as' => 'admin_uploads_list', 'uses' => 'Backend\\SynthesisFilesystemController@files_list']);
+Route::post('/admin/upload', ['as' => 'admin_upload_post', 'uses' => 'Backend\\SynthesisFilesystemController@uploadPost']);
 
 Route::post('/synthesis-route-check', ['as' => 'synthesis_route_check', 'uses' => 'Content\\RouteController@checkRoute']);
 
