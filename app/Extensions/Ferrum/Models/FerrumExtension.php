@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 class FerrumExtension extends Model
 {
 	public $timestamps = true;
-	protected $fillable = array('id', 'formInJson', 'showHeader', 'submitButtonText', 'applicationConfirmationText', 'applicationsInJson');
+	protected $fillable = array('id', 'formInJson', 'showHeader',
+		'submitButtonText', 'applicationConfirmationText',
+		'applicationsInJson', 'applicationsCloseDateTime',
+		'applicationsClosedText');
 }

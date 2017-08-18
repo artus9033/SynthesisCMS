@@ -19,7 +19,7 @@ class SynthesisCmsJsUtils {
                     console.log("SynthesiscmsJsUtils succesfully loaded a file picker element and injected it to the page!");
                 },
                 error: function () {
-                    Materialize.toast("Error while retrieving the SynthesisCMS file picker!", 4000);
+                    Materialize.toast("Error while retrieving the SynthesisCMS file picker! Please reload the page...", 4000);
                 }
             }
         );

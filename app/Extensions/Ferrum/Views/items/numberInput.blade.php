@@ -1,6 +1,8 @@
 @php($ferrumIdManagerInstance->ferrumGenerateNextUniqueId())
 @if($mode == 'editor-new-item')
-	<div class="card-panel col s12 ferrum-draggable ferrum-number-input-with-hint-element row">
+	<div class="card-panel col s12 ferrum-draggable ferrum-number-input-with-hint-element row ferrum-tooltipped"
+		 data-tooltip="{{ trans('Ferrum::items.item_number_input_with_label_name') }}" data-delay="50"
+		 data-position="left">
 		<div class="input-field col s12">
 			<input data-ferrum-tree-role="field-name-editor" class="ferrum-editable"
 				   id="ferrum-input-{{ $ferrumIdManagerInstance->ferrumGetCurrentUniqueId() }}-field-name-editor"
@@ -23,6 +25,9 @@
 				   value="{{ trans('Ferrum::items.item_number_input_with_label') }}" disabled>
 		</div>
 	</div>
+	<script>
+        $('.ferrum-tooltipped').tooltip();
+	</script>
 @elseif($mode == 'editor-load-item')
 	<div class="card-panel col s12 ferrum-draggable ferrum-number-input-with-hint-element row">
 		<div class="input-field col s12">

@@ -60,8 +60,8 @@
 				<div class="col s4 valign row">
 					<a class="col s12 btn-large {{ $synthesiscmsMainColor }} waves-effect waves-light"
 					   href="{{ url($page->slug) }}" target="_blank"
-					   class="btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i
-								class="material-icons white-text left"
+					   class="btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
+						<i class="material-icons white-text left"
 								style="line-height: unset !important; font-size: 1.8rem;">open_in_new</i>{{ trans('synthesiscms/admin.view_route') }}
 					</a>
 				</div>

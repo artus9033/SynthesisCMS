@@ -32,12 +32,13 @@
 <div class="col s12">
 	@if(Session::has('messages'))
 		@each('partials/message', Session::get('messages'), 'message')
+		@php(Session::forget('messages'))
 	@endif
 	@each('partials/error', $errors, 'error')
 	@if(Session::has('toasts'))
 		@each('partials/toast', Session::get('toasts'), 'toast')
+		@php(Session::forget('toasts'))
 	@endif
-	@yield('main')
 </div>
 </body>
 </html>

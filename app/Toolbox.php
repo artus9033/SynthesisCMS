@@ -134,6 +134,11 @@ class Toolbox
 		return mb_strimwidth($str, 0, $length, "...");
 	}
 
+	static function string_truncate_no_dots($str, $length)
+	{
+		return mb_strimwidth($str, 0, $length, "");
+	}
+
 	static function isEven($number)
 	{
 		if ($number % 2 == 0) {

@@ -1,5 +1,7 @@
 @if($mode == 'editor-new-item')
-	<div class="card ferrum-draggable ferrum-label-with-description-element col s12 row">
+	<div class="card ferrum-draggable ferrum-label-with-description-element col s12 row ferrum-tooltipped"
+		 data-tooltip="{{ trans('Ferrum::items.item_label_with_description_name') }}" data-delay="50"
+		 data-position="left">
 		<div class="card-content">
 			<div class="card-title col s12 no-padding">
 				<h5 class="{{ $synthesiscmsMainColor }}-text valign-wrapper ferrum-inline-editable">
@@ -10,6 +12,9 @@
 			<p class="ferrum-inline-editable">{{ trans('Ferrum::items.item_label_with_description_description') }}</p>
 		</div>
 	</div>
+	<script>
+        $('.ferrum-tooltipped').tooltip();
+	</script>
 @elseif($mode == 'editor-load-item')
 	<div class="card ferrum-draggable ferrum-label-with-description-element col s12 row">
 		<div class="card-content">

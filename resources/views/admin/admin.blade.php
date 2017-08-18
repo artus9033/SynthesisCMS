@@ -19,7 +19,7 @@
 				<div class="card-title center">
 					<h2 class="card-panel {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text"><i
 								class="material-icons white-text medium left valign"
-								style="line-height: unset !important;">graphic_eq</i>{{ trans('synthesiscms/admin.stats') }}
+								style="line-height: unset !important;">show_chart</i>{{ trans('synthesiscms/admin.stats') }}
 					</h2>
 				</div>
 				<div class="row col s12"></div>

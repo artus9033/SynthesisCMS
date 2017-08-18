@@ -1,10 +1,10 @@
 <?php
 
 return [
-	'err_extension_not_found' => 'RozszerzenieNieOdnalezione',
+	'err_extension_not_found' => 'rozszerzenie nie zostało odnalezione',
 	'err_extension_not_found_help' => 'Żądane rozszerzenie nie istnieje lub brakuje jego klasy ExtensionKernel (ścieżka żądania to `:path`). Skontaktuj się z administratorem strony.',
 	'cmserr' => 'Błąd SynthesisCMS',
-	'cmserr_header' => '&nbsp;Wewnętrzny Błąd SynthesisCMS',
+	'cmserr_header' => '&nbsp;Wewnętrzny błąd SynthesisCMS',
 	'cmserr_desc' => 'Przepraszamy, wystąpił błąd :error',
 	'cmserr_header2' => 'Wystąpił problem!',
 	'cmserr_desc2' => 'Wystąpił błąd :error. :help',

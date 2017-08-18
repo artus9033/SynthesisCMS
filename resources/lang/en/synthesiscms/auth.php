@@ -26,4 +26,6 @@ return [
 	'err_password_original_bad' => 'The confirmation password is incorrect',
 	'msg_changed_passwd' => 'Your password has been changed succesfully!',
 	'profile' => 'My Profile',
+	'login_message' => 'Welcome, :username!',
+	'logout_message' => 'Logged out successfully!',
 ];

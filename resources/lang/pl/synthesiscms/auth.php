@@ -26,4 +26,6 @@ return [
 	'err_password_original_bad' => 'Hasło potwierdzające jest błędne',
 	'msg_changed_passwd' => 'Twoje hasło zostało pomyślnie zmienione!',
 	'profile' => 'Mój Profil',
+	'login_message' => 'Witaj, :username!',
+	'logout_message' => 'Wylogowano pomyślnie!',
 ];

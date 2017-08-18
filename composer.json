@@ -4,7 +4,8 @@
         "laravel/framework": "*",
         "doctrine/dbal": "*",
         "nesbot/carbon": "*",
-        "barryvdh/laravel-ide-helper": "*"
+        "barryvdh/laravel-ide-helper": "*",
+        "mpdf/mpdf": "^6.1"
     },
     "require-dev": {
         "fzaninotto/faker": "*",

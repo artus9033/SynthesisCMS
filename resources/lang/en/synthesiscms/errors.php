@@ -1,10 +1,10 @@
 <?php
 
 return [
-	'err_extension_not_found' => 'ExtensionNotFound',
+	'err_extension_not_found' => 'extension could not be found',
 	'err_extension_not_found_help' => 'The requested extension does not exist or it is missing the ExtensionKernel class (requested path is `:path`). Please contact the site admin to fix this.',
 	'cmserr' => 'SynthesisCMS Error',
-	'cmserr_header' => '&nbsp;Internal SynthesisCMS Error',
+	'cmserr_header' => '&nbsp;Internal SynthesisCMS error',
 	'cmserr_desc' => 'Sorry, :error error has occured',
 	'cmserr_header2' => 'The controls are out!',
 	'cmserr_desc2' => 'Error :error has occured. :help',

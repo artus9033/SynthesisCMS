@@ -15,6 +15,7 @@ class FerrumExtensionsTableAddSubmitButtonColumn extends Migration
 	{
 		Schema::table('ferrum_extensions', function (Blueprint $table) {
 			$table->longText('submitButtonText');
+			$table->longText('applicationsClosedText');
 		});
 	}
 
@@ -27,6 +28,7 @@ class FerrumExtensionsTableAddSubmitButtonColumn extends Migration
 	{
 		Schema::table('ferrum_extensions', function (Blueprint $table) {
 			$table->dropColumn('submitButtonText');
+			$table->dropColumn('applicationsClosedText');
 		});
 	}
 }

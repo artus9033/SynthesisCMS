@@ -1,4 +1,6 @@
 const {mix} = require('laravel-mix');
+const fs = require('fs');
+const path = require('path');
 
 mix.options({processCssUrls: false});
 
@@ -28,3 +30,5 @@ mix.copy('resources/assets/fonts', 'public/fonts', false);
 mix.copy('resources/assets/js-copy-only', 'public/js', false);
 mix.copy('resources/assets/artus9033-trumbowyg', 'public/trumbowyg/plugins/artus9033', false);
 mix.copy('resources/assets/trumbowyg-custom-icons/icons.svg', 'public/trumbowyg/ui/icons.svg');
+
+fs.mkdirSync('public/tmp');
