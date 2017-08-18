@@ -142,8 +142,7 @@
 						<select class="{{ $synthesiscmsMainColor }}-text" name="articleCategory" id="articleCategory">
 							@foreach (App\Models\Content\ArticleCategory::all() as $key => $value)
 								<option @php if($value->id == $article->articleCategory){ echo("selected"); } @endphp value="{{ $value->id }}"
-										class="card-panel col s10 offset-s1 red white-text truncate">ID {{ $value->id }}
-									: {{ $value->title }}</option>
+										class="card-panel col s10 offset-s1 red white-text truncate">ID {{ $value->id }}: {{ $value->title }}</option>
 							@endforeach
 						</select>
 						<label>{{ trans('synthesiscms/extensions.choose_article_category') }}</label>
