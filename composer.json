@@ -5,7 +5,8 @@
         "doctrine/dbal": "*",
         "nesbot/carbon": "*",
         "barryvdh/laravel-ide-helper": "*",
-        "mpdf/mpdf": "^6.1"
+        "mpdf/mpdf": "^6.1",
+        "mouf/nodejs-installer": "~1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "*",
@@ -45,5 +46,14 @@
     },
     "config": {
         "preferred-install": "dist"
+    },
+    "extra": {
+        "mouf": {
+            "nodejs": {
+                "version": "~0.12",
+                "targetDir": "vendor/nodejs/nodejs",
+                "forceLocal": false
+            }
+        }
     }
 }

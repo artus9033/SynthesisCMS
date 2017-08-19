@@ -67,11 +67,11 @@
 	</li>
 	@if (Auth::guest())
 		<li class="{{ $synthesiscmsMainColor }}-text col s12 row waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-			<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/register') }}"><i
+			<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('register') }}"><i
 						class="material-icons {{ $synthesiscmsMainColor }}-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
 			</a></li>
 		<li class="{{ $synthesiscmsMainColor }}-text col s12 row waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-			<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/login') }}"><i
+			<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('login') }}"><i
 						class="material-icons {{ $synthesiscmsMainColor }}-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
 			</a></li>
 	@else
@@ -95,11 +95,11 @@
 								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}"><i
 											class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
 								</a>
-								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/logout') }}"
+								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('logout') }}"
 								   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
 											class="material-icons {{ $synthesiscmsMainColor }}-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}
 								</a>
-								<form id="logout-form" action="{{ url('/logout') }}" method="POST"
+								<form id="logout-form" action="{{ route('logout') }}" method="POST"
 									  style="display: none;">
 									{{ csrf_field() }}
 								</form>

@@ -63,12 +63,12 @@
 					</div>
 					<div class="col s12 row"></div>
 					<div class="col s12 l10 offset-l1">
-						<a href="{{ url('/logout') }}"
+						<a href="{{ route('logout') }}"
 						   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
 						   class="btn btn-large col s12 {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light center hoverable"><i
 									class="material-icons white-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}
 						</a>
-						<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 							{{ csrf_field() }}
 						</form>
 					</div>

@@ -39,6 +39,7 @@
 		@each('partials/toast', Session::get('toasts'), 'toast')
 		@php(Session::forget('toasts'))
 	@endif
+	@yield('main')
 </div>
 </body>
 </html>

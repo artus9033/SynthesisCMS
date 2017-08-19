@@ -52,9 +52,9 @@
 				<img style="width: 85%; height: auto; margin-top: 10%; margin-left: 2%;"
 					 src="{{ url('/favicon.ico') }}">
 			</a>
-			<a href="{{ url('/') }}" style="margin-left: 25px; font-size: 2em !important;"
+			<a href="{!! url($synthesiscmsHomePage) !!}" style="margin-left: 25px; font-size: 2em !important;"
 			   class="hide-on-med-and-down brand-logo truncate col s7">{{ $synthesiscmsHeaderTitle }}</a>
-			<a id="synthesiscms-slogan-large-screens" href="{{ url('/') }}" style="width:100%;"
+			<a id="synthesiscms-slogan-large-screens" href="{!! url($synthesiscmsHomePage) !!}" style="width:100%;"
 			   class="hide-on-large-only brand-logo truncate synthesiscms-mobile-brand-logo">{{ $synthesiscmsHeaderTitle }}</a>
 			<script>
                 function synthesiscmsResizeBrandLogoMargin() {
@@ -88,10 +88,10 @@
 				@yield('menu')
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 				@if (Auth::guest())
-					<li class="right"><a class="center" href="{{ url('/register') }}"><i
+					<li class="right"><a class="center" href="{{ route('register') }}"><i
 									class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
 						</a></li>
-					<li class="right"><a class="center" href="{{ url('/login') }}"><i
+					<li class="right"><a class="center" href="{{ route('login') }}"><i
 									class="material-icons white-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
 						</a></li>
 				@else
@@ -105,11 +105,11 @@
 							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}"><i
 										class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
 							</a>
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/logout') }}"
+							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('logout') }}"
 							   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
 										class="material-icons {{ $synthesiscmsMainColor }}-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}
 							</a>
-							<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 								{{ csrf_field() }}
 							</form>
 						</li>

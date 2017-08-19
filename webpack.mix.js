@@ -2,7 +2,38 @@ const {mix} = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
 
-mix.options({processCssUrls: false});
+/*
+ * SynthesisCMS constants start
+ */
+
+// Prevent post-compiled SASS url checking (throws errors which do not really happen)
+const bProcessCssUrls = false;
+
+// Show log output during compilation
+const bLog = true;
+
+const publicFolderTmpDirectoryPath = "public/tmp";
+
+/*
+ * SynthesisCMS constants end
+ */
+
+/*
+ * SynthesisCMS functions start
+ */
+
+function log(string){
+    if(bLog){
+        console.log(string);
+    }
+}
+
+/*
+ * SynthesisCMS functions end
+ */
+
+log("Setting 'processCssUrls' to: " + bProcessCssUrls);
+mix.options({processCssUrls: bProcessCssUrls});
 
 //SynthesisCMS SASS
 mix.sass('resources/assets/sass/app.scss', 'public/css/app.css');
@@ -24,11 +55,19 @@ mix.copy('node_modules/chart.js/dist/Chart.js', 'public/js');
 mix.copy('node_modules/clipboard/dist/clipboard.min.js', 'public/js/clipboard.min.js');
 mix.copy('node_modules/trumbowyg/dist', 'public/trumbowyg', false);
 
-//SynthesisCMS resources, trumbowyg resources, artus9033's Trumbowyg addons, MaterializeCSS fonts
+//SynthesisCMS resources, trumbowyg resources, artus9033's Trumbowyg addons, fonts
 mix.copy('resources/assets/img', 'public/img', false);
 mix.copy('resources/assets/fonts', 'public/fonts', false);
 mix.copy('resources/assets/js-copy-only', 'public/js', false);
 mix.copy('resources/assets/artus9033-trumbowyg', 'public/trumbowyg/plugins/artus9033', false);
 mix.copy('resources/assets/trumbowyg-custom-icons/icons.svg', 'public/trumbowyg/ui/icons.svg');
 
-fs.mkdirSync('public/tmp');
+log("Checking if SynthesisCMS public tmp directory exists...");
+if (fs.existsSync(path)) {
+    log("SynthesisCMS public tmp directory does not exist yet, it will be created");
+    fs.mkdirSync(publicFolderTmpDirectoryPath);
+} else {
+    log("SynthesisCMS public tmp directory already exists, no action will be performed");
+}
+
+log("Running all tasks now...");

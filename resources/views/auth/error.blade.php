@@ -17,7 +17,7 @@
                 <div class="container" style="margin-top: 40px; margin-bottom: 50px;">
                     <h2 class="header red-text text-lighten-2">{{ trans('synthesiscms/errors.auth_permission_header2') }}</h2>
                     <p class="caption">{{ trans('synthesiscms/errors.auth_permission_desc2') }}</p>
-                    <a href="{{ url('/login') }}" class="btn-large waves-effect waves-light"><i
+                    <a href="{{ route('login') }}" class="btn-large waves-effect waves-light"><i
                                 class="material-icons white-text left">fingerprint</i>&nbsp;{{ trans('synthesiscms/errors.auth_permission_link') }}
                     </a>
                 </div>

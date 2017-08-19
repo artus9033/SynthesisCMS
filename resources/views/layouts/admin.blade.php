@@ -42,58 +42,59 @@
 	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.table_artus9033.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.insertFacebookAlbum.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.fileEmbed.js') }}"></script>
+	<!-- TODO: add possibility to dynamically register trumbowyg plugins from extensions -->
+	<!-- TODO: add mobile support for admin layout -->
 	@foreach (glob(public_path('trumbowyg/langs/') . '*.js') as $file)
 		<script src='{{ asset('trumbowyg/langs/' . basename($file)) }}'></script>
 	@endforeach
 	<script>
         $(document).ready(function () {
+            var zeroIndexedCollapsibleHeaderNumberString = '@yield('side-nav-active-zero-indexed')';
             $('.collapsible').collapsible();
-            var selector = "#@yield('side-nav-active')";
-            if (selector != "#") {
-                $(selector).addClass("active");
-                $(selector).parents('li').children('a').click();
-                $(".editor").trumbowyg({
-                    autogrow: true,
-                    fullscreenable: false,
-                    btnsDef: {
-                        image: {
-                            dropdown: ['insertImage', 'upload', 'base64', 'noembed'],
-                            ico: 'insertImage'
-                        },
-                        link: {
-                            dropdown: ['createLink', 'unlink', 'noembed'],
-                            ico: 'link'
-                        },
-                        insertImageFromServer: {
-                            ico: 'insertImageFromServer'
-                        }
-                    },
-                    btns: [
-                        ['viewHTML'],
-                        ['undo', 'redo'],
-                        ['formatting'],
-                        'btnGrp-design',
-                        ['link'],
-                        ['image'],
-                        'btnGrp-justify',
-                        'btnGrp-lists',
-                        ['foreColor', 'backColor', 'preformatted'],
-                        ['horizontalRule', 'table'],
-                        ['insertImageFromServer', 'insertFacebookAlbum', 'fileEmbed'],
-                        ['fullscreen']
-                    ],
-                    plugins: {
-                        upload: {
-                            serverPath: {!! json_encode(route('admin_upload_post')) !!},
-                            fileFieldName: 'file',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                        }
-                    },
-                    lang: '{{ \App::getLocale() }}'
-                });
+            if(zeroIndexedCollapsibleHeaderNumberString.length) {
+                $('.collapsible').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
             }
+            $(".editor").trumbowyg({
+                autogrow: true,
+                fullscreenable: false,
+                btnsDef: {
+                    image: {
+                        dropdown: ['insertImage', 'upload', 'base64', 'noembed'],
+                        ico: 'insertImage'
+                    },
+                    link: {
+                        dropdown: ['createLink', 'unlink', 'noembed'],
+                        ico: 'link'
+                    },
+                    insertImageFromServer: {
+                        ico: 'insertImageFromServer'
+                    }
+                },
+                btns: [
+                    ['viewHTML'],
+                    ['undo', 'redo'],
+                    ['formatting'],
+                    'btnGrp-design',
+                    ['link'],
+                    ['image'],
+                    'btnGrp-justify',
+                    'btnGrp-lists',
+                    ['foreColor', 'backColor', 'preformatted'],
+                    ['horizontalRule', 'table'],
+                    ['insertImageFromServer', 'insertFacebookAlbum', 'fileEmbed'],
+                    ['fullscreen']
+                ],
+                plugins: {
+                    upload: {
+                        serverPath: {!! json_encode(route('admin_upload_post')) !!},
+                        fileFieldName: 'file',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                    }
+                },
+                lang: '{{ \App::getLocale() }}'
+            });
             $('ul:not(.collapsible) > li.active').addClass('lighten-1');
             $('ul:not(.collapsible) > li.active').addClass('{{ $synthesiscmsMainColor }}');
             $('.admin-menu-button-collapse').sideNav({
@@ -104,109 +105,35 @@
             });
         });
 	</script>
-	@if(!$synthesiscmsClientIsAnyMobile)
-		<style>
+	<style>
+		@media only screen and (min-width: 993px) {
 			body {
 				padding-left: 300px;
 			}
-		</style>
-	@endif
+		}
+	</style>
 	@yield('head')
 </head>
 <header>
-	@if(!$synthesiscmsClientIsAnyMobile)
-		<ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0px);">
-			@else
-				<ul id="nav-mobile" class="side-nav">
-					@endif
-					<li class="logo truncate"><a href="{{ route('admin') }}"
-												 class="brand-logo truncate {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text waves-effect waves-light"><i
-									class="material-icons white-text">verified_user</i>{{ trans('synthesiscms/admin.backend') }}
-						</a></li>
-					<li>
-						<ul class="collapsible collapsible-accordion">
-							<li class="bold"><a
-										class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i
-											class="material-icons {{ $synthesiscmsMainColor }}-text">description</i>{{ trans('synthesiscms/admin.section_content') }}
-								</a>
-								<div class="collapsible-body" style="padding: unset !important;">
-									<ul>
-										<li id="manage_articles"><a
-													class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-													href="{{ url('/admin/manage_articles') }}">{{ trans('synthesiscms/admin.manage_articles') }}</a>
-										</li>
-										<li id="manage_article_categories"><a
-													class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-													href="{{ url('/admin/manage_article_categories') }}">{{ trans('synthesiscms/admin.manage_article_categories') }}</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li class="bold"><a
-										class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i
-											class="material-icons {{ $synthesiscmsMainColor }}-text">supervisor_account</i>{{ trans('synthesiscms/admin.section_users') }}
-								</a>
-								<div class="collapsible-body" style="padding: unset !important;">
-									<ul>
-										<li id="profile"><a
-													class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-													href="{{ route('profile') }}">{{ trans('synthesiscms/profile.profile') }}</a>
-										</li>
-										<li id="manage_users"><a
-													class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-													href="{{ url('/admin/manage_users') }}">{{ trans('synthesiscms/admin.manage_users') }}</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li class="bold"><a
-										class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i
-											class="material-icons {{ $synthesiscmsMainColor }}-text">pages</i>{{ trans('synthesiscms/admin.section_routes') }}
-								</a>
-								<div class="collapsible-body" style="padding: unset !important;">
-									<ul>
-										<li id="manage_routes"><a
-													class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-													href="{{ url('/admin/manage_routes') }}">{{ trans('synthesiscms/admin.manage_routes') }}</a>
-										</li>
-										<li id="manage_applets"><a
-													class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-													href="{{ url('/admin/manage_applets') }}">{{ trans('synthesiscms/admin.manage_applets') }}</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li class="bold active"><a
-										class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"><i
-											class="material-icons {{ $synthesiscmsMainColor }}-text">settings</i>{{ trans('synthesiscms/admin.section_settings') }}
-								</a>
-								<div class="collapsible-body" style="padding: unset !important;">
-									<ul>
-										<li id="settings"><a
-													class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-													href="{{ url('/admin/settings') }}">{{ trans('synthesiscms/admin.settings') }}</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-						</ul>
-					</li>
-				</ul>
-		@yield('header')
+	<ul id="nav-mobile" class="side-nav">
+		@include('partials/admin_menu', ['adminMenuIsMobile' => true])
+	</ul>
+	<ul class="side-nav fixed">
+		@include('partials/admin_menu', ['adminMenuIsMobile' => false])
+	</ul>
+	@yield('header')
 </header>
 <body>
 @yield('body')
 <div class="col s12 row">
 	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 z-depth-3">
 		<div class="nav-wrapper col s12">
-			@if($synthesiscmsClientIsAnyMobile)
-				<div class="left">
-					<button data-activates="nav-mobile"
-							class="admin-menu-button-collapse lighten-1 btn btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light z-depth-1">
-						<i class="material-icons">menu</i>
-					</button>
-				</div>
-			@endif
+			<div class="left hide-on-large-only">
+				<button data-activates="nav-mobile"
+						class="admin-menu-button-collapse lighten-1 btn btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light z-depth-1">
+					<i class="material-icons">menu</i>
+				</button>
+			</div>
 			<a style="max-width: 50%;" href="{{ route('admin') }}" class="brand-logo truncate"
 			   style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }}
 				- @section('brand-logo'){{ trans('synthesiscms/admin.backend') }}@show</a>
@@ -225,39 +152,32 @@
 					</select>
 				</li>
 				@yield('menu')
-				@if (Auth::guest())
-					<li class="right col s3 m2 l2"><a class="center" href="{{ url('/register') }}"><i
-									class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
-						</a></li>
-					<li class="right col s3 m2 l2"><a class="center" href="{{ url('/login') }}"><i
-									class="material-icons white-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
-						</a></li>
-				@else
-					<ul id="user_dropdown" class="dropdown-content">
-						<li>
-							@if(Auth::user()->is_admin)
-								<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('admin') }}"><i
-											class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
-								</a>
-							@endif
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}"><i
-										class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
+				<ul id="user_dropdown" class="dropdown-content">
+					<li>
+						@if(Auth::user()->is_admin)
+							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('admin') }}"><i
+										class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
 							</a>
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ url('/logout') }}"
-							   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-										class="material-icons {{ $synthesiscmsMainColor }}-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}
-							</a>
-							<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-								{{ csrf_field() }}
-							</form>
-						</li>
-					</ul>
-					<li class="right" style="min-width: 210px;"><a class="dropdown-button center"
-																   href="{{ route('profile') }}"
-																   data-activates="user_dropdown"><i
-									class="material-icons white-text left">account_circle</i>{{ Auth::user()->name }}<i
-									class="material-icons right">arrow_drop_down</i></a></li>
-				@endif
+						@endif
+						<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}"><i
+									class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
+						</a>
+						<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('logout') }}"
+						   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+									class="material-icons {{ $synthesiscmsMainColor }}-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}
+						</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							{{ csrf_field() }}
+						</form>
+					</li>
+				</ul>
+				<li class="right" style="min-width: 210px;">
+					<a class="dropdown-button center" href="{{ route('profile') }}" data-activates="user_dropdown">
+						<i class="material-icons white-text left">account_circle</i>
+						{{ Auth::user()->name }}
+						<i class="material-icons right">arrow_drop_down</i>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</nav>
@@ -280,17 +200,15 @@
 			@each('partials/toast', Session::get('toasts'), 'toast')
 			@php(Session::forget('toasts'))
 		@endif
-		@if(!$synthesiscmsClientIsAnyMobile)
-			<div class="col s12 m12 l12 z-depth-1 grey lighten-4 row card z-depth-5 no-padding"
-				 style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
-				<div class="card-content">
-					@else
-						<div class="col s12 row">
-							@endif
-							@yield('main')
-						</div>
-						@if(!$synthesiscmsClientIsAnyMobile)
+		<div @if(!$synthesiscmsClientIsAnyMobile) class="col s12 m12 l12 z-depth-1 grey lighten-4 row card z-depth-5 no-padding"
+			 style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;" @endif>
+			<div @if(!$synthesiscmsClientIsAnyMobile) class="card-content" @endif>
+				<div @if($synthesiscmsClientIsAnyMobile) class="col s12 row" @endif>
+					@yield('main')
 				</div>
-@endif
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>

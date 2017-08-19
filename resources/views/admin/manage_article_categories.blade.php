@@ -4,7 +4,7 @@
 	{{ trans('synthesiscms/admin.manage_article_categories')}}
 @endsection
 
-@section('side-nav-active', 'manage_article_categories')
+@section('side-nav-active-zero-indexed', 0)
 
 @section('breadcrumbs')
 	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>

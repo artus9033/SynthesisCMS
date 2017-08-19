@@ -4,16 +4,16 @@
 	{{ trans('synthesiscms/admin.create_route')}}
 @endsection
 
-@section('side-nav-active', 'manage_routes')
+@section('side-nav-active-zero-indexed', 2)
 
 @section('head')
 	<style>
 		#route-sel .caret {
-			color: {{ $synthesiscmsMainColor }}            !important;
+			color: {{ $synthesiscmsMainColor }}     !important;
 		}
 
 		#route-sel .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}            !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }}     !important;
 		}
 
 		#route-sel .select-wrapper {

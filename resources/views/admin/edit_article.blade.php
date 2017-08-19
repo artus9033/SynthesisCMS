@@ -4,7 +4,7 @@
 	{{ trans('synthesiscms/admin.edit_article') }}
 @endsection
 
-@section('side-nav-active', 'manage_articles')
+@section('side-nav-active-zero-indexed', 0)
 
 @section('breadcrumbs')
 	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
@@ -21,11 +21,11 @@
 	</script>
 	<style>
 		#articleCategory-div .caret {
-			color: {{ $synthesiscmsMainColor }}     !important;
+			color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		#articleCategory-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}     !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		#articleCategory-div .select-wrapper {

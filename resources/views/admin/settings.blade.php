@@ -4,16 +4,16 @@
 	{{ trans('synthesiscms/admin.settings') }}
 @endsection
 
-@section('side-nav-active', 'settings')
+@section('side-nav-active-zero-indexed', 3)
 
 @section('head')
 	<style>
 		#settings-div .caret {
-			color: {{ $synthesiscmsMainColor }}    !important;
+			color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		#settings-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}    !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		#settings-div .select-wrapper {

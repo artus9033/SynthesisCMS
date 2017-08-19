@@ -37,9 +37,11 @@ class RouteServiceProvider extends ServiceProvider
 	{
 		$this->mapApiRoutes();
 
-		$this->mapWebRoutes();
+		$this->mapWebInternalRoutes();
 
 		$this->mapAdminRoutes();
+
+		$this->mapWebRoutes();
 	}
 
 	/**
@@ -61,19 +63,21 @@ class RouteServiceProvider extends ServiceProvider
 	}
 
 	/**
-	 * Define the "web" routes for the application.
+	 * Define the "web_internal" routes for the application.
 	 *
-	 * These routes all receive session state, CSRF protection, a Stats Tracker, etc.
+	 * These routes all receive session state, CSRF protection, etc.,
+	 *
+	 * but they are NOT tracked by the Stats Tracker
 	 *
 	 * @return void
 	 */
-	protected function mapWebRoutes()
+	protected function mapWebInternalRoutes()
 	{
 		Route::group([
-			'middleware' => 'web',
+			'middleware' => 'web_internal',
 			'namespace' => $this->namespace,
 		], function ($router) {
-			require base_path('routes/web.php');
+			require base_path('routes/web_internal.php');
 		});
 	}
 
@@ -91,6 +95,23 @@ class RouteServiceProvider extends ServiceProvider
 			'namespace' => $this->namespace,
 		], function ($router) {
 			require base_path('routes/admin.php');
+		});
+	}
+
+	/**
+	 * Define the "web" routes for the application.
+	 *
+	 * These routes all receive session state, CSRF protection, a Stats Tracker, etc.
+	 *
+	 * @return void
+	 */
+	protected function mapWebRoutes()
+	{
+		Route::group([
+			'middleware' => 'web',
+			'namespace' => $this->namespace,
+		], function ($router) {
+			require base_path('routes/web.php');
 		});
 	}
 }

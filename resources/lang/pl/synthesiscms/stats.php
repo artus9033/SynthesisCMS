@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'views_amount' => 'Ilość Wejść',
+	'views_amount' => 'Unikatowe wejścia',
 	'week' => 'Tydzień',
 	'month' => 'Miesiąc',
 	'day' => 'Dzień',

@@ -35,6 +35,16 @@ class Kernel extends HttpKernel
 			\App\Http\Middleware\HookExtensionsMiddleware::class,
 		],
 
+		// web_internal - should be used by routes that are not meant to be indexed by stats tracker
+		'web_internal' => [
+			\App\Http\Middleware\EncryptCookies::class,
+			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+			\Illuminate\View\Middleware\ShareErrorsFromSession::class,
+			\App\Http\Middleware\VerifyCsrfToken::class,
+			\Illuminate\Routing\Middleware\SubstituteBindings::class,
+			\App\Http\Middleware\HookExtensionsMiddleware::class,
+		],
+
 		'admin' => [
 			\App\Http\Middleware\EncryptCookies::class,
 			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,

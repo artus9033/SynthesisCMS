@@ -4,7 +4,7 @@
 	{{ trans('synthesiscms/admin.manage_applets')}}
 @endsection
 
-@section('side-nav-active', 'manage_applets')
+@section('side-nav-active-zero-indexed', 2)
 
 @section('breadcrumbs')
 	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>

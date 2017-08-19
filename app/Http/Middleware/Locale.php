@@ -22,6 +22,8 @@ class Locale
 			\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
 		}
 
+		setlocale(LC_ALL, \App::getLocale());
+
 		return $next($request);
 	}
 }

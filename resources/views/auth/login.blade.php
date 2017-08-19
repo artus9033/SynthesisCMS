@@ -9,7 +9,7 @@
 @endsection
 
 @section('breadcrumbs')
-	<a href="{{ url('/login') }}" class="breadcrumb">{{ trans('synthesiscms/main.login')}}</a>
+	<a href="{{ route('login') }}" class="breadcrumb">{{ trans('synthesiscms/main.login')}}</a>
 @endsection
 
 @section('main')
@@ -35,7 +35,7 @@
 				<h3 class="{{ $synthesiscmsMainColor }}-text center">{{ trans('synthesiscms/auth.login')}}</h3>
 			</div>
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
-			<form class="form-horizontal col s12" role="form" method="POST" action="{{ url('/login') }}">
+			<form class="form-horizontal col s12" role="form" method="POST" action="{{ route('login') }}">
 				{{ csrf_field() }}
 				<div class='row'>
 					<div class='input-field col s12'>
@@ -66,9 +66,9 @@
 		</div>
 		<div class="card-action col s12 row center">
 			<a class="col s4 offset-s2 center {{ $synthesiscmsMainColor }}-text darken-1"
-			   href="{{ url('/register') }}">{{ trans('synthesiscms/auth.register')}}</a>
+			   href="{{ route('register') }}">{{ trans('synthesiscms/auth.register')}}</a>
 			<a class="col s4 center {{ $synthesiscmsMainColor }}-text darken-1"
-			   href="{{ url('/password/reset') }}">{{ trans('synthesiscms/auth.reset')}}</a>
+			   href="{{ route('password.request') }}">{{ trans('synthesiscms/auth.reset')}}</a>
 		</div>
 	</div>
 @endsection

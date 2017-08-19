@@ -50,7 +50,13 @@ class LoginController extends Controller
 	{
 		$this->guard()->logout();
 
+		// Store the chosen site language before flushing the session
+		$langBackup = Session::get('locale');
+
 		Session::invalidate();
+
+		// Reflash the chosen site language after flushing the session
+		Session::put('locale', $langBackup);
 
 		Toolbox::addToastToBag(trans('synthesiscms/auth.logout_message'));
 

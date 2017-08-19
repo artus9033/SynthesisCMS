@@ -79,7 +79,7 @@ return [
 	'section_routes' => 'Ścieżki i Applety',
 	'section_content' => 'Zarządzanie Treścią',
 	'section_settings' => 'Ustawienia',
-	'backend' => 'Administracja Strony',
+	'backend' => 'Panel Administracyjny',
 	'change_user_privileges' => 'Zmień Uprawnienia',
 	'no_other_users' => 'Nie istnieją konta innych użytkowników',
 	'delete_user' => 'Usuń Konto',

@@ -9,7 +9,7 @@
 @endsection
 
 @section('breadcrumbs')
-	<a href="{{ url('/register') }}" class="breadcrumb">{{ trans('synthesiscms/auth.registration')}}</a>
+	<a href="{{ route('register') }}" class="breadcrumb">{{ trans('synthesiscms/auth.registration')}}</a>
 @endsection
 
 @section('main')
@@ -20,7 +20,7 @@
 				<h3 class="{{ $synthesiscmsMainColor }}-text center">{{ trans('synthesiscms/auth.registration')}}</h3>
 			</div>
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
-			<form class="form-horizontal col s12" role="form" method="POST" action="{{ url('/register') }}">
+			<form class="form-horizontal col s12" role="form" method="POST" action="{{ route('register') }}">
 				{{ csrf_field() }}
 				<div class='row'></div>
 				<div class='row'>
@@ -80,7 +80,7 @@
 		</div>
 		<div class="card-action col s12 row center">
 			<a class="center {{ $synthesiscmsMainColor }}-text darken-1"
-			   href="{{ url('/login') }}">{{ trans('synthesiscms/auth.login')}}</a>
+			   href="{{ route('login') }}">{{ trans('synthesiscms/auth.login')}}</a>
 		</div>
 	</div>
 @endsection

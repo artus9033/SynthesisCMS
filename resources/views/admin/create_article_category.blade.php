@@ -4,16 +4,16 @@
 	{{ trans('synthesiscms/admin.create_article_category')}}
 @endsection
 
-@section('side-nav-active', 'manage_article_categories')
+@section('side-nav-active-zero-indexed', 0)
 
 @section('head')
 	<style>
 		.caret {
-			color: {{ $synthesiscmsMainColor }}     !important;
+			color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		.select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}     !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		.select-wrapper {

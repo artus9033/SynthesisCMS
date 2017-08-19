@@ -13,7 +13,7 @@ class BackendController extends Controller
 	public function index()
 	{
 		if (Auth::check() && Auth::user()->is_admin) {
-			return view('admin.admin');
+			return view('admin.admin_dashboard');
 		} else {
 			return view('auth.error');
 		}

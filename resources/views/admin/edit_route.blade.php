@@ -4,16 +4,16 @@
 	{{ trans('synthesiscms/admin.edit_route', ['route' => $page->slug]) }}
 @endsection
 
-@section('side-nav-active', 'manage_routes')
+@section('side-nav-active-zero-indexed', 2)
 
 @section('head')
 	<style>
 		#articleCategory-div .caret {
-			color: {{ $synthesiscmsMainColor }}      !important;
+			color: {{ $synthesiscmsMainColor }}  !important;
 		}
 
 		#articleCategory-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}      !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }}  !important;
 		}
 
 		#articleCategory-div .select-wrapper {

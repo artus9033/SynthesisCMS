@@ -3,11 +3,11 @@
 @section('head')
 	<style>
 		.caret {
-			color: {{ $synthesiscmsMainColor }}        !important;
+			color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		.select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}        !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		.select-wrapper {
@@ -20,7 +20,7 @@
 	{{ trans('synthesiscms/admin.change_user_privileges')}}
 @endsection
 
-@section('side-nav-active', 'manage_users')
+@section('side-nav-active-zero-indexed', 1)
 
 @section('breadcrumbs')
 	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
