@@ -51,7 +51,11 @@
         $(document).ready(function () {
             var zeroIndexedCollapsibleHeaderNumberString = '@yield('side-nav-active-zero-indexed')';
             $('.collapsible').collapsible();
+<<<<<<< HEAD
             if(zeroIndexedCollapsibleHeaderNumberString.length) {
+=======
+            if (zeroIndexedCollapsibleHeaderNumberString.length) {
+>>>>>>> master
                 $('.collapsible').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
             }
             $(".editor").trumbowyg({
@@ -128,15 +132,19 @@
 <div class="col s12 row">
 	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 z-depth-3">
 		<div class="nav-wrapper col s12">
-			<div class="left hide-on-large-only">
-				<button data-activates="nav-mobile"
-						class="admin-menu-button-collapse lighten-1 btn btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light z-depth-1">
-					<i class="material-icons">menu</i>
-				</button>
-			</div>
-			<a style="max-width: 50%;" href="{{ route('admin') }}" class="brand-logo truncate"
-			   style="margin-left: 10px;">{{ $synthesiscmsHeaderTitle }}
-				- @section('brand-logo'){{ trans('synthesiscms/admin.backend') }}@show</a>
+			<button data-activates="nav-mobile"
+					class="admin-menu-button-collapse hide-on-large-only lighten-1 btn btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light z-depth-1">
+				<i class="material-icons">menu</i>
+			</button>
+			<a style="max-width: 50%;" href="{{ route('admin') }}"
+			   class="hide-on-med-and-down brand-logo truncate">
+				{{ $synthesiscmsHeaderTitle }} - @section('brand-logo'){{ trans('synthesiscms/admin.backend') }}
+				@show
+			</a>
+			<a href="{{ route('admin') }}"
+			   class="hide-on-large-only brand-logo truncate synthesiscms-mobile-brand-logo">
+				{{ $synthesiscmsHeaderTitle }} - @section('brand-logo'){{ trans('synthesiscms/admin.backend') }}@show
+			</a>
 			<ul style="max-width: 50%;" class="right hide-on-med-and-down">
 				<li class="input-field right hide-on-med-and-down">
 					<select id="lang-select" class="icons white-text"
@@ -184,8 +192,14 @@
 	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} lighten-1 col s12 z-depth-2">
 		<div class="nav-wrapper col s12">
 			<div class="col s12">
+<<<<<<< HEAD
 				<a href="{{ url('/') }}" class="breadcrumb"><i
 							class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>
+=======
+				<a href="{{ url($synthesiscmsHomePage) }}" class="breadcrumb">
+					<i class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}
+				</a>
+>>>>>>> master
 				@yield('breadcrumbs')
 			</div>
 		</div>

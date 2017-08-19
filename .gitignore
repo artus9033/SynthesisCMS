@@ -10,13 +10,3 @@ npm-debug.log*
 .phpstorm.meta.php
 _ide_helper.php
 _ide_helper_models.php
-!public/synthesis-uploads/.gitkeep
-!public/synthesis-uploads/.htaccess
-public/css
-public/fonts
-public/js
-public/synthesis-uploads
-public/tmp
-public/trumbowyg
-public/favicon.ico
-public/mix-manifest.json

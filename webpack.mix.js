@@ -2,10 +2,6 @@ const {mix} = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
 
-/*
- * SynthesisCMS constants start
- */
-
 // Prevent post-compiled SASS url checking (throws errors which do not really happen)
 const bProcessCssUrls = false;
 
@@ -14,23 +10,11 @@ const bLog = true;
 
 const publicFolderTmpDirectoryPath = "public/tmp";
 
-/*
- * SynthesisCMS constants end
- */
-
-/*
- * SynthesisCMS functions start
- */
-
 function log(string){
     if(bLog){
         console.log(string);
     }
 }
-
-/*
- * SynthesisCMS functions end
- */
 
 log("Setting 'processCssUrls' to: " + bProcessCssUrls);
 mix.options({processCssUrls: bProcessCssUrls});
@@ -63,7 +47,7 @@ mix.copy('resources/assets/artus9033-trumbowyg', 'public/trumbowyg/plugins/artus
 mix.copy('resources/assets/trumbowyg-custom-icons/icons.svg', 'public/trumbowyg/ui/icons.svg');
 
 log("Checking if SynthesisCMS public tmp directory exists...");
-if (fs.existsSync(path)) {
+if (!fs.existsSync(path)) {
     log("SynthesisCMS public tmp directory does not exist yet, it will be created");
     fs.mkdirSync(publicFolderTmpDirectoryPath);
 } else {

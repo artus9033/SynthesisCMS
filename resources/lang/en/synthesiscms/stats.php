@@ -12,6 +12,7 @@ return [
 	'single_word_daily' => 'daily',
 	'tooltip_dashboard_time_period_traffic_chart' => 'Site unique visits :periodically from :start to :end',
 	'tooltip_dashboard_todays_traffic_chart' => 'Today\'s unique visits per route',
+	'circle_diagram_item_no_registered_visits_today' => 'No registered visits today (yet)',
 ];
 
 ?>

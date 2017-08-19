@@ -57,6 +57,11 @@
 		}
 	}
 
+	if($circleCount == 0){
+		array_push($circleLabels, trans('synthesiscms/stats.circle_diagram_item_no_registered_visits_today'));
+		array_push($circleValues, 1);
+	}
+
 	$circleLabelsJson = json_encode($circleLabels);
 	$circleValuesJson = json_encode($circleValues);
 @endphp

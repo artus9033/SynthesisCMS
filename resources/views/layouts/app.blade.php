@@ -129,8 +129,9 @@
 	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} lighten-1 col s12 z-depth-2">
 		<div class="nav-wrapper col s12">
 			<div class="col s12">
-				<a href="{{ url($synthesiscmsHomePage) }}" class="breadcrumb"><i
-							class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>
+				<a href="{{ url($synthesiscmsHomePage) }}" class="breadcrumb">
+					<i class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}
+				</a>
 				@yield('breadcrumbs')
 			</div>
 		</div>

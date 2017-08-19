@@ -2,7 +2,7 @@ var mFileEmbedPickerTrumbowyg;
 
 function trumbowygFilePickerCallback(url, fsize) {
     var fname = url.substring(url.lastIndexOf('/') + 1);
-    var mAssetBaseUrl = $('meta[name="synthesiscms-asset-root"]').attr('content')
+    var mAssetBaseUrl = $('meta[name="synthesiscms-asset-root"]').attr('content');
     var div = $('<iframe class="col s12 l8 offset-l2" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" srcdoc=\'<html>' +
         '<head>' +
         '<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">' +

@@ -34,40 +34,38 @@
 	</a>
 </li>
 @if($adminMenuIsMobile)
-	<li class="no-padding col s12 waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-		<ul class="collapsible collapsible-accordion no-padding col s12">
-			<li class="no-padding col s12">
-				<a class="collapsible-header {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }} no-padding col s12">
-					<i class="material-icons left {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">account_circle</i>
-					{{ Auth::user()->name }}
-					<i class="material-icons right {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">arrow_drop_down</i>
-				</a>
-				<div class="collapsible-body no-padding col s12">
-					<ul>
-						<li>
-							@if(Auth::user()->is_admin)
-								<a class="{{ $synthesiscmsMainColor }}-text waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-								   href="{{ route('admin') }}">
-									<i class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
-								</a>
-							@endif
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}">
-								<i class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
+	<ul style="width: 100%;" class="collapsible collapsible-accordion">
+		<li class="bold">
+			<a class="collapsible-header {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }} waves-effect waves-{{ $synthesiscmsMainColor }}">
+				<i class="material-icons {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">account_circle</i>
+				{{ Auth::user()->name }}
+				<i class="material-icons right {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">arrow_drop_down</i>
+			</a>
+			<div class="collapsible-body col s12">
+				<ul>
+					<li>
+						@if(Auth::user()->is_admin)
+							<a class="{{ $synthesiscmsMainColor }}-text waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
+							   href="{{ route('admin') }}">
+								<i class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
 							</a>
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('logout') }}"
-							   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-								<i class="material-icons {{ $synthesiscmsMainColor }}-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}
-							</a>
-							<form id="logout-form" action="{{ route('logout') }}" method="POST"
-								  style="display: none;">
-								{{ csrf_field() }}
-							</form>
-						</li>
-					</ul>
-				</div>
-			</li>
-		</ul>
-	</li>
+						@endif
+						<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}">
+							<i class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
+						</a>
+						<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('logout') }}"
+						   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+							<i class="material-icons {{ $synthesiscmsMainColor }}-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}
+						</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST"
+							  style="display: none;">
+							{{ csrf_field() }}
+						</form>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
 @endif
 <ul class="collapsible collapsible-accordion">
 	<li class="bold">
