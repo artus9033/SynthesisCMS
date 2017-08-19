@@ -51,11 +51,11 @@
         $(document).ready(function () {
             var zeroIndexedCollapsibleHeaderNumberString = '@yield('side-nav-active-zero-indexed')';
             $('.collapsible').collapsible();
-<<<<<<< HEAD
+<<<<<<< HEAD;
             if(zeroIndexedCollapsibleHeaderNumberString.length) {
-=======
+=======;
             if (zeroIndexedCollapsibleHeaderNumberString.length) {
->>>>>>> master
+>>>>>>> master;
                 $('.collapsible').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
             }
             $(".editor").trumbowyg({
