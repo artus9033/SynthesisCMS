@@ -112,7 +112,11 @@ class SynthesisCmsJsUtils {
         var i = 360 / (colorCount - 1); // distribute the colors evenly on the hue range
         var r = []; // hold the generated colors
         for (var x = 0; x < colorCount; x++) {
-            r.push(SynthesisCmsJsUtils.hsvToRgb(i * x, SynthesisCmsJsUtils.randomIntegerBetween(35, 80), SynthesisCmsJsUtils.randomIntegerBetween(35, 80)));
+            var h = (i * x);
+            if(isNaN(h)){
+                h = 0; // This fixes an error if colorCont = 0
+            }
+            r.push(SynthesisCmsJsUtils.hsvToRgb(h, SynthesisCmsJsUtils.randomIntegerBetween(35, 80), SynthesisCmsJsUtils.randomIntegerBetween(35, 80)));
         }
         return r;
     }

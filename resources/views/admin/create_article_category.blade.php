@@ -6,22 +6,6 @@
 
 @section('side-nav-active-zero-indexed', 0)
 
-@section('head')
-	<style>
-		.caret {
-			color: {{ $synthesiscmsMainColor }} !important;
-		}
-
-		.select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
-		}
-
-		.select-wrapper {
-			margin-top: 5px !important;
-		}
-	</style>
-@endsection
-
 @section('breadcrumbs')
 	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
 	<a href="{{ route('manage_article_categories') }}"

@@ -2,10 +2,10 @@
 
 /*
 |--------------------------------------------------------------------------
-| Lithium Extension Global Laravel App Routes
+| Berylium Extension Global Laravel App Routes
 |--------------------------------------------------------------------------
 |
-| All the global (laravel app) routes related to the Lithium extension have to go in here.
+| All the global (laravel app) routes related to the Berylium extension have to go in here.
 | These routes are interpreted from the root of app url, e.g. defining a route as
 | Route::get('/extension' [...]) will listen at host:port/extension
 | If you want to add relative routes, use SynthesisCMS API

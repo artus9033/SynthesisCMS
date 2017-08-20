@@ -8,6 +8,14 @@ use App\Toolbox;
 
 class SynthesisFilesystemController extends Controller
 {
+	function __construct()
+	{
+		$dir = public_path() . "/synthesis-uploads/";
+		if(!file_exists($dir)){
+			mkdir($dir);
+		}
+	}
+
 	function files_list(BackendRequest $request)
 	{
 		$dir = public_path() . "/synthesis-uploads/";

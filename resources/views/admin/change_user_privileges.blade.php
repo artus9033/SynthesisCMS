@@ -1,26 +1,26 @@
 @extends('layouts.admin')
 
-@section('head')
-	<style>
-		.caret {
-			color: {{ $synthesiscmsMainColor }} !important;
-		}
-
-		.select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
-		}
-
-		.select-wrapper {
-			margin-top: 5px !important;
-		}
-	</style>
-@endsection
-
 @section('title')
 	{{ trans('synthesiscms/admin.change_user_privileges')}}
 @endsection
 
 @section('side-nav-active-zero-indexed', 1)
+
+@section('head')
+	<style>
+		#is_admin_wrapper .caret {
+			color: {{ $synthesiscmsMainColor }}          !important;
+		}
+
+		#is_admin_wrapper .select-dropdown {
+			border-bottom-color: {{ $synthesiscmsMainColor }}          !important;
+		}
+
+		#is_admin_wrapper .select-wrapper {
+			margin-top: 5px !important;
+		}
+	</style>
+@endsection
 
 @section('breadcrumbs')
 	<a href="{{ route('admin') }}" class="breadcrumb">{{ trans('synthesiscms/admin.backend') }}</a>
@@ -41,10 +41,12 @@
 			<div class="col s12 row">
 				<form class="form-horizontal col s12 valign-wrapper" role="form" method="POST" action="">
 					{{ csrf_field() }}
-					<div class="input-field col s8 valign">
+					<div class="input-field col s8 valign" id="is_admin_wrapper">
 						<select id="is_admin" name="is_admin" class="{{ $synthesiscmsMainColor }}-text">
-							<option value="false" @php if($priv == false){ echo("selected"); } @endphp>{{ trans('synthesiscms/profile.user') }}</option>
-							<option value="true" @php if($priv == true){ echo("selected"); } @endphp>{{ trans('synthesiscms/profile.admin') }}</option>
+							<option value="false"
+									@if($priv == false) selected @endif>{{ trans('synthesiscms/profile.user') }}</option>
+							<option value="true"
+									@if($priv == true) selected @endif>{{ trans('synthesiscms/profile.admin') }}</option>
 						</select>
 					</div>
 					<button type="submit"

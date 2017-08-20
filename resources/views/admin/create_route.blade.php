@@ -9,15 +9,11 @@
 @section('head')
 	<style>
 		#route-sel .caret {
-			color: {{ $synthesiscmsMainColor }}     !important;
+			color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		#route-sel .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}     !important;
-		}
-
-		#route-sel .select-wrapper {
-			margin-top: 5px !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		label {

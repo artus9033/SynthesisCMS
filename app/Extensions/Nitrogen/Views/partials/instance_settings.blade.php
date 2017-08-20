@@ -84,15 +84,11 @@
 			</div>
 			<style>
 				#page-div .caret {
-					color: {{ $synthesiscmsMainColor }}       !important;
+					color: {{ $synthesiscmsMainColor }} !important;
 				}
 
 				#page-div .select-dropdown {
-					border-bottom-color: {{ $synthesiscmsMainColor }}       !important;
-				}
-
-				#page-div .select-wrapper {
-					margin-top: 5px !important;
+					border-bottom-color: {{ $synthesiscmsMainColor }} !important;
 				}
 
 				label {

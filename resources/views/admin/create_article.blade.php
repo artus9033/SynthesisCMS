@@ -8,16 +8,12 @@
 
 @section('head')
 	<style>
-		#articleCategory-div .caret {
+		#select-color-div .caret {
 			color: {{ $synthesiscmsMainColor }} !important;
 		}
 
-		#articleCategory-div .select-dropdown {
+		#select-color-div .select-dropdown {
 			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
-		}
-
-		#articleCategory-div .select-wrapper {
-			margin-top: 5px !important;
 		}
 	</style>
 @endsection
@@ -84,7 +80,7 @@
                                 }
 							</script>
 							@include('partials.file-picker', ['picker_modal_id' => 'article_create_item_picker', 'callback_function_name' => 'articleImagePickerCallback', 'followIframeParentHeight' => false, 'fileExtensions' => ['jpg', 'png', 'gif', 'jpeg']])
-							<a href="#article_create_item_picker"
+							<a onclick="$('#article_create_item_picker').modal('open')"
 							   class="btn btn-large center col s6 row waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
 								<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/article.imageFile') }}
 							</a>
@@ -103,9 +99,17 @@
                             event.preventDefault();
                         }
                     });
+                    $(document).ready(function(){
+                        // Default: close the collapsible,
+						// because the checkbox is unchecked
+						// (prevents bug)
+                        imgCollapsible = true;
+                        $("#collapsible").click();
+                        imgCollapsible = false;
+                    });
 				</script>
 				<div class="row col s12 center">
-					<div class="input-field col s8 offset-s2 valign" id="articleCategory-div">
+					<div class="input-field col s8 offset-s2 valign" id="select-color-div">
 						<select id="articleCategory" name="articleCategory" class="{{ $synthesiscmsMainColor }}-text">
 							@foreach (App\Models\Content\ArticleCategory::all() as $key => $value)
 								<option value="{{ $value->id }}"
@@ -116,7 +120,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="input-field col s8 offset-s2" id="articleCategory-div">
+					<div class="input-field col s8 offset-s2" id="select-color-div">
 						<select class="{{ $synthesiscmsMainColor }}-text" name="cardSize" id="cardSize">
 							<option value="0"
 									class="card-panel col s10 offset-s1 red white-text truncate">{{ trans('synthesiscms/article.card_size_not_defined') }}</option>

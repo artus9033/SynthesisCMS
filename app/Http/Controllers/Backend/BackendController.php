@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
 use App\Models\Settings\Settings;
 use App\Toolbox;
+use DateInterval;
+use DatePeriod;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class BackendController extends Controller
 {
@@ -74,5 +78,69 @@ class BackendController extends Controller
 			$kernel->settingsPost($request, $errors, $messages);
 			return \Redirect::route("applet_settings", $extension)->with(['messages' => $messages, 'errors' => $errors]);
 		}
+	}
+
+	public function feedAdminStatsTrackerChats(\Request $request){
+		$uniqueVisitsPerTimePeriodChartPeriodStart = Carbon::now()->subMonths(2);
+		$uniqueVisitsPerTimePeriodChartPeriodEnd = Carbon::now()->addMonths(2);
+
+		$uniqueVisitsPerTimePeriodChartPeriodWord = 'TODO';
+		$uniqueVisitsPerTimePeriodChartPeriodStartDateString = $uniqueVisitsPerTimePeriodChartPeriodStart->toDateString();
+		$uniqueVisitsPerTimePeriodChartPeriodEndDateString = $uniqueVisitsPerTimePeriodChartPeriodEnd->toDateString();
+
+		$uniqueVisitsPerTimePeriodChartPeriodStartDateHumanString = Carbon::parse($uniqueVisitsPerTimePeriodChartPeriodStartDateString)->formatLocalized("%e.%m.%G");
+		$uniqueVisitsPerTimePeriodChartPeriodEndDateHumanString = Carbon::parse($uniqueVisitsPerTimePeriodChartPeriodEndDateString)->formatLocalized("%e.%m.%G");
+
+		$start = new DateTime($uniqueVisitsPerTimePeriodChartPeriodStartDateString);
+		$end = new DateTime($uniqueVisitsPerTimePeriodChartPeriodEndDateString);
+		$interval = DateInterval::createFromDateString('1 month');
+		$period = new DatePeriod($start, $interval, $end); // Get a set of months between $start & $end
+
+		$labels = Array();
+		$values = Array();
+
+		foreach ($period as $dt) {
+			$date = Carbon::parse($dt->format('Y-m-d'));
+			array_push($labels, utf8_encode($date->formatLocalized("%B %y")));
+			array_push($values, random_int(0, 100));
+		}
+
+		$labelsJson = json_encode($labels);
+		$valuesJson = json_encode($values);
+
+		$circleLabels = Array();
+		$circleValues = Array();
+		$circleCount = 0;
+
+		$items = \App\Models\Stats\Tracker::all();
+
+		foreach($items as $item){
+			$itemDate = Carbon::parse($item->date)->setTime(0, 0, 0);
+			if(Carbon::now()->setTime(0, 0, 0)->equalTo($itemDate)){
+				array_push($circleLabels, $item->url);
+				array_push($circleValues, $item->hits);
+				$circleCount++;
+			}
+		}
+
+		if($circleCount == 0){
+			array_push($circleLabels, trans('synthesiscms/stats.circle_diagram_item_no_registered_visits_today'));
+			array_push($circleValues, 1);
+		}
+
+		$circleLabelsJson = json_encode($circleLabels);
+		$circleValuesJson = json_encode($circleValues);
+
+		return view('partials.admin.admin_stats_charts',
+			[
+				'circleCount' => $circleCount,
+				'circleLabelsJson' => $circleLabelsJson,
+				'circleValuesJson' => $circleValuesJson,
+				'labelsJson' => $labelsJson,
+				'valuesJson' => $valuesJson,
+				'uniqueVisitsPerTimePeriodChartPeriodWord' => $uniqueVisitsPerTimePeriodChartPeriodWord,
+				'uniqueVisitsPerTimePeriodChartPeriodStartDateHumanString' => $uniqueVisitsPerTimePeriodChartPeriodStartDateHumanString,
+				'uniqueVisitsPerTimePeriodChartPeriodEndDateHumanString' => $uniqueVisitsPerTimePeriodChartPeriodEndDateHumanString,
+			]);
 	}
 }

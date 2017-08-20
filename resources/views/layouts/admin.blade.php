@@ -51,11 +51,7 @@
         $(document).ready(function () {
             var zeroIndexedCollapsibleHeaderNumberString = '@yield('side-nav-active-zero-indexed')';
             $('.collapsible').collapsible();
-<<<<<<< HEAD;
-            if(zeroIndexedCollapsibleHeaderNumberString.length) {
-=======;
             if (zeroIndexedCollapsibleHeaderNumberString.length) {
->>>>>>> master;
                 $('.collapsible').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
             }
             $(".editor").trumbowyg({
@@ -120,10 +116,10 @@
 </head>
 <header>
 	<ul id="nav-mobile" class="side-nav">
-		@include('partials/admin_menu', ['adminMenuIsMobile' => true])
+		@include('partials.admin.admin_menu', ['adminMenuIsMobile' => true])
 	</ul>
 	<ul class="side-nav fixed">
-		@include('partials/admin_menu', ['adminMenuIsMobile' => false])
+		@include('partials.admin.admin_menu', ['adminMenuIsMobile' => false])
 	</ul>
 	@yield('header')
 </header>
@@ -192,14 +188,9 @@
 	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} lighten-1 col s12 z-depth-2">
 		<div class="nav-wrapper col s12">
 			<div class="col s12">
-<<<<<<< HEAD
-				<a href="{{ url('/') }}" class="breadcrumb"><i
-							class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}</a>
-=======
 				<a href="{{ url($synthesiscmsHomePage) }}" class="breadcrumb">
 					<i class="material-icons">home</i>&nbsp;{{ trans('synthesiscms/main.home')}}
 				</a>
->>>>>>> master
 				@yield('breadcrumbs')
 			</div>
 		</div>

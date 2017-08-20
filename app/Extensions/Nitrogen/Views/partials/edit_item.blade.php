@@ -2,18 +2,6 @@
 
 @section('head')
 	<style>
-		#articleCategory-div .caret {
-			color: {{ $synthesiscmsMainColor }}     !important;
-		}
-
-		#articleCategory-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}     !important;
-		}
-
-		#articleCategory-div .select-wrapper {
-			margin-top: 5px !important;
-		}
-
 		label {
 			text-align: left !important;
 		}
@@ -80,7 +68,7 @@
 							class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans("Nitrogen::nitrogen.item_image") }}
 				</div>
 				<div class="col s12 l8 offset-l2 input-field">
-					<a href="#nitrogen_create_item_picker"
+					<a onclick="$('#nitrogen_edit_item_picker').modal('open')"
 					   class="btn btn-large center waves-effect col s2 l4 waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
 						<i class="material-icons white-text">attachment</i>
 						&nbsp;&nbsp;{{ trans('synthesiscms/article.imageFile') }}
@@ -92,7 +80,7 @@
                         $('#image-tv').val(txt);
                     }
 				</script>
-				@include('partials/file-picker', ['picker_modal_id' => 'nitrogen_create_item_picker', 'callback_function_name' => 'nitrogenImagePickerCallback', 'followIframeParentHeight' => true, 'fileExtensions' => ['jpg', 'png', 'gif', 'jpeg']])
+				@include('partials/file-picker', ['picker_modal_id' => 'nitrogen_edit_item_picker', 'callback_function_name' => 'nitrogenImagePickerCallback', 'followIframeParentHeight' => true, 'fileExtensions' => ['jpg', 'png', 'gif', 'jpeg']])
 				<a href="{{ url()->previous() }}"
 				   class="col s6 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.applet_return') }}</a>
 				<button type="submit"

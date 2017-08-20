@@ -20,16 +20,12 @@
         });
 	</script>
 	<style>
-		#articleCategory-div .caret {
+		#select-color-div .caret {
 			color: {{ $synthesiscmsMainColor }} !important;
 		}
 
-		#articleCategory-div .select-dropdown {
+		#select-color-div .select-dropdown {
 			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
-		}
-
-		#articleCategory-div .select-wrapper {
-			margin-top: 5px !important;
 		}
 
 		label {
@@ -121,9 +117,11 @@
                         var hasImageChecked = {{ $article->hasImage }};
                         $('#hasImage').prop('checked', hasImageChecked);
                         $('#image').val('{{ $article->image }}');
-                        if (hasImageChecked) {
-                            $('#collapsible').click();
-                        }
+                        if(!hasImageChecked){
+                            imgCollapsible = true;
+                            $("#collapsible").click();
+                            imgCollapsible = false;
+						}
                     });
                     var imgCollapsible = {{ $article->hasImage }};
                     $("#hasImage").click(function () {
@@ -138,7 +136,7 @@
                     });
 				</script>
 				<div class="row">
-					<div class="input-field col s8 offset-s2" id="articleCategory-div">
+					<div class="input-field col s8 offset-s2" id="select-color-div">
 						<select class="{{ $synthesiscmsMainColor }}-text" name="articleCategory" id="articleCategory">
 							@foreach (App\Models\Content\ArticleCategory::all() as $key => $value)
 								<option @php if($value->id == $article->articleCategory){ echo("selected"); } @endphp value="{{ $value->id }}"
@@ -149,7 +147,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="input-field col s8 offset-s2" id="articleCategory-div">
+					<div class="input-field col s8 offset-s2" id="select-color-div">
 						<select class="{{ $synthesiscmsMainColor }}-text" name="cardSize" id="cardSize">
 							<option @if($article->cardSize === \App\Models\Content\Article::cardSizeNotDefined) selected
 									@endif value="0"

@@ -2,16 +2,12 @@
 
 @section('head')
 	<style>
-		#articleCategory-div .caret {
-			color: {{ $synthesiscmsMainColor }}     !important;
+		#type-div .caret {
+			color: {{ $synthesiscmsMainColor }}   !important;
 		}
 
-		#articleCategory-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }}     !important;
-		}
-
-		#articleCategory-div .select-wrapper {
-			margin-top: 5px !important;
+		#type-div .select-dropdown {
+			border-bottom-color: {{ $synthesiscmsMainColor }}   !important;
 		}
 
 		label {
@@ -77,17 +73,17 @@
 				<div class="collapsible-header {{ $synthesiscmsMainColor }}-text"><i
 							class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans("Nitrogen::nitrogen.item_image") }}
 				</div>
-				<div class="input-field col s12 l8 offset-l2" id="articleCategory-div">
+				<div class="input-field col s12 l8 offset-l2" id="type-div">
 					<select class="{{ $synthesiscmsMainColor }}-text" name="type" id="type">
-						<option selected value="single" class="card-panel col s10 offset-s1 red white-text truncate">
-							<h5>{{ trans("Nitrogen::nitrogen.item_typeSingle") }}</h5></option>
-						<option value="folder" class="card-panel col s10 offset-s1 red white-text truncate">
-							<h5>{{ trans("Nitrogen::nitrogen.item_typeFolder") }}</h5></option>
+						<option selected value="single"
+								class="card-panel col s10 offset-s1 red white-text truncate">{{ trans("Nitrogen::nitrogen.item_typeSingle") }}</option>
+						<option value="folder"
+								class="card-panel col s10 offset-s1 red white-text truncate">{{ trans("Nitrogen::nitrogen.item_typeFolder") }}</option>
 					</select>
 					<label>{{ trans("Nitrogen::nitrogen.item_sourceHeader") }}</label>
 				</div>
 				<div class="col s12 l8 offset-l2 input-field">
-					<a href="#nitrogen_create_item_picker"
+					<a onclick="$('#nitrogen_create_item_picker').modal('open')"
 					   class="btn btn-large center waves-effect col s2 l4 waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
 						<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/article.imageFile') }}
 					</a>

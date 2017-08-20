@@ -189,7 +189,7 @@ class ExtensionKernel extends SynthesisExtension
 			$created = NitrogenItem::create(['parentInstance' => $nr, 'image' => $image, 'title' => $title, 'content' => $content, 'before' => $before, 'slider' => $instanceModel->id, 'contentTextColor' => $contentTextColor, 'titleTextColor' => $titleTextColor]);
 			$created->parentOf = $created->id + 1;
 			$created->save();
-			return view("Nitrogen::partials/instance_settings")->with(['nr' => $nr, 'model' => $instanceModel, 'kernel' => $this, 'messages' => array(trans('Nitrogen::messages.msg_item_added'))]);
+			return \Redirect::route("applet_settings_with_url", ['extension' => 'Nitrogen', 'url' => ('/' . $nr)])->with(['nr' => $nr, 'model' => $instanceModel, 'kernel' => $this, 'messages' => array(trans('Nitrogen::messages.msg_item_added'))]);
 		}
 	}
 

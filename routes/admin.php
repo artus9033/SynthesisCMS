@@ -1,52 +1,64 @@
 <?php
 
-Route::get('/admin', ['as' => 'admin', 'uses' => 'Backend\\BackendController@index']);
+use \App\Http\Requests\BackendRequest;
 
-Route::get('/admin/uploads_list', ['as' => 'admin_uploads_list', 'uses' => 'Backend\\SynthesisFilesystemController@files_list']);
-Route::post('/admin/upload', ['as' => 'admin_upload_post', 'uses' => 'Backend\\SynthesisFilesystemController@uploadPost']);
+Route::get('/admin/admin_stats_charts', 'Backend\\BackendController@feedAdminStatsTrackerChats')->name('admin_stats_charts');
 
-Route::post('/synthesis-route-check', ['as' => 'synthesis_route_check', 'uses' => 'Content\\RouteController@checkRoute']);
+Route::get('/admin', 'Backend\\BackendController@index')->name('admin');
 
-Route::post('/admin/file-picker', function (\App\Http\Requests\BackendRequest $request) {
-	return view('partials/file-picker')->with(['picker_modal_id' => $request->get('picker_modal_id'), 'callback_function_name' => $request->get('callback_function_name'), 'followIframeParentHeight' => $request->get('followIframeParentHeight'), 'fileExtensions' => $request->get('fileExtensions')])->render();
-});
+Route::get('/admin/uploads_list', 'Backend\\SynthesisFilesystemController@files_list')->name('admin_uploads_list');
+Route::post('/admin/upload', 'Backend\\SynthesisFilesystemController@uploadPost')->name('admin_upload_post');
 
-Route::get('/admin/manage_routes', ['as' => 'manage_routes', 'uses' => 'Content\\RouteController@manageRoutesGet']);
-Route::get('/admin/manage_routes/edit/{id}', ['as' => 'manage_routes_edit', 'uses' => 'Content\\RouteController@editRouteGet']);
-Route::post('/admin/manage_routes/edit/{id}', ['as' => 'manage_routes_edit_post', 'uses' => 'Content\\RouteController@editRoutePost']);
-Route::get('/admin/manage_routes/delete/{id}', ['as' => 'manage_routes_delete', 'uses' => 'Content\\RouteController@deleteRoute']);
-Route::get('/admin/manage_routes/create_route', ['as' => 'create_route', 'uses' => 'Content\\RouteController@createRouteGet']);
-Route::post('/admin/manage_routes/create_route', ['as' => 'create_route_post', 'uses' => 'Content\\RouteController@createRoutePost']);
+Route::post('/synthesis-route-check', 'Content\\RouteController@checkRoute')->name('synthesis_route_check');
 
-Route::get('/admin/manage_article_categories', ['as' => 'manage_article_categories', 'uses' => 'Content\\ArticleCategoryController@manageArticleCategoriesGet']);
-Route::get('/admin/manage_article_categories/delete/{id},{articles}', ['as' => 'manage_article_categories_delete', 'uses' => 'Content\\ArticleCategoryController@deleteArticleCategory']);
-Route::get('/admin/manage_article_categories/edit/{id}', ['as' => 'manage_article_categories_edit', 'uses' => 'Content\\ArticleCategoryController@editArticleCategoryGet']);
-Route::post('/admin/manage_article_categories/edit/{id}', ['as' => 'manage_article_categories_edit_post', 'uses' => 'Content\\ArticleCategoryController@editArticleCategoryPost']);
-Route::post('/admin/manage_article_categories/mass_delete', ['as' => 'manage_article_categories_mass_delete_post', 'uses' => 'Content\\ArticleCategoryController@massDeleteArticleCategory']);
-Route::post('/admin/manage_article_categories/mass_copy/{childrenArticlesToo}', ['as' => 'manage_article_categories_mass_copy_post', 'uses' => 'Content\\ArticleCategoryController@massCopyArticleCategory']);
-Route::get('/admin/manage_article_categories/create_article_category', ['as' => 'create_article_category', 'uses' => 'Content\\ArticleCategoryController@createArticleCategoryGet']);
-Route::post('/admin/manage_article_categories/create_article_category', ['as' => 'create_article_category_post', 'uses' => 'Content\\ArticleCategoryController@createArticleCategoryPost']);
+Route::post('/admin/file-picker', function (BackendRequest $request) {
+	return view('partials/file-picker')->with(
+		[
+			'picker_modal_id' => $request->get('picker_modal_id'),
+			'callback_function_name' => $request->get('callback_function_name'),
+			'followIframeParentHeight' => $request->get('followIframeParentHeight'),
+			'fileExtensions' => $request->get('fileExtensions')
+		]
+	)->render();
+})->name('file-picker');
 
-Route::get('/admin/manage_articles', ['as' => 'manage_articles', 'uses' => 'Content\\ArticleController@manageArticlesGet']);
-Route::get('/admin/manage_articles/delete/{id}', ['as' => 'manage_articles_delete', 'uses' => 'Content\\ArticleController@deleteArticle']);
-Route::post('/admin/manage_articles/mass_delete', ['as' => 'manage_articles_mass_delete_post', 'uses' => 'Content\\ArticleController@massDeleteArticle']);
-Route::post('/admin/manage_articles/mass_copy', ['as' => 'manage_articles_mass_copy_post', 'uses' => 'Content\\ArticleController@massCopyArticle']);
-Route::post('/admin/manage_articles/mass_move/{articleCategory}', ['as' => 'manage_articles_mass_move_post', 'uses' => 'Content\\ArticleController@massMoveArticle']);
-Route::get('/admin/manage_articles/edit/{id}', ['as' => 'manage_articles_edit', 'uses' => 'Content\\ArticleController@editArticleGet']);
-Route::post('/admin/manage_articles/edit/{id}', ['as' => 'manage_articles_edit_post', 'uses' => 'Content\\ArticleController@editArticlePost']);
-Route::get('/admin/manage_articles/create_article', ['as' => 'create_article', 'uses' => 'Content\\ArticleController@createArticleGet']);
-Route::post('/admin/manage_articles/create_article', ['as' => 'create_article_post', 'uses' => 'Content\\ArticleController@createArticlePost']);
+Route::get('/admin/manage_routes', 'Content\\RouteController@manageRoutesGet')->name('manage_routes');
+Route::get('/admin/manage_routes/edit/{id}', 'Content\\RouteController@editRouteGet')->name('manage_routes_edit');
+Route::post('/admin/manage_routes/edit/{id}', 'Content\\RouteController@editRoutePost')->name('manage_routes_edit_post');
+Route::get('/admin/manage_routes/delete/{id}', 'Content\\RouteController@deleteRoute')->name('manage_routes_delete');
+Route::get('/admin/manage_routes/create_route', 'Content\\RouteController@createRouteGet')->name('create_route');
+Route::post('/admin/manage_routes/create_route', 'Content\\RouteController@createRoutePost')->name('create_route_post');
 
-Route::get('/admin/user-privileges/{id}', ['as' => 'user_privileges', 'uses' => 'Auth\\ProfileController@privilegesGet']);
-Route::post('/admin/user-privileges/{id}', ['as' => 'user_privileges_post', 'uses' => 'Auth\\ProfileController@changePrivilegesPost']);
-Route::get('/admin/manage_users', ['as' => 'manage_users', 'uses' => 'Auth\\ProfileController@manageUsersGet']);
-Route::post('/admin/manage_users', ['as' => 'manage_users_post', 'uses' => 'Auth\\ProfileController@manageUsersPost']);
+Route::get('/admin/manage_article_categories', 'Content\\ArticleCategoryController@manageArticleCategoriesGet')->name('manage_article_categories');
+Route::get('/admin/manage_article_categories/delete/{id},{articles}', 'Content\\ArticleCategoryController@deleteArticleCategory')->name('manage_article_categories_delete');
+Route::get('/admin/manage_article_categories/edit/{id}', 'Content\\ArticleCategoryController@editArticleCategoryGet')->name('manage_article_categories_edit');
+Route::post('/admin/manage_article_categories/edit/{id}', 'Content\\ArticleCategoryController@editArticleCategoryPost')->name('manage_article_categories_edit_post');
+Route::post('/admin/manage_article_categories/mass_delete', 'Content\\ArticleCategoryController@massDeleteArticleCategory')->name('manage_article_categories_mass_delete_post');
+Route::post('/admin/manage_article_categories/mass_copy/{childrenArticlesToo}', 'Content\\ArticleCategoryController@massCopyArticleCategory')->name('manage_article_categories_mass_copy_post');
+Route::get('/admin/manage_article_categories/create_article_category', 'Content\\ArticleCategoryController@createArticleCategoryGet')->name('create_article_category');
+Route::post('/admin/manage_article_categories/create_article_category', 'Content\\ArticleCategoryController@createArticleCategoryPost')->name('create_article_category_post');
 
-Route::get('/admin/settings', ['as' => 'settings', 'uses' => 'Backend\\BackendController@settingsGet']);
-Route::post('/admin/settings', ['as' => 'settings_post', 'uses' => 'Backend\\BackendController@settingsPost']);
+Route::get('/admin/manage_articles', 'Content\\ArticleController@manageArticlesGet')->name('manage_articles');
+Route::get('/admin/manage_articles/delete/{id}', 'Content\\ArticleController@deleteArticle')->name('manage_articles_delete');
+Route::post('/admin/manage_articles/mass_delete', 'Content\\ArticleController@massDeleteArticle')->name('manage_articles_mass_delete_post');
+Route::post('/admin/manage_articles/mass_copy', 'Content\\ArticleController@massCopyArticle')->name('manage_articles_mass_copy_post');
+Route::post('/admin/manage_articles/mass_move/{articleCategory}', 'Content\\ArticleController@massMoveArticle')->name('manage_articles_mass_move_post');
+Route::get('/admin/manage_articles/edit/{id}', 'Content\\ArticleController@editArticleGet')->name('manage_articles_edit');
+Route::post('/admin/manage_articles/edit/{id}', 'Content\\ArticleController@editArticlePost')->name('manage_articles_edit_post');
+Route::get('/admin/manage_articles/create_article', 'Content\\ArticleController@createArticleGet')->name('create_article');
+Route::post('/admin/manage_articles/create_article', 'Content\\ArticleController@createArticlePost')->name('create_article_post');
 
-Route::get('/admin/manage_applets', ['as' => 'manage_applets', 'uses' => 'Backend\\BackendController@manageAppletsGet']);
-Route::get('/admin/manage_applets/{extension}', ['as' => 'applet_settings', 'uses' => 'Backend\\BackendController@appletSettingsGet']);
-Route::post('/admin/manage_applets/{extension}', ['as' => 'applet_settings_post', 'uses' => 'Backend\\BackendController@appletSettingsPost']);
+Route::get('/admin/user-privileges/{id}', 'Auth\\ProfileController@privilegesGet')->name('user_privileges');
+Route::post('/admin/user-privileges/{id}', 'Auth\\ProfileController@changePrivilegesPost')->name('user_privileges_post');
+Route::get('/admin/manage_users', 'Auth\\ProfileController@manageUsersGet')->name('manage_users');
+Route::post('/admin/manage_users', 'Auth\\ProfileController@manageUsersPost')->name('manage_users_post');
+
+Route::get('/admin/settings', 'Backend\\BackendController@settingsGet')->name('settings');
+Route::post('/admin/settings', 'Backend\\BackendController@settingsPost')->name('settings_post');
+
+Route::get('/admin/manage_applets', 'Backend\\BackendController@manageAppletsGet')->name('manage_applets');
+Route::get('/admin/manage_applets/{extension}', 'Backend\\BackendController@appletSettingsGet')->name('applet_settings');
+Route::get('/admin/manage_applets/{extension}{url}', 'Backend\\BackendController@appletSettingsGet')->name('applet_settings_with_url');
+Route::post('/admin/manage_applets/{extension}', 'Backend\\BackendController@appletSettingsPost')->name('applet_settings_post');
 
 ?>

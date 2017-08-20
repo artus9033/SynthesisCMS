@@ -8,18 +8,6 @@
 
 @section('head')
 	<style>
-		#settings-div .caret {
-			color: {{ $synthesiscmsMainColor }} !important;
-		}
-
-		#settings-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
-		}
-
-		#settings-div .select-wrapper {
-			margin-top: 5px !important;
-		}
-
 		.tabs .tab a {
 			color: {{ $synthesiscmsMainColor }};
 		}

@@ -47,7 +47,7 @@ mix.copy('resources/assets/artus9033-trumbowyg', 'public/trumbowyg/plugins/artus
 mix.copy('resources/assets/trumbowyg-custom-icons/icons.svg', 'public/trumbowyg/ui/icons.svg');
 
 log("Checking if SynthesisCMS public tmp directory exists...");
-if (!fs.existsSync(path)) {
+if (!fs.existsSync(publicFolderTmpDirectoryPath)) {
     log("SynthesisCMS public tmp directory does not exist yet, it will be created");
     fs.mkdirSync(publicFolderTmpDirectoryPath);
 } else {
