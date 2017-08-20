@@ -21,10 +21,12 @@
 					   class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped"
 					   data-position="top" data-delay="50"
 					   data-tooltip="{{ trans('Lithium::lithium.options_modal_btn_print') }}">print</i>
-					<i class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped"
+					<i onclick="$('<a>').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURI('{!! \URL::current() !!}')).attr('target', '_blank')[0].click();"
+					   class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped"
 					   data-position="top" data-delay="50"
 					   data-tooltip="{{ trans('Lithium::lithium.options_modal_btn_share') }}">share</i>
-					<i data-clipboard-text="{{ url()->current() }}"
+					<i onclick="Materialize.toast('{!! trans('Lithium::lithium.options_modal_toast_link_copied') !!}', 2000)"
+					   data-clipboard-text="{{ url()->current() }}"
 					   class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped"
 					   data-position="top" data-delay="50"
 					   data-tooltip="{{ trans('Lithium::lithium.options_modal_btn_copy_link') }}">link</i>

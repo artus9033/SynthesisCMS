@@ -67,9 +67,12 @@
 		@endif
 		@php
 			$one_column_list = ($extension_instance->list_column_count == 1);
-			if($synthesiscmsClientIsAnyMobile){
+
+			//Override the two columns list if the device is a phone
+			if($synthesiscmsClientIsPhone){
 				$one_column_list = true;
 			}
+
 			if(!$one_column_list){
 				if($articles->count() == 1){
 					$one = $articles->toArray();
@@ -88,10 +91,10 @@
 				@include('Hydrogen::partials/list', ['articles' => $all])
 			</div>
 		@else
-			<div class="container col s6 row">
+			<div class="container col s12 m6 row">
 				@include('Hydrogen::partials/list', ['articles' => $one])
 			</div>
-			<div class="container col s6 row">
+			<div class="container col s12 m6 row">
 				@include('Hydrogen::partials/list', ['articles' => $two])
 			</div>
 		@endif

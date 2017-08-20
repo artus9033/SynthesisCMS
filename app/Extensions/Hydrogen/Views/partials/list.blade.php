@@ -26,12 +26,12 @@
 			@else
 				<div class="card-title">
 					<div class="col s12" style="height: 15px;"></div>
-					<div class="col s11">
+					<div class="col s10 m10 l10">
 						<p class="truncate">
 							&nbsp;&nbsp;{{ $article['title'] }}
 						</p>
 					</div>
-					<div class="col s1">
+					<div class="col s2 m2 l2">
 						<a href="{{ url($article_href) }}/article/{{ $article['id'] }}"><i
 									class="material-icons {{ $synthesiscmsMainColor }}-text">open_in_new</i></a>
 					</div>

@@ -51,10 +51,12 @@
 					<label for="title">{{ trans("Nitrogen::nitrogen.item_title") }}</label>
 				</div>
 				<div class="input-field col s12 l6">
+					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">format_color_text</i>
 					<input name="titleTextColor" id="titleTextColor" type="text" value="teal">
 					<label for="titleTextColor">{{ trans("Nitrogen::nitrogen.title_text_color") }}</label>
 				</div>
 				<div class="input-field col s12 l6">
+					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">border_color</i>
 					<input name="contentTextColor" id="contentTextColor" type="text" value="white">
 					<label for="contentTextColor">{{ trans("Nitrogen::nitrogen.content_text_color") }}</label>
 				</div>
@@ -70,18 +72,26 @@
                         }); //empty content
                     });
 				</script>
-				<div class="collapsible-header {{ $synthesiscmsMainColor }}-text"><i
-							class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans("Nitrogen::nitrogen.item_image") }}
+				<div class="collapsible-header {{ $synthesiscmsMainColor }}-text row">
+					<i class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans("Nitrogen::nitrogen.item_image") }}
 				</div>
-				<div class="input-field col s12 l8 offset-l2" id="type-div">
-					<select class="{{ $synthesiscmsMainColor }}-text" name="type" id="type">
-						<option selected value="single"
-								class="card-panel col s10 offset-s1 red white-text truncate">{{ trans("Nitrogen::nitrogen.item_typeSingle") }}</option>
-						<option value="folder"
-								class="card-panel col s10 offset-s1 red white-text truncate">{{ trans("Nitrogen::nitrogen.item_typeFolder") }}</option>
-					</select>
-					<label>{{ trans("Nitrogen::nitrogen.item_sourceHeader") }}</label>
+				<div class="col s12 m10 l8 offset-l2 input-field tooltipped" data-tooltip="{!! trans('Nitrogen::nitrogen.item_background_color_input_tooltip') !!}" data-delay="50" data-position="top">
+					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">format_color_fill</i>
+					<label for="content">{{ trans("Nitrogen::nitrogen.item_background_color_input_label") }}</label>
+					<input id="bg-color" name="bg-color" type="text" value="{{ $synthesiscmsTabColor }}">
 				</div>
+				<div class="col s12 m2" style="height: 60px;">
+					<div id="bg-color-probe"
+						 style="background-color: {{ $synthesiscmsTabColor }}; width: 100%; height: 100%; box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);"></div>
+				</div>
+				<script>
+					$(document).ready(function(){
+					    $('.tooltipped').tooltip();
+					});
+                    $('#bg-color').bind('input', function () {
+                        $("#bg-color-probe").css('background-color', $(this).val());
+                    });
+				</script>
 				<div class="col s12 l8 offset-l2 input-field">
 					<a onclick="$('#nitrogen_create_item_picker').modal('open')"
 					   class="btn btn-large center waves-effect col s2 l4 waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">

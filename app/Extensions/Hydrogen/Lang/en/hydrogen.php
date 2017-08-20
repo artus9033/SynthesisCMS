@@ -7,6 +7,7 @@ return [
 	'options_modal_btn_copy_link' => 'Copy Link to this Article',
 	'options_modal_header' => 'Please choose an action',
 	'options_modal_btn_cancel' => 'Cancel',
+	'options_modal_toast_link_copied' => 'Link copied to clipboard!',
 	'next' => 'Next Page',
 	'previous' => 'Previous Page',
 	'first' => 'First Page',

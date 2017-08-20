@@ -36,7 +36,7 @@ class Toolbox
 		\Session::put('toasts', $array);
 	}
 
-	static function hex2rgba($color, $opacity = false)
+	static function hex2rgba($color, $opacity = 1)
 	{
 		$default = 'rgb(0,0,0)';
 		if (empty($color))
@@ -55,7 +55,7 @@ class Toolbox
 		if ($opacity) {
 			if (abs($opacity) > 1)
 				$opacity = 1.0;
-			$output = 'rgba(' . implode(",", $rgb) . ',' . $opacity . ')';
+			$output = 'rgba(' . implode(",", $rgb) . ',' . str_replace(',', '.', $opacity) . ')';
 		} else {
 			$output = 'rgb(' . implode(",", $rgb) . ')';
 		}

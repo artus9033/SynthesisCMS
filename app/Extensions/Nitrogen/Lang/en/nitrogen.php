@@ -40,6 +40,8 @@ return [
 	'interval' => 'Autoplay Interval (in milliseconds)',
 	'choose_pages' => 'Choose Pages',
 	'header_buttons' => 'Show Navigation Buttons',
+	'item_background_color_input_label' => 'Background color',
+	'item_background_color_input_tooltip' => 'Hexadecimal format, shown if no image is chosen',
 ];
 
 ?>

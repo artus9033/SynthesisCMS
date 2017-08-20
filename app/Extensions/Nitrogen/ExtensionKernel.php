@@ -121,6 +121,7 @@ class ExtensionKernel extends SynthesisExtension
 		$titleTextColor = $request->get('titleTextColor');
 		$contentTextColor = $request->get('contentTextColor');
 		$image = $request->get('image-tv');
+		$color = $request->get('bg-color');
 		$errors = array();
 		$err = false;
 
@@ -144,8 +145,9 @@ class ExtensionKernel extends SynthesisExtension
 			$item->titleTextColor = $titleTextColor;
 			$item->contentTextColor = $contentTextColor;
 			$item->image = $image;
+			$item->color = $color;
 			$item->save();
-			return \Redirect::route("applet_settings", ['extension' => 'Nitrogen'])->with('messages', array(trans('Nitrogen::messages.msg_item_saved')));
+			return \Redirect::route("applet_settings_with_url", ['extension' => 'Nitrogen', 'url' => ('/' . $nr)])->with('messages', array(trans('Nitrogen::messages.msg_item_saved')));
 		}
 	}
 
@@ -163,6 +165,7 @@ class ExtensionKernel extends SynthesisExtension
 		$titleTextColor = $request->get('titleTextColor');
 		$contentTextColor = $request->get('contentTextColor');
 		$image = $request->get('image-tv');
+		$color = $request->get('bg-color');
 		$errors = array();
 		$err = false;
 
@@ -186,7 +189,7 @@ class ExtensionKernel extends SynthesisExtension
 			} else {
 				$before = $parent_id;
 			}
-			$created = NitrogenItem::create(['parentInstance' => $nr, 'image' => $image, 'title' => $title, 'content' => $content, 'before' => $before, 'slider' => $instanceModel->id, 'contentTextColor' => $contentTextColor, 'titleTextColor' => $titleTextColor]);
+			$created = NitrogenItem::create(['parentInstance' => $nr, 'image' => $image, 'color' => $color, 'title' => $title, 'content' => $content, 'before' => $before, 'slider' => $instanceModel->id, 'contentTextColor' => $contentTextColor, 'titleTextColor' => $titleTextColor]);
 			$created->parentOf = $created->id + 1;
 			$created->save();
 			return \Redirect::route("applet_settings_with_url", ['extension' => 'Nitrogen', 'url' => ('/' . $nr)])->with(['nr' => $nr, 'model' => $instanceModel, 'kernel' => $this, 'messages' => array(trans('Nitrogen::messages.msg_item_added'))]);
@@ -210,13 +213,15 @@ class ExtensionKernel extends SynthesisExtension
 		$assignedPages = "";
 		$ctr = 0;
 		if ($request->get('assignedToAllPages') != "on") {
-			if (!empty($request->get('assigned_pages'))) {
+			if (count($request->get('assigned_pages'))) {
 				foreach ($request->get('assigned_pages') as $v) {
-					$ctr++;
-					if ($ctr > 1) {
-						$assignedPages .= ";";
+					if($v) {
+						$ctr++;
+						if ($ctr > 1) {
+							$assignedPages .= ";";
+						}
+						$assignedPages .= $v;
 					}
-					$assignedPages .= $v;
 				}
 			}
 		}
@@ -268,13 +273,15 @@ class ExtensionKernel extends SynthesisExtension
 		$assignedPages = "";
 		$ctr = 0;
 		if ($request->get('assignedToAllPages') != "on") {
-			if (!empty($request->get('assigned_pages'))) {
+			if (count($request->get('assigned_pages'))) {
 				foreach ($request->get('assigned_pages') as $v) {
-					$ctr++;
-					if ($ctr > 1) {
-						$assignedPages .= ";";
+					if($v) {
+						$ctr++;
+						if ($ctr > 1) {
+							$assignedPages .= ";";
+						}
+						$assignedPages .= $v;
 					}
-					$assignedPages .= $v;
 				}
 			}
 		}
@@ -367,31 +374,34 @@ class ExtensionKernel extends SynthesisExtension
 		$nr = 0;
 		$ret = "";
 		foreach (NitrogenExtension::all() as $model) {
-			$nr++;
 			if ($model->enabled) {
 				$show = false;
 				if ($model->assignedToAllPages) {
 					$show = true;
 				} else {
 					$pages_assigned_array = explode(";", $model->assignedPages);
-					if (!empty($pages_assigned_array)) {
+					if (count($pages_assigned_array)) {
 						foreach ($pages_assigned_array as $page_id) {
-							$page = Page::where(['id' => $page_id])->first();
-							if (url($page->slug) === $slug) {
-								$show = true;
+							if($page_id) {
+								$page = Page::where(['id' => $page_id])->first();
+								if (url($page->slug) === $slug) {
+									$show = true;
+								}
 							}
 						}
 					} else {
-						if (!empty($model->assignedPages)) {
+						if (count($model->assignedPages)) {
 							$page = Page::where(['id' => $model->assignedPages])->first();
-							if (url($page->slug) === $slug) {
-								$show = true;
+							if($page) {
+								if (url($page->slug) === $slug) {
+									$show = true;
+								}
 							}
 						}
 					}
 				}
 				if ($show) {
-					$ret .= view('Nitrogen::index')->with(['kernel' => $this, 'slug' => $slug, 'nr' => $nr, 'model' => $model]);
+					$ret .= view('Nitrogen::index')->with(['kernel' => $this, 'slug' => $slug, 'nr' => $model->id, 'model' => $model]);
 				}
 			}
 		}
@@ -421,8 +431,8 @@ class ExtensionKernel extends SynthesisExtension
 		}
 		$items = collect($array);
 		foreach ($items as $item) {
-			if (empty($item->image)) {
-				$background_out = "background-color: " . Toolbox::hex2rgba(Settings::getFromActive('tab_color'), 0.8) . ";";
+			if (!$item->image) {
+				$background_out = "background-color: " . Toolbox::hex2rgba($item->color, 0.8) . ";";
 			} else {
 				$background_out = "background-image: url('" . $item->image . "');";
 			}

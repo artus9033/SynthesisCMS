@@ -40,6 +40,8 @@ return [
 	'interval' => 'Odstęp Czasowy (w milisekundach)',
 	'choose_pages' => 'Wybierz Strony',
 	'header_buttons' => 'Pokaż Przyciski Nawigacji',
+	'item_background_color_input_label' => 'Kolor tła',
+	'item_background_color_input_tooltip' => 'Format heksadecymalny, pokazywany, jeżeli nie zostanie wybrany żaden obraz',
 ];
 
 ?>
