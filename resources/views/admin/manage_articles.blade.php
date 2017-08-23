@@ -184,12 +184,17 @@
 								</div>
 							</td>
 							<td class="center">{{ $article->id }}</td>
-							<td class="center">{{ App\Toolbox::string_truncate($article->title, 15) }}</td>
-							<td class="center">{{ App\Toolbox::string_truncate(('(ID ' . $article->articleCategory . ') ' . App\Models\Content\ArticleCategory::find($article->articleCategory)->title), 15) }}</td>
-							<td class="center"><a href="{{ route('manage_articles_edit', ['id' => $article->id]) }}"
-												  class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i
-											class="material-icons white-text left">create</i>{{ trans('synthesiscms/article.edit') }}
-								</a></td>
+							<td class="center tooltipped" data-delay="50" data-tooltip="{{ $article->title }}"
+								data-position="top">{{ App\Toolbox::string_truncate($article->title, 15) }}</td>
+							@php($articleCategoryName = (App\Models\Content\ArticleCategory::find($article->articleCategory)->title  . ' (ID ' . $article->articleCategory . ')'))
+							<td class="center tooltipped" data-delay="50" data-tooltip="{{ $articleCategoryName }}"
+								data-position="top">{{ App\Toolbox::string_truncate(($articleCategoryName), 15) }}</td>
+							<td class="center">
+								<a href="{{ route('manage_articles_edit', ['id' => $article->id]) }}"
+								   class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
+									<i class="material-icons white-text left">create</i>{{ trans('synthesiscms/article.edit') }}
+								</a>
+							</td>
 							<div id="modalDelete{{ $article->id }}" class="modal">
 								<div class="modal-content">
 									<h3>{{ trans('synthesiscms/admin.modal_delete_article_header') }}</h3>

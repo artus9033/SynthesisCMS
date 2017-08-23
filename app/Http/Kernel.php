@@ -15,8 +15,9 @@ class Kernel extends HttpKernel
 	 */
 	protected $middleware = [
 		\Illuminate\Session\Middleware\StartSession::class,
-		\App\Http\Middleware\Locale::class,
+		\App\Http\Middleware\Content\Locale::class,
 		\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+		\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
 	];
 
 	/**
@@ -26,36 +27,38 @@ class Kernel extends HttpKernel
 	 */
 	protected $middlewareGroups = [
 		'web' => [
-			\App\Http\Middleware\EncryptCookies::class,
+			\App\Http\Middleware\Security\EncryptCookies::class,
 			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
 			\Illuminate\View\Middleware\ShareErrorsFromSession::class,
-			\App\Http\Middleware\VerifyCsrfToken::class,
+			\App\Http\Middleware\Security\VerifyCsrfToken::class,
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
-			\App\Http\Middleware\StatsTracker::class,
-			\App\Http\Middleware\HookExtensionsMiddleware::class,
+			\App\Http\Middleware\Content\StatsTrackerMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\HookExtensionsMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisFilesystemMiddleware::class,
 		],
 
 		// web_internal - should be used by routes that are not meant to be indexed by stats tracker
 		'web_internal' => [
-			\App\Http\Middleware\EncryptCookies::class,
+			\App\Http\Middleware\Security\EncryptCookies::class,
 			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
 			\Illuminate\View\Middleware\ShareErrorsFromSession::class,
-			\App\Http\Middleware\VerifyCsrfToken::class,
+			\App\Http\Middleware\Security\VerifyCsrfToken::class,
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
-			\App\Http\Middleware\HookExtensionsMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\HookExtensionsMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisFilesystemMiddleware::class,
 		],
 
 		'admin' => [
-			\App\Http\Middleware\EncryptCookies::class,
+			\App\Http\Middleware\Security\EncryptCookies::class,
 			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
 			\Illuminate\View\Middleware\ShareErrorsFromSession::class,
-			\App\Http\Middleware\VerifyCsrfToken::class,
+			\App\Http\Middleware\Security\VerifyCsrfToken::class,
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
-			\App\Http\Middleware\Admin::class,
+			\App\Http\Middleware\Auth\Admin::class,
 		],
 
 		'basic_auth' => [
-			\App\Http\Middleware\BasicProfileMiddleware::class,
+			\App\Http\Middleware\Auth\BasicProfileMiddleware::class,
 		],
 
 		'api' => [
@@ -76,8 +79,8 @@ class Kernel extends HttpKernel
 		'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
 		'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
 		'can' => \Illuminate\Auth\Middleware\Authorize::class,
-		'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+		'guest' => \App\Http\Middleware\Auth\RedirectIfAuthenticated::class,
 		'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-		'adminRole' => \App\Http\Middleware\Admin::class,
+		'adminRole' => \App\Http\Middleware\Auth\Admin::class,
 	];
 }

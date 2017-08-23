@@ -1,12 +1,12 @@
 class SynthesisCmsJsUtils {
     static includeFilePickerDynamically(picker_modal_id, callback_function_name, followIframeParentHeight = false, fileExtensions = ['jpg', 'png', 'gif', 'jpeg']) {
-        var mUrl = $('meta[name="synthesiscms-public-root"]').attr('content') + '/admin/file-picker';
+        var mUrl = this.getSiteRouteUrl() + '/admin/file-picker';
         $.ajax(
             {
                 url: mUrl,
                 method: "POST",
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': this.getCsrfTokenValue()
                 },
                 data: {
                     picker_modal_id: picker_modal_id,
@@ -14,22 +14,22 @@ class SynthesisCmsJsUtils {
                     followIframeParentHeight: followIframeParentHeight,
                     fileExtensions: fileExtensions
                 },
-                success: function (dane) {
-                    $("body").append(dane);
-                    console.log("SynthesiscmsJsUtils succesfully loaded a file picker element and injected it to the page!");
+                success: function (data) {
+                    $("body").append(data);
+                    console.log("SynthesisCmsJsUtils succesfully loaded a file picker element and injected it to the page!");
                 },
                 error: function () {
-                    Materialize.toast("Error while retrieving the SynthesisCMS file picker! Please reload the page...", 4000);
+                    this.showToast("Error while retrieving the SynthesisCMS file picker! Please reload the page...", 4000);
                 }
             }
         );
     }
 
-    static randomIntegerBetween(min, max){
+    static randomIntegerBetween(min, max) {
         return Math.floor((Math.random() * max) + min);
     }
 
-    static hsvToRgb(h, s, v) {
+    static hsvToRgbArray(h, s, v) {
         /**
          * HSV to RGB color conversion
          *
@@ -113,11 +113,170 @@ class SynthesisCmsJsUtils {
         var r = []; // hold the generated colors
         for (var x = 0; x < colorCount; x++) {
             var h = (i * x);
-            if(isNaN(h)){
+            if (isNaN(h)) {
                 h = 0; // This fixes an error if colorCont = 0
             }
-            r.push(SynthesisCmsJsUtils.hsvToRgb(h, SynthesisCmsJsUtils.randomIntegerBetween(35, 80), SynthesisCmsJsUtils.randomIntegerBetween(35, 80)));
+            r.push(this.hsvToRgbArray(h, this.randomIntegerBetween(35, 80), this.randomIntegerBetween(35, 80)));
         }
         return r;
     }
+
+    static hexToRgbaArray(hex, alpha) {
+        var c;
+        if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+            c = hex.substring(1).split('');
+            if (c.length == 3) {
+                c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c = '0x' + c.join('');
+            return new Array((c >> 16) & 255, (c >> 8) & 255, c & 255, alpha);
+        }
+        return Array(0, 0, 0, 1);
+    }
+
+    static hexToRgbaString(hex, alpha) {
+        var rgbaArray = this.hexToRgbaArray(hex, alpha);
+        return ('rgba(' + rgbaArray[0] + ',' + rgbaArray[1] + ',' + rgbaArray[2] + ',' + rgbaArray[3] + ')');
+    }
+
+    static showToast(content, duration = 3000, toastCallback, bRounded = false) {
+        if (!(toastCallback)) {
+            toastCallback = function () {
+                // Do nothing
+            }
+        }
+        if (!content) {
+            content = '';
+        }
+        Materialize.toast(content, duration, (bRounded ? 'rounded' : ''), toastCallback);
+    }
+
+    static showToastWithButton(toastContent, buttonContent, duration = 3000, toastCallback = null, buttonClickCallback = null, bRounded = false) {
+        if (!(toastCallback)) {
+            toastCallback = function () {
+                // Do nothing
+            }
+        }
+        if (!(buttonClickCallback)) {
+            buttonClickCallback = function () {
+                // Do nothing
+            }
+        }
+        if (!(toastContent)) {
+            toastContent = '';
+        }
+        var htmlContent = $("<span>" + toastContent + "</span>").add($("<button class='btn-flat waves-effect waves-light toast-action'>" + buttonContent + "</button>").click(function () {
+            buttonClickCallback();
+            this.dismissAllToasts();
+        }));
+        Materialize.toast(htmlContent, duration, (bRounded ? 'rounded' : ''), toastCallback);
+    }
+
+    static dismissAllToasts() {
+        Materialize.Toast.removeAll();
+    }
+
+    static getSiteRouteUrl() {
+        return $('meta[name="synthesiscms-public-root"]').attr('content');
+    }
+
+    static getCsrfTokenValue() {
+        return $('meta[name="csrf-token"]').attr('content');
+    }
+
+    static getSynthesisDynamicUrlStartTag() {
+        return $('meta[name="synthesiscms-dynamic-url-handler-start-tag"]').attr('content');
+    }
+
+    static getSynthesisDynamicUrlEndTag() {
+        return $('meta[name="synthesiscms-dynamic-url-handler-end-tag"]').attr('content');
+    }
+
+    static getRealUrlFromDynamicSynthesisUrl(relativeUrl) {
+        return this.getSiteRouteUrl() + (relativeUrl.startsWith('/') ? relativeUrl : ("/" + relativeUrl));
+    }
+
+    static packDynamicSynthesisUrlIntoServerSideProcessableTags(relativeUrl) {
+        return this.getSynthesisDynamicUrlStartTag() + relativeUrl + this.getSynthesisDynamicUrlEndTag();
+    }
+
+    static addDynamicSynthesisUrlClientSideProcessableAttributesToElement(elementOrSelector, dynamicUrlValueTagValue, dynamicUrlTargetPositionTagValue) {
+        var element;
+        if (elementOrSelector instanceof jQuery) {
+            element = elementOrSelector;
+        } else {
+            element = $(elementOrSelector);
+        }
+        element.attr(this.getSynthesisDynamicUrlPositionTagName(), dynamicUrlTargetPositionTagValue);
+        element.attr(this.getSynthesisDynamicUrlValueTagName(), dynamicUrlValueTagValue);
+        return element;
+    }
+
+    static getSynthesisDynamicUrlValueTagName() {
+        return "data-synthesiscms-dynamic-url";
+    }
+
+    static getSynthesisDynamicUrlPositionInsideElementTagValue() {
+        return 'inside-element-html';
+    }
+
+    static getSynthesisDynamicUrlPositionTagName() {
+        return "data-synthesiscms-dynamic-url-position";
+    }
+
+    static getSynthesisDynamicUrlWasProcessedTagName() {
+        return "data-synthesiscms-dynamic-url-processed";
+    }
+
+    static triggerSynthesisDynamicUrlsRescanOnDocument(){
+        console.log('SynthesisCmsJsUtils triggerSynthesisDynamicUrlsRescanOnDocument() invoked');
+        SynthesisCmsJsUtils._substituteSynthesisDynamicUrls(document.documentElement);
+    }
+
+    static triggerSynthesisDynamicUrlsRescanOnElement(wrapperElement){
+        console.log('SynthesisCmsJsUtils triggerSynthesisDynamicUrlsRescanOnElement(wrapperElement) invoked with wrapperElement:');
+        console.log(wrapperElement);
+        if (wrapperElement instanceof jQuery) {
+            wrapperElement = wrapperElement;
+        } else {
+            wrapperElement = $(wrapperElement);
+        }
+        SynthesisCmsJsUtils._substituteSynthesisDynamicUrls(wrapperElement);
+    }
+
+    static _substituteSynthesisDynamicUrls(elem) {
+        var synthesiscmsJsUtilsSelfRef = this;
+        var element = $(elem);
+        element.find('[' + synthesiscmsJsUtilsSelfRef.getSynthesisDynamicUrlValueTagName() + ']').each(function () {
+            var parent = $(this);
+            var bAlreadyProcessed = (parent.attr(synthesiscmsJsUtilsSelfRef.getSynthesisDynamicUrlWasProcessedTagName()) ? true : false);
+            if (bAlreadyProcessed) {
+                console.log('SynthesisCmsJsUtils omitting processing of a dynamic-synthesis-url-tagged element (which is printed below), because it\'s already been processed');
+                console.log(parent);
+            } else {
+                console.log('SynthesisCmsJsUtils processing a dynamic-synthesis-url-tagged element (which is printed below)');
+                console.log(parent);
+                var positionDataAttribute = parent.attr(synthesiscmsJsUtilsSelfRef.getSynthesisDynamicUrlPositionTagName());
+                if (positionDataAttribute && positionDataAttribute.length) {
+                    var content = parent.attr(synthesiscmsJsUtilsSelfRef.getSynthesisDynamicUrlValueTagName());
+
+                    content = synthesiscmsJsUtilsSelfRef.getRealUrlFromDynamicSynthesisUrl(content);
+
+                    if (positionDataAttribute == synthesiscmsJsUtilsSelfRef.getSynthesisDynamicUrlPositionInsideElementTagValue()) {
+                        parent.html(content);
+                    } else {
+                        parent.attr(positionDataAttribute, content);
+                    }
+                    parent.attr(synthesiscmsJsUtilsSelfRef.getSynthesisDynamicUrlWasProcessedTagName(), 'true');
+                } else {
+                    console.warn('SynthesisCmsJsUtils omitting processing of a dynamic-synthesis-url-tagged element (which is printed below), because it\'s url position attribute value is invalid');
+                    console.warn(parent);
+                }
+            }
+        });
+    }
 }
+
+$(document).ready(function () {
+    SynthesisCmsJsUtils._substituteSynthesisDynamicUrls(document.documentElement);
+});

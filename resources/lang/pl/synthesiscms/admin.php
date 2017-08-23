@@ -78,6 +78,7 @@ return [
 	'section_users' => 'Użytkownicy i Administracja',
 	'section_routes' => 'Ścieżki i Applety',
 	'section_content' => 'Zarządzanie Treścią',
+	'section_tools' => 'Narzędzia',
 	'section_settings' => 'Ustawienia',
 	'backend' => 'Panel Administracyjny',
 	'change_user_privileges' => 'Zmień Uprawnienia',

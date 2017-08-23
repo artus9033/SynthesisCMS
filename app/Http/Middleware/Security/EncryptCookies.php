@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Security;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

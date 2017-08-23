@@ -121,11 +121,11 @@
                 });
                 $("form").submit(function (e) {
                     if (ajaxRequests.length > 0) {
-                        Materialize.toast({!! json_encode(trans('synthesiscms/admin.msg_create_route_wait_for_end_of_check')) !!}, 3500);
+                        SynthesisCmsJsUtils.showToast({!! json_encode(trans('synthesiscms/admin.msg_create_route_wait_for_end_of_check')) !!}, 3500);
                         e.preventDefault();
                     }
                     if (!formValid) {
-                        Materialize.toast({!! json_encode(trans('synthesiscms/admin.msg_choose_another_route_because_selected_is_occupied')) !!}, 3500);
+                        SynthesisCmsJsUtils.showToast({!! json_encode(trans('synthesiscms/admin.msg_choose_another_route_because_selected_is_occupied')) !!}, 3500);
                         e.preventDefault();
                     }
                 });

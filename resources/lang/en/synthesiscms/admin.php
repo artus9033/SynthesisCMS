@@ -78,6 +78,7 @@ return [
 	'section_users' => 'Users & Administration',
 	'section_routes' => 'Routes & Applets',
 	'section_content' => 'Content Management',
+	'section_tools' => 'Tools',
 	'section_settings' => 'Settings',
 	'backend' => 'Admin Dashboard',
 	'change_user_privileges' => 'Change Privileges',

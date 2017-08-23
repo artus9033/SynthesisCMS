@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Content;
 
-use App\Models\Stats\Tracker;
+use App\Models\Stats\StatsTracker;
 use Closure;
 
-class StatsTracker
+class StatsTrackerMiddleware
 {
 	/**
 	 * Handle an incoming request.
@@ -16,7 +16,7 @@ class StatsTracker
 	 */
 	public function handle($request, Closure $next)
 	{
-		Tracker::hit();
+		StatsTracker::hit();
 
 		return $next($request);
 	}

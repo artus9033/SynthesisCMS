@@ -7,11 +7,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=0.7">
 	<meta name="theme-color" content="{{ $synthesiscmsTabColor }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="synthesiscms-dynamic-url-handler-start-tag" content="{!! $synthesiscmsUrlMiddlewareHandlerStartTag !!}">
+	<meta name="synthesiscms-dynamic-url-handler-end-tag" content="{!! $synthesiscmsUrlMiddlewareHandlerEndTag !!}">
 	<meta name="synthesiscms-public-root" content="{{ url('/') }}">
 	<meta name="synthesiscms-asset-root" content="{{ asset('/') }}">
 	<script type="text/javascript" src="{!! asset('js/jquery-3.1.1.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/materialize.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('js/Chart.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/clipboard.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/dragula.js') !!}"></script>
@@ -37,7 +40,7 @@
 <header>
 	@yield('header')
 </header>
-<body>
+<body style="overflow-x: hidden">
 @yield('body')
 <div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh;">
 	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
@@ -52,14 +55,16 @@
 				<img style="width: 85%; height: auto; margin-top: 10%; margin-left: 2%;"
 					 src="{{ url('/favicon.ico') }}">
 			</a>
-			<a href="{!! url($synthesiscmsHomePage) !!}" style="margin-left: 25px; font-size: 2em !important;"
+			<a id="synthesiscms-mobile-brand-logo" href="{!! url($synthesiscmsHomePage) !!}"
+			   class="hide-on-large-only brand-logo truncate">{{ $synthesiscmsHeaderTitle }}</a>
+			<a id="synthesiscms-desktop-brand-logo" href="{!! url($synthesiscmsHomePage) !!}" style="max-width: 100%;"
 			   class="hide-on-med-and-down brand-logo truncate col s7">{{ $synthesiscmsHeaderTitle }}</a>
-			<a id="synthesiscms-slogan-large-screens" href="{!! url($synthesiscmsHomePage) !!}" style="width:100%;"
-			   class="hide-on-large-only brand-logo truncate synthesiscms-mobile-brand-logo">{{ $synthesiscmsHeaderTitle }}</a>
 			<script>
                 function synthesiscmsResizeBrandLogoMargin() {
-                    $(".synthesiscms-mobile-brand-logo").css('margin-left', $('.synthesiscms-mobile-btn-wrapper').width() + 2); // 2 more pixels
-                    $("#synthesiscms-slogan-large-screens").css('max-width', $(document).width() - $('#synthesiscms-large-screens-menu-part-right').width());
+                    $("#synthesiscms-mobile-brand-logo").css('width', ($('body').width() - $('.synthesiscms-mobile-btn-wrapper').width()));
+                    $("#synthesiscms-mobile-brand-logo").css('max-width', ($('body').width() - $('.synthesiscms-mobile-btn-wrapper').width()));
+                    $("#synthesiscms-mobile-brand-logo").css('padding-left', $('.synthesiscms-mobile-btn-wrapper').width());
+                    $("#synthesiscms-desktop-brand-logo").css('max-width', ($('body').width() - $('#synthesiscms-large-screens-menu-part-right').width()));
                 }
                 $(document).ready(function () {
                     synthesiscmsResizeBrandLogoMargin();

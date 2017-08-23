@@ -6,16 +6,42 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
 use App\Toolbox;
 
+/**
+ * Class SynthesisFilesystemController
+ * @package App\Http\Controllers\Backend
+ */
 class SynthesisFilesystemController extends Controller
 {
+
+	/**
+	 * SynthesisFilesystemController constructor.
+	 */
 	function __construct()
 	{
-		$dir = public_path() . "/synthesis-uploads/";
-		if(!file_exists($dir)){
-			mkdir($dir);
+		$synthesisUploadsDirPath = public_path() . "/synthesis-uploads/";
+		if (!file_exists($synthesisUploadsDirPath)) {
+			mkdir($synthesisUploadsDirPath);
 		}
 	}
 
+	/**
+	 * Function that checks if the public directory
+	 * contains all needed compiled resources for the website
+	 * or needs a re-compilation with nodejs
+	 * @return bool
+	 */
+	static function checkPublicDirectoryResourcesFilesystemOK()
+	{
+		$mixManifestPath = public_path() . "/mix-manifest.json";
+		return file_exists($mixManifestPath);
+	}
+
+	/**
+	 * Function that lists all images & directories inside the public/synthesis-uploads directory
+	 * The returned is an array of images & directories inside the public/synthesis-uploads in the following format: Array('imgs' => Array(), 'dirs' => Array()
+	 * @param BackendRequest $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
 	function files_list(BackendRequest $request)
 	{
 		$dir = public_path() . "/synthesis-uploads/";
@@ -37,6 +63,16 @@ class SynthesisFilesystemController extends Controller
 		return response($data);
 	}
 
+	/**
+	 * Function that uploads a file to public/synthesis-uploads
+	 * @param BackendRequest $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 * response with an array storing results of the upload process in the following format:
+	 * either array('message' => 'uploadNotAjax', 'formData' => $_POST) if the request is not ajax,
+	 * array('message' => 'uploadError', 'formData' => $_POST) if there was an error while moving the file
+	 * or array('success' => true, 'file' => url('/') . '/synthesis-uploads/' . basename($file)) if the upload was successful
+	)
+	 */
 	function uploadPost(BackendRequest $request)
 	{
 		function getNewFileName($path, $filename_original)
@@ -64,6 +100,7 @@ class SynthesisFilesystemController extends Controller
 				$error = true;
 				$data = array(
 					'message' => 'uploadError',
+					'formData' => $_POST
 				);
 			}
 		} else {
@@ -75,4 +112,5 @@ class SynthesisFilesystemController extends Controller
 
 		return response($data);
 	}
+
 }

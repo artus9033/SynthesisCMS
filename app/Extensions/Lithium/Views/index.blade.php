@@ -25,7 +25,7 @@
 					   class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped"
 					   data-position="top" data-delay="50"
 					   data-tooltip="{{ trans('Lithium::lithium.options_modal_btn_share') }}">share</i>
-					<i onclick="Materialize.toast('{!! trans('Lithium::lithium.options_modal_toast_link_copied') !!}', 2000)"
+					<i onclick="SynthesisCmsJsUtils.showToast('{!! trans('Lithium::lithium.options_modal_toast_link_copied') !!}', 2000)"
 					   data-clipboard-text="{{ url()->current() }}"
 					   class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped"
 					   data-position="top" data-delay="50"

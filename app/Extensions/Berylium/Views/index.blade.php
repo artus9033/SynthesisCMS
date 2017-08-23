@@ -108,41 +108,39 @@
 			</li>
 		</ul>
 	@endif
-	<li class="col s12 no-padding waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-		<ul class="collapsible collapsible-accordion col s12">
-			<li class="col s12">
-				<a class="collapsible-header {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">
-					<i class="material-icons left {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">public</i>
-					{{ trans('Berylium::berylium.language') }}
-					<i class="material-icons right {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">arrow_drop_down</i>
-				</a>
-				<div class="collapsible-body" style="padding: unset !important;">
-					<ul>
-						<script>
-                            $(document).ready(function () {
-                                $('.lang-span-berylium').each(function () {
-                                    var chk_lang_str = "{{ \App::getLocale() }}";
-                                    var element = $(this);
-                                    if (element.text().toLowerCase() == chk_lang_str.toLowerCase()) {
-                                        element.addClass("{{ $synthesiscmsMainColor }} white-text waves-light");
-                                    } else {
-                                        element.addClass("{{ $synthesiscmsMainColor }}-text waves-{{ $synthesiscmsMainColor }}");
-                                    }
-                                });
-                                $('.lang-span-berylium').click(function () {
-                                    setLanguage($(this).text().toUpperCase(), '{{ url("/") }}');
-                                });
-                            });
-						</script>
-						<li>
-							<span class="waves-effect col s12 lang-span-berylium">EN</span>
-							<span class="waves-effect col s12 lang-span-berylium">PL</span>
-						</li>
-					</ul>
-				</div>
-			</li>
-		</ul>
-	</li>
+	<ul style="width: 100%;" class="collapsible collapsible-accordion">
+		<li class="no-padding">
+			<a class="collapsible-header {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">
+				<i class="material-icons left {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">public</i>
+				{{ trans('Berylium::berylium.language') }}
+				<i class="material-icons right {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">arrow_drop_down</i>
+			</a>
+			<div class="collapsible-body" style="padding: unset !important;">
+				<ul>
+					<script>
+						$(document).ready(function () {
+							$('.lang-span-berylium').each(function () {
+								var chk_lang_str = "{{ \App::getLocale() }}";
+								var element = $(this);
+								if (element.text().toLowerCase() == chk_lang_str.toLowerCase()) {
+									element.addClass("{{ $synthesiscmsMainColor }} white-text waves-light");
+								} else {
+									element.addClass("{{ $synthesiscmsMainColor }}-text waves-{{ $synthesiscmsMainColor }}");
+								}
+							});
+							$('.lang-span-berylium').click(function () {
+								setLanguage($(this).text().toUpperCase(), '{{ url("/") }}');
+							});
+						});
+					</script>
+					<li>
+						<span class="waves-effect col s12 lang-span-berylium">EN</span>
+						<span class="waves-effect col s12 lang-span-berylium">PL</span>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
 	@if($model->enabled)
 		{!! $mobileMenu !!}
 	@endif

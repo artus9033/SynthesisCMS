@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class LithiumExtension extends Model
 {
 	public $timestamps = true;

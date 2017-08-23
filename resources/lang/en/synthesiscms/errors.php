@@ -31,7 +31,9 @@ return [
 	'auth_permission_desc' => 'You are not permitted to see this content.',
 	'auth_permission_header2' => 'Sorry, we can\'t show You this',
 	'auth_permission_desc2' => 'Please log in as a user with proper rights.',
-	'auth_permission_link' => 'Log In'
+	'auth_permission_link' => 'Log In',
+	'error_resources_need_compilation_text' => 'CMS resources need compilation',
+	'error_resources_need_compilation_help' => 'Please EITHER log in to an administrator account, choose the `' . trans('synthesiscms/admin.section_tools') . '` option from the menu and then choose the `' . trans('synthesiscms/tools.tool_compile_cms_resources') . '` OR manually run `npm install` & `npm run prod` inside the main CMS folder.',
 ];
 
 ?>

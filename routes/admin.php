@@ -2,7 +2,8 @@
 
 use \App\Http\Requests\BackendRequest;
 
-Route::get('/admin/admin_stats_charts', 'Backend\\BackendController@feedAdminStatsTrackerChats')->name('admin_stats_charts');
+Route::get('/admin/admin_stats_charts', 'Backend\\BackendController@feedAdminStatsTrackerCharts')->name('admin_stats_charts');
+Route::get('/admin/admin_stats_charts_check_for_updates', 'Backend\\BackendController@checkAdminStatsTrackerChartsUpdates')->name('admin_stats_charts_check_for_updates');
 
 Route::get('/admin', 'Backend\\BackendController@index')->name('admin');
 

@@ -2,7 +2,7 @@
     $(document).ready(function () {
         setTimeout(function () {
             var $toastContent = "{!! $toast !!}";
-            Materialize.toast($toastContent, 6000);
+            SynthesisCmsJsUtils.showToast($toastContent, 6000);
         }, 500);
     });
 </script>

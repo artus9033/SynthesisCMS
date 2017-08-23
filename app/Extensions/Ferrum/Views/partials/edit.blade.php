@@ -124,7 +124,7 @@
             selectMonths: true,
             selectYears: 100,
             today: "{{ trans('Ferrum::ferrum.btn_date_picker_today') }}",
-            clear: "{{ trans('Ferrum::ferrum.btn_date_picker_clear') }}",
+            clear: "",
             close: "{{ trans('Ferrum::ferrum.btn_date_picker_ok') }}",
             closeOnSelect: false,
         });
@@ -133,7 +133,7 @@
             fromnow: 0,
             twelvehour: false,
             donetext: "{{ trans('Ferrum::ferrum.btn_time_picker_ok') }}",
-            cleartext: "{{ trans('Ferrum::ferrum.btn_time_picker_clear') }}",
+            cleartext: "",
             canceltext: "{{ trans('Ferrum::ferrum.btn_time_picker_cancel') }}",
             autoclose: false,
             ampmclickable: false,

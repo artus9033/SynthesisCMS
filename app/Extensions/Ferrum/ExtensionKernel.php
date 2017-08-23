@@ -94,22 +94,20 @@ class ExtensionKernel extends SynthesisExtension
 	public function routes($page, $base_slug)
 	{
 		$kernel = $this;
-		\Route::group(['middleware' => 'web'], function () use ($page, $kernel, $base_slug) {
-			\Route::get($base_slug, function () use ($page, $kernel, $base_slug) {
-				return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->index($page, $kernel, $base_slug);
-			})->middleware('web');
-			\Route::get($base_slug . '/confirm/', function () use ($page, $kernel, $base_slug) {
-				return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->confirm($page, $kernel, $base_slug);
-			})->middleware('web');
-			\Route::post($base_slug . '/apply/', function () use ($page, $kernel, $base_slug) {
-				return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->apply($page, $kernel, $base_slug);
-			})->middleware('web');
-			\Route::get($base_slug . '/download-csv', function () use ($page, $kernel, $base_slug) {
-				return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->downloadCsv($page, $kernel, $base_slug);
-			})->middleware('admin');
-			\Route::get($base_slug . '/download-pdf', function () use ($page, $kernel, $base_slug) {
-				return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->downloadPdf($page, $kernel, $base_slug);
-			})->middleware('admin');
-		});
+		\Route::get($base_slug, function () use ($page, $kernel, $base_slug) {
+			return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->index($page, $kernel, $base_slug);
+		})->middleware('web');
+		\Route::get($base_slug . '/confirm/', function () use ($page, $kernel, $base_slug) {
+			return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->confirm($page, $kernel, $base_slug);
+		})->middleware('web_internal');
+		\Route::post($base_slug . '/apply/', function () use ($page, $kernel, $base_slug) {
+			return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->apply($page, $kernel, $base_slug);
+		})->middleware('web');
+		\Route::get($base_slug . '/download-csv', function () use ($page, $kernel, $base_slug) {
+			return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->downloadCsv($page, $kernel, $base_slug);
+		})->middleware('admin');
+		\Route::get($base_slug . '/download-pdf', function () use ($page, $kernel, $base_slug) {
+			return \App::make('App\Extensions\Ferrum\Controllers\FerrumController')->downloadPdf($page, $kernel, $base_slug);
+		})->middleware('admin');
 	}
 }

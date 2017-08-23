@@ -9,7 +9,11 @@
 @section('head')
 	<style>
 		.tabs .tab a {
-			color: {{ $synthesiscmsMainColor }};
+			color: {{ $synthesiscmsMainColor }} !important;
+		}
+
+		.tabs ::-webkit-scrollbar:horizontal {
+			display: none !important;
 		}
 	</style>
 @endsection
@@ -25,6 +29,29 @@
 			text-align: left !important;
 		}
 	</style>
+	<div id="modalDevModeEnableWarning" class="modal">
+		<div class="modal-content">
+			<h3>{{ trans('synthesiscms/settings.dev_mode_checkbox_warning_modal_title') }}</h3>
+			<div class="row col s12">
+				<div class="divider red col s10 offset-s1" style="height: 2px;"></div>
+			</div>
+			<h5>{{ trans('synthesiscms/settings.dev_mode_checkbox_warning_modal_text') }}</h5>
+			<h5 class="red-text darken-1">
+				<strong>{{ trans('synthesiscms/settings.dev_mode_checkbox_warning_modal_text_2') }}</strong>
+			</h5>
+			<div class="col s12 divider row red"></div>
+			<h5 class="red-text darken-1">
+				<strong>{{ trans('synthesiscms/settings.dev_mode_checkbox_warning_modal_text_3') }}</strong>
+			</h5>
+		</div>
+		<div class="modal-footer">
+			<a style="margin-right: 9%;" onclick="$('#modalDevModeEnableWarning').modal('close');"
+			   class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/settings.dev_mode_checkbox_warning_modal_btn_no') }}</a>
+			<a style="margin-left: 9%;"
+			   onclick="synthesiscmsSettingsEnableDevModeFromModal();"
+			   class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/settings.dev_mode_checkbox_warning_modal_btn_yes') }}</a>
+		</div>
+	</div>
 	<div>
 		<div class="card-content no-padding">
 			<div class="card-title col s12 row valign-wrapper">
@@ -39,19 +66,32 @@
 					{{ csrf_field() }}
 					<div class="row">
 						<div class="col s12">
-							<ul class="tabs z-depth-2">
-								<li class="tab col s3"><a class="active waves-effect" href="#settings-main"><i
-												class="material-icons">format_paint</i>&nbsp;{{ trans('synthesiscms/settings.tab_main') }}
-									</a></li>
-								<li class="tab col s3"><a class="waves-effect" href="#settings-footer-body"><i
-												class="material-icons">border_horizontal</i>&nbsp;{{ trans('synthesiscms/settings.tab_footer_body') }}
-									</a></li>
-								<li class="tab col s3"><a class="waves-effect" href="#settings-footer-bottom"><i
-												class="material-icons">border_bottom</i>&nbsp;{{ trans('synthesiscms/settings.tab_footer_bottom') }}
-									</a></li>
-								<li class="tab col s3"><a class="waves-effect" href="#settings-colors"><i
-												class="material-icons">color_lens</i>&nbsp;{{ trans('synthesiscms/settings.tab_colors') }}
-									</a></li>
+							<ul style="overflow-x: hidden;" class="tabs z-depth-2">
+								<li class="tab">
+									<a class="active waves-effect" href="#settings-main">
+										<i class="material-icons">format_paint</i>&nbsp;{{ trans('synthesiscms/settings.tab_main') }}
+									</a>
+								</li>
+								<li class="tab">
+									<a class="waves-effect" href="#settings-footer-body">
+										<i class="material-icons">border_horizontal</i>&nbsp;{{ trans('synthesiscms/settings.tab_footer_body') }}
+									</a>
+								</li>
+								<li class="tab">
+									<a class="waves-effect" href="#settings-footer-bottom">
+										<i class="material-icons">border_bottom</i>&nbsp;{{ trans('synthesiscms/settings.tab_footer_bottom') }}
+									</a>
+								</li>
+								<li class="tab">
+									<a class="waves-effect" href="#settings-colors">
+										<i class="material-icons">color_lens</i>&nbsp;{{ trans('synthesiscms/settings.tab_colors') }}
+									</a>
+								</li>
+								<li class="tab">
+									<a class="waves-effect" href="#settings-advanced">
+										<i class="material-icons">developer_board</i>&nbsp;{{ trans('synthesiscms/settings.tab_advanced') }}
+									</a>
+								</li>
 							</ul>
 						</div>
 						<div class="row col s12"></div>
@@ -183,6 +223,36 @@
                                     });
                                     $('#tab_color').bind('input', function () {
                                         $("#tab_color_probe").css('background-color', $(this).val());
+                                    });
+								</script>
+							</div>
+						</div>
+						<div id="settings-advanced" class="col s12">
+							<div>
+								<div class="col s12 tooltipped" data-position="top" data-delay="50"
+									 data-tooltip="Zaznacz to pole i w poniższym polu wpisz adres przystanku, jeśli dojeżdżasz autobusem">
+									<p class="col s6 offset-s3">
+										<input class="filled-in" type="checkbox" id="devModeCheckbox"
+											   name="devModeCheckbox">
+										<label for="devModeCheckbox" class="teal-text"></label>
+									</p>
+								</div>
+								<script>
+                                    var synthesiscmsSettingsCanToggleDevMode = false;
+                                    function synthesiscmsSettingsEnableDevModeFromModal() {
+                                        $('#modalDevModeEnableWarning').modal('close');
+                                        synthesiscmsSettingsCanToggleDevMode = true;
+                                        $('#devModeCheckbox').click();
+                                        synthesiscmsSettingsCanToggleDevMode = false;
+                                    }
+                                    $('#devModeCheckbox').click(function (event) {
+                                        if (!synthesiscmsSettingsCanToggleDevMode) {
+                                            event.preventDefault();
+                                            $('#modalDevModeEnableWarning').modal('open');
+                                        }
+                                    });
+                                    $(document).ready(function () {
+                                        $('#modalDevModeEnableWarning').modal();
                                     });
 								</script>
 							</div>

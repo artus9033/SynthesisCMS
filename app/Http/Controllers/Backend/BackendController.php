@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
 use App\Models\Settings\Settings;
+use App\Models\Stats\StatsTracker;
+use App\Models\Stats\StatsTrackerModule;
 use App\Toolbox;
 use DateInterval;
 use DatePeriod;
@@ -80,11 +82,40 @@ class BackendController extends Controller
 		}
 	}
 
-	public function feedAdminStatsTrackerChats(\Request $request){
-		$uniqueVisitsPerTimePeriodChartPeriodStart = Carbon::now()->subMonths(2);
-		$uniqueVisitsPerTimePeriodChartPeriodEnd = Carbon::now()->addMonths(2);
+	public function feedAdminStatsTrackerCharts(BackendRequest $request)
+	{
+		$timeUnitReceived = $request->get('timeUnit');
+		switch ($timeUnitReceived) {
+			case 'day':
+				$timeUnit = 'day';
+				$fd = '%d.%m\'';
+				$uniqueVisitsPerTimePeriodChartPeriodWord = trans('synthesiscms/stats.single_word_daily');
+				break;
+			case 'week':
+				$timeUnit = 'week';
+				$fd = 'WEEK';
+				$uniqueVisitsPerTimePeriodChartPeriodWord = trans('synthesiscms/stats.single_word_weekly');
+				break;
+			case 'month':
+				$timeUnit = 'month';
+				$fd = '%B ';
+				$uniqueVisitsPerTimePeriodChartPeriodWord = trans('synthesiscms/stats.single_word_monthly');
+				break;
+			case 'year':
+				$timeUnit = 'year';
+				$fd = '';
+				$uniqueVisitsPerTimePeriodChartPeriodWord = trans('synthesiscms/stats.single_word_annually');
+				break;
+			default:
+				$timeUnit = 'month';
+				$fd = '%B ';
+				$uniqueVisitsPerTimePeriodChartPeriodWord = trans('synthesiscms/stats.single_word_monthly');
+				break;
+		}
 
-		$uniqueVisitsPerTimePeriodChartPeriodWord = 'TODO';
+		$uniqueVisitsPerTimePeriodChartPeriodStart = Carbon::parse($request->get('timePeriodStart'));
+		$uniqueVisitsPerTimePeriodChartPeriodEnd = Carbon::parse($request->get('timePeriodEnd'));
+
 		$uniqueVisitsPerTimePeriodChartPeriodStartDateString = $uniqueVisitsPerTimePeriodChartPeriodStart->toDateString();
 		$uniqueVisitsPerTimePeriodChartPeriodEndDateString = $uniqueVisitsPerTimePeriodChartPeriodEnd->toDateString();
 
@@ -93,37 +124,96 @@ class BackendController extends Controller
 
 		$start = new DateTime($uniqueVisitsPerTimePeriodChartPeriodStartDateString);
 		$end = new DateTime($uniqueVisitsPerTimePeriodChartPeriodEndDateString);
-		$interval = DateInterval::createFromDateString('1 month');
+		$interval = DateInterval::createFromDateString('1 ' . $timeUnit);
+		$end = $end->modify('+1 day');
 		$period = new DatePeriod($start, $interval, $end); // Get a set of months between $start & $end
 
-		$labels = Array();
-		$values = Array();
+		$labelsAll = Array();
+		$valuesAll = Array();
+		$valuesSemiAll = Array();
+		$valuesUnique = Array();
+
+		$items = StatsTracker::all();
+
+		$mLineKey = -1;
 
 		foreach ($period as $dt) {
+			$ipsTable = Array();
+			$mLineKey++;
+
+			$allCt = 0;
+			$semiAllCt = 0;
+			$uniqueCt = 0;
+			$ipsTablePerRoute = Array();
+
+
 			$date = Carbon::parse($dt->format('Y-m-d'));
-			array_push($labels, utf8_encode($date->formatLocalized("%B %y")));
-			array_push($values, random_int(0, 100));
+
+			if ($fd == "WEEK") {
+				array_push($labelsAll, utf8_encode($date->weekOfMonth . '\'' . $date->formatLocalized("%y")));
+			} else {
+				array_push($labelsAll, utf8_encode($date->formatLocalized($fd . "%y")));
+			}
+
+			foreach ($items as $item) {
+				$itemDate = Carbon::parse($item->date)->setTime(0, 0, 0);
+				if ($itemDate->between(Carbon::parse($start->format('Y-m-d')), Carbon::parse($end->format('Y-m-d')))) {
+					$continue = false;
+					if ($timeUnit == 'day') {
+						if ($itemDate->isSameDay($date)) {
+							$continue = true;
+						}
+					} else if ($timeUnit == 'week') {
+						if ($itemDate->weekOfYear == $date->weekOfYear && $itemDate->year == $date->year) {
+							$continue = true;
+						}
+					} else if ($timeUnit == 'month') {
+						if ($itemDate->isSameMonth($date, true)) {
+							$continue = true;
+						}
+					} else {
+						if ($itemDate->isSameYear($date)) {
+							$continue = true;
+						}
+					}
+					if ($continue) {
+						$allCt += $item->hits;
+						if (!in_array($item->ip, $ipsTable)) {
+							$uniqueCt++;
+							array_push($ipsTable, $item->ip);
+						}
+						if (!array_key_exists($item->url, $ipsTablePerRoute)) {
+							$ipsTablePerRoute[$item->url] = Array();
+						}
+						if (!in_array($item->ip, $ipsTablePerRoute[$item->url])) {
+							$semiAllCt++;
+							array_push($ipsTablePerRoute[$item->url], $item->ip);
+						}
+					}
+				}
+			}
+			array_push($valuesAll, $allCt);
+			array_push($valuesSemiAll, $semiAllCt);
+			array_push($valuesUnique, $uniqueCt);
 		}
 
-		$labelsJson = json_encode($labels);
-		$valuesJson = json_encode($values);
+		$labelsJson = json_encode($labelsAll);
+		$valuesJson = json_encode(Array($valuesAll, $valuesSemiAll, $valuesUnique));
 
 		$circleLabels = Array();
 		$circleValues = Array();
 		$circleCount = 0;
 
-		$items = \App\Models\Stats\Tracker::all();
-
-		foreach($items as $item){
+		foreach (StatsTracker::orderBy('hits', 'DESC')->get() as $item) {
 			$itemDate = Carbon::parse($item->date)->setTime(0, 0, 0);
-			if(Carbon::now()->setTime(0, 0, 0)->equalTo($itemDate)){
+			if (Carbon::now()->setTime(0, 0, 0)->equalTo($itemDate)) {
 				array_push($circleLabels, $item->url);
 				array_push($circleValues, $item->hits);
 				$circleCount++;
 			}
 		}
 
-		if($circleCount == 0){
+		if ($circleCount == 0) {
 			array_push($circleLabels, trans('synthesiscms/stats.circle_diagram_item_no_registered_visits_today'));
 			array_push($circleValues, 1);
 		}
@@ -141,6 +231,19 @@ class BackendController extends Controller
 				'uniqueVisitsPerTimePeriodChartPeriodWord' => $uniqueVisitsPerTimePeriodChartPeriodWord,
 				'uniqueVisitsPerTimePeriodChartPeriodStartDateHumanString' => $uniqueVisitsPerTimePeriodChartPeriodStartDateHumanString,
 				'uniqueVisitsPerTimePeriodChartPeriodEndDateHumanString' => $uniqueVisitsPerTimePeriodChartPeriodEndDateHumanString,
-			]);
+			]
+		);
+	}
+
+	function checkAdminStatsTrackerChartsUpdates(BackendRequest $request)
+	{
+		$statsTrackerModuleLastUpdate = Carbon::parse(StatsTrackerModule::getLastUpdateDateTime());
+		$requestLastUpdate = Carbon::parse($request->get('lastDateTime'));
+		return response()->json(
+			[
+				'isExpired' => $statsTrackerModuleLastUpdate->greaterThanOrEqualTo($requestLastUpdate),
+				'dateTime' => Carbon::now()->toDateTimeString()
+			]
+		);
 	}
 }

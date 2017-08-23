@@ -221,7 +221,8 @@
 									</div>
 								</td>
 								<td class="center">{{ $articleCategory->id }}</td>
-								<td class="center">{{ \App\Toolbox::string_truncate($articleCategory->title, 15) }}</td>
+								<td class="center tooltipped" data-delay="50" data-tooltip="{{ $articleCategory->title }}"
+									data-position="top">{{ \App\Toolbox::string_truncate($articleCategory->title, 15) }}</td>
 								<td class="center">{{ $articleCategory->getAmount() }}</td>
 								<td class="center"><a
 											href="{{ route('manage_article_categories_edit', ['id' => $articleCategory->id]) }}"

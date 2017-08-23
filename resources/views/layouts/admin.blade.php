@@ -7,23 +7,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=0.7">
 	<meta name="theme-color" content="{{ $synthesiscmsTabColor }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="synthesiscms-dynamic-url-handler-start-tag" content="{!! $synthesiscmsUrlMiddlewareHandlerStartTag !!}">
+	<meta name="synthesiscms-dynamic-url-handler-end-tag" content="{!! $synthesiscmsUrlMiddlewareHandlerEndTag !!}">
 	<meta name="synthesiscms-public-root" content="{{ url('/') }}">
 	<meta name="synthesiscms-asset-root" content="{{ asset('/') }}">
 	<script type="text/javascript" src="{!! asset('js/jquery-3.1.1.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/materialize.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('js/Chart.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/clipboard.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/dragula.js') !!}"></script>
 	<link type="text/css" rel="stylesheet" href="{!! asset("css/dragula.css") !!}">
-	<script type="text/javascript">
-        /**$.ajaxSetup({
-	//this collides with Trumbowyg's noEmbed & upload plugins
-		headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		}
-	});**/
-	</script>
 	<link type="text/css" rel="stylesheet" href="{!! asset("fonts/material-icons/material-icons.css") !!}">
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}" media="screen,projection"/>
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
@@ -43,7 +38,6 @@
 	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.insertFacebookAlbum.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.fileEmbed.js') }}"></script>
 	<!-- TODO: add possibility to dynamically register trumbowyg plugins from extensions -->
-	<!-- TODO: add mobile support for admin layout -->
 	@foreach (glob(public_path('trumbowyg/langs/') . '*.js') as $file)
 		<script src='{{ asset('trumbowyg/langs/' . basename($file)) }}'></script>
 	@endforeach
@@ -123,25 +117,39 @@
 	</ul>
 	@yield('header')
 </header>
-<body>
+<body style="overflow-x: hidden">
 @yield('body')
-<div class="col s12 row">
-	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 z-depth-3">
-		<div class="nav-wrapper col s12">
+<div class="col s12 row" id="synthesiscms-admin-content-layout-wrapper">
+	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 z-depth-3 no-padding"
+		 id="synthesiscms-admin-nav-wrapper">
+		<div class="nav-wrapper col s12 no-padding">
 			<button data-activates="nav-mobile"
-					class="admin-menu-button-collapse hide-on-large-only lighten-1 btn btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light z-depth-1">
+					class="synthesiscms-mobile-btn-wrapper admin-menu-button-collapse hide-on-large-only lighten-1 btn btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light z-depth-1">
 				<i class="material-icons">menu</i>
 			</button>
-			<a style="max-width: 50%;" href="{{ route('admin') }}"
+			<a id="synthesiscms-desktop-brand-logo" style="margin-left: 6px;" href="{{ route('admin') }}"
 			   class="hide-on-med-and-down brand-logo truncate">
-				{{ $synthesiscmsHeaderTitle }} - @section('brand-logo'){{ trans('synthesiscms/admin.backend') }}
-				@show
+				{{ $synthesiscmsHeaderTitle }} - {{ trans('synthesiscms/admin.backend') }}
 			</a>
-			<a href="{{ route('admin') }}"
-			   class="hide-on-large-only brand-logo truncate synthesiscms-mobile-brand-logo">
-				{{ $synthesiscmsHeaderTitle }} - @section('brand-logo'){{ trans('synthesiscms/admin.backend') }}@show
+			<a id="synthesiscms-mobile-brand-logo" href="{{ route('admin') }}"
+			   class="hide-on-large-only brand-logo truncate">
+				{{ $synthesiscmsHeaderTitle }} - {{ trans('synthesiscms/admin.backend') }}
 			</a>
-			<ul style="max-width: 50%;" class="right hide-on-med-and-down">
+			<script>
+                function synthesiscmsResizeBrandLogoMargin() {
+                    $("#synthesiscms-mobile-brand-logo").css('width', ($('body').width() - $('.synthesiscms-mobile-btn-wrapper').width()));
+                    $("#synthesiscms-mobile-brand-logo").css('max-width', ($('body').width() - $('.synthesiscms-mobile-btn-wrapper').width()));
+                    $("#synthesiscms-mobile-brand-logo").css('padding-left', $('.synthesiscms-mobile-btn-wrapper').width());
+                    $("#synthesiscms-desktop-brand-logo").css('max-width', ($('#synthesiscms-admin-nav-wrapper').width() - $('#synthesiscms-large-screens-menu-part-right').width()));
+                }
+                $(document).ready(function () {
+                    synthesiscmsResizeBrandLogoMargin();
+                });
+                $(window).resize(function () {
+                    synthesiscmsResizeBrandLogoMargin();
+                });
+			</script>
+			<ul class="right hide-on-med-and-down" id="synthesiscms-large-screens-menu-part-right">
 				<li class="input-field right hide-on-med-and-down">
 					<select id="lang-select" class="icons white-text"
 							onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">

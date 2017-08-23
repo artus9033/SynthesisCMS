@@ -66,6 +66,41 @@
 			</div>
 		</li>
 	</ul>
+	<ul style="width: 100%;" class="collapsible collapsible-accordion">
+		<li class="no-padding">
+			<a class="collapsible-header {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">
+				<i class="material-icons left {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">public</i>
+				{{ trans('Berylium::berylium.language') }}
+				<i class="material-icons right {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">arrow_drop_down</i>
+			</a>
+			<div class="collapsible-body" style="padding: unset !important;">
+				<ul>
+					<script>
+                        $(document).ready(function () {
+                            $('.lang-span-admin-menu-mobile').each(function () {
+                                var chk_lang_str = "{{ \App::getLocale() }}";
+                                var element = $(this);
+                                if (element.text().toLowerCase() == chk_lang_str.toLowerCase()) {
+                                    element.addClass("{{ $synthesiscmsMainColor }} white-text waves-light");
+                                } else {
+                                    element.addClass("{{ $synthesiscmsMainColor }}-text waves-{{ $synthesiscmsMainColor }}");
+                                }
+                            });
+                            $('.lang-span-admin-menu-mobile').click(function () {
+                                setLanguage($(this).text().toUpperCase(), '{{ url("/") }}');
+                            });
+                        });
+					</script>
+					<li>
+						<span style="width: 100%; padding: 0 0.75rem;" class="waves-effect col s12 lang-span-admin-menu-mobile">EN</span>
+					</li>
+					<li>
+						<span style="width: 100%; padding: 0 0.75rem;" class="waves-effect col s12 lang-span-admin-menu-mobile">PL</span>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
 @endif
 <ul class="collapsible collapsible-accordion">
 	<li class="bold">
@@ -133,4 +168,3 @@
 		</div>
 	</li>
 </ul>
-</li>

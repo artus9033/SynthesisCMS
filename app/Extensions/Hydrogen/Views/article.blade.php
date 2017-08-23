@@ -26,7 +26,7 @@
 					   class="material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped"
 					   data-position="top" data-delay="50"
 					   data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_share') }}">share</i>
-					<i onclick="Materialize.toast('{!! trans('Hydrogen::hydrogen.options_modal_toast_link_copied') !!}', 2000)"
+					<i onclick="SynthesisCmsJsUtils.showToast('{!! trans('Hydrogen::hydrogen.options_modal_toast_link_copied') !!}', 2000)"
 					   data-clipboard-text="{{ url()->current() }}"
 					   class="copylink material-icons card-panel z-depth-2 hoverable medium waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} {{ $synthesiscmsMainColor }}-text tooltipped"
 					   data-position="top" data-delay="50"

@@ -1,4 +1,10 @@
 {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://bitbucket.org/archon810/smartdomdocument.git"
+        }
+    ],
     "require": {
         "php": "*",
         "laravel/framework": "*",
@@ -6,7 +12,8 @@
         "nesbot/carbon": "*",
         "barryvdh/laravel-ide-helper": "*",
         "mpdf/mpdf": "^6.1",
-        "mouf/nodejs-installer": "~1.0"
+        "mouf/nodejs-installer": "~1.0",
+        "archon810/smartdomdocument": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "*",
@@ -42,6 +49,10 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
+        ],
+        "gen-phpstorm-helpers": [
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta"
         ]
     },
     "config": {

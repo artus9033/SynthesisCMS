@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class BeryliumItem extends Model
 {
 	public $timestamps = false;

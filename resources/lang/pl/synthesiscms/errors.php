@@ -31,7 +31,9 @@ return [
 	'auth_permission_desc' => 'Nie jesteś upoważniony, by zobaczyć tą zawartość.',
 	'auth_permission_header2' => 'Przepraszamy, nie możemy Ci tego pokazać',
 	'auth_permission_desc2' => 'Proszę zalogować się jako użytkownik z odpowiednimi uprawnieniami.',
-	'auth_permission_link' => 'Zaloguj'
+	'auth_permission_link' => 'Zaloguj',
+	'error_resources_need_compilation_text' => 'Zasoby CMSa wymagają kompilacji',
+	'error_resources_need_compilation_help' => 'Proszę ALBO zalogować się na konto administratorskie, wybrać opcję `' . trans('synthesiscms/admin.section_tools') . '` z menu, a następnie wybrać narzędzie `' . trans('synthesiscms/tools.tool_compile_cms_resources') . '`, ALBO ręcznie wykonać polecenia `npm install` i `npm run prod` w głównym katalogu CMSa.',
 ];
 
 ?>

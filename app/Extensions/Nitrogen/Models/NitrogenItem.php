@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class NitrogenItem extends Model
 {
 	public $timestamps = false;
