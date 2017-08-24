@@ -20,11 +20,12 @@
 		</div>
 		<div class="col s12 row divider {{ $synthesiscmsMainColor }}"></div>
 		<div class="file-field input-field col s12 row">
-			<div class="btn {{ $synthesiscmsMainColor }}">
+			<div class="btn col s12 m4 l2{{ $synthesiscmsMainColor }}">
 				<i class="material-icons white-text">attachment</i>
 				<input type="file" id="{{ $picker_modal_id }}_fileinput">
 			</div>
-			<div class="file-path-wrapper">
+			<div class="row col s12 hide-on-med-and-up"></div>
+			<div class="file-path-wrapper m8 l10 hide-on-small-only">
 				<input class="file-path validate" type="text"
 					   placeholder="{{ trans('synthesiscms/admin.chooser_upload') }}">
 			</div>
@@ -33,8 +34,10 @@
 		</div>
 		<script>
             function {{ $picker_modal_id }}_uploadPickerNow() {
+                var mCurrentPath = synthesiscmsPicker{{ $picker_modal_id }}CurrentPath;
                 var formData = new FormData();
-                formData.append('file', $("#{{ $picker_modal_id }}_fileinput")[0].files[0]);
+                formData.append('path', mCurrentPath);
+                formData.append('synthesiscms-file', $("#{{ $picker_modal_id }}_fileinput")[0].files[0]);
                 $.ajax({
                     url: {!! json_encode(route('admin_upload_post')) !!},
                     headers: {
@@ -48,8 +51,20 @@
                     enctype: 'multipart/form-data',
                     processData: false,
                     success: function (response) {
-                        {{ $picker_modal_id }}_setPickerPath("/");
-                    }
+                        if(response.success) {
+                            {{ $picker_modal_id }}_setPickerPath(mCurrentPath);
+                            SynthesisCmsJsUtils.showToast("{{ trans('synthesiscms/admin.chooser_toast_upload_complete') }}");
+                        }else{
+                            SynthesisCmsJsUtils.showToast("{{ trans('synthesiscms/admin.chooser_toast_upload_failed') }}");
+                            console.error("SynthesisCMS file picker upload error: ");
+                            console.error(response);
+						}
+                    },
+					error: function(response){
+                        SynthesisCmsJsUtils.showToast("{{ trans('synthesiscms/admin.chooser_toast_upload_failed') }}");
+                        console.error("SynthesisCMS file picker upload error: ");
+                        console.error(response);
+					}
                 });
             }
 		</script>
@@ -69,6 +84,7 @@
 	</div>
 </div>
 <script>
+	var synthesiscmsPicker{{ $picker_modal_id }}CurrentPath = '';
 			@if(isset($followIframeParentHeight))
 			@if($followIframeParentHeight)
     var mNitrogenHeight = $(window.parent).height() / 3;
@@ -78,12 +94,12 @@
     $('#{{ $picker_modal_id }}').css('height', mNitrogenHeight);
     @endif
 @endif
-	$('#{{ $picker_modal_id }}').modal({
+$('#{{ $picker_modal_id }}').modal({
         ready: function (modal, trigger) {
             {{ $picker_modal_id }}_setPickerPath('/');
         }
     });
-    //folder_open
+//TODO: handle firs here
     function {{ $picker_modal_id }}_selectFile(name, path, size) {
         $("#{{ $picker_modal_id }}_chosen-image").text(name);
         $("#{{ $picker_modal_id }}_chosen-image-data").text(path);
@@ -92,6 +108,7 @@
     function {{ $picker_modal_id }}_setPickerPath(path) {
         //TODO: add path handling in fsctrl and implement exploding the path string in js ad showing in breadcrumbs
         //TODO: implement dirs navigation on icons
+        synthesiscmsPicker{{ $picker_modal_id }}CurrentPath = path;
         $('#{{ $picker_modal_id }}_loading').css('display', 'block');
         $.ajax(
             {
@@ -103,21 +120,40 @@
                     path: path,
                     extensions: {!! json_encode($fileExtensions) !!}
                 },
-                success: function (dane) {
+                success: function (data) {
                     var mgrHtml = "";
-                    $.each(dane['imgs'], function (index, value) {
+                    $.each(data['files'], function (index, value) {
                         if (value['mime_type'].includes('image')) {
-                            mgrHtml += "<div class='col s4' onclick=\"{{ $picker_modal_id }}_selectFile('";
+                            var imgObject = SynthesisCmsJsUtils.addDynamicSynthesisUrlClientSideProcessableAttributesToElement($("<img style='width: 100%; height: 100%; object-fit: cover'>"), value['path'], 'src');
+                            mgrHtml += "<div style='overflow: hidden;' data-position='top' data-delay='50' data-tooltip='" + value['name'] + "' class='col s12 m6 l3 waves-effect waves-light tooltipped synthesis-aspect-ratio card synthesiscms-file-picker-pointer-element hoverable no-padding' onclick=\"{{ $picker_modal_id }}_selectFile('";
                             mgrHtml += value['name'] + "', '";
-                            mgrHtml += value['path'] + "', '" + value['size'] + "')\"><div class='card synthesiscms-file-picker-pointer-element hoverable'><div class='card-image'><img src='" + value['path'] + "'><span class='card-title card-panel truncate no-padding white {{ $synthesiscmsMainColor }}-text'>" + value['name'] + "</span></div></div></div>";
+                            mgrHtml += value['path'] + "', '" + value['size'] + "')\"><div class='card-image' style='width: 100%; height: 100%;'>" + imgObject.prop('outerHTML') + "<span class='card-title card-panel truncate no-padding col s12 white-text' style='margin: unset !important; background-color: rgba(100, 100, 100, 0.5);text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;'>" + value['name'] + "</span></div></div>";
                         } else {
-                            mgrHtml += "<div class='col s4' onclick=\"{{ $picker_modal_id }}_selectFile('";
+                            mgrHtml += "<div class='col s12 m6 l3 waves-effect synthesis-aspect-ratio card-panel synthesiscms-file-picker-pointer-element hoverable {{ $synthesiscmsMainColor }}-text center' onclick=\"{{ $picker_modal_id }}_selectFile('";
                             mgrHtml += value['name'] + "', '";
-                            mgrHtml += value['path'] + "', '" + value['size'] + "')\"><div class='card-panel synthesiscms-file-picker-pointer-element hoverable {{ $synthesiscmsMainColor }}-text truncate'>" + value['name'] + "</div></div>";
+                            mgrHtml += value['path'] + "', '" + value['size'] + "')\"><span class='center col s12 row' style='margin-top: 5px; margin-bottom: 5px; height: 100%;'>" + value['name'] + "</div>";
                         }
                     });
                     $('#{{ $picker_modal_id }}_manager').html(mgrHtml);
                     $('#{{ $picker_modal_id }}_loading').css('display', 'none');
+                    SynthesisCmsJsUtils.triggerSynthesisDynamicUrlsRescanOnElement($('#{{ $picker_modal_id }}_manager').parent());
+                    var synthesiscmsFilePickerResizerFunc = function () {
+                        $('.synthesis-aspect-ratio').each(function (e) {
+                            $(this).height($(this).width());
+                        });
+                    };
+                    $(window).resize(function () {
+                        synthesiscmsFilePickerResizerFunc();
+                    });
+                    $(document).ready(function(){
+                        synthesiscmsFilePickerResizerFunc();
+                        $('.synthesis-aspect-ratio').each(function (e) {
+                            $(this).width(($(this).width() - 12));
+                            $(this).css('margin-left', '5px');
+                            $(this).css('margin-right', '5px');
+                        });
+                        $('.tooltipped').tooltip();
+					});
                 },
                 error: function () {
                     console.error("Error retrieving SynthesisCMS file picker data");

@@ -26,6 +26,7 @@ class Kernel extends HttpKernel
 	 * @var array
 	 */
 	protected $middlewareGroups = [
+		// web_internal - should be used by routes that are not meant to be indexed by stats tracker
 		'web' => [
 			\App\Http\Middleware\Security\EncryptCookies::class,
 			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,

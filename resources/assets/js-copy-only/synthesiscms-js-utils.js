@@ -1,6 +1,6 @@
 class SynthesisCmsJsUtils {
     static includeFilePickerDynamically(picker_modal_id, callback_function_name, followIframeParentHeight = false, fileExtensions = ['jpg', 'png', 'gif', 'jpeg']) {
-        var mUrl = this.getSiteRouteUrl() + '/admin/file-picker';
+        var mUrl = this.getSiteRootUrl() + '/admin/file-picker';
         $.ajax(
             {
                 url: mUrl,
@@ -165,9 +165,10 @@ class SynthesisCmsJsUtils {
         if (!(toastContent)) {
             toastContent = '';
         }
+        var selfRef = this;
         var htmlContent = $("<span>" + toastContent + "</span>").add($("<button class='btn-flat waves-effect waves-light toast-action'>" + buttonContent + "</button>").click(function () {
             buttonClickCallback();
-            this.dismissAllToasts();
+            selfRef.dismissAllToasts();
         }));
         Materialize.toast(htmlContent, duration, (bRounded ? 'rounded' : ''), toastCallback);
     }
@@ -176,7 +177,11 @@ class SynthesisCmsJsUtils {
         Materialize.Toast.removeAll();
     }
 
-    static getSiteRouteUrl() {
+    static getAssetRootUrl() {
+        return $('meta[name="synthesiscms-asset-root"]').attr('content')
+    }
+
+    static getSiteRootUrl() {
         return $('meta[name="synthesiscms-public-root"]').attr('content');
     }
 
@@ -193,7 +198,7 @@ class SynthesisCmsJsUtils {
     }
 
     static getRealUrlFromDynamicSynthesisUrl(relativeUrl) {
-        return this.getSiteRouteUrl() + (relativeUrl.startsWith('/') ? relativeUrl : ("/" + relativeUrl));
+        return this.getSiteRootUrl() + (relativeUrl.startsWith('/') ? relativeUrl : ("/" + relativeUrl));
     }
 
     static packDynamicSynthesisUrlIntoServerSideProcessableTags(relativeUrl) {
@@ -217,7 +222,7 @@ class SynthesisCmsJsUtils {
     }
 
     static getSynthesisDynamicUrlPositionInsideElementTagValue() {
-        return 'inside-element-html';
+        return "inside-element-html";
     }
 
     static getSynthesisDynamicUrlPositionTagName() {
@@ -228,12 +233,12 @@ class SynthesisCmsJsUtils {
         return "data-synthesiscms-dynamic-url-processed";
     }
 
-    static triggerSynthesisDynamicUrlsRescanOnDocument(){
+    static triggerSynthesisDynamicUrlsRescanOnDocument() {
         console.log('SynthesisCmsJsUtils triggerSynthesisDynamicUrlsRescanOnDocument() invoked');
-        SynthesisCmsJsUtils._substituteSynthesisDynamicUrls(document.documentElement);
+        this._substituteSynthesisDynamicUrls(document.documentElement);
     }
 
-    static triggerSynthesisDynamicUrlsRescanOnElement(wrapperElement){
+    static triggerSynthesisDynamicUrlsRescanOnElement(wrapperElement) {
         console.log('SynthesisCmsJsUtils triggerSynthesisDynamicUrlsRescanOnElement(wrapperElement) invoked with wrapperElement:');
         console.log(wrapperElement);
         if (wrapperElement instanceof jQuery) {
@@ -241,13 +246,25 @@ class SynthesisCmsJsUtils {
         } else {
             wrapperElement = $(wrapperElement);
         }
-        SynthesisCmsJsUtils._substituteSynthesisDynamicUrls(wrapperElement);
+        this._substituteSynthesisDynamicUrls(wrapperElement);
     }
 
     static _substituteSynthesisDynamicUrls(elem) {
         var synthesiscmsJsUtilsSelfRef = this;
-        var element = $(elem);
-        element.find('[' + synthesiscmsJsUtilsSelfRef.getSynthesisDynamicUrlValueTagName() + ']').each(function () {
+        if(elem instanceof jQuery){
+            synthesiscmsJsUtilsSelfRef.__substituteSynthesisDynamicUrls(elem);
+        }else if(typeof(elem) ==  typeof("")){
+            $(elem).each(function (htmlElement) {
+                synthesiscmsJsUtilsSelfRef.__substituteSynthesisDynamicUrls($(htmlElement));
+            });
+        }else{
+            synthesiscmsJsUtilsSelfRef.__substituteSynthesisDynamicUrls($(elem));
+        }
+    }
+
+    static __substituteSynthesisDynamicUrls(jqueryElement) {
+        var synthesiscmsJsUtilsSelfRef = this;
+        jqueryElement.find('[' + synthesiscmsJsUtilsSelfRef.getSynthesisDynamicUrlValueTagName() + ']').each(function () {
             var parent = $(this);
             var bAlreadyProcessed = (parent.attr(synthesiscmsJsUtilsSelfRef.getSynthesisDynamicUrlWasProcessedTagName()) ? true : false);
             if (bAlreadyProcessed) {

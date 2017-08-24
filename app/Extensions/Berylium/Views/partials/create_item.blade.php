@@ -89,6 +89,7 @@
 								@if(!empty($route_pack))
 									@php
 										list($title, $id, $extension) = $route_pack;
+										$extension = '(ID ' . $id . ') ' . $extension;
 									@endphp
 									<div class="col s6 l4 tooltipped" data-position="top" data-delay="50"
 										 data-tooltip="{!! $extension !!}"

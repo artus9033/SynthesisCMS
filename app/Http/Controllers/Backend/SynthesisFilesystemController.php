@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
 use App\Toolbox;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class SynthesisFilesystemController
@@ -44,73 +46,128 @@ class SynthesisFilesystemController extends Controller
 	 */
 	function files_list(BackendRequest $request)
 	{
-		$dir = public_path() . "/synthesis-uploads/";
-		$exts = $request->get('extensions');
-		$ext_str = "";
-		$len = count($exts);
-		foreach ($exts as $i => $ext) {
-			$ext_str .= $ext;
-			if ($i != $len - 1) {
-				$ext_str .= ',';
+		$storage = $this->getUploadsDisk();
+		$allFiles = $storage->files();
+		$requestedExtensions = $request->get('extensions');
+		$filteredFiles = array();
+		foreach ($allFiles as $file) {
+			$currentExtension = File::extension($file);
+			$currentMimeType = $storage->mimeType($file);
+			$currentSize = $storage->size($file);
+			if (in_array($currentExtension, $requestedExtensions) || in_array("*", $requestedExtensions)) {
+				array_push($filteredFiles, [
+					'name' => $file,
+					'path' => ('/synthesis-uploads/' . $file),
+					'extension' => $currentExtension,
+					'mime_type' => $currentMimeType,
+					'size' => Toolbox::human_filesize($currentSize)
+				]);
 			}
 		}
-		$imgs = array();
-		foreach (glob($dir . '*.{' . $ext_str . '}', GLOB_BRACE) as $file) {
-			array_push($imgs, ['name' => basename($file), 'path' => url('/') . '/synthesis-uploads/' . basename($file), 'extension' => pathinfo($file, PATHINFO_EXTENSION), 'mime_type' => mime_content_type($file), 'size' => Toolbox::human_filesize(filesize($file))]);
+		$directories = Array();
+		foreach($storage->directories() as $dir){
+			array_push($directories, [
+				'name' => $dir,
+				'itemsCount' => count($storage->files($dir))
+			]);
 		}
-		$dirs = glob($dir . '*', GLOB_ONLYDIR);
-		$data = ['imgs' => $imgs, 'dirs' => $dirs];
+		$data = [
+			'files' => $filteredFiles,
+			'directories' => $directories
+		];
 		return response($data);
+	}
+
+	private function getUploadsDisk()
+	{
+		return Storage::disk('uploads');
 	}
 
 	/**
 	 * Function that uploads a file to public/synthesis-uploads
 	 * @param BackendRequest $request
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
-	 * response with an array storing results of the upload process in the following format:
-	 * either array('message' => 'uploadNotAjax', 'formData' => $_POST) if the request is not ajax,
-	 * array('message' => 'uploadError', 'formData' => $_POST) if there was an error while moving the file
-	 * or array('success' => true, 'file' => url('/') . '/synthesis-uploads/' . basename($file)) if the upload was successful
-	)
+	 * response with: boolean 'success', string 'message', string 'file' - relative url to file (if upload successful),
 	 */
 	function uploadPost(BackendRequest $request)
 	{
-		function getNewFileName($path, $filename_original)
+		function getNewFileName($storage, $filePath, $filename, $fileExtension, $bRandomPrefix = false)
 		{
-			if (file_exists($path . $filename_original)) {
-				return pathinfo($filename_original, PATHINFO_FILENAME) . md5(date('Y-m-d H:i:s:u')) . "." . pathinfo($path . $filename_original, PATHINFO_EXTENSION);
+			if ($storage->exists($filePath . $filename . "." . $fileExtension)) {
+				$uid = uniqid(($bRandomPrefix ? str_random(6) : ""), $bRandomPrefix);
+				return getNewFileName($storage, $filePath, $filename . $uid, $fileExtension, true);
 			} else {
-				return $filename_original;
+				return ($filename . "." . $fileExtension);
 			}
 		}
 
-		$uploadDir = public_path() . '/synthesis-uploads/';
-
-		if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-			$file = array_shift($_FILES);
-			$newname = getNewFileName($uploadDir, basename($file['name']));
-			if (move_uploaded_file($file['tmp_name'], $uploadDir . basename($newname))) {
-				$file = dirname($_SERVER['PHP_SELF']) . str_replace('./', '/', $uploadDir) . $newname;
-				$headers = apache_request_headers();
+		if ($request->hasFile('synthesiscms-file') && $request->has('path')) {
+			$file = $request->file('synthesiscms-file');
+			if ($file->isFile() && !$file->isExecutable()) {
+				$storage = $this->getUploadsDisk();
+				$fname = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+				$fext = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+				$fdir = $request->get('path');
+				$fpathRelative = $fdir . getNewFileName($storage, $fdir, $fname, $fext, false);
+				if ($storage->putFileAs('', $file, $fpathRelative)) {
+					$data = array(
+						'success' => true,
+						'message' => 'upload successful',
+						'file' => '/synthesis-uploads/' . $fpathRelative,
+					);
+				} else {
+					$data = array(
+						'success' => false,
+						'message' => 'server error'
+					);
+				}
+			}else{
 				$data = array(
-					'success' => true,
-					'file' => url('/') . '/synthesis-uploads/' . basename($file),
-				);
-			} else {
-				$error = true;
-				$data = array(
-					'message' => 'uploadError',
-					'formData' => $_POST
+					'success' => false,
+					'message' => 'received improper file (either an executable - not allowed - or a directory)'
 				);
 			}
 		} else {
 			$data = array(
-				'message' => 'uploadNotAjax',
-				'formData' => $_POST
+				'success' => false,
+				'message' => 'no file received'
 			);
 		}
 
 		return response($data);
 	}
 
+	/**
+	 * Function that sends the requested file from a non-straightly-public
+	 * virtual storage folder (see config/filesystems.php)
+	 * @param BackendRequest $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 * response with the requested file contents or a 404 repsonse
+	 */
+	function uploadGet($file, BackendRequest $request)
+	{
+		$storage = $this->getUploadsDisk();
+		if ($storage->has($file)) {
+			return response()->file($storage->path($file));
+		} else {
+			return abort(404);
+		}
+	}
+
+	/**
+	 * Function that sends the requested file from a non-straightly-public
+	 * virtual storage folder (see config/filesystems.php) within a download response
+	 * @param BackendRequest $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 * response with the requested file contents or a 404 repsonse
+	 */
+	function uploadDownload($file, BackendRequest $request)
+	{
+		$storage = $this->getUploadsDisk();
+		if ($storage->has($file)) {
+			return response()->download($storage->path($file));
+		} else {
+			return abort(404);
+		}
+	}
 }

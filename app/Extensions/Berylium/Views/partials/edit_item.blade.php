@@ -86,6 +86,7 @@
 								@if(!empty($route_pack))
 									@php
 										list($title, $id, $extension) = $route_pack;
+										$extension = '(ID ' . $id . ') ' . $extension;
 									@endphp
 									<div class="col s6 l4 tooltipped @if($item->type == \App\Extensions\Berylium\BeryliumItemType::Page && $item->data == $id) selected-berylium @endif"
 										 data-position="top" data-delay="50" data-tooltip="{!! $extension !!}"

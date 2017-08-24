@@ -3,6 +3,8 @@
 return [
 	'open_applet_settings_fullscreen' => 'Otwórz ustawienia appletu w trybie pełnoekranowym',
 	'chooser_upload' => 'Wyślij',
+	'chooser_toast_upload_complete' => 'Wysyłanie zakończone!',
+	'chooser_toast_upload_failed' => 'Wysyłanie nie powiodło się (zobacz log JavaScript)!',
 	'chosen_image_none' => 'Brak',
 	'choose' => 'Wybierz',
 	'chooser_cancel' => 'Anuluj',

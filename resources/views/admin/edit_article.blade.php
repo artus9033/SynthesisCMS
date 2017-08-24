@@ -116,7 +116,7 @@
                     $(document).ready(function () {
                         var hasImageChecked = {{ $article->hasImage }};
                         $('#hasImage').prop('checked', hasImageChecked);
-                        $('#image').val('{{ $article->image }}');
+                        $('#image').val("{!! $article->image !!}");
                         if(!hasImageChecked){
                             imgCollapsible = true;
                             $("#collapsible").click();

@@ -434,7 +434,7 @@ class ExtensionKernel extends SynthesisExtension
 			if (!$item->image) {
 				$background_out = "background-color: " . Toolbox::hex2rgba($item->color, 0.8) . ";";
 			} else {
-				$background_out = "background-image: url('" . $item->image . "');";
+				$background_out = "background-image: url('" . url($item->image) . "');";
 			}
 			$out .= "<div class='carousel-item' style=\"" . $background_out . "
 			background-repeat: no-repeat;

@@ -1,3 +1,16 @@
+<style>
+	#lithium-article-div .caret {
+		color: {{ $synthesiscmsMainColor }}   !important;
+	}
+
+	#lithium-article-div .select-dropdown {
+		border-bottom-color: {{ $synthesiscmsMainColor }}   !important;
+	}
+
+	label {
+		text-align: left !important;
+	}
+</style>
 <div class="col s12 grey-text text-darken-2">{{ trans("Lithium::messages.showHeader") }}</div>
 <div class="switch col s12">
 	<label>
@@ -7,7 +20,7 @@
 		{!! trans("Lithium::lithium.switch_on") !!}
 	</label>
 </div>
-<div class="input-field col s8 offset-s2 valign" id="articleCategory-div">
+<div class="input-field col s8 offset-s2 valign" id="lithium-article-div">
 	<select id="lithium-article" name="lithium-article" class="{{ $synthesiscmsMainColor }}-text">
 		@foreach (\App\Models\Content\Article::all() as $key => $value)
 			@php
@@ -17,8 +30,10 @@
 					$selected = "";
 				}
 			@endphp
-			<option {{ $selected }} value="{{ $value->id }}" class="card-panel col s10 offset-s1 red white-text">
-				<h5>{{ App\Toolbox::string_truncate($value->title, 40) }}&nbsp;(ID&nbsp;{{ $value->id }})</h5></option>
+			@php($truncatedTitle = App\Toolbox::string_truncate($value->title, 25))
+			<option {{ $selected }} class="card-panel col s10 offset-s1 red white-text"
+					value="{{ $value->id }}">{{ $truncatedTitle }}&nbsp;(ID&nbsp;{{ $value->id }})
+			</option>
 		@endforeach
 	</select>
 	<label>{{ trans("Lithium::messages.choose_article") }}</label>

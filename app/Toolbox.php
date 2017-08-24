@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\SynthesisCMS\API\Constants;
+
 class Toolbox
 {
 	static function addMessageToBag($message)
@@ -149,7 +151,7 @@ class Toolbox
 		}
 	}
 
-	static function getDoubleLocale($locale)
+	static function getFullNameLocale($locale)
 	{
 		switch ($locale) {
 			case "pl":
@@ -209,6 +211,11 @@ class Toolbox
 				return strtolower($preferredLanguage);
 			}
 		}
+	}
+
+	static function addServerSideSynthesisDynamicUrlHandlerTags($relativeUrl)
+	{
+		return (Constants::synthesiscmsUrlMiddlewareHandlerStartTag . $relativeUrl . Constants::synthesiscmsUrlMiddlewareHandlerEndTag);
 	}
 }
 

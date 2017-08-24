@@ -221,7 +221,7 @@ class BackendController extends Controller
 		$circleLabelsJson = json_encode($circleLabels);
 		$circleValuesJson = json_encode($circleValues);
 
-		return view('partials.admin.admin_stats_charts',
+		return view('admin.partials.admin_stats_charts',
 			[
 				'circleCount' => $circleCount,
 				'circleLabelsJson' => $circleLabelsJson,

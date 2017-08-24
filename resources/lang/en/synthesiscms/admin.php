@@ -3,6 +3,8 @@
 return [
 	'open_applet_settings_fullscreen' => 'Open applet settings in fullscreen mode',
 	'chooser_upload' => 'Upload',
+	'chooser_toast_upload_complete' => 'Upload finished!',
+	'chooser_toast_upload_failed' => 'Upload failed (see JavaScript log)!',
 	'chosen_image_none' => 'None',
 	'choose' => 'Choose',
 	'chooser_cancel' => 'Cancel',

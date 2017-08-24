@@ -57,7 +57,7 @@
 			<div class="card z-depth-3">
 				@if ($article->hasImage)
 					<div class="card-image">
-						<img src="{{ $article->image }}">
+						<img src="{{ url($article->image) }}">
 						<span class="card-title left card-panel white {{ $synthesiscmsMainColor }}-text z-depth-2"
 							  style="margin: 10px 10px 10px 10px; font-weight: 400;">{{ $article->title }}</span>
 						<a onclick="$('#options').modal('open');"

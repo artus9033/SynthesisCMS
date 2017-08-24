@@ -98,7 +98,7 @@
 
     $(document).ready(function () {
         $('#nitrogen-slider').carousel({fullWidth: true, indicators: true});
-        if(nitrogen_boolean_autoplay) {
+        if (nitrogen_boolean_autoplay) {
             nitrogen_autoplay();
         }
     });

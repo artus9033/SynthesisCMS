@@ -42,6 +42,8 @@ class RouteServiceProvider extends ServiceProvider
 		$this->mapAdminRoutes();
 
 		$this->mapWebRoutes();
+
+		$this->mapNoMiddlewareRoutes();
 	}
 
 	/**
@@ -112,6 +114,22 @@ class RouteServiceProvider extends ServiceProvider
 			'namespace' => $this->namespace,
 		], function ($router) {
 			require base_path('routes/web.php');
+		});
+	}
+
+	/**
+	 * Define the "web" routes for the application.
+	 *
+	 * These routes all receive session state, CSRF protection, a Stats Tracker, etc.
+	 *
+	 * @return void
+	 */
+	protected function mapNoMiddlewareRoutes()
+	{
+		Route::group([
+			'namespace' => $this->namespace,
+		], function ($router) {
+			require base_path('routes/no_middleware.php');
 		});
 	}
 }

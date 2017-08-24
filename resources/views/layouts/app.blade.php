@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{!! App::getLocale() !!}">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="shortcut icon" type="image/ico" href="{{ url('/favicon.ico') }}"/>
+	<meta http-equiv="Content-language" content="{!! App::getLocale() !!}">
 	<meta name="viewport" content="width=device-width, initial-scale=0.7">
 	<meta name="theme-color" content="{{ $synthesiscmsTabColor }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -119,11 +120,13 @@
 							</form>
 						</li>
 					</ul>
-					<li class="right" style="min-width: 210px;"><a class="dropdown-button center"
-																   href="{{ route('profile') }}"
-																   data-activates="user_dropdown"><i
-									class="material-icons white-text left">account_circle</i>{{ Auth::user()->name }}<i
-									class="material-icons right">arrow_drop_down</i></a></li>
+					<li class="right" style="min-width: 210px;">
+						<a class="dropdown-button center" data-activates="user_dropdown">
+							<i class="material-icons white-text left">account_circle</i>
+							{{ Auth::user()->name }}
+							<i class="material-icons right">arrow_drop_down</i>
+						</a>
+					</li>
 				@endif
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::InsideMenu, Request::url()) !!}
 			</ul>

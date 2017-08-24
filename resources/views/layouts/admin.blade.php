@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{!! App::getLocale() !!}">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="shortcut icon" type="image/ico" href="{{ url('/favicon.ico') }}"/>
+
+	<meta http-equiv="Content-language" content="{!! App::getLocale() !!}">
 	<meta name="viewport" content="width=device-width, initial-scale=0.7">
 	<meta name="theme-color" content="{{ $synthesiscmsTabColor }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -46,7 +48,7 @@
             var zeroIndexedCollapsibleHeaderNumberString = '@yield('side-nav-active-zero-indexed')';
             $('.collapsible').collapsible();
             if (zeroIndexedCollapsibleHeaderNumberString.length) {
-                $('.collapsible').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
+                $('#admin-mobile-menu-automatically-opened-collapsible-main-element').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
             }
             $(".editor").trumbowyg({
                 autogrow: true,
@@ -81,7 +83,7 @@
                 plugins: {
                     upload: {
                         serverPath: {!! json_encode(route('admin_upload_post')) !!},
-                        fileFieldName: 'file',
+                        fileFieldName: 'synthesiscms-file',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
@@ -110,10 +112,10 @@
 </head>
 <header>
 	<ul id="nav-mobile" class="side-nav">
-		@include('partials.admin.admin_menu', ['adminMenuIsMobile' => true])
+		@include('admin.partials.admin_menu', ['adminMenuIsMobile' => true])
 	</ul>
 	<ul class="side-nav fixed">
-		@include('partials.admin.admin_menu', ['adminMenuIsMobile' => false])
+		@include('admin.partials.admin_menu', ['adminMenuIsMobile' => false])
 	</ul>
 	@yield('header')
 </header>
@@ -127,11 +129,11 @@
 					class="synthesiscms-mobile-btn-wrapper admin-menu-button-collapse hide-on-large-only lighten-1 btn btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light z-depth-1">
 				<i class="material-icons">menu</i>
 			</button>
-			<a id="synthesiscms-desktop-brand-logo" style="margin-left: 6px;" href="{{ route('admin') }}"
+			<a id="synthesiscms-desktop-brand-logo" style="margin-left: 10px;" href="{{ route('admin') }}"
 			   class="hide-on-med-and-down brand-logo truncate">
 				{{ $synthesiscmsHeaderTitle }} - {{ trans('synthesiscms/admin.backend') }}
 			</a>
-			<a id="synthesiscms-mobile-brand-logo" href="{{ route('admin') }}"
+			<a id="synthesiscms-mobile-brand-logo" style="margin-left: 0px;" href="{{ route('admin') }}"
 			   class="hide-on-large-only brand-logo truncate">
 				{{ $synthesiscmsHeaderTitle }} - {{ trans('synthesiscms/admin.backend') }}
 			</a>
@@ -184,7 +186,7 @@
 					</li>
 				</ul>
 				<li class="right" style="min-width: 210px;">
-					<a class="dropdown-button center" href="{{ route('profile') }}" data-activates="user_dropdown">
+					<a class="dropdown-button center" data-activates="user_dropdown">
 						<i class="material-icons white-text left">account_circle</i>
 						{{ Auth::user()->name }}
 						<i class="material-icons right">arrow_drop_down</i>

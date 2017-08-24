@@ -1,13 +1,16 @@
 var mImagePickerTrumbowyg;
 
 function trumbowygImagePickerCallback(url, fsize) {
-    var div = $("<span><div class='col s12 row'><img class='col s10 offset-s1' src='" + url + "'></div></span>");
-    mImagePickerTrumbowyg.range.deleteContents();
-    mImagePickerTrumbowyg.range.insertNode(div[0]);
-    //mImagePickerTrumbowyg.execCmd('insertImage', url, false, true);
+    if(url.length) {
+        var img = SynthesisCmsJsUtils.addDynamicSynthesisUrlClientSideProcessableAttributesToElement($("<img class='col s10 offset-s1'>"), url, "src");
+        var wrapper = $("<div class='col s12 row synthesis-dynamic-url-img-wrapper'></div>").append(img);
+        mImagePickerTrumbowyg.range.deleteContents();
+        mImagePickerTrumbowyg.range.insertNode(wrapper[0]);
+        SynthesisCmsJsUtils.triggerSynthesisDynamicUrlsRescanOnElement('.synthesis-dynamic-url-img-wrapper');
+    }
 }
 
-SynthesisCmsJsUtils.includeFilePickerDynamically('trumbowyg_image_picker', 'trumbowygImagePickerCallback', true, ['jpg', 'png', 'gif', 'jpeg']);
+SynthesisCmsJsUtils.includeFilePickerDynamically('trumbowyg_image_picker', 'trumbowygImagePickerCallback', true, ['jpg', 'png', 'gif', 'jpeg', 'webp']);
 
 (function ($) {
     'use strict';

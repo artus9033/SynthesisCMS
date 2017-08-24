@@ -281,7 +281,7 @@ class ExtensionKernel extends SynthesisExtension
 		}
 	}
 
-	public function getMobileMenuItems($slug)
+	public function getDesktopMenuItems($slug)
 	{
 		$out = "";
 		$model = $this->findOrCreate();
@@ -292,7 +292,7 @@ class ExtensionKernel extends SynthesisExtension
 		$posctr = 0;
 		for ($id = 0; $posctr < $items_count; $posctr++) {
 			$itm = BeryliumItem::where(['menu' => $model->id, 'before' => $id])->first();
-			if ($itm->category == BeryliumItemCategory::Mobile || $itm->category == BeryliumItemCategory::General) {
+			if ($itm->category == BeryliumItemCategory::Desktop || $itm->category == BeryliumItemCategory::General) {
 				array_push($array, $itm);
 			}
 			$id = $itm->id;
@@ -301,25 +301,20 @@ class ExtensionKernel extends SynthesisExtension
 		foreach ($items as $item) {
 			$mcount = BeryliumItem::where(['menu' => $item->parentOf])->count();
 			if ($mcount) {
-				$children_dropdown_btn = "";
-				$children_dropdown_caret = "<i class='col s2 waves-effect waves-$synthesiscmsMainColor material-icons right collapsible-header'>arrow_drop_down</i>";
+				$children_dropdown_btn = "dropdown-button-berylium";
+				$children_dropdown_activates = "berylium-dropdown" . $item->id;
+				$children_dropdown_caret = "<i class='material-icons right'>arrow_drop_down</i>";
 			} else {
-				$children_dropdown_btn = $children_dropdown_caret = "";
+				$children_dropdown_btn = $children_dropdown_activates = $children_dropdown_caret = "";
 			}
-			$itemdata = $this->returnItem($item, $slug, $children_dropdown_caret, "col s10 waves-effect waves-$synthesiscmsMainColor", "mobile");
+			$itemdata = $this->returnItem($item, $slug, $children_dropdown_caret, "", "desktop");
 			$active = $itemdata['active'];
-			$out .= "<li class=\"col s12 no-padding $active $children_dropdown_btn\">
-					<ul class=\"collapsible collapsible-accordion col s12\">
-						<li class=\"col s12\">"
-				. $itemdata['data'];
+			$out .= "<li class='$active $children_dropdown_btn' data-activates='$children_dropdown_activates'>" . $itemdata['data'] . "</li>";
 			if ($mcount) {
-				$out .= "<div class=\"collapsible-body row\" style=\"padding: unset !important;\">";
-				$out .= "<ul class='col s12'>";
-				$out .= $this->returnChildren(BeryliumItem::where(['menu' => $item->parentOf]), $slug, "col s12 waves-effect waves-$synthesiscmsMainColor $active", "mobile");
+				$out .= "<ul id='berylium-dropdown" . $item->id . "' class='dropdown-content'>";
+				$out .= $this->returnChildren(BeryliumItem::where(['menu' => $item->parentOf]), $slug, '', "desktop");
 				$out .= "</ul>";
-				$out .= "</div>";
 			}
-			$out .= "</li></ul></li>";
 		}
 		return $out;
 	}
@@ -383,9 +378,8 @@ class ExtensionKernel extends SynthesisExtension
 		return $out;
 	}
 
-	public function getDesktopMenuItems($slug)
+	public function getMobileMenuItems($slug)
 	{
-		$out = "";
 		$model = $this->findOrCreate();
 		$synthesiscmsMainColor = Settings::getFromActive('main_color');
 		$items_raw = BeryliumItem::where('menu', $model->id);
@@ -394,30 +388,33 @@ class ExtensionKernel extends SynthesisExtension
 		$posctr = 0;
 		for ($id = 0; $posctr < $items_count; $posctr++) {
 			$itm = BeryliumItem::where(['menu' => $model->id, 'before' => $id])->first();
-			if ($itm->category == BeryliumItemCategory::Desktop || $itm->category == BeryliumItemCategory::General) {
+			if ($itm->category == BeryliumItemCategory::Mobile || $itm->category == BeryliumItemCategory::General) {
 				array_push($array, $itm);
 			}
 			$id = $itm->id;
 		}
 		$items = collect($array);
+		$out = "<ul class='col s12 collapsible collapsible-accordion'>";
 		foreach ($items as $item) {
 			$mcount = BeryliumItem::where(['menu' => $item->parentOf])->count();
 			if ($mcount) {
-				$children_dropdown_btn = "dropdown-button-berylium";
-				$children_dropdown_activates = "berylium-dropdown" . $item->id;
-				$children_dropdown_caret = "<i class='material-icons right'>arrow_drop_down</i>";
+				$children_dropdown_caret = "<i class='col s2 waves-effect waves-$synthesiscmsMainColor material-icons right collapsible-header'>arrow_drop_down</i>";
 			} else {
-				$children_dropdown_btn = $children_dropdown_activates = $children_dropdown_caret = "";
+				$children_dropdown_caret = "";
 			}
-			$itemdata = $this->returnItem($item, $slug, $children_dropdown_caret, "", "desktop");
+			$itemdata = $this->returnItem($item, $slug, $children_dropdown_caret, "col s10 waves-effect waves-$synthesiscmsMainColor", "mobile");
 			$active = $itemdata['active'];
-			$out .= "<li class='$active $children_dropdown_btn' data-activates='$children_dropdown_activates'>" . $itemdata['data'] . "</li>";
+			$out .= "<li class='no-padding $active'>" . $itemdata['data'];
 			if ($mcount) {
-				$out .= "<ul id='berylium-dropdown" . $item->id . "' class='dropdown-content'>";
-				$out .= $this->returnChildren(BeryliumItem::where(['menu' => $item->parentOf]), $slug, '', "desktop");
+				$out .= "<div class='collapsible-body row' style='padding: unset !important;'>";
+				$out .= "<ul class='col s12'>";
+				$out .= $this->returnChildren(BeryliumItem::where(['menu' => $item->parentOf]), $slug, "col s12 waves-effect waves-$synthesiscmsMainColor $active", "mobile");
 				$out .= "</ul>";
+				$out .= "</div>";
 			}
+			$out .= "</li>";
 		}
+		$out .= "</ul>";
 		return $out;
 	}
 

@@ -33,7 +33,7 @@
 			{!! trans('synthesiscms/stats.tooltip_dashboard_todays_traffic_chart') !!}
 		</span>
 	</span>
-	<div class="col s10 offset-s1 m12 l12">
+	<div class="col s8 offset-s2 m8 offset-m2 l12">
 		<canvas id="todaysTrafficChartCanvas" class="col s12"></canvas>
 	</div>
 </div>

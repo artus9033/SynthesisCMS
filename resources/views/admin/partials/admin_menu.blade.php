@@ -102,7 +102,7 @@
 		</li>
 	</ul>
 @endif
-<ul class="collapsible collapsible-accordion">
+<ul class="collapsible collapsible-accordion" id="admin-mobile-menu-automatically-opened-collapsible-main-element">
 	<li class="bold">
 		<a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
 			<i class="material-icons {{ $synthesiscmsMainColor }}-text">description</i>{{ trans('synthesiscms/admin.section_content') }}

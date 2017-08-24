@@ -75,17 +75,33 @@
 
 			if(!$one_column_list){
 				if($articles->count() == 1){
-					$one = $articles->toArray();
+					$one = $articles;
 					$two = array();
 				}else{
 					$one = array();
 					$two = array();
-					list($one, $two) = array_chunk($articles->toArray(), ceil(count($articles->toArray()) / 2));
+					list($one, $two) = $articles->chunk($articles->count() / 2);
 				}
 			}else{
-				$all = $articles->toArray();
+				$all = $articles;
 			}
 		@endphp
+		<style>
+			.card-image.small {
+				max-height: 300px !important;
+				overflow: hidden;
+			}
+
+			.card-image.medium {
+				max-height: 400px !important;
+				overflow: hidden;
+			}
+
+			.card-image.large {
+				max-height: 500px !important;
+				overflow: hidden;
+			}
+		</style>
 		@if ($one_column_list)
 			<div class="container col s10 offset-s1 row">
 				@include('Hydrogen::partials/list', ['articles' => $all])
