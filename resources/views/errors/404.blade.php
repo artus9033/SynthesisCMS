@@ -1,6 +1,6 @@
 @extends('layouts.error')
 
-@section('title', '404')
+@section('title', trans('synthesiscms/errors.404_header'))
 
 @section('body')
 	<div class="section red lighten-2" style="height: 100vh;">

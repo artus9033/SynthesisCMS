@@ -29,7 +29,7 @@ mix.copy('node_modules/dragula/dist/dragula.css', 'public/css/dragula.css');
 
 //MaterializeCSS SASS + JS + Roboto font
 mix.sass('resources/assets/materializecss/sass/materialize.scss', 'public/css/materialize.css');
-//mix.js('resources/assets/materializecss/js/bin/materialize.js', 'public/js/materialize.js');
+//mix.js(['resources/assets/materializecss/js/bin/materialize.js', 'node_modules/velocity-animate/velocity.js'], 'public/js/materialize.js');
 //TODO: fix this, because self compiling causes problems with Jquery's velocity animations
 mix.copy('resources/assets/materializecss/dist-js', 'public/js', false);
 mix.copy('resources/assets/materializecss/fonts', 'public/fonts', false);

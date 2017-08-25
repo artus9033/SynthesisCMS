@@ -168,11 +168,9 @@
 				@yield('menu')
 				<ul id="user_dropdown" class="dropdown-content">
 					<li>
-						@if(Auth::user()->is_admin)
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('admin') }}"><i
-										class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
-							</a>
-						@endif
+						<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('admin') }}"><i
+									class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
+						</a>
 						<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}"><i
 									class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
 						</a>

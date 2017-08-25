@@ -20,10 +20,7 @@ class SynthesisFilesystemController extends Controller
 	 */
 	function __construct()
 	{
-		$synthesisUploadsDirPath = public_path() . "/synthesis-uploads/";
-		if (!file_exists($synthesisUploadsDirPath)) {
-			mkdir($synthesisUploadsDirPath);
-		}
+
 	}
 
 	/**
@@ -35,7 +32,8 @@ class SynthesisFilesystemController extends Controller
 	static function checkPublicDirectoryResourcesFilesystemOK()
 	{
 		$mixManifestPath = public_path() . "/mix-manifest.json";
-		return file_exists($mixManifestPath);
+		$synthesisStorageSymlink = public_path() . "/storage";
+		return file_exists($mixManifestPath) && file_exists($synthesisStorageSymlink);
 	}
 
 	/**

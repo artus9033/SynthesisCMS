@@ -1,6 +1,6 @@
 @extends('layouts.error')
 
-@section('title', '503')
+@section('title', trans('synthesiscms/errors.503_header'))
 
 @section('body')
 	<div class="section red lighten-2" style="height: 100vh;">

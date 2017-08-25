@@ -2,9 +2,12 @@
 
 namespace App\Exceptions;
 
+use App\Models\Settings\Settings;
+use App\Models\Stats\ExceptionTracker;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\FlattenException;
 
 class Handler extends ExceptionHandler
 {
@@ -32,8 +35,11 @@ class Handler extends ExceptionHandler
 	 */
 	public function report(Exception $exception)
 	{
-		//TODO: add interception here
 		parent::report($exception);
+		$fullPath = str_replace("/", "\\", base_path());
+		if (!\App::runningInConsole()) {
+			ExceptionTracker::saveException($exception->getCode(), str_replace($fullPath, "[cms_root]", $exception->getFile()), str_replace($fullPath, "[cms_root]", $exception->getMessage()), str_replace($fullPath, "[cms_root]", $exception->getTraceAsString()), $fullPath);
+		}
 	}
 
 	/**
@@ -45,7 +51,26 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $exception)
 	{
-		return parent::render($request, $exception);
+		if (Settings::isDevModeEnabled()) {
+			return parent::render($request, $exception);
+		} else {
+			if($this->isHttpException($exception)){
+				$code = $exception->getStatusCode(); // getStatusCode(), NOT getCode()
+			}else{
+				$code = 500; // Not a HTTP Exception = 500 ISE
+			}
+			switch ($code) {
+				case 404:
+					return response()->view("errors/404")->setStatusCode(404);
+					break;
+				case 503:
+					return response()->view("errors/503")->setStatusCode(503);
+					break;
+				default:
+					return response()->view("errors/500")->setStatusCode(500);
+					break;
+			}
+		}
 	}
 
 	/**
@@ -55,7 +80,8 @@ class Handler extends ExceptionHandler
 	 * @param  \Illuminate\Auth\AuthenticationException $exception
 	 * @return \Illuminate\Http\Response
 	 */
-	protected function unauthenticated($request, AuthenticationException $exception)
+	protected
+	function unauthenticated($request, AuthenticationException $exception)
 	{
 		if ($request->expectsJson()) {
 			return response()->json(['error' => 'Unauthenticated.'], 401);

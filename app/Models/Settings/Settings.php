@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Settings extends Model
 {
 	public $timestamps = false;
-	protected $fillable = array('home_page', 'header_title', 'tab_title', 'footer_copyright', 'footer_more_links_bottom_text', 'footer_more_links_bottom_href', 'footer_links_text', 'footer_links_content', 'footer_header', 'footer_content', 'tab_color', 'main_color', 'color_class', 'synthesiscms_installed_extensions');
+	protected $fillable = array('home_page', 'header_title', 'tab_title', 'footer_copyright', 'footer_more_links_bottom_text', 'footer_more_links_bottom_href', 'footer_links_text', 'footer_links_content', 'footer_header', 'footer_content', 'tab_color', 'main_color', 'color_class', 'synthesiscms_installed_extensions', 'devModeEnabled');
 	protected $table = 'synthesiscms_settings';
 
 	public static function getFromActive($field)
@@ -30,8 +30,24 @@ class Settings extends Model
 
 	}
 
-	public static function unInstallExtension($extensionName)
+	public static function unistallExtension($extensionName)
 	{
+		//TODO: implement this method
+	}
 
+	public static function isDevModeEnabled(){
+		return Settings::getFromActive('devModeEnabled');
+	}
+
+	public static function enableDevMode(){
+		$instance = Settings::getActiveInstance();
+		$instance->devModeEnabled = true;
+		$instance->save();
+	}
+
+	public static function disableDevMode(){
+		$instance = Settings::getActiveInstance();
+		$instance->devModeEnabled = false;
+		$instance->save();
 	}
 }

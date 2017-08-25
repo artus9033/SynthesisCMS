@@ -66,10 +66,6 @@ class LoginController extends Controller
 	protected function authenticated(Request $request, $user)
 	{
 		Toolbox::addToastToBag(trans('synthesiscms/auth.login_message', ['username' => $user->name]));
-	}
-
-	public function redirectPath()
-	{
 		return response()->redirectToIntended(route('profile'));
 	}
 }

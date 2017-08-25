@@ -19,4 +19,9 @@ Route::get('/profile/delete/{id}', 'Auth\\ProfileController@delete')->name('prof
 Route::get('/profile/password', 'Auth\\ProfileController@editGet')->name('profile_password');
 Route::post('/profile/password', 'Auth\\ProfileController@editPost')->name('profile_password_post');
 
+foreach (glob(public_path() . '/*', GLOB_ONLYDIR) as $filename) {
+	Route::any('/' . basename($filename)); //this only holds the route for the synthesis route checker to say it's occupied
+	Route::any('/' . basename($filename) . '/{anything}'); //this only holds the route for the synthesis route checker to say it's occupied
+}
+
 ?>

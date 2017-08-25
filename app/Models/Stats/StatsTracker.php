@@ -15,13 +15,21 @@ class StatsTracker extends Model
 	public static function hit()
 	{
 		StatsTrackerModule::setLastUpdateDateTime(Carbon::now()->toDateTimeString());
-		$query = StatsTracker::where(['ip' => $_SERVER['REMOTE_ADDR'], 'url' => \Request::path(), 'date' => Carbon::now()->toDateString()]);
+		$query = StatsTracker::where([
+			'ip' => $_SERVER['REMOTE_ADDR'],
+			'url' => \Request::path(),
+			'date' => Carbon::now()->toDateString()
+		]);
 		if ($query->count()) {
 			$tracker = $query->first();
 			$tracker->hits++;
 			$tracker->save();
 		} else {
-			StatsTracker::create(['ip' => $_SERVER['REMOTE_ADDR'], 'url' => \Request::path(), 'date' => Carbon::now()->toDateString()]);
+			StatsTracker::create([
+				'ip' => $_SERVER['REMOTE_ADDR'],
+				'url' => \Request::path(),
+				'date' => Carbon::now()->toDateString()
+			]);
 		}
 	}
 
