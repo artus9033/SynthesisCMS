@@ -118,9 +118,10 @@ class RouteServiceProvider extends ServiceProvider
 	}
 
 	/**
-	 * Define the "web" routes for the application.
+	 * Define the "no-middleware" routes for the application.
 	 *
-	 * These routes all receive session state, CSRF protection, a Stats Tracker, etc.
+	 * These routes only receive basic middleware, such as session, locale, csrf, cookies encryption,
+	 * but are excluded from any additional middleware
 	 *
 	 * @return void
 	 */

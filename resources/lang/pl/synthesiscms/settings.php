@@ -1,5 +1,8 @@
 <?php
 
+$devModeBtnNo = 'Anuluj';
+$devModeBtnYes = 'Włącz';
+
 return [
 	'tab_colors' => 'Kolorystyka',
 	'tab_footer_bottom' => 'Dół Stopki',
@@ -19,7 +22,16 @@ return [
 	'main_color' => 'Wiodący Kolor Strony (tekst)',
 	'main_color_class' => 'Klasa dodana do koloru',
 	'tooltip_main_color' => 'Można zastosować dowolny kolor ze specyfikacji kolorystyki Google MD: https://material.io/guidelines/style/color.html#color-color-palette',
+	'tab_advanced' => 'Zaawansowane',
 	'msg_saved' => 'Ustawienia zostały pomyślnie zapisane',
+	'dev_mode_checkbox_text' => 'Tryb Programisty',
+	'dev_mode_checkbox_warning_modal_title' => 'Uwaga!',
+	'dev_mode_checkbox_warning_modal_text' => 'Włączanie tej opcji nie jest zalecane, jeśli nie jesteś programistą i chcesz testować rozszerzenie, motyw, albo jeśli nie eksperymentujesz na kodzie źródłowym SynthesisCMS.',
+	'dev_mode_checkbox_warning_modal_text_2' => 'Tryb Programisty *może* ujawnić poufne dane Twojej strony (takie jak hasła do bazy danych i zaplecza strony) każdemu odwiedzającemu, ponieważ nadpisuje system raportowania błędów SynthesisCMS oraz pokazuje pełen stos wywołań, kiedy ma miejsce błąd!',
+	'dev_mode_checkbox_warning_modal_text_3' => 'Jeżeli nie jesteś absolutnie pewny, że chcesz włączyć Tryb Programisty, proszę kliknąć `' . $devModeBtnNo . '`.',
+	'dev_mode_checkbox_warning_modal_btn_no' => $devModeBtnNo,
+	'dev_mode_checkbox_warning_modal_btn_yes' => $devModeBtnYes,
+	'msg_warning_dev_mode_active' => 'Uwaga: Tryb Programisty jest włączony!',
 ];
 
 ?>

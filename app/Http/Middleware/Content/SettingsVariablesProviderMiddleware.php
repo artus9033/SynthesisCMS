@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Providers;
+namespace App\Http\Middleware\Content;
 
 use App\Models\Settings\Settings;
-use Illuminate\Support\ServiceProvider;
+use Closure;
 
-class SettingsVariablesProvider extends ServiceProvider
+class SettingsVariablesProviderMiddleware
 {
 	/**
-	 * Bootstrap the application services.
+	 * Handle an incoming request.
 	 *
-	 * @return void
+	 * @param  \Illuminate\Http\Request $request
+	 * @param  \Closure $next
+	 * @return mixed
 	 */
-	public function boot()
+	public function handle($request, Closure $next)
 	{
 		if (!\App::runningInConsole()) {
 			view()->share('synthesiscmsMainColor', Settings::getFromActive('main_color'));
@@ -32,15 +34,7 @@ class SettingsVariablesProvider extends ServiceProvider
 			view()->share('synthesiscmsFooterHeader', Settings::getFromActive('footer_header'));
 			view()->share('synthesiscmsFooterContent', Settings::getFromActive('footer_content'));
 		}
-	}
 
-	/**
-	 * Register the application services.
-	 *
-	 * @return void
-	 */
-	public function register()
-	{
-		//
+		return $next($request);
 	}
 }

@@ -17,6 +17,9 @@
 				<div class="container" style="margin-top: 40px; margin-bottom: 50px;">
 					<h2 class="header red-text text-lighten-2">{{ trans('synthesiscms/errors.500_header2') }}</h2>
 					<p class="caption">{{ trans('synthesiscms/errors.500_desc2') }}</p>
+					<a href="{!! \URL::previous() !!}" class="btn-large waves-effect waves-light"><i
+								class="material-icons white-text left">arrow_back</i>&nbsp;{{ trans('synthesiscms/errors.generic_back_link') }}
+					</a>
 					<a href="{{ \App\Models\Settings\Settings::getFromActive('home_page') }}" class="btn-large waves-effect waves-light"><i
 								class="material-icons white-text left">home</i>&nbsp;{{ trans('synthesiscms/errors.500_link') }}
 					</a>

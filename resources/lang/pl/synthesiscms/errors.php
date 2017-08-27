@@ -39,6 +39,13 @@ return [
 	'auth_permission_link' => 'Zaloguj',
 	'error_resources_need_compilation_text' => 'Zasoby CMSa wymagają kompilacji',
 	'error_resources_need_compilation_help' => 'Proszę ALBO zalogować się na konto administratorskie, wybrać opcję `' . trans('synthesiscms/admin.section_tools') . '` z menu, a następnie wybrać narzędzie `' . trans('synthesiscms/tools.tool_compile_cms_resources') . '`, ALBO ręcznie wykonać polecenia `npm install` i `npm run prod` w głównym katalogu CMSa.',
+	'error_not_installed_cms_yet' => 'SynthesisCMS nie został jeszcze zainstalowany',
+	'error_not_installed_cms_yet_help' => 'Kliknij przycisk poniżej, by przejść do strony instalacji.',
+	'install_link' => 'Zainstalujmy SynthesisCMS!',
+	'error_cms_already_installed' => 'SynthesisCMS został już zainstalowany!',
+	'error_cms_already_installed_help' => 'Nie możesz przeprowadzić kolejnej instalacji na już istniejącej!',
+	'error_database_connection_failed' => 'Błąd podczas łączenia z bazą danych',
+	'error_database_connection_failed_help' => 'Aby to naprawić, skontaktuj się z administratorem strony, by sprawdził, czy serwer bazy danych jest poprawnie skonfigurowany i, czy plik konfiguracyjny SynthesisCMS zawiera poprawne dane logowania.',
 ];
 
 ?>

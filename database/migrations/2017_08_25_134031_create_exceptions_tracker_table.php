@@ -18,7 +18,7 @@ class CreateExceptionsTrackerTable extends Migration
 			$table->string('ip');
 			$table->string('url');
 			$table->date('date')->default(\Carbon\Carbon::now()->toDateString());
-			$table->integer('code')->default(500);
+			$table->text('code');
 			$table->longText('file');
 			$table->longText('message');
 			$table->longText('stack_trace');

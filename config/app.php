@@ -188,7 +188,6 @@ return [
 		// App\Providers\BroadcastServiceProvider::class,
 		App\Providers\EventServiceProvider::class,
 		App\Providers\RouteServiceProvider::class,
-		App\Providers\SettingsVariablesProvider::class,
 		App\Providers\ExtensionsServiceProvider::class,
 		App\Providers\MobileDetectionProvider::class,
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,

@@ -9,7 +9,7 @@
 @section('head')
 	<style>
 		.tabs .tab a {
-			color: {{ $synthesiscmsMainColor }} !important;
+			color: {{ $synthesiscmsMainColor }}     !important;
 		}
 
 		.tabs ::-webkit-scrollbar:horizontal {
@@ -29,7 +29,7 @@
 			text-align: left !important;
 		}
 	</style>
-	<div id="modalDevModeEnableWarning" class="modal">
+	<div id="modalDevModeEnableWarning" class="modal modal-fixed-footer">
 		<div class="modal-content">
 			<h3>{{ trans('synthesiscms/settings.dev_mode_checkbox_warning_modal_title') }}</h3>
 			<div class="row col s12">
@@ -229,12 +229,12 @@
 						</div>
 						<div id="settings-advanced" class="col s12">
 							<div>
-								<div class="col s12 tooltipped" data-position="top" data-delay="50"
-									 data-tooltip="Zaznacz to pole i w poniższym polu wpisz adres przystanku, jeśli dojeżdżasz autobusem">
-									<p class="col s6 offset-s3">
+								<div class="col s12">
+									<p class="center">
 										<input class="filled-in" type="checkbox" id="devModeCheckbox"
-											   name="devModeCheckbox">
-										<label for="devModeCheckbox" class="teal-text"></label>
+											   name="devModeCheckbox"
+											   @if(\App\Models\Settings\Settings::isDevModeEnabled()) checked="checked" @endif>
+										<label for="devModeCheckbox" class="teal-text">{!! trans('synthesiscms/settings.dev_mode_checkbox_text') !!}</label>
 									</p>
 								</div>
 								<script>
@@ -246,10 +246,12 @@
                                         synthesiscmsSettingsCanToggleDevMode = false;
                                     }
                                     $('#devModeCheckbox').click(function (event) {
-                                        if (!synthesiscmsSettingsCanToggleDevMode) {
-                                            event.preventDefault();
-                                            $('#modalDevModeEnableWarning').modal('open');
-                                        }
+                                        if($('#devModeCheckbox').prop("checked")){
+                                            if (!synthesiscmsSettingsCanToggleDevMode) {
+                                                event.preventDefault();
+                                                $('#modalDevModeEnableWarning').modal('open');
+                                            }
+										}
                                     });
                                     $(document).ready(function () {
                                         $('#modalDevModeEnableWarning').modal();

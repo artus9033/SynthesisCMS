@@ -16,16 +16,15 @@ class ExtensionsServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$extensionsDirectoryPath = dirname(__DIR__) . '/Extensions/';
-		if (\App::runningInConsole()) {
-			$extensions = glob($extensionsDirectoryPath . "*");
+		$extensionsDirlist = glob($extensionsDirectoryPath . "*");
 
-			while (list(, $extension) = each($extensions)) {
-				// Load extension database migrations
-				if (is_dir($extension . '/Migrations')) {
-					$this->loadMigrationsFrom($extension . '/Migrations');
-				}
+		while (list(, $extension) = each($extensionsDirlist)) {
+			// Load extension database migrations
+			if (is_dir($extension . '/Migrations')) {
+				$this->loadMigrationsFrom($extension . '/Migrations');
 			}
-		} else {
+		}
+		if (!\App::runningInConsole()) {
 			$manager = new SynthesisPositionManager();
 
 			// For each of the registered extensions, include their routes, views & translations
@@ -45,11 +44,6 @@ class ExtensionsServiceProvider extends ServiceProvider
 				// Load translation files, then callable by trans("extensionName::path.to.file.and.value.from.extension.lang")
 				if (is_dir($extensionsDirectoryPath . $extension . '/Lang')) {
 					$this->loadTranslationsFrom($extensionsDirectoryPath . $extension . '/Lang', $extension);
-				}
-
-				// Load extension database migrations
-				if (is_dir($extensionsDirectoryPath . $extension . '/Migrations')) {
-					$this->loadMigrationsFrom($extensionsDirectoryPath . $extension . '/Migrations');
 				}
 
 				// Load defines & hooks of positions

@@ -208,6 +208,10 @@
 			@each('partials/message', Session::get('messages'), 'message')
 			@php(Session::forget('messages'))
 		@endif
+		@if(Session::has('warnings'))
+			@each('partials/warning', Session::get('warnings'), 'warning')
+			@php(Session::forget('warnings'))
+		@endif
 		@each('partials/error', $errors, 'error')
 		@if(Session::has('toasts'))
 			@each('partials/toast', Session::get('toasts'), 'toast')

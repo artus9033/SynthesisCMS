@@ -46,6 +46,7 @@ class BackendController extends Controller
 		$settings->tab_color = $request->get('tab_color');
 		$settings->main_color = $request->get('main_color');
 		$settings->color_class = $request->get('main_color_class');
+		$settings->devModeEnabled = ($request->get('devModeCheckbox') == 'on');
 		$settings->save();
 		return \Redirect::route('settings')->with('messages', array(trans('synthesiscms/settings.msg_saved')));
 	}

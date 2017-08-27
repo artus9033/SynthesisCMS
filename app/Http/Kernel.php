@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -14,10 +15,13 @@ class Kernel extends HttpKernel
 	 * @var array
 	 */
 	protected $middleware = [
+		//\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
 		\Illuminate\Session\Middleware\StartSession::class,
 		\App\Http\Middleware\Content\Locale::class,
 		\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
 		\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
+		\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
+		\App\Http\Middleware\Content\SettingsVariablesProviderMiddleware::class,
 	];
 
 	/**

@@ -22,6 +22,18 @@ class Toolbox
 		\Session::put('messages', $array);
 	}
 
+	static function hasMessageInBag($search)
+	{
+		$found = false;
+		$array = (count(\Session::get('messages')) ? \Session::get('messages') : Array());
+		foreach ($array as $item) {
+			if($item === $search){
+				$found = true;
+			}
+		}
+		return $found;
+	}
+
 	static function addToastToBag($toast)
 	{
 		$array = (count(\Session::get('toasts')) ? \Session::get('toasts') : Array());
@@ -36,6 +48,46 @@ class Toolbox
 			array_push($array, $toast);
 		}
 		\Session::put('toasts', $array);
+	}
+
+	static function hasToastInBag($search)
+	{
+		$found = false;
+		$array = (count(\Session::get('toasts')) ? \Session::get('toasts') : Array());
+		foreach ($array as $item) {
+			if($item === $search){
+				$found = true;
+			}
+		}
+		return $found;
+	}
+
+	static function addWarningToBag($warning)
+	{
+		$array = (count(\Session::get('warnings')) ? \Session::get('warnings') : Array());
+		array_push($array, $warning);
+		\Session::put('warnings', $array);
+	}
+
+	static function addWarningsToBag($warnings)
+	{
+		$array = (count(\Session::get('warnings')) ? \Session::get('warnings') : Array());
+		foreach ($warnings as $warning) {
+			array_push($array, $warning);
+		}
+		\Session::put('warnings', $array);
+	}
+
+	static function hasWarningInBag($search)
+	{
+		$found = false;
+		$array = (count(\Session::get('warnings')) ? \Session::get('warnings') : Array());
+		foreach ($array as $item) {
+			if($item === $search){
+				$found = true;
+			}
+		}
+		return $found;
 	}
 
 	static function hex2rgba($color, $opacity = 1)

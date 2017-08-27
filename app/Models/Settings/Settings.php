@@ -10,24 +10,19 @@ class Settings extends Model
 	protected $fillable = array('home_page', 'header_title', 'tab_title', 'footer_copyright', 'footer_more_links_bottom_text', 'footer_more_links_bottom_href', 'footer_links_text', 'footer_links_content', 'footer_header', 'footer_content', 'tab_color', 'main_color', 'color_class', 'synthesiscms_installed_extensions', 'devModeEnabled');
 	protected $table = 'synthesiscms_settings';
 
-	public static function getFromActive($field)
-	{
-		return self::getActiveInstance()->$field;
-	}
-
-	public static function getActiveInstance()
-	{
-		return Settings::where('active', true)->first();
-	}
-
 	public static function getInstalledExtensions()
 	{
 		return array_filter(explode(';', self::getActiveInstance()->synthesiscms_installed_extensions));
 	}
 
+	public static function getActiveInstance()
+	{
+		return self::where('active', true)->first();
+	}
+
 	public static function installExtension($extensionName)
 	{
-
+		//TODO: implement this method
 	}
 
 	public static function unistallExtension($extensionName)
@@ -35,19 +30,13 @@ class Settings extends Model
 		//TODO: implement this method
 	}
 
-	public static function isDevModeEnabled(){
-		return Settings::getFromActive('devModeEnabled');
+	public static function isDevModeEnabled()
+	{
+		return self::getFromActive('devModeEnabled');
 	}
 
-	public static function enableDevMode(){
-		$instance = Settings::getActiveInstance();
-		$instance->devModeEnabled = true;
-		$instance->save();
-	}
-
-	public static function disableDevMode(){
-		$instance = Settings::getActiveInstance();
-		$instance->devModeEnabled = false;
-		$instance->save();
+	public static function getFromActive($field)
+	{
+		return self::getActiveInstance()->$field;
 	}
 }

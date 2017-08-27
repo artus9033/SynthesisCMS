@@ -23,7 +23,7 @@ class SynthesisFilesystemMiddleware
 					'help' => trans('synthesiscms/errors.error_resources_need_compilation_help')
 				]
 			));
-		}else {
+		} else {
 			return $next($request);
 		}
 	}
