@@ -41,10 +41,8 @@ class Handler extends ExceptionHandler
 		$continue = false;
 		$fullPath = str_replace("/", "\\", base_path());
 		try {
-			if (DB::connection()) {
-				if (Schema::hasTable(with(new ExceptionTracker())->getTable())) {
-					$continue = true;
-				}
+			if (Schema::hasTable(with(new ExceptionTracker())->getTable())) {
+				$continue = true;
 			}
 		} catch (Exception $e) {
 			$continue = false;
@@ -63,41 +61,27 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $exception)
 	{
-		$continue = false;
 		$fullPath = str_replace("/", "\\", base_path());
-		try {
-			if (DB::connection()) {
-				if (Schema::hasTable(with(new ExceptionTracker())->getTable())) {
-					$continue = true;
-				}
-			}
-		} catch (Exception $e) {
-			$continue = false;
-		}
-		if ($continue) {
-			\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
-			if (Settings::isDevModeEnabled()) {
-				return parent::render($request, $exception);
-			} else {
-				if ($this->isHttpException($exception)) {
-					$code = $exception->getStatusCode(); // getStatusCode(), NOT getCode()
-				} else {
-					$code = 500; // Not a HTTP Exception = 500 ISE
-				}
-				switch ($code) {
-					case 404:
-						return response()->view("errors/404")->setStatusCode(404);
-						break;
-					case 503:
-						return response()->view("errors/503")->setStatusCode(503);
-						break;
-					default:
-						return response()->view("errors/500")->setStatusCode(500);
-						break;
-				}
-			}
+		\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
+		if (Settings::isDevModeEnabled()) {
+			return parent::render($request, $exception);
 		} else {
-			return response()->view("errors/database")->setStatusCode(500);
+			if ($this->isHttpException($exception)) {
+				$code = $exception->getStatusCode(); // getStatusCode(), NOT getCode()
+			} else {
+				$code = 500; // Not a HTTP Exception = 500 ISE
+			}
+			switch ($code) {
+				case 404:
+					return response()->view("errors/404")->setStatusCode(404);
+					break;
+				case 503:
+					return response()->view("errors/503")->setStatusCode(503);
+					break;
+				default:
+					return response()->view("errors/500")->setStatusCode(500);
+					break;
+			}
 		}
 	}
 

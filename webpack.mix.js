@@ -43,6 +43,7 @@ mix.copy('node_modules/trumbowyg/dist', 'public/trumbowyg', false);
 mix.copy('resources/assets/img', 'public/img', false);
 mix.copy('resources/assets/fonts', 'public/fonts', false);
 mix.copy('resources/assets/js-copy-only', 'public/js', false);
+mix.copy('resources/assets/css-copy-only', 'public/css', false);
 mix.copy('resources/assets/artus9033-trumbowyg', 'public/trumbowyg/plugins/artus9033', false);
 mix.copy('resources/assets/trumbowyg-custom-icons/icons.svg', 'public/trumbowyg/ui/icons.svg');
 

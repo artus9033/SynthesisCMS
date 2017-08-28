@@ -2,11 +2,15 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware;
+use Carbon\Carbon;
+use Dotenv\Dotenv;
+use Exception;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use mysqli;
 
 class Kernel extends HttpKernel
 {
+
 	/**
 	 * The application's global HTTP middleware stack.
 	 *
@@ -23,7 +27,6 @@ class Kernel extends HttpKernel
 		\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
 		\App\Http\Middleware\Content\SettingsVariablesProviderMiddleware::class,
 	];
-
 	/**
 	 * The application's route middleware groups.
 	 *
@@ -71,7 +74,6 @@ class Kernel extends HttpKernel
 			'bindings',
 		],
 	];
-
 	/**
 	 * The application's route middleware.
 	 *
@@ -88,4 +90,29 @@ class Kernel extends HttpKernel
 		'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 		'adminRole' => \App\Http\Middleware\Auth\Admin::class,
 	];
+
+	public function bootstrap()
+	{
+		$dotenv = new Dotenv(__DIR__ . '/../../');
+		$dotenv->load();
+		mysqli_report(MYSQLI_REPORT_STRICT);
+		try {
+			@(new mysqli(getenv('DB_HOST') . ":" . getenv('DB_PORT'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE')));
+		} catch (Exception $e) {
+			echo("Cannot connect to database. Please contact the site administrator for help (P.S. Dear admin, everything You need to know to fix this error is in the error log).");
+			error_log($e->getMessage());
+			$synthesisBootstrapErrorLogFile = __DIR__ . '/../../storage/logs/synthesiscms-bootstrap-error.log';
+			$message = Carbon::now()->toDateTimeString() . " : `" . $e->getMessage() . "`. This error means a problem with Your database connection. Please check your .env file configuration.";
+			if (file_exists($synthesisBootstrapErrorLogFile)) {
+				$fh = fopen($synthesisBootstrapErrorLogFile, 'a');
+				fwrite($fh, $message."\n");
+			} else {
+				$fh = fopen($synthesisBootstrapErrorLogFile, 'w');
+				fwrite($fh, $message."\n");
+			}
+			fclose($fh);
+			exit;
+		}
+		parent::bootstrap();
+	}
 }
