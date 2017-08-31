@@ -3,10 +3,10 @@
 namespace App\Extensions\Boron;
 
 use App\Extensions\Boron\Models\BoronExtension;
-use App\Http\Requests\BackendRequest;
+use App\Http\Requests\SiteManagerRequest;
 use App\SynthesisCMS\API\Positions\SynthesisPositions;
-use App\SynthesisCMS\API\SynthesisExtension;
-use App\SynthesisCMS\API\SynthesisExtensionType;
+use App\SynthesisCMS\API\Extensions\SynthesisExtension;
+use App\SynthesisCMS\API\Extensions\SynthesisExtensionType;
 
 /**
  * ExtensionKernel
@@ -17,6 +17,7 @@ use App\SynthesisCMS\API\SynthesisExtensionType;
  */
 class ExtensionKernel extends SynthesisExtension
 {
+
 	public function settingsGet()
 	{
 		return view('Boron::partials/settings')->with(['model' => $this->findOrCreate()]);
@@ -33,7 +34,7 @@ class ExtensionKernel extends SynthesisExtension
 		}
 	}
 
-	public function settingsPost(BackendRequest $request, &$errors_array_ptr)
+	public function settingsPost(SiteManagerRequest $request, &$errors_array_ptr)
 	{
 		$model = $this->findOrCreate();
 		$model->enabled = $request->get('enabled') == "on";

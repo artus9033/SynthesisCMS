@@ -23,9 +23,6 @@ class Kernel extends HttpKernel
 		\Illuminate\Session\Middleware\StartSession::class,
 		\App\Http\Middleware\Content\Locale::class,
 		\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-		\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
-		\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
-		\App\Http\Middleware\Content\SettingsVariablesProviderMiddleware::class,
 	];
 	/**
 	 * The application's route middleware groups.
@@ -35,6 +32,8 @@ class Kernel extends HttpKernel
 	protected $middlewareGroups = [
 		// web_internal - should be used by routes that are not meant to be indexed by stats tracker
 		'web' => [
+			\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
 			\App\Http\Middleware\Security\EncryptCookies::class,
 			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
 			\Illuminate\View\Middleware\ShareErrorsFromSession::class,
@@ -47,6 +46,8 @@ class Kernel extends HttpKernel
 
 		// web_internal - should be used by routes that are not meant to be indexed by stats tracker
 		'web_internal' => [
+			\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
 			\App\Http\Middleware\Security\EncryptCookies::class,
 			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
 			\Illuminate\View\Middleware\ShareErrorsFromSession::class,
@@ -57,6 +58,8 @@ class Kernel extends HttpKernel
 		],
 
 		'admin' => [
+			\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
 			\App\Http\Middleware\Security\EncryptCookies::class,
 			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
 			\Illuminate\View\Middleware\ShareErrorsFromSession::class,
@@ -66,6 +69,8 @@ class Kernel extends HttpKernel
 		],
 
 		'basic_auth' => [
+			\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
 			\App\Http\Middleware\Auth\BasicProfileMiddleware::class,
 		],
 

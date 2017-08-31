@@ -26,6 +26,7 @@ return [
 	'toast_stats_data_changed_please_update' => 'Visitor statistics data changed. Would You like to load them?',
 	'btn_toast_stats_data_changed_please_update_ok' => 'Yes',
 	'toast_error_updating_stats_data' => 'An error occured while trying to check if visitor statistics data changed. I will retry in :seconds seconds.',
+	'wow_time_period_too_long_to_be_displayed' => 'WOW! This time period is too long to be displayed (length: :length units, max: :max)!',
 ];
 
 ?>

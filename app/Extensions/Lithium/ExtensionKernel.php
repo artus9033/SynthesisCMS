@@ -4,8 +4,8 @@ namespace App\Extensions\Lithium;
 
 use App\Extensions\Lithium\Models\LithiumExtension;
 use App\Models\Content\Page;
-use App\SynthesisCMS\API\SynthesisExtension;
-use App\SynthesisCMS\API\SynthesisExtensionType;
+use App\SynthesisCMS\API\Extensions\SynthesisExtension;
+use App\SynthesisCMS\API\Extensions\SynthesisExtensionType;
 
 /**
  * ExtensionKernel

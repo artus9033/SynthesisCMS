@@ -1,9 +1,8 @@
 <?php
 
-namespace App\SynthesisCMS\API;
+namespace App\SynthesisCMS\API\Extensions;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BackendRequest;
 
 class SynthesisExtension extends Controller
 {
@@ -48,7 +47,7 @@ class SynthesisExtension extends Controller
 	 * Function called by create_route view to get extension type; can be either 'applet' or 'extension'
 	 * a extension can be included in a route while an applet can be only included as a whole-site extension_loaded
 	 * but it can be customized in it's settings in edit_applet
-	 * @return SynthesisExtensionType::const extension type
+	 * @return int extension type
 	 **/
 	public function getExtensionType()
 	{
@@ -107,11 +106,13 @@ class SynthesisExtension extends Controller
 	/**
 	 * Function used by the route edit app view to commit edit
 	 * @param $id \App\Page->id
-	 * @param $request Form Request
-	 **/
-	public function editPost($id, $request)
+	 * @param $request Request
+	 * TODO: fix the error with incompatible request types somehow
+	public function editPost($id, \Request $request)
 	{
 	}
+	 *
+	 */
 
 	/**
 	 * Function called when a route using this extension is created;
@@ -138,12 +139,14 @@ class SynthesisExtension extends Controller
 	/**
 	 * Function called when an applet's settings are updated;
 	 * There you can add your applet's settings UI
-	 * @param $request Request the request
-	 * @param &$errors_array_ptr Pointer(Array) a pointer to the errors array
-	 **/
-	public function settingsPost(BackendRequest $request, &$errors_array_ptr)
+	 * @param $request \Request the request
+	 * @param &$errors_array_ptr array& a pointer to the errors array
+	 * TODO: fix the error with incompatible request types somehow
+	public function settingsPost(\Request $request, &$errors_array_ptr)
 	{
 	}
+	 *
+	 **/
 
 	/** !!! Applet-Only Extension Functions End !!! **/
 

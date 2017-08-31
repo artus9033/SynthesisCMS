@@ -4,13 +4,11 @@ namespace App\Extensions\Nitrogen;
 
 use App\Extensions\Nitrogen\Models\NitrogenExtension;
 use App\Extensions\Nitrogen\Models\NitrogenItem;
-use App\Extensions\Nitrogen\NitrogenItemCategory;
-use App\Http\Requests\BackendRequest;
+use App\Http\Requests\SiteManagerRequest;
 use App\Models\Content\Page;
-use App\Models\Settings\Settings;
 use App\SynthesisCMS\API\Positions\SynthesisPositions;
-use App\SynthesisCMS\API\SynthesisExtension;
-use App\SynthesisCMS\API\SynthesisExtensionType;
+use App\SynthesisCMS\API\Extensions\SynthesisExtension;
+use App\SynthesisCMS\API\Extensions\SynthesisExtensionType;
 use App\Toolbox;
 
 /**
@@ -22,7 +20,7 @@ use App\Toolbox;
  */
 class ExtensionKernel extends SynthesisExtension
 {
-	public function settingsPositionUp(BackendRequest $request, $nr, $id)
+	public function settingsPositionUp(SiteManagerRequest $request, $nr, $id)
 	{
 		if (NitrogenItem::where(['id' => $id, 'parentInstance' => $nr])->count() == 0) {
 			if (NitrogenItem::where(['id' => NitrogenItem::where(['id' => $id, 'parentInstance' => $nr])->first()->before, 'parentInstance' => $nr])->count() == 0) {
@@ -51,7 +49,7 @@ class ExtensionKernel extends SynthesisExtension
 		return redirect()->back()->with('messages', array(trans('Nitrogen::messages.msg_item_moved')));
 	}
 
-	public function settingsPositionDown(BackendRequest $request, $nr, $id)
+	public function settingsPositionDown(SiteManagerRequest $request, $nr, $id)
 	{
 		$instanceModel = NitrogenExtension::find($nr);
 		if (NitrogenItem::where(['slider' => $instanceModel->id, 'id' => $id, 'parentInstance' => $nr])->count() == 0) {
@@ -84,7 +82,7 @@ class ExtensionKernel extends SynthesisExtension
 		return redirect()->back()->with('messages', array(trans('Nitrogen::messages.msg_item_moved')));
 	}
 
-	public function settingsDeletePosition(BackendRequest $request, $nr, $id)
+	public function settingsDeletePosition(SiteManagerRequest $request, $nr, $id)
 	{
 		$instanceModel = NitrogenExtension::find($nr);
 		$item = NitrogenItem::where(['id' => $id, 'parentInstance' => $nr])->first();
@@ -114,7 +112,7 @@ class ExtensionKernel extends SynthesisExtension
 		}
 	}
 
-	public function settingsEditPositionPost(BackendRequest $request, $nr, $id)
+	public function settingsEditPositionPost(SiteManagerRequest $request, $nr, $id)
 	{
 		$title = $request->get('title');
 		$content = $request->get('content');
@@ -157,7 +155,7 @@ class ExtensionKernel extends SynthesisExtension
 		return view("Nitrogen::partials/create_item")->with(['model' => $instanceModel, 'kernel' => $this]);
 	}
 
-	public function settingsCreatePositionPost(BackendRequest $request, $nr)
+	public function settingsCreatePositionPost(SiteManagerRequest $request, $nr)
 	{
 		$instanceModel = NitrogenExtension::find($nr);
 		$title = $request->get('title');
@@ -196,7 +194,7 @@ class ExtensionKernel extends SynthesisExtension
 		}
 	}
 
-	public function settingsCreateInstancePost(BackendRequest $request)
+	public function settingsCreateInstancePost(SiteManagerRequest $request)
 	{
 		$errors_array_ptr = Array();
 		$hasButton = $request->has('hasButton');
@@ -256,7 +254,7 @@ class ExtensionKernel extends SynthesisExtension
 		return view('Nitrogen::partials/instance_settings')->with(['model' => NitrogenExtension::find($nr), 'nr' => $nr]);
 	}
 
-	public function settingsInstancePost(BackendRequest $request, $nr)
+	public function settingsInstancePost(SiteManagerRequest $request, $nr)
 	{
 		$errors_array_ptr = Array();
 		$title = $request->get('title');
@@ -355,7 +353,7 @@ class ExtensionKernel extends SynthesisExtension
 		return view('Nitrogen::partials/settings');
 	}
 
-	public function settingsPost(BackendRequest $request, &$errors_array_ptr)
+	public function settingsPost(SiteManagerRequest $request, &$errors_array_ptr)
 	{
 	}
 

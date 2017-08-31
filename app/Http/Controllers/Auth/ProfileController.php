@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
-use App\Http\Requests\ProfileFormRequest;
+use App\Http\Requests\ProfileEditionRequest;
 use App\Models\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +25,7 @@ class ProfileController extends Controller
 		return view('auth.profile_password');
 	}
 
-	public function editPost(ProfileFormRequest $request)
+	public function editPost(ProfileEditionRequest $request)
 	{
 		$passwd = $request->get('newpassword');
 		$passwd2 = $request->get('newpassword2');
@@ -52,14 +52,14 @@ class ProfileController extends Controller
 		}
 
 		if ($err) {
-			return \Redirect::route('profile')->with('errors', $errors);
+			return \Redirect::route('profile_password')->with('errors', $errors);
 		} else {
 			Auth::user()->save();
 			return \Redirect::route('profile')->with('messages', array(trans('synthesiscms/auth.msg_changed_passwd')));
 		}
 	}
 
-	public function delete($id)
+	public function delete($id, BackendRequest $request)
 	{
 		$user = User::find($id);
 		$user->delete();

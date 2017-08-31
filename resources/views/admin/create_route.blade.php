@@ -138,7 +138,7 @@
 						while (list(,$extension) = each($extensions)) {
 							$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
 							$kernel = new $kpath;
-							if($kernel->getExtensionType() == App\SynthesisCMS\API\SynthesisExtensionType::Module){
+							if($kernel->getExtensionType() == App\SynthesisCMS\API\Extensions\SynthesisExtensionType::Module){
 								echo("<option value='" . $extension . "'>" . $kernel->getExtensionName() . "</option>");
 							}
 						}

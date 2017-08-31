@@ -56,6 +56,7 @@ Route::post('/admin/manage_users', 'Auth\\ProfileController@manageUsersPost')->n
 
 Route::get('/admin/settings', 'Backend\\BackendController@settingsGet')->name('settings');
 Route::post('/admin/settings', 'Backend\\BackendController@settingsPost')->name('settings_post');
+Route::post('/admin/settings/favicon_upload', 'Backend\\BackendController@settingsAjaxFaviconConvert')->name('settings_favicon_post');
 
 Route::get('/admin/manage_applets', 'Backend\\BackendController@manageAppletsGet')->name('manage_applets');
 Route::get('/admin/manage_applets/{extension}', 'Backend\\BackendController@appletSettingsGet')->name('applet_settings');

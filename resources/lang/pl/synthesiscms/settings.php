@@ -4,7 +4,7 @@ $devModeBtnNo = 'Anuluj';
 $devModeBtnYes = 'Włącz';
 
 return [
-	'tab_colors' => 'Kolorystyka',
+	'tab_appearance' => 'Wygląd',
 	'tab_footer_bottom' => 'Dół Stopki',
 	'tab_footer_body' => 'Zawartość Stopki',
 	'tab_main' => 'Ogólne',
@@ -32,6 +32,11 @@ return [
 	'dev_mode_checkbox_warning_modal_btn_no' => $devModeBtnNo,
 	'dev_mode_checkbox_warning_modal_btn_yes' => $devModeBtnYes,
 	'msg_warning_dev_mode_active' => 'Uwaga: Tryb Programisty jest włączony!',
+	'logo_background_color' => 'Kolor Tła Logo',
+	'favicon_upload' => 'Wczytaj Ikonkę',
+	'favicon_upload_tooltip' => 'Ikonka może być obrazem w dowolnym formacie (png, jpg, gif, ico), SynthesisCMS przekonwertuje go na plik .ico',
+	'toast_favicon_upload_success' => 'Pomyślnie wczytano nową ikonkę na serwer!',
+	'toast_favicon_upload_error' => 'Błąd podczas wczytywania nowej ikonki na serwer: ',
 ];
 
 ?>

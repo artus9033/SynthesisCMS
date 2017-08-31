@@ -4,7 +4,7 @@ $devModeBtnNo = 'Cancel';
 $devModeBtnYes = 'Enable';
 
 return [
-	'tab_colors' => 'Coloristics',
+	'tab_appearance' => 'Appearance',
 	'tab_footer_bottom' => 'Footer Bottom',
 	'tab_footer_body' => 'Footer Body',
 	'tab_main' => 'General',
@@ -32,6 +32,11 @@ return [
 	'dev_mode_checkbox_warning_modal_btn_no' => $devModeBtnNo,
 	'dev_mode_checkbox_warning_modal_btn_yes' => $devModeBtnYes,
 	'msg_warning_dev_mode_active' => 'Warning: Dev Mode is active!',
+	'logo_background_color' => 'Logo Background Color',
+	'favicon_upload' => 'Favicon Upload',
+	'favicon_upload_tooltip' => 'Favicon can be an image in any format (png, jpg, gif, ico), SynthesisCMS will convert it to an .ico file',
+	'toast_favicon_upload_success' => 'Successfully uploaded the new favicon to server!',
+	'toast_favicon_upload_error' => 'Error uploading the new favicon to server: ',
 ];
 
 ?>

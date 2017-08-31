@@ -66,10 +66,11 @@ class Handler extends ExceptionHandler
 		if (Settings::isDevModeEnabled()) {
 			return parent::render($request, $exception);
 		} else {
+			$exception = $this->prepareException($exception); // convert ModelNotFoundException & AuthorizationException to HttpException
 			if ($this->isHttpException($exception)) {
 				$code = $exception->getStatusCode(); // getStatusCode(), NOT getCode()
 			} else {
-				$code = 500; // Not a HTTP Exception = 500 ISE
+				$code = 500; // Not a HTTP Exception => render a 500 ISE
 			}
 			switch ($code) {
 				case 404:
@@ -78,8 +79,11 @@ class Handler extends ExceptionHandler
 				case 503:
 					return response()->view("errors/503")->setStatusCode(503);
 					break;
+				case 403:
+					return response()->view("errors/403")->setStatusCode(503);
+					break;
 				default:
-					return response()->view("errors/500")->setStatusCode(500);
+					return response()->view("errors/500", ['exception' => $exception])->setStatusCode(500);
 					break;
 			}
 		}

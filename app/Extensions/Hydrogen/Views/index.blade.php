@@ -140,14 +140,14 @@
 					}
 				@endphp
 				@for ($i = 1; $i <= $pagination_limit; $i++)
-					<li class="waves-effect waves-{{ $synthesiscmsMainColor }} @if($currentPage == $i) active @endif">
+					<li class="waves-effect waves-{{ $synthesiscmsMainColor }} @if($currentPage == $i) {!! $synthesiscmsMainColor !!} lighten-2 @endif">
 						<a href="{{ url($base_slug) }}/p/{{ $i }}">{{ $i }}</a>
 					</li>
 				@endfor
 				@if($pagination_divider)
 					<span>...</span>
 					@for ($i = ceil($articlesCount / $articlesPerPage) + 1 - $pagination_limit; $i <= ceil($articlesCount / $articlesPerPage); $i++)
-						<li class="waves-effect waves-{{ $synthesiscmsMainColor }} @if($currentPage == $i) active @endif">
+						<li class="waves-effect waves-{{ $synthesiscmsMainColor }} @if($currentPage == $i) {!! $synthesiscmsMainColor !!} lighten-2 @endif">
 							<a href="{{ url($base_slug) }}/p/{{ $i }}">{{ $i }}</a>
 						</li>
 					@endfor

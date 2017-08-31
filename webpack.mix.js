@@ -46,6 +46,7 @@ mix.copy('resources/assets/js-copy-only', 'public/js', false);
 mix.copy('resources/assets/css-copy-only', 'public/css', false);
 mix.copy('resources/assets/artus9033-trumbowyg', 'public/trumbowyg/plugins/artus9033', false);
 mix.copy('resources/assets/trumbowyg-custom-icons/icons.svg', 'public/trumbowyg/ui/icons.svg');
+mix.copy('resources/assets/logos/dist', 'public/img', false);
 
 log("Checking if SynthesisCMS public tmp directory exists...");
 if (!fs.existsSync(publicFolderTmpDirectoryPath)) {

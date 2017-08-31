@@ -1,5 +1,6 @@
 class SynthesisCmsJsUtils {
     static includeFilePickerDynamically(picker_modal_id, callback_function_name, followIframeParentHeight = false, fileExtensions = ['jpg', 'png', 'gif', 'jpeg']) {
+        var selfRef = this;
         var mUrl = this.getSiteRootUrl() + '/admin/file-picker';
         $.ajax(
             {
@@ -19,7 +20,7 @@ class SynthesisCmsJsUtils {
                     console.log("SynthesisCmsJsUtils succesfully loaded a file picker element and injected it to the page!");
                 },
                 error: function () {
-                    this.showToast("Error while retrieving the SynthesisCMS file picker! Please reload the page...", 4000);
+                    selfRef.showToast("Error while retrieving the SynthesisCMS file picker! Please reload the page...", 4000);
                 }
             }
         );
@@ -132,6 +133,10 @@ class SynthesisCmsJsUtils {
             return new Array((c >> 16) & 255, (c >> 8) & 255, c & 255, alpha);
         }
         return Array(0, 0, 0, 1);
+    }
+
+    static rgbaArrayToRgbaString(rgbaArray){
+        return ('rgba(' + rgbaArray[0] + ',' + rgbaArray[1] + ',' + rgbaArray[2] + ',' + rgbaArray[3] + ')');
     }
 
     static hexToRgbaString(hex, alpha) {

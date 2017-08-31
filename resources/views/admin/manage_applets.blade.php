@@ -66,7 +66,7 @@
 							$class = "applet";
 							$class2 = " " . $synthesiscmsMainColor . "-text waves-effect waves-" . $synthesiscmsMainColor;
 						@endphp
-						@if($kernel->getExtensionType() == App\SynthesisCMS\API\SynthesisExtensionType::Applet)
+						@if($kernel->getExtensionType() == App\SynthesisCMS\API\Extensions\SynthesisExtensionType::Applet)
 							@php
 								if($ct == 0){
 									$firstExt = $extension;

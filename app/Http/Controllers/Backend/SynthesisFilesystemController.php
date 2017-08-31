@@ -7,6 +7,7 @@ use App\Http\Requests\BackendRequest;
 use App\Toolbox;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use SVG\SVGImage;
 
 /**
  * Class SynthesisFilesystemController
@@ -16,14 +17,6 @@ class SynthesisFilesystemController extends Controller
 {
 
 	/**
-	 * SynthesisFilesystemController constructor.
-	 */
-	function __construct()
-	{
-
-	}
-
-	/**
 	 * Function that checks if the public directory
 	 * contains all needed compiled resources for the website
 	 * or needs a re-compilation with nodejs
@@ -31,8 +24,29 @@ class SynthesisFilesystemController extends Controller
 	 */
 	static function checkPublicDirectoryResourcesFilesystemOK()
 	{
-		$mixManifestPath = public_path() . "/mix-manifest.json";
-		$synthesisStorageSymlink = public_path() . "/storage";
+		if (!file_exists(public_path('favicon.ico')) && file_exists(base_path("public/img/synthesiscms-icon.svg"))) {
+			$pngPath = resource_path("assets/logos/dist/synthesiscms-icon.png");
+			$fSize = getimagesize($pngPath);
+			$fW = $fSize[0];
+			$fH = $fSize[1];
+			$scale = min($fW, $fH) / max($fW, $fH);
+			if ($fW > $fH) {
+				$w = 180;
+				$h = (180 * $scale);
+			} else if ($fW < $fH) {
+				$w = (180 * $scale);
+				$h = 180;
+			} else {
+				$w = 180;
+				$h = 180;
+			}
+			echo($w);
+			echo($h);
+			$icoLib = new \PHP_ICO($pngPath, array(array($w, $h)));
+			$icoLib->save_ico(public_path('favicon.ico'));
+		}
+		$mixManifestPath = public_path("/mix-manifest.json");
+		$synthesisStorageSymlink = public_path("/storage");
 		return file_exists($mixManifestPath) && file_exists($synthesisStorageSymlink);
 	}
 
@@ -63,7 +77,7 @@ class SynthesisFilesystemController extends Controller
 			}
 		}
 		$directories = Array();
-		foreach($storage->directories() as $dir){
+		foreach ($storage->directories() as $dir) {
 			array_push($directories, [
 				'name' => $dir,
 				'itemsCount' => count($storage->files($dir))
@@ -119,7 +133,7 @@ class SynthesisFilesystemController extends Controller
 						'message' => 'server error'
 					);
 				}
-			}else{
+			} else {
 				$data = array(
 					'success' => false,
 					'message' => 'received improper file (either an executable - not allowed - or a directory)'
@@ -138,17 +152,17 @@ class SynthesisFilesystemController extends Controller
 	/**
 	 * Function that sends the requested file from a non-straightly-public
 	 * virtual storage folder (see config/filesystems.php)
-	 * @param BackendRequest $request
+	 * @param Request $request
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
 	 * response with the requested file contents or a 404 repsonse
 	 */
-	function uploadGet($file, BackendRequest $request)
+	function uploadGet($file, \Request $request)
 	{
 		$storage = $this->getUploadsDisk();
 		if ($storage->has($file)) {
 			return response()->file($storage->path($file));
 		} else {
-			return abort(404);
+			return response("Not Found", 404);
 		}
 	}
 
@@ -165,7 +179,7 @@ class SynthesisFilesystemController extends Controller
 		if ($storage->has($file)) {
 			return response()->download($storage->path($file));
 		} else {
-			return abort(404);
+			return response("Not Found", 404);
 		}
 	}
 }

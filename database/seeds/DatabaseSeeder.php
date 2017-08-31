@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use \App\Models\Database\DatabaseSeedsHistory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,11 +12,11 @@ class DatabaseSeeder extends Seeder
 	 */
 	public function run()
 	{
-		$this->call(SettingsSeeder::class);
-		$this->call(ArticleCategoriesSeeder::class);
-		$this->call(ArticlesSeeder::class);
-		$this->call(UsersSeeder::class);
-		$this->call(PagesSeeder::class);
+		DatabaseSeedsHistory::seedIfNotAlreadySeeded(SettingsSeeder::class, $this, true);
+		DatabaseSeedsHistory::seedIfNotAlreadySeeded(ArticleCategoriesSeeder::class, $this, true);
+		DatabaseSeedsHistory::seedIfNotAlreadySeeded(ArticlesSeeder::class, $this, true);
+		DatabaseSeedsHistory::seedIfNotAlreadySeeded(UsersSeeder::class, $this, true);
+		DatabaseSeedsHistory::seedIfNotAlreadySeeded(PagesSeeder::class, $this, true);
 	}
 }
 

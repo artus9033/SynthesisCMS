@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
+use App\Http\Requests\ContentManagerRequest;
 use App\Models\Content\Article;
 use App\SynthesisCMS\API\ExtensionsCallbacksBridge;
 use App\Toolbox;
@@ -69,7 +70,7 @@ class ArticleController extends Controller
 		}
 	}
 
-	public function deleteArticle($id)
+	public function deleteArticle($id, ContentManagerRequest $request)
 	{
 		if (!Article::where(['id' => $id])->exists()) {
 			return \Redirect::route('manage_articles')->with('errors', [trans('synthesiscms/article.err_article_does_not_exist')]);

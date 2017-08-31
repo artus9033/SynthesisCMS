@@ -5,9 +5,8 @@ namespace App\Http\Requests;
 use App\SynthesisCMS\API\Auth\UserPrivilegesManager;
 use Illuminate\Foundation\Http\FormRequest;
 
-class BackendRequest extends FormRequest
+class ProfileEditionRequest extends FormRequest
 {
-	//TODO: implement roles
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
@@ -15,7 +14,7 @@ class BackendRequest extends FormRequest
 	 */
 	public function authorize()
 	{
-		return UserPrivilegesManager::isSiteAdministrator();
+		return UserPrivilegesManager::isAuthenticated();
 	}
 
 	/**

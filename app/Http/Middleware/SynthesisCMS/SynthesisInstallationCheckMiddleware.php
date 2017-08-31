@@ -33,18 +33,13 @@ class SynthesisInstallationCheckMiddleware
 		}
 		if($request->url() == route('install')){
 			if($cmsAlright) {
-				return response(view('errors.cms')->with(
-					[
-						'error' => trans('synthesiscms/errors.error_cms_already_installed'),
-						'help' => trans('synthesiscms/errors.error_cms_already_installed_help')
-					]
-				));
+				return response(view('installer.error_already_installed'));
 			}
 		}else{
 			if(!$cmsAlright) {
 				// The locale middleware won't be executed if execution block reaches here
 				\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
-				return response(view('errors.not_installed'));
+				return response(view('installer.error_not_installed'));
 			}
 		}
 		return $next($request);

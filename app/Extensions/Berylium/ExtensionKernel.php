@@ -4,12 +4,12 @@ namespace App\Extensions\Berylium;
 
 use App\Extensions\Berylium\Models\BeryliumExtension;
 use App\Extensions\Berylium\Models\BeryliumItem;
-use App\Http\Requests\BackendRequest;
+use App\Http\Requests\SiteManagerRequest;
 use App\Models\Content\Page;
 use App\Models\Settings\Settings;
 use App\SynthesisCMS\API\Positions\SynthesisPositions;
-use App\SynthesisCMS\API\SynthesisExtension;
-use App\SynthesisCMS\API\SynthesisExtensionType;
+use App\SynthesisCMS\API\Extensions\SynthesisExtension;
+use App\SynthesisCMS\API\Extensions\SynthesisExtensionType;
 
 /**
  * ExtensionKernel
@@ -20,7 +20,7 @@ use App\SynthesisCMS\API\SynthesisExtensionType;
  */
 class ExtensionKernel extends SynthesisExtension
 {
-	public function settingsPositionUp(BackendRequest $request, $id)
+	public function settingsPositionUp(SiteManagerRequest $request, $id)
 	{
 		if (BeryliumItem::where(['id' => $id])->count() == 0) {
 			if (BeryliumItem::where(['id' => BeryliumItem::where(['id' => $id])->first()->before])->count() == 0) {
@@ -49,7 +49,7 @@ class ExtensionKernel extends SynthesisExtension
 		return \Redirect::route("applet_settings", ['extension' => 'Berylium'])->with('messages', array(trans('Berylium::messages.msg_item_moved')));
 	}
 
-	public function settingsPositionDown(BackendRequest $request, $id)
+	public function settingsPositionDown(SiteManagerRequest $request, $id)
 	{
 		if (BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'id' => $id])->count() == 0) {
 			if (BeryliumItem::where(['menu' => $this->findOrCreate()->id, 'before' => $id])->count() == 0) {
@@ -92,7 +92,7 @@ class ExtensionKernel extends SynthesisExtension
 		}
 	}
 
-	public function settingsDeletePosition(BackendRequest $request, $id)
+	public function settingsDeletePosition(SiteManagerRequest $request, $id)
 	{
 		$item = BeryliumItem::where(['id' => $id])->first();
 		$after_query = BeryliumItem::where(['menu' => $item->menu, 'before' => $item->id]);
@@ -110,7 +110,7 @@ class ExtensionKernel extends SynthesisExtension
 		return \Redirect::route("applet_settings", ['extension' => 'Berylium'])->with('messages', array(trans('Berylium::messages.msg_item_deleted')));
 	}
 
-	public function settingsEditPositionPost(BackendRequest $request, $id)
+	public function settingsEditPositionPost(SiteManagerRequest $request, $id)
 	{
 		$title = $request->get('title');
 		$category = $request->get('category');
@@ -163,7 +163,7 @@ class ExtensionKernel extends SynthesisExtension
 		}
 	}
 
-	public function settingsCreatePositionPost(BackendRequest $request)
+	public function settingsCreatePositionPost(SiteManagerRequest $request)
 	{
 		$title = $request->get('title');
 		$category = $request->get('category');
@@ -220,7 +220,7 @@ class ExtensionKernel extends SynthesisExtension
 		return view('Berylium::partials/settings')->with(['model' => $this->findOrCreate()]);
 	}
 
-	public function settingsPost(BackendRequest $request, &$errors_array_ptr)
+	public function settingsPost(SiteManagerRequest $request, &$errors_array_ptr)
 	{
 		$model = $this->findOrCreate();
 		$model->enabled = $request->get('enabled') == "on";

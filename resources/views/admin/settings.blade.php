@@ -9,7 +9,7 @@
 @section('head')
 	<style>
 		.tabs .tab a {
-			color: {{ $synthesiscmsMainColor }}     !important;
+			color: {{ $synthesiscmsMainColor }}    !important;
 		}
 
 		.tabs ::-webkit-scrollbar:horizontal {
@@ -84,7 +84,7 @@
 								</li>
 								<li class="tab">
 									<a class="waves-effect" href="#settings-colors">
-										<i class="material-icons">color_lens</i>&nbsp;{{ trans('synthesiscms/settings.tab_colors') }}
+										<i class="material-icons">color_lens</i>&nbsp;{{ trans('synthesiscms/settings.tab_appearance') }}
 									</a>
 								</li>
 								<li class="tab">
@@ -216,6 +216,34 @@
 										   name="main_color_class" type="text">
 									<label for="main_color_class">{{ trans('synthesiscms/settings.main_color_class') }}</label>
 								</div>
+								<div class="input-field col s10">
+									<i class="material-icons prefix">colorize</i>
+									<input value="{{ $synthesiscmsLogoBackgroundColor }}" id="logo_background_color"
+										   name="logo_background_color"
+										   type="text">
+									<label for="logo_background_color">{{ trans('synthesiscms/settings.logo_background_color') }}</label>
+								</div>
+								<div class="col s2" style="height: 60px;">
+									<div id="logo_background_color_probe"
+										 style="background-color: {{ $synthesiscmsLogoBackgroundColor }}; width: 100%; height: 100%; box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);"></div>
+								</div>
+								<div class="progress col s12">
+									<div id="settings_favicon_upload_loading" style="display: none;"
+										 class="indeterminate"></div>
+								</div>
+								<div class="file-field input-field col s12 row tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/settings.favicon_upload_tooltip') }}">
+									<div class="btn col s12 m4 l2{{ $synthesiscmsMainColor }}">
+										<i class="material-icons white-text">image</i>
+										<input type="file" id="settings_favicon_fileinput">
+									</div>
+									<div class="row col s12 hide-on-med-and-up"></div>
+									<div class="file-path-wrapper hide-on-small-only m8 l10">
+										<input class="file-path validate" type="text"
+											   placeholder="{{ trans('synthesiscms/settings.favicon_upload') }}">
+									</div>
+									<a class="btn {{ $synthesiscmsMainColor }} col s12 waves-effect waves-light"
+									   onclick="settingsUploadFavicon()">{{ trans('synthesiscms/settings.favicon_upload') }}</a>
+								</div>
 								<script>
                                     $('#main_color').bind('input', function () {
                                         $("#main_color_probe").removeClass();
@@ -224,6 +252,39 @@
                                     $('#tab_color').bind('input', function () {
                                         $("#tab_color_probe").css('background-color', $(this).val());
                                     });
+                                    $('#logo_background_color').bind('input', function () {
+                                        $("#logo_background_color_probe").css('background-color', $(this).val());
+                                    });
+                                    function settingsUploadFavicon() {
+                                        $('#settings_favicon_upload_loading').show();
+                                        var formData = new FormData();
+                                        formData.append('favicon-file', $("#settings_favicon_fileinput")[0].files[0]);
+                                        $.ajax({
+                                            url: {!! json_encode(route('settings_favicon_post')) !!},
+                                            headers: {
+                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                            },
+                                            type: 'POST',
+                                            data: formData,
+                                            async: true,
+                                            cache: false,
+                                            contentType: false,
+                                            enctype: 'multipart/form-data',
+                                            processData: false,
+                                            success: function (response) {
+                                                $('#settings_favicon_upload_loading').hide();
+                                                if (response.success) {
+                                                    SynthesisCmsJsUtils.showToast("{{ trans('synthesiscms/settings.toast_favicon_upload_success') }}");
+                                                } else {
+                                                    SynthesisCmsJsUtils.showToast("{{ trans('synthesiscms/settings.toast_favicon_upload_error') }}" + response.error);
+                                                }
+                                            },
+                                            error: function (response) {
+                                                $('#settings_favicon_upload_loading').hide();
+                                                SynthesisCmsJsUtils.showToast("{{ trans('synthesiscms/settings.toast_favicon_upload_error') }}" + response.error);
+                                            }
+                                        });
+                                    }
 								</script>
 							</div>
 						</div>
@@ -234,7 +295,8 @@
 										<input class="filled-in" type="checkbox" id="devModeCheckbox"
 											   name="devModeCheckbox"
 											   @if(\App\Models\Settings\Settings::isDevModeEnabled()) checked="checked" @endif>
-										<label for="devModeCheckbox" class="teal-text">{!! trans('synthesiscms/settings.dev_mode_checkbox_text') !!}</label>
+										<label for="devModeCheckbox"
+											   class="teal-text">{!! trans('synthesiscms/settings.dev_mode_checkbox_text') !!}</label>
 									</p>
 								</div>
 								<script>
@@ -246,12 +308,12 @@
                                         synthesiscmsSettingsCanToggleDevMode = false;
                                     }
                                     $('#devModeCheckbox').click(function (event) {
-                                        if($('#devModeCheckbox').prop("checked")){
+                                        if ($('#devModeCheckbox').prop("checked")) {
                                             if (!synthesiscmsSettingsCanToggleDevMode) {
                                                 event.preventDefault();
                                                 $('#modalDevModeEnableWarning').modal('open');
                                             }
-										}
+                                        }
                                     });
                                     $(document).ready(function () {
                                         $('#modalDevModeEnableWarning').modal();

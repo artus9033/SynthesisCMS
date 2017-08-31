@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SynthesisCMS\API;
+namespace App\SynthesisCMS\API\Extensions;
 
 abstract class SynthesisExtensionType
 {

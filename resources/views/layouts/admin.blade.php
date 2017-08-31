@@ -49,6 +49,7 @@
             $('.collapsible').collapsible();
             if (zeroIndexedCollapsibleHeaderNumberString.length) {
                 $('#admin-mobile-menu-automatically-opened-collapsible-main-element').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
+                $('#admin-desktop-menu-automatically-opened-collapsible-main-element').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
             }
             $(".editor").trumbowyg({
                 autogrow: true,

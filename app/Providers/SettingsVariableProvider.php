@@ -1,25 +1,24 @@
 <?php
 
-namespace App\Http\Middleware\Content;
+namespace App\Providers;
 
 use App\Models\Settings\Settings;
-use Closure;
+use Illuminate\Support\ServiceProvider;
 
-class SettingsVariablesProviderMiddleware
+class SettingsVariableProvider extends ServiceProvider
 {
 	/**
-	 * Handle an incoming request.
+	 * Bootstrap the application services.
 	 *
-	 * @param  \Illuminate\Http\Request $request
-	 * @param  \Closure $next
-	 * @return mixed
+	 * @return void
 	 */
-	public function handle($request, Closure $next)
+	public function boot()
 	{
 		if (!\App::runningInConsole()) {
 			view()->share('synthesiscmsMainColor', Settings::getFromActive('main_color'));
-			view()->share('synthesiscmsTabColor', Settings::getFromActive('tab_color'));
 			view()->share('synthesiscmsMainColorClass', Settings::getFromActive('color_class'));
+			view()->share('synthesiscmsTabColor', Settings::getFromActive('tab_color'));
+			view()->share('synthesiscmsLogoBackgroundColor', Settings::getFromActive('logo_background_color'));
 
 			view()->share('synthesiscmsHeaderTitle', Settings::getFromActive('header_title'));
 			view()->share('synthesiscmsTabTitle', Settings::getFromActive('tab_title'));
@@ -34,7 +33,15 @@ class SettingsVariablesProviderMiddleware
 			view()->share('synthesiscmsFooterHeader', Settings::getFromActive('footer_header'));
 			view()->share('synthesiscmsFooterContent', Settings::getFromActive('footer_content'));
 		}
+	}
 
-		return $next($request);
+	/**
+	 * Register the application services.
+	 *
+	 * @return void
+	 */
+	public function register()
+	{
+		//
 	}
 }

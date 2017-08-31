@@ -51,10 +51,9 @@
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BeforeSiteName, Request::url()) !!}
 			</div>
 			<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down"
-			   style="position: relative; background-color: rgb(255, 255, 255); box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 2147483647 !important; height: 220%; width: 125px;"
+			   style="background-color: {!! $synthesiscmsLogoBackgroundColor !!}; position: relative; box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 2147483647 !important; height: 220%; width: 125px;"
 			   href="{!! url($synthesiscmsHomePage) !!}">
-				<img style="width: 85%; height: auto; margin-top: 10%; margin-left: 2%;"
-					 src="{{ url('/favicon.ico') }}">
+					<img id="synthesiscms-app-logo-img" style="height: 85%; width: 90%; object-fit: contain; margin-top: 5px;" src="{{ url('/favicon.ico') }}">
 			</a>
 			<a id="synthesiscms-mobile-brand-logo" href="{!! url($synthesiscmsHomePage) !!}"
 			   class="hide-on-large-only brand-logo truncate">{{ $synthesiscmsHeaderTitle }}</a>
@@ -68,7 +67,11 @@
                     $("#synthesiscms-desktop-brand-logo").css('max-width', ($('body').width() - $('#synthesiscms-large-screens-menu-part-right').width()));
                 }
                 $(document).ready(function () {
+                    //$("#synthesiscms-app-logo").height($("#synthesiscms-app-logo").width()); //substituted with height: 220% - looks better & doesn't wait 'till document ready
+                    //$("#synthesiscms-large-screen-logo-image").width($("#synthesiscms-app-logo").width() - 10);
+                    //$("#synthesiscms-large-screen-logo-image").height($("#synthesiscms-app-logo").height() - 10);
                     synthesiscmsResizeBrandLogoMargin();
+
                 });
                 $(window).resize(function () {
                     synthesiscmsResizeBrandLogoMargin();

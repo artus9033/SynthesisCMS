@@ -4,8 +4,8 @@ namespace App\Extensions\Hydrogen;
 
 use App\Extensions\Hydrogen\Models\HydrogenExtension;
 use App\Models\Content\Page;
-use App\SynthesisCMS\API\SynthesisExtension;
-use App\SynthesisCMS\API\SynthesisExtensionType;
+use App\SynthesisCMS\API\Extensions\SynthesisExtension;
+use App\SynthesisCMS\API\Extensions\SynthesisExtensionType;
 
 /**
  * ExtensionKernel

@@ -4,7 +4,8 @@
 			<img src="{!! asset('img/office.jpg') !!}">
 		</div>
 		<a href="{{ route('profile') }}">
-			<img class="circle" src="{!! asset('img/cms-icon.png') !!}">
+			<img class="circle" style="border-radius: unset !important;"
+				 src="{!! asset('img/synthesiscms-icon.svg') !!}">
 		</a>
 		<a href="{{ route('profile') }}">
 				<span class="white-text name truncate">
@@ -92,17 +93,26 @@
                         });
 					</script>
 					<li>
-						<span style="width: 100%; padding: 0 0.75rem;" class="waves-effect col s12 lang-span-admin-menu-mobile">EN</span>
+						<span style="width: 100%; padding: 0 0.75rem;"
+							  class="waves-effect col s12 lang-span-admin-menu-mobile">EN</span>
 					</li>
 					<li>
-						<span style="width: 100%; padding: 0 0.75rem;" class="waves-effect col s12 lang-span-admin-menu-mobile">PL</span>
+						<span style="width: 100%; padding: 0 0.75rem;"
+							  class="waves-effect col s12 lang-span-admin-menu-mobile">PL</span>
 					</li>
 				</ul>
 			</div>
 		</li>
 	</ul>
 @endif
-<ul class="collapsible collapsible-accordion" id="admin-mobile-menu-automatically-opened-collapsible-main-element">
+@php
+	if($adminMenuIsMobile){
+		$menuId = "admin-mobile-menu-automatically-opened-collapsible-main-element";
+	}else{
+		$menuId = "admin-desktop-menu-automatically-opened-collapsible-main-element";
+	}
+@endphp
+<ul class="collapsible collapsible-accordion" id="{!! $menuId !!}">
 	<li class="bold">
 		<a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
 			<i class="material-icons {{ $synthesiscmsMainColor }}-text">description</i>{{ trans('synthesiscms/admin.section_content') }}

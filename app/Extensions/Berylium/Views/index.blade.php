@@ -43,7 +43,7 @@
 				<img src="{!! asset('img/office.jpg') !!}">
 			</div>
 			<a href="{{ route('profile') }}">
-				<img class="circle" src="{!! asset('img/cms-icon.png') !!}">
+				<img class="circle" style="border-radius: unset !important;" src="{!! asset('img/synthesiscms-icon.svg') !!}">
 			</a>
 			<a href="{{ route('profile') }}">
 				<span class="white-text name truncate">
@@ -66,14 +66,20 @@
 		</div>
 	</li>
 	@if (Auth::guest())
-		<li class="{{ $synthesiscmsMainColor }}-text col s12 row waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-			<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('register') }}"><i
-						class="material-icons {{ $synthesiscmsMainColor }}-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
-			</a></li>
-		<li class="{{ $synthesiscmsMainColor }}-text col s12 row waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-			<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('login') }}"><i
-						class="material-icons {{ $synthesiscmsMainColor }}-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
-			</a></li>
+		<ul style="width: 100%;" class="collapsible collapsible-accordion">
+			<li class="{{ $synthesiscmsMainColor }}-text col s12 waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
+				<a class="{{ $synthesiscmsMainColor }}-text collapsible-header" href="{{ route('register') }}"><i
+							class="material-icons {{ $synthesiscmsMainColor }}-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
+				</a>
+			</li>
+		</ul>
+		<ul style="width: 100%;" class="collapsible collapsible-accordion">
+			<li class="{{ $synthesiscmsMainColor }}-text col s12 waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
+				<a class="{{ $synthesiscmsMainColor }}-text collapsible-header" href="{{ route('login') }}"><i
+							class="material-icons {{ $synthesiscmsMainColor }}-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
+				</a>
+			</li>
+		</ul>
 	@else
 		<ul style="width: 100%;" class="collapsible collapsible-accordion">
 			<li class="bold">
@@ -108,6 +114,10 @@
 			</li>
 		</ul>
 	@endif
+	@if($model->enabled)
+		{!! $mobileMenu !!}
+	@endif
+	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::InsideMenu, Request::url()) !!}
 	<ul style="width: 100%;" class="collapsible collapsible-accordion">
 		<li class="no-padding">
 			<a class="collapsible-header {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">
@@ -141,10 +151,6 @@
 			</div>
 		</li>
 	</ul>
-	@if($model->enabled)
-		{!! $mobileMenu !!}
-	@endif
-	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::InsideMenu, Request::url()) !!}
 </ul>
 
 <script>

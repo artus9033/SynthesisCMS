@@ -45,7 +45,7 @@
                     },
                     type: 'POST',
                     data: formData,
-                    async: false,
+                    async: true,
                     cache: false,
                     contentType: false,
                     enctype: 'multipart/form-data',

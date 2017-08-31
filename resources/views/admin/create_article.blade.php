@@ -99,14 +99,6 @@
                             event.preventDefault();
                         }
                     });
-                    $(document).ready(function(){
-                        // Default: close the collapsible,
-						// because the checkbox is unchecked
-						// (prevents bug)
-                        imgCollapsible = true;
-                        $("#collapsible").click();
-                        imgCollapsible = false;
-                    });
 				</script>
 				<div class="row col s12 center">
 					<div class="input-field col s8 offset-s2 valign" id="select-color-div">

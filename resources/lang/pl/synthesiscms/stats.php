@@ -26,6 +26,7 @@ return [
 	'toast_stats_data_changed_please_update' => 'Dane statystyk odwiedzających zmieniły się. Czy chciałbyś je załadować?',
 	'btn_toast_stats_data_changed_please_update_ok' => 'Tak',
 	'toast_error_updating_stats_data' => 'Podczas próby sprawdzenia, czy zmieniły się dane statystyk odwiedzających wystąpił błąd. Spróbuję ponownie za :seconds sekund.',
+	'wow_time_period_too_long_to_be_displayed' => 'WOW! Ten okres czasu jest zbyt długi, by go pokazać (długość: :length jednostek, limit: :max)!',
 ];
 
 ?>
