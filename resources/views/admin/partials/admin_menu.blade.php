@@ -177,4 +177,17 @@
 			</ul>
 		</div>
 	</li>
+	<li class="bold">
+		<a class="collapsible-header waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
+			<i class="material-icons {{ $synthesiscmsMainColor }}-text">build</i>{{ trans('synthesiscms/admin.section_tools') }}
+		</a>
+		<div class="collapsible-body" style="padding: unset !important;">
+			<ul>
+				<li class="" id="tool_resources_compiler">
+					<a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
+					   href="{{ url('/admin/tools') }}">{{ trans('synthesiscms/admin.tool_resources_compiler') }}</a>
+				</li>
+			</ul>
+		</div>
+	</li>
 </ul>

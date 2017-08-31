@@ -130,11 +130,15 @@ class ArticleCategoryController extends Controller
 				$csrf_token = false;
 			} else if (starts_with($key, "articleCategory_checkbox")) {
 				$origin = ArticleCategory::find(intval(str_replace("articleCategory_checkbox", "", $key)));
-				$newArticleCategory = ArticleCategory::create(['title' => trans("synthesiscms/helper.articleCategory_copy_prefix") . $origin->title, 'description' => $origin->description, 'articleCategory' => $origin->articleCategory, 'image' => $origin->image]);
+				$newArticleCategory = $origin->replicate();
+				$newArticleCategory->title = trans("synthesiscms/helper.articleCategory_copy_prefix") . $newArticleCategory->title;
+				$newArticleCategory->save();
 				if ($childrenArticlesToo == "true") {
 					$originArticles = Article::where('articleCategory', $origin->id)->cursor();
 					foreach ($originArticles as $key => $originArticle) {
-						Article::create(['title' => $originArticle->title, 'description' => $originArticle->description, 'articleCategory' => $newArticleCategory->id, 'image' => $originArticle->image, 'hasImage' => $originArticle->hasImage]);
+						$articleClone = $originArticle->replicate();
+						$articleClone->articleCategory = $newArticleCategory->id;
+						$articleClone->save();
 					}
 				}
 				$count++;

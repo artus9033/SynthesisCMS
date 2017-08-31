@@ -116,7 +116,9 @@ class ArticleController extends Controller
 			} else if (starts_with($key, "article_checkbox")) {
 				if (Article::where(['id' => intval(str_replace("article_checkbox", "", $key))])->exists()) {
 					$origin = Article::find(intval(str_replace("article_checkbox", "", $key)));
-					Article::create(['title' => trans("synthesiscms/helper.article_copy_prefix") . $origin->title, 'description' => $origin->description, 'articleCategory' => $origin->articleCategory, 'image' => $origin->image, 'hasImage' => $origin->hasImage]);
+					$clone = $origin->replicate();
+					$clone->title = trans("synthesiscms/helper.article_copy_prefix") . $clone->title;
+					$clone->save();
 					$count++;
 				}
 			}

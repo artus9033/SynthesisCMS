@@ -81,6 +81,7 @@ return [
 	'section_routes' => 'Routes & Applets',
 	'section_content' => 'Content Management',
 	'section_tools' => 'Tools',
+	'tool_resources_compiler' => 'Resources Compiler',
 	'section_settings' => 'Settings',
 	'backend' => 'Admin Dashboard',
 	'change_user_privileges' => 'Change Privileges',

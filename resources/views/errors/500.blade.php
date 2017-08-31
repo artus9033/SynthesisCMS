@@ -24,7 +24,6 @@
 					   class="btn-large waves-effect waves-light"><i
 								class="material-icons white-text left">home</i>&nbsp;{{ trans('synthesiscms/errors.500_link') }}
 					</a>
-					
 				</div>
 			</div>
 		</div>

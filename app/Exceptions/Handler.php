@@ -83,7 +83,7 @@ class Handler extends ExceptionHandler
 					return response()->view("errors/403")->setStatusCode(503);
 					break;
 				default:
-					return response()->view("errors/500", ['exception' => $exception])->setStatusCode(500);
+					return response()->view("errors/500")->setStatusCode(500);
 					break;
 			}
 		}

@@ -265,7 +265,7 @@
 									<span @if($articleCategory->id == 1) disabled
 										  @endif onclick="$('#modalDelete{{ $articleCategory->id }}').modal('open');"
 										  class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
-										<i class="material-icons white-text left">security</i>{{ trans('synthesiscms/article_category.delete_article_category') }}
+										<i class="material-icons white-text left">delete</i>{{ trans('synthesiscms/article_category.delete_article_category') }}
 									</span>
 								</td>
 							</tr>
