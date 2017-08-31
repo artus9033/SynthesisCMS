@@ -52,7 +52,7 @@
 								<td class="center">@php if($user->is_admin){ echo trans('synthesiscms/profile.admin'); }else{ echo trans('synthesiscms/profile.user'); } @endphp</td>
 								<td class="center"><a href="{{ route('user_privileges', ['id' => $uid]) }}"
 													  class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i
-												class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.change_user_privileges') }}
+												class="material-icons white-text left">edit</i>{{ trans('synthesiscms/admin.change_user_privileges') }}
 									</a></td>
 								<div id="modalDelete" class="modal">
 									<div class="modal-content">
@@ -75,7 +75,7 @@
 								<td class="center">
 									<button onclick="$('#modalDelete').modal('open');"
 											class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
-										<i class="material-icons white-text left">security</i>{{ trans('synthesiscms/admin.delete_user') }}
+										<i class="material-icons white-text left">delete</i>{{ trans('synthesiscms/admin.delete_user') }}
 									</button>
 								</td>
 							</tr>
@@ -85,8 +85,7 @@
 						<tr>
 							<td colspan="6" class="center">{{ trans('synthesiscms/admin.no_other_users') }}</td>
 						</tr>
-						@endif
-						</tr>
+					@endif
 					</tbody>
 				</table>
 			</div>

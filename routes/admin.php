@@ -1,7 +1,5 @@
 <?php
 
-use \App\Http\Requests\BackendRequest;
-
 Route::get('/admin/admin_stats_charts', 'Backend\\BackendController@feedAdminStatsTrackerCharts')->name('admin_stats_charts');
 Route::get('/admin/admin_stats_charts_check_for_updates', 'Backend\\BackendController@checkAdminStatsTrackerChartsUpdates')->name('admin_stats_charts_check_for_updates');
 
@@ -12,7 +10,7 @@ Route::post('/admin/upload', 'Backend\\SynthesisFilesystemController@uploadPost'
 
 Route::post('/synthesis-route-check', 'Content\\RouteController@checkRoute')->name('synthesis_route_check');
 
-Route::post('/admin/file-picker', function (BackendRequest $request) {
+Route::post('/admin/file-picker', function (\App\Http\Requests\ContentManagerRequest $request) {
 	return view('partials/file-picker')->with(
 		[
 			'picker_modal_id' => $request->get('picker_modal_id'),
@@ -52,15 +50,16 @@ Route::post('/admin/manage_articles/create_article', 'Content\\ArticleController
 Route::get('/admin/user-privileges/{id}', 'Auth\\ProfileController@privilegesGet')->name('user_privileges');
 Route::post('/admin/user-privileges/{id}', 'Auth\\ProfileController@changePrivilegesPost')->name('user_privileges_post');
 Route::get('/admin/manage_users', 'Auth\\ProfileController@manageUsersGet')->name('manage_users');
-Route::post('/admin/manage_users', 'Auth\\ProfileController@manageUsersPost')->name('manage_users_post');
-
-Route::get('/admin/settings', 'Backend\\BackendController@settingsGet')->name('settings');
-Route::post('/admin/settings', 'Backend\\BackendController@settingsPost')->name('settings_post');
-Route::post('/admin/settings/favicon_upload', 'Backend\\BackendController@settingsAjaxFaviconConvert')->name('settings_favicon_post');
 
 Route::get('/admin/manage_applets', 'Backend\\BackendController@manageAppletsGet')->name('manage_applets');
 Route::get('/admin/manage_applets/{extension}', 'Backend\\BackendController@appletSettingsGet')->name('applet_settings');
 Route::get('/admin/manage_applets/{extension}{url}', 'Backend\\BackendController@appletSettingsGet')->name('applet_settings_with_url');
 Route::post('/admin/manage_applets/{extension}', 'Backend\\BackendController@appletSettingsPost')->name('applet_settings_post');
+
+Route::get('/admin/settings', 'Backend\\BackendController@settingsGet')->name('settings');
+Route::post('/admin/settings', 'Backend\\BackendController@settingsPost')->name('settings_post');
+Route::post('/admin/settings/favicon_upload', 'Backend\\BackendController@settingsAjaxFaviconConvert')->name('settings_favicon_post');
+
+Route::get('/admin/tools', 'Backend\\BackendController@toolsGet')->name('tools');
 
 ?>

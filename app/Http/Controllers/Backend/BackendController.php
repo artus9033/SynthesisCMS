@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BackendRequest;
 use App\Http\Requests\ContentEditorRequest;
 use App\Http\Requests\SiteManagerRequest;
 use App\Models\Settings\Settings;
@@ -13,7 +12,6 @@ use App\Toolbox;
 use DateInterval;
 use DatePeriod;
 use DateTime;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class BackendController extends Controller
@@ -272,7 +270,7 @@ class BackendController extends Controller
 		}
 	}
 
-	function checkAdminStatsTrackerChartsUpdates(ContentEditorRequest $request)
+	public function checkAdminStatsTrackerChartsUpdates(ContentEditorRequest $request)
 	{
 		$statsTrackerModuleLastUpdate = Carbon::parse(StatsTrackerModule::getLastUpdateDateTime());
 		$requestLastUpdate = Carbon::parse($request->get('lastDateTime'));
@@ -282,5 +280,10 @@ class BackendController extends Controller
 				'dateTime' => Carbon::now()->toDateTimeString()
 			]
 		);
+	}
+
+	public function toolsGet(BackendRequest $request)
+	{
+		return view('admin.settings');
 	}
 }

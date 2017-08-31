@@ -83,7 +83,7 @@
 			<ul class="hide-on-med-and-down right" id="synthesiscms-large-screens-menu-part-right">
 				<li class="input-field right hide-on-med-and-down">
 					<select id="lang-select" class="icons white-text"
-							onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">
+							onchange="if(this.selectedIndex !== 'undefined') SynthesisCmsJsUtils.setLanguage(this.options[this.selectedIndex].value);">
 						<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}"
 								class="{{ $synthesiscmsMainColor }}-text left circle"
 								@if(mb_strtoupper($app_locale) == "EN") selected @endif><span
@@ -96,7 +96,7 @@
 				</li>
 				@yield('menu')
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
-				@if (Auth::guest())
+				@if (\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isGuest())
 					<li class="right"><a class="center" href="{{ route('register') }}"><i
 									class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
 						</a></li>

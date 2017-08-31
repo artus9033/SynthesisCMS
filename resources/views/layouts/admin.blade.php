@@ -155,7 +155,7 @@
 			<ul class="right hide-on-med-and-down" id="synthesiscms-large-screens-menu-part-right">
 				<li class="input-field right hide-on-med-and-down">
 					<select id="lang-select" class="icons white-text"
-							onchange="if(this.selectedIndex !== 'undefined') setLanguage(this.options[this.selectedIndex].value, '{{ url("/") }}');">
+							onchange="if(this.selectedIndex !== 'undefined') SynthesisCmsJsUtils.setLanguage(this.options[this.selectedIndex].value);">
 						<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}"
 								class="{{ $synthesiscmsMainColor }}-text left circle"
 								@if(mb_strtoupper(\App::getLocale()) == "EN") selected @endif><span

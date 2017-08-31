@@ -9,7 +9,7 @@
 		</a>
 		<a href="{{ route('profile') }}">
 				<span class="white-text name truncate">
-				@if(Auth::guest())
+				@if(\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isGuest())
 						{{ trans('synthesiscms/helper.guest_username') }}
 					@else
 						{{ Auth::user()->name }}
@@ -18,7 +18,7 @@
 		</a>
 		<a href="{{ route('profile') }}">
 				<span class="white-text email truncate">
-					@if(Auth::guest())
+					@if(\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isGuest())
 						{{ trans('synthesiscms/helper.guest_email') }}
 					@else
 						{{ Auth::user()->email }}
@@ -88,7 +88,7 @@
                                 }
                             });
                             $('.lang-span-admin-menu-mobile').click(function () {
-                                setLanguage($(this).text().toUpperCase(), '{{ url("/") }}');
+                                SynthesisCmsJsUtils.setLanguage($(this).text().toUpperCase());
                             });
                         });
 					</script>
@@ -121,11 +121,11 @@
 			<ul>
 				<li class="" id="manage_articles">
 					<a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-					   href="{{ url('/admin/manage_articles') }}">{{ trans('synthesiscms/admin.manage_articles') }}</a>
+					   href="{{ route('manage_articles') }}">{{ trans('synthesiscms/admin.manage_articles') }}</a>
 				</li>
 				<li class="" id="manage_article_categories">
 					<a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-					   href="{{ url('/admin/manage_article_categories') }}">{{ trans('synthesiscms/admin.manage_article_categories') }}</a>
+					   href="{{ route('manage_article_categories') }}">{{ trans('synthesiscms/admin.manage_article_categories') }}</a>
 				</li>
 			</ul>
 		</div>
@@ -142,7 +142,7 @@
 				</li>
 				<li class="" id="manage_users">
 					<a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-					   href="{{ url('/admin/manage_users') }}">{{ trans('synthesiscms/admin.manage_users') }}</a>
+					   href="{{ route('manage_users') }}">{{ trans('synthesiscms/admin.manage_users') }}</a>
 				</li>
 			</ul>
 		</div>
@@ -155,11 +155,11 @@
 			<ul>
 				<li class="" id="manage_routes">
 					<a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-					   href="{{ url('/admin/manage_routes') }}">{{ trans('synthesiscms/admin.manage_routes') }}</a>
+					   href="{{ route('manage_routes') }}">{{ trans('synthesiscms/admin.manage_routes') }}</a>
 				</li>
 				<li class="" id="manage_applets">
 					<a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-					   href="{{ url('/admin/manage_applets') }}">{{ trans('synthesiscms/admin.manage_applets') }}</a>
+					   href="{{ route('manage_applets') }}">{{ trans('synthesiscms/admin.manage_applets') }}</a>
 				</li>
 			</ul>
 		</div>
@@ -172,7 +172,7 @@
 			<ul>
 				<li class="" id="settings">
 					<a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-					   href="{{ url('/admin/settings') }}">{{ trans('synthesiscms/admin.settings') }}</a>
+					   href="{{ route('settings') }}">{{ trans('synthesiscms/admin.settings') }}</a>
 				</li>
 			</ul>
 		</div>
@@ -185,7 +185,7 @@
 			<ul>
 				<li class="" id="tool_resources_compiler">
 					<a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-					   href="{{ url('/admin/tools') }}">{{ trans('synthesiscms/admin.tool_resources_compiler') }}</a>
+					   href="{{ route('tools') }}">{{ trans('synthesiscms/admin.tool_resources_compiler') }}</a>
 				</li>
 			</ul>
 		</div>

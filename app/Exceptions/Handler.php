@@ -10,6 +10,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -61,16 +62,16 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $exception)
 	{
-		$fullPath = str_replace("/", "\\", base_path());
 		\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
 		if (Settings::isDevModeEnabled()) {
 			return parent::render($request, $exception);
 		} else {
-			$exception = $this->prepareException($exception); // convert ModelNotFoundException & AuthorizationException to HttpException
 			if ($this->isHttpException($exception)) {
-				$code = $exception->getStatusCode(); // getStatusCode(), NOT getCode()
-			} else {
-				$code = 500; // Not a HTTP Exception => render a 500 ISE
+				$exception = $this->prepareException($exception); // convert ModelNotFoundException & AuthorizationException to HttpException
+			}
+			$code = $exception->getStatusCode(); // getStatusCode(), NOT getCode()
+			if ($code === 0) {
+				$code = 500;
 			}
 			switch ($code) {
 				case 404:
@@ -96,11 +97,10 @@ class Handler extends ExceptionHandler
 	 * @param  \Illuminate\Auth\AuthenticationException $exception
 	 * @return \Illuminate\Http\Response
 	 */
-	protected
-	function unauthenticated($request, AuthenticationException $exception)
+	protected function unauthenticated($request, AuthenticationException $exception)
 	{
 		if ($request->expectsJson()) {
-			return response()->json(['error' => 'Unauthenticated.'], 401);
+			return response()->json(['error' => 'Unauthorized.'], 401);
 		}
 
 		return redirect()->guest('login');

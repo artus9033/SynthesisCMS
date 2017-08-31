@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BackendRequest;
+use App\Http\Requests\ContentEditorRequest;
 use App\Http\Requests\ContentManagerRequest;
 use App\Models\Content\Article;
 use App\SynthesisCMS\API\ExtensionsCallbacksBridge;
@@ -12,12 +12,12 @@ use App\Toolbox;
 class ArticleController extends Controller
 {
 
-	public function createArticleGet()
+	public function createArticleGet(ContentEditorRequest $request)
 	{
 		return view('admin.create_article');
 	}
 
-	public function createArticlePost(BackendRequest $request)
+	public function createArticlePost(ContentEditorRequest $request)
 	{
 		if (!Toolbox::isEmptyString($request->get('title'))) {
 			$article = Article::create(
@@ -36,12 +36,12 @@ class ArticleController extends Controller
 		}
 	}
 
-	public function manageArticlesGet()
+	public function manageArticlesGet(ContentEditorRequest $request)
 	{
 		return view('admin.manage_articles');
 	}
 
-	public function editArticleGet($id)
+	public function editArticleGet($id, ContentEditorRequest $request)
 	{
 		if (!Article::where(['id' => $id])->exists()) {
 			return \Redirect::route('manage_articles')->with('errors', [trans('synthesiscms/article.err_article_does_not_exist')]);
@@ -50,7 +50,7 @@ class ArticleController extends Controller
 		return view('admin.edit_article', ['article' => $article]);
 	}
 
-	public function editArticlePost($id, BackendRequest $request)
+	public function editArticlePost($id, ContentEditorRequest $request)
 	{
 		if (!Article::where(['id' => $id])->exists()) {
 			return \Redirect::route('manage_articles')->with('errors', [trans('synthesiscms/article.err_article_does_not_exist')]);
@@ -83,7 +83,7 @@ class ArticleController extends Controller
 		return \Redirect::route('manage_articles')->with('messages', array(trans('synthesiscms/admin.msg_article_deleted', ['name' => $name_new])));
 	}
 
-	public function massDeleteArticle(BackendRequest $request)
+	public function massDeleteArticle(ContentEditorRequest $request)
 	{
 		$count = 0;
 		$csrf_token = true; // check if it's the csrf token hidden input
@@ -106,7 +106,7 @@ class ArticleController extends Controller
 		}
 	}
 
-	public function massCopyArticle(BackendRequest $request)
+	public function massCopyArticle(ContentEditorRequest $request)
 	{
 		$count = 0;
 		$csrf_token = true; // check if it's the csrf token hidden input
@@ -118,7 +118,7 @@ class ArticleController extends Controller
 					$origin = Article::find(intval(str_replace("article_checkbox", "", $key)));
 					$clone = $origin->replicate();
 					$clone->title = trans("synthesiscms/helper.article_copy_prefix") . $clone->title;
-					$clone->save();
+					$clone->push();
 					$count++;
 				}
 			}
@@ -132,7 +132,7 @@ class ArticleController extends Controller
 		}
 	}
 
-	public function massMoveArticle(BackendRequest $request, $articleCategoryId)
+	public function massMoveArticle(ContentEditorRequest $request, $articleCategoryId)
 	{
 		$count = 0;
 		$csrf_token = true; // check if it's the csrf token hidden input

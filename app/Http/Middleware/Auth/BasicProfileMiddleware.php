@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\Auth;
 
+use App\SynthesisCMS\API\Auth\UserPrivilegesManager;
 use Closure;
 
 class BasicProfileMiddleware
@@ -20,7 +21,7 @@ class BasicProfileMiddleware
 	 */
 	public function handle($request, Closure $next, $guard = null)
 	{
-		if (!\Auth::guest()) {
+		if (UserPrivilegesManager::isAuthenticated()) {
 			return $next($request);
 		} else {
 			return response(view('auth.error'));

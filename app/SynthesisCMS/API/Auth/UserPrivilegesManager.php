@@ -11,6 +11,10 @@ class UserPrivilegesManager
 		return \Auth::check();
 	}
 
+	static function isGuest(){
+		return \Auth::guest();
+	}
+
 	static function isContentEditor()
 	{
 		return (self::isAuthenticated() ? self::__isContentEditor() : self::isAuthenticated());

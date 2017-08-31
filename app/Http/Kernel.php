@@ -16,14 +16,15 @@ class Kernel extends HttpKernel
 	 *
 	 * These middleware are run during every request to your application.
 	 *
+	 * IMPORTANT: adding any middleware here will make it impossible
+	 * to prevent it's start; StartSession middleware is executed AFTER
+	 * this middleware stack, so any middleware placed here
+	 * should NOT use any class using the Session & things related to it
+	 *
 	 * @var array
 	 */
-	protected $middleware = [
-		//\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
-		\Illuminate\Session\Middleware\StartSession::class,
-		\App\Http\Middleware\Content\Locale::class,
-		\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-	];
+	protected $middleware = [];
+
 	/**
 	 * The application's route middleware groups.
 	 *
@@ -32,6 +33,10 @@ class Kernel extends HttpKernel
 	protected $middlewareGroups = [
 		// web_internal - should be used by routes that are not meant to be indexed by stats tracker
 		'web' => [
+			//\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
+			\Illuminate\Session\Middleware\StartSession::class,
+			\App\Http\Middleware\Content\Locale::class,
+			\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
 			\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
 			\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
 			\App\Http\Middleware\Security\EncryptCookies::class,
@@ -46,6 +51,10 @@ class Kernel extends HttpKernel
 
 		// web_internal - should be used by routes that are not meant to be indexed by stats tracker
 		'web_internal' => [
+			//\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
+			\Illuminate\Session\Middleware\StartSession::class,
+			\App\Http\Middleware\Content\Locale::class,
+			\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
 			\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
 			\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
 			\App\Http\Middleware\Security\EncryptCookies::class,
@@ -58,6 +67,10 @@ class Kernel extends HttpKernel
 		],
 
 		'admin' => [
+			//\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
+			\Illuminate\Session\Middleware\StartSession::class,
+			\App\Http\Middleware\Content\Locale::class,
+			\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
 			\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
 			\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
 			\App\Http\Middleware\Security\EncryptCookies::class,
@@ -69,12 +82,18 @@ class Kernel extends HttpKernel
 		],
 
 		'basic_auth' => [
+			//\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
+			\Illuminate\Session\Middleware\StartSession::class,
+			\App\Http\Middleware\Content\Locale::class,
+			\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
 			\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
 			\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
 			\App\Http\Middleware\Auth\BasicProfileMiddleware::class,
 		],
 
 		'api' => [
+			//\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
+			\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
 			'throttle:60,1',
 			'bindings',
 		],
@@ -110,10 +129,10 @@ class Kernel extends HttpKernel
 			$message = Carbon::now()->toDateTimeString() . " : `" . $e->getMessage() . "`. This error means a problem with Your database connection. Please check your .env file configuration.";
 			if (file_exists($synthesisBootstrapErrorLogFile)) {
 				$fh = fopen($synthesisBootstrapErrorLogFile, 'a');
-				fwrite($fh, $message."\n");
+				fwrite($fh, $message . "\n");
 			} else {
 				$fh = fopen($synthesisBootstrapErrorLogFile, 'w');
-				fwrite($fh, $message."\n");
+				fwrite($fh, $message . "\n");
 			}
 			fclose($fh);
 			exit;

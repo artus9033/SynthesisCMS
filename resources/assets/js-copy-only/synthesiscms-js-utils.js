@@ -135,7 +135,7 @@ class SynthesisCmsJsUtils {
         return Array(0, 0, 0, 1);
     }
 
-    static rgbaArrayToRgbaString(rgbaArray){
+    static rgbaArrayToRgbaString(rgbaArray) {
         return ('rgba(' + rgbaArray[0] + ',' + rgbaArray[1] + ',' + rgbaArray[2] + ',' + rgbaArray[3] + ')');
     }
 
@@ -256,13 +256,13 @@ class SynthesisCmsJsUtils {
 
     static _substituteSynthesisDynamicUrls(elem) {
         var synthesiscmsJsUtilsSelfRef = this;
-        if(elem instanceof jQuery){
+        if (elem instanceof jQuery) {
             synthesiscmsJsUtilsSelfRef.__substituteSynthesisDynamicUrls(elem);
-        }else if(typeof(elem) ==  typeof("")){
+        } else if (typeof(elem) == typeof("")) {
             $(elem).each(function (htmlElement) {
                 synthesiscmsJsUtilsSelfRef.__substituteSynthesisDynamicUrls($(htmlElement));
             });
-        }else{
+        } else {
             synthesiscmsJsUtilsSelfRef.__substituteSynthesisDynamicUrls($(elem));
         }
     }
@@ -296,6 +296,10 @@ class SynthesisCmsJsUtils {
                 }
             }
         });
+    }
+
+    static setLanguage(lang) {
+        window.location.href = this.getRealUrlFromDynamicSynthesisUrl("lang/" + lang);
     }
 }
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BackendRequest;
+use App\Http\Requests\ContentEditorRequest;
 use App\Models\Content\Article;
 use App\Models\Content\ArticleCategory;
 use App\SynthesisCMS\API\ExtensionsCallbacksBridge;
@@ -11,12 +11,12 @@ use App\Toolbox;
 
 class ArticleCategoryController extends Controller
 {
-	public function manageArticleCategoriesGet()
+	public function manageArticleCategoriesGet(ContentEditorRequest $request)
 	{
 		return view('admin.manage_article_categories');
 	}
 
-	public function editArticleCategoryGet($id)
+	public function editArticleCategoryGet($id, ContentEditorRequest $request)
 	{
 		if (!ArticleCategory::where(['id' => $id])->exists()) {
 			return \Redirect::route('manage_article_categories')->with('errors', [trans('synthesiscms/article_category.err_article_category_does_not_exist')]);
@@ -25,7 +25,7 @@ class ArticleCategoryController extends Controller
 		return view('admin.edit_article_category', ['articleCategory' => $articleCategory]);
 	}
 
-	public function editArticleCategoryPost($id, BackendRequest $request)
+	public function editArticleCategoryPost($id, ContentEditorRequest $request)
 	{
 		if (!ArticleCategory::where(['id' => $id])->exists()) {
 			return \Redirect::route('manage_article_categories')->with('errors', [trans('synthesiscms/article_category.err_article_category_does_not_exist')]);
@@ -37,7 +37,7 @@ class ArticleCategoryController extends Controller
 		return \Redirect::route('manage_article_categories')->with('messages', array(trans('synthesiscms/admin.msg_article_category_saved', ['name' => Toolbox::string_truncate($articleCategory->title, 10)])));
 	}
 
-	public function deleteArticleCategory($id, $articles)
+	public function deleteArticleCategory($id, $articles, ContentEditorRequest $request)
 	{
 		if ($id == 1) {
 			return \Redirect::back()->with('errors', [trans('synthesiscms/admin.msg_route_cannot_be_deleted')]);
@@ -61,12 +61,12 @@ class ArticleCategoryController extends Controller
 		}
 	}
 
-	public function createArticleCategoryGet()
+	public function createArticleCategoryGet(ContentEditorRequest $request)
 	{
 		return view('admin.create_article_category');
 	}
 
-	public function createArticleCategoryPost(BackendRequest $request)
+	public function createArticleCategoryPost(ContentEditorRequest $request)
 	{
 		$title = $request->get('title');
 		$desc = $request->get('description');
@@ -75,7 +75,7 @@ class ArticleCategoryController extends Controller
 		return \Redirect::route('manage_article_categories')->with('messages', array(trans('synthesiscms/admin.msg_article_category_created', ['name' => $name_new])));
 	}
 
-	public function massDeleteArticleCategory(BackendRequest $request)
+	public function massDeleteArticleCategory(ContentEditorRequest $request)
 	{
 		$articleCategoriesCount = 0;
 		$articlesCount = 0;
@@ -121,7 +121,7 @@ class ArticleCategoryController extends Controller
 		}
 	}
 
-	public function massCopyArticleCategory(BackendRequest $request, $childrenArticlesToo)
+	public function massCopyArticleCategory(ContentEditorRequest $request, $childrenArticlesToo)
 	{
 		$count = 0;
 		$csrf_token = true; // check if it's the csrf token hidden input
@@ -132,13 +132,13 @@ class ArticleCategoryController extends Controller
 				$origin = ArticleCategory::find(intval(str_replace("articleCategory_checkbox", "", $key)));
 				$newArticleCategory = $origin->replicate();
 				$newArticleCategory->title = trans("synthesiscms/helper.articleCategory_copy_prefix") . $newArticleCategory->title;
-				$newArticleCategory->save();
+				$newArticleCategory->push();
 				if ($childrenArticlesToo == "true") {
 					$originArticles = Article::where('articleCategory', $origin->id)->cursor();
 					foreach ($originArticles as $key => $originArticle) {
 						$articleClone = $originArticle->replicate();
 						$articleClone->articleCategory = $newArticleCategory->id;
-						$articleClone->save();
+						$articleClone->push();
 					}
 				}
 				$count++;

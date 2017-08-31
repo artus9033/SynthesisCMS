@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Content;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BackendRequest;
+use App\Http\Requests\ContentEditorRequest;
+use App\Http\Requests\ContentManagerRequest;
 use App\Models\Content\Page;
 use App\SynthesisCMS\API\ExtensionsCallbacksBridge;
 use App\Toolbox;
@@ -11,7 +12,7 @@ use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-	public function checkRoute(BackendRequest $request)
+	public function checkRoute(ContentEditorRequest $request)
 	{
 		//TODO: Add possibility for each extension to check for the form if it's properly filled before saving (laravel error bag -> validator ?)
 		$routes = \Route::getRoutes();
@@ -29,12 +30,12 @@ class RouteController extends Controller
 		}
 	}
 
-	public function manageRoutesGet()
+	public function manageRoutesGet(ContentManagerRequest $request)
 	{
 		return view('admin.manage_routes');
 	}
 
-	public function editRouteGet($id)
+	public function editRouteGet($id, ContentManagerRequest $request)
 	{
 		if (!Page::where(['id' => $id])->exists()) {
 			return \Redirect::route('manage_routes')->with('errors', [trans('synthesiscms/page.err_route_does_not_exist')]);
@@ -43,7 +44,7 @@ class RouteController extends Controller
 		return view('admin.edit_route', ['page' => $page]);
 	}
 
-	public function editRoutePost($id, BackendRequest $request)
+	public function editRoutePost($id, ContentManagerRequest $request)
 	{
 		if (!Page::where(['id' => $id])->exists()) {
 			return \Redirect::route('manage_routes')->with('errors', [trans('synthesiscms/page.err_route_does_not_exist')]);
@@ -90,7 +91,7 @@ class RouteController extends Controller
 		}
 	}
 
-	public function deleteRoute($id)
+	public function deleteRoute($id, ContentManagerRequest $request)
 	{
 		if (!Page::where(['id' => $id])->exists()) {
 			return \Redirect::route('manage_routes')->with('errors', [trans('synthesiscms/page.err_route_does_not_exist')]);
@@ -104,12 +105,12 @@ class RouteController extends Controller
 		return \Redirect::route('manage_routes')->with('messages', array(trans('synthesiscms/admin.msg_route_deleted', ['route' => $route])));
 	}
 
-	public function createRouteGet()
+	public function createRouteGet(ContentManagerRequest $request)
 	{
 		return view('admin.create_route');
 	}
 
-	public function createRoutePost(BackendRequest $request)
+	public function createRoutePost(ContentManagerRequest $request)
 	{
 		$route = $request->get('route');
 		$extension = $request->get('extension');
@@ -123,7 +124,7 @@ class RouteController extends Controller
 		}
 
 		if ($err) {
-			return \Redirect::route('manage_routes_edit', ['id' => $page->id])->with('errors', $errors);
+			return \Redirect::route('manage_routes')->with('errors', $errors);
 		} else {
 
 			Toolbox::chkRoute($route);

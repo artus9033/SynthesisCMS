@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BackendRequest;
+use App\Http\Requests\ContentEditorRequest;
 use App\Toolbox;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use SVG\SVGImage;
 
 /**
  * Class SynthesisFilesystemController
@@ -53,10 +53,10 @@ class SynthesisFilesystemController extends Controller
 	/**
 	 * Function that lists all images & directories inside the public/synthesis-uploads directory
 	 * The returned is an array of images & directories inside the public/synthesis-uploads in the following format: Array('imgs' => Array(), 'dirs' => Array()
-	 * @param BackendRequest $request
+	 * @param ContentEditorRequest $request
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
 	 */
-	function files_list(BackendRequest $request)
+	function files_list(ContentEditorRequest $request)
 	{
 		$storage = $this->getUploadsDisk();
 		$allFiles = $storage->files();
@@ -97,11 +97,11 @@ class SynthesisFilesystemController extends Controller
 
 	/**
 	 * Function that uploads a file to public/synthesis-uploads
-	 * @param BackendRequest $request
+	 * @param ContentEditorRequest $request
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
 	 * response with: boolean 'success', string 'message', string 'file' - relative url to file (if upload successful),
 	 */
-	function uploadPost(BackendRequest $request)
+	function uploadPost(ContentEditorRequest $request)
 	{
 		function getNewFileName($storage, $filePath, $filename, $fileExtension, $bRandomPrefix = false)
 		{
@@ -152,7 +152,7 @@ class SynthesisFilesystemController extends Controller
 	/**
 	 * Function that sends the requested file from a non-straightly-public
 	 * virtual storage folder (see config/filesystems.php)
-	 * @param Request $request
+	 * @param \Request $request
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
 	 * response with the requested file contents or a 404 repsonse
 	 */
@@ -169,11 +169,11 @@ class SynthesisFilesystemController extends Controller
 	/**
 	 * Function that sends the requested file from a non-straightly-public
 	 * virtual storage folder (see config/filesystems.php) within a download response
-	 * @param BackendRequest $request
+	 * @param ContentEditorRequest $request
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
 	 * response with the requested file contents or a 404 repsonse
 	 */
-	function uploadDownload($file, BackendRequest $request)
+	function uploadDownload($file, ContentEditorRequest $request)
 	{
 		$storage = $this->getUploadsDisk();
 		if ($storage->has($file)) {

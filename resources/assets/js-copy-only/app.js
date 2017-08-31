@@ -1,7 +1,3 @@
-function setLanguage(lang, base) {
-    window.location.href = base + "/lang/" + lang;
-}
-
 function toggleAll(selector) {
     $(selector).each(function (index) {
         $(this).prop('checked', !$(this).is(":checked"));

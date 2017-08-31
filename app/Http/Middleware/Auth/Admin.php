@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\Auth;
 
+use App\SynthesisCMS\API\Auth\UserPrivilegesManager;
 use Closure;
 
 class Admin
@@ -13,16 +14,14 @@ class Admin
 	 * @param  \Closure $next
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next, $guard = null)
+	public function handle($request, Closure $next)
 	{
-		if (\Auth::guest()) {
-			if ($request->ajax()) {
-				return response("Unathorized", 401);
+		if (UserPrivilegesManager::isGuest()) {
+			if ($request->expectsJson()) {
+				return response("Unauthorized.", 401);
 			} else {
-				return response(view('auth.error'));
+				return abort(403);
 			}
-		} else if (!\Auth::user()->is_admin) {
-			return \App::abort(401);
 		}
 
 		return $next($request);

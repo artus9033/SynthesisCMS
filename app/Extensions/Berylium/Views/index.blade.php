@@ -47,7 +47,7 @@
 			</a>
 			<a href="{{ route('profile') }}">
 				<span class="white-text name truncate">
-					@if(Auth::guest())
+					@if(\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isGuest())
 						{{ trans('synthesiscms/helper.guest_username') }}
 					@else
 						{{ Auth::user()->name }}
@@ -56,7 +56,7 @@
 			</a>
 			<a href="{{ route('profile') }}">
 				<span class="white-text email truncate">
-					@if(Auth::guest())
+					@if(\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isGuest())
 						{{ trans('synthesiscms/helper.guest_email') }}
 					@else
 						{{ Auth::user()->email }}
@@ -65,7 +65,7 @@
 			</a>
 		</div>
 	</li>
-	@if (Auth::guest())
+	@if (\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isGuest())
 		<ul style="width: 100%;" class="collapsible collapsible-accordion">
 			<li class="{{ $synthesiscmsMainColor }}-text col s12 waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
 				<a class="{{ $synthesiscmsMainColor }}-text collapsible-header" href="{{ route('register') }}"><i
@@ -139,7 +139,7 @@
 								}
 							});
 							$('.lang-span-berylium').click(function () {
-								setLanguage($(this).text().toUpperCase(), '{{ url("/") }}');
+								SynthesisCmsJsUtils.setLanguage($(this).text().toUpperCase());
 							});
 						});
 					</script>
