@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\SynthesisCMS\API\Auth\UserPrivilegesManager;
 use Illuminate\Foundation\Http\FormRequest;
 
-class BackendRequest extends FormRequest
+class SiteAdminRequest extends FormRequest
 {
 	//TODO: implement roles
 	/**

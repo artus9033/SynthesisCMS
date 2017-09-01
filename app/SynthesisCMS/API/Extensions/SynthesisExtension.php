@@ -18,7 +18,7 @@ class SynthesisExtension extends Controller
 	}
 
 	/**
-	 * Function called after a articleCategory is deleted by the user
+	 * Function called after an articleCategory is deleted by the user
 	 * @param $id int id of the articleCategory
 	 **/
 	public function onArticleCategoryDeleted($id)
@@ -26,11 +26,26 @@ class SynthesisExtension extends Controller
 	}
 
 	/**
-	 * Function called after a route using this extension is deleted;
-	 * There you can destroy any extension models saved earlier
-	 * @param $id \App\Page->id (parent page id)
+	 * Function called after a route is created
+	 * @param $id int parent page id
 	 **/
-	public function onPageDeleted($id)
+	public function onRouteCreated($id)
+	{
+	}
+
+	/**
+	 * Function called after a route is deleted
+	 * @param $id int parent page id
+	 **/
+	public function onRouteDeleted($id)
+	{
+	}
+
+	/**
+	 * Function called after a route is saved after being edited by the user
+	 * @param $id int parent page id
+	 **/
+	public function onRouteSaved($id)
 	{
 	}
 
@@ -56,8 +71,8 @@ class SynthesisExtension extends Controller
 
 	/**
 	 * Function used by extensionsServiceProvider to register app routes
-	 * @param $page \App\Page->id
-	 * @param $base_slug base url slug of the extension's page (route)
+	 * @param $page \App\Models\Content\Page->id
+	 * @param $base_slug string base url slug of the extension's page (route)
 	 **/
 	public function routes($page, $base_slug)
 	{
@@ -97,7 +112,7 @@ class SynthesisExtension extends Controller
 
 	/**
 	 * Function used by the route edit app view to render the fields
-	 * @param $page \App\Page->id
+	 * @param $page \App\Models\Content\Page->id
 	 **/
 	public function editGet($page)
 	{
@@ -105,8 +120,8 @@ class SynthesisExtension extends Controller
 
 	/**
 	 * Function used by the route edit app view to commit edit
-	 * @param $id \App\Page->id
-	 * @param $request Request
+	 * @param $id \App\Models\Content\Page->id
+	 * @param $request \Illuminate\Http\Request
 	 * TODO: fix the error with incompatible request types somehow
 	public function editPost($id, \Request $request)
 	{
@@ -118,7 +133,7 @@ class SynthesisExtension extends Controller
 	 * Function called when a route using this extension is created;
 	 * There you can set up a model containing a reference to the parent Page extension
 	 * via saving the 'id' param
-	 * @param $id \App\Page->id
+	 * @param $id \App\Models\Content\Page->id
 	 **/
 	public function create($id)
 	{

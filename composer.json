@@ -6,12 +6,12 @@
         "nesbot/carbon": "*",
         "barryvdh/laravel-ide-helper": "*",
         "mpdf/mpdf": "^6.1",
-        "mouf/nodejs-installer": "~1.0",
         "mobiledetect/mobiledetectlib": "^2.8",
         "dimsav/laravel-translatable": "^7.3",
         "trntv/probe": "^1.0",
         "chrisjean/php-ico": "^1.0",
-        "meyfa/php-svg": "^0.6.0"
+        "meyfa/php-svg": "^0.6.0",
+        "mouf/nodejs-installer": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "*",
@@ -50,6 +50,7 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan vendor:publish",
             "php artisan optimize",
             "php artisan storage:link"
         ],
@@ -62,12 +63,11 @@
         "preferred-install": "dist"
     },
     "extra": {
-        "mouf": {
-            "nodejs": {
-                "version": "~0.12",
-                "targetDir": "vendor/nodejs/nodejs",
-                "forceLocal": false
-            }
+    "mouf": {
+        "nodejs": {
+            "targetDir": "vendor/nodejs/nodejs",
+            "forceLocal": true
         }
     }
+}
 }

@@ -24,6 +24,16 @@ class ExtensionsServiceProvider extends ServiceProvider
 				$this->loadMigrationsFrom($extension . '/Migrations');
 			}
 		}
+
+		foreach (Page::all() as $key => $page) {
+			if ($page) {
+				$ext_path = app_path() . "/Extensions/" . $page->extension . "/ExtensionKernel.php";
+				if (file_exists($ext_path)) {
+					\App::make('\App\Extensions\\' . $page->extension . '\ExtensionKernel')->routes($page, $page->slug);
+				}
+			}
+		}
+
 		if (!\App::runningInConsole()) {
 			$manager = new SynthesisPositionManager();
 
@@ -54,20 +64,6 @@ class ExtensionsServiceProvider extends ServiceProvider
 			}
 
 			view()->share('synthesiscmsPositionManager', $manager);
-
-			foreach (Page::all() as $key => $page) {
-				if (is_null($page)) {
-					// no pages exist; do nothing
-				} else {
-					$ext_path = app_path() . "/Extensions/" . $page->extension . "/ExtensionKernel.php";
-					if (file_exists($ext_path)) {
-						\App::make('\App\Extensions\\' . $page->extension . '\ExtensionKernel')->routes($page, $page->slug);
-					} else {
-						echo \View::make('errors.cms')->with(['error' => trans("synthesiscms/errors.err_extension_not_found"), 'help' => trans("synthesiscms/errors.err_extension_not_found_help", ['path' => $ext_path])]);
-						exit;
-					}
-				}
-			}
 		}
 	}
 

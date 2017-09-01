@@ -87,6 +87,8 @@ class RouteController extends Controller
 			$kernel = new $kpath;
 			$kernel->editPost($page->id, $request);
 
+			ExtensionsCallbacksBridge::handleOnRouteSaved($page->id);
+
 			return \Redirect::route("manage_routes")->with('messages', array(trans('synthesiscms/admin.msg_route_saved', ['route' => $page->slug])));
 		}
 	}
@@ -100,7 +102,7 @@ class RouteController extends Controller
 		$route = $page->slug;
 		$page->delete();
 
-		ExtensionsCallbacksBridge::handleOnPageDeleted($page->id);
+		ExtensionsCallbacksBridge::handleOnRouteDeleted($page->id);
 
 		return \Redirect::route('manage_routes')->with('messages', array(trans('synthesiscms/admin.msg_route_deleted', ['route' => $route])));
 	}
@@ -134,6 +136,8 @@ class RouteController extends Controller
 			$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
 			$kernel = new $kpath;
 			$kernel->create($page->id);
+
+			ExtensionsCallbacksBridge::handleOnRouteCreated($page->id);
 
 			return \Redirect::route('manage_routes_edit', ['id' => $page->id])->with(['messages', array(trans('synthesiscms/admin.msg_route_created', ['route' => $route])), 'toasts' => [trans('synthesiscms/admin.msg_now_edit_route')]]);
 		}

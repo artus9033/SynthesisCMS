@@ -17,7 +17,7 @@ use App\SynthesisCMS\API\Extensions\SynthesisExtensionType;
 class ExtensionKernel extends SynthesisExtension
 {
 
-	public function onPageDeleted($id)
+	public function onRouteDeleted($id)
 	{
 		foreach (HydrogenExtension::where(['id' => $id])->get() as $item) {
 			$item->delete();

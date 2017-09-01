@@ -10,16 +10,7 @@ Route::post('/admin/upload', 'Backend\\SynthesisFilesystemController@uploadPost'
 
 Route::post('/synthesis-route-check', 'Content\\RouteController@checkRoute')->name('synthesis_route_check');
 
-Route::post('/admin/file-picker', function (\App\Http\Requests\ContentManagerRequest $request) {
-	return view('partials/file-picker')->with(
-		[
-			'picker_modal_id' => $request->get('picker_modal_id'),
-			'callback_function_name' => $request->get('callback_function_name'),
-			'followIframeParentHeight' => $request->get('followIframeParentHeight'),
-			'fileExtensions' => $request->get('fileExtensions')
-		]
-	)->render();
-})->name('file-picker');
+Route::post('/admin/file-picker', 'Backend\\BackendController@filePicker')->name('file-picker');
 
 Route::get('/admin/manage_routes', 'Content\\RouteController@manageRoutesGet')->name('manage_routes');
 Route::get('/admin/manage_routes/edit/{id}', 'Content\\RouteController@editRouteGet')->name('manage_routes_edit');
@@ -60,6 +51,11 @@ Route::get('/admin/settings', 'Backend\\BackendController@settingsGet')->name('s
 Route::post('/admin/settings', 'Backend\\BackendController@settingsPost')->name('settings_post');
 Route::post('/admin/settings/favicon_upload', 'Backend\\BackendController@settingsAjaxFaviconConvert')->name('settings_favicon_post');
 
-Route::get('/admin/tools', 'Backend\\BackendController@toolsGet')->name('tools');
+Route::get('/admin/tools/resources_compiler', 'Backend\\BackendController@toolResourcesCompilerGet')->name('tools_resources_compiler');
+Route::post('/admin/tools/resources_compiler_execute', 'Backend\\BackendController@toolResourcesCompilerExecutePost')->name('tools_resources_compiler_execute_post');
+Route::post('/admin/tools/resources_compiler_rebuild_node_sass_post', 'Backend\\BackendController@toolResourcesCompilerRebuildSassExecutePost')->name('tools_resources_compiler_rebuild_node_sass_post');
+
+Route::get('/admin/tools/optimizer', 'Backend\\BackendController@toolOptimizerGet')->name('tools_optimizer');
+Route::post('/admin/tools/optimizer_execute', 'Backend\\BackendController@toolOptimizerExecutePost')->name('tools_optimizer_execute_post');
 
 ?>

@@ -47,6 +47,7 @@ class Kernel extends HttpKernel
 			\App\Http\Middleware\Content\StatsTrackerMiddleware::class,
 			\App\Http\Middleware\SynthesisCMS\HookExtensionsMiddleware::class,
 			\App\Http\Middleware\SynthesisCMS\SynthesisFilesystemMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisStorageFilesystemSymlinksMiddleware::class,
 		],
 
 		// web_internal - should be used by routes that are not meant to be indexed by stats tracker
@@ -64,6 +65,7 @@ class Kernel extends HttpKernel
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
 			\App\Http\Middleware\SynthesisCMS\HookExtensionsMiddleware::class,
 			\App\Http\Middleware\SynthesisCMS\SynthesisFilesystemMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisStorageFilesystemSymlinksMiddleware::class,
 		],
 
 		'admin' => [
@@ -78,17 +80,7 @@ class Kernel extends HttpKernel
 			\Illuminate\View\Middleware\ShareErrorsFromSession::class,
 			\App\Http\Middleware\Security\VerifyCsrfToken::class,
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
-			\App\Http\Middleware\Auth\Admin::class,
-		],
-
-		'basic_auth' => [
-			//\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
-			\Illuminate\Session\Middleware\StartSession::class,
-			\App\Http\Middleware\Content\Locale::class,
-			\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-			\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
-			\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
-			\App\Http\Middleware\Auth\BasicProfileMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisStorageFilesystemSymlinksMiddleware::class,
 		],
 
 		'api' => [
@@ -112,7 +104,6 @@ class Kernel extends HttpKernel
 		'can' => \Illuminate\Auth\Middleware\Authorize::class,
 		'guest' => \App\Http\Middleware\Auth\RedirectIfAuthenticated::class,
 		'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-		'adminRole' => \App\Http\Middleware\Auth\Admin::class,
 	];
 
 	public function bootstrap()

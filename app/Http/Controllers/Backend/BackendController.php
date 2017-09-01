@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SiteAdminRequest;
 use App\Http\Requests\ContentEditorRequest;
 use App\Http\Requests\SiteManagerRequest;
 use App\Models\Settings\Settings;
 use App\Models\Stats\StatsTracker;
 use App\Models\Stats\StatsTrackerModule;
+use App\SynthesisCMS\API\Scripts\SynthesisArtisanBridge;
+use App\SynthesisCMS\API\Scripts\SynthesisComposerBridge;
+use App\SynthesisCMS\API\Scripts\SynthesisNodeBridge;
 use App\Toolbox;
 use DateInterval;
 use DatePeriod;
@@ -282,8 +286,76 @@ class BackendController extends Controller
 		);
 	}
 
-	public function toolsGet(BackendRequest $request)
+	function filePicker(\App\Http\Requests\ContentManagerRequest $request)
 	{
-		return view('admin.settings');
+		return view('partials/file-picker')->with(
+			[
+				'picker_modal_id' => $request->get('picker_modal_id'),
+				'callback_function_name' => $request->get('callback_function_name'),
+				'followIframeParentHeight' => $request->get('followIframeParentHeight'),
+				'fileExtensions' => $request->get('fileExtensions')
+			]
+		);
 	}
+
+	public function toolResourcesCompilerGet(SiteAdminRequest $request)
+	{
+		return view('admin.tools_resource_compiler');
+	}
+
+	public function toolResourcesCompilerExecutePost(SiteAdminRequest $request)
+	{
+		if ($request->ajax() && $request->has('execution_permitted')) {
+			if ($request->get('execution_permitted')) {
+				$rawOutput = SynthesisNodeBridge::executeNpmCmd("run prod");
+				$output = explode("\n", $rawOutput);
+				return response()->json(['output' => $output]);
+			}
+		}
+		return response()->json("You are not allowed to trigger the resources compiler this way!");
+	}
+
+	public function toolOptimizerGet(SiteAdminRequest $request)
+	{
+		return view('admin.tools_optimizer');
+	}
+
+	public function toolOptimizerExecutePost(SiteAdminRequest $request)
+	{
+		if ($request->ajax() && $request->has('execution_permitted')) {
+			if ($request->get('execution_permitted')) {
+				$rawOutput1 = SynthesisArtisanBridge::artisanCacheClear() . SynthesisArtisanBridge::artisanClearCompiled() . SynthesisArtisanBridge::artisanConfigClear() . SynthesisArtisanBridge::artisanRouteClear() . SynthesisArtisanBridge::artisanViewClear();
+				$output1 = explode("\n", $rawOutput1);
+				$rawOutput2 = SynthesisComposerBridge::composerDumpAutoload();
+				$output2 = explode("\n", $rawOutput2);
+				$rawOutput3 = SynthesisArtisanBridge::artisanOptimize() . SynthesisArtisanBridge::artisanConfigCache() . SynthesisArtisanBridge::artisanRouteCache();
+				$output3 = explode("\n", $rawOutput3);
+				return response()->json(['output' => array_merge(array("** Clearing artisan views, cache, sessions, routes & compiled classes **"), $output1, array("** Dumping composer autoload files **"), $output2, array("** Optimizing artisan classes, config & routes (routes may sometimes throw LogicException, but that's not a real error, rather a non-optimized extension) **"), $output3)]);
+			}
+		}
+		return response()->json("You are not allowed to trigger the resources compiler this way!");
+	}
+
+	public function toolResourcesCompilerRebuildSassExecutePost(SiteAdminRequest $request){
+		if ($request->ajax() && $request->has('execution_permitted')) {
+			if ($request->get('execution_permitted')) {
+				$rawOutput1 = SynthesisNodeBridge::executeNpmCmd("run rebuild-node-sass");
+				$output1 = explode("\n", $rawOutput1);
+				return response()->json(['output' => array_merge(array("** npm run rebuild-node-sass **"), $output1)]);
+			}
+		}
+		return response()->json("You are not allowed to trigger the resources compiler this way!");
+
+	}
+
+	public function abort404()
+	{
+		abort(404);
+	}
+
+	public function redirectBackendToAdmin($anything = "")
+	{
+		return redirect(route('admin') . '/' . $anything);
+	}
+
 }

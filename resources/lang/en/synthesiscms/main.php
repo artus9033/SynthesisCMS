@@ -10,6 +10,7 @@ return [
 	'msg_language_changed' => 'Language has been changed to ',
 	'footer_powered_by' => 'Powered by ',
 	'footer_description' => ', the blazing simple, fast, extendable open-source CMS by ',
+	'toast_middleware_symlink_created' => 'Created a symlink connecting public directory with cms storage, because it was not present',
 ];
 
 ?>

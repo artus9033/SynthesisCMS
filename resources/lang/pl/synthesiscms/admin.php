@@ -82,6 +82,7 @@ return [
 	'section_content' => 'Zarządzanie Treścią',
 	'section_tools' => 'Narzędzia',
 	'tool_resources_compiler' => 'Kompilator Zasobów',
+	'tool_optimizer' => 'Optymalizator',
 	'section_settings' => 'Ustawienia',
 	'backend' => 'Panel Administracyjny',
 	'change_user_privileges' => 'Zmień Uprawnienia',

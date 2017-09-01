@@ -9,6 +9,8 @@
 namespace App\SynthesisCMS\API;
 
 
+use App\SynthesisCMS\API\Scripts\SynthesisArtisanBridge;
+
 class ExtensionsCallbacksBridge
 {
 	/**
@@ -17,7 +19,6 @@ class ExtensionsCallbacksBridge
 	 */
 	public static function handleOnArticleDeleted($id)
 	{
-		// For each of the registered extensions, include their routes and Views
 		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 
 		while (list(, $extension) = each($extensions)) {
@@ -33,7 +34,6 @@ class ExtensionsCallbacksBridge
 	 */
 	public static function handleOnArticleCategoryDeleted($id)
 	{
-		// For each of the registered extensions, include their routes and Views
 		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
 
 		while (list(, $extension) = each($extensions)) {
@@ -44,18 +44,53 @@ class ExtensionsCallbacksBridge
 	}
 
 	/**
-	 * Function that executes onPageDeleted function on every extension that overrides this method
-	 * @param $id int id of the page deleted
-	 */
-	public static function handleOnPageDeleted($id)
+ * Function that executes onRouteDeleted function on every extension that overrides this method
+ * @param $id int id of the page deleted
+ */
+	public static function handleOnRouteDeleted($id)
 	{
-		// For each of the registered extensions, include their routes and Views
 		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+
+		SynthesisArtisanBridge::artisanRouteCache();
 
 		while (list(, $extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
 			$kernel = new $kpath;
-			$kernel->onPageDeleted($id);
+			$kernel->onRouteDeleted($id);
+		}
+	}
+
+	/**
+ * Function that executes onRouteCreated function on every extension that overrides this method
+ * @param $id int id of the page created
+ */
+	public static function handleOnRouteCreated($id)
+	{
+		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+
+		SynthesisArtisanBridge::artisanRouteCache();
+
+		while (list(, $extension) = each($extensions)) {
+			$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
+			$kernel = new $kpath;
+			$kernel->onRouteCreated($id);
+		}
+	}
+
+	/**
+	 * Function that executes onRouteSaved function on every extension that overrides this method
+	 * @param $id int id of the page saved
+	 */
+	public static function handleOnRouteSaved($id)
+	{
+		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+
+		SynthesisArtisanBridge::artisanRouteCache();
+
+		while (list(, $extension) = each($extensions)) {
+			$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
+			$kernel = new $kpath;
+			$kernel->onRouteSaved($id);
 		}
 	}
 }

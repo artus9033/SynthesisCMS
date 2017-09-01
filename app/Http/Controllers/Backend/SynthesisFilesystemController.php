@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BackendRequest;
 use App\Http\Requests\ContentEditorRequest;
 use App\Toolbox;
 use Illuminate\Support\Facades\File;
@@ -46,8 +45,7 @@ class SynthesisFilesystemController extends Controller
 			$icoLib->save_ico(public_path('favicon.ico'));
 		}
 		$mixManifestPath = public_path("/mix-manifest.json");
-		$synthesisStorageSymlink = public_path("/storage");
-		return file_exists($mixManifestPath) && file_exists($synthesisStorageSymlink);
+		return file_exists($mixManifestPath);
 	}
 
 	/**

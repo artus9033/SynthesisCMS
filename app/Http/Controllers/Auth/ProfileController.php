@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BackendRequest;
+use App\Http\Requests\SiteAdminRequest;
 use App\Http\Requests\BasicAuthRequest;
 use App\Http\Requests\ProfileEditionRequest;
 use App\Models\Auth\User;
@@ -56,19 +56,19 @@ class ProfileController extends Controller
 		}
 	}
 
-	public function delete($id, BackendRequest $request)
+	public function delete($id, SiteAdminRequest $request)
 	{
 		$user = User::find($id);
 		$user->delete();
 		return \Redirect::back()->with('messages', array(trans('synthesiscms/profile.msg_user_deleted')));
 	}
 
-	public function manageUsersGet(BackendRequest $request)
+	public function manageUsersGet(SiteAdminRequest $request)
 	{
 		return view('admin.manage_users');
 	}
 
-	public function privilegesGet($id, BackendRequest $request)
+	public function privilegesGet($id, SiteAdminRequest $request)
 	{
 		if ($id == Auth::user()->id) {
 			return view('errors.generic')->with(['error' => trans("synthesiscms/admin.err_cant_edit_self_privileges")]);
@@ -81,7 +81,7 @@ class ProfileController extends Controller
 		return view('admin.change_user_privileges', ['priv' => $privs, 'uid' => $id, 'uname' => $uname]);
 	}
 
-	public function changePrivilegesPost($id, BackendRequest $request)
+	public function changePrivilegesPost($id, SiteAdminRequest $request)
 	{
 		if ($id == Auth::user()->id) {
 			return view('errors.generic')->with(['error' => trans("synthesiscms/admin.err_cant_edit_self_privileges")]);

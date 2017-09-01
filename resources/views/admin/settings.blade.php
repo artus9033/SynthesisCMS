@@ -9,7 +9,7 @@
 @section('head')
 	<style>
 		.tabs .tab a {
-			color: {{ $synthesiscmsMainColor }}    !important;
+			color: {{ $synthesiscmsMainColor }}     !important;
 		}
 
 		.tabs ::-webkit-scrollbar:horizontal {
@@ -231,7 +231,9 @@
 									<div id="settings_favicon_upload_loading" style="display: none;"
 										 class="indeterminate"></div>
 								</div>
-								<div class="file-field input-field col s12 row tooltipped" data-position="top" data-delay="50" data-tooltip="{{ trans('synthesiscms/settings.favicon_upload_tooltip') }}">
+								<div class="file-field input-field col s12 row tooltipped" data-position="top"
+									 data-delay="50"
+									 data-tooltip="{{ trans('synthesiscms/settings.favicon_upload_tooltip') }}">
 									<div class="btn col s12 m4 l2{{ $synthesiscmsMainColor }}">
 										<i class="material-icons white-text">image</i>
 										<input type="file" id="settings_favicon_fileinput">
@@ -327,8 +329,8 @@
                             $(".editor").trumbowyg('html', {!! json_encode($synthesiscmsFooterLinksContent) !!});
                         });
 					</script>
+				</form>
 			</div>
-			</form>
 		</div>
 		<div class="card-action">
 			<a onclick="$('#edit').submit()"

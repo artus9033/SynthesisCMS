@@ -22,7 +22,7 @@ return [
 	| This value represents the version of SynthesisCMS as a string
 	*/
 
-	'version' => "0.5",
+	'version' => "1.0",
 
 	/*
 	|--------------------------------------------------------------------------

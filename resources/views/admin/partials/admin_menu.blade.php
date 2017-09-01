@@ -185,7 +185,11 @@
 			<ul>
 				<li class="" id="tool_resources_compiler">
 					<a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
-					   href="{{ route('tools') }}">{{ trans('synthesiscms/admin.tool_resources_compiler') }}</a>
+					   href="{{ route('tools_resources_compiler') }}">{{ trans('synthesiscms/admin.tool_resources_compiler') }}</a>
+				</li>
+				<li class="" id="tool_optimizer">
+					<a class="waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
+					   href="{{ route('tools_optimizer') }}">{{ trans('synthesiscms/admin.tool_optimizer') }}</a>
 				</li>
 			</ul>
 		</div>

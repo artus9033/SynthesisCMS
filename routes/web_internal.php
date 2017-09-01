@@ -1,15 +1,7 @@
 <?php
 
-//TODO: add a generic favicon.ico to /public and add it to git
-
-//redirect /backend to /admin
-Route::any('/backend', function () {
-	return redirect(route('admin'));
-})->name('backend');
-
-Route::any('/backend/{anything}', function ($anything) {
-	return redirect(route('admin') . '/' . $anything);
-})->name('backend_wildcard');
+// Redirect /backend to /admin
+Route::any('/backend/{anything?}', 'Backend\\BackendController@redirectBackendToAdmin')->name('backend');
 
 Route::auth();
 
@@ -20,8 +12,7 @@ Route::get('/profile/password', 'Auth\\ProfileController@editGet')->name('profil
 Route::post('/profile/password', 'Auth\\ProfileController@editPost')->name('profile_password_post');
 
 foreach (glob(public_path() . '/*', GLOB_ONLYDIR) as $filename) {
-	Route::any('/' . basename($filename)); //this only holds the route for the synthesis route checker to say it's occupied
-	Route::any('/' . basename($filename) . '/{anything}'); //this only holds the route for the synthesis route checker to say it's occupied
+	Route::any('/' . basename($filename) . '/{anything?}', 'Backend\\BackendController@abort404'); //this only holds the route for the synthesis route checker to say it's occupied
 }
 
 ?>

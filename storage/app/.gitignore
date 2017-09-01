@@ -1,5 +1,5 @@
 *
-!public/
-!public-uploads/
+!public
+!public-uploads
 !tmp/
 !.gitignore

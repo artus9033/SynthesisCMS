@@ -272,7 +272,7 @@ class ExtensionKernel extends SynthesisExtension
 		return view('Berylium::mobile_button')->with('slug', $slug);
 	}
 
-	public function onPageDeleted($id)
+	public function onRouteDeleted($id)
 	{
 		foreach (BeryliumItem::where(['type' => BeryliumItemType::Page, 'id' => $id])->get() as $item) {
 			$item->type = BeryliumItemType::Link;
