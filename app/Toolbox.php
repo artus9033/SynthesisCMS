@@ -3,6 +3,7 @@
 namespace App;
 
 use App\SynthesisCMS\API\Constants;
+use DirectoryIterator;
 
 class Toolbox
 {
@@ -27,7 +28,7 @@ class Toolbox
 		$found = false;
 		$array = (count(\Session::get('messages')) ? \Session::get('messages') : Array());
 		foreach ($array as $item) {
-			if($item === $search){
+			if ($item === $search) {
 				$found = true;
 			}
 		}
@@ -55,7 +56,7 @@ class Toolbox
 		$found = false;
 		$array = (count(\Session::get('toasts')) ? \Session::get('toasts') : Array());
 		foreach ($array as $item) {
-			if($item === $search){
+			if ($item === $search) {
 				$found = true;
 			}
 		}
@@ -83,11 +84,20 @@ class Toolbox
 		$found = false;
 		$array = (count(\Session::get('warnings')) ? \Session::get('warnings') : Array());
 		foreach ($array as $item) {
-			if($item === $search){
+			if ($item === $search) {
 				$found = true;
 			}
 		}
 		return $found;
+	}
+
+	static function isDirectoryEmpty($dir)
+	{
+		foreach (new DirectoryIterator($dir) as $fileInfo) {
+			if ($fileInfo->isDot()) continue;
+			return false;
+		}
+		return true;
 	}
 
 	static function hex2rgba($color, $opacity = 1)

@@ -315,6 +315,39 @@ class BackendController extends Controller
 		return response()->json("You are not allowed to trigger the resources compiler this way!");
 	}
 
+	public function toolResourcesCompilerRebuildSassExecutePost(SiteAdminRequest $request){
+		if ($request->ajax() && $request->has('execution_permitted')) {
+			if ($request->get('execution_permitted')) {
+				$rawOutput1 = SynthesisNodeBridge::executeNpmCmd("run rebuild-node-sass");
+				$output1 = explode("\n", $rawOutput1);
+				return response()->json(['output' => array_merge(array("** npm run rebuild-node-sass **"), $output1)]);
+			}
+		}
+		return response()->json("You are not allowed to trigger the resources compiler this way!");
+	}
+
+	public function toolResourcesCompilerNpmInstallExecutePost(SiteAdminRequest $request){
+		if ($request->ajax() && $request->has('execution_permitted')) {
+			if ($request->get('execution_permitted')) {
+				$rawOutput1 = SynthesisNodeBridge::installNodejsModules();
+				$output1 = explode("\n", $rawOutput1);
+				return response()->json(['output' => array_merge(array("** npm install **"), $output1)]);
+			}
+		}
+		return response()->json("You are not allowed to trigger the resources compiler this way!");
+	}
+
+	public function toolResourcesCompilerNodeModulesDeleteExecutePost(SiteAdminRequest $request){
+		if ($request->ajax() && $request->has('execution_permitted')) {
+			if ($request->get('execution_permitted')) {
+				$rawOutput1 = SynthesisNodeBridge::nukeNodeModulesDir();
+				$output1 = explode("\n", $rawOutput1);
+				return response()->json(['output' => array_merge(array("** NUKING node_modules directory **"), $output1)]);
+			}
+		}
+		return response()->json("You are not allowed to trigger the resources compiler this way!");
+	}
+
 	public function toolOptimizerGet(SiteAdminRequest $request)
 	{
 		return view('admin.tools_optimizer');
@@ -334,18 +367,6 @@ class BackendController extends Controller
 			}
 		}
 		return response()->json("You are not allowed to trigger the resources compiler this way!");
-	}
-
-	public function toolResourcesCompilerRebuildSassExecutePost(SiteAdminRequest $request){
-		if ($request->ajax() && $request->has('execution_permitted')) {
-			if ($request->get('execution_permitted')) {
-				$rawOutput1 = SynthesisNodeBridge::executeNpmCmd("run rebuild-node-sass");
-				$output1 = explode("\n", $rawOutput1);
-				return response()->json(['output' => array_merge(array("** npm run rebuild-node-sass **"), $output1)]);
-			}
-		}
-		return response()->json("You are not allowed to trigger the resources compiler this way!");
-
 	}
 
 	public function abort404()

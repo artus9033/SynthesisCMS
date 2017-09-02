@@ -40,6 +40,8 @@
                         $('#compiler-working-indicator').show();
                         $('#compiler-button').addClass('disabled');
                         $('#compiler-node-sass-button').addClass('disabled');
+                        $('#compiler-npm-install-button').addClass('disabled');
+                        $('#compiler-delete-node-modules-button').addClass('disabled');
                         $.ajax(
                             {
                                 url: targetFunctionUrl,
@@ -53,6 +55,8 @@
                                 success: function (data) {
                                     $('#compiler-button').removeClass('disabled');
                                     $('#compiler-node-sass-button').removeClass('disabled');
+                                    $('#compiler-npm-install-button').removeClass('disabled');
+                                    $('#compiler-delete-node-modules-button').removeClass('disabled');
                                     $('#compiler-working-indicator').hide();
                                     $("#compiler-output").html("");
                                     data.output.forEach(function (line, index) {
@@ -64,6 +68,8 @@
                                 error: function () {
                                     $('#compiler-button').removeClass('disabled');
                                     $('#compiler-node-sass-button').removeClass('disabled');
+                                    $('#compiler-npm-install-button').removeClass('disabled');
+                                    $('#compiler-delete-node-modules-button').removeClass('disabled');
                                     $('#compiler-working-indicator').hide();
                                     SynthesisCmsJsUtils.showToast("{!! trans('synthesiscms/tools.toast_error_trying_to_run_compiler') !!}", 4000);
                                     synthesiscmsResourcesCompilerRunning = false;
@@ -75,12 +81,20 @@
                 }
 			</script>
 			<div id="compiler-button" onclick="compilerRunNow('{!! route("tools_resources_compiler_execute_post") !!}')"
-				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light">
+				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light row">
 				{!! trans('synthesiscms/tools.btn_compile_now') !!}
 			</div>
 			<div id="compiler-node-sass-button" onclick="compilerRunNow('{!! route("tools_resources_compiler_rebuild_node_sass_post") !!}')"
-				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light">
-				{!! trans('synthesiscms/tools.btn_compile_now') !!}
+				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light tooltipped row" data-position="top" data-delay="50" data-tooltip="{!! trans('synthesiscms/tools.tooltip_btn_rebuild_node_sass_now') !!}">
+				{!! trans('synthesiscms/tools.btn_rebuild_node_sass_now') !!}
+			</div>
+			<div id="compiler-npm-install-button" onclick="compilerRunNow('{!! route("tools_resources_compiler_npm_install_post") !!}')"
+				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light tooltipped row" data-position="top" data-delay="50" data-tooltip="{!! trans('synthesiscms/tools.tooltip_btn_npm_install') !!}">
+				{!! trans('synthesiscms/tools.btn_npm_install_now') !!}
+			</div>
+			<div id="compiler-delete-node-modules-button" onclick="compilerRunNow('{!! route("tools_resources_compiler_node_modules_delete_post") !!}')"
+				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light tooltipped row" data-position="top" data-delay="50" data-tooltip="{!! trans('synthesiscms/tools.tooltip_btn_delete_node_modules_now') !!}">
+				{!! trans('synthesiscms/tools.btn_delete_node_modules_now') !!}
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l10 offset-l1">

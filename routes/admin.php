@@ -54,6 +54,8 @@ Route::post('/admin/settings/favicon_upload', 'Backend\\BackendController@settin
 Route::get('/admin/tools/resources_compiler', 'Backend\\BackendController@toolResourcesCompilerGet')->name('tools_resources_compiler');
 Route::post('/admin/tools/resources_compiler_execute', 'Backend\\BackendController@toolResourcesCompilerExecutePost')->name('tools_resources_compiler_execute_post');
 Route::post('/admin/tools/resources_compiler_rebuild_node_sass_post', 'Backend\\BackendController@toolResourcesCompilerRebuildSassExecutePost')->name('tools_resources_compiler_rebuild_node_sass_post');
+Route::post('/admin/tools/resources_compiler_npm_install_post', 'Backend\\BackendController@toolResourcesCompilerNpmInstallExecutePost')->name('tools_resources_compiler_npm_install_post');
+Route::post('/admin/tools/resources_compiler_node_modules_delete_post', 'Backend\\BackendController@toolResourcesCompilerNodeModulesDeleteExecutePost')->name('tools_resources_compiler_node_modules_delete_post');
 
 Route::get('/admin/tools/optimizer', 'Backend\\BackendController@toolOptimizerGet')->name('tools_optimizer');
 Route::post('/admin/tools/optimizer_execute', 'Backend\\BackendController@toolOptimizerExecutePost')->name('tools_optimizer_execute_post');
