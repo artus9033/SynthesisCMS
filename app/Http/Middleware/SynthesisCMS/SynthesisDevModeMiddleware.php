@@ -17,7 +17,13 @@ class SynthesisDevModeMiddleware
 	 */
 	public function handle($request, Closure $next)
 	{
-		if (!Toolbox::hasWarningInBag(trans('synthesiscms/settings.msg_warning_dev_mode_active')) && Settings::isDevModeEnabled()) {
+		$isDevModeEnabled = Settings::isDevModeEnabled();
+		if($isDevModeEnabled){
+			\Barryvdh\Debugbar\Facade::enable(); // works
+		}else{
+			\Barryvdh\Debugbar\Facade::disable(); // works
+		}
+		if (!Toolbox::hasWarningInBag(trans('synthesiscms/settings.msg_warning_dev_mode_active')) && $isDevModeEnabled) {
 			Toolbox::addWarningToBag(trans('synthesiscms/settings.msg_warning_dev_mode_active'));
 		}
 		return $next($request);

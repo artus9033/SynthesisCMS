@@ -112,7 +112,7 @@ class Kernel extends HttpKernel
 		$dotenv->load();
 		mysqli_report(MYSQLI_REPORT_STRICT);
 		try {
-			@(new mysqli(getenv('DB_HOST') . ":" . getenv('DB_PORT'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE')));
+			@(new mysqli(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'), getenv('DB_PORT')));
 		} catch (Exception $e) {
 			echo("Cannot connect to database. Please contact the site administrator for help (P.S. Dear admin, everything You need to know to fix this error is in the error log).");
 			error_log($e->getMessage());

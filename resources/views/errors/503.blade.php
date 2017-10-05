@@ -3,7 +3,7 @@
 @section('title', trans('synthesiscms/errors.503_header'))
 
 @section('body')
-	<div class="section red lighten-2" style="height: 100vh;">
+	<div class="section red lighten-2" style="min-height: 100vh;">
 		<div class="col s12 row">
 			<div class="col s12">
 				<div class="container">

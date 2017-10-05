@@ -48,7 +48,7 @@ return [
 	|
 	*/
 
-	'debug' => env('APP_DEBUG', true),
+	'debug' => env('APP_DEBUG', false),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -182,16 +182,17 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
+		Barryvdh\Debugbar\ServiceProvider::class,
+		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 		Dimsav\Translatable\TranslatableServiceProvider::class,
 		App\Providers\AppServiceProvider::class,
 		App\Providers\AuthServiceProvider::class,
-		App\Providers\SettingsVariableProvider::class,
+		App\Providers\SettingsVariablesProvider::class,
 		// App\Providers\BroadcastServiceProvider::class,
 		App\Providers\EventServiceProvider::class,
 		App\Providers\RouteServiceProvider::class,
 		App\Providers\ExtensionsServiceProvider::class,
 		App\Providers\MobileDetectionProvider::class,
-		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 	],
 
 	/*
@@ -217,6 +218,7 @@ return [
 		'Cookie' => Illuminate\Support\Facades\Cookie::class,
 		'Crypt' => Illuminate\Support\Facades\Crypt::class,
 		'DB' => Illuminate\Support\Facades\DB::class,
+		'Debugbar' => Barryvdh\Debugbar\Facade::class,
 		'Eloquent' => Illuminate\Database\Eloquent\Model::class,
 		'Event' => Illuminate\Support\Facades\Event::class,
 		'File' => Illuminate\Support\Facades\File::class,

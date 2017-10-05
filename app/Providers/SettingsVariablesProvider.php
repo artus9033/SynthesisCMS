@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Models\Settings\Settings;
 use Illuminate\Support\ServiceProvider;
 
-class SettingsVariableProvider extends ServiceProvider
+class SettingsVariablesProvider extends ServiceProvider
 {
 	/**
 	 * Bootstrap the application services.

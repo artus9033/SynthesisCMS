@@ -1,13 +1,13 @@
 {
     "require": {
         "php": "*",
-        "laravel/framework": "*",
+        "laravel/framework": "^5.5.9",
         "doctrine/dbal": "*",
         "nesbot/carbon": "*",
         "barryvdh/laravel-ide-helper": "*",
-        "mpdf/mpdf": "^6.1",
+        "mpdf/mpdf": "^7.0.0-beta2",
         "mobiledetect/mobiledetectlib": "^2.8",
-        "dimsav/laravel-translatable": "^7.3",
+        "dimsav/laravel-translatable": "*",
         "trntv/probe": "^1.0",
         "chrisjean/php-ico": "^1.0",
         "meyfa/php-svg": "^0.6.0",
@@ -18,7 +18,8 @@
         "mockery/mockery": "*",
         "phpunit/phpunit": "*",
         "symfony/css-selector": "*",
-        "symfony/dom-crawler": "*"
+        "symfony/dom-crawler": "*",
+        "barryvdh/laravel-debugbar": "^3.1"
     },
     "autoload": {
         "classmap": [
@@ -44,13 +45,13 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan vendor:publish",
+            "php artisan vendor:publish --quiet",
             "php artisan optimize",
             "php artisan storage:link"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan vendor:publish",
+            "php artisan vendor:publish --quiet",
             "php artisan optimize",
             "php artisan storage:link"
         ],

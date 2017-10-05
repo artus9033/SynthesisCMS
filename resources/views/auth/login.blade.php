@@ -13,13 +13,6 @@
 @endsection
 
 @section('main')
-	<style>
-		@media screen and (min-device-width: 1200px) {
-			div .main-carf-cont {
-				padding: 0px 48px 0px 48px;
-			}
-		}
-	</style>
 	@if ($errors->has('email'))
 		@include('partials/error', ['error' => $errors->first('email')])
 	@endif

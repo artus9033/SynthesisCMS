@@ -25,11 +25,14 @@ class ExtensionsServiceProvider extends ServiceProvider
 			}
 		}
 
-		foreach (Page::all() as $key => $page) {
-			if ($page) {
-				$ext_path = app_path() . "/Extensions/" . $page->extension . "/ExtensionKernel.php";
-				if (file_exists($ext_path)) {
-					\App::make('\App\Extensions\\' . $page->extension . '\ExtensionKernel')->routes($page, $page->slug);
+		$pgModel = new Page();
+		if(\Schema::hasTable($pgModel->getTable())) {
+			foreach (Page::all() as $key => $page) {
+				if ($page) {
+					$ext_path = app_path() . "/Extensions/" . $page->extension . "/ExtensionKernel.php";
+					if (file_exists($ext_path)) {
+						\App::make('\App\Extensions\\' . $page->extension . '\ExtensionKernel')->routes($page, $page->slug);
+					}
 				}
 			}
 		}

@@ -49,7 +49,7 @@ return [
 		'sqlite' => [
 			'driver' => 'sqlite',
 			'database' => env('DB_DATABASE', database_path('database.sqlite')),
-			'prefix' => '',
+			'prefix' => env('DB_PREFIX', 'synthesis') . "_",
 		],
 
 		'mysql' => [
@@ -61,7 +61,7 @@ return [
 			'password' => env('DB_PASSWORD', ''),
 			'charset' => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix' => '',
+			'prefix' => env('DB_PREFIX', 'synthesis') . "_",
 			'strict' => true,
 			'engine' => null,
 		],
@@ -74,7 +74,7 @@ return [
 			'username' => env('DB_USERNAME', 'forge'),
 			'password' => env('DB_PASSWORD', ''),
 			'charset' => 'utf8',
-			'prefix' => '',
+			'prefix' => env('DB_PREFIX', 'synthesis') . "_",
 			'schema' => 'public',
 			'sslmode' => 'prefer',
 		],
@@ -92,7 +92,7 @@ return [
 	|
 	*/
 
-	'migrations' => 'migrations',
+	'migrations' => env('DB_PREFIX', 'synthesis') . "_" . 'synthesiscms_migrations',
 
 	/*
 	|--------------------------------------------------------------------------
