@@ -279,6 +279,11 @@ class Toolbox
 	{
 		return (Constants::synthesiscmsUrlMiddlewareHandlerStartTag . $relativeUrl . Constants::synthesiscmsUrlMiddlewareHandlerEndTag);
 	}
+
+	public static function isRunningInConsole()
+	{
+		return php_sapi_name() === "cli";
+	}
 }
 
 ?>

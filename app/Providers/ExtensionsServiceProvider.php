@@ -5,7 +5,10 @@ namespace App\Providers;
 use App\Models\Content\Page;
 use App\Models\Settings\Settings;
 use App\SynthesisCMS\API\Positions\SynthesisPositionManager;
+use Dotenv\Dotenv;
+use Exception;
 use Illuminate\Support\ServiceProvider;
+use mysqli;
 
 class ExtensionsServiceProvider extends ServiceProvider
 {
@@ -26,17 +29,27 @@ class ExtensionsServiceProvider extends ServiceProvider
 			}
 		}
 
-		$pgModel = new Page();
-		if(\Schema::hasTable($pgModel->getTable())) {
-			foreach (Page::all() as $key => $page) {
-				if ($page) {
-					$ext_path = app_path() . "/Extensions/" . $page->extension . "/ExtensionKernel.php";
-					if (file_exists($ext_path)) {
-						\App::make('\App\Extensions\\' . $page->extension . '\ExtensionKernel')->routes($page, $page->slug);
+		$dbConnectionGood = true;
+		$dotenv = new Dotenv(base_path());
+		$dotenv->load();
+		mysqli_report(MYSQLI_REPORT_STRICT);
+		try {
+			@(new mysqli(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'), getenv('DB_PORT')));
+		} catch (Exception $e) {
+			$dbConnectionGood = false;
+		}
+		try {
+			if($dbConnectionGood) {
+				foreach (Page::all() as $key => $page) {
+					if ($page) {
+						$ext_path = app_path() . "/Extensions/" . $page->extension . "/ExtensionKernel.php";
+						if (file_exists($ext_path)) {
+							\App::make('\App\Extensions\\' . $page->extension . '\ExtensionKernel')->routes($page, $page->slug);
+						}
 					}
 				}
 			}
-		}
+		} catch (Exception $e) {}
 
 		if (!\App::runningInConsole()) {
 			$manager = new SynthesisPositionManager();

@@ -38,18 +38,24 @@ class Handler extends ExceptionHandler
 	 */
 	public function report(Exception $exception)
 	{
-		parent::report($exception);
-		$continue = false;
-		$fullPath = str_replace("/", "\\", base_path());
-		try {
-			if (Schema::hasTable(with(new ExceptionTracker())->getTable())) {
-				$continue = true;
-			}
-		} catch (Exception $e) {
+		if(!Toolbox::isRunningInConsole()) {
+			parent::report($exception);
 			$continue = false;
-		}
-		if (!\App::runningInConsole() && $continue) {
-			ExceptionTracker::saveException($exception->getCode(), str_replace($fullPath, "[cms_root]", $exception->getFile()), str_replace($fullPath, "[cms_root]", $exception->getMessage()), str_replace($fullPath, "[cms_root]", $exception->getTraceAsString()), $fullPath);
+			$fullPath = str_replace("/", "\\", base_path());
+			try {
+				if (Schema::hasTable(with(new ExceptionTracker())->getTable())) {
+					$continue = true;
+				}
+			} catch (Exception $e) {
+				$continue = false;
+			}
+			if ($continue) {
+				ExceptionTracker::saveException($exception->getCode(), str_replace($fullPath, "[cms_root]", $exception->getFile()), str_replace($fullPath, "[cms_root]", $exception->getMessage()), str_replace($fullPath, "[cms_root]", $exception->getTraceAsString()), $fullPath);
+			}
+		}else{
+			$handle = fopen(storage_path("logs/laravel-console.log"), "w+");
+			fputs($handle, $exception->getTraceAsString());
+			fclose($handle);
 		}
 	}
 

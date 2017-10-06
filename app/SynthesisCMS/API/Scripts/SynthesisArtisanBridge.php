@@ -5,6 +5,11 @@ namespace App\SynthesisCMS\API\Scripts;
 class SynthesisArtisanBridge
 {
 
+	static function artisanGenerateKey(){
+		self::execTimeLimitOverride();
+		return self::executeArtisanCmd("key:generate");
+	}
+
 	static function artisanStorageLink()
 	{
 		self::execTimeLimitOverride();

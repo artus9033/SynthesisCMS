@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Toolbox;
 use Carbon\Carbon;
 use Dotenv\Dotenv;
 use Exception;
@@ -108,26 +109,28 @@ class Kernel extends HttpKernel
 
 	public function bootstrap()
 	{
-		$dotenv = new Dotenv(__DIR__ . '/../../');
-		$dotenv->load();
-		mysqli_report(MYSQLI_REPORT_STRICT);
-		try {
-			@(new mysqli(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'), getenv('DB_PORT')));
-		} catch (Exception $e) {
-			echo("Cannot connect to database. Please contact the site administrator for help (P.S. Dear admin, everything You need to know to fix this error is in the error log).");
-			error_log($e->getMessage());
-			$synthesisBootstrapErrorLogFile = __DIR__ . '/../../storage/logs/synthesiscms-bootstrap-error.log';
-			$message = Carbon::now()->toDateTimeString() . " : `" . $e->getMessage() . "`. This error means a problem with Your database connection. Please check your .env file configuration.";
-			if (file_exists($synthesisBootstrapErrorLogFile)) {
-				$fh = fopen($synthesisBootstrapErrorLogFile, 'a');
-				fwrite($fh, $message . "\n");
-			} else {
-				$fh = fopen($synthesisBootstrapErrorLogFile, 'w');
-				fwrite($fh, $message . "\n");
+		if(!Toolbox::isRunningInConsole()) {
+			$dotenv = new Dotenv(__DIR__ . '/../../');
+			$dotenv->load();
+			mysqli_report(MYSQLI_REPORT_STRICT);
+			try {
+				@(new mysqli(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'), getenv('DB_PORT')));
+			} catch (Exception $e) {
+				echo("Cannot connect to database. Please contact the site administrator for help (P.S. Dear admin, everything You need to know to fix this error is in the error log).");
+				error_log($e->getMessage());
+				$synthesisBootstrapErrorLogFile = __DIR__ . '/../../storage/logs/synthesiscms-bootstrap-error.log';
+				$message = Carbon::now()->toDateTimeString() . " : `" . $e->getMessage() . "`. This error means a problem with Your database connection. Please check your .env file configuration.";
+				if (file_exists($synthesisBootstrapErrorLogFile)) {
+					$fh = fopen($synthesisBootstrapErrorLogFile, 'a');
+					fwrite($fh, $message . "\n");
+				} else {
+					$fh = fopen($synthesisBootstrapErrorLogFile, 'w');
+					fwrite($fh, $message . "\n");
+				}
+				fclose($fh);
+				exit;
 			}
-			fclose($fh);
-			exit;
+			parent::bootstrap();
 		}
-		parent::bootstrap();
 	}
 }

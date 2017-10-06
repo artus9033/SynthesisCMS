@@ -26,6 +26,13 @@ $app = new Illuminate\Foundation\Application(
 |
 */
 
+if(!file_exists(base_path('.env'))){
+	copy(base_path('.env.example'), base_path('.env'));
+	if(!\App\Toolbox::isRunningInConsole()){
+		App\SynthesisCMS\API\Scripts\SynthesisArtisanBridge::artisanGenerateKey();
+	}
+}
+
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
     App\Http\Kernel::class
