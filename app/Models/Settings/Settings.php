@@ -37,6 +37,10 @@ class Settings extends Model
 
 	public static function getFromActive($field)
 	{
-		return self::getActiveInstance()->$field;
+		return self::getActiveInstance()->getField($field);
+	}
+
+	public function getField($field){
+		return $this->$field;
 	}
 }

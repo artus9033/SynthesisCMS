@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Content\Page;
+use App\Models\Settings\Settings;
 use App\SynthesisCMS\API\Positions\SynthesisPositionManager;
 use Illuminate\Support\ServiceProvider;
 
@@ -41,7 +42,7 @@ class ExtensionsServiceProvider extends ServiceProvider
 			$manager = new SynthesisPositionManager();
 
 			// For each of the registered extensions, include their routes, views & translations
-			$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+			$extensions = Settings::getInstalledExtensions();
 
 			while (list(, $extension) = each($extensions)) {
 
