@@ -67,13 +67,20 @@
 		@endif
 		@php
 			$one_column_list = ($extension_instance->list_column_count == 1);
+			$two_column_list = ($extension_instance->list_column_count == 2);
 
-			//Override the two columns list if the device is a phone
+			//Override the column count depending on device screen
 			if($synthesiscmsClientIsPhone){
 				$one_column_list = true;
 			}
 
-			if(!$one_column_list){
+			if($synthesiscmsClientIsTablet){
+				$two_column_list = true;
+			}
+
+			if($one_column_list){
+				$all = $articles;
+			}else if($two_column_list){
 				if($articles->count() == 1){
 					$one = $articles;
 					$two = array();
@@ -83,7 +90,21 @@
 					list($one, $two) = $articles->chunk($articles->count() / 2);
 				}
 			}else{
-				$all = $articles;
+				if($articles->count() == 1){
+					$one = $articles;
+					$two = array();
+					$three = array();
+				}else if($articles->count() == 2){
+					$one = array();
+					$two = array();
+					$three = array();
+					list($one, $two) = $articles->chunk($articles->count() / 2);
+				}else{
+					$one = array();
+					$two = array();
+					$three = array();
+					list($one, $two, $three) = $articles->chunk($articles->count() / 3);
+				}
 			}
 		@endphp
 		<style>
@@ -106,12 +127,22 @@
 			<div class="container col s10 offset-s1 row">
 				@include('Hydrogen::partials/list', ['articles' => $all])
 			</div>
-		@else
+		@elseif($two_column_list)
 			<div class="container col s12 m6 row">
 				@include('Hydrogen::partials/list', ['articles' => $one])
 			</div>
 			<div class="container col s12 m6 row">
 				@include('Hydrogen::partials/list', ['articles' => $two])
+			</div>
+		@else
+			<div class="container col s12 m4 row">
+				@include('Hydrogen::partials/list', ['articles' => $one])
+			</div>
+			<div class="container col s12 m4 row">
+				@include('Hydrogen::partials/list', ['articles' => $two])
+			</div>
+			<div class="container col s12 m4 row">
+				@include('Hydrogen::partials/list', ['articles' => $three])
 			</div>
 		@endif
 		@if($articlesCount > $articlesPerPage)

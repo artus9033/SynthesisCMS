@@ -90,7 +90,9 @@
 					<select id="massMoveArticleCategory" name="massMoveArticleCategory"
 							class="{{ $synthesiscmsMainColor }}-text">
 						@foreach (App\Models\Content\ArticleCategory::all() as $key => $value)
-							@php($option = $value->title . "&nbsp;(ID $value->id)")
+							@php
+								$option = $value->title . "&nbsp;(ID $value->id)"
+							@endphp
 							<option value="{{ $value->id }}"
 									class="card-panel col s10 offset-s1 red white-text truncate"><h5>{{ $option }}</h5>
 							</option>
@@ -228,7 +230,6 @@
 							<td colspan="6" class="center">{{ trans('synthesiscms/admin.no_articles') }}</td>
 						</tr>
 						@endif
-						</tr>
 					</tbody>
 				</table>
 			</form>

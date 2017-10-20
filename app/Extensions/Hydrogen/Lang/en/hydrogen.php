@@ -15,6 +15,7 @@ return [
 	'name' => 'Hydrogen Single-Category Page',
 	'one_column' => 'One Column',
 	'two_columns' => 'Two Columns',
+	'three_columns' => 'Three Columns',
 	'switch_on' => 'On',
 	'switch_off' => 'Off',
 	'choose_default_sorting_type' => 'Choose default sorting type of elements',

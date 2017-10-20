@@ -69,7 +69,7 @@
                                 }
 							</script>
 							@php
-								$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+								$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 								$routes_data = Array();
 								while(list(,$extension) = each($extensions)) {
 									$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';

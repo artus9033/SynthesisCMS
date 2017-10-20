@@ -48,6 +48,11 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->singleton('synthesiscmsActiveSettingsInstance', function()
+{
+	return \App\Models\Settings\Settings::where('active', true)->first();
+});
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

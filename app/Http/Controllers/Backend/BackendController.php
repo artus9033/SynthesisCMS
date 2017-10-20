@@ -68,6 +68,7 @@ class BackendController extends Controller
 		$settings->home_page = $request->get('home_page');
 		$settings->header_title = $request->get('header_title');
 		$settings->tab_title = $request->get('tab_title');
+		$settings->show_login_register_buttons = ($request->get('show_login_register_buttons') == 'on');
 		$settings->footer_copyright = $request->get('footer_copyright');
 		$settings->footer_more_links_bottom_text = $request->get('footer_more_links_bottom_text');
 		$settings->footer_more_links_bottom_href = $request->get('footer_more_links_bottom_href');
@@ -276,7 +277,7 @@ class BackendController extends Controller
 
 	public function checkAdminStatsTrackerChartsUpdates(ContentEditorRequest $request)
 	{
-		$statsTrackerModuleLastUpdate = Carbon::parse(StatsTrackerModule::getLastUpdateDateTime());
+		$statsTrackerModuleLastUpdate = Carbon::parse(StatsTrackerModule::findOrCreate()->getLastUpdateDateTime());
 		$requestLastUpdate = Carbon::parse($request->get('lastDateTime'));
 		return response()->json(
 			[

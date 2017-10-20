@@ -37,7 +37,7 @@
 </head>
 <body style="overflow-x: hidden">
 @yield('body')
-<div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh;">
+<div class="col s12 row" style="margin-bottom: 0px !important;">
 	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 no-padding z-depth-3">
 		<div class="nav-wrapper col s12 no-padding">
 		</div>

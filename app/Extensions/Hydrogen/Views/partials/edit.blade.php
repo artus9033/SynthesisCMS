@@ -43,10 +43,13 @@
 			@php
 				$selected1 = "";
 				$selected2 = "";
+				$selected3 = "";
 				if($extension_instance->list_column_count == 1){
 					$selected1 = "selected";
-				}else{
+				}else if($extension_instance->list_column_count == 2){
 					$selected2 = "selected";
+				}else{
+					$selected3 = "selected";
 				}
 			@endphp
 		@endforeach
@@ -54,6 +57,8 @@
 				class="card-panel col s10 offset-s1 red white-text">{{ trans('Hydrogen::hydrogen.one_column') }}</option>
 		<option {{ $selected2 }} value="2"
 				class="card-panel col s10 offset-s1 red white-text">{{ trans('Hydrogen::hydrogen.two_columns') }}</option>
+		<option {{ $selected3 }} value="3"
+				class="card-panel col s10 offset-s1 red white-text">{{ trans('Hydrogen::hydrogen.three_columns') }}</option>
 	</select>
 	<label>{{ trans("Hydrogen::messages.choose_list_column_count") }}</label>
 </div>

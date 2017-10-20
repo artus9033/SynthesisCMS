@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use App\Models\Settings\Settings;
+use App\Models\Settings\StaticActiveSettingsInterface;
 use App\Models\Stats\ExceptionTracker;
 use App\Toolbox;
 use Exception;
@@ -11,6 +12,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -40,17 +42,19 @@ class Handler extends ExceptionHandler
 	{
 		if(!Toolbox::isRunningInConsole()) {
 			parent::report($exception);
-			$continue = false;
-			$fullPath = str_replace("/", "\\", base_path());
-			try {
-				if (Schema::hasTable(with(new ExceptionTracker())->getTable())) {
-					$continue = true;
-				}
-			} catch (Exception $e) {
+			if(!$exception instanceof NotFoundHttpException) {
 				$continue = false;
-			}
-			if ($continue) {
-				ExceptionTracker::saveException($exception->getCode(), str_replace($fullPath, "[cms_root]", $exception->getFile()), str_replace($fullPath, "[cms_root]", $exception->getMessage()), str_replace($fullPath, "[cms_root]", $exception->getTraceAsString()), $fullPath);
+				$fullPath = str_replace("/", "\\", base_path());
+				try {
+					if (Schema::hasTable(with(new ExceptionTracker())->getTable())) {
+						$continue = true;
+					}
+				} catch (Exception $e) {
+					$continue = false;
+				}
+				if ($continue) {
+					ExceptionTracker::saveException($exception->getCode(), str_replace($fullPath, "[cms_root]", $exception->getFile()), str_replace($fullPath, "[cms_root]", $exception->getMessage()), str_replace($fullPath, "[cms_root]", $exception->getTraceAsString()), $fullPath);
+				}
 			}
 		}else{
 			$handle = fopen(storage_path("logs/laravel-console.log"), "w+");
@@ -69,7 +73,7 @@ class Handler extends ExceptionHandler
 	public function render($request, Exception $exception)
 	{
 		\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
-		if (Settings::isDevModeEnabled()) {
+		if (Settings::getActiveInstance()->isDevModeEnabled()) {
 			return parent::render($request, $exception);
 		} else {
 			if ($this->isHttpException($exception)) {

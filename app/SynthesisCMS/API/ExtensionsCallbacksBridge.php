@@ -19,7 +19,7 @@ class ExtensionsCallbacksBridge
 	 */
 	public static function handleOnArticleDeleted($id)
 	{
-		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+		$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 
 		while (list(, $extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
@@ -34,7 +34,7 @@ class ExtensionsCallbacksBridge
 	 */
 	public static function handleOnArticleCategoryDeleted($id)
 	{
-		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+		$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 
 		while (list(, $extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
@@ -49,7 +49,7 @@ class ExtensionsCallbacksBridge
  */
 	public static function handleOnRouteDeleted($id)
 	{
-		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+		$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 
 		SynthesisArtisanBridge::artisanRouteCache();
 
@@ -66,7 +66,7 @@ class ExtensionsCallbacksBridge
  */
 	public static function handleOnRouteCreated($id)
 	{
-		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+		$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 
 		SynthesisArtisanBridge::artisanRouteCache();
 
@@ -83,7 +83,7 @@ class ExtensionsCallbacksBridge
 	 */
 	public static function handleOnRouteSaved($id)
 	{
-		$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+		$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 
 		SynthesisArtisanBridge::artisanRouteCache();
 

@@ -47,29 +47,37 @@
             $('.modal').modal();
         });
 	</script>
-	<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
-		<h3 class="col s12">{{ $page->page_title }}</h3>
-		<div class="col s12 row white divider" style="height: 2px;"></div>
-		<h5 class="col s12">{!! $page->page_header !!}</h5>
-	</div>
-	<div class="row">
-		<div class="col s10 offset-s1">
+	@if($extension_instance->showHeader)
+		<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
+			<h3 class="col s12">{{ $page->page_title }}</h3>
+			<div class="col s12 row white divider" style="height: 2px;"></div>
+			<h5 class="col s12">{!! $page->page_header !!}</h5>
+		</div>
+	@endif
+	<style>
+		.slope-hydrogen {
+			clip-path: polygon(100% 0%, 100% 92%, 0% 100%, 0% 0%);
+		}
+	</style>
+	<div>
+		<div class="col s12">
 			<div class="card z-depth-3">
 				@if ($article->hasImage)
 					<div class="card-image">
-						<img src="{{ url($article->image) }}">
+						<img class="slope-hydrogen" style="width: 100%; height: auto;" src="{{ url($article->image) }}">
 						<span class="card-title left card-panel white {{ $synthesiscmsMainColor }}-text z-depth-2"
 							  style="margin: 10px 10px 10px 10px; font-weight: 400;">{{ $article->title }}</span>
-						<a onclick="$('#options').modal('open');"
-						   class="btn-floating btn-large halfway-fab waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2"><i
-									class="material-icons">more_horiz</i></a>
+						<a style="position:absolute; margin-bottom: 6% !important" onclick="$('#options').modal('open');"
+						   class="btn-floating btn-large halfway-fab waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2">
+							<i class="material-icons">more_horiz</i>
+						</a>
 					</div>
 				@endif
-				<div class="card-content row">
+				<div class="card-content">
 					@if (!$article->hasImage)
 						<div class="col s12">
-							<span class="card-title"
-								  style="font-weight: 400; display: inline;">{{ $article->title }}</span>
+							<h2 class="flow-text card-title center"
+								  style="font-weight: 400; display: inline;">{{ $article->title }}</h2>
 							<a onclick="$('#options').modal('open');"
 							   class="btn-floating waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 right"><i
 										class="material-icons">more_horiz</i></a>
@@ -81,4 +89,5 @@
 				</div>
 			</div>
 		</div>
+	</div>
 @endsection

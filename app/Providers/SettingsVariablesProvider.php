@@ -25,6 +25,7 @@ class SettingsVariablesProvider extends ServiceProvider
 			view()->share('synthesiscmsHeaderTitle', $settingsInstance->getField('header_title'));
 			view()->share('synthesiscmsTabTitle', $settingsInstance->getField('tab_title'));
 			view()->share('synthesiscmsHomePage', $settingsInstance->getField('home_page'));
+			view()->share('synthesiscmsShowLoginRegisterButtons', $settingsInstance->getField('show_login_register_buttons'));
 
 			view()->share('synthesiscmsFooterCopyright', $settingsInstance->getField('footer_copyright'));
 			view()->share('synthesiscmsFooterMoreLinksBottomText', $settingsInstance->getField('footer_more_links_bottom_text'));

@@ -22,13 +22,14 @@ class ExtensionsServiceProvider extends ServiceProvider
 		$extensionsDirectoryPath = dirname(__DIR__) . '/Extensions/';
 		$extensionsDirlist = glob($extensionsDirectoryPath . "*");
 
-		while (list(, $extension) = each($extensionsDirlist)) {
-			// Load extension database migrations
-			if (is_dir($extension . '/Migrations')) {
-				$this->loadMigrationsFrom($extension . '/Migrations');
+		if(\App::runningInConsole()) {
+			while (list(, $extension) = each($extensionsDirlist)) {
+				// Load extension database migrations
+				if (is_dir($extension . '/Migrations')) {
+					$this->loadMigrationsFrom($extension . '/Migrations');
+				}
 			}
 		}
-
 		$dbConnectionGood = true;
 		$dotenv = new Dotenv(base_path());
 		$dotenv->load();
@@ -55,7 +56,7 @@ class ExtensionsServiceProvider extends ServiceProvider
 			$manager = new SynthesisPositionManager();
 
 			// For each of the registered extensions, include their routes, views & translations
-			$extensions = Settings::getInstalledExtensions();
+			$extensions = Settings::getActiveInstance()->getInstalledExtensions();
 
 			while (list(, $extension) = each($extensions)) {
 

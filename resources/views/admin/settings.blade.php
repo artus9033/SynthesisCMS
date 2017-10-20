@@ -120,6 +120,17 @@
 									<label for="home_page">{{ trans('synthesiscms/settings.home_page_button_link') }}</label>
 								</div>
 							</div>
+							<div class="col s12 row">
+								<span>
+									{{ trans('synthesiscms/settings.switch_show_login_register_buttons') }}
+								</span>
+								<div class="switch">
+									<label>
+										<input @if($synthesiscmsShowLoginRegisterButtons) checked="checked" @endif name="show_login_register_buttons" type="checkbox">
+										<span class="lever"></span>
+									</label>
+								</div>
+							</div>
 						</div>
 						<div id="settings-footer-body" class="col s12">
 							<div>
@@ -296,7 +307,7 @@
 									<p class="center">
 										<input class="filled-in" type="checkbox" id="devModeCheckbox"
 											   name="devModeCheckbox"
-											   @if(\App\Models\Settings\Settings::isDevModeEnabled()) checked="checked" @endif>
+											   @if(\App\Models\Settings\Settings::getActiveInstance()->isDevModeEnabled()) checked="checked" @endif>
 										<label for="devModeCheckbox"
 											   class="teal-text">{!! trans('synthesiscms/settings.dev_mode_checkbox_text') !!}</label>
 									</p>

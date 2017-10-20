@@ -21,16 +21,15 @@ class StatsTrackerModule extends Model
 		}
 	}
 
-	public static function getLastUpdateDateTime()
+	public function getLastUpdateDateTime()
 	{
-		return StatsTrackerModule::findOrCreate()->last_update;
+		return $this->last_update;
 	}
 
-	public static function setLastUpdateDateTime($dateTimeString)
+	public function setLastUpdateDateTime($dateTimeString)
 	{
-		$trackerModule = StatsTrackerModule::findOrCreate();
-		$trackerModule->last_update = $dateTimeString;
-		$trackerModule->save();
+		$this->last_update = $dateTimeString;
+		$this->save();
 	}
 
 }

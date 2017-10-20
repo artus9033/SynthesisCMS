@@ -11,7 +11,8 @@
         "trntv/probe": "^1.0",
         "chrisjean/php-ico": "^1.0",
         "meyfa/php-svg": "^0.6.0",
-        "mouf/nodejs-installer": "^1.0"
+        "mouf/nodejs-installer": "^1.0",
+        "itsgoingd/clockwork": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "*",

@@ -57,7 +57,7 @@
 					</li>
 					@php
 						$ct = 0;
-						$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+						$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 					@endphp
 					@foreach ($extensions as $extension)
 						@php

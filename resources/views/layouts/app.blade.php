@@ -43,7 +43,7 @@
 </header>
 <body style="overflow-x: hidden">
 @yield('body')
-<div class="col s12 row" style="margin-bottom: 0px !important; min-height: 61vh;">
+<div class="col s12 row" style="margin-bottom: 0px !important;">
 	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 no-padding z-depth-3">
 		<div class="nav-wrapper col s12 no-padding">
@@ -97,12 +97,16 @@
 				@yield('menu')
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 				@if (\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isGuest())
-					<li class="right"><a class="center" href="{{ route('register') }}"><i
-									class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
-						</a></li>
-					<li class="right"><a class="center" href="{{ route('login') }}"><i
-									class="material-icons white-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
-						</a></li>
+					@if($synthesiscmsShowLoginRegisterButtons)
+						<li class="right"><a class="center" href="{{ route('register') }}"><i
+										class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
+							</a>
+						</li>
+						<li class="right"><a class="center" href="{{ route('login') }}"><i
+										class="material-icons white-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
+							</a>
+						</li>
+					@endif
 				@else
 					<ul id="user_dropdown" class="dropdown-content">
 						<li>
@@ -137,7 +141,7 @@
 	</nav>
 	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BelowMenu, Request::url()) !!}
 	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverBreadcrumbs, Request::url()) !!}
-	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} lighten-1 col s12 z-depth-2">
+	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} lighten-1 col s12 z-depth-2 row">
 		<div class="nav-wrapper col s12">
 			<div class="col s12">
 				<a href="{{ url($synthesiscmsHomePage) }}" class="breadcrumb">

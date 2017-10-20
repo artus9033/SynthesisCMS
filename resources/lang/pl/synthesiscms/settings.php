@@ -37,6 +37,7 @@ return [
 	'favicon_upload_tooltip' => 'Ikonka może być obrazem w dowolnym formacie (png, jpg, gif, ico), SynthesisCMS przekonwertuje go na plik .ico',
 	'toast_favicon_upload_success' => 'Pomyślnie wczytano nową ikonkę na serwer!',
 	'toast_favicon_upload_error' => 'Błąd podczas wczytywania nowej ikonki na serwer: ',
+	'switch_show_login_register_buttons' => 'Pokaż przyciski zaloguj/zarejestruj każdemu gościowi',
 ];
 
 ?>

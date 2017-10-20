@@ -15,6 +15,7 @@ return [
 	'name' => 'Wodorowa strona z pojedynczą kategorią artykułów',
 	'one_column' => 'Jedna Kolumna',
 	'two_columns' => 'Dwie Kolumny',
+	'three_columns' => 'Trzy Kolumny',
 	'switch_on' => 'Włączony',
 	'switch_off' => 'Wyłączony',
 	'choose_default_sorting_type' => 'Wybierz domyślny sposób sortowania elementów',

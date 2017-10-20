@@ -17,7 +17,7 @@ class HookExtensionsMiddleware
 	{
 		if (!\App::runningInConsole()) {
 			// For each of the registered extensions, include their middleware
-			$extensions = \App\Models\Settings\Settings::getInstalledExtensions();
+			$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 			$exec_next = true;
 			while (list(, $extension) = each($extensions)) {
 				$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';

@@ -17,7 +17,7 @@ class CreateStatsTrackerTable extends Migration
 			$table->increments('id');
 			$table->string('ip');
 			$table->string('url');
-			$table->integer('hits')->default(1);
+			$table->integer('hits')->default(0); // hits are incremented anyway, even if a new record is saved in the database
 		});
 	}
 
