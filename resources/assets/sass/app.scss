@@ -24,3 +24,19 @@
 .select-wrapper {
     margin-top: 5px !important;
 }
+
+/**
+* 3. Links
+ */
+
+.synthesis-cool-link:hover::after {
+    width: 100%;
+}
+.synthesis-cool-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #26a69a;
+    transition: width .3s;
+}

@@ -9,7 +9,7 @@ return [
 	'err_article_not_found_help' => 'Proszę zweryfikować, czy ID żądanego artykułu jest poprawne',
 	'choose_list_column_count' => 'Wybierz ilość kolumn, w których są wyświetlane artykuły',
 	'input_articles_on_single_page' => 'Wybierz, ile artykułów wyświetlać na pojedynczej stronie',
-	'showHeader' => 'Pokaż Nagłówek',
+	'showHeader' => 'Pokaż nagłówek nad artykułem',
 ];
 
 ?>

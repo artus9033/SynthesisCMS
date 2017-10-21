@@ -32,7 +32,7 @@ class Kernel extends HttpKernel
 	 * @var array
 	 */
 	protected $middlewareGroups = [
-		// web_internal - should be used by routes that are not meant to be indexed by stats tracker
+		// web - public static routes tracked by the stats tracker; most extensions use this middleware group
 		'web' => [
 			//\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
 			\Illuminate\Session\Middleware\StartSession::class,

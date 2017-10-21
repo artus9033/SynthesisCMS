@@ -2,6 +2,10 @@
 <html lang="{!! App::getLocale() !!}">
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://unpkg.com/gutenberg-css@0.4" media="print">
+	<link rel="stylesheet" href="https://unpkg.com/gutenberg-css@0.4/dist/themes/oldstyle.min.css" media="print">
+	<!-- TODO: implement no-print class from gutenberg in the CMS -->
+	<!-- TODO: download gutenberg via npm for offline server usage -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="shortcut icon" type="image/ico" href="{{ url('/favicon.ico') }}"/>
 	<meta http-equiv="Content-language" content="{!! App::getLocale() !!}">
@@ -38,20 +42,20 @@
 		}
 	</style>
 </head>
-<header>
+<header class="no-print">
 	@yield('header')
 </header>
 <body style="overflow-x: hidden">
 @yield('body')
 <div class="col s12 row" style="margin-bottom: 0px !important;">
 	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
-	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 no-padding z-depth-3">
+	<nav class="no-print {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 no-padding z-depth-3">
 		<div class="nav-wrapper col s12 no-padding">
 			<div class="left synthesiscms-mobile-btn-wrapper">
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BeforeSiteName, Request::url()) !!}
 			</div>
 			<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down"
-			   style="background-color: {!! $synthesiscmsLogoBackgroundColor !!}; position: relative; box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 2147483647 !important; height: 220%; width: 125px;"
+			   style="background-color: {!! $synthesiscmsLogoBackgroundColor !!}; position: relative; box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 999 !important; height: 220%; width: 125px;"
 			   href="{!! url($synthesiscmsHomePage) !!}">
 					<img id="synthesiscms-app-logo-img" style="height: 85%; width: 90%; object-fit: contain; margin-top: 5px;" src="{{ url('/favicon.ico') }}">
 			</a>
@@ -64,7 +68,9 @@
                     $("#synthesiscms-mobile-brand-logo").css('width', ($('body').width() - $('.synthesiscms-mobile-btn-wrapper').width()));
                     $("#synthesiscms-mobile-brand-logo").css('max-width', ($('body').width() - $('.synthesiscms-mobile-btn-wrapper').width()));
                     $("#synthesiscms-mobile-brand-logo").css('padding-left', $('.synthesiscms-mobile-btn-wrapper').width());
-                    $("#synthesiscms-desktop-brand-logo").css('max-width', ($('body').width() - $('#synthesiscms-large-screens-menu-part-right').width()));
+                    var desktopLogoWidth = ($('body').width() - $('#synthesiscms-large-screens-menu-part-right').width() - $('#synthesiscms-app-logo').width());
+                    $("#synthesiscms-desktop-brand-logo").css('max-width', desktopLogoWidth);
+                    $("#synthesiscms-desktop-brand-logo").css('width', desktopLogoWidth);
                 }
                 $(document).ready(function () {
                     //$("#synthesiscms-app-logo").height($("#synthesiscms-app-logo").width()); //substituted with height: 220% - looks better & doesn't wait 'till document ready

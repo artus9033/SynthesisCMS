@@ -183,8 +183,8 @@ return [
 		 * Application Service Providers...
 		 */
 		Barryvdh\Debugbar\ServiceProvider::class,
-		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-		Dimsav\Translatable\TranslatableServiceProvider::class,
+		//Dimsav\Translatable\TranslatableServiceProvider::class,
+		//TODO: implement translatable articles in the future
 		App\Providers\AppServiceProvider::class,
 		App\Providers\AuthServiceProvider::class,
 		App\Providers\SettingsVariablesProvider::class,

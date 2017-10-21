@@ -2,6 +2,7 @@
 
 namespace App\Models\Content;
 
+use App\Models\Auth\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
@@ -15,7 +16,17 @@ class Article extends Model
 
 	protected $table = 'synthesiscms_articles';
 
-	protected $fillable = array('title', 'description', 'articleCategory', 'image', 'hasImage', 'cardSize');
+	protected $fillable = array('title', 'description', 'articleCategory', 'image', 'hasImage', 'cardSize', 'publishedBy');
+
+	public function getPublisher(){
+		$userQuery = User::find(13);
+		if($userQuery) {
+			$user = $userQuery->first();
+		}else{
+			$user = User::first();
+		}
+		return $user->name;
+	}
 
 	static function getCardSizeFromNumber($index)
 	{

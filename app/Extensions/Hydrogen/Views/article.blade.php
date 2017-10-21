@@ -55,38 +55,65 @@
 		</div>
 	@endif
 	<style>
-		.slope-hydrogen {
-			clip-path: polygon(100% 0%, 100% 92%, 0% 100%, 0% 0%);
+		.synthesis-cool-image:hover::after {
+			width: 100%;
+		}
+
+		.synthesis-cool-image::after {
+			content: '';
+			display: block;
+			width: 0;
+			height: 2px;
+			background: #000;
+			transition: width .3s;
 		}
 	</style>
-	<div>
-		<div class="col s12">
-			<div class="card z-depth-3">
-				@if ($article->hasImage)
-					<div class="card-image">
-						<img class="slope-hydrogen" style="width: 100%; height: auto;" src="{{ url($article->image) }}">
-						<span class="card-title left card-panel white {{ $synthesiscmsMainColor }}-text z-depth-2"
-							  style="margin: 10px 10px 10px 10px; font-weight: 400;">{{ $article->title }}</span>
-						<a style="position:absolute; margin-bottom: 6% !important" onclick="$('#options').modal('open');"
-						   class="btn-floating btn-large halfway-fab waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2">
-							<i class="material-icons">more_horiz</i>
-						</a>
-					</div>
-				@endif
-				<div class="card-content">
-					@if (!$article->hasImage)
-						<div class="col s12">
-							<h2 class="flow-text card-title center"
-								  style="font-weight: 400; display: inline;">{{ $article->title }}</h2>
-							<a onclick="$('#options').modal('open');"
-							   class="btn-floating waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 right"><i
-										class="material-icons">more_horiz</i></a>
-						</div>
-						<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"
-							 style="margin-top: 10px; margin-bottom: 10px;"></div>
-					@endif
-					{!! $article->description !!}
-				</div>
+	<div class="card z-depth-3 col @if($article->hasImage) s12 m12 l12 @else s12 m12 l10 offset-l1 @endif">
+		@if($article->hasImage)
+			<div class="card-image col s12 m6 l5">
+				<img src="{{ url($article->image) }}" class="materialboxed" data-caption="{{ $article->title }}">
+				<a style="position: absolute; top: 18%; left: 90%;"
+				   onclick="$('#options').modal('open');"
+				   class="btn-floating btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2">
+					<i class="material-icons">more_vert</i>
+				</a>
+			</div>
+		@else
+			<a style="position: absolute; right: 5%; top: 10%;"
+			   onclick="$('#options').modal('open');"
+			   class="btn-floating btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2">
+				<i class="material-icons">more_vert</i>
+			</a>
+		@endif
+		<div class="card-content col @if($article->hasImage) s12 m6 l7 @else s12 m12 l12 @endif">
+			<h4 class="{{ $synthesiscmsMainColor }}-text col s12">
+				{{ $article->title }}
+			</h4>
+			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"
+				 style="margin-top: 10px; margin-bottom: 10px;"></div>
+			<div class="col s12">
+				<span>
+					<i class="material-icons {{ $synthesiscmsMainColor }}-text">perm_identity</i>{{ $article->getPublisher() }}
+				</span>
+				&nbsp;&nbsp;
+				<span>
+					<i class="material-icons {{ $synthesiscmsMainColor }}-text">today</i>{{ \Carbon\Carbon::parse($article->created_at)->toDateString() }}
+				</span>
+				&nbsp;&nbsp;
+				<span>
+					<i class="material-icons {{ $synthesiscmsMainColor }}-text">local_offer</i><div
+							id="article-tags"></div>
+				</span>
+				<script>
+                    $('#article-tags').material_chip({
+                        TAGS FROM PHP!!!
+                    });
+				</script>
+			</div>
+			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"
+				 style="margin-top: 10px; margin-bottom: 10px;"></div>
+			<div class="flow-text">
+				{!! $article->description !!}
 			</div>
 		</div>
 	</div>

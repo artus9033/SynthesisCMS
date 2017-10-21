@@ -79,8 +79,8 @@
 			</form>
 		</div>
 		<div class="card-action col s12 row center">
-			<a class="center {{ $synthesiscmsMainColor }}-text darken-1"
-			   href="{{ route('login') }}">{{ trans('synthesiscms/auth.login')}}</a>
+			<a style="display: inline-block; margin-right: unset !important;" class="synthesis-cool-link center {{ $synthesiscmsMainColor }}-text darken-1"
+			   href="{{ route('login') }}">{{ trans('synthesiscms/auth.login') }}</a>
 		</div>
 	</div>
 @endsection

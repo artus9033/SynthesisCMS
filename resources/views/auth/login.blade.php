@@ -21,13 +21,13 @@
 			@include('partials/error', ['error' => $errors->first('password')])
 		</h5>
 	@endif
-	<div class="main-card-cont col s12 l6 offset-l3 z-depth-1 grey lighten-4 row card"
+	<div class="main-card-cont col s12 m10 offset-m1 l6 offset-l3 z-depth-1 grey lighten-4 row card"
 		 style="display: inline-block; border: 1px solid #EEE;">
 		<div class="card-content">
 			<div class="card-title">
 				<h3 class="{{ $synthesiscmsMainColor }}-text center">{{ trans('synthesiscms/auth.login')}}</h3>
 			</div>
-			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
+			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 row"></div>
 			<form class="form-horizontal col s12" role="form" method="POST" action="{{ route('login') }}">
 				{{ csrf_field() }}
 				<div class='row'>
@@ -58,10 +58,18 @@
 			</form>
 		</div>
 		<div class="card-action col s12 row center">
-			<a class="col s4 offset-s2 center {{ $synthesiscmsMainColor }}-text darken-1"
-			   href="{{ route('register') }}">{{ trans('synthesiscms/auth.register')}}</a>
-			<a class="col s4 center {{ $synthesiscmsMainColor }}-text darken-1"
-			   href="{{ route('password.request') }}">{{ trans('synthesiscms/auth.reset')}}</a>
+			<div class="hide-on-small-only">
+				<a class="synthesis-cool-link col s4 offset-s2 center {{ $synthesiscmsMainColor }}-text darken-1"
+				   href="{{ route('register') }}">{{ trans('synthesiscms/auth.register')}}</a>
+				<a class="synthesis-cool-link col s4 center {{ $synthesiscmsMainColor }}-text darken-1"
+				   href="{{ route('password.request') }}">{{ trans('synthesiscms/auth.reset')}}</a>
+			</div>
+			<div class="hide-on-med-and-up">
+				<a style="margin-right: unset !important;" class="synthesis-cool-link left {{ $synthesiscmsMainColor }}-text darken-1"
+				   href="{{ route('register') }}">{{ trans('synthesiscms/auth.register')}}</a>
+				<a style="margin-right: unset !important;" class="synthesis-cool-link right {{ $synthesiscmsMainColor }}-text darken-1"
+				   href="{{ route('password.request') }}">{{ trans('synthesiscms/auth.reset')}}</a>
+			</div>
 		</div>
 	</div>
 @endsection

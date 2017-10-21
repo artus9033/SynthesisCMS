@@ -58,13 +58,11 @@
 	@if(!$hasAnyArticlesInside)
 		@include('partials/error', ['error' => trans("Hydrogen::messages.err_no_articles")]);
 	@else
-		@if($extension_instance->showHeader)
-			<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
-				<h3 class="col s12">{{ $page->page_title }}</h3>
-				<div class="col s12 row white divider" style="height: 2px;"></div>
-				<h5 class="col s12">{!! $page->page_header !!}</h5>
-			</div>
-		@endif
+		<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
+			<h3 class="col s12">{{ $page->page_title }}</h3>
+			<div class="col s12 row white divider" style="height: 2px;"></div>
+			<h5 class="col s12">{!! $page->page_header !!}</h5>
+		</div>
 		@php
 			$one_column_list = ($extension_instance->list_column_count == 1);
 			$two_column_list = ($extension_instance->list_column_count == 2);
@@ -106,6 +104,7 @@
 					list($one, $two, $three) = $articles->chunk($articles->count() / 3);
 				}
 			}
+		$hydrogenUidPrefix = "hydrogen-list-";
 		@endphp
 		<style>
 			.card-image.small {
@@ -122,27 +121,38 @@
 				max-height: 500px !important;
 				overflow: hidden;
 			}
+
+			.card img {
+				transition: all 0.3s ease-in-out;
+				max-width: 100%;
+				background-color: rgba(0, 0, 0, 0.7);
+			}
+
+			.card:hover img {
+				transform: scale(1.1, 1.1);
+				opacity: 0.8;
+			}
 		</style>
 		@if ($one_column_list)
 			<div class="container col s10 offset-s1 row">
-				@include('Hydrogen::partials/list', ['articles' => $all])
+				@include('Hydrogen::partials/list', ['articles' => $all, 'hydrogenUid' => $hydrogenUidPrefix . 1])
 			</div>
 		@elseif($two_column_list)
 			<div class="container col s12 m6 row">
-				@include('Hydrogen::partials/list', ['articles' => $one])
+				@include('Hydrogen::partials/list', ['articles' => $one, 'hydrogenUid' => $hydrogenUidPrefix . 1])
 			</div>
 			<div class="container col s12 m6 row">
-				@include('Hydrogen::partials/list', ['articles' => $two])
+				@include('Hydrogen::partials/list', ['articles' => $two, 'hydrogenUid' => $hydrogenUidPrefix . 2])
 			</div>
 		@else
-			<div class="container col s12 m4 row">
-				@include('Hydrogen::partials/list', ['articles' => $one])
+			<div class="container col s12 m6 l4 row">
+				@include('Hydrogen::partials/list', ['articles' => $one, 'hydrogenUid' => $hydrogenUidPrefix . 1])
 			</div>
-			<div class="container col s12 m4 row">
-				@include('Hydrogen::partials/list', ['articles' => $two])
+			<div class="container col s12 m6 l4 row">
+				@include('Hydrogen::partials/list', ['articles' => $two, 'hydrogenUid' => $hydrogenUidPrefix . 2])
 			</div>
-			<div class="container col s12 m4 row">
-				@include('Hydrogen::partials/list', ['articles' => $three])
+			<div class="container col s12 m6 l4 row">
+				@include('Hydrogen::partials/list', ['articles' => $three, 'hydrogenUid' => $hydrogenUidPrefix . 3])
 			</div>
 		@endif
 		@if($articlesCount > $articlesPerPage)

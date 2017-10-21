@@ -79,7 +79,7 @@ class Handler extends ExceptionHandler
 			if ($this->isHttpException($exception)) {
 				$exception = $this->prepareException($exception); // convert ModelNotFoundException & AuthorizationException to HttpException
 			}
-			$code = $exception->getStatusCode(); // getStatusCode(), NOT getCode()
+			$code = $exception->getCode();
 			if ($code === 0) {
 				$code = 500;
 			}

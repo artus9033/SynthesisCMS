@@ -9,7 +9,7 @@ return [
 	'err_article_not_found_help' => 'Please verify that the id of the requested article is correct',
 	'choose_list_column_count' => 'Choose the amount of columns in which articles are listed',
 	'input_articles_on_single_page' => 'Choose how many articles to show on a single page',
-	'showHeader' => 'Show Header',
+	'showHeader' => 'Show header over a single article',
 ];
 
 ?>

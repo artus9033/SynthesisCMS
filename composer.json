@@ -49,14 +49,14 @@
             "php artisan vendor:publish --quiet",
             "php artisan optimize",
             "php artisan storage:link",
-            "php artisan config:clear"
+            "php artisan config:cache"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan vendor:publish --quiet",
             "php artisan optimize",
             "php artisan storage:link",
-            "php artisan config:clear"
+            "php artisan config:cache"
         ],
         "gen-phpstorm-helpers": [
             "php artisan ide-helper:generate",

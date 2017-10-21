@@ -43,7 +43,8 @@
 				<img src="{!! asset('img/office.jpg') !!}">
 			</div>
 			<a href="{{ route('profile') }}">
-				<img class="circle" style="border-radius: unset !important;" src="{!! asset('img/synthesiscms-icon.svg') !!}">
+				<img class="circle" style="border-radius: unset !important;"
+					 src="{!! asset('img/synthesiscms-icon.svg') !!}">
 			</a>
 			<a href="{{ route('profile') }}">
 				<span class="white-text name truncate">
@@ -66,20 +67,22 @@
 		</div>
 	</li>
 	@if (\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isGuest())
-		<ul style="width: 100%;" class="collapsible collapsible-accordion">
-			<li class="{{ $synthesiscmsMainColor }}-text col s12 waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-				<a class="{{ $synthesiscmsMainColor }}-text collapsible-header" href="{{ route('register') }}"><i
-							class="material-icons {{ $synthesiscmsMainColor }}-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
-				</a>
-			</li>
-		</ul>
-		<ul style="width: 100%;" class="collapsible collapsible-accordion">
-			<li class="{{ $synthesiscmsMainColor }}-text col s12 waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-				<a class="{{ $synthesiscmsMainColor }}-text collapsible-header" href="{{ route('login') }}"><i
-							class="material-icons {{ $synthesiscmsMainColor }}-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
-				</a>
-			</li>
-		</ul>
+		@if($synthesiscmsShowLoginRegisterButtons)
+			<ul style="width: 100%;" class="collapsible collapsible-accordion">
+				<li class="{{ $synthesiscmsMainColor }}-text col s12 waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
+					<a class="{{ $synthesiscmsMainColor }}-text collapsible-header" href="{{ route('register') }}"><i
+								class="material-icons {{ $synthesiscmsMainColor }}-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
+					</a>
+				</li>
+			</ul>
+			<ul style="width: 100%;" class="collapsible collapsible-accordion">
+				<li class="{{ $synthesiscmsMainColor }}-text col s12 waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
+					<a class="{{ $synthesiscmsMainColor }}-text collapsible-header" href="{{ route('login') }}"><i
+								class="material-icons {{ $synthesiscmsMainColor }}-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
+					</a>
+				</li>
+			</ul>
+		@endif
 	@else
 		<ul style="width: 100%;" class="collapsible collapsible-accordion">
 			<li class="bold">
@@ -128,20 +131,20 @@
 			<div class="collapsible-body" style="padding: unset !important;">
 				<ul>
 					<script>
-						$(document).ready(function () {
-							$('.lang-span-berylium').each(function () {
-								var chk_lang_str = "{{ \App::getLocale() }}";
-								var element = $(this);
-								if (element.text().toLowerCase() == chk_lang_str.toLowerCase()) {
-									element.addClass("{{ $synthesiscmsMainColor }} white-text waves-light");
-								} else {
-									element.addClass("{{ $synthesiscmsMainColor }}-text waves-{{ $synthesiscmsMainColor }}");
-								}
-							});
-							$('.lang-span-berylium').click(function () {
-								SynthesisCmsJsUtils.setLanguage($(this).text().toUpperCase());
-							});
-						});
+                        $(document).ready(function () {
+                            $('.lang-span-berylium').each(function () {
+                                var chk_lang_str = "{{ \App::getLocale() }}";
+                                var element = $(this);
+                                if (element.text().toLowerCase() == chk_lang_str.toLowerCase()) {
+                                    element.addClass("{{ $synthesiscmsMainColor }} white-text waves-light");
+                                } else {
+                                    element.addClass("{{ $synthesiscmsMainColor }}-text waves-{{ $synthesiscmsMainColor }}");
+                                }
+                            });
+                            $('.lang-span-berylium').click(function () {
+                                SynthesisCmsJsUtils.setLanguage($(this).text().toUpperCase());
+                            });
+                        });
 					</script>
 					<li>
 						<span class="waves-effect col s12 lang-span-berylium">EN</span>
