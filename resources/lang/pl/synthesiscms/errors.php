@@ -18,7 +18,7 @@ return [
 	'403_desc' => 'Przepraszamy, nie ma tu nic, co moglibyśmy Ci pokazać',
 	'403_header2' => 'Nie jesteś autoryzowany, by zobaczyć tą zawartość',
 	'403_desc2' => 'Żądana strona wymaga wyższych uprawnień. Zapytaj administratora strony o pomoc.',
-	'403_link' => 'Home Page',
+	'403_link' => 'Strona Główna',
 	'404_header' => '&nbsp;Błąd 404 (Nie Znaleziono)',
 	'404_desc' => 'Przepraszamy, nie ma tu nic, co moglibyśmy Ci pokazać',
 	'404_header2' => 'Zgubiłeś się?',

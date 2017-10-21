@@ -28,4 +28,8 @@ class User extends Authenticable
 	protected $hidden = [
 		'password', 'remember_token',
 	];
+
+	public static function getTableName(){
+		return User::first()->getTable();
+	}
 }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Auth\User;
+use App\Models\Settings\Settings;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Validator;
 
 class RegisterController extends Controller
@@ -21,13 +23,6 @@ class RegisterController extends Controller
 	*/
 
 	use RegistersUsers;
-
-	/**
-	 * Where to redirect users after login / registration.
-	 *
-	 * @var string
-	 */
-	protected $redirectTo = '/';
 
 	/**
 	 * Create a new controller instance.
@@ -49,9 +44,18 @@ class RegisterController extends Controller
 	{
 		return Validator::make($data, [
 			'name' => 'required|max:255',
-			'email' => 'required|email|max:255|unique:users',
+			'email' => 'required|email|max:255|unique:' . User::getTableName(),
 			'password' => 'required|min:6|confirmed',
 		]);
+	}
+
+	/**
+	 * Where to redirect users after login / registration.
+	 *
+	 * @return string
+	 */
+	protected function redirectTo(){
+		return Settings::getActiveInstance()->getField('home_page');
 	}
 
 	/**
@@ -72,5 +76,17 @@ class RegisterController extends Controller
 			'password' => bcrypt($data['password']),
 			'is_admin' => $bIsAdmin,
 		]);
+	}
+
+	/**
+	 * The user has been registered.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  mixed  $user
+	 * @return mixed
+	 */
+	protected function registered(Request $request, $user)
+	{
+		Toolbox::addToastToBag(trans('synthesiscms/auth.toast_registered_successfully', ['username' => $user->name]));
 	}
 }

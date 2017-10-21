@@ -70,7 +70,7 @@
 						<input class='validate' type='password' name='password_confirmation' id='password_confirmation'
 							   required/>
 						<label for='password_confirmation' data-error="{{ trans('synthesiscms/auth.password_bad')}}"
-							   data-success="{{ trans('synthesiscms/auth.password_ok')}}">{{ trans('synthesiscms/auth.password')}}</label>
+							   data-success="{{ trans('synthesiscms/auth.password_ok')}}">{{ trans('synthesiscms/auth.password_again')}}</label>
 					</div>
 					<div class="row"></div>
 					<button type='submit' name='btn_login'
