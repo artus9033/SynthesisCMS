@@ -1,4 +1,9 @@
 /**
+* 0. Variables
+ */
+$mainSynthesisColor: #26a69a;
+
+/**
 * 1. Miscellanous
 **/
 .text-center {
@@ -32,11 +37,75 @@
 .synthesis-cool-link:hover::after {
     width: 100%;
 }
+
 .synthesis-cool-link::after {
     content: '';
     display: block;
     width: 0;
     height: 2px;
-    background: #26a69a;
+    background: $mainSynthesisColor;
     transition: width .3s;
+}
+
+.synthesis-cool-image
+{
+    width: 300px;
+    margin: 0 auto;
+    padding: 0px;
+    background-color: #eaab00; // gold, because the images below are 1-pixel gold bitmaps
+    background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAOqrAP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='),  url('data:image/gif;base64,R0lGODlhAQABAPAAAOqrAP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='),
+    url('data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');
+    background-repeat: no-repeat;
+    background-position: top center, top center, bottom center;
+    -webkit-animation: synthesisCoolImageDrawBorderFromCenter2 2s;
+}
+
+.synthesis-cool-image:hover{
+    padding: 2px;
+    transition: padding linear 1.2s;
+    -webkit-animation: synthesisCoolImageDrawBorderFromCenter 2s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes synthesisCoolImageDrawBorderFromCenter {
+    0% {
+        padding: 2px;
+        background-size: 0 2px, 0 0, 100% 100%;
+    }
+    20% {
+        padding: 2px;
+        background-size: 100% 2px, 100% 0, 100% 100%;
+    }
+    66%
+    {
+        padding: 2px;
+        background-size: 100% 2px, 100% 98%, 100% 100%;
+    }
+    99%
+    {
+        padding: 2px;
+        background-size: 100% 2px, 100% 98%, 0 2px;
+    }
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes synthesisCoolImageDrawBorderFromCenter2 {
+    0% {
+        padding: 2px;
+        background-size: 100% 2px, 100% 98%, 0 2px;
+    }
+    20% {
+        padding: 2px;
+        background-size: 100% 2px, 100% 98%, 100% 100%;
+    }
+    66%
+    {
+        padding: 2px;
+        background-size: 100% 2px, 100% 0, 100% 100%;
+    }
+    99%
+    {
+        padding: 2px;
+        background-size: 0 2px, 0 0, 100% 100%;
+    }
 }

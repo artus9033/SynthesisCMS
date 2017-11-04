@@ -24,6 +24,8 @@
 	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/dragula.js') !!}"></script>
 	<link type="text/css" rel="stylesheet" href="{!! asset("css/dragula.css") !!}">
+	<script type="text/javascript" src="{!! asset('js/jquery.optiscroll.js') !!}"></script>
+	<link type="text/css" rel="stylesheet" href="{!! asset("css/optiscroll.css") !!}">
 	<script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -49,20 +51,35 @@
 @yield('body')
 <div class="col s12 row" style="margin-bottom: 0px !important;">
 	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
-	<nav class="no-print {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 no-padding z-depth-3">
+	<nav id="synthesiscms-app-main-nav" class="no-print {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 no-padding z-depth-3">
 		<div class="nav-wrapper col s12 no-padding">
 			<div class="left synthesiscms-mobile-btn-wrapper">
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::BeforeSiteName, Request::url()) !!}
 			</div>
-			<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down"
-			   style="background-color: {!! $synthesiscmsLogoBackgroundColor !!}; position: relative; box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 999 !important; height: 220%; width: 125px;"
-			   href="{!! url($synthesiscmsHomePage) !!}">
-					<img id="synthesiscms-app-logo-img" style="height: 85%; width: 90%; object-fit: contain; margin-top: 5px;" src="{{ url('/favicon.ico') }}">
-			</a>
-			<a id="synthesiscms-mobile-brand-logo" href="{!! url($synthesiscmsHomePage) !!}"
-			   class="hide-on-large-only brand-logo truncate">{{ $synthesiscmsHeaderTitle }}</a>
-			<a id="synthesiscms-desktop-brand-logo" href="{!! url($synthesiscmsHomePage) !!}" style="max-width: 100%;"
-			   class="hide-on-med-and-down brand-logo truncate col s7">{{ $synthesiscmsHeaderTitle }}</a>
+			@if($synthesiscmsShowImageBigBanner)
+				<a id="synthesiscms-big-image-banner" href="{!! url($synthesiscmsHomePage) !!}"
+				class="hide-on-med-and-down brand-logo">
+					<img id="synthesiscms-app-logo-img" src="{{ url('/banner.png') }}">
+				</a>
+				<a id="synthesiscms-mobile-brand-logo" href="{!! url($synthesiscmsHomePage) !!}"
+				   class="hide-on-large-only brand-logo truncate">{{ $synthesiscmsHeaderTitle }}</a>
+				<script>
+					$(document).ready(function(){
+						$("#synthesiscms-big-image-banner").height($("#synthesiscms-app-logo-img").height());
+						$("#synthesiscms-app-main-nav").height($("#synthesiscms-app-logo-img").height());
+					});
+			    </script>
+			@else
+				<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down"
+				   style="background-color: {!! $synthesiscmsLogoBackgroundColor !!}; position: relative; box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 999 !important; height: 220%; width: 125px; overflow: hidden;"
+				   href="{!! url($synthesiscmsHomePage) !!}">
+					<img id="synthesiscms-app-logo-img" style="height: 90%; width: auto; object-fit: contain; margin-top: 5%;" src="{{ url('/favicon.ico') }}">
+				</a>
+				<a id="synthesiscms-mobile-brand-logo" href="{!! url($synthesiscmsHomePage) !!}"
+				   class="hide-on-large-only brand-logo truncate">{{ $synthesiscmsHeaderTitle }}</a>
+				<a id="synthesiscms-desktop-brand-logo" href="{!! url($synthesiscmsHomePage) !!}" style="max-width: 100%;"
+			    class="hide-on-med-and-down brand-logo truncate col s7">{{ $synthesiscmsHeaderTitle }}</a>
+			@endif
 			<script>
                 function synthesiscmsResizeBrandLogoMargin() {
                     $("#synthesiscms-mobile-brand-logo").css('width', ($('body').width() - $('.synthesiscms-mobile-btn-wrapper').width()));

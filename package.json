@@ -25,7 +25,8 @@
   "dependencies": {
     "dragula": "^3.7.2",
     "jquery-easing": "*",
-    "pickadate": "*",
-    "node-sass": "*"
+    "node-sass": "*",
+    "optiscroll": "^3.1.0",
+    "pickadate": "*"
   }
 }

@@ -25,6 +25,8 @@ return [
 	'choose_default_sorting_direction' => 'Choose default sorting direction',
 	'default_sorting_direction_1' => 'Ascending',
 	'default_sorting_direction_2' => 'Descending',
+	'no_tags' => 'No tags',
+	'tags' => 'Tags: ',
 ];
 
 ?>

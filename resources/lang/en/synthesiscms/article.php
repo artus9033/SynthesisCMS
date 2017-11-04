@@ -26,6 +26,8 @@ return [
 	'card_size_medium' => 'Medium (max 400px height)',
 	'card_size_large' => 'Large (max 500px height)',
 	'err_article_does_not_exist' => 'The requested article does not exist!',
+	'enter_tag_first' => 'Enter a tag',
+	'enter_tag_more' => '+ Tag',
 ];
 
 ?>

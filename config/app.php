@@ -182,12 +182,13 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
+		Laravel\Tinker\TinkerServiceProvider::class,
 		Barryvdh\Debugbar\ServiceProvider::class,
+		App\Providers\SettingsVariablesProvider::class,
 		//Dimsav\Translatable\TranslatableServiceProvider::class,
 		//TODO: implement translatable articles in the future
 		App\Providers\AppServiceProvider::class,
 		App\Providers\AuthServiceProvider::class,
-		App\Providers\SettingsVariablesProvider::class,
 		// App\Providers\BroadcastServiceProvider::class,
 		App\Providers\EventServiceProvider::class,
 		App\Providers\RouteServiceProvider::class,

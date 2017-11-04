@@ -38,6 +38,7 @@ return [
 	'toast_favicon_upload_success' => 'Pomyślnie wczytano nową ikonkę na serwer!',
 	'toast_favicon_upload_error' => 'Błąd podczas wczytywania nowej ikonki na serwer: ',
 	'switch_show_login_register_buttons' => 'Pokaż przyciski zaloguj/zarejestruj każdemu gościowi',
+	'switch_show_image_big_banner' => 'Pokaż duży baner strony zamiast ikonki w rogu',
 ];
 
 ?>

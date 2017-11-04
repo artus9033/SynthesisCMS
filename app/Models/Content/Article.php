@@ -60,4 +60,8 @@ class Article extends Model
 			return 0;
 		}
 	}
+
+	public function tags() {
+		return $this->belongsToMany(Tag::class, 'synthesiscms_article_tag', 'article_id', 'tag_id');
+	}
 }

@@ -11,6 +11,8 @@
 	<script type="text/javascript" src="{!! asset('js/materialize.js') !!}"></script>
 	<link type="text/css" rel="stylesheet" href="{!! asset("fonts/material-icons/material-icons.css") !!}">
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}" media="screen,projection"/>
+	<script type="text/javascript" src="{!! asset('js/jquery.optiscroll.js') !!}"></script>
+	<link type="text/css" rel="stylesheet" href="{!! asset("css/optiscroll.css") !!}">
 	<title>@yield('title')</title>
 	@yield('head')
 </head>

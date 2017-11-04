@@ -53,6 +53,8 @@ return [
 	'error_cms_already_installed_help' => 'Nie możesz przeprowadzić kolejnej instalacji na już istniejącej!',
 	'error_database_connection_failed' => 'Błąd podczas łączenia z bazą danych',
 	'error_database_connection_failed_help' => 'Aby to naprawić, skontaktuj się z administratorem strony, by sprawdził, czy serwer bazy danych jest poprawnie skonfigurowany i, czy plik konfiguracyjny SynthesisCMS zawiera poprawne dane logowania.',
+	'db_not_migrated' => 'baza danych nieprzemigrowana',
+	'db_not_migrated_help' => 'To oznacza, że nie wszystkie tabele bazy danych zostały stworzone, więc niektórym modelom CMSa może brakować źródeł danych. Proszę uruchomić migracje bazy danych ręcznie lub przeinstalować CMSa.',
 ];
 
 ?>

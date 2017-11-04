@@ -34,10 +34,11 @@ mix.sass('resources/assets/materializecss/sass/materialize.scss', 'public/css/ma
 mix.copy('resources/assets/materializecss/dist-js', 'public/js', false);
 mix.copy('resources/assets/materializecss/fonts', 'public/fonts', false);
 
-//Chart.js, Clipboard.js & Trumbowyg
+//Chart.js, Clipboard.js, Optiscroll & Trumbowyg
 mix.copy('node_modules/chart.js/dist/Chart.js', 'public/js');
 mix.copy('node_modules/clipboard/dist/clipboard.min.js', 'public/js/clipboard.min.js');
-mix.copy('node_modules/trumbowyg/dist', 'public/trumbowyg', false);
+mix.copy('node_modules/optiscroll/dist/jquery.optiscroll.js', 'public/js/jquery.optiscroll.js');
+mix.copy('node_modules/optiscroll/dist/optiscroll.css', 'public/css/optiscroll.css');
 
 //SynthesisCMS resources, trumbowyg resources, artus9033's Trumbowyg addons, fonts
 mix.copy('resources/assets/img', 'public/img', false);

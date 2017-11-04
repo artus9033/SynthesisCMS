@@ -36,13 +36,19 @@
 					artus9033
 				</a>
 			</span>
-			<span class="right">
-				<a class="github-button" href="https://github.com/artus9033" data-size="large"
+			<div class="right">
+				<!-- NOTE: substituted with hard-coded iframes
+				<a style="width: 61px; height: 28px; border: none;" class="github-button" href="https://github.com/artus9033" data-size="large"
 				   aria-label="Follow @artus9033 on GitHub">Follow @artus9033</a>
-				<a class="github-button" href="https://github.com/artus9033/SynthesisCMS" data-icon="octicon-star"
-				   data-size="large" aria-label="Star artus9033/SynthesisCMS on GitHub">Star</a>
+				<a style="width: 61px; height: 28px; border: none;" class="github-button" href="https://github.com/artus9033/SynthesisCMS" data-icon="octicon-star"
+				   data-size="large" aria-label="Star artus9033/SynthesisCMS on GitHub">Star</a> -->
+			<span class="right">
+				<iframe allowtransparency="true" scrolling="no" frameborder="0" src="https://buttons.github.io/buttons.html#href=https%3A%2F%2Fgithub.com%2Fartus9033&amp;aria-label=Follow%20%40artus9033%20%20on%20GitHub&amp;data-text=Follow%20%40artus9033&amp;data-size=large" style="width: 147px; height: 28px; border: none;"></iframe>
+				<iframe allowtransparency="true" scrolling="no" frameborder="0" src="https://buttons.github.io/buttons.html#href=https%3A%2F%2Fgithub.com%2Fartus9033%2FSynthesisCMS&amp;aria-label=Star%20artus9033%2FSynthesisCMS%20on%20GitHub&amp;data-icon=octicon-star&amp;data-text=Star&amp;data-size=large" style="width: 61px; height: 28px; border: none;"></iframe>
 			</span>
+			</div>
 		</div>
 	</div>
 </footer>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- NOTE: substituted with hard-coded iframes
+<script async defer src="https://buttons.github.io/buttons.js"></script>-->

@@ -17,7 +17,12 @@ class SynthesisDevModeMiddleware
 	 */
 	public function handle($request, Closure $next)
 	{
-		$isDevModeEnabled = Settings::getActiveInstance()->isDevModeEnabled();
+		$settings = Settings::getActiveInstance();
+		if(is_null($settings)){
+			$isDevModeEnabled = false;
+		}else {
+			$isDevModeEnabled = $settings->isDevModeEnabled();
+		}
 		if($isDevModeEnabled){
 			\Barryvdh\Debugbar\Facade::enable(); // works
 		}else{

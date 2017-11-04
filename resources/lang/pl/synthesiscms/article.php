@@ -26,6 +26,8 @@ return [
 	'card_size_medium' => 'Średni (max 400px wysokości)',
 	'card_size_large' => 'Duży (max 500px wysokości)',
 	'err_article_does_not_exist' => 'Żądany artykuł nie istnieje!',
+	'enter_tag_first' => 'Wpisz tag',
+	'enter_tag_more' => '+ Tag',
 ];
 
 ?>

@@ -9,7 +9,7 @@
 @section('head')
 	<style>
 		.tabs .tab a {
-			color: {{ $synthesiscmsMainColor }}     !important;
+			color: {{ $synthesiscmsMainColor }} !important;
 		}
 
 		.tabs ::-webkit-scrollbar:horizontal {
@@ -237,6 +237,17 @@
 								<div class="col s2" style="height: 60px;">
 									<div id="logo_background_color_probe"
 										 style="background-color: {{ $synthesiscmsLogoBackgroundColor }}; width: 100%; height: 100%; box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);"></div>
+								</div>
+								<div class="col s12 row">
+									<span>
+										{{ trans('synthesiscms/settings.switch_show_image_big_banner') }}
+									</span>
+									<div class="switch">
+										<label>
+											<input @if($synthesiscmsShowImageBigBanner) checked="checked" @endif name="show_image_big_banner" type="checkbox">
+											<span class="lever"></span>
+										</label>
+									</div>
 								</div>
 								<div class="progress col s12">
 									<div id="settings_favicon_upload_loading" style="display: none;"

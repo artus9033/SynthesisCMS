@@ -35,7 +35,7 @@
 			</div>
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 			<div class="col s12 row"></div>
-			<form class="form" method="POST" action="">
+			<form onkeypress="return event.keyCode != 13;" class="form" method="POST" action="">
 				{{ csrf_field() }}
 				<div class="input-field col s12 tooltipped" data-position="top" data-delay="50"
 					 data-tooltip="{{ trans('synthesiscms/admin.create_article_title_tooltip') }}">
@@ -111,6 +111,51 @@
 						<label>{{ trans('synthesiscms/extensions.choose_article_category') }}</label>
 					</div>
 				</div>
+				<div class="row col s12 m10 offset-m1 l8 offset-l2">
+					<div style="text-align: left !important;" class="chips" id="article-tags"></div>
+				</div>
+				<input style="visibility: hidden;" name="articleTags" id="articleTags">
+				<script>
+                    $(document).ready(function() {
+                        var synthesiscmsArticleChips = [];
+						@php
+						$autocompleteTags = "";
+						foreach(\App\Models\Content\Tag::all() as $key => $tag){
+                            $autocompleteTags .= "\"$tag->name\": null," . PHP_EOL;
+						}
+						@endphp
+                        var hydrogenAutocompleteData = {
+							{!! $autocompleteTags !!}
+						};
+                        $('#article-tags').material_chip({
+                            placeholder: "{{ trans('synthesiscms/article.enter_tag_first') }}",
+                            secondaryPlaceholder: "{{ trans('synthesiscms/article.enter_tag_more') }}",
+                            autocompleteOptions: {
+                                data: hydrogenAutocompleteData,
+                                limit: Infinity,
+                                minLength: 1
+                            },
+                        });
+
+                        $('#article-tags').on('chip.add', function (e, chip) {
+                            synthesiscmsArticleChips.push(chip.tag);
+                            updateHydrogenTagsInput();
+                        });
+
+                        $('#article-tags').on('chip.delete', function (e, chip) {
+                            synthesiscmsArticleChips.splice(synthesiscmsArticleChips.indexOf(chip.tag), 1);
+                            updateHydrogenTagsInput();
+                        });
+
+                        function updateHydrogenTagsInput(){
+                            var text = "";
+                            $.each(synthesiscmsArticleChips, function(index, value){
+                                text += btoa(value) + ";";
+							});
+                            $("#articleTags").val(text);
+						}
+                    });
+				</script>
 				<div class="row">
 					<div class="input-field col s8 offset-s2" id="select-color-div">
 						<select class="{{ $synthesiscmsMainColor }}-text" name="cardSize" id="cardSize">
@@ -131,7 +176,7 @@
 					<i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_article') }}
 				</button>
 				<div class="col s12 row"></div>
-				<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text col s2 offset-s5"
+				<a style="text-align: left !important;" class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text col s2 offset-s5"
 				   href="{{ route('manage_articles') }}"><i
 							class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_article') }}
 				</a>

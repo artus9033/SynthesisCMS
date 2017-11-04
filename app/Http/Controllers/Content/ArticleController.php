@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContentEditorRequest;
 use App\Http\Requests\ContentManagerRequest;
 use App\Models\Content\Article;
+use App\Models\Content\Tag;
 use App\SynthesisCMS\API\ExtensionsCallbacksBridge;
 use App\Toolbox;
 
@@ -20,15 +21,36 @@ class ArticleController extends Controller
 	public function createArticlePost(ContentEditorRequest $request)
 	{
 		if (!Toolbox::isEmptyString($request->get('title'))) {
+			$uid = \Auth::id();
+			if(is_null($uid)){
+				$uid = 1;
+			}
 			$article = Article::create(
-				['title' => $request->get('title'),
+				[
+					'title' => $request->get('title'),
 					'description' => $request->get('desc'),
 					'articleCategory' => $request->get('articleCategory'),
 					'hasImage' => ($request->get('hasImage') == 'on'),
 					'image' => $request->get('image'),
-					'cardSize' => Article::getCardSizeFromNumber(intval($request->get('cardSize')))
+					'cardSize' => Article::getCardSizeFromNumber(intval($request->get('cardSize'))),
+					'publishedBy' => $uid,
 				]
 			);
+			$articleTagsRawBase64 = $request->get('articleTags');
+			$tagsDetached = false;
+			if(strlen($articleTagsRawBase64)){
+				foreach (explode(";", $articleTagsRawBase64) as $val){
+					$val = base64_decode($val);
+					if(strlen($val)) {
+						if(!$tagsDetached){
+							$article->tags()->detach();
+							$tagsDetached = true;
+						}
+						$tag = Tag::firstOrCreate(['name' => $val]);
+						$article->tags()->attach($tag->id);
+					}
+				}
+			}
 			$name_new = Toolbox::string_truncate($article->title, 10);
 			return \Redirect::route('manage_articles')->with('messages', array(trans('synthesiscms/admin.msg_article_created', ['name' => $name_new])));
 		} else {
@@ -63,6 +85,21 @@ class ArticleController extends Controller
 			$article->hasImage = ($request->get('hasImage') == 'on');
 			$article->cardSize = Article::getCardSizeFromNumber(intval($request->get('cardSize')));
 			$article->image = $request->get('image');
+			$articleTagsRawBase64 = $request->get('articleTags');
+			$tagsDetached = false;
+			if(strlen($articleTagsRawBase64)){
+				foreach (explode(";", $articleTagsRawBase64) as $val){
+					$val = base64_decode($val);
+					if(strlen($val)) {
+						if(!$tagsDetached){
+							$article->tags()->detach();
+							$tagsDetached = true;
+						}
+						$tag = Tag::firstOrCreate(['name' => $val]);
+						$article->tags()->attach($tag->id);
+					}
+				}
+			}
 			$article->save();
 			return \Redirect::route('manage_articles')->with('messages', array(trans('synthesiscms/admin.msg_article_saved', ['name' => Toolbox::string_truncate($article->title, 10)])));
 		} else {

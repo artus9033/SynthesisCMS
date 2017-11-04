@@ -12,7 +12,8 @@
         "chrisjean/php-ico": "^1.0",
         "meyfa/php-svg": "^0.6.0",
         "mouf/nodejs-installer": "^1.0",
-        "itsgoingd/clockwork": "^2.0"
+        "itsgoingd/clockwork": "^2.0",
+        "laravel/tinker": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "*",

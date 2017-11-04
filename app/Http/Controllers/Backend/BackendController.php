@@ -41,6 +41,27 @@ class BackendController extends Controller
 							if (strstr($file->getClientOriginalExtension(), 'ico')) {
 								move_uploaded_file($file, public_path('favicon.ico'));
 							} else {
+								$size = getimagesize($file);
+								$w = $size[0];
+								$h = $size[1];
+								if($h == 128){
+									$height = $h;
+									$width = $w;
+								}else if($h > 128){
+									$percent = $h / 128;
+									$height = $h / $percent;
+									$width = $w / $percent;
+								}else{
+									$percent = $h / 128;
+									$height = $h * $percent;
+									$width = $w * $percent;
+								}
+								$src = imagecreatefromstring(file_get_contents($file));
+								$dst = imagecreatetruecolor($width, $height);
+								imagecopyresampled($dst,$src,0,0,0,0,$width,$height,$size[0],$size[1]);
+								imagedestroy($src);
+								imagepng($dst, public_path('banner.png'));
+								imagedestroy($dst);
 								$icoLib = new \PHP_ICO($file, array(array(128, 128)));
 								$icoLib->save_ico(public_path('favicon.ico'));
 							}
@@ -81,6 +102,7 @@ class BackendController extends Controller
 		$settings->color_class = $request->get('main_color_class');
 		$settings->devModeEnabled = ($request->get('devModeCheckbox') == 'on');
 		$settings->logo_background_color = $request->get('logo_background_color');
+		$settings->show_image_big_banner = ($request->get('show_image_big_banner') == 'on');
 		$settings->save();
 		return \Redirect::route('settings')->with('messages', array(trans('synthesiscms/settings.msg_saved')));
 	}

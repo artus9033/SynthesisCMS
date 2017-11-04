@@ -53,6 +53,8 @@ return [
 	'error_cms_already_installed_help' => 'You cannot perform another installation over an existing one!',
 	'error_database_connection_failed' => 'Database connection error',
 	'error_database_connection_failed_help' => 'To fix this, please contact the administrator to check if the database server is properly configured & if SynthesisCMS configuration contains valid credentials.',
+	'db_not_migrated' => 'database not migrated',
+	'db_not_migrated_help' => 'This means not all database tables were created, thus some CMS models are missing their data source. Please run all the migrations manually or reinstall the CMS.',
 ];
 
 ?>

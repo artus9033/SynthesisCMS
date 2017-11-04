@@ -12,6 +12,8 @@ class Tag extends Model
 
 	protected $fillable = array('name');
 
-
+	public function posts() {
+		return $this->belongsToMany(Article::class, 'synthesiscms_article_tag', 'article_id', 'tag_id');
+	}
 
 }

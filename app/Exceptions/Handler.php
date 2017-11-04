@@ -73,13 +73,26 @@ class Handler extends ExceptionHandler
 	public function render($request, Exception $exception)
 	{
 		\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
-		if (Settings::getActiveInstance()->isDevModeEnabled()) {
+		$settings = Settings::getActiveInstance();
+		if(is_null($settings)){
+			\Barryvdh\Debugbar\Facade::disable(); // works, executed here, because if settings db table doesn't exist,
+			// then the dev middleware is unlikely to even be executed before the error handler (here), which ends the app
+			return response(view('errors/fatal')->with(['error' => trans('synthesiscms/errors.db_not_migrated'), 'help' => trans('synthesiscms/errors.db_not_migrated_help')]));
+		}else{
+			$continue = $settings->isDevModeEnabled();
+		}
+		if ($continue) {
 			return parent::render($request, $exception);
 		} else {
+			\Barryvdh\Debugbar\Facade::disable();
 			if ($this->isHttpException($exception)) {
 				$exception = $this->prepareException($exception); // convert ModelNotFoundException & AuthorizationException to HttpException
 			}
-			$code = $exception->getCode();
+			if(method_exists($exception, 'getStatusCode')){
+				$code = $exception->getStatusCode(); //IMPORTANT: getStatusCode(), NOT getCode() !!!!!
+			}else{
+				$code = 0;
+			}
 			if ($code === 0) {
 				$code = 500;
 			}

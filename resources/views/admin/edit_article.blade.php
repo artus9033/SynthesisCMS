@@ -21,11 +21,11 @@
 	</script>
 	<style>
 		#select-color-div .caret {
-			color: {{ $synthesiscmsMainColor }} !important;
+			color: {{ $synthesiscmsMainColor }}  !important;
 		}
 
 		#select-color-div .select-dropdown {
-			border-bottom-color: {{ $synthesiscmsMainColor }} !important;
+			border-bottom-color: {{ $synthesiscmsMainColor }}  !important;
 		}
 
 		label {
@@ -117,11 +117,11 @@
                         var hasImageChecked = {{ $article->hasImage }};
                         $('#image').val("{!! $article->image !!}");
                         $('#hasImage').prop('checked', hasImageChecked);
-                        if(hasImageChecked){
+                        if (hasImageChecked) {
                             imgCollapsible = true;
                             $("#collapsible").click();
                             imgCollapsible = false;
-						}
+                        }
                     });
                     var imgCollapsible = {{ $article->hasImage }};
                     $("#hasImage").click(function () {
@@ -146,6 +146,65 @@
 						<label>{{ trans('synthesiscms/extensions.choose_article_category') }}</label>
 					</div>
 				</div>
+				<div class="col s12 m10 offset-m1 l8 offset-l2">
+					<div style="text-align: left !important;" class="chips" id="article-tags"></div>
+				</div>
+				<input style="visibility: hidden;" name="articleTags" id="articleTags">
+				<script>
+                    $(document).ready(function () {
+						@php
+							$hydrogenArticleTags = "";
+							foreach($article->tags as $key => $tag){
+								$hydrogenArticleTags .= "{ tag: \"$tag->name\", }," . PHP_EOL;
+							}
+						@endphp
+                        var hydrogenArticleTagsData = [
+							{!! $hydrogenArticleTags !!}
+						];
+                        var synthesiscmsArticleChips = [];
+                        $.each(hydrogenArticleTagsData, function(index, value){
+                            synthesiscmsArticleChips.push(value.tag);
+						});
+                        updateHydrogenTagsInput();
+						@php
+							$autocompleteTags = "";
+							foreach(\App\Models\Content\Tag::all() as $key => $tag){
+								$autocompleteTags .= "\"$tag->name\": null," . PHP_EOL;
+							}
+						@endphp
+                        var hydrogenAutocompleteData = {
+							{!! $autocompleteTags !!}
+						};
+                        $('#article-tags').material_chip({
+                            placeholder: "{{ trans('synthesiscms/article.enter_tag_first') }}",
+                            secondaryPlaceholder: "{{ trans('synthesiscms/article.enter_tag_more') }}",
+                            autocompleteOptions: {
+                                data: hydrogenAutocompleteData,
+                                limit: Infinity,
+                                minLength: 1
+                            },
+                            data: hydrogenArticleTagsData,
+                        });
+
+                        $('#article-tags').on('chip.add', function (e, chip) {
+                            synthesiscmsArticleChips.push(chip.tag);
+                            updateHydrogenTagsInput();
+                        });
+
+                        $('#article-tags').on('chip.delete', function (e, chip) {
+                            synthesiscmsArticleChips.splice(synthesiscmsArticleChips.indexOf(chip.tag), 1);
+                            updateHydrogenTagsInput();
+                        });
+
+                        function updateHydrogenTagsInput() {
+                            var text = "";
+                            $.each(synthesiscmsArticleChips, function (index, value) {
+                                text += btoa(value) + ";";
+                            });
+                            $("#articleTags").val(text);
+                        }
+                    });
+				</script>
 				<div class="row">
 					<div class="input-field col s8 offset-s2" id="select-color-div">
 						<select class="{{ $synthesiscmsMainColor }}-text" name="cardSize" id="cardSize">

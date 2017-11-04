@@ -25,6 +25,8 @@ class PatchArticlesTableAddPublishedBy extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('synthesiscms_articles');
+		Schema::table('synthesiscms_articles', function (Blueprint $table) {
+			$table->dropColumn("publishedBy");
+		});
 	}
 }

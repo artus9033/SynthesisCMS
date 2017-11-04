@@ -54,9 +54,13 @@ class ExtensionsServiceProvider extends ServiceProvider
 
 		if (!\App::runningInConsole()) {
 			$manager = new SynthesisPositionManager();
-
-			// For each of the registered extensions, include their routes, views & translations
-			$extensions = Settings::getActiveInstance()->getInstalledExtensions();
+			$settingsInstance = Settings::getActiveInstance();
+			if(!is_null($settingsInstance)) {
+				// For each of the registered extensions, include their routes, views & translations
+				$extensions = $settingsInstance->getInstalledExtensions();
+			}else{
+				$extensions = array();
+			}
 
 			while (list(, $extension) = each($extensions)) {
 

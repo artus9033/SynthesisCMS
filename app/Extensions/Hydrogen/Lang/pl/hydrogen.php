@@ -25,6 +25,8 @@ return [
 	'choose_default_sorting_direction' => 'Wybierz domyślny kierunek sortowania',
 	'default_sorting_direction_1' => 'Rosnący',
 	'default_sorting_direction_2' => 'Malejący',
+	'no_tags' => 'Brak tagów',
+	'tags' => 'Tagi: ',
 ];
 
 ?>

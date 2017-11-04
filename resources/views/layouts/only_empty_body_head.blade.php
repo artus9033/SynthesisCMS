@@ -17,6 +17,8 @@
 	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/Chart.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('js/jquery.optiscroll.js') !!}"></script>
+	<link type="text/css" rel="stylesheet" href="{!! asset("css/optiscroll.css") !!}">
 	<script type="text/javascript">
         $.ajaxSetup({
             headers: {
