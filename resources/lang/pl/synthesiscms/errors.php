@@ -55,6 +55,7 @@ return [
 	'error_database_connection_failed_help' => 'Aby to naprawić, skontaktuj się z administratorem strony, by sprawdził, czy serwer bazy danych jest poprawnie skonfigurowany i, czy plik konfiguracyjny SynthesisCMS zawiera poprawne dane logowania.',
 	'db_not_migrated' => 'baza danych nieprzemigrowana',
 	'db_not_migrated_help' => 'To oznacza, że nie wszystkie tabele bazy danych zostały stworzone, więc niektórym modelom CMSa może brakować źródeł danych. Proszę uruchomić migracje bazy danych ręcznie lub przeinstalować CMSa.',
+	'warning_csrf_token_expired_please_try_again' => 'Twoja sesja przedawniła się z powodu długiej bezczynności. Proszę spróbować jeszcze raz.',
 ];
 
 ?>

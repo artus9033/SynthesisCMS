@@ -104,7 +104,7 @@
                         $('#image-tv').val(txt);
                     }
 				</script>
-				@include('partials/file-picker', ['picker_modal_id' => 'nitrogen_create_item_picker', 'callback_function_name' => 'nitrogenImagePickerCallback', 'followIframeParentHeight' => true, 'fileExtensions' => ['jpg', 'png', 'gif', 'jpeg']])
+				@include('partials/file-picker', ['picker_modal_id' => 'nitrogen_create_item_picker', 'callback_function_name' => 'nitrogenImagePickerCallback', 'followIframeParentHeight' => true, 'fileExtensions' => ['jpg', 'png', 'gif', 'jpeg', 'tga', 'gif', 'webp', 'JPG', 'PNG', 'GIF', 'JPEG', 'TGA', 'WEBP']])
 				<div class="row"></div>
 				<a href="{{ url()->previous() }}"
 				   class="col s6 center text-center btn-flat waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">{{ trans('synthesiscms/admin.applet_return') }}</a>

@@ -9,7 +9,9 @@
 				@php
 					$firstItemRandomId = "berylium-first-item-" . md5(date('Y-m-d H:i:s:u'));
 				@endphp
-				<li id="{{ $firstItemRandomId }}"><a style="opacity: 0;">SynthesisCMS Logo Separator</a></li>
+				@if(!$synthesiscmsShowImageBigBanner)
+					<li id="{{ $firstItemRandomId }}"><a style="opacity: 0;">SynthesisCMS Logo Separator</a></li>
+				@endif
 				<script>
                     $(document).ready(function () {
                         $("#{{ $firstItemRandomId }}").width($('#synthesiscms-app-logo').width());

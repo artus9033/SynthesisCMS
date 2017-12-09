@@ -1,5 +1,5 @@
 class SynthesisCmsJsUtils {
-    static includeFilePickerDynamically(picker_modal_id, callback_function_name, followIframeParentHeight = false, fileExtensions = ['jpg', 'png', 'gif', 'jpeg']) {
+    static includeFilePickerDynamically(picker_modal_id, callback_function_name, followIframeParentHeight = false, fileExtensions = ['jpg', 'png', 'gif', 'jpeg', 'tga', 'gif', 'webp', 'JPG', 'PNG', 'GIF', 'JPEG', 'TGA', 'WEBP']) {
         var selfRef = this;
         var mUrl = this.getSiteRootUrl() + '/admin/file-picker';
         $.ajax(

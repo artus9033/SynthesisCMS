@@ -89,7 +89,7 @@ class RouteController extends Controller
 
 			ExtensionsCallbacksBridge::handleOnRouteSaved($page->id);
 
-			return \Redirect::route("manage_routes")->with('messages', array(trans('synthesiscms/admin.msg_route_saved', ['route' => $page->slug])));
+			return \Redirect::route("manage_routes")->with('messages', array(trans('synthesiscms/admin.msg_route_saved', ['route' => $page->name])));
 		}
 	}
 

@@ -65,7 +65,10 @@
                         $('input[id=route]').val("/" + $('input[id=route]').val());
                     }
                     $.each(ajaxRequests, function (index, request) {
-                        request.abort();
+                        if(request) {
+                            request.abort();
+                        }
+                        ajaxRequests.splice(index, 1);
                     });
                     function process(data) {
                         $('#route-progress').css("display", "none");

@@ -139,6 +139,7 @@ class SynthesisFilesystemController extends Controller
 			}
 		} else {
 			$data = array(
+				'hasFile'=>$request->hasFile('synthesiscms-file'),
 				'success' => false,
 				'message' => 'no file received'
 			);

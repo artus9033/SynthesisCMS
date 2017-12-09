@@ -79,7 +79,7 @@
                                     $('#image').val(url);
                                 }
 							</script>
-							@include('partials.file-picker', ['picker_modal_id' => 'article_create_item_picker', 'callback_function_name' => 'articleImagePickerCallback', 'followIframeParentHeight' => false, 'fileExtensions' => ['jpg', 'png', 'gif', 'jpeg']])
+							@include('partials.file-picker', ['picker_modal_id' => 'article_create_item_picker', 'callback_function_name' => 'articleImagePickerCallback', 'followIframeParentHeight' => false, 'fileExtensions' => ['jpg', 'png', 'gif', 'jpeg', 'tga', 'gif', 'webp', 'JPG', 'PNG', 'GIF', 'JPEG', 'TGA', 'WEBP']])
 							<a onclick="$('#article_create_item_picker').modal('open')"
 							   class="btn btn-large center col s6 row waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text">
 								<i class="material-icons white-text">attachment</i>&nbsp;&nbsp;{{ trans('synthesiscms/article.imageFile') }}

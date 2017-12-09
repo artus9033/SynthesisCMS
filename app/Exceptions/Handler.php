@@ -72,6 +72,10 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $exception)
 	{
+		if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+			Toolbox::addWarningToBag(trans('synthesiscms/errors.warning_csrf_token_expired_please_try_again'));
+			return redirect()->back();
+		}
 		\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
 		$settings = Settings::getActiveInstance();
 		if(is_null($settings)){

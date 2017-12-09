@@ -46,7 +46,7 @@
 					   href="{{ url($page->slug) }}" target="_blank"
 					   class="btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
 						<i class="material-icons white-text left"
-								style="line-height: unset !important; font-size: 1.8rem;">open_in_new</i>{{ trans('synthesiscms/admin.view_route') }}
+						   style="line-height: unset !important; font-size: 1.8rem;">open_in_new</i>{{ trans('synthesiscms/admin.view_route') }}
 					</a>
 				</div>
 			</div>
@@ -86,7 +86,10 @@
                                 $('input[id=slug]').val("/" + $('input[id=slug]').val());
                             }
                             $.each(ajaxRequests, function (index, request) {
-                                request.abort();
+                                if(request) {
+                                    request.abort();
+                                }
+                                ajaxRequests.splice(index, 1);
                             });
                             function process(data) {
                                 $('#slug-progress').css("display", "none");
@@ -112,7 +115,8 @@
                                     url: "{{ route('synthesis_route_check') }}",
                                     type: "post",
                                     data: {
-                                        'route': $('input[id=route]').val(),
+                                        'source': {!! json_encode($page->slug) !!},
+                                        'route': $('input[name=slug]').val(),
                                         '_token': $('input[name=_token]').val()
                                     },
                                     success: function (data) {
