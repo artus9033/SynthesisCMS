@@ -20,9 +20,9 @@ class CheckIfSiteEnabled
      */
     public function handle($request, Closure $next)
     {
+    	//TODO: rename the setting from enable site to maintenance mode
 		if(!Settings::getActiveInstance()->getField('site_enabled')) {
 			if(UserPrivilegesManager::isSiteManager()){
-				Toolbox::addToastToBag(trans('synthesiscms/main.toast_maintenance_mode_admin'));
 				Toolbox::addWarningToBag(trans('synthesiscms/main.warning_site_disabled'));
 			}else {
 				throw new MaintenanceModeException(Carbon::now()->getTimestamp(), 'Please try again later', 'Maintenance break');
