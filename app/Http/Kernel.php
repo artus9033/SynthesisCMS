@@ -27,7 +27,7 @@ class Kernel extends HttpKernel
 	protected $middleware = [];
 
 	/**
-	 * The application's route middleware groups.
+	 * The application's route middleware grroups.
 	 *
 	 * @var array
 	 */
