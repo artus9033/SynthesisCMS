@@ -7,6 +7,10 @@ use DirectoryIterator;
 
 class Toolbox
 {
+	static function isFunctionEnabled($func) {
+		return is_callable($func) && false === stripos(ini_get('disable_functions'), $func);
+	}
+	
 	static function addMessageToBag($message)
 	{
 		$array = (count(\Session::get('messages')) ? \Session::get('messages') : Array());

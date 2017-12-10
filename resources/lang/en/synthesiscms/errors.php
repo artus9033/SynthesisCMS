@@ -56,6 +56,7 @@ return [
 	'db_not_migrated' => 'database not migrated',
 	'db_not_migrated_help' => 'This means not all database tables were created, thus some CMS models are missing their data source. Please run all the migrations manually or reinstall the CMS.',
 	'warning_csrf_token_expired_please_try_again' => 'Your session has expired due to long inactivity. Please try again.',
+	'shell_exec_disabled' => 'The shell_exec() function necessary to use some of SynthesisCMS administrative tools is disabled. Please review Your PHP settings',
 ];
 
 ?>

@@ -40,6 +40,17 @@ class Handler extends ExceptionHandler
 	 */
 	public function report(Exception $exception)
 	{
+		$settings = Settings::getActiveInstance();
+		if(is_null($settings)){
+			\Barryvdh\Debugbar\Facade::disable(); // works, executed here, because if settings db table doesn't exist,
+			// then the dev middleware is unlikely to even be executed before the error handler (here), which ends the app
+			$devMode = false;
+		}else{
+			$devMode = $settings->isDevModeEnabled();
+			if(!$devMode){
+				\Barryvdh\Debugbar\Facade::disable();
+			}
+		}
 		if(!Toolbox::isRunningInConsole()) {
 			parent::report($exception);
 			if(!$exception instanceof NotFoundHttpException) {
@@ -53,7 +64,7 @@ class Handler extends ExceptionHandler
 					$continue = false;
 				}
 				if ($continue) {
-					ExceptionTracker::saveException($exception->getCode(), str_replace($fullPath, "[cms_root]", $exception->getFile()), str_replace($fullPath, "[cms_root]", $exception->getMessage()), str_replace($fullPath, "[cms_root]", $exception->getTraceAsString()), $fullPath);
+					ExceptionTracker::saveException($devMode, $exception->getCode(), str_replace($fullPath, "[cms_root]", $exception->getFile()), str_replace($fullPath, "[cms_root]", $exception->getMessage()), str_replace($fullPath, "[cms_root]", $exception->getTraceAsString()), $fullPath);
 				}
 			}
 		}else{

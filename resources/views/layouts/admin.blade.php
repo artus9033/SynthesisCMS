@@ -211,6 +211,9 @@
 			@each('partials/message', Session::get('messages'), 'message')
 			@php(Session::forget('messages'))
 		@endif
+		@if(!\App\Toolbox::isFunctionEnabled('shell_exec'))
+			@include('partials/warning', ['warning' => trans('synthesiscms/errors.shell_exec_disabled')])
+		@endif
 		@if(Session::has('warnings'))
 			@each('partials/warning', Session::get('warnings'), 'warning')
 			@php(Session::forget('warnings'))

@@ -56,6 +56,7 @@ return [
 	'db_not_migrated' => 'baza danych nieprzemigrowana',
 	'db_not_migrated_help' => 'To oznacza, że nie wszystkie tabele bazy danych zostały stworzone, więc niektórym modelom CMSa może brakować źródeł danych. Proszę uruchomić migracje bazy danych ręcznie lub przeinstalować CMSa.',
 	'warning_csrf_token_expired_please_try_again' => 'Twoja sesja przedawniła się z powodu długiej bezczynności. Proszę spróbować jeszcze raz.',
+	'shell_exec_disabled' => 'Funkcja shell_exec() konieczna do korzystania z niektórych narzędzi administratorskich SynthesisCMS jest wyłączona. Proszę sprawdzić ustawienia PHP',
 ];
 
 ?>
