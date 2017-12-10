@@ -8,37 +8,28 @@
 				<div class="card-content">
 					<div class="card-title {{ $synthesiscmsMainColor }}-text">{{ trans('synthesiscms/auth.reset') }}</div>
 					<div class="col s12 divider row {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"></div>
-					<div>
-						@if (session('status'))
-							<div class="alert alert-success">
-								{{ session('status') }}
-							</div>
-						@endif
+					@if (session('status'))
+						@include('partials/message', ['message' => session('status')])
+					@endif
+					<form role="form" method="POST" action="{{ route('password.email') }}">
+						{{ csrf_field() }}
+						<div class="input-field">
+							<label for="email"
+								   class="col-md-4 control-label">{{ trans('synthesiscms/auth.email_address') }}</label>
+							<input id="email" type="email" class="form-control" name="email"
+								   value="{{ old('email') }}" required>
 
-						<form role="form" method="POST" action="{{ route('password.email') }}">
-							{{ csrf_field() }}
-							<div class="input-field">
-								<label for="email"
-									   class="col-md-4 control-label">{{ trans('synthesiscms/auth.email_address') }}</label>
-								<input id="email" type="email" class="form-control" name="email"
-									   value="{{ old('email') }}" required>
+							@if ($errors->has('email'))
+								<span class="help-block">
+								<strong>{{ $errors->first('email') }}</strong>
+							</span>
+							@endif
+						</div>
 
-								@if ($errors->has('email'))
-									<span class="help-block">
-									<strong>{{ $errors->first('email') }}</strong>
-								</span>
-								@endif
-							</div>
-
-							<div class="form-group">
-								<div class="col-md-6 col-md-offset-4">
-									<button type="submit" class="btn btn-primary">
-										{{ trans('synthesiscms/auth.send_password_reset_link') }}
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
+						<button type="submit" class="btn btn-primary">
+							{{ trans('synthesiscms/auth.send_password_reset_link') }}
+						</button>
+					</form>
 				</div>
 			</div>
 		</div>
