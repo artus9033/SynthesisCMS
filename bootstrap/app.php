@@ -14,7 +14,7 @@
 use Dotenv\Dotenv;
 
 $app = new Illuminate\Foundation\Application(
-    realpath(__DIR__.'/../')
+	realpath(__DIR__ . '/../')
 );
 
 /*
@@ -28,58 +28,88 @@ $app = new Illuminate\Foundation\Application(
 |
 */
 
-if(!file_exists(base_path('.env'))){
+if (!file_exists(base_path('.env'))) {
 	copy(base_path('.env.example'), base_path('.env'));
-	if(!\App\Toolbox::isRunningInConsole()){
+	if (!\App\Toolbox::isRunningInConsole()) {
 		App\SynthesisCMS\API\Scripts\SynthesisArtisanBridge::artisanGenerateKey();
 	}
 }
 
 $app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    App\Http\Kernel::class
+	Illuminate\Contracts\Http\Kernel::class,
+	App\Http\Kernel::class
 );
 
 $app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+	Illuminate\Contracts\Console\Kernel::class,
+	App\Console\Kernel::class
 );
 
 $app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+	Illuminate\Contracts\Debug\ExceptionHandler::class,
+	App\Exceptions\Handler::class
 );
 
-$dotenv = new Dotenv(__DIR__ . '/../');
-$dotenv->load();
-mysqli_report(MYSQLI_REPORT_STRICT);
-try {
-	@($sqli = new mysqli(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'), getenv('DB_PORT')));
-} catch (Exception $e) {
-	echo("Cannot connect to database. Please contact the site administrator for help (P.S. Dear admin, everything You need to know to fix this error is in the error log).");
-	error_log($e->getMessage());
-	exit;
+function checkDb(){
+	$dotenv = new Dotenv(__DIR__ . '/../');
+	$dotenv->load();
+	mysqli_report(MYSQLI_REPORT_STRICT);
+	try {
+		@($sqli = new mysqli(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'), getenv('DB_PORT')));
+	} catch (Exception $e) {
+		return Array(false, $e->getMessage());
+	}
+
+	try {
+		$res = $sqli->query("SHOW TABLES LIKE '" . getenv('DB_PREFIX') . "_" . \App\Models\Settings\Settings::getTableName() . "'");
+		if (mysqli_num_rows($res) == 0) {
+			return Array(false, "Cannot find SynthesisCMS settings table.");
+		}
+	} catch (Exception $e) {
+		return Array(false,$e->getMessage());
+	}
+
+	return Array(true, '');
 }
 
-try {
-	$reflection = new ReflectionClass(\App\Models\Settings\Settings::class);
-	$property = $reflection->getProperty('table');
-	$property->setAccessible(true);
-	$res = $sqli->query("SHOW TABLES LIKE " . $property->getValue(\App\Models\Settings\Settings::class));
-	if(mysqli_num_rows($res) == 0){
-		echo("Cannot find SynthesisCMS settings table. Please contact the site administrator for help (P.S. Dear admin, everything You need to know to fix this error is in the error log. Probably you forgot to run db migrations.).");
+if ($app->runningInConsole()) {
+	$res = checkDb();
+
+	if($res[0]){
+		$app->singleton('synthesiscmsActiveSettingsInstance', function () {
+			return \App\Models\Settings\Settings::where('active', true)->first();
+		});
+		$app->singleton('synthesiscmsSettingsTableError', function () {
+			return false;
+		});
+	}else{
+		$app->singleton('synthesiscmsSettingsTableError', function () {
+			return true;
+		});
+		echo("Error bootstrapping SynthesisCMS: " . $res[1] . PHP_EOL);
+		echo("Anyway, continuing, because SynthesisCMS is running in console. Setting the settings database error constant to true." . PHP_EOL);
+		error_log($res[1]);
+	}
+} else {
+	$res = checkDb();
+
+	if($res[0]){
+		$app->singleton('synthesiscmsActiveSettingsInstance', function () {
+			return \App\Models\Settings\Settings::where('active', true)->first();
+		});
+		$app->singleton('synthesiscmsSettingsTableError', function () {
+			return false;
+		});
+	}else{
+		$app->singleton('synthesiscmsSettingsTableError', function () {
+			return true;
+		});
+		echo("Error bootstrapping SynthesisCMS: " . $res[1] . PHP_EOL);
+		echo("Please contact the site administrator for help (P.S. Dear admin, everything You need to know to fix this error is in the error log. Probably you forgot to run db migrations)" . PHP_EOL);
+		error_log($res[1]);
 		exit;
 	}
-} catch(Exception $e) {
-	echo("Cannot find SynthesisCMS settings table. Please contact the site administrator for help (P.S. Dear admin, everything You need to know to fix this error is in the error log. Probably you forgot to run db migrations.).");
-	error_log($e->getMessage());
-	exit;
 }
-
-$app->singleton('synthesiscmsActiveSettingsInstance', function()
-{
-	return \App\Models\Settings\Settings::where('active', true)->first();
-});
 
 /*
 |--------------------------------------------------------------------------

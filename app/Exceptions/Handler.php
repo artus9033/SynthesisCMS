@@ -3,16 +3,16 @@
 namespace App\Exceptions;
 
 use App\Models\Settings\Settings;
-use App\Models\Settings\StaticActiveSettingsInterface;
 use App\Models\Stats\ExceptionTracker;
 use App\Toolbox;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Facades\Schema;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 
@@ -45,8 +45,9 @@ class Handler extends ExceptionHandler
 		if (!$exception instanceof NotFoundHttpException && !$exception instanceof MaintenanceModeException && !$exception instanceof ServiceUnavailableHttpException) {
 			$settings = Settings::getActiveInstance();
 			if (is_null($settings)) {
-				\Barryvdh\Debugbar\Facade::disable(); // works, executed here, because if settings db table doesn't exist,
+				// works, executed here, because if settings db table doesn't exist,
 				// then the dev middleware is unlikely to even be executed before the error handler (here), which ends the app
+				\Barryvdh\Debugbar\Facade::disable();
 				$devMode = false;
 			} else {
 				$devMode = $settings->isDevModeEnabled();
@@ -54,26 +55,23 @@ class Handler extends ExceptionHandler
 					\Barryvdh\Debugbar\Facade::disable();
 				}
 			}
-			if (!Toolbox::isRunningInConsole()) {
-				parent::report($exception);
-				if (!$exception instanceof NotFoundHttpException) {
-					$continue = false;
-					$fullPath = str_replace("/", "\\", base_path());
-					try {
-						if (Schema::hasTable(with(new ExceptionTracker())->getTable())) {
-							$continue = true;
-						}
-					} catch (Exception $e) {
-						$continue = false;
-					}
-					if ($continue) {
-						ExceptionTracker::saveException($devMode, $exception->getCode(), str_replace($fullPath, "[cms_root]", $exception->getFile()), str_replace($fullPath, "[cms_root]", $exception->getMessage()), str_replace($fullPath, "[cms_root]", $exception->getTraceAsString()), $fullPath);
-					}
-				}
+			if (Toolbox::isRunningInConsole()) {
+				\Log::critical($exception->getTraceAsString());
 			} else {
-				$handle = fopen(storage_path("logs/laravel-console.log"), "w+");
-				fputs($handle, $exception->getTraceAsString());
-				fclose($handle);
+				parent::report($exception);
+				$continue = false;
+				$fullPath = str_replace("/", "\\", base_path());
+				try {
+					if (Schema::hasTable(with(new ExceptionTracker())->getTable())) {
+						$continue = true;
+					}
+				} catch (Exception $e) {
+					$continue = false;
+				}
+				if ($continue) {
+					ExceptionTracker::saveException($devMode, $exception->getCode(), str_replace($fullPath, "[cms_root]", $exception->getFile()), str_replace($fullPath, "[cms_root]", $exception->getMessage()), str_replace($fullPath, "[cms_root]", $exception->getTraceAsString()), $fullPath);
+				}
+				\Log::critical($exception->getTraceAsString());
 			}
 		}
 	}
@@ -87,15 +85,16 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $exception)
 	{
-		if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+		if ($exception instanceof TokenMismatchException) {
 			Toolbox::addWarningToBag(trans('synthesiscms/errors.warning_csrf_token_expired_please_try_again'));
 			return redirect()->back();
 		}
 		\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
 		$settings = Settings::getActiveInstance();
 		if (is_null($settings)) {
-			\Barryvdh\Debugbar\Facade::disable(); // works, executed here, because if settings db table doesn't exist,
+			// works, executed here, because if settings db table doesn't exist,
 			// then the dev middleware is unlikely to even be executed before the error handler (here), which ends the app
+			\Barryvdh\Debugbar\Facade::disable();
 			return response(view('errors/fatal')->with(['error' => trans('synthesiscms/errors.db_not_migrated'), 'help' => trans('synthesiscms/errors.db_not_migrated_help')]));
 		} else {
 			$continue = $settings->isDevModeEnabled();
@@ -104,30 +103,29 @@ class Handler extends ExceptionHandler
 			return parent::render($request, $exception);
 		} else {
 			\Barryvdh\Debugbar\Facade::disable();
-			if ($this->isHttpException($exception)) {
-				$exception = $this->prepareException($exception); // convert ModelNotFoundException & AuthorizationException to HttpException
-			}
-			if (method_exists($exception, 'getStatusCode')) {
-				$code = $exception->getStatusCode(); //IMPORTANT: getStatusCode(), NOT getCode() !!!!!
+			if ($exception instanceof NotFoundHttpException) {
+				return response()->view("errors/404")->setStatusCode(404);
+			} else if ($exception instanceof MaintenanceModeException || $exception instanceof ServiceUnavailableHttpException) {
+				return response()->view("errors/503")->setStatusCode(503);
+			} else if ($exception instanceof AccessDeniedException || $exception instanceof AuthorizationException) {
+				return response()->view("errors/403")->setStatusCode(403);
+			} else if ($exception instanceof \HttpException) {
+				switch ($exception->getStatusCode()) {
+					case 403:
+						return response()->view("errors/403")->setStatusCode(403);
+						break;
+					case 404:
+						return response()->view("errors/404")->setStatusCode(404);
+						break;
+					case 503:
+						return response()->view("errors/503")->setStatusCode(503);
+						break;
+					default:
+						return response()->view("errors/500")->setStatusCode(500);
+						break;
+				}
 			} else {
-				$code = 0;
-			}
-			if ($code === 0) {
-				$code = 500;
-			}
-			switch ($code) {
-				case 404:
-					return response()->view("errors/404")->setStatusCode(404);
-					break;
-				case 503:
-					return response()->view("errors/503")->setStatusCode(503);
-					break;
-				case 403:
-					return response()->view("errors/403")->setStatusCode(503);
-					break;
-				default:
-					return response()->view("errors/500")->setStatusCode(500);
-					break;
+				return response()->view("errors/500")->setStatusCode(500);
 			}
 		}
 	}

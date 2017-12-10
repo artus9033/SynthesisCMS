@@ -45,24 +45,26 @@ class DropTables extends Command
 
 		$tables = DB::select('SHOW TABLES');
 
-		$droplist = [];
+		$droplistArr = Array();
 
 		foreach($tables as $table) {
-
-			$droplist[] = $table->$colname;
-
+			array_push($droplistArr, $table->$colname);
 		}
-		$droplist = implode(',', $droplist);
+		$droplist = implode(',', $droplistArr);
 
-		DB::beginTransaction();
-		//turn off referential integrity
-		DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-		DB::statement("DROP TABLE $droplist");
-		//turn referential integrity back on
-		DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-		DB::commit();
-
-		$this->comment(PHP_EOL."If no errors showed up, all tables were dropped".PHP_EOL);
+		if(count($droplistArr)) {
+			$this->comment(PHP_EOL . "Attempting to drop " . count($droplistArr) . " tables..." . PHP_EOL);
+			DB::beginTransaction();
+			//turn off referential integrity
+			DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+			DB::statement("DROP TABLE $droplist");
+			//turn referential integrity back on
+			DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+			DB::commit();
+			$this->comment(PHP_EOL . "If no errors showed up, all tables were dropped" . PHP_EOL);
+		}else{
+			$this->comment(PHP_EOL . "There are no tables in this database! Aborting." . PHP_EOL);
+		}
 
 	}
 }
