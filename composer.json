@@ -47,14 +47,12 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan vendor:publish --quiet",
             "php artisan optimize",
             "php artisan storage:link",
             "php artisan config:cache"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan vendor:publish --quiet",
             "php artisan optimize",
             "php artisan storage:link",
             "php artisan config:cache"

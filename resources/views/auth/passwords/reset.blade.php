@@ -21,13 +21,11 @@
 							<input type="hidden" name="token" value="{{ $token }}">
 
 							<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-								<label for="email"
+								<div class="input-field">
+									<label for="email"
 									   class="col-md-4 control-label">{{ trans('synthesiscms/auth.email_address') }}</label>
-
-								<div class="col-md-6">
 									<input id="email" type="email" class="form-control" name="email"
 										   value="{{ $email or old('email') }}" required autofocus>
-
 									@if ($errors->has('email'))
 										<span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>

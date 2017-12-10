@@ -121,12 +121,14 @@
 				{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::OverMenu, Request::url()) !!}
 				@if (\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isGuest())
 					@if($synthesiscmsShowLoginRegisterButtons)
-						<li class="right"><a class="center" href="{{ route('register') }}"><i
-										class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
+						<li class="right">
+							<a class="center" href="{{ route('register') }}">
+								<i class="material-icons white-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
 							</a>
 						</li>
-						<li class="right"><a class="center" href="{{ route('login') }}"><i
-										class="material-icons white-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
+						<li class="right">
+							<a class="center" href="{{ route('login') }}">
+								<i class="material-icons white-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
 							</a>
 						</li>
 					@endif
