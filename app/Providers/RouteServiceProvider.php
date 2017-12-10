@@ -39,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
 
 		$this->mapWebInternalRoutes();
 
+		$this->mapWebInternalPersistentRoutes();
+
 		$this->mapAdminRoutes();
 
 		$this->mapWebRoutes();
@@ -69,7 +71,7 @@ class RouteServiceProvider extends ServiceProvider
 	 *
 	 * These routes all receive session state, CSRF protection, etc.,
 	 *
-	 * but they are NOT tracked by the Stats Tracker
+	 * but they are NOT tracked by the Stats Tracker & they ARE influenced by the SynthesisCMS enable/disable site setting
 	 *
 	 * @return void
 	 */
@@ -80,6 +82,25 @@ class RouteServiceProvider extends ServiceProvider
 			'namespace' => $this->namespace,
 		], function ($router) {
 			require base_path('routes/web_internal.php');
+		});
+	}
+
+	/**
+	 * Define the "web_internal_persistent" routes for the application.
+	 *
+	 * These routes all receive session state, CSRF protection, etc.,
+	 *
+	 * but they are NOT tracked by the Stats Tracker & they're NOT influenced by the SynthesisCMS enable/disable site setting
+	 *
+	 * @return void
+	 */
+	protected function mapWebInternalPersistentRoutes()
+	{
+		Route::group([
+			'middleware' => 'web_internal_persistent',
+			'namespace' => $this->namespace,
+		], function ($router) {
+			require base_path('routes/web_internal_persistent.php');
 		});
 	}
 

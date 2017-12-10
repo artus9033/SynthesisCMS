@@ -73,6 +73,25 @@ class Kernel extends HttpKernel
 			\App\Http\Middleware\SynthesisCMS\SynthesisStorageFilesystemSymlinksMiddleware::class,
 		],
 
+		// web_internal_persistent - should be used by routes that are not meant to be indexed by stats tracker & that shouldn't be influenced by SynthesisCMS enable/disable site setting
+		'web_internal_persistent' => [
+			//\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
+			\App\Http\Middleware\Security\HttpsRedirectionMiddleware::class,
+			\Illuminate\Session\Middleware\StartSession::class,
+			\App\Http\Middleware\Content\Locale::class,
+			\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+			\App\Http\Middleware\Security\EncryptCookies::class,
+			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+			\Illuminate\View\Middleware\ShareErrorsFromSession::class,
+			\App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
+			\App\Http\Middleware\Security\VerifyCsrfToken::class,
+			\Illuminate\Routing\Middleware\SubstituteBindings::class,
+			\App\Http\Middleware\SynthesisCMS\HookExtensionsMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisFilesystemMiddleware::class,
+			\App\Http\Middleware\SynthesisCMS\SynthesisStorageFilesystemSymlinksMiddleware::class,
+		],
+
 		'admin' => [
 			//\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
 			\App\Http\Middleware\Security\HttpsRedirectionMiddleware::class,
