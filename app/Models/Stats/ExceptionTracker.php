@@ -23,7 +23,7 @@ class ExceptionTracker extends Model
 			$os_info = $php_disabled_functions_imp = $php_disabled_functions = $php_modules = $php_modules_imp = "Error initializing Probe\ProviderFactory (probably shell_exec is disabled?)";
 			$os_info .= "shell_exec() has been blocked. Please review Your php configuration.";
 			if($devModeEnabled){
-				echo("WARNING: ExceptionTracker could not determine system information. Probe\ProviderFactory error: shell_exec() has been blocked. Please review Your php configuration.");
+				echo("DEVMODE WARNING: ExceptionTracker could not determine system information. Probe\ProviderFactory error: shell_exec() has been blocked. Please review Your php configuration.");
 			}
 		}else{
 			if (extension_loaded('COM_DOT_NET') || (stripos(PHP_OS, 'win') !== 0)) { // If NOT windows OR COM_DOT_NET extension is loaded

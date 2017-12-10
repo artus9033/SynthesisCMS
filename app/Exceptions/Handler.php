@@ -9,10 +9,12 @@ use App\Toolbox;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -40,37 +42,39 @@ class Handler extends ExceptionHandler
 	 */
 	public function report(Exception $exception)
 	{
-		$settings = Settings::getActiveInstance();
-		if(is_null($settings)){
-			\Barryvdh\Debugbar\Facade::disable(); // works, executed here, because if settings db table doesn't exist,
-			// then the dev middleware is unlikely to even be executed before the error handler (here), which ends the app
-			$devMode = false;
-		}else{
-			$devMode = $settings->isDevModeEnabled();
-			if(!$devMode){
-				\Barryvdh\Debugbar\Facade::disable();
+		if (!$exception instanceof NotFoundHttpException && !$exception instanceof MaintenanceModeException && !$exception instanceof ServiceUnavailableHttpException) {
+			$settings = Settings::getActiveInstance();
+			if (is_null($settings)) {
+				\Barryvdh\Debugbar\Facade::disable(); // works, executed here, because if settings db table doesn't exist,
+				// then the dev middleware is unlikely to even be executed before the error handler (here), which ends the app
+				$devMode = false;
+			} else {
+				$devMode = $settings->isDevModeEnabled();
+				if (!$devMode) {
+					\Barryvdh\Debugbar\Facade::disable();
+				}
 			}
-		}
-		if(!Toolbox::isRunningInConsole()) {
-			parent::report($exception);
-			if(!$exception instanceof NotFoundHttpException) {
-				$continue = false;
-				$fullPath = str_replace("/", "\\", base_path());
-				try {
-					if (Schema::hasTable(with(new ExceptionTracker())->getTable())) {
-						$continue = true;
-					}
-				} catch (Exception $e) {
+			if (!Toolbox::isRunningInConsole()) {
+				parent::report($exception);
+				if (!$exception instanceof NotFoundHttpException) {
 					$continue = false;
+					$fullPath = str_replace("/", "\\", base_path());
+					try {
+						if (Schema::hasTable(with(new ExceptionTracker())->getTable())) {
+							$continue = true;
+						}
+					} catch (Exception $e) {
+						$continue = false;
+					}
+					if ($continue) {
+						ExceptionTracker::saveException($devMode, $exception->getCode(), str_replace($fullPath, "[cms_root]", $exception->getFile()), str_replace($fullPath, "[cms_root]", $exception->getMessage()), str_replace($fullPath, "[cms_root]", $exception->getTraceAsString()), $fullPath);
+					}
 				}
-				if ($continue) {
-					ExceptionTracker::saveException($devMode, $exception->getCode(), str_replace($fullPath, "[cms_root]", $exception->getFile()), str_replace($fullPath, "[cms_root]", $exception->getMessage()), str_replace($fullPath, "[cms_root]", $exception->getTraceAsString()), $fullPath);
-				}
+			} else {
+				$handle = fopen(storage_path("logs/laravel-console.log"), "w+");
+				fputs($handle, $exception->getTraceAsString());
+				fclose($handle);
 			}
-		}else{
-			$handle = fopen(storage_path("logs/laravel-console.log"), "w+");
-			fputs($handle, $exception->getTraceAsString());
-			fclose($handle);
 		}
 	}
 
@@ -89,11 +93,11 @@ class Handler extends ExceptionHandler
 		}
 		\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
 		$settings = Settings::getActiveInstance();
-		if(is_null($settings)){
+		if (is_null($settings)) {
 			\Barryvdh\Debugbar\Facade::disable(); // works, executed here, because if settings db table doesn't exist,
 			// then the dev middleware is unlikely to even be executed before the error handler (here), which ends the app
 			return response(view('errors/fatal')->with(['error' => trans('synthesiscms/errors.db_not_migrated'), 'help' => trans('synthesiscms/errors.db_not_migrated_help')]));
-		}else{
+		} else {
 			$continue = $settings->isDevModeEnabled();
 		}
 		if ($continue) {
@@ -103,9 +107,9 @@ class Handler extends ExceptionHandler
 			if ($this->isHttpException($exception)) {
 				$exception = $this->prepareException($exception); // convert ModelNotFoundException & AuthorizationException to HttpException
 			}
-			if(method_exists($exception, 'getStatusCode')){
+			if (method_exists($exception, 'getStatusCode')) {
 				$code = $exception->getStatusCode(); //IMPORTANT: getStatusCode(), NOT getCode() !!!!!
-			}else{
+			} else {
 				$code = 0;
 			}
 			if ($code === 0) {
