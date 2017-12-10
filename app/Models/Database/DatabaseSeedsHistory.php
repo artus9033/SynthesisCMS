@@ -14,24 +14,24 @@ class DatabaseSeedsHistory extends Model
 	public static function seedIfNotAlreadySeeded($class, $seederRef, $echoLog)
 	{
 		$ret = false;
-		if (self::checkIfAlreadyMigrated($class)) {
+		if (self::checkIfAlreadySeeded($class)) {
 			if ($echoLog) {
 				echo("Not seeding " . $class . ", because it has already been seeded." . PHP_EOL);
 			}
 		} else {
 			$seederRef->call($class);
-			self::handleMigrated($class);
+			self::handleSeeded($class);
 			$ret = true;
 		}
 		return $ret;
 	}
 
-	public static function checkIfAlreadyMigrated($className)
+	public static function checkIfAlreadySeeded($className)
 	{
 		return self::where(['className' => $className])->count();
 	}
 
-	public static function handleMigrated($className)
+	public static function handleSeeded($className)
 	{
 		return self::create(['className' => $className]);
 	}

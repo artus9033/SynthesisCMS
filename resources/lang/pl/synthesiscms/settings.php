@@ -39,6 +39,8 @@ return [
 	'toast_favicon_upload_error' => 'Błąd podczas wczytywania nowej ikonki na serwer: ',
 	'switch_show_login_register_buttons' => 'Pokaż przyciski zaloguj/zarejestruj każdemu gościowi',
 	'switch_show_image_big_banner' => 'Pokaż duży baner strony zamiast ikonki w rogu',
+	'site_enabled' => 'Włącz stronę (odznacz, aby włączyć tryb przerwy technicznej)',
+	'force_https' => 'Wymuś przekierowanie strony na HTTPS',
 ];
 
 ?>

@@ -34,7 +34,7 @@
 		</span>
 	</span>
 	<div class="col s8 offset-s2 m8 offset-m2 l12">
-		<canvas id="todaysTrafficChartCanvas" class="col s12"></canvas>
+		<canvas id="todaysTrafficChartCanvas" style="padding: unset !important;" class="col s12"></canvas>
 	</div>
 </div>
 <script>

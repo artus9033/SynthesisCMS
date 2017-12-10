@@ -17,8 +17,21 @@
 				<div class="container" style="margin-top: 40px; margin-bottom: 50px;">
 					<h2 class="header red-text text-lighten-2">{{ trans('synthesiscms/errors.503_desc2') }}</h2>
 					<p class="flow-text caption">{{ trans('synthesiscms/errors.503_desc3') }}</p>
-					<button onclick="location.reload()" class="btn-large waves-effect waves-light"><i
-								class="material-icons white-text left">refresh</i>&nbsp;{{ trans('synthesiscms/errors.refresh_btn') }}
+					<script>
+                        function reload() {
+                            var reloadIcon = document.querySelector('#reloadIcon');
+                            reloadIcon.style.webkitTransform = 'translateZ(0px) rotateZ( ' + 1080 + 'deg )';
+                            reloadIcon.style.MozTransform = 'translateZ(0px) rotateZ( ' + 1080 + 'deg )';
+                            reloadIcon.style.transform = 'translateZ(0px) rotateZ( ' + 1080 + 'deg )';
+                            location.reload();
+                        }
+					</script>
+					<button onclick="reload();" id="reload" class="btn-large waves-effect waves-light">
+						<i id="reloadIcon" class="material-icons white-text left"
+						   style="transition: transform 2000ms;">
+							refresh
+						</i>
+						&nbsp;{{ trans('synthesiscms/errors.refresh_btn') }}
 					</button>
 				</div>
 			</div>

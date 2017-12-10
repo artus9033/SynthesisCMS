@@ -92,7 +92,7 @@ return [
 	|
 	*/
 
-	'migrations' => env('DB_PREFIX', '') . "_" . 'synthesiscms_migrations',
+	'migrations' => 'synthesiscms_migrations',
 
 	/*
 	|--------------------------------------------------------------------------

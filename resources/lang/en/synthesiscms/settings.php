@@ -39,6 +39,8 @@ return [
 	'toast_favicon_upload_error' => 'Error uploading the new favicon to server: ',
 	'switch_show_login_register_buttons' => 'Show login/register buttons to every guest',
 	'switch_show_image_big_banner' => 'Show a big banner instead of an icon in the corner',
+	'site_enabled' => 'Enable the website (uncheck to turn on maintenance mode)',
+	'force_https' => 'Force website redirection to HTTPS',
 ];
 
 ?>

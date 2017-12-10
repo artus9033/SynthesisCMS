@@ -103,6 +103,8 @@ class BackendController extends Controller
 		$settings->devModeEnabled = ($request->get('devModeCheckbox') == 'on');
 		$settings->logo_background_color = $request->get('logo_background_color');
 		$settings->show_image_big_banner = ($request->get('show_image_big_banner') == 'on');
+		$settings->site_enabled = ($request->get('site_enabled') == 'on');
+		$settings->force_https = ($request->get('force_https') == 'on');
 		$settings->save();
 		return \Redirect::route('settings')->with('messages', array(trans('synthesiscms/settings.msg_saved')));
 	}
