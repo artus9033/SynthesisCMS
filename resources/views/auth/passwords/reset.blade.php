@@ -6,11 +6,11 @@
 			<div class="col s12 m10 offset-m1 l8 offset-l2 card z-depth-2">
 				<div class="card-content">
 					<div class="card-title {{ $synthesiscmsMainColor }}-text">{{ trans('synthesiscms/auth.reset') }}</div>
-					<div class="col s12 divider row {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"></div>
+					<div class="col s12 divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"></div>
 					@if (session('status'))
 						@include('partials/message', ['message' => session('status')])
 					@endif
-					<form class="form-horizontal" role="form" method="POST"
+					<form class="col s12 row" role="form" method="POST"
 						  action="{{ route('password.request') }}">
 						{{ csrf_field() }}
 

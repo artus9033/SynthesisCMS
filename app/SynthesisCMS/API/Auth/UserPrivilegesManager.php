@@ -17,22 +17,22 @@ class UserPrivilegesManager
 
 	static function isContentEditor()
 	{
-		return (self::isAuthenticated() ? self::__isContentEditor() : self::isAuthenticated());
+		return (self::isAuthenticated() ? self::__isContentEditor() : false);
 	}
 
 	static function isContentManager()
 	{
-		return (self::isAuthenticated() ? self::__isContentManager() : self::isAuthenticated());
+		return (self::isAuthenticated() ? self::__isContentManager() : false);
 	}
 
 	static function isSiteManager()
 	{
-		return (self::isAuthenticated() ? self::__isSiteManager() : self::isAuthenticated());
+		return (self::isAuthenticated() ? self::__isSiteManager() : false);
 	}
 
 	static function isSiteAdministrator()
 	{
-		return (self::isAuthenticated() ? self::__isSiteAdministrator() : self::isAuthenticated());
+		return (self::isAuthenticated() ? self::__isSiteAdministrator() : false);
 	}
 
 	private static function __isContentEditor()

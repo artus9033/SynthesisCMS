@@ -11,6 +11,8 @@
 |
 */
 
+use Dotenv\Dotenv;
+
 $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
@@ -47,6 +49,32 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
+
+$dotenv = new Dotenv(__DIR__ . '/../');
+$dotenv->load();
+mysqli_report(MYSQLI_REPORT_STRICT);
+try {
+	@($sqli = new mysqli(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'), getenv('DB_PORT')));
+} catch (Exception $e) {
+	echo("Cannot connect to database. Please contact the site administrator for help (P.S. Dear admin, everything You need to know to fix this error is in the error log).");
+	error_log($e->getMessage());
+	exit;
+}
+
+try {
+	$reflection = new ReflectionClass(\App\Models\Settings\Settings::class);
+	$property = $reflection->getProperty('table');
+	$property->setAccessible(true);
+	$res = $sqli->query("SHOW TABLES LIKE " . $property->getValue(\App\Models\Settings\Settings::class));
+	if(mysqli_num_rows($res) == 0){
+		echo("Cannot find SynthesisCMS settings table. Please contact the site administrator for help (P.S. Dear admin, everything You need to know to fix this error is in the error log. Probably you forgot to run db migrations.).");
+		exit;
+	}
+} catch(Exception $e) {
+	echo("Cannot find SynthesisCMS settings table. Please contact the site administrator for help (P.S. Dear admin, everything You need to know to fix this error is in the error log. Probably you forgot to run db migrations.).");
+	error_log($e->getMessage());
+	exit;
+}
 
 $app->singleton('synthesiscmsActiveSettingsInstance', function()
 {

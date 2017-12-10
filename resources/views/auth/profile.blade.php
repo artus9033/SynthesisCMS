@@ -20,6 +20,16 @@
 				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper"><i
 							class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">supervisor_account</i>&nbsp;{{ trans('synthesiscms/auth.profile') }}
 				</h3>
+				@if(\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isContentEditor())
+					<div class="col s4 valign row">
+						<a class="col s12 btn-large {{ $synthesiscmsMainColor }} waves-effect waves-light"
+						   href="{{ route('admin') }}"
+						   class="btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
+							<i class="material-icons white-text left"
+							   style="line-height: unset !important; font-size: 1.8rem;">dashboard</i>{{ trans('synthesiscms/admin.backend') }}
+						</a>
+					</div>
+				@endif
 			</div>
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
 			<div class="col s12 row"></div>

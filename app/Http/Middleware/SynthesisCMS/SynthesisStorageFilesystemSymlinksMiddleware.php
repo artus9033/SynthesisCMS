@@ -6,7 +6,6 @@ use App\SynthesisCMS\API\Auth\UserPrivilegesManager;
 use App\SynthesisCMS\API\Scripts\SynthesisArtisanBridge;
 use App\Toolbox;
 use Closure;
-use App\Http\Controllers\Backend\SynthesisFilesystemController;
 
 class SynthesisStorageFilesystemSymlinksMiddleware
 {
