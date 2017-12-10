@@ -23,7 +23,10 @@
                             reloadIcon.style.webkitTransform = 'translateZ(0px) rotateZ( ' + 1080 + 'deg )';
                             reloadIcon.style.MozTransform = 'translateZ(0px) rotateZ( ' + 1080 + 'deg )';
                             reloadIcon.style.transform = 'translateZ(0px) rotateZ( ' + 1080 + 'deg )';
-                            location.reload();
+                            // give the animation some time for the user to see it
+                            setTimeout(function(){
+                                location.reload();
+							}, 2000);
                         }
 					</script>
 					<button onclick="reload();" id="reload" class="btn-large waves-effect waves-light">
