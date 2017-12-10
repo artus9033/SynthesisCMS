@@ -73,7 +73,7 @@
 				<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down"
 				   style="background-color: {!! $synthesiscmsLogoBackgroundColor !!}; position: relative; box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 999 !important; height: 220%; width: 125px; overflow: hidden;"
 				   href="{!! url($synthesiscmsHomePage) !!}">
-					<img id="synthesiscms-app-logo-img" style="height: 90%; width: auto; object-fit: contain; margin-top: 5%;" src="{{ url('/favicon.ico') }}">
+					<img id="synthesiscms-app-logo-img" style="height: 90%; width: auto; object-fit: contain; margin-left: 15%;" src="{{ url('/favicon.ico') }}">
 				</a>
 				<a id="synthesiscms-mobile-brand-logo" href="{!! url($synthesiscmsHomePage) !!}"
 				   class="hide-on-large-only brand-logo truncate">{{ $synthesiscmsHeaderTitle }}</a>
