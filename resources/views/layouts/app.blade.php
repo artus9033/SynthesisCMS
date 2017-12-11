@@ -37,7 +37,7 @@
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}" media="screen,projection"/>
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
 	<title>{{ $synthesiscmsHeaderTitle }}</title>
-	<meta name="description" content="@yield('title')">
+	<meta name="description" content="{{trim(View::yieldContent('title'))}}">
 	<!-- TODO: add article description to description meta tag -->
 	@yield('head')
 	<style>
