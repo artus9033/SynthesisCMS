@@ -36,7 +36,9 @@
 	<link type="text/css" rel="stylesheet" href="{!! asset("fonts/material-icons/material-icons.css") !!}">
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}" media="screen,projection"/>
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
-	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>
+	<title>{{ $synthesiscmsHeaderTitle }}</title>
+	<meta name="description" content="@yield('title')">
+	<!-- TODO: add article description to description meta tag -->
 	@yield('head')
 	<style>
 		body {
