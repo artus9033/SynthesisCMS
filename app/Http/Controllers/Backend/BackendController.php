@@ -268,9 +268,14 @@ class BackendController extends Controller
 			foreach (StatsTracker::orderBy('hits', 'DESC')->get() as $item) {
 				$itemDate = Carbon::parse($item->date)->setTime(0, 0, 0);
 				if (Carbon::now()->setTime(0, 0, 0)->equalTo($itemDate)) {
-					array_push($circleLabels, $item->url);
-					array_push($circleValues, $item->hits);
-					$circleCount++;
+					$key = array_search($item->url, $circleLabels);
+					if($key === False) {
+						array_push($circleLabels, $item->url);
+						array_push($circleValues, $item->hits);
+						$circleCount++;
+					}else{
+						$circleValues[$key] += $item->hits;
+					}
 				}
 			}
 
