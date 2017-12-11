@@ -64,13 +64,8 @@
 					<img id="synthesiscms-app-logo-img" src="{{ url('/banner.png') }}">
 				</a>
 				<a id="synthesiscms-mobile-brand-logo" href="{!! url($synthesiscmsHomePage) !!}"
-				   class="hide-on-large-only brand-logo truncate">{{ $synthesiscmsHeaderTitle }}</a>
-				<script>
-					$(document).ready(function(){
-						$("#synthesiscms-big-image-banner").height($("#synthesiscms-app-logo-img").height());
-						$("#synthesiscms-app-main-nav").height($("#synthesiscms-app-logo-img").height());
-					});
-			    </script>
+				   class="hide-on-large-only brand-logo truncate">{{ $synthesiscmsHeaderTitle }}
+				</a>
 			@else
 				<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down"
 				   style="background-color: {!! $synthesiscmsLogoBackgroundColor !!}; position: relative; box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 999 !important; height: 220%; width: 125px; overflow: hidden;"
@@ -84,12 +79,19 @@
 			@endif
 			<script>
                 function synthesiscmsResizeBrandLogoMargin() {
-                    $("#synthesiscms-mobile-brand-logo").css('width', ($('body').width() - $('.synthesiscms-mobile-btn-wrapper').width()));
-                    $("#synthesiscms-mobile-brand-logo").css('max-width', ($('body').width() - $('.synthesiscms-mobile-btn-wrapper').width()));
-                    $("#synthesiscms-mobile-brand-logo").css('padding-left', $('.synthesiscms-mobile-btn-wrapper').width());
-                    var desktopLogoWidth = ($('body').width() - $('#synthesiscms-large-screens-menu-part-right').width() - $('#synthesiscms-app-logo').width());
-                    $("#synthesiscms-desktop-brand-logo").css('max-width', desktopLogoWidth);
-                    $("#synthesiscms-desktop-brand-logo").css('width', desktopLogoWidth);
+                    var mobileBtnWrapper = $('.synthesiscms-mobile-btn-wrapper');
+                    var appLogoImg = $("#synthesiscms-app-logo-img");
+                    var jBody = $('body');
+                    var desktopLogoWidth = (jBody.width() - $('#synthesiscms-large-screens-menu-part-right').width() - $('#synthesiscms-app-logo').width());
+                    var desktopBrandLogo = $("#synthesiscms-desktop-brand-logo");
+                    var mobileBrandLogo = $("#synthesiscms-mobile-brand-logo");
+                    $("#synthesiscms-big-image-banner").height(appLogoImg.height());
+                    $("#synthesiscms-app-main-nav").height(appLogoImg.height());
+                    mobileBrandLogo.css('width', (jBody.width() - mobileBtnWrapper.width()));
+                    mobileBrandLogo.css('max-width', (jBody.width() - mobileBtnWrapper.width()));
+                    mobileBrandLogo.css('padding-left', mobileBtnWrapper.width());
+                    desktopBrandLogo.css('max-width', desktopLogoWidth);
+                    desktopBrandLogo.css('width', desktopLogoWidth);
                 }
                 $(document).ready(function () {
                     //$("#synthesiscms-app-logo").height($("#synthesiscms-app-logo").width()); //substituted with height: 220% - looks better & doesn't wait 'till document ready
