@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Schema;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\Access\AuthorizationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -24,12 +29,12 @@ class Handler extends ExceptionHandler
 	 * @var array
 	 */
 	protected $dontReport = [
-		\Illuminate\Auth\AuthenticationException::class,
-		\Illuminate\Auth\Access\AuthorizationException::class,
-		\Symfony\Component\HttpKernel\Exception\HttpException::class,
-		\Illuminate\Database\Eloquent\ModelNotFoundException::class,
-		\Illuminate\Session\TokenMismatchException::class,
-		\Illuminate\Validation\ValidationException::class,
+		AuthenticationException::class,
+		AuthorizationException::class,
+		HttpException::class,
+		ModelNotFoundException::class,
+		TokenMismatchException::class,
+		ValidationException::class,
 	];
 
 	/**
@@ -89,6 +94,10 @@ class Handler extends ExceptionHandler
 			Toolbox::addWarningToBag(trans('synthesiscms/errors.warning_csrf_token_expired_please_try_again'));
 			return redirect()->back();
 		}
+		if($exception instanceof ValidationException){
+			// adding messages/warnings/errors should be handled by the app itself during validation
+			return redirect()->back();
+		}
 		\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
 		$settings = Settings::getActiveInstance();
 		if (is_null($settings)) {
@@ -107,9 +116,9 @@ class Handler extends ExceptionHandler
 				return response()->view("errors/404")->setStatusCode(404);
 			} else if ($exception instanceof MaintenanceModeException || $exception instanceof ServiceUnavailableHttpException) {
 				return response()->view("errors/503")->setStatusCode(503);
-			} else if ($exception instanceof AccessDeniedException || $exception instanceof AuthorizationException) {
+			} else if ($exception instanceof AccessDeniedException || $exception instanceof AuthorizationException || $exception instanceof AuthenticationException) {
 				return response()->view("errors/403")->setStatusCode(403);
-			} else if ($exception instanceof \HttpException) {
+			} else if ($exception instanceof HttpException) {
 				switch ($exception->getStatusCode()) {
 					case 403:
 						return response()->view("errors/403")->setStatusCode(403);
@@ -125,6 +134,7 @@ class Handler extends ExceptionHandler
 						break;
 				}
 			} else {
+				//$exception instanceof ModelNotFoundException -> best to show 500 ISE
 				return response()->view("errors/500")->setStatusCode(500);
 			}
 		}

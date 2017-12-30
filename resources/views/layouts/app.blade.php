@@ -91,7 +91,7 @@
                     mobileBrandLogo.css('max-width', (jBody.width() - mobileBtnWrapper.width()));
                     mobileBrandLogo.css('padding-left', mobileBtnWrapper.width());
                     desktopBrandLogo.css('max-width', desktopLogoWidth);
-                    desktopBrandLogo.css('width', desktopLogoWidth);
+                    desktopBrandLogo.css('width', desktopLogoWidth);Hyperlink.TextTypes.title
                 }
                 $(document).ready(function () {
                     //$("#synthesiscms-app-logo").height($("#synthesiscms-app-logo").width()); //substituted with height: 220% - looks better & doesn't wait 'till document ready
