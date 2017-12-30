@@ -6,8 +6,6 @@ use App\Models\Settings\Settings;
 use App\Models\Stats\ExceptionTracker;
 use App\Toolbox;
 use Exception;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
 use Illuminate\Session\TokenMismatchException;
@@ -96,7 +94,8 @@ class Handler extends ExceptionHandler
 		}
 		if($exception instanceof ValidationException){
 			// adding messages/warnings/errors should be handled by the app itself during validation
-			return redirect()->back();
+			// calling parent::render makes sure that all these messages will be flashed to the session
+			return parent::render($request, $exception);
 		}
 		\App::setLocale(strtolower(Toolbox::getBrowserLocale()));
 		$settings = Settings::getActiveInstance();
