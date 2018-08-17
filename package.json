@@ -18,7 +18,7 @@
     "hammerjs": "*",
     "jquery": "^3.1.1",
     "laravel-mix": "^2.1.11",
-    "lodash": "*",
+    "lodash": "^4.17.10",
     "nan": "^2.10.0",
     "trumbowyg": "*",
     "vue": "*",
