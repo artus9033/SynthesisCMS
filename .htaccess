@@ -3,6 +3,10 @@
         Options -MultiViews
     </IfModule>
 
+    RewriteCond %{REQUEST_URI} !^/public
+    RewriteCond %{REQUEST_FILENAME} !^/public
+    RewriteRule ^(.*) public [L]
+
     # symlinks, multiviews & blocking directory listings (e.g. /public/js, /public/css)
     Options All FollowSymLinks MultiViews -Indexes
 
