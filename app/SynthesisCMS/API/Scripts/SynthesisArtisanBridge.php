@@ -71,12 +71,6 @@ class SynthesisArtisanBridge
 		return self::executeArtisanCmd("config:cache");
 	}
 
-	static function artisanOptimize()
-	{
-		self::execTimeLimitOverride();
-		return self::executeArtisanCmd("optimize");
-	}
-
 }
 
 ?>

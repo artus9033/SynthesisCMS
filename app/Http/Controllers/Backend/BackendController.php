@@ -18,6 +18,10 @@ use DatePeriod;
 use DateTime;
 use Carbon\Carbon;
 
+function artisanResultStr($resultCode){
+	return ($resultCode == 0) ? "OK! " : "Error code " . $resultCode;
+}
+
 class BackendController extends Controller
 {
 	public function index(ContentEditorRequest $request)
@@ -387,11 +391,11 @@ class BackendController extends Controller
 	{
 		if ($request->ajax() && $request->has('execution_permitted')) {
 			if ($request->get('execution_permitted')) {
-				$rawOutput1 = SynthesisArtisanBridge::artisanCacheClear() . SynthesisArtisanBridge::artisanClearCompiled() . SynthesisArtisanBridge::artisanConfigClear() . SynthesisArtisanBridge::artisanRouteClear() . SynthesisArtisanBridge::artisanViewClear();
+				$rawOutput1 = "Cache: " . artisanResultStr(SynthesisArtisanBridge::artisanCacheClear()) . "Precompiled: " . artisanResultStr(SynthesisArtisanBridge::artisanClearCompiled()) . "Config: " . artisanResultStr(SynthesisArtisanBridge::artisanConfigClear()) . "Routes: " . artisanResultStr(SynthesisArtisanBridge::artisanRouteClear()) . " Views: " . artisanResultStr(SynthesisArtisanBridge::artisanViewClear());
 				$output1 = explode("\n", $rawOutput1);
-				$rawOutput2 = SynthesisComposerBridge::composerDumpAutoload();
+				$rawOutput2 = "Autoload: " . artisanResultStr(SynthesisComposerBridge::composerDumpAutoload());
 				$output2 = explode("\n", $rawOutput2);
-				$rawOutput3 = SynthesisArtisanBridge::artisanOptimize() . SynthesisArtisanBridge::artisanConfigCache() . SynthesisArtisanBridge::artisanRouteCache();
+				$rawOutput3 = "Cache config: " . artisanResultStr(SynthesisArtisanBridge::artisanConfigCache());
 				$output3 = explode("\n", $rawOutput3);
 				return response()->json(['output' => array_merge(array("** Clearing artisan views, cache, sessions, routes & compiled classes **"), $output1, array("** Dumping composer autoload files **"), $output2, array("** Optimizing artisan classes, config & routes (routes may sometimes throw LogicException, but that's not a real error, rather a non-optimized extension) **"), $output3)]);
 			}
