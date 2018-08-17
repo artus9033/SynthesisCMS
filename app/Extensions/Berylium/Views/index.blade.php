@@ -2,7 +2,7 @@
 	$desktopMenu = $synthesiscmsPositionManager->getCustom('berylium', 'desktop-menu', array(Request::url()));
 	$mobileMenu = $synthesiscmsPositionManager->getCustom('berylium', 'mobile-menu', array(Request::url()));
 @endphp
-@if(count($desktopMenu) && $model->enabled)
+@if($desktopMenu && (is_array($desktopMenu) ? count($desktopMenu) : 1) && $model->enabled)
 	<nav class="col s12 {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} darken-1 hide-on-med-and-down">
 		<div class="nav-wrapper">
 			<ul>

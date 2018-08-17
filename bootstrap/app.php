@@ -50,31 +50,30 @@ $app->singleton(
 	App\Exceptions\Handler::class
 );
 
-function checkDb(){
-	$dotenv = new Dotenv(__DIR__ . '/../');
-	$dotenv->load();
-	mysqli_report(MYSQLI_REPORT_STRICT);
-	try {
-		@($sqli = new mysqli(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'), getenv('DB_PORT')));
-	} catch (Exception $e) {
-		return Array(false, $e->getMessage());
-	}
+$res = Array(true, '');
+$dotenv = new Dotenv(__DIR__ . '/../');
+$dotenv->load();
+mysqli_report(MYSQLI_REPORT_STRICT);
+$bCont = true;
+try {
+	@($sqli = new mysqli(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'), getenv('DB_PORT')));
+} catch (Exception $e) {
+	$res = Array(false, $e->getMessage());
+	$bCont = false;
+}
 
+if($bCont){
 	try {
-		$res = $sqli->query("SHOW TABLES LIKE '" . getenv('DB_PREFIX') . "_" . \App\Models\Settings\Settings::getTableName() . "'");
-		if (mysqli_num_rows($res) == 0) {
-			return Array(false, "Cannot find SynthesisCMS settings table.");
+		$result = $sqli->query("SHOW TABLES LIKE '" . getenv('DB_PREFIX') . "_" . \App\Models\Settings\Settings::getTableName() . "'");
+		if (mysqli_num_rows($result) == 0) {
+			$res = Array(false, "Cannot find SynthesisCMS settings table.");
 		}
 	} catch (Exception $e) {
-		return Array(false,$e->getMessage());
+		$res = Array(false,$e->getMessage());
 	}
-
-	return Array(true, '');
 }
 
 if ($app->runningInConsole()) {
-	$res = checkDb();
-
 	if($res[0]){
 		$app->singleton('synthesiscmsActiveSettingsInstance', function () {
 			return \App\Models\Settings\Settings::where('active', true)->first();
@@ -91,8 +90,6 @@ if ($app->runningInConsole()) {
 		error_log($res[1]);
 	}
 } else {
-	$res = checkDb();
-
 	if($res[0]){
 		$app->singleton('synthesiscmsActiveSettingsInstance', function () {
 			return \App\Models\Settings\Settings::where('active', true)->first();

@@ -13,7 +13,8 @@
         "meyfa/php-svg": "^0.6.0",
         "mouf/nodejs-installer": "^1.0",
         "itsgoingd/clockwork": "^2.0",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "swooletw/laravel-swoole": "^2.4"
     },
     "require-dev": {
         "fzaninotto/faker": "*",
@@ -47,13 +48,11 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize",
             "php artisan storage:link",
             "php artisan config:cache"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize",
             "php artisan storage:link",
             "php artisan config:cache"
         ],

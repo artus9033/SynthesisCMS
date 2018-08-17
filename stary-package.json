@@ -11,25 +11,22 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
-    "axios": "*",
-    "chart.js": "*",
     "clipboard": "*",
-    "cross-env": "^5.2.0",
-    "hammerjs": "*",
-    "jquery": "^3.1.1",
-    "laravel-mix": "^2.1.11",
-    "lodash": "*",
-    "nan": "^2.10.0",
     "trumbowyg": "*",
-    "vue": "*",
-    "webpack": "^3.1.0"
+    "chart.js": "*",
+    "jquery": "^3.1.1",
+    "axios": "*",
+    "cross-env": "*",
+    "hammerjs": "*",
+    "laravel-mix": "*",
+    "lodash": "*",
+    "vue": "*"
   },
   "dependencies": {
     "dragula": "^3.7.2",
     "jquery-easing": "*",
-    "node-sass": "^4.9.0",
+    "node-sass": "*",
     "optiscroll": "^3.1.0",
-    "pickadate": "*",
-    "webpack-cli": "^3.0.8"
+    "pickadate": "*"
   }
 }

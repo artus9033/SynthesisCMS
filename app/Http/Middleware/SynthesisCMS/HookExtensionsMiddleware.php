@@ -19,7 +19,7 @@ class HookExtensionsMiddleware
 			// For each of the registered extensions, include their middleware
 			$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 			$exec_next = true;
-			while (list(, $extension) = each($extensions)) {
+			foreach($extensions as $key => $extension){
 				$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
 				$kernel = new $kpath;
 				if (!$kernel->registerMiddleware($request, $next)) {

@@ -23,7 +23,7 @@ class ExtensionsServiceProvider extends ServiceProvider
 		$extensionsDirlist = glob($extensionsDirectoryPath . "*");
 
 		if(\App::runningInConsole()) {
-			while (list(, $extension) = each($extensionsDirlist)) {
+			foreach($extensionsDirlist as $key => $extension){
 				// Load extension database migrations
 				if (is_dir($extension . '/Migrations')) {
 					$this->loadMigrationsFrom($extension . '/Migrations');
@@ -62,7 +62,9 @@ class ExtensionsServiceProvider extends ServiceProvider
 				$extensions = array();
 			}
 
-			while (list(, $extension) = each($extensions)) {
+			foreach($extensionsDirlist as $key => $extension){
+				
+				$extension = basename($extension);
 
 				// Load the routes for each of the extensions
 				if (file_exists($extensionsDirectoryPath . $extension . '/laravelRoutes.php')) {
@@ -79,7 +81,7 @@ class ExtensionsServiceProvider extends ServiceProvider
 				}
 
 				// Load defines & hooks of positions
-				$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
+				$kpath = '\App\\Extensions\\' . $extension . '\\ExtensionKernel';
 				$kernel = new $kpath;
 				$kernel->hookPositions($manager);
 				$kernel->registerMiddleware();

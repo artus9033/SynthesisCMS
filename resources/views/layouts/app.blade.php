@@ -61,16 +61,16 @@
 			@if($synthesiscmsShowImageBigBanner)
 				<a id="synthesiscms-big-image-banner" href="{!! url($synthesiscmsHomePage) !!}"
 				class="hide-on-med-and-down brand-logo">
-					<img id="synthesiscms-app-logo-img" src="{{ url('/banner.png') }}">
+					<img id="synthesiscms-app-logo-img" style="object-fit: scale-down;" src="{{ url('/banner.png') }}">
 				</a>
 				<a id="synthesiscms-mobile-brand-logo" href="{!! url($synthesiscmsHomePage) !!}"
 				   class="hide-on-large-only brand-logo truncate">{{ $synthesiscmsHeaderTitle }}
 				</a>
 			@else
 				<a id="synthesiscms-app-logo" class="brand-logo left hide-on-med-and-down"
-				   style="background-color: {!! $synthesiscmsLogoBackgroundColor !!}; position: relative; box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 999 !important; height: 220%; width: 125px; overflow: hidden;"
+				   style="background-color: {!! $synthesiscmsLogoBackgroundColor !!}; position: relative; box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 8px; border-bottom-right-radius: 2.3em; z-index: 999 !important; overflow: hidden;"
 				   href="{!! url($synthesiscmsHomePage) !!}">
-					<img id="synthesiscms-app-logo-img" style="height: 90%; width: auto; object-fit: contain; margin-left: 15%;" src="{{ url('/favicon.ico') }}">
+					<img id="synthesiscms-app-logo-img" style="padding: 10px; object-fit: scale-down;" src="{{ url('/favicon.ico') }}">
 				</a>
 				<a id="synthesiscms-mobile-brand-logo" href="{!! url($synthesiscmsHomePage) !!}"
 				   class="hide-on-large-only brand-logo truncate">{{ $synthesiscmsHeaderTitle }}</a>
@@ -85,13 +85,13 @@
                     var desktopLogoWidth = (jBody.width() - $('#synthesiscms-large-screens-menu-part-right').width() - $('#synthesiscms-app-logo').width());
                     var desktopBrandLogo = $("#synthesiscms-desktop-brand-logo");
                     var mobileBrandLogo = $("#synthesiscms-mobile-brand-logo");
-                    $("#synthesiscms-big-image-banner").height(appLogoImg.height());
-                    $("#synthesiscms-app-main-nav").height(appLogoImg.height());
+                    /*$("#synthesiscms-big-image-banner").height(appLogoImg.width());
+                    $("#synthesiscms-app-main-nav").height(appLogoImg.width());
                     mobileBrandLogo.css('width', (jBody.width() - mobileBtnWrapper.width()));
                     mobileBrandLogo.css('max-width', (jBody.width() - mobileBtnWrapper.width()));
                     mobileBrandLogo.css('padding-left', mobileBtnWrapper.width());
                     desktopBrandLogo.css('max-width', desktopLogoWidth);
-                    desktopBrandLogo.css('width', desktopLogoWidth);Hyperlink.TextTypes.title
+                    desktopBrandLogo.css('width', desktopLogoWidth);*/
                 }
                 $(document).ready(function () {
                     //$("#synthesiscms-app-logo").height($("#synthesiscms-app-logo").width()); //substituted with height: 220% - looks better & doesn't wait 'till document ready
