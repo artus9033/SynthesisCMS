@@ -408,16 +408,6 @@ class BackendController extends Controller
 		abort(404);
 	}
 	
-	public function serve($anything = "")
-	{
-		if(file_exists($anything)){
-			return response(public_path($anything), 200)
-                  ->header('Content-Type', 'text/plain');
-		}else{
-			return $this->abort404();
-		}
-	}
-
 	public function redirectBackendToAdmin($anything = "")
 	{
 		return redirect(route('admin') . '/' . $anything);

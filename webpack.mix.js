@@ -39,6 +39,7 @@ mix.copy('node_modules/chart.js/dist/Chart.js', 'public/js');
 mix.copy('node_modules/clipboard/dist/clipboard.min.js', 'public/js/clipboard.min.js');
 mix.copy('node_modules/optiscroll/dist/jquery.optiscroll.js', 'public/js/jquery.optiscroll.js');
 mix.copy('node_modules/optiscroll/dist/optiscroll.css', 'public/css/optiscroll.css');
+mix.copy('resources/assets/trumbowyg', 'public/trumbowyg', false);
 
 //SynthesisCMS resources, trumbowyg resources, artus9033's Trumbowyg addons, fonts
 mix.copy('resources/assets/img', 'public/img', false);

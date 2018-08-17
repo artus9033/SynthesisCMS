@@ -5,6 +5,4 @@ Route::get('/synthesis-uploads/{file}/download', 'Backend\\SynthesisFilesystemCo
 
 Route::get('/install', 'Backend\\InstallationController@index')->name('install');
 
-Route::get('/update', 'Backend\\UpdateController@index')->name('update');
-
 ?>

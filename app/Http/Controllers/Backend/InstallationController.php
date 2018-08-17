@@ -10,72 +10,10 @@ class InstallationController extends Controller
 
 	public function index(Request $request)
 	{
-		$reqList = array(
-			'4.2' => array(
-				'php' => '5.4',
-				'mcrypt' => true,
-				'pdo' => false,
-				'openssl' => false,
-				'mbstring' => false,
-				'tokenizer' => false,
-				'xml' => false,
-				'obs' => $laravel42Obs
-			),
-			'5.0' => array(
-				'php' => '5.4',
-				'mcrypt' => true,
-				'openssl' => true,
-				'pdo' => false,
-				'mbstring' => true,
-				'tokenizer' => true,
-				'xml' => false,
-				'obs' => $laravel50Obs
-			),
-			'5.1' => array(
-				'php' => '5.5.9',
-				'mcrypt' => false,
-				'openssl' => true,
-				'pdo' => true,
-				'mbstring' => true,
-				'tokenizer' => true,
-				'xml' => false,
-				'obs' => ''
-			),
-			'5.2' => array(
-				'php' => '5.5.9',
-				'mcrypt' => false,
-				'openssl' => true,
-				'pdo' => true,
-				'mbstring' => true,
-				'tokenizer' => true,
-				'xml' => false,
-				'obs' => ''
-			),
-			'5.3' => array(
-				'php' => '5.6.4',
-				'mcrypt' => false,
-				'openssl' => true,
-				'pdo' => true,
-				'mbstring' => true,
-				'tokenizer' => true,
-				'xml' => true,
-				'obs' => ''
-			),
-			'5.4' => array(
-				'php' => '5.6.4',
-				'mcrypt' => false,
-				'openssl' => true,
-				'pdo' => true,
-				'mbstring' => true,
-				'tokenizer' => true,
-				'xml' => true,
-				'obs' => ''
-			),
-		);
+		return response("Not implemented yet", 200);
+		//TODO: implement this
 		$laravelVersion = '5.4';
 		$requirements = array();
-		// PHP Version
-		$requirements['php_version'] = (version_compare(PHP_VERSION, $reqList[$laravelVersion]['php'], ">=") >= 0);
 		// OpenSSL PHP Extension
 		$requirements['openssl_enabled'] = extension_loaded("openssl");
 		// PDO PHP Extension

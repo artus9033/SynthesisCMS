@@ -60,4 +60,6 @@ Route::post('/admin/tools/resources_compiler_node_modules_delete_post', 'Backend
 Route::get('/admin/tools/optimizer', 'Backend\\BackendController@toolOptimizerGet')->name('tools_optimizer');
 Route::post('/admin/tools/optimizer_execute', 'Backend\\BackendController@toolOptimizerExecutePost')->name('tools_optimizer_execute_post');
 
+Route::get('/update', 'Backend\\UpdateController@index')->name('update');
+
 ?>

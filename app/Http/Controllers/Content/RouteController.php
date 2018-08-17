@@ -25,8 +25,12 @@ class RouteController extends Controller
 		try {
 			$routes->match($request2);
 			return array('text' => trans('synthesiscms/helper.route_occupied'), 'color' => 'red', 'valid' => false);
-		} catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
-			return array('text' => trans('synthesiscms/helper.route_free'), 'color' => 'green', 'valid' => true);
+		} catch (\Exception $e) {
+			if($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException){
+				return array('text' => trans('synthesiscms/helper.route_free'), 'color' => 'green', 'valid' => true);
+			}else{
+				return array('text' => trans('synthesiscms/helper.route_occupied'), 'color' => 'red', 'valid' => false);
+			}
 		}
 	}
 

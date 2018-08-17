@@ -10,7 +10,7 @@ class UpdateController extends Controller
 
 	public function index(Request $request)
 	{
-		return view('admin.admin_dashboard');
+		return response("Not implemented yet", 200);
 	}
 	
 }
