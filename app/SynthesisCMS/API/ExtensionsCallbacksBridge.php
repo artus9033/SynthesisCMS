@@ -8,9 +8,6 @@
 
 namespace App\SynthesisCMS\API;
 
-
-use App\SynthesisCMS\API\Scripts\SynthesisArtisanBridge;
-
 class ExtensionsCallbacksBridge
 {
 	/**
@@ -51,8 +48,6 @@ class ExtensionsCallbacksBridge
 	{
 		$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 
-		SynthesisArtisanBridge::artisanRouteCache();
-
 		while (list(, $extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
 			$kernel = new $kpath;
@@ -68,8 +63,6 @@ class ExtensionsCallbacksBridge
 	{
 		$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 
-		SynthesisArtisanBridge::artisanRouteCache();
-
 		while (list(, $extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
 			$kernel = new $kpath;
@@ -84,8 +77,6 @@ class ExtensionsCallbacksBridge
 	public static function handleOnRouteSaved($id)
 	{
 		$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
-
-		SynthesisArtisanBridge::artisanRouteCache();
 
 		while (list(, $extension) = each($extensions)) {
 			$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
