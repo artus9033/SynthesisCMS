@@ -4,13 +4,6 @@
 	{{ $page->page_title }}
 @endsection
 
-@section('mod_breadcrumbs')
-	@if($base_slug != url("/") || $base_slug != "/")
-		<a href="{{ url($base_slug) }}"
-		   class="breadcrumb">{{ \App\Toolbox::string_truncate($page->page_title, 25) }}</a>
-	@endif
-@endsection
-
 @section('mod_main')
 	@php
 		use App\Models\Content\Article;
