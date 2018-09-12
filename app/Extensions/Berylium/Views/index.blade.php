@@ -44,11 +44,11 @@
 			<div class="background">
 				<img src="{!! asset('img/office.jpg') !!}">
 			</div>
-			<a href="{{ route('profile') }}">
+			<a href="{!! url($synthesiscmsHomePage) !!}">
 				<img class="circle" style="border-radius: unset !important;"
 					 src="{!! asset('img/synthesiscms-icon.svg') !!}">
 			</a>
-			<a href="{{ route('profile') }}">
+			<a href="{!! url($synthesiscmsHomePage) !!}">
 				<span class="white-text name truncate">
 					@if(\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isGuest())
 						{{ trans('synthesiscms/helper.guest_username') }}
@@ -57,7 +57,7 @@
 					@endif
 				</span>
 			</a>
-			<a href="{{ route('profile') }}">
+			<a href="{!! url($synthesiscmsHomePage) !!}">
 				<span class="white-text email truncate">
 					@if(\App\SynthesisCMS\API\Auth\UserPrivilegesManager::isGuest())
 						{{ trans('synthesiscms/helper.guest_email') }}
