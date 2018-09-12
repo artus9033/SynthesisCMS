@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Toolbox;
 use App\Http\Controllers\Controller;
 use App\Models\Auth\User;
 use App\Models\Settings\Settings;
