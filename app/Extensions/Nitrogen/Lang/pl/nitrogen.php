@@ -9,7 +9,7 @@ return [
 	'delete' => 'Usuń',
 	'parent' => 'Nadrzędny',
 	'mass_delete' => 'Usuń Masowo',
-	'applet_enable_header' => 'Włącz Ten Element',
+	'applet_enable_header' => 'Włącz applet slidera',
 	'empty' => 'Brak elementów...',
 	'item_content' => 'Zawartość elementu',
 	'item_hasButton' => 'Reklamowy Przycisk',
