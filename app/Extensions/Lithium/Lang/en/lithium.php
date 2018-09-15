@@ -8,7 +8,7 @@ return [
 	'options_modal_header' => 'Please choose an action',
 	'options_modal_btn_cancel' => 'Cancel',
 	'options_modal_toast_link_copied' => 'Link copied to clipboard!',
-	'name' => 'Lithium Single-Article Page',
+	'name' => 'Single-Article Page',
 	'switch_on' => 'On',
 	'switch_off' => 'Off',
 ];
