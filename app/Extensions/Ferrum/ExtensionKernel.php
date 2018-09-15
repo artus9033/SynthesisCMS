@@ -3,6 +3,7 @@
 namespace App\Extensions\Ferrum;
 
 use App\Extensions\Ferrum\Models\FerrumExtension;
+use App\Extensions\Ferrum\FerrumIdManager;
 use App\Models\Content\Page;
 use App\SynthesisCMS\API\Extensions\SynthesisExtension;
 use App\SynthesisCMS\API\Extensions\SynthesisExtensionType;
@@ -54,7 +55,8 @@ class ExtensionKernel extends SynthesisExtension
 		} else {
 			$extension_instance = $this->create($page->id);
 		}
-		return \View::make('Ferrum::partials/edit')->with(['page' => $page, 'extension_instance' => $extension_instance]);
+		$ferrumIdManager = new FerrumIdManager();
+		return \View::make('Ferrum::partials/edit')->with(['page' => $page, 'ferrumIdManager' => $ferrumIdManager, 'extension_instance' => $extension_instance]);
 	}
 
 	public function create($id)
