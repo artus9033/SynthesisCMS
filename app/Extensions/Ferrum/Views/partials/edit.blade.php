@@ -8,8 +8,12 @@
 	</label>
 </div>
 @php
+	use App\Extensions\Ferrum\FerrumIdManager;
+	
 	$applicationsCount = (strlen($extension_instance->applicationsInJson) > 0) ? count(json_decode($extension_instance->applicationsInJson)) : 0;
+	$ferrumIdManager = new FerrumIdManager();
 @endphp
+{!! $ferrumIdManager !!}
 <div class="card-panel col s12 center row">
 	<h5 class="center">{{ trans('Ferrum::ferrum.label_applications_submitted_count', ['count' => $applicationsCount]) }}</h5>
 </div>
@@ -36,10 +40,6 @@
 <div class="col s12 row"></div>
 <div class="col s12 grey-text text-darken-2">{{ trans("Ferrum::messages.edit_form") }}</div>
 @php($formInJson = $extension_instance->formInJson)
-@php
-	use App\Extensions\Ferrum\FerrumIdManager;
-	$ferrumIdManager = new FerrumIdManager();
-@endphp
 @include('Ferrum::x-editable/x-editable-jqueryui-css')
 @include('Ferrum::x-editable/x-editable-jqueryui-min-js')
 <script>
