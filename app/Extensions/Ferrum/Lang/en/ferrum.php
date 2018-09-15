@@ -6,7 +6,7 @@ return [
 	'options_modal_btn_copy_link' => 'Copy Link to this form',
 	'options_modal_header' => 'Please choose an action',
 	'options_modal_btn_cancel' => 'Cancel',
-	'name' => 'Ferrum Forms Page',
+	'name' => 'Application Form Page',
 	'switch_on' => 'On',
 	'switch_off' => 'Off',
 	'label_submit_button_text' => 'Submit button text',
