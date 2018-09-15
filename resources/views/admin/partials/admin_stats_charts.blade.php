@@ -102,7 +102,13 @@
             },
             type: 'doughnut',
             options: {
-                responsive: true,
+                responsive: false,
+		legend: {
+			display: true,
+			labels: {
+				usePointStyle: true,
+			}
+		}
             }
         });
 
