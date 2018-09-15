@@ -12,7 +12,7 @@ return [
 	'previous' => 'Poprzednia Strona',
 	'first' => 'Pierwsza Strona',
 	'last' => 'Ostatnia Strona',
-	'name' => 'Wodorowa strona z pojedynczą kategorią artykułów',
+	'name' => 'Strona z kategorią artykułów',
 	'one_column' => 'Jedna Kolumna',
 	'two_columns' => 'Dwie Kolumny',
 	'three_columns' => 'Trzy Kolumny',
