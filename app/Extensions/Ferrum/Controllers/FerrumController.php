@@ -25,7 +25,7 @@ class FerrumController extends Controller
 
 			$applications = json_decode($extension_instance->applicationsInJson);
 
-			$pdf = new Mpdf();
+			$pdf = new Mpdf(['tempDir' => public_path('tmp/')]);
 			$pdf->AddPage();
 
 			if (count($applications)) {
