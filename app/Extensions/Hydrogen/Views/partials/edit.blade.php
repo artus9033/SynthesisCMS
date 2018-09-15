@@ -29,7 +29,7 @@
 				}else{
 					$selected = "";
 				}
-				$optionVal = App\Toolbox::string_truncate($value->title, 40) . "&nbsp;(ID&nbsp;" . $value->id . ")";
+				$optionVal = App\Toolbox::string_truncate($value->title, 40) . " (ID " . $value->id . ")";
 			@endphp
 			<option {{ $selected }} value="{{ $value->id }}"
 					class="card-panel col s10 offset-s1 red white-text">{{ $optionVal }}</option>
