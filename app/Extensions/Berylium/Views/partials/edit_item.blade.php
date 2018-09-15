@@ -50,7 +50,7 @@
 							<style>
 								.selected-berylium {
 									text-color: white;
-									background-color: red;
+									background-color: teal;
 								}
 
 								.selectable-berylium {
