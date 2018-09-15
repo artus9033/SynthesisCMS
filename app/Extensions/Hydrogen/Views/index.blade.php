@@ -11,28 +11,26 @@
 		use App\Extensions\Hydrogen\HydrogenSortingDirection;
 		$hasAnyArticlesInside = true;
 		$articlesPerPage = $extension_instance->articles_on_single_page;
-		$articlesCount = Article::where('articleCategory', $articlesKey)->count();
+		if($extension_instance->default_sorting_type == HydrogenSortingType::Alphabetical){
+			$order_field = 'title';
+		}else if($extension_instance->default_sorting_type == HydrogenSortingType::CreationDate){
+			$order_field = 'created_at';
+		}else if($extension_instance->default_sorting_type == HydrogenSortingType::ModificationDate){
+			$order_field = 'updated_at';
+		}
+		if($extension_instance->default_sorting_direction == HydrogenSortingDirection::Ascending){
+			$order_direction = 'asc';
+		}else{
+			$order_direction = 'desc';
+		}
+		$articles = Article::where('articleCategory', $articlesKey)->orderBy($order_field, $order_direction)->get();
+		$articlesCount = count($articles);
 		if($articlesCount > 0){
-			if($articlesCount <= $articlesPerPage){
-				if($extension_instance->default_sorting_type == HydrogenSortingType::Alphabetical){
-					$order_field = 'title';
-				}else if($extension_instance->default_sorting_type == HydrogenSortingType::CreationDate){
-					$order_field = 'created_at';
-				}else if($extension_instance->default_sorting_type == HydrogenSortingType::ModificationDate){
-					$order_field = 'updated_at';
-				}
-
-				if($extension_instance->default_sorting_direction == HydrogenSortingDirection::Ascending){
-					$order_direction = 'asc';
-				}else{
-					$order_direction = 'desc';
-				}
-				$articles = Article::where('articleCategory', $articlesKey)->orderBy($order_field, $order_direction)->get();
-			}else{
+			if($articlesCount > $articlesPerPage){
 				$articlesArray = [];
 				$chunkCounter = 1;
 				$articleCounter = 0;
-				foreach(Article::where('articleCategory', $articlesKey)->cursor() as $as){
+				foreach($articles as $as){
 					if($articleCounter == $articlesPerPage){
 						$chunkCounter++;
 						$articleCounter = 0;
@@ -69,32 +67,43 @@
 				$two_column_list = true;
 			}
 
+			function customChunk($articles, $chunkSize){
+				$ct = 0;
+				$ret = array_fill(0, $chunkSize, []);
+				foreach($articles as $article){
+					array_push($ret[$ct], $article);
+					$ct++;
+					if($ct >= $chunkSize) $ct = 0;
+				}
+				return $ret;
+			}
+
 			if($one_column_list){
 				$all = $articles;
 			}else if($two_column_list){
-				if($articles->count() == 1){
+				if(count($articles) == 1){
 					$one = $articles;
 					$two = array();
 				}else{
 					$one = array();
 					$two = array();
-					list($one, $two) = $articles->chunk($articles->count() / 2);
+					list($one, $two) = customChunk($articles, 2);
 				}
 			}else{
-				if($articles->count() == 1){
+				if(count($articles) == 1){
 					$one = $articles;
 					$two = array();
 					$three = array();
-				}else if($articles->count() == 2){
+				}else if(count($articles) == 2){
 					$one = array();
 					$two = array();
 					$three = array();
-					list($one, $two) = $articles->chunk($articles->count() / 2);
+					list($one, $two) = customChunk($articles, 2);
 				}else{
 					$one = array();
 					$two = array();
 					$three = array();
-					list($one, $two, $three) = $articles->chunk($articles->count() / 3);
+					list($one, $two, $three) = customChunk($articles, 3);
 				}
 			}
 		$hydrogenUidPrefix = "hydrogen-list-";
