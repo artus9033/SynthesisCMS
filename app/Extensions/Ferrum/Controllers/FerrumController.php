@@ -6,7 +6,7 @@ use App\Extensions\Ferrum\Models\FerrumExtension;
 use App\Http\Controllers\Controller;
 use App\Toolbox;
 use Carbon\Carbon;
-use mPDF;
+use \Mpdf\Mpdf;
 
 class FerrumController extends Controller
 {
@@ -25,7 +25,7 @@ class FerrumController extends Controller
 
 			$applications = json_decode($extension_instance->applicationsInJson);
 
-			$pdf = new mPDF();
+			$pdf = new Mpdf();
 			$pdf->AddPage();
 
 			if (count($applications)) {
