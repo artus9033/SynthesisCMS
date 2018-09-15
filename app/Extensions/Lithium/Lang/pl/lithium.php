@@ -8,7 +8,7 @@ return [
 	'options_modal_header' => 'Proszę wybrać akcję',
 	'options_modal_btn_cancel' => 'Anuluj',
 	'options_modal_toast_link_copied' => 'Link został skopiowany do schowka!',
-	'name' => 'Litowa strona z pojedynczym artykułem',
+	'name' => 'Strona z pojedynczym artykułem',
 	'switch_on' => 'Włączony',
 	'switch_off' => 'Wyłączony',
 ];
