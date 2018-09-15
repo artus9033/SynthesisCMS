@@ -34,7 +34,7 @@ class ExtensionKernel extends SynthesisExtension
 		$pages = Array();
 		foreach (LithiumExtension::all() as $extensions_instance) {
 			foreach (Page::where('id', $extensions_instance->id)->cursor() as $page) {
-				array_push($pages, Array($page->page_header, $page->id, $this->getExtensionName()));
+				array_push($pages, Array($page->page_title, $page->id, $this->getExtensionName()));
 			}
 		}
 		return Array($pages);
