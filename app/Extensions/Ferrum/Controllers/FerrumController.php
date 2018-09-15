@@ -20,8 +20,8 @@ class FerrumController extends Controller
 			$extension_instance = $query->first();
 			$datetimeNowFilenameFormatted = Carbon::now()->format('Y-m-d_H_i_s');
 			$filename = Toolbox::string_truncate_no_dots($page->page_title, 25) . '_' . trans('Ferrum::ferrum.file_name_part_single_word_applications') . '_' . $datetimeNowFilenameFormatted . '.pdf';
-			$fileUri = storage_path('tmp/' . $filename);
-			$handle = fopen(public_path($fileUri), 'w+');
+			$fileUri = public_path('tmp/' . $filename);
+			$handle = fopen($fileUri, 'w+');
 
 			$applications = json_decode($extension_instance->applicationsInJson);
 
@@ -150,8 +150,8 @@ class FerrumController extends Controller
 			$extension_instance = $query->first();
 			$datetimeNowFilenameFormatted = Carbon::now()->format('Y-m-d_H_i_s');
 			$filename = Toolbox::string_truncate_no_dots($page->page_title, 25) . '_' . trans('Ferrum::ferrum.file_name_part_single_word_applications') . '_' . $datetimeNowFilenameFormatted . '.csv';
-			$fileUri = storage_path('tmp/' . $filename);
-			$handle = fopen(public_path($fileUri), 'w+');
+			$fileUri = public_path('tmp/' . $filename);
+			$handle = fopen($fileUri, 'w+');
 
 			fputs($handle, $bom = (chr(0xEF) . chr(0xBB) . chr(0xBF))); //Add BOM for the user program to recognize UTF-8 encoding
 
