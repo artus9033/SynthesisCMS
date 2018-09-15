@@ -46,7 +46,7 @@
 					</a>
 					<input name="page" id="page" type="text" hidden="hidden">
 					<div id="berylium-modal-choose-page" class="modal modal-fixed-footer">
-						<div class="modal-content">
+						<div class="modal-content" style="::-webkit-scrollbar { display: none; }">
 							<h4>{{ trans("Berylium::berylium.item_page") }}</h4>
 							<p>{{ trans("Berylium::berylium.item_page_choose_help") }}</p>
 							<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
