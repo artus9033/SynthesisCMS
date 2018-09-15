@@ -6,7 +6,7 @@ return [
 	'options_modal_btn_copy_link' => 'Skopiuj link do tego formularza',
 	'options_modal_header' => 'Proszę wybrać akcję',
 	'options_modal_btn_cancel' => 'Anuluj',
-	'name' => 'Żelazny formularz zgłoszeniowy',
+	'name' => 'Formularz zgłoszeniowy',
 	'switch_on' => 'Włączony',
 	'switch_off' => 'Wyłączony',
 	'label_submit_button_text' => 'Tekst przycisku \'Wyślij\'',
