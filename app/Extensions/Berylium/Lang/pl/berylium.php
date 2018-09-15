@@ -9,7 +9,7 @@ return [
 	'delete' => 'Usuń',
 	'parent' => 'Nadrzędny',
 	'mass_delete' => 'Usuń Masowo',
-	'applet_enable_header' => 'Włącz Applet Berylowe Menu',
+	'applet_enable_header' => 'Włącz Applet Menu',
 	'empty' => 'Brak elementów menu...',
 	'option_default_parent' => 'Brak',
 	'category_1' => "Ogólna",
