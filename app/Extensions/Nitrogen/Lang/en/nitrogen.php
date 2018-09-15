@@ -9,7 +9,7 @@ return [
 	'parent' => 'Parent',
 	'mass_delete' => 'Mass Delete',
 	'option_default_parent' => 'None',
-	'applet_enable_header' => 'Enable This Nitrogen Element',
+	'applet_enable_header' => 'Enable the slider applet',
 	'empty' => 'No items exist',
 	'item_content' => 'Item Content',
 	'item_hasButton' => 'Branding Button',
