@@ -10,5 +10,5 @@ npm-debug.log*
 _ide_helper.php
 docs/
 storage/app/public-uploads/
-storage/app/public/
+storage/app/public
 resources/assets/trumbowyg/ui/icons.svg

@@ -50,7 +50,6 @@ class Kernel extends HttpKernel
 			\App\Http\Middleware\Content\StatsTrackerMiddleware::class,
 			\App\Http\Middleware\SynthesisCMS\HookExtensionsMiddleware::class,
 			\App\Http\Middleware\SynthesisCMS\SynthesisFilesystemMiddleware::class,
-			\App\Http\Middleware\SynthesisCMS\SynthesisStorageFilesystemSymlinksMiddleware::class,
 		],
 
 		// web_internal - should be used by routes that are not meant to be indexed by stats tracker
@@ -70,7 +69,6 @@ class Kernel extends HttpKernel
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
 			\App\Http\Middleware\SynthesisCMS\HookExtensionsMiddleware::class,
 			\App\Http\Middleware\SynthesisCMS\SynthesisFilesystemMiddleware::class,
-			\App\Http\Middleware\SynthesisCMS\SynthesisStorageFilesystemSymlinksMiddleware::class,
 		],
 
 		// web_internal_persistent - should be used by routes that are not meant to be indexed by stats tracker & that shouldn't be influenced by SynthesisCMS enable/disable site setting
@@ -89,7 +87,6 @@ class Kernel extends HttpKernel
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
 			\App\Http\Middleware\SynthesisCMS\HookExtensionsMiddleware::class,
 			\App\Http\Middleware\SynthesisCMS\SynthesisFilesystemMiddleware::class,
-			\App\Http\Middleware\SynthesisCMS\SynthesisStorageFilesystemSymlinksMiddleware::class,
 		],
 
 		'admin' => [
@@ -105,7 +102,6 @@ class Kernel extends HttpKernel
 			\App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
 			\App\Http\Middleware\Security\VerifyCsrfToken::class,
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
-			\App\Http\Middleware\SynthesisCMS\SynthesisStorageFilesystemSymlinksMiddleware::class,
 		],
 
 		'api' => [
