@@ -16,7 +16,7 @@ Stunningly safe and designed both for humans and programmers.
  - `npm install`
  - Compile the assets: `npm run prod` (or `npm run dev` for development, does not compress the files)
  - Configure the DB user, password & server parameters in `.env`
- - Install PHP modules required by Laravel: `apt install php-mbstring php-pdo php-tokenizer php-json php-xml php-ctype php-bcmath`
+ - Install PHP modules required by Laravel: `apt install php-mbstring php-pdo php-tokenizer php-json php-xml php-ctype php-bcmath php-gd`
  - `composer install`
  - Migrate & seed DB tables: `composer database-install`
  - Optionally: it is advised not to place the CMS in your server's public directory, although the CMS has .htaccess files configured to protect critical files & source code from being accessed remotely. You should place the CMS outside of this directory and create a symlink to the `public` directory instead
