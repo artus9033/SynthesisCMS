@@ -31,7 +31,7 @@ class ExtensionsServiceProvider extends ServiceProvider
 			}
 		}
 		$dbConnectionGood = true;
-		$dotenv = new Dotenv(base_path());
+		$dotenv = Dotenv::create(base_path());
 		$dotenv->load();
 		mysqli_report(MYSQLI_REPORT_STRICT);
 		try {
