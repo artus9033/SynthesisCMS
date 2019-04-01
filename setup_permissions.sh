@@ -1,1 +1,1 @@
-chmod -R 777 ./storage ./bootstrap
+chmod -R 777 ./storage ./bootstrap ./public
