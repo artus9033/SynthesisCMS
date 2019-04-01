@@ -49,7 +49,7 @@ return [
 		'sqlite' => [
 			'driver' => 'sqlite',
 			'database' => env('DB_DATABASE', database_path('database.sqlite')),
-			'prefix' => env('DB_PREFIX', '') . "_",
+			'prefix' => strlen(env('DB_PREFIX', '')) > 0 ? env('DB_PREFIX', '') . "_" : '',
 		],
 
 		'mysql' => [
@@ -61,7 +61,7 @@ return [
 			'password' => env('DB_PASSWORD', ''),
 			'charset' => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix' => env('DB_PREFIX', '') . "_",
+			'prefix' => strlen(env('DB_PREFIX', '')) > 0 ? env('DB_PREFIX', '') . "_" : '',
 			'strict' => true,
 			'engine' => null,
 		],
@@ -74,7 +74,7 @@ return [
 			'username' => env('DB_USERNAME', 'forge'),
 			'password' => env('DB_PASSWORD', ''),
 			'charset' => 'utf8',
-			'prefix' => env('DB_PREFIX', '') . "_",
+			'prefix' => strlen(env('DB_PREFIX', '')) > 0 ? env('DB_PREFIX', '') . "_" : '',
 			'schema' => 'public',
 			'sslmode' => 'prefer',
 		],

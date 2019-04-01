@@ -39,8 +39,6 @@ class SynthesisFilesystemController extends Controller
 				$w = 180;
 				$h = 180;
 			}
-			echo($w);
-			echo($h);
 			$icoLib = new \PHP_ICO($pngPath, array(array($w, $h)));
 			$icoLib->save_ico(public_path('favicon.ico'));
 		}

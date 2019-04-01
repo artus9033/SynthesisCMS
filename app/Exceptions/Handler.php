@@ -108,6 +108,7 @@ class Handler extends ExceptionHandler
 			$continue = $settings->isDevModeEnabled();
 		}
 		if ($continue) {
+			\Log::critical($exception->getTraceAsString());
 			return parent::render($request, $exception);
 		} else {
 			\Barryvdh\Debugbar\Facade::disable();
@@ -129,6 +130,7 @@ class Handler extends ExceptionHandler
 						return response()->view("errors/503")->setStatusCode(503);
 						break;
 					default:
+						\Log::critical($exception->getTraceAsString());
 						return response()->view("errors/500")->setStatusCode(500);
 						break;
 				}
