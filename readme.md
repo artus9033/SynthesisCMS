@@ -13,6 +13,7 @@ Stunningly safe and designed both for humans and programmers.
  - Install php & enable php modules required by Laravel: mbstring, dom, pdo, json, bcmath, gd.
  - Clone the repo (`git clone https://github.com/artus9033/synthesiscms`)
  - `chown` the `public` & `storage` directories recursively for the proper user, e.g. `chown -R www-data:www-data storage` (repeat for `public`)
+ - set read/write permissions on the `storage` & `cache` directories, using the script `setup_permissions.sh`
  - `npm install`
  - Compile the assets: `npm run prod` (or `npm run dev` for development, does not compress the files)
  - Configure the DB user, password & server parameters in `.env`

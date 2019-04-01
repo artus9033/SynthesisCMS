@@ -51,7 +51,7 @@ $app->singleton(
 );
 
 $res = Array(true, '');
-$dotenv = Dotenv::create(__DIR__ . '/../');
+$dotenv = method_exists('\Dotenv\Dotenv', "create") ? Dotenv::create(__DIR__ . '/../') : new Dotenv(__DIR__ . "/../");
 $dotenv->load();
 mysqli_report(MYSQLI_REPORT_STRICT);
 $bCont = true;
