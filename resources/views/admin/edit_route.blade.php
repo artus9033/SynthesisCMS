@@ -158,7 +158,7 @@
                             }
                         });
 					</script>
-					<div class="row col s12 container">
+					<div class="row col s12">
 						<label for="header">{{ trans('synthesiscms/extensions.header') }}</label>
 						<textarea class="editor" id="header" name="header"></textarea>
 					</div>

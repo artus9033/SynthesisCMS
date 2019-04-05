@@ -68,7 +68,7 @@
 					<input value="{{ $article->title }}" id="title" name="title" type="text">
 					<label for="title">{{ trans('synthesiscms/article.title') }}</label>
 				</div>
-				<div class="row col s12 container">
+				<div class="row col s12">
 					<label for="desc">{{ trans('synthesiscms/article.content') }}</label>
 					<textarea class="editor" id="desc" name="desc"></textarea>
 				</div>

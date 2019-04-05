@@ -61,7 +61,7 @@
 					<label for="contentTextColor">{{ trans("Nitrogen::nitrogen.content_text_color") }}</label>
 				</div>
 				<div class="row"></div>
-				<div class="row col s12 container">
+				<div class="row col s12">
 					<label for="content">{{ trans("Nitrogen::nitrogen.item_content") }}</label>
 					<textarea class="editor" id="content" name="content"></textarea>
 				</div>

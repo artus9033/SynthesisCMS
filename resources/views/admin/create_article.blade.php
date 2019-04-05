@@ -43,7 +43,7 @@
 					<input id="title" type="text" name="title" class="validate">
 					<label for="title">{{ trans('synthesiscms/admin.create_article_title_label') }}</label>
 				</div>
-				<div class="row col s12 container">
+				<div class="row col s12">
 					<label for="desc">{{ trans('synthesiscms/article.content') }}</label>
 					<textarea class="editor" id="desc" name="desc"></textarea>
 				</div>

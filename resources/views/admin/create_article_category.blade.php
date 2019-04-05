@@ -31,14 +31,14 @@
 					<input id="title" type="text" name="title" class="validate">
 					<label for="title">{{ trans('synthesiscms/admin.create_article_category_title_label') }}</label>
 				</div>
-				<div class="row col s12 container">
+				<div class="row col s12">
 					<label for="description">{{ trans('synthesiscms/article_category.content') }}</label>
 					<textarea class="editor" id="description" name="description"></textarea>
 				</div>
 				<script>
-                    $(document).ready(function () {
-                        $(".editor").trumbowyg('html', ''); //empty content
-                    });
+                    			$(document).ready(function () {
+                       				$(".editor").trumbowyg('html', ''); //empty content
+                    			});
 				</script>
 				<button type="submit"
 						class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">

@@ -34,7 +34,7 @@
 		<p class="center">
 			<i class="material-icons {{ $synthesiscmsMainColor }}-text">
 				@php
-					switch($item->category){
+					switch($item->type){
 						case 1:
 						echo "link";
 						break;
