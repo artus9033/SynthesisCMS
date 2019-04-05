@@ -11,7 +11,7 @@
 	<script>
         $(document).ready(function () {
             $('.collapsible').collapsible();
-            var selector = "#@yield('side-nav-active')";
+            var selector = "#@yield('sidenav-active')";
             if (selector != "#") {
                 $(selector).addClass("active");
                 $(selector).parents('li').children('a').click();
@@ -69,7 +69,7 @@
 				<div class="collapsible-header {{ $synthesiscmsMainColor }}-text row">
 					<i class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans("Nitrogen::nitrogen.item_image") }}
 				</div>
-				<div class="col s12 m10 l8 offset-l2 input-field tooltipped" data-tooltip="{!! trans('Nitrogen::nitrogen.item_background_color_input_tooltip') !!}" data-delay="50" data-position="top">
+				<div class="col s12 m10 l8 offset-l2 input-field tooltipped" data-tooltip="{!! trans('Nitrogen::nitrogen.item_background_color_input_tooltip') !!}" data-position="top">
 					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text">format_color_fill</i>
 					<label for="content">{{ trans("Nitrogen::nitrogen.item_background_color_input_label") }}</label>
 					<input id="bg-color" name="bg-color" type="text" value="{!! $item->color !!}">

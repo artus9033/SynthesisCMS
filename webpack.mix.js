@@ -29,15 +29,16 @@ mix.sass(
 mix.copy("node_modules/dragula/dist/dragula.js", "public/js/dragula.js");
 mix.copy("node_modules/dragula/dist/dragula.css", "public/css/dragula.css");
 
-//MaterializeCSS SASS + JS + Roboto font
+//MaterializeCSS SASS + JS
 mix.sass(
   "resources/assets/materializecss/sass/materialize.scss",
   "public/css/materialize.css"
 );
-//mix.js(['resources/assets/materializecss/js/bin/materialize.js', 'node_modules/velocity-animate/velocity.js'], 'public/js/materialize.js');
-//TODO: fix this, because self compiling causes problems with Jquery's velocity animations
-mix.copy("resources/assets/materializecss/dist-js", "public/js", false);
-mix.copy("resources/assets/materializecss/fonts", "public/fonts", false);
+
+mix.js(
+  "resources/assets/materializecss/js/bin/materialize.js",
+  "public/js/materialize.js"
+);
 
 //Chart.js, Clipboard.js, Optiscroll & Trumbowyg
 mix.copy("node_modules/chart.js/dist/Chart.js", "public/js");
@@ -59,7 +60,6 @@ mix.copy("resources/assets/trumbowyg", "public/trumbowyg", false);
 mix.copy("resources/assets/img", "public/img", false);
 mix.copy("resources/assets/fonts", "public/fonts", false);
 mix.copy("resources/assets/js-copy-only", "public/js", false);
-//mix.copy('resources/assets/css-copy-only', 'public/css', false);
 mix.copy(
   "resources/assets/artus9033-trumbowyg",
   "public/trumbowyg/plugins/artus9033",

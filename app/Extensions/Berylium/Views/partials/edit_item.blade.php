@@ -68,7 +68,7 @@
 							@php
 								$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 								$routes_data = Array();
-								while(list(,$extension) = each($extensions)) {
+								while(list(,$extension) = \App\Toolbox::each($extensions)) {
 									$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
 									$kernel = new $kpath;
 									foreach($kernel->getRoutesAndSubroutes() as $routes_packed){
@@ -89,7 +89,7 @@
 										$extension = '(ID ' . $id . ') ' . $extension;
 									@endphp
 									<div class="col s6 l4 tooltipped @if($item->type == \App\Extensions\Berylium\BeryliumItemType::Page && $item->data == $id) selected-berylium @endif"
-										 data-position="top" data-delay="50" data-tooltip="{!! $extension !!}"
+										 data-position="top" data-tooltip="{!! $extension !!}"
 										 onclick="beryliumSelectPage('{!! $id !!}', this)">
 										<div style="width: 100%;"
 											 class='card-panel hoverable white waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColor }}-text selectable-berylium'>

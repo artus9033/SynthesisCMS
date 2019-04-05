@@ -140,20 +140,20 @@
 				@include('Hydrogen::partials/list', ['articles' => $all, 'hydrogenUid' => $hydrogenUidPrefix . 1])
 			</div>
 		@elseif($two_column_list)
-			<div class="container col s12 m6 row">
+			<div class="col s12 m6 row">
 				@include('Hydrogen::partials/list', ['articles' => $one, 'hydrogenUid' => $hydrogenUidPrefix . 1])
 			</div>
-			<div class="container col s12 m6 row">
+			<div class="col s12 m6 row">
 				@include('Hydrogen::partials/list', ['articles' => $two, 'hydrogenUid' => $hydrogenUidPrefix . 2])
 			</div>
 		@else
-			<div class="container col s12 m6 l4 row">
+			<div class="col s12 m6 l4 row">
 				@include('Hydrogen::partials/list', ['articles' => $one, 'hydrogenUid' => $hydrogenUidPrefix . 1])
 			</div>
-			<div class="container col s12 m6 l4 row">
+			<div class="col s12 m6 l4 row">
 				@include('Hydrogen::partials/list', ['articles' => $two, 'hydrogenUid' => $hydrogenUidPrefix . 2])
 			</div>
-			<div class="container col s12 m6 l4 row">
+			<div class="col s12 m6 l4 row">
 				@include('Hydrogen::partials/list', ['articles' => $three, 'hydrogenUid' => $hydrogenUidPrefix . 3])
 			</div>
 		@endif
@@ -161,14 +161,14 @@
 			<ul class="pagination col s12 row center">
 				<li @if($currentPage == 1) class="disabled"
 					@else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top"
-					data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.first") }}" @endif>
+					data-tooltip="{{ trans("Hydrogen::hydrogen.first") }}" @endif>
 					<a @if($currentPage != 1) href="{{ url($base_slug) }}/p/1" @endif>
 						<i class="material-icons">first_page</i>
 					</a>
 				</li>
 				<li @if($currentPage == 1) class="disabled"
 					@else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top"
-					data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.previous") }}" @endif>
+					data-tooltip="{{ trans("Hydrogen::hydrogen.previous") }}" @endif>
 					<a @if($currentPage != 1) href="{{ url($base_slug) }}/p/{{ $currentPage - 1 }}" @endif>
 						<i class="material-icons">chevron_left</i>
 					</a>
@@ -197,14 +197,14 @@
 				@endif
 				<li @if($currentPage == ceil($articlesCount / $articlesPerPage)) class="disabled"
 					@else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top"
-					data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.next") }}" @endif>
+					data-tooltip="{{ trans("Hydrogen::hydrogen.next") }}" @endif>
 					<a @if($currentPage != ceil($articlesCount / $articlesPerPage)) href="{{ url($base_slug) }}/p/{{ $currentPage + 1 }}" @endif>
 						<i class="material-icons">chevron_right</i>
 					</a>
 				</li>
 				<li @if($currentPage == ceil($articlesCount / $articlesPerPage)) class="disabled"
 					@else class="waves-effect waves-{{ $synthesiscmsMainColor }} tooltipped" data-position="top"
-					data-delay="50" data-tooltip="{{ trans("Hydrogen::hydrogen.last") }}" @endif>
+					data-tooltip="{{ trans("Hydrogen::hydrogen.last") }}" @endif>
 					<a @if($currentPage != ceil($articlesCount / $articlesPerPage)) href="{{ url($base_slug) }}/p/{{ ceil($articlesCount / $articlesPerPage) }}" @endif>
 						<i class="material-icons">last_page</i>
 					</a>

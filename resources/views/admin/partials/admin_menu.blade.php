@@ -1,5 +1,5 @@
 <li class="no-padding">
-	<div class="userView" style="margin-bottom: unset !important;">
+	<div class="user-view" style="margin-bottom: unset !important;">
 		<div class="background">
 			<img src="{!! asset('img/office.jpg') !!}">
 		</div>

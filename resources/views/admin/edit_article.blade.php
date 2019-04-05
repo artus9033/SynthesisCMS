@@ -16,7 +16,7 @@
 @section('head')
 	<script>
         $(document).ready(function () {
-            $('select').material_select();
+            $('select').formSelect();
         });
 	</script>
 	<style>
@@ -175,7 +175,7 @@
                         var hydrogenAutocompleteData = {
 							{!! $autocompleteTags !!}
 						};
-                        $('#article-tags').material_chip({
+                        $('#article-tags').chips({
                             placeholder: "{{ trans('synthesiscms/article.enter_tag_first') }}",
                             secondaryPlaceholder: "{{ trans('synthesiscms/article.enter_tag_more') }}",
                             autocompleteOptions: {

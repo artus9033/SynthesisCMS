@@ -85,15 +85,15 @@
 				{!! trans('synthesiscms/tools.btn_compile_now') !!}
 			</div>
 			<div id="compiler-node-sass-button" onclick="compilerRunNow('{!! route("tools_resources_compiler_rebuild_node_sass_post") !!}')"
-				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light tooltipped row" data-position="top" data-delay="50" data-tooltip="{!! trans('synthesiscms/tools.tooltip_btn_rebuild_node_sass_now') !!}">
+				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light tooltipped row" data-position="top" data-tooltip="{!! trans('synthesiscms/tools.tooltip_btn_rebuild_node_sass_now') !!}">
 				{!! trans('synthesiscms/tools.btn_rebuild_node_sass_now') !!}
 			</div>
 			<div id="compiler-npm-install-button" onclick="compilerRunNow('{!! route("tools_resources_compiler_npm_install_post") !!}')"
-				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light tooltipped row" data-position="top" data-delay="50" data-tooltip="{!! trans('synthesiscms/tools.tooltip_btn_npm_install') !!}">
+				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light tooltipped row" data-position="top" data-tooltip="{!! trans('synthesiscms/tools.tooltip_btn_npm_install') !!}">
 				{!! trans('synthesiscms/tools.btn_npm_install_now') !!}
 			</div>
 			<div id="compiler-delete-node-modules-button" onclick="compilerRunNow('{!! route("tools_resources_compiler_node_modules_delete_post") !!}')"
-				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light tooltipped row" data-position="top" data-delay="50" data-tooltip="{!! trans('synthesiscms/tools.tooltip_btn_delete_node_modules_now') !!}">
+				 class="{{ $synthesiscmsMainColor }} btn btn-large waves-effect waves-light tooltipped row" data-position="top" data-tooltip="{!! trans('synthesiscms/tools.tooltip_btn_delete_node_modules_now') !!}">
 				{!! trans('synthesiscms/tools.btn_delete_node_modules_now') !!}
 			</div>
 			<div class="row">

@@ -21,10 +21,12 @@
 	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/dragula.js') !!}"></script>
 	<link type="text/css" rel="stylesheet" href="{!! asset("css/dragula.css") !!}">
+	<link type="text/css" rel="stylesheet" href="{!! asset("fonts/roboto/roboto.css") !!}">
 	<script type="text/javascript" src="{!! asset('js/jquery.optiscroll.js') !!}"></script>
 	<link type="text/css" rel="stylesheet" href="{!! asset("css/optiscroll.css") !!}">
 	<link type="text/css" rel="stylesheet" href="{!! asset("fonts/material-icons/material-icons.css") !!}">
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}" media="screen,projection"/>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
 	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>
 	<script src="{{ asset('trumbowyg/trumbowyg.min.js') }}"></script>
@@ -47,12 +49,19 @@
 	@endforeach
 	<script>
         $(document).ready(function () {
-            var zeroIndexedCollapsibleHeaderNumberString = '@yield('side-nav-active-zero-indexed')';
-            $('.collapsible').collapsible();
+			var zeroIndexedCollapsibleHeaderNumberString = '@yield('side-nav-active-zero-indexed')';
+			
+			$('.collapsible').collapsible();
+
+			$('.fixed-action-btn').floatingActionButton();
+
             if (zeroIndexedCollapsibleHeaderNumberString.length) {
                 $('#admin-mobile-menu-automatically-opened-collapsible-main-element').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
                 $('#admin-desktop-menu-automatically-opened-collapsible-main-element').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
-            }
+			}
+
+			$(".tabs").tabs();
+			
             $(".editor").trumbowyg({
                 autogrow: true,
                 fullscreenable: false,
@@ -96,10 +105,9 @@
             });
             $('ul:not(.collapsible) > li.active').addClass('lighten-1');
             $('ul:not(.collapsible) > li.active').addClass('{{ $synthesiscmsMainColor }}');
-            $('.admin-menu-button-collapse').sideNav({
+            $('.sidenav').sidenav({
                 menuWidth: 300,
                 edge: 'left',
-                closeOnClick: true,
                 draggable: true
             });
         });
@@ -114,10 +122,10 @@
 	@yield('head')
 </head>
 <header>
-	<ul id="nav-mobile" class="side-nav">
+	<ul id="nav-mobile" class="sidenav">
 		@include('admin.partials.admin_menu', ['adminMenuIsMobile' => true])
 	</ul>
-	<ul class="side-nav fixed">
+	<ul class="sidenav sidenav-fixed">
 		@include('admin.partials.admin_menu', ['adminMenuIsMobile' => false])
 	</ul>
 	@yield('header')
@@ -128,7 +136,7 @@
 	<nav class="{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12 z-depth-3 no-padding"
 		 id="synthesiscms-admin-nav-wrapper">
 		<div class="nav-wrapper col s12 no-padding">
-			<button data-activates="nav-mobile"
+			<button data-target="nav-mobile"
 					class="synthesiscms-mobile-btn-wrapper admin-menu-button-collapse hide-on-large-only lighten-1 btn btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light z-depth-1">
 				<i class="material-icons">menu</i>
 			</button>
@@ -155,7 +163,7 @@
                 });
 			</script>
 			<ul class="right hide-on-med-and-down" id="synthesiscms-large-screens-menu-part-right">
-				<li class="input-field right hide-on-med-and-down">
+				<li class="input-field right hide-on-med-and-down" id="language-select-container">
 					<select id="lang-select" class="icons white-text"
 							onchange="if(this.selectedIndex !== 'undefined') SynthesisCmsJsUtils.setLanguage(this.options[this.selectedIndex].value);">
 						<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}"
@@ -187,7 +195,7 @@
 					</li>
 				</ul>
 				<li class="right" style="min-width: 210px;">
-					<a class="dropdown-button center" data-activates="user_dropdown">
+					<a class="dropdown-trigger dropdown-button center" data-target="user_dropdown">
 						<i class="material-icons white-text left">account_circle</i>
 						{{ Auth::user()->name }}
 						<i class="material-icons right">arrow_drop_down</i>
@@ -226,7 +234,7 @@
 		<div @if(!$synthesiscmsClientIsAnyMobile) class="col s12 m12 l12 z-depth-1 grey lighten-4 row card z-depth-5 no-padding"
 			 style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;" @endif>
 			<div @if(!$synthesiscmsClientIsAnyMobile) class="card-content" @endif>
-				<div @if($synthesiscmsClientIsAnyMobile) class="col s12 row" @endif>
+				<div class="col s12 row">
 					@yield('main')
 				</div>
 			</div>

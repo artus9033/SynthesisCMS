@@ -23,13 +23,14 @@
     "sass-loader": "^7.1.0",
     "trumbowyg": "*",
     "vue": "*",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "*"
   },
   "dependencies": {
+    "datepicker": "*",
     "dragula": "*",
     "jquery-easing": "*",
     "optiscroll": "*",
-    "pickadate": "*",
     "sass": "^1.17.4",
     "webpack-cli": "*"
   }

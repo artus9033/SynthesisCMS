@@ -95,11 +95,11 @@
     @endif
 @endif
 $('#{{ $picker_modal_id }}').modal({
-        ready: function (modal, trigger) {
+    onOpenEnd: function (modal, trigger) {
             {{ $picker_modal_id }}_setPickerPath('/');
         }
     });
-//TODO: handle firs here
+//TODO: handle first here
     function {{ $picker_modal_id }}_selectFile(name, path, size) {
         $("#{{ $picker_modal_id }}_chosen-image").text(name);
         $("#{{ $picker_modal_id }}_chosen-image-data").text(path);

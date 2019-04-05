@@ -28,7 +28,7 @@
 @endphp
 
 @section('main')
-	<div class="container col s12 row" id="admin-dashboard-container">
+	<div class="col s12 row" id="admin-dashboard-container">
 		<div>
 			<div class="card-content no-padding">
 				<div class="card-title center">
@@ -139,26 +139,32 @@
                         });
                     }
                     $(document).ready(function () {
-                        $('#timePeriodStart').pickadate({
+                        $('#timePeriodStart').datepicker({
                             onClose: function () {
                                 feedSynthesiscmsStatsTrackerChartsView(true);
-                            },
+							},
+							format: "d mmmm, yyyy",
                             selectMonths: true,
                             selectYears: 100,
-                            today: "{{ trans('synthesiscms/stats.btn_date_picker_today') }}",
-                            clear: "",
-                            close: "{{ trans('synthesiscms/stats.btn_date_picker_ok') }}",
+							today: "{{ trans('synthesiscms/stats.btn_date_picker_today') }}",
+							i18n: {
+								clear: "",
+								done: "{{ trans('synthesiscms/stats.btn_date_picker_ok') }}"
+							},
                             closeOnSelect: false,
                         });
-                        $('#timePeriodEnd').pickadate({
+                        $('#timePeriodEnd').datepicker({
                             onClose: function () {
                                 feedSynthesiscmsStatsTrackerChartsView(true);
-                            },
+							},
+							format: "d mmmm, yyyy",
                             selectMonths: true,
                             selectYears: 100,
                             today: "{{ trans('synthesiscms/stats.btn_date_picker_today') }}",
-                            clear: "",
-                            close: "{{ trans('synthesiscms/stats.btn_date_picker_ok') }}",
+                            i18n: {
+								clear: "",
+								done: "{{ trans('synthesiscms/stats.btn_date_picker_ok') }}"
+							},
                             closeOnSelect: false,
                         });
                         feedSynthesiscmsStatsTrackerChartsView(false);

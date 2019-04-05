@@ -116,27 +116,31 @@
     window.onload = function () {
         $('#ferrum-download-csv-button').tooltip();
         $('#ferrum-download-pdf-button').tooltip();
-        $('#applicationsCloseDate').pickadate({
+        $('#applicationsCloseDate').datepicker({
             selectMonths: true,
             selectYears: 100,
             today: "{{ trans('Ferrum::ferrum.btn_date_picker_today') }}",
-            clear: "",
-            close: "{{ trans('Ferrum::ferrum.btn_date_picker_ok') }}",
+            i18n: {
+                clear: "",
+                done: "{{ trans('Ferrum::ferrum.btn_date_picker_ok') }}"
+            },
             closeOnSelect: false,
         });
+
         $('#applicationsCloseTime').pickatime({
-            default: 'now',
-            fromnow: 0,
-            twelvehour: false,
-            donetext: "{{ trans('Ferrum::ferrum.btn_time_picker_ok') }}",
-            cleartext: "",
-            canceltext: "{{ trans('Ferrum::ferrum.btn_time_picker_cancel') }}",
-            autoclose: false,
-            ampmclickable: false,
-            aftershow: function () {
-            }
+            defaultTime: 'now',
+            fromNow: 0,
+            twelveHour: false,
+            i18n: {
+                done: "{{ trans('Ferrum::ferrum.btn_time_picker_ok') }}",
+                clear: "",
+                cancel: "{{ trans('Ferrum::ferrum.btn_time_picker_cancel') }}",
+            },
+            autoClose: false
         });
+
         initFerrumInlineEditables();
+        
         dragula([document.getElementById('ferrum-items'), document.getElementById('ferrum-tree-{!! $ferrumIdManager->ferrumGetCurrentUniqueId() !!}')], {
             removeOnSpill: true,
             copy: function (el, source) {

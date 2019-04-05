@@ -71,7 +71,7 @@
 							@php
 								$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 								$routes_data = Array();
-								while(list(,$extension) = each($extensions)) {
+								while(list(,$extension) = \App\Toolbox::each($extensions)) {
 									$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
 									$kernel = new $kpath;
 									foreach($kernel->getRoutesAndSubroutes() as $routes_packed){

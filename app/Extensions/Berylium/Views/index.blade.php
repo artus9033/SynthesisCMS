@@ -28,19 +28,19 @@
 	}
 </style>
 <script>
-    $('.dropdown-button-berylium').dropdown({
+    $('.dropdown-trigger-berylium').dropdown({
         inDuration: 300,
         outDuration: 225,
         constrainWidth: true,
         hover: true,
         gutter: 0,
-        belowOrigin: true,
+        coverTrigger: true,
         stopPropagation: false
     });
 </script>
-<ul id="berylium-mobile-menu" class="side-nav">
+<ul id="berylium-mobile-menu" class="sidenav">
 	<li class="no-padding">
-		<div class="userView">
+		<div class="user-view">
 			<div class="background">
 				<img src="{!! asset('img/office.jpg') !!}">
 			</div>
@@ -160,10 +160,9 @@
 
 <script>
     $(document).ready(function () {
-        $('.berylium-menu-button-collapse').sideNav({
+        $('.sidenav').sidenav({
             menuWidth: 300,
             edge: 'left',
-            closeOnClick: true,
             draggable: true
         });
     });

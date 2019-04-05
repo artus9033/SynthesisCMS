@@ -34,16 +34,16 @@
 					<div class='input-field col s12'>
 						<i class="material-icons {{ $synthesiscmsMainColor }}-text prefix">account_circle</i>
 						<input class='validate' type='email' name='email' id='email'/>
-						<label for='email' data-error="{{ trans('synthesiscms/auth.email_bad')}}"
-							   data-success="{{ trans('synthesiscms/auth.email_ok')}}">{{ trans('synthesiscms/auth.email')}}</label>
+						<label for='email'>{{ trans('synthesiscms/auth.email')}}</label>
+						<span class="helper-text" data-error="{{ trans('synthesiscms/auth.email_bad')}}" data-success="{{ trans('synthesiscms/auth.email_ok')}}"></span>
 					</div>
 				</div>
 				<div class='row'>
 					<div class='input-field col s12'>
 						<i class="material-icons {{ $synthesiscmsMainColor }}-text prefix">lock_outline</i>
 						<input class='validate' type='password' name='password' id='password'/>
-						<label for='password' data-error="{{ trans('synthesiscms/auth.password_bad')}}"
-							   data-success="{{ trans('synthesiscms/auth.password_ok')}}">{{ trans('synthesiscms/auth.password')}}</label>
+						<label for='password'>{{ trans('synthesiscms/auth.password')}}</label>
+						<span class="helper-text" data-error="{{ trans('synthesiscms/auth.password_bad')}}" data-success="{{ trans('synthesiscms/auth.password_ok')}}"></span>
 					</div>
 					<div class="col s12">
 						<p>

@@ -6,7 +6,7 @@
 		}
 	$articleTargetUrl = url($article_href) . "/article/" . $article->id; 
 	@endphp
-	<div class="container col s12 row">
+	<div class="col s12 row">
 		<div class="card hoverable z-depth-2 center">
 			@if($article->hasImage)
 				<div class="card-image {{ $article->cardSize }}">

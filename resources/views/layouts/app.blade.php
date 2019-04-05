@@ -23,7 +23,9 @@
 	<script type="text/javascript" src="{!! asset('js/clipboard.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/dragula.js') !!}"></script>
+	<link type="text/css" rel="stylesheet" href="{!! asset("fonts/roboto/roboto.css") !!}">
 	<link type="text/css" rel="stylesheet" href="{!! asset("css/dragula.css") !!}">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<script type="text/javascript" src="{!! asset('js/jquery.optiscroll.js') !!}"></script>
 	<link type="text/css" rel="stylesheet" href="{!! asset("css/optiscroll.css") !!}">
 	<script type="text/javascript">
@@ -98,7 +100,7 @@
                     //$("#synthesiscms-large-screen-logo-image").width($("#synthesiscms-app-logo").width() - 10);
                     //$("#synthesiscms-large-screen-logo-image").height($("#synthesiscms-app-logo").height() - 10);
                     synthesiscmsResizeBrandLogoMargin();
-
+					$(".tabs").tabs();
                 });
                 $(window).resize(function () {
                     synthesiscmsResizeBrandLogoMargin();
@@ -108,7 +110,7 @@
 				$app_locale = strtoupper(\App::getLocale());
 			@endphp
 			<ul class="hide-on-med-and-down right" id="synthesiscms-large-screens-menu-part-right">
-				<li class="input-field right hide-on-med-and-down">
+				<li class="input-field right hide-on-med-and-down" id="language-select-container">
 					<select id="lang-select" class="icons white-text"
 							onchange="if(this.selectedIndex !== 'undefined') SynthesisCmsJsUtils.setLanguage(this.options[this.selectedIndex].value);">
 						<option value="EN" data-icon="{!! asset('img/langs/UK.png') !!}"
@@ -157,7 +159,7 @@
 						</li>
 					</ul>
 					<li class="right" style="min-width: 210px;">
-						<a class="dropdown-button center" data-activates="user_dropdown">
+						<a class="dropdown-trigger dropdown-button center" data-target="user_dropdown">
 							<i class="material-icons white-text left">account_circle</i>
 							{{ Auth::user()->name }}
 							<i class="material-icons right">arrow_drop_down</i>

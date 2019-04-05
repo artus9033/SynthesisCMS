@@ -175,22 +175,24 @@
 					@endphp
 					@foreach ($all_articles as $article)
 						<tr>
-							<td class="right">
+							<td class="center">
 								<div class="col s12">
 									<p>
-										<input class="article_checkbox filled-in" type="checkbox"
-											   id="checkbox{{ $article->id }}"
-											   name="article_checkbox{{ $article->id }}">
-										<label for="checkbox{{ $article->id }}"></label>
+										<label>
+											<input class="article_checkbox filled-in" type="checkbox"
+													id="checkbox{{ $article->id }}"
+													name="article_checkbox{{ $article->id }}">
+											<span>ID {{ $article->id }}</span>
+										</label>
 									</p>
 								</div>
 							</td>
 							<td class="center">{{ $article->id }}</td>
-							<td class="center tooltipped" data-delay="50" data-tooltip="{{ $article->title }}"
-								data-position="top">{{ App\Toolbox::string_truncate($article->title, 15) }}</td>
+							<td class="center tooltipped" data-tooltip="{{ $article->title }}"
+								data-position="top">{{ $article->title }}</td>
 							@php($articleCategoryName = (App\Models\Content\ArticleCategory::find($article->articleCategory)->title  . ' (ID ' . $article->articleCategory . ')'))
-							<td class="center tooltipped" data-delay="50" data-tooltip="{{ $articleCategoryName }}"
-								data-position="top">{{ App\Toolbox::string_truncate(($articleCategoryName), 15) }}</td>
+							<td class="center tooltipped" data-tooltip="{{ $articleCategoryName }}"
+								data-position="top">{{ $articleCategoryName }}</td>
 							<td class="center">
 								<a href="{{ route('manage_articles_edit', ['id' => $article->id]) }}"
 								   class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">

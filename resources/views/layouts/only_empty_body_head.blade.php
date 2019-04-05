@@ -39,7 +39,7 @@
 </head>
 <body>
 @yield('body')
-<div class="col s12">
+<div class="col s12 row">
 	@if(Session::has('messages'))
 		@each('partials/message', Session::get('messages'), 'message')
 		@php(Session::forget('messages'))

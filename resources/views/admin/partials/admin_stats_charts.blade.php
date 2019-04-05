@@ -17,8 +17,8 @@
 </script>
 
 <div class="section col s12 l7">
-	<span class="card-panel row col s12 flow-text">
-		<span>
+	<span class="card-panel row col s12">
+		<span class="flow-text teal-text col s12" style="margin-top: 6px; margin-bottom: 6px;">
 			{!! trans('synthesiscms/stats.tooltip_dashboard_time_period_traffic_chart',
 			['periodically' => $uniqueVisitsPerTimePeriodChartPeriodWord,
 			'start' => $uniqueVisitsPerTimePeriodChartPeriodStartDateHumanString,
@@ -28,8 +28,8 @@
 	<canvas id="uniqueVisitsPerTimePeriodChartCanvas" class="col s12"></canvas>
 </div>
 <div class="section col s12 l5">
-	<span class="card-panel row col s12 flow-text">
-		<span>
+	<span class="card-panel row col s12">
+		<span class="flow-text teal-text col s12" style="margin-top: 6px; margin-bottom: 6px;">
 			{!! trans('synthesiscms/stats.tooltip_dashboard_todays_traffic_chart') !!}
 		</span>
 	</span>
@@ -71,6 +71,15 @@
     var uniqueVisitsPerTimePeriodChart;
     var todaysTrafficChart;
 
+    function invalidateCanvases(){
+        uniqueVisitsPerTimePeriodChart.render(true);
+        uniqueVisitsPerTimePeriodChart.resize();
+        uniqueVisitsPerTimePeriodChart.draw();
+        todaysTrafficChart.render(true);
+        todaysTrafficChart.resize();
+        todaysTrafficChart.draw();
+    }
+
     $(document).ready(function () {
         var uniqueVisitsPerTimePeriodChartCanvas = $("#uniqueVisitsPerTimePeriodChartCanvas");
         var todaysTrafficChartCanvas = $("#todaysTrafficChartCanvas");
@@ -88,6 +97,7 @@
                 }
             }
         });
+
         todaysTrafficChart = new Chart(todaysTrafficChartCanvas, {
             data: {
                 datasets: [{
@@ -140,13 +150,13 @@
                 }
             );
         }, 12000);
+
+        setTimeout(function(){
+            invalidateCanvases();
+        });
     });
+
     $(window).resize(function () {
-        uniqueVisitsPerTimePeriodChart.render(true);
-        uniqueVisitsPerTimePeriodChart.resize();
-        uniqueVisitsPerTimePeriodChart.draw();
-        todaysTrafficChart.render(true);
-        todaysTrafficChart.resize();
-        todaysTrafficChart.draw();
+        invalidateCanvases();
     });
 </script>
