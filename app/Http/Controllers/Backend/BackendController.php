@@ -186,8 +186,8 @@ class BackendController extends Controller
 		$uniqueVisitsPerTimePeriodChartPeriodStartDateHumanString = Carbon::parse($uniqueVisitsPerTimePeriodChartPeriodStartDateString)->formatLocalized("%e.%m.%G");
 		$uniqueVisitsPerTimePeriodChartPeriodEndDateHumanString = Carbon::parse($uniqueVisitsPerTimePeriodChartPeriodEndDateString)->formatLocalized("%e.%m.%G");
 
-		$start = new DateTime($uniqueVisitsPerTimePeriodChartPeriodStartDateString);
-		$end = new DateTime($uniqueVisitsPerTimePeriodChartPeriodEndDateString);
+		$start = (new DateTime($uniqueVisitsPerTimePeriodChartPeriodStartDateString))->setTime(0,0,0,0);
+		$end = (new DateTime($uniqueVisitsPerTimePeriodChartPeriodEndDateString))->setTime(0,0,0,0);
 		$interval = DateInterval::createFromDateString('1 ' . $timeUnit);
 		$end = $end->modify('+1 day');
 		$period = new DatePeriod($start, $interval, $end); // Get a set of months between $start & $end
@@ -197,7 +197,7 @@ class BackendController extends Controller
 		$valuesSemiAll = Array();
 		$valuesUnique = Array();
 
-		$items = StatsTracker::all();
+		$items = StatsTracker::whereBetween('date', [$start, $end])->get();
 
 		$mLineKey = -1;
 
@@ -222,38 +222,36 @@ class BackendController extends Controller
 
 				foreach ($items as $item) {
 					$itemDate = Carbon::parse($item->date)->setTime(0, 0, 0);
-					if ($itemDate->between(Carbon::parse($start->format('Y-m-d')), Carbon::parse($end->format('Y-m-d')))) {
-						$continue = false;
-						if ($timeUnit == 'day') {
-							if ($itemDate->isSameDay($date)) {
-								$continue = true;
-							}
-						} else if ($timeUnit == 'week') {
-							if ($itemDate->weekOfYear == $date->weekOfYear && $itemDate->year == $date->year) {
-								$continue = true;
-							}
-						} else if ($timeUnit == 'month') {
-							if ($itemDate->isSameMonth($date, true)) {
-								$continue = true;
-							}
-						} else {
-							if ($itemDate->isSameYear($date)) {
-								$continue = true;
-							}
+					$continue = false;
+					if ($timeUnit == 'day') {
+						if ($itemDate->isSameDay($date)) {
+							$continue = true;
 						}
-						if ($continue) {
-							$allCt += $item->hits;
-							if (!in_array($item->ip, $ipsTable)) {
-								$uniqueCt++;
-								array_push($ipsTable, $item->ip);
-							}
-							if (!array_key_exists($item->url, $ipsTablePerRoute)) {
-								$ipsTablePerRoute[$item->url] = Array();
-							}
-							if (!in_array($item->ip, $ipsTablePerRoute[$item->url])) {
-								$semiAllCt++;
-								array_push($ipsTablePerRoute[$item->url], $item->ip);
-							}
+					} else if ($timeUnit == 'week') {
+						if ($itemDate->weekOfYear == $date->weekOfYear && $itemDate->year == $date->year) {
+							$continue = true;
+						}
+					} else if ($timeUnit == 'month') {
+						if ($itemDate->isSameMonth($date, true)) {
+							$continue = true;
+						}
+					} else {
+						if ($itemDate->isSameYear($date)) {
+							$continue = true;
+						}
+					}
+					if ($continue) {
+						$allCt += $item->hits;
+						if (!in_array($item->ip, $ipsTable)) {
+							$uniqueCt++;
+							array_push($ipsTable, $item->ip);
+						}
+						if (!array_key_exists($item->url, $ipsTablePerRoute)) {
+							$ipsTablePerRoute[$item->url] = Array();
+						}
+						if (!in_array($item->ip, $ipsTablePerRoute[$item->url])) {
+							$semiAllCt++;
+							array_push($ipsTablePerRoute[$item->url], $item->ip);
 						}
 					}
 				}
@@ -269,17 +267,16 @@ class BackendController extends Controller
 			$circleValues = Array();
 			$circleCount = 0;
 
-			foreach (StatsTracker::orderBy('hits', 'DESC')->get() as $item) {
-				$itemDate = Carbon::parse($item->date)->setTime(0, 0, 0);
-				if (Carbon::now()->setTime(0, 0, 0)->equalTo($itemDate)) {
-					$key = array_search($item->url, $circleLabels);
-					if($key === False) {
-						array_push($circleLabels, $item->url);
-						array_push($circleValues, $item->hits);
-						$circleCount++;
-					}else{
-						$circleValues[$key] += $item->hits;
-					}
+			$carbonNow0 = Carbon::now();
+
+			foreach (StatsTracker::where('date', date("Y-m-d"))->orderBy('hits', 'DESC')->get() as $item) {
+				$key = array_search($item->url, $circleLabels);
+				if($key === False) {
+					array_push($circleLabels, $item->url);
+					array_push($circleValues, $item->hits);
+					$circleCount++;
+				}else{
+					$circleValues[$key] += $item->hits;
 				}
 			}
 

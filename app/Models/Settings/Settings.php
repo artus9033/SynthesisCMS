@@ -27,7 +27,7 @@ class Settings extends Model
 
 	public static function getActiveInstance()
 	{
-		if(\App::make('synthesiscmsSettingsTableError')) {
+		if(app()->make('synthesiscmsSettingsTableError')) {
 			/**
 			 * this constant is true when the app fails to access
 			 * the settings table during bootstrap procedure,
@@ -37,7 +37,7 @@ class Settings extends Model
 			 */
 			return null;
 		}else{
-			return \App::make('synthesiscmsActiveSettingsInstance');
+			return app()->make('synthesiscmsActiveSettingsInstance');
 		}
 	}
 

@@ -64,7 +64,7 @@ try {
 
 if($bCont){
 	try {
-		$result = $sqli->query("SHOW TABLES LIKE '" . getenv('DB_PREFIX') . "_" . \App\Models\Settings\Settings::getTableName() . "'");
+		$result = $sqli->query("SHOW TABLES LIKE '" . (strlen(env('DB_PREFIX', '')) > 0 ? env('DB_PREFIX', '') . "_" : '') . \App\Models\Settings\Settings::getTableName() . "'");
 		if (mysqli_num_rows($result) == 0) {
 			$res = Array(false, "Cannot find SynthesisCMS settings table.");
 		}
