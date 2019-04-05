@@ -47,8 +47,10 @@
 					</div>
 					<div class="col s12">
 						<p>
-							<input class="filled-in" type="checkbox" id="remember" name="remember" checked="checked">
-							<label for="remember">{{ trans('synthesiscms/auth.remember')}}</label>
+							<label>
+								<input class="filled-in" type="checkbox" id="remember" name="remember" checked="checked">
+								<span>{{ trans('synthesiscms/auth.remember')}}</span>
+							</label>
 						</p>
 					</div>
 					<div class="row"></div>

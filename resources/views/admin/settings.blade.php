@@ -340,10 +340,14 @@
 								</div>
 								<div class="col s12">
 									<p class="center">
-										<input class="filled-in" type="checkbox" id="devModeCheckbox"
-											   name="devModeCheckbox"
-											   @if(\App\Models\Settings\Settings::getActiveInstance()->isDevModeEnabled()) checked="checked" @endif>
-										<label class="grey-text text-darken-3" for="devModeCheckbox">{!! trans('synthesiscms/settings.dev_mode_checkbox_text') !!}</label>
+										<label>
+											<input class="filled-in" type="checkbox" id="devModeCheckbox"
+												name="devModeCheckbox"
+												@if(\App\Models\Settings\Settings::getActiveInstance()->isDevModeEnabled()) checked="checked" @endif>
+											<span class="grey-text text-darken-3">
+												{!! trans('synthesiscms/settings.dev_mode_checkbox_text') !!}
+											</span>
+										</label>
 									</p>
 								</div>
 								<script>

@@ -80,9 +80,12 @@
 				<div class="col s12 tooltipped" data-position="top" data-delay="50"
 					 data-tooltip="{{ trans('synthesiscms/article.hasImageTooltip') }}">
 					<p class="col s6 offset-s4">
-						<input class="filled-in" type="checkbox" id="hasImage" name="hasImage">
-						<label for="hasImage"
-							   class="{{ $synthesiscmsMainColor }}-text">{{ trans('synthesiscms/article.hasImage') }}</label>
+						<label>
+							<input class="filled-in" type="checkbox" id="hasImage" name="hasImage">
+							<span class="{{ $synthesiscmsMainColor }}-text">
+								{{ trans('synthesiscms/article.hasImage') }}
+							</span>
+						</label>
 					</p>
 				</div>
 				<div class="row"></div>

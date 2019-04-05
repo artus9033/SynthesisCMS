@@ -26,10 +26,11 @@
 			@endphp
 			<div class="col s12">
 				<p class="col s6 center">
-					<input class="filled-in" type="checkbox" id="hasButton" name="hasButton"
-						   @if($model->hasButton) checked="checked" @endif>
-					<label for="hasButton"
-						   class="{{ $synthesiscmsMainColor }}-text">{{ trans("Nitrogen::nitrogen.header_hasButton") }}</label>
+					<label>
+						<input class="filled-in" type="checkbox" id="hasButton" name="hasButton"
+							@if($model->hasButton) checked="checked" @endif>
+						<span class="{{ $synthesiscmsMainColor }}-text">{{ trans("Nitrogen::nitrogen.header_hasButton") }}</span>
+					</label>
 				</p>
 			</div>
 			<ul class="collapsible popout col s12 row" data-collapsible="accordion">
@@ -76,10 +77,11 @@
 			</ul>
 			<div class="col s12">
 				<p class="col s6 center">
-					<input class="filled-in" type="checkbox" id="assignedToAllPages" name="assignedToAllPages"
-						   @if($model->assignedToAllPages) checked="checked" @endif>
-					<label for="assignedToAllPages"
-						   class="{{ $synthesiscmsMainColor }}-text">{{ trans("Nitrogen::nitrogen.assigned_to_all_pages") }}</label>
+					<label>
+						<input class="filled-in" type="checkbox" id="assignedToAllPages" name="assignedToAllPages"
+							@if($model->assignedToAllPages) checked="checked" @endif>
+						<span class="{{ $synthesiscmsMainColor }}-text">{{ trans("Nitrogen::nitrogen.assigned_to_all_pages") }}</span>
+					</label>
 				</p>
 			</div>
 			<style>
@@ -121,10 +123,10 @@
 			</ul>
 			<div class="col s12">
 				<p class="col s6 center">
-					<input class="filled-in" type="checkbox" id="autoplay" name="autoplay"
-						   @if($model->autoplay) checked="checked" @endif>
-					<label for="autoplay"
-						   class="{{ $synthesiscmsMainColor }}-text">{{ trans("Nitrogen::nitrogen.header_autoplay") }}</label>
+					<label>
+						<input class="filled-in" type="checkbox" id="autoplay" name="autoplay" @if($model->autoplay) checked="checked" @endif>
+						<span class="{{ $synthesiscmsMainColor }}-text">{{ trans("Nitrogen::nitrogen.header_autoplay") }}</span>
+					</label>
 				</p>
 			</div>
 			<ul class="collapsible popout col s12 row" data-collapsible="accordion">
@@ -145,10 +147,10 @@
 			</ul>
 			<div class="col s12">
 				<p class="col s6 center">
-					<input class="filled-in" type="checkbox" id="buttons" name="buttons"
-						   @if($model->buttons) checked="checked" @endif>
-					<label for="buttons"
-						   class="{{ $synthesiscmsMainColor }}-text">{{ trans("Nitrogen::nitrogen.header_buttons") }}</label>
+					<label>
+						<input class="filled-in" type="checkbox" id="buttons" name="buttons" @if($model->buttons) checked="checked" @endif>
+						<span class="{{ $synthesiscmsMainColor }}-text">{{ trans("Nitrogen::nitrogen.header_buttons") }}</span>
+					</label>
 				</p>
 			</div>
 			<script>

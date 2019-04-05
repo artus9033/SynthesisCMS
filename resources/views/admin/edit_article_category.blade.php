@@ -30,11 +30,14 @@
 				<strong>{{ trans('synthesiscms/admin.modal_delete_article_category_content_2') }}</strong></h5>
 			<div class="col s12 center">
 				<p class="center">
-					<input class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
-						   id="checkboxDeleteArticles{{ $articleCategory->id }}"
-						   name="checkboxDeleteArticles{{ $articleCategory->id }}">
-					<label class="{{ $synthesiscmsMainColor }}-text"
-						   for="checkboxDeleteArticles{{ $articleCategory->id }}">{{ trans('synthesiscms/admin.modal_mass_delete_article_category_checkbox_delete_subarticles') }}</label>
+					<label>
+						<input class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
+							id="checkboxDeleteArticles{{ $articleCategory->id }}"
+							name="checkboxDeleteArticles{{ $articleCategory->id }}">
+						<span class="{{ $synthesiscmsMainColor }}-text">
+							{{ trans('synthesiscms/admin.modal_mass_delete_article_category_checkbox_delete_subarticles') }}
+						</span>
+					</label>
 				</p>
 			</div>
 		</div>

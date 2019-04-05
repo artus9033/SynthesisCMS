@@ -199,11 +199,13 @@ class SynthesisCmsJsUtils {
         // Do nothing
       };
     }
+
     if (!content) {
       content = "";
     }
+
     M.toast({
-      html: htmlContent,
+      html: $("<span>" + content + "</span>"),
       displayLength: duration,
       classes: bRounded ? "rounded" : "",
       completeCallback: toastCallback
@@ -228,20 +230,27 @@ class SynthesisCmsJsUtils {
         // Do nothing
       };
     }
+
     if (!toastContent) {
       toastContent = "";
     }
+
     var selfRef = this;
-    var htmlContent = $("<span>" + toastContent + "</span>").add(
-      $(
-        "<button class='btn-flat waves-effect waves-light toast-action'>" +
-          buttonContent +
-          "</button>"
-      ).click(function() {
-        buttonClickCallback();
-        selfRef.dismissAllToasts();
-      })
+    var htmlContent = $(
+      "<div style='margin-left: 4px; margin-right: 4px;'></div>"
+    ).append(
+      $("<span>" + toastContent + "</span>").add(
+        $(
+          "<button class='btn-flat waves-effect waves-light toast-action'>" +
+            buttonContent +
+            "</button>"
+        ).click(function() {
+          buttonClickCallback();
+          selfRef.dismissAllToasts();
+        })
+      )
     );
+    console.log(htmlContent);
     M.toast({
       html: htmlContent,
       displayLength: duration,
@@ -251,7 +260,7 @@ class SynthesisCmsJsUtils {
   }
 
   static dismissAllToasts() {
-    M.Toast.removeAll();
+    M.Toast.dismissAll();
   }
 
   static getAssetRootUrl() {

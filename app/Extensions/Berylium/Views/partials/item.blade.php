@@ -1,10 +1,12 @@
 <tr>
 	<td class="center">
-		<label>
-			<input class="item_checkbox filled-in" type="checkbox" id="checkbox{{ $item->id }}"
-					name="item_checkbox{{ $item->id }}">
-			<span></span>
-		</label>
+		<p>
+			<label>
+				<input class="item_checkbox filled-in" type="checkbox" id="checkbox{{ $item->id }}"
+						name="item_checkbox{{ $item->id }}">
+				<span></span>
+			</label>
+		</p>
 	</td>
 	<td class="center">
 		<p class="center">{{ $item->id }}</p>

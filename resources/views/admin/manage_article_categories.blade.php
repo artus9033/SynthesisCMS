@@ -57,11 +57,14 @@
 				<strong>{{ trans('synthesiscms/admin.modal_mass_delete_article_category_content_2') }}</strong></h5>
 			<div class="col s12">
 				<p>
-					<input onclick="$('#formMassDeleteChildArticlesCheckbox').prop('checked', $(this).prop('checked'));"
-						   class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
-						   id="checkboxDeleteArticles" name="checkboxDeleteArticles">
-					<label class="{{ $synthesiscmsMainColor }}-text"
-						   for="checkboxDeleteArticles">{{ trans('synthesiscms/admin.modal_mass_delete_article_category_checkbox_delete_subarticles') }}</label>
+					<label>
+						<input onclick="$('#formMassDeleteChildArticlesCheckbox').prop('checked', $(this).prop('checked'));"
+								class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
+								id="checkboxDeleteArticles" name="checkboxDeleteArticles">
+						<span class="{{ $synthesiscmsMainColor }}-text">
+							{{ trans('synthesiscms/admin.modal_mass_delete_article_category_checkbox_delete_subarticles') }}
+						</span>
+					</label>
 				</p>
 			</div>
 		</div>
@@ -84,11 +87,14 @@
 				<strong>{{ trans('synthesiscms/admin.modal_mass_copy_article_category_content_2') }}</strong></h5>
 			<div class="col s12">
 				<p>
-					<input onclick="$('#checkboxMassCopyChildArticlesCheckbox').prop('checked', $(this).prop('checked'));"
-						   class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
-						   id="checkboxMassCopyChildArticlesCheckbox" name="checkboxMassCopyChildArticlesCheckbox">
-					<label class="{{ $synthesiscmsMainColor }}-text"
-						   for="checkboxMassCopyChildArticlesCheckbox">{{ trans('synthesiscms/admin.modal_mass_copy_article_category_checkbox_copy_subarticles') }}</label>
+					<label>
+						<input onclick="$('#checkboxMassCopyChildArticlesCheckbox').prop('checked', $(this).prop('checked'));"
+								class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
+								id="checkboxMassCopyChildArticlesCheckbox" name="checkboxMassCopyChildArticlesCheckbox">
+						<span class="{{ $synthesiscmsMainColor }}-text">
+							{{ trans('synthesiscms/admin.modal_mass_copy_article_category_checkbox_copy_subarticles') }}
+						</span>
+					</label>
 				</p>
 			</div>
 		</div>
@@ -111,11 +117,14 @@
 				<strong>{{ trans('synthesiscms/admin.modal_mass_move_article_category_content_2') }}</strong></h5>
 			<div class="col s12">
 				<p>
-					<input onclick="$('#checkboxMassMoveChildArticlesCheckbox').prop('checked', $(this).prop('checked'));"
-						   class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
-						   id="checkboxMassMoveChildArticlesCheckbox" name="checkboxMassMoveChildArticlesCheckbox">
-					<label class="{{ $synthesiscmsMainColor }}-text"
-						   for="checkboxMassMoveChildArticlesCheckbox">{{ trans('synthesiscms/admin.modal_mass_move_article_category_checkbox_move_subarticles') }}</label>
+					<label>
+						<input onclick="$('#checkboxMassMoveChildArticlesCheckbox').prop('checked', $(this).prop('checked'));"
+								class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox"
+								id="checkboxMassMoveChildArticlesCheckbox" name="checkboxMassMoveChildArticlesCheckbox">
+						<span class="{{ $synthesiscmsMainColor }}-text">
+							{{ trans('synthesiscms/admin.modal_mass_move_article_category_checkbox_move_subarticles') }}
+						</span>
+					</label>
 				</p>
 			</div>
 		</div>
@@ -156,10 +165,13 @@
 				</script>
 				<div class="col s12" style="display: none;">
 					<p>
-						<input id="formMassDeleteChildArticlesCheckbox" name="formMassDeleteChildArticlesCheckbox"
-							   class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox">
-						<label class="{{ $synthesiscmsMainColor }}-text" for="checkboxDeleteArticles">You should not
-							see this</label>
+						<label>
+							<input id="formMassDeleteChildArticlesCheckbox" name="formMassDeleteChildArticlesCheckbox"
+									class="filled-in {{ $synthesiscmsMainColor }}-text" type="checkbox">
+							<span class="{{ $synthesiscmsMainColor }}-text" for="checkboxDeleteArticles">
+								You should not see this
+							</span>
+						</label>
 					</p>
 				</div>
 				<table class="col s12">
@@ -213,10 +225,12 @@
 								<td class="right">
 									<div class="col s12">
 										<p>
-											<input class="articleCategory_checkbox filled-in" type="checkbox"
-												   id="checkbox{{ $articleCategory->id }}"
-												   name="articleCategory_checkbox{{ $articleCategory->id }}">
-											<label for="checkbox{{ $articleCategory->id }}"></label>
+											<label>
+												<input class="articleCategory_checkbox filled-in" type="checkbox"
+														id="checkbox{{ $articleCategory->id }}"
+														name="articleCategory_checkbox{{ $articleCategory->id }}">
+												<span></span>
+											</label>
 										</p>
 									</div>
 								</td>
@@ -242,12 +256,15 @@
 										<div class="col s12 row"></div>
 										<div class="col s12 center">
 											<p class="center">
-												<input class="filled-in {{ $synthesiscmsMainColor }}-text"
-													   type="checkbox"
-													   id="checkboxDeleteArticles{{ $articleCategory->id }}"
-													   name="checkboxDeleteArticles{{ $articleCategory->id }}">
-												<label class="{{ $synthesiscmsMainColor }}-text"
-													   for="checkboxDeleteArticles{{ $articleCategory->id }}">{{ trans('synthesiscms/admin.modal_mass_delete_article_category_checkbox_delete_subarticles') }}</label>
+												<label>
+													<input class="filled-in {{ $synthesiscmsMainColor }}-text"
+															type="checkbox"
+															id="checkboxDeleteArticles{{ $articleCategory->id }}"
+															name="checkboxDeleteArticles{{ $articleCategory->id }}">
+													<span class="{{ $synthesiscmsMainColor }}-text">
+														{{ trans('synthesiscms/admin.modal_mass_delete_article_category_checkbox_delete_subarticles') }}
+													</span>
+												</label>
 											</p>
 										</div>
 										<div class="col s12 row"></div>
