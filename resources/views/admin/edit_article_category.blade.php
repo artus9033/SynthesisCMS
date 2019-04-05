@@ -63,7 +63,7 @@
 					<label for="title">{{ trans('synthesiscms/article_category.title') }}</label>
 				</div>
 				<div class="row">
-					<div class="row col s12 container">
+					<div class="row col s12">
 						<label for="desc">{{ trans('synthesiscms/article_category.content') }}</label>
 						<textarea class="editor" id="desc" name="desc"></textarea>
 					</div>
