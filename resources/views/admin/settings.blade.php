@@ -169,7 +169,7 @@
 									<label for="footer_links_text">{{ trans('synthesiscms/settings.footer_links_text') }}</label>
 								</div>
 							</div>
-							<div class="row col s12 container">
+							<div class="row col s12">
 								<label for="footer_links_content">{{ trans('synthesiscms/settings.footer_links_content') }}</label>
 								<textarea class="editor" id="footer_links_content"
 										  name="footer_links_content"></textarea>
