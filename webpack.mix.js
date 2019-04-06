@@ -18,18 +18,18 @@ function log(string) {
 log("Setting 'processCssUrls' to: " + bProcessCssUrls);
 mix.options({ processCssUrls: bProcessCssUrls });
 
-//SynthesisCMS SASS
+// SynthesisCMS SASS
 mix.sass("resources/assets/sass/app.scss", "public/css/app.css");
 mix.sass(
   "resources/assets/sass/login-register.scss",
   "public/css/login-register.css"
 );
 
-//Dragula JS + CSS
+// Dragula JS + CSS
 mix.copy("node_modules/dragula/dist/dragula.js", "public/js/dragula.js");
 mix.copy("node_modules/dragula/dist/dragula.css", "public/css/dragula.css");
 
-//MaterializeCSS SASS + JS
+// Materializecss SASS + JS
 mix.sass(
   "resources/assets/materializecss/sass/materialize.scss",
   "public/css/materialize.css"
@@ -39,37 +39,43 @@ mix.js(
   "public/js/materialize.js"
 );
 
-//Chart.js, Clipboard.js & Optiscroll
+// Chart.js
 mix.copy("node_modules/chart.js/dist/Chart.js", "public/js");
+
+// Clipboard.js
 mix.copy(
   "node_modules/clipboard/dist/clipboard.min.js",
   "public/js/clipboard.min.js"
 );
-mix.copy(
-  "node_modules/optiscroll/dist/jquery.optiscroll.js",
-  "public/js/jquery.optiscroll.js"
-);
-mix.copy(
-  "node_modules/optiscroll/dist/optiscroll.css",
-  "public/css/optiscroll.css"
-);
 
 // Trumbowyg
 mix.copy("node_modules/trumbowyg/dist", "public/trumbowyg", false);
-
-// SynthesisCMS resources, trumbowyg resources, artus9033's Trumbowyg addons, fonts
-mix.copy("resources/assets/img", "public/img", false);
-mix.copy("resources/assets/fonts", "public/fonts", false);
-mix.copy("resources/assets/js-copy-only", "public/js", false);
+mix.copy(
+  "resources/assets/trumbowyg-custom-icons/icons.svg",
+  "public/trumbowyg/ui/icons.svg"
+);
 mix.copy(
   "resources/assets/artus9033-trumbowyg",
   "public/trumbowyg/plugins/artus9033",
   false
 );
+
+// OverlayScrollbars
 mix.copy(
-  "resources/assets/trumbowyg-custom-icons/icons.svg",
-  "public/trumbowyg/ui/icons.svg"
+  "node_modules/overlayscrollbars/js",
+  "public/overlayscrollbars/js",
+  false
 );
+mix.copy(
+  "node_modules/overlayscrollbars/css",
+  "public/overlayscrollbars/css",
+  false
+);
+
+// SynthesisCMS resources, artus9033's Trumbowyg addons, fonts
+mix.copy("resources/assets/img", "public/img", false);
+mix.copy("resources/assets/fonts", "public/fonts", false);
+mix.copy("resources/assets/js-copy-only", "public/js", false);
 mix.copy("resources/assets/logos/dist", "public/img", false);
 
 log("Checking if SynthesisCMS public tmp directory exists...");

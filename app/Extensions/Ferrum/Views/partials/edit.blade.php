@@ -104,7 +104,6 @@
                 json[jsonKey] = node;
             }
         });
-        console.log(json);
         $('#ferrumJsonifiedFormFromEditor').val(JSON.stringify(json));
     }
 

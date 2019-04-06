@@ -250,7 +250,7 @@ class SynthesisCmsJsUtils {
         })
       )
     );
-    console.log(htmlContent);
+
     M.toast({
       html: htmlContent,
       displayLength: duration,
@@ -351,7 +351,7 @@ class SynthesisCmsJsUtils {
     console.log(
       "SynthesisCmsJsUtils triggerSynthesisDynamicUrlsRescanOnElement(wrapperElement) invoked with wrapperElement:"
     );
-    console.log(wrapperElement);
+
     if (wrapperElement instanceof jQuery) {
       wrapperElement = wrapperElement;
     } else {
@@ -394,12 +394,10 @@ class SynthesisCmsJsUtils {
           console.log(
             "SynthesisCmsJsUtils omitting processing of a dynamic-synthesis-url-tagged element (which is printed below), because it's already been processed"
           );
-          console.log(parent);
         } else {
           console.log(
             "SynthesisCmsJsUtils processing a dynamic-synthesis-url-tagged element (which is printed below)"
           );
-          console.log(parent);
           var positionDataAttribute = parent.attr(
             synthesiscmsJsUtilsSelfRef.getSynthesisDynamicUrlPositionTagName()
           );

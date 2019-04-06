@@ -7,43 +7,43 @@ use Illuminate\Support\ServiceProvider;
 
 class MobileDetectionProvider extends ServiceProvider
 {
-	/**
-	 * Bootstrap the application services.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
-		if (!\App::runningInConsole()) {
-			$detect = new MobileDetect();
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        if (!\App::runningInConsole()) {
+            $detect = new MobileDetect();
 
-			/*
-			 * Device detection
-			 */
+            /*
+             * Device detection
+             */
 
-			$bIsAnyMobile = $detect->isMobile();
-			$bIsTablet = $detect->isTablet();
-			$bIsPhone = ($bIsAnyMobile && !$bIsTablet);
-			$bIsDesktop = !$bIsAnyMobile;
+            $bIsAnyMobile = $detect->isMobile();
+            $bIsTablet = $detect->isTablet();
+            $bIsPhone = ($bIsAnyMobile && !$bIsTablet);
+            $bIsDesktop = !$bIsAnyMobile;
 
-			view()->share("synthesiscmsClientIsPhone", $bIsPhone);
-			view()->share("synthesiscmsClientIsTablet", $bIsTablet);
-			view()->share("synthesiscmsClientIsDesktop", $bIsDesktop);
-			view()->share("synthesiscmsClientIsAnyMobile", $bIsAnyMobile);
+            view()->share("synthesiscmsClientIsPhone", $bIsPhone);
+            view()->share("synthesiscmsClientIsTablet", $bIsTablet);
+            view()->share("synthesiscmsClientIsDesktop", $bIsDesktop);
+            view()->share("synthesiscmsClientIsAnyMobile", $bIsAnyMobile);
 
-			/*
-			 * TODO: Browser & OS detection
-			 */
-		}
-	}
+            /*
+         * TODO: Browser & OS detection
+         */
+        }
+    }
 
-	/**
-	 * Register the application services.
-	 *
-	 * @return void
-	 */
-	public function register()
-	{
-		//
-	}
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
 }

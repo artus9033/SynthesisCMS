@@ -59,17 +59,30 @@ $mainSynthesisColor: #26a69a;
     url("data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==");
   background-repeat: no-repeat;
   background-position: top center, top center, bottom center;
-  -webkit-animation: synthesisCoolImageDrawBorderFromCenter2 2s;
+  animation: synthesisCoolImageDrawBorderFromCenter2 2s;
 }
 
 .synthesis-cool-image:hover {
   padding: 2px;
+  background-repeat: no-repeat;
+  background-position: top center, top center, bottom center;
   transition: padding linear 1.2s;
-  -webkit-animation: synthesisCoolImageDrawBorderFromCenter 2s;
+  animation: synthesisCoolImageDrawBorderFromCenter 2s;
 }
 
-/* Chrome, Safari, Opera */
-@-webkit-keyframes synthesisCoolImageDrawBorderFromCenter {
+.synthesis-cool-image.active {
+  padding: 0px !important;
+  background-size: 0% !important;
+  animation: unset !important;
+}
+
+.synthesis-cool-image.active:hover {
+  padding: 0px !important;
+  background-size: 0% !important;
+  animation: unset !important;
+}
+
+@keyframes synthesisCoolImageDrawBorderFromCenter {
   0% {
     padding: 2px;
     background-size: 0 2px, 0 0, 100% 100%;
@@ -88,8 +101,7 @@ $mainSynthesisColor: #26a69a;
   }
 }
 
-/* Chrome, Safari, Opera */
-@-webkit-keyframes synthesisCoolImageDrawBorderFromCenter2 {
+@keyframes synthesisCoolImageDrawBorderFromCenter2 {
   0% {
     padding: 2px;
     background-size: 100% 2px, 100% 98%, 0 2px;

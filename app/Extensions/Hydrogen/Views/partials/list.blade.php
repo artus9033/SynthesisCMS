@@ -18,7 +18,7 @@
 					   style="z-index: 2;" data-position="top" data-delay="50"
 					   data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_copy_link') }}"
 					   class="tooltipped copylink-{{ $hydrogenUid }}-{{ $key }} btn-floating halfway-fab waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-						<i class="material-icons">insert_link</i>
+						<i class="material-icons row">insert_link</i>
 					</a>
 					<script>
                         new Clipboard(".copylink-{{ $hydrogenUid }}-{{ $key }}");

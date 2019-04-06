@@ -20,18 +20,17 @@
     "laravel-mix": "*",
     "lodash": "*",
     "nan": "*",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "*",
     "trumbowyg": "*",
-    "vue": "*",
-    "vue-template-compiler": "^2.6.10",
+    "vue-template-compiler": "*",
     "webpack": "*"
   },
   "dependencies": {
-    "datepicker": "0.0.0",
+    "datepicker": "*",
     "dragula": "*",
     "jquery-easing": "*",
-    "optiscroll": "*",
-    "sass": "^1.17.4",
+    "overlayscrollbars": "*",
+    "sass": "*",
     "webpack-cli": "*"
   }
 }

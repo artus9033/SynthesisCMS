@@ -124,19 +124,19 @@
 				overflow: hidden;
 			}
 
-			.card img {
+			.card-image img {
 				transition: all 0.3s ease-in-out;
 				max-width: 100%;
 				background-color: rgba(0, 0, 0, 0.7);
 			}
 
-			.card:hover img {
+			.card-image img:hover {
 				transform: scale(1.1, 1.1);
 				opacity: 0.8;
 			}
 		</style>
 		@if ($one_column_list)
-			<div class="container col s10 offset-s1 row">
+			<div class="col s10 offset-s1 row">
 				@include('Hydrogen::partials/list', ['articles' => $all, 'hydrogenUid' => $hydrogenUidPrefix . 1])
 			</div>
 		@elseif($two_column_list)

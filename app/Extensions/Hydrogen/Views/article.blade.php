@@ -48,6 +48,7 @@
                 $('.modal').modal();
             });
 		</script>
+
 		@if($extension_instance->showHeader)
 			<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
 				<h3 class="col s12">{{ $page->page_title }}</h3>
@@ -55,83 +56,11 @@
 				<h5 class="col s12">{!! $page->page_header !!}</h5>
 			</div>
 		@endif
-		<style>
-			.hydrogen-image {
-				width: 300px;
-				margin: 0 auto;
-				padding: 0px;
-				background-color: #eaab00;
-				background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAOqrAP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='), url('data:image/gif;base64,R0lGODlhAQABAPAAAOqrAP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='),
-				url('data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');
-				background-repeat: no-repeat;
-				background-position: top center, top center, bottom center;
-				-webkit-animation: hydrogenImageDrawBorderFromCenter2 2s;
-			}
-
-			.hydrogen-image.active {
-				padding: 0px !important;
-				background-size: 0% !important;
-				animation: unset !important;
-			}
-
-			.hydrogen-image.active:hover {
-				padding: 0px !important;
-				background-size: 0% !important;
-				animation: unset !important;
-			}
-
-			.hydrogen-image:hover {
-				padding: 2px;
-				background-repeat: no-repeat;
-				background-position: top center, top center, bottom center;
-				transition: padding linear 1.2s;
-				-webkit-animation: hydrogenImageDrawBorderFromCenter 2s;
-			}
-
-			/* Chrome, Safari, Opera */
-			@-webkit-keyframes hydrogenImageDrawBorderFromCenter {
-				0% {
-					padding: 2px;
-					background-size: 0 2px, 0 0, 100% 100%;
-				}
-				20% {
-					padding: 2px;
-					background-size: 100% 2px, 100% 0, 100% 100%;
-				}
-				66% {
-					padding: 2px;
-					background-size: 100% 2px, 100% 98%, 100% 100%;
-				}
-				99% {
-					padding: 2px;
-					background-size: 100% 2px, 100% 98%, 0 2px;
-				}
-			}
-
-			/* Chrome, Safari, Opera */
-			@-webkit-keyframes hydrogenImageDrawBorderFromCenter2 {
-				0% {
-					padding: 2px;
-					background-size: 100% 2px, 100% 98%, 0 2px;
-				}
-				20% {
-					padding: 2px;
-					background-size: 100% 2px, 100% 98%, 100% 100%;
-				}
-				66% {
-					padding: 2px;
-					background-size: 100% 2px, 100% 0, 100% 100%;
-				}
-				99% {
-					padding: 2px;
-					background-size: 0 2px, 0 0, 100% 100%;
-				}
-			}
-		</style>
+		
 		<div class="card z-depth-3 col @if($article->hasImage) s12 m12 l12 @else s12 m12 l10 offset-l1 @endif">
 			@if($article->hasImage)
 				<div class="card-image col s12 m6 l5 row">
-					<img src="{{ url($article->image) }}" class="hydrogen-image materialboxed"
+					<img src="{{ url($article->image) }}" class="synthesis-cool-image materialboxed"
 						 data-caption="{{ $article->title }}">
 					<a style="position: absolute; top: 18%; left: 90%;"
 					   onclick="$('#options').modal('open');"

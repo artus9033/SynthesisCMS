@@ -23,19 +23,35 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
-  $(".dropdown-trigger").dropdown({
-    inDuration: 500,
-    outDuration: 350,
-    constrain_width: true,
-    hover: true,
-    gutter: 0,
-    coverTrigger: true
+  $(function() {
+    $(".dropdown-trigger").dropdown({
+      inDuration: 500,
+      outDuration: 350,
+      constrain_width: true,
+      hover: true,
+      gutter: 0,
+      coverTrigger: true
+    });
+
+    $(".tooltipped").tooltip();
+
+    $("select").formSelect();
+
+    $(".collapsible").collapsible();
+
+    $(".materialboxed").materialbox();
+
+    try {
+      $("body").overlayScrollbars({
+        scrollbars: {
+          autoHide: "move",
+          autoHideDelay: 1500
+        }
+      });
+    } catch (e) {
+      // this is needed
+    }
   });
-  $(".tooltipped").tooltip();
-  $("select").formSelect();
-  $(".collapsible").collapsible();
-  $("body").optiscroll();
-  //TODO: Optiscroll doesn't work here - FIX
 });
 
 /*
