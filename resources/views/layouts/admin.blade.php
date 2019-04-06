@@ -72,8 +72,6 @@
                 $('#admin-mobile-menu-automatically-opened-collapsible-main-element').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
                 $('#admin-desktop-menu-automatically-opened-collapsible-main-element').collapsible('open', parseInt(zeroIndexedCollapsibleHeaderNumberString));
 			}
-
-			$(".tabs").tabs();
 			
             $(".editor").trumbowyg({
                 autogrow: true,
@@ -172,22 +170,6 @@
 					class="hide-on-large-only brand-logo truncate">
 						{{ $synthesiscmsHeaderTitle }} - {{ trans('synthesiscms/admin.backend') }}
 					</a>
-					<script>
-						function synthesiscmsResizeBrandLogoMargin() {
-							$("#synthesiscms-mobile-brand-logo").css('width', ($('body').width() - $('.synthesiscms-mobile-btn-wrapper').width()));
-							$("#synthesiscms-mobile-brand-logo").css('max-width', ($('body').width() - $('.synthesiscms-mobile-btn-wrapper').width()));
-							$("#synthesiscms-mobile-brand-logo").css('padding-left', $('.synthesiscms-mobile-btn-wrapper').width());
-							$("#synthesiscms-desktop-brand-logo").css('max-width', ($('#synthesiscms-admin-nav-wrapper').width() - $('#synthesiscms-large-screens-menu-part-right').width()));
-						}
-						
-						$(document).ready(function () {
-							synthesiscmsResizeBrandLogoMargin();
-						});
-						
-						$(window).resize(function () {
-							synthesiscmsResizeBrandLogoMargin();
-						});
-					</script>
 					<ul class="right hide-on-med-and-down" id="synthesiscms-large-screens-menu-part-right">
 						<li class="input-field right hide-on-med-and-down" id="language-select-container">
 							<select id="lang-select" class="icons white-text"

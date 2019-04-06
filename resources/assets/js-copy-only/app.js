@@ -22,8 +22,30 @@ $.ajaxSetup({
   }
 });
 
+function synthesiscmsResizeBrandLogoMargin() {
+  $("#synthesiscms-mobile-brand-logo").css(
+    "width",
+    $("body").width() - $(".synthesiscms-mobile-btn-wrapper").width()
+  );
+  $("#synthesiscms-mobile-brand-logo").css(
+    "max-width",
+    $("body").width() - $(".synthesiscms-mobile-btn-wrapper").width()
+  );
+  $("#synthesiscms-mobile-brand-logo").css(
+    "padding-left",
+    $(".synthesiscms-mobile-btn-wrapper").width()
+  );
+  $("#synthesiscms-desktop-brand-logo").css(
+    "max-width",
+    $("#synthesiscms-admin-nav-wrapper").width() -
+      $("#synthesiscms-large-screens-menu-part-right").width()
+  );
+}
+
 $(document).ready(function() {
   $(function() {
+    synthesiscmsResizeBrandLogoMargin();
+
     $(".dropdown-trigger").dropdown({
       inDuration: 500,
       outDuration: 350,
@@ -32,6 +54,8 @@ $(document).ready(function() {
       gutter: 0,
       coverTrigger: true
     });
+
+    $(".tabs").tabs();
 
     $(".tooltipped").tooltip();
 
@@ -52,6 +76,10 @@ $(document).ready(function() {
       // this is needed
     }
   });
+});
+
+$(window).resize(function() {
+  synthesiscmsResizeBrandLogoMargin();
 });
 
 /*
