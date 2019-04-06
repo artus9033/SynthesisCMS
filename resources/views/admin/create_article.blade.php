@@ -177,9 +177,12 @@
 					<i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_article') }}
 				</button>
 				<div class="col s12 row"></div>
-				<a style="text-align: left !important;" class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text col s2 offset-s5"
-				   href="{{ route('manage_articles') }}"><i
-							class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_article') }}
+				<br/>
+				<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text center"
+				   href="{{ route('manage_articles') }}">
+				   <i class="material-icons {{ $synthesiscmsMainColor }}-text">cancel</i>
+				   &nbsp;
+				   {{ trans('synthesiscms/admin.cancel_article') }}
 				</a>
 				<div class="col s12 row"></div>
 			</form>

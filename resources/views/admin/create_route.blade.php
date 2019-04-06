@@ -93,7 +93,7 @@
                         ajaxReq = $.ajax({
                             url: "{{ route('synthesis_route_check') }}",
                             type: "post",
-                            data: {'route': $('input[id=route]').val(), '_token': $('input[name=_token]').val()},
+                            data: {'route': $('input[id=route]').val().trim(), '_token': $('input[name=_token]').val()},
                             success: function (data) {
                                 ajaxRequests.shift();
                                 process(data);
@@ -101,9 +101,9 @@
                             error: function (data) {
                                 ajaxRequests.shift();
                                 if (data['statusText'] == 'Method Not Allowed') {
-                                    //Method Not Allowed (error 405) means that the route
-                                    //is occupied, but not on the GET method, so we treat
-                                    //it as free
+                                    // Method Not Allowed (error 405) means that the route
+                                    // is occupied, but not on the GET method, so we treat
+                                    // it as free
                                     arr = [];
                                     arr['color'] = "green";
                                     arr['valid'] = true;
@@ -138,7 +138,7 @@
 					@php
 						$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
 
-						while (list(,$extension) = each($extensions)) {
+						while (list(,$extension) = \App\Toolbox::each($extensions)) {
 							$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
 							$kernel = new $kpath;
 							if($kernel->getExtensionType() == App\SynthesisCMS\API\Extensions\SynthesisExtensionType::Module){

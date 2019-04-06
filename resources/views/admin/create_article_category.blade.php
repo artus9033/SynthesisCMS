@@ -45,9 +45,12 @@
 					<i class="material-icons white-text right">send</i>{{ trans('synthesiscms/admin.create_article_category') }}
 				</button>
 				<div class="col s12 row"></div>
+				<br/>
 				<a class="btn-flat waves-effect waves-yellow {{ $synthesiscmsMainColor }}-text col s2 offset-s5"
-				   href="{{ route('manage_article_categories') }}"><i
-							class="material-icons {{ $synthesiscmsMainColor }}-text left">cancel</i>{{ trans('synthesiscms/admin.cancel_article_category') }}
+				   href="{{ route('manage_article_categories') }}">
+				   <i class="material-icons {{ $synthesiscmsMainColor }}-text">cancel</i>
+				   &nbsp;
+				   {{ trans('synthesiscms/admin.cancel_article_category') }}
 				</a>
 				<div class="col s12 row"></div>
 			</form>
