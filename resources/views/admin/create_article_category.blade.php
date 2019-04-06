@@ -36,9 +36,9 @@
 					<textarea class="editor" id="description" name="description"></textarea>
 				</div>
 				<script>
-                    			$(document).ready(function () {
-                       				$(".editor").trumbowyg('html', ''); //empty content
-                    			});
+					$(document).ready(function () {
+						$(".editor").trumbowyg('html', ''); //empty content
+					});
 				</script>
 				<button type="submit"
 						class="offset-s4 valign col s4 text-center btn btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">

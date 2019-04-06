@@ -31,9 +31,11 @@
 	<script src="{{ asset('trumbowyg/trumbowyg.min.js') }}"></script>
 	<link rel="stylesheet" href="{{ asset('trumbowyg/ui/trumbowyg.min.css') }}">
 	<script src="{{ asset('trumbowyg/plugins/base64/trumbowyg.base64.min.js') }}"></script>
+	<script src="{{ asset('trumbowyg/plugins/cleanpaste/trumbowyg.cleanpaste.min.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/colors/trumbowyg.colors.min.js') }}"></script>
 	<link rel="stylesheet" href="{{ asset('trumbowyg/plugins/colors/ui/trumbowyg.colors.min.css') }}">
 	<script src="{{ asset('trumbowyg/plugins/emoji/trumbowyg.emoji.min.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('trumbowyg/plugins/emoji/ui/trumbowyg.emoji.min.css') }}">
 	<script src="{{ asset('trumbowyg/plugins/pasteimage/trumbowyg.pasteimage.min.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/table/trumbowyg.table.min.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/upload/trumbowyg.upload.js') }}"></script>
@@ -89,7 +91,8 @@
                     ['foreColor', 'backColor', 'preformatted'],
                     ['horizontalRule', 'table'],
                     ['insertImageFromServer', 'insertFacebookAlbum', 'fileEmbed'],
-                    ['fullscreen']
+					['fullscreen'],
+					['emoji']
                 ],
                 plugins: {
                     upload: {
@@ -101,9 +104,12 @@
                     }
                 },
                 lang: '{{ \App::getLocale() }}'
-            });
-            $('ul:not(.collapsible) > li.active').addClass('lighten-1');
-            $('ul:not(.collapsible) > li.active').addClass('{{ $synthesiscmsMainColor }}');
+			});
+			
+			$('ul:not(.collapsible) > li.active').addClass('lighten-1');
+			
+			$('ul:not(.collapsible) > li.active').addClass('{{ $synthesiscmsMainColor }}');
+			
             $('.sidenav').sidenav({
                 menuWidth: 300,
                 edge: 'left',
