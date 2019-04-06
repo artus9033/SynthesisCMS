@@ -157,6 +157,7 @@
 						use \App\Models\Content\Article;
 						$all_articles = Article::all();
 						$all_articles_count = $all_articles->count();
+						$articleNoCt = 0;
 					@endphp
 					@foreach ($all_articles as $article)
 						<tr>
@@ -167,7 +168,7 @@
 											<input class="article_checkbox filled-in" type="checkbox"
 													id="checkbox{{ $article->id }}"
 													name="article_checkbox{{ $article->id }}">
-											<span>ID {{ $article->id }}</span>
+											<span>No {{ ++$articleNoCt }}</span>
 										</label>
 									</p>
 								</div>

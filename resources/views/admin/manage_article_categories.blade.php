@@ -211,17 +211,18 @@
 							use \App\Models\Content\ArticleCategory;
 							$all_article_categories = ArticleCategory::all();
 							$all_article_categories_count = $all_article_categories->count();
+							$articleCategoryNoCt = 0;
 						@endphp
 						@foreach ($all_article_categories as $articleCategory)
 							<tr>
-								<td class="right">
+								<td class="center">
 									<div class="col s12">
 										<p>
 											<label>
 												<input class="articleCategory_checkbox filled-in" type="checkbox"
 														id="checkbox{{ $articleCategory->id }}"
 														name="articleCategory_checkbox{{ $articleCategory->id }}">
-												<span></span>
+												<span>No {{ ++$articleCategoryNoCt }}</span>
 											</label>
 										</p>
 									</div>
