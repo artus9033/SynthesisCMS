@@ -60,6 +60,13 @@ mix.copy(
   false
 );
 
+// jquery-resizable-dom
+mix.copy(
+  "node_modules/jquery-resizable-dom/dist",
+  "public/jquery-resizable-dom",
+  false
+);
+
 // OverlayScrollbars
 mix.copy(
   "node_modules/overlayscrollbars/js",

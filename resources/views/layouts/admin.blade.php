@@ -5,16 +5,52 @@
 
 	<script src="{{ asset('trumbowyg/trumbowyg.min.js') }}"></script>
 	<link rel="stylesheet" href="{{ asset('trumbowyg/ui/trumbowyg.min.css') }}">
+
+	<script src="{{ asset('trumbowyg/plugins/allowtagsfrompaste/trumbowyg.allowtagsfrompaste.min.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/base64/trumbowyg.base64.min.js') }}"></script>
+
 	<script src="{{ asset('trumbowyg/plugins/cleanpaste/trumbowyg.cleanpaste.min.js') }}"></script>
+
 	<script src="{{ asset('trumbowyg/plugins/colors/trumbowyg.colors.min.js') }}"></script>
 	<link rel="stylesheet" href="{{ asset('trumbowyg/plugins/colors/ui/trumbowyg.colors.min.css') }}">
+
 	<script src="{{ asset('trumbowyg/plugins/emoji/trumbowyg.emoji.min.js') }}"></script>
 	<link rel="stylesheet" href="{{ asset('trumbowyg/plugins/emoji/ui/trumbowyg.emoji.min.css') }}">
+
+	<script src="{{ asset('trumbowyg/plugins/fontfamily/trumbowyg.fontfamily.min.js') }}"></script>
+
+	<script src="{{ asset('trumbowyg/plugins/fontsize/trumbowyg.fontsize.min.js') }}"></script>
+
+	<script src="{{ asset('trumbowyg/plugins/history/trumbowyg.history.min.js') }}"></script>
+
+	<script src="{{ asset('trumbowyg/plugins/lineheight/trumbowyg.lineheight.min.js') }}"></script>
+
+	<script src="{{ asset('trumbowyg/plugins/mathml/trumbowyg.mathml.min.js') }}"></script>
+
+	<script src="{{ asset('trumbowyg/plugins/noembed/trumbowyg.noembed.min.js') }}"></script>
+
+	<script src="{{ asset('trumbowyg/plugins/pasteembed/trumbowyg.pasteembed.min.js') }}"></script>
+
 	<script src="{{ asset('trumbowyg/plugins/pasteimage/trumbowyg.pasteimage.min.js') }}"></script>
+	
+	<script src="{{ asset('trumbowyg/plugins/preformatted/trumbowyg.preformatted.min.js') }}"></script>
+
+	<script src="{{ asset('jquery-resizable-dom/jquery-resizable.min.js') }}"></script>
+	<script src="{{ asset('jquery-resizable-dom/jquery-resizableTableColumns.min.js') }}"></script>
+	<script src="{{ asset('trumbowyg/plugins/resizimg/trumbowyg.resizimg.min.js') }}"></script>
+
+	<script src="{{ asset('trumbowyg/plugins/ruby/trumbowyg.ruby.min.js') }}"></script>
+
+	<script src="{{ asset('trumbowyg/plugins/specialchars/trumbowyg.specialchars.min.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('trumbowyg/plugins/specialchars/ui/trumbowyg.specialchars.min.css') }}">
+
 	<script src="{{ asset('trumbowyg/plugins/table/trumbowyg.table.min.js') }}"></script>
-	<script src="{{ asset('trumbowyg/plugins/upload/trumbowyg.upload.js') }}"></script>
-	<script src="{{ asset('trumbowyg/plugins/noembed/trumbowyg.noembed.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('trumbowyg/plugins/table/ui/trumbowyg.table.min.css') }}">
+
+	<script src="{{ asset('trumbowyg/plugins/template/trumbowyg.template.min.js') }}"></script>
+	
+	<script src="{{ asset('trumbowyg/plugins/upload/trumbowyg.upload.min.js') }}"></script>
+
 	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.imagepicker.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.table_artus9033.js') }}"></script>
 	<script src="{{ asset('trumbowyg/plugins/artus9033/trumbowyg.insertFacebookAlbum.js') }}"></script>
@@ -41,7 +77,7 @@
 			
             $(".editor").trumbowyg({
                 autogrow: true,
-                fullscreenable: false,
+				fullscreenable: false,
                 btnsDef: {
                     image: {
                         dropdown: ['insertImage', 'upload', 'base64', 'noembed'],
@@ -57,18 +93,22 @@
                 },
                 btns: [
                     ['viewHTML'],
-                    ['undo', 'redo'],
-                    ['formatting'],
-                    'btnGrp-design',
+					['undo', 'redo'],
+					['historyUndo', 'historyRedo']
+					['formatting'],
+					['strong', 'em', 'del'],
+					['superscript', 'subscript'],
+					['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+        			['unorderedList', 'orderedList'],
                     ['link'],
                     ['image'],
-                    'btnGrp-justify',
-                    'btnGrp-lists',
+					['fontfamily', 'fontsize', 'lineheight', 'mathml'],
                     ['foreColor', 'backColor', 'preformatted'],
-                    ['horizontalRule', 'table'],
+					['emoji','base64', 'noembed'],
                     ['insertImageFromServer', 'insertFacebookAlbum', 'fileEmbed'],
-					['fullscreen'],
-					['emoji']
+                    ['horizontalRule', 'table'],
+        			['removeformat'],
+					['fullscreen']
                 ],
                 plugins: {
                     upload: {

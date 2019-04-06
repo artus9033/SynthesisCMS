@@ -29,6 +29,7 @@
     "datepicker": "*",
     "dragula": "*",
     "jquery-easing": "*",
+    "jquery-resizable-dom": "^0.32.0",
     "overlayscrollbars": "*",
     "sass": "*",
     "webpack-cli": "*"

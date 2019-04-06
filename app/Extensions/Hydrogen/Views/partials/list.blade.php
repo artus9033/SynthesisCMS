@@ -6,23 +6,26 @@
 		}
 	$articleTargetUrl = url($article_href) . "/article/" . $article->id; 
 	@endphp
+
+	<script>
+		new Clipboard(".copylink-{{ $hydrogenUid }}-{{ $key }}");
+	</script>
+
 	<div class="col s12 row">
-		<div class="card hoverable z-depth-2 center">
+		<div class="card hoverable z-depth-2 center" style="overflow: hidden;">
 			@if($article->hasImage)
 				<div class="card-image {{ $article->cardSize }}">
 					<div style="overflow: hidden; width: 100%; height: 100%;" class="waves-effect waves-block waves-light">
 						<img class="activator" src="{{ url($article->image) }}">
 					</div>
-					<a data-clipboard-text="{{ $articleTargetUrl }}"
-					   onclick="SynthesisCmsJsUtils.showToast('{!! trans('Hydrogen::hydrogen.options_modal_toast_link_copied') !!}', 2000)"
-					   style="z-index: 2;" data-position="top" data-delay="50"
-					   data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_copy_link') }}"
-					   class="tooltipped copylink-{{ $hydrogenUid }}-{{ $key }} btn-floating halfway-fab waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-						<i class="material-icons row">insert_link</i>
-					</a>
-					<script>
-                        new Clipboard(".copylink-{{ $hydrogenUid }}-{{ $key }}");
-					</script>
+					@if($article->cardSize == \App\Models\Content\Article::cardSizeNotDefined)
+						<a data-clipboard-text="{{ $articleTargetUrl }}"
+						onclick="SynthesisCmsJsUtils.showToast('{!! trans('Hydrogen::hydrogen.options_modal_toast_link_copied') !!}', 2000)"
+						data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_copy_link') }}"
+						class="tooltipped copylink-{{ $hydrogenUid }}-{{ $key }} btn-floating halfway-fab waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
+							<i class="material-icons row">insert_link</i>
+						</a>
+					@endif
 				</div>
 				<div class="card-reveal">
 					<span class="card-title col s12">
@@ -36,7 +39,7 @@
 						 style="margin-top: 5px; margin-bottom: 10px;"></div>
 					{!! $article->description !!}
 					@if(strlen(trim($article->description)) == 0)
-						. . .
+						...
 					@endif
 				</div>
 			@else
@@ -62,13 +65,22 @@
 							{{ $article->title }}
 							<i class="material-icons right">more_vert</i>
 						</span>
-						<a style="display: inline-block" href="{{ $articleTargetUrl }}"
+						@if($article->cardSize != \App\Models\Content\Article::cardSizeNotDefined)
+							<a data-clipboard-text="{{ $articleTargetUrl }}"
+							onclick="SynthesisCmsJsUtils.showToast('{!! trans('Hydrogen::hydrogen.options_modal_toast_link_copied') !!}', 2000)"
+							data-tooltip="{{ trans('Hydrogen::hydrogen.options_modal_btn_copy_link') }}"
+							style="position: absolute; right: 15px; transform: translateY(-45px)"
+							class="right tooltipped copylink-{{ $hydrogenUid }}-{{ $key }} btn-floating waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
+								<i class="material-icons row">insert_link</i>
+							</a>
+						@endif
+						<a style="display: inline-block; margin-top: 10px;" href="{{ $articleTargetUrl }}"
 						   class="synthesis-cool-link {{ $synthesiscmsMainColor }}-text">
 							{{ trans("Hydrogen::hydrogen.article_card_link_read") }}
 						</a>
 					</div>
 				@else
-					<div style="max-height: 400px;">
+				<div style="max-height: {{ $article->cardSize == \App\Models\Content\Article::cardSizeSmall ? "300" : $article->cardSize == \App\Models\Content\Article::cardSizeMedium ? "400" : "500" }}px; @if($article->cardSize != \App\Models\Content\Article::cardSizeNotDefined) overflow: hidden; @endif">
 						<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"
 							 style="margin-top: 5px; margin-bottom: 10px;"></div>
 						{!! $article->description !!}
