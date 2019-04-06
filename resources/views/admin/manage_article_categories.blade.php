@@ -140,7 +140,7 @@
 		<div class="card-content no-padding">
 			<div class="card-title col s12">
 				<h3 class="{{ $synthesiscmsMainColor }}-text valign-wrapper">
-					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">group_work</i>&nbsp;{{ trans('synthesiscms/admin.manage_article_categories') }}
+					<i class="material-icons prefix {{ $synthesiscmsMainColor }}-text medium valign">archive</i>&nbsp;{{ trans('synthesiscms/admin.manage_article_categories') }}
 				</h3>
 			</div>
 			<div class="divider {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} col s12"></div>
@@ -174,28 +174,20 @@
 						</label>
 					</p>
 				</div>
-				<table class="col s12">
-					<tbody>
-					<tr>
-						<td><a href="{{ route('create_article_category') }}"
-							   class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i
-										class="material-icons white-text left">add</i>{{ trans('synthesiscms/admin.create_article_category') }}
-							</a></td>
-						<td>
-							<span onclick="$('#modalMassDelete').modal('open');" type="button"
-								  class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
-								<i class="material-icons white-text left">delete_sweep</i>{{ trans('synthesiscms/article_category.delete_selected') }}
-							</span>
-						</td>
-						<td>
-							<span onclick="$('#modalMassCopy').modal('open');" type="button"
-								  class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
-								<i class="material-icons white-text left">content_copy</i>{{ trans('synthesiscms/article_category.copy_selected') }}
-							</span>
-						</td>
-					</tr>
-					</tbody>
-				</table>
+				<div class="center col s12 row">
+					<a href="{{ route('create_article_category') }}" class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
+							<i class="material-icons white-text left">add</i>
+							{{ trans('synthesiscms/admin.create_article_category') }}
+					</a>
+					<span onclick="$('#modalMassDelete').modal('open');" class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
+						<i class="material-icons white-text left">delete_sweep</i>
+						{{ trans('synthesiscms/article_category.delete_selected') }}
+					</span>
+					<span class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable" onclick="$('#modalMassCopy').modal('open');" class="col s10 offset-s1 btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} white-text hoverable waves-effect waves-light">
+						<i class="material-icons white-text left">content_copy</i>
+						{{ trans('synthesiscms/article_category.copy_selected') }}
+					</span>
+				</div>
 				<div class="col s12 row"></div>
 				<div class="col s12 row">
 					<table class="bordered col s12">

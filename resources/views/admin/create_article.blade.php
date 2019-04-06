@@ -54,7 +54,7 @@
 				</script>
 				<div class="col s12 tooltipped" data-position="top" data-delay="50"
 					 data-tooltip="{{ trans('synthesiscms/article.hasImageTooltip') }}">
-					<p class="col s6 offset-s4">
+					<p>
 						<label>
 							<input class="filled-in" type="checkbox" id="hasImage" name="hasImage">
 							<span class="{{ $synthesiscmsMainColor }}-text">{{ trans('synthesiscms/article.hasImage') }}</span>

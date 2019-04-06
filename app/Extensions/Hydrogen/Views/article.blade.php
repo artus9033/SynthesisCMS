@@ -14,7 +14,7 @@
 
 @section('mod_main')
 	<article>
-		<div id="options" class="modal bottom-sheet" style="height: 100vh;">
+		<div id="options" class="modal bottom-sheet">
 			<div class="modal-content center col s12">
 				<h4 class="col s12">{{ trans('Hydrogen::hydrogen.options_modal_header') }}</h4>
 				<div class="col s12">

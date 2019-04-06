@@ -124,13 +124,13 @@
 				overflow: hidden;
 			}
 
-			.card img:not(.emoji) {
+			.card img {
 				transition: all 0.3s ease-in-out;
 				max-width: 100%;
 				background-color: rgba(0, 0, 0, 0.7);
 			}
 
-			.card:hover img:not(.emoji) {
+			.card:hover img {
 				transform: scale(1.1, 1.1);
 				opacity: 0.8;
 			}

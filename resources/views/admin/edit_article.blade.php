@@ -79,7 +79,7 @@
 				</script>
 				<div class="col s12 tooltipped" data-position="top" data-delay="50"
 					 data-tooltip="{{ trans('synthesiscms/article.hasImageTooltip') }}">
-					<p class="col s6 offset-s4">
+					 <p>
 						<label>
 							<input class="filled-in" type="checkbox" id="hasImage" name="hasImage">
 							<span class="{{ $synthesiscmsMainColor }}-text">
@@ -91,9 +91,8 @@
 				<div class="row"></div>
 				<ul class="collapsible popout col s12 row" data-collapsible="accordion">
 					<li>
-						<div class="collapsible-header {{ $synthesiscmsMainColor }}-text" id="collapsible"
-							 style="pointer-events: none;"><i
-									class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans('synthesiscms/article.articleImage') }}
+						<div class="collapsible-header {{ $synthesiscmsMainColor }}-text" id="collapsible" style="pointer-events: none;">
+							 <i class="material-icons {{ $synthesiscmsMainColor }}-text center">photo</i>{{ trans('synthesiscms/article.articleImage') }}
 						</div>
 						<div class="collapsible-body col s12 card-panel z-depth-3">
 							<div class="col s12 row"></div>

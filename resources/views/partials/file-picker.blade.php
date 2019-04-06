@@ -1,13 +1,13 @@
 <div id="{{ $picker_modal_id }}" class="modal modal-fixed-footer">
 	<div class="modal-content">
 		<div class="col s12 row">
-			<h4>
-				<i class="material-icons medium valign {{ $synthesiscmsMainColor }}-text">cloud</i>&nbsp;&nbsp;{{ trans('synthesiscms/admin.choose_image') }}
+			<h4 class="{{ $synthesiscmsMainColor }}-text center">
+				<i class="material-icons medium valign">cloud</i>&nbsp;&nbsp;{{ trans('synthesiscms/admin.choose_image') }}
 			</h4>
 			<nav>
-				<div class="nav-wrapper">
+				<div class="nav-wrapper {{ $synthesiscmsMainColor }}">
 					<div class="col s12" id="{{ $picker_modal_id }}_path">
-						<a class="white-text breadcrumb" onclick="{{ $picker_modal_id }}_setPickerPath('/')">
+						<a class="white-text breadcrumb" style="cursor: pointer;" onclick="{{ $picker_modal_id }}_setPickerPath('/')">
 							{{ trans('synthesiscms/admin.chooser_path') }}
 							&nbsp;{{ trans('synthesiscms/admin.chooser_path_root') }}
 						</a>
@@ -18,18 +18,22 @@
 				<div id="{{ $picker_modal_id }}_loading" class="indeterminate"></div>
 			</div>
 		</div>
-		<div class="col s12 row divider {{ $synthesiscmsMainColor }}"></div>
+        <div class="col s12 row divider {{ $synthesiscmsMainColor }}"></div>
+        <div class="col s12 row">
+            <h5 class="teal-text center">
+                {{ trans('synthesiscms/admin.chooser_upload_header')}}
+            </h5>
+        </div>
 		<div class="file-field input-field col s12 row">
-			<div class="btn col s12 m4 l2{{ $synthesiscmsMainColor }}">
+			<div class="btn col {{ $synthesiscmsMainColor }}">
 				<i class="material-icons white-text">attachment</i>
 				<input type="file" id="{{ $picker_modal_id }}_fileinput">
 			</div>
-			<div class="row col s12 hide-on-med-and-up"></div>
-			<div class="file-path-wrapper m8 l10 hide-on-small-only">
+			<div class="file-path-wrapper hide-on-small-only col s10">
 				<input class="file-path validate" type="text"
-					   placeholder="{{ trans('synthesiscms/admin.chooser_upload') }}">
+					   placeholder="{{ trans('synthesiscms/admin.chooser_file_hint') }}">
 			</div>
-			<a class="btn {{ $synthesiscmsMainColor }} col s12 waves-effect waves-light"
+			<a class="btn {{ $synthesiscmsMainColor }} col waves-effect waves-light"
 			   onclick="{{ $picker_modal_id }}_uploadPickerNow()">{{ trans('synthesiscms/admin.chooser_upload') }}</a>
 		</div>
 		<script>
