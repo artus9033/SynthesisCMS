@@ -21,12 +21,11 @@
 	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/dragula.js') !!}"></script>
 	<link type="text/css" rel="stylesheet" href="{!! asset("css/dragula.css") !!}">
-	<link type="text/css" rel="stylesheet" href="{!! asset("fonts/roboto/roboto.css") !!}">
+	<link type="text/css" rel="stylesheet" href="{!! asset("fonts/open-sans/font.css") !!}">
 	<script type="text/javascript" src="{!! asset('js/jquery.optiscroll.js') !!}"></script>
 	<link type="text/css" rel="stylesheet" href="{!! asset("css/optiscroll.css") !!}">
 	<link type="text/css" rel="stylesheet" href="{!! asset("fonts/material-icons/material-icons.css") !!}">
 	<link type="text/css" rel="stylesheet" href="{!! asset('css/materialize.css') !!}" media="screen,projection"/>
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link href="{!! asset('css/app.css') !!}" rel="stylesheet">
 	<title>{{ $synthesiscmsHeaderTitle }} - @yield('title')</title>
 	<script src="{{ asset('trumbowyg/trumbowyg.min.js') }}"></script>

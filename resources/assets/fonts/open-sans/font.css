@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Open Sans Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Open Sans Regular"), url("OpenSans-Regular.woff") format("woff");
+}
+
+body {
+  font-family: "Open Sans Regular", Helvetica, sans-serif !important;
+}
