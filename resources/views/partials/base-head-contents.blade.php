@@ -1,3 +1,10 @@
+@php
+    $additionalGeneratedTitlePart = trim(View::yieldContent('title'));
+    if(strlen($additionalGeneratedTitlePart) > 0){
+        $additionalGeneratedTitlePart = " - " . $additionalGeneratedTitlePart;
+    }
+@endphp
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-language" content="{!! App::getLocale() !!}">
@@ -10,9 +17,16 @@
 <meta name="synthesiscms-public-root" content="{{ url('/') }}">
 <meta name="synthesiscms-asset-root" content="{{ asset('/') }}">
 
+<meta property="og:url" content="{{ \Url::current() }}" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{ $title }}{{ $additionalGeneratedTitlePart }}" />
+<meta property="og:description" content="{{trim(View::yieldContent('title'))}}" />
+<!-- make it possible to specify desc, img -->
+<meta property="og:image" content="url('/favicon.ico')" />
+
 <meta name="description" content="{{trim(View::yieldContent('title'))}}">
 
-<title>{{ $title }}</title>
+<title>{{ $title }}{{ $additionalGeneratedTitlePart }}</title>
 <link rel="shortcut icon" type="image/ico" href="{{ url('/favicon.ico') }}"/>
 
 <!-- TODO: implement no-print class from gutenberg in the CMS -->

@@ -50,9 +50,9 @@
 				<div class="card-image col s12 m6 l5 row">
 					<img id="lithium-article-img" src="{{ url($article->image) }}" class="synthesis-cool-image materialboxed"
 						 data-caption="{{ $article->title }}">
-					<a id="lithium-article-btn" style="position: absolute;"
+					<a id="lithium-article-btn" style="position: absolute; top: 10%; right: -15px;"
 					   onclick="$('#options').modal('open');"
-					   class="btn-floating btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2">
+					   class="halfway-fab btn-floating btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2">
 						<i class="material-icons">more_vert</i>
 					</a>
 					<script>
