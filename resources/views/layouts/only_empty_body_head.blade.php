@@ -20,7 +20,7 @@
 	<script type="text/javascript" src="{!! asset('js/materialize.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/Chart.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
-	<script type="text/javascript" src="{!! asset('js/app.js') !!}" defer></script>
+	<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
 
 	<link type="text/css" href="path/to/OverlayScrollbars.css" rel="stylesheet"/>
 	<script type="text/javascript" src="path/to/OverlayScrollbars.js"></script>

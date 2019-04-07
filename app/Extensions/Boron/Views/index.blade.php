@@ -2,13 +2,12 @@
 	#boron-like-box {
 		position: fixed;
 		z-index: 99;
-		top: 350px;
-		transition: left 1s ease-out, top 1s ease-out;
+		top: 280px;
+		transition: left 0.8s ease-out;
 	}
 
 	#boron-like-box:hover {
 		bottom: unset;
-		top: 150px;
 		left: 0;
 	}
 
@@ -89,6 +88,7 @@
 			});
 
 			$('#loginbutton,#feedbutton').removeAttr('disabled');
+
 			FB.getLoginStatus(function () {
 				//do something
 			});

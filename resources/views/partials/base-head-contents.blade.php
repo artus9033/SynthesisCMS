@@ -30,7 +30,7 @@
 <script type="text/javascript" src="{!! asset('js/synthesiscms-js-utils.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('js/dragula.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('overlayscrollbars/js/jquery.overlayScrollbars.min.js') !!}"></script>
-<script type="text/javascript" src="{!! asset('js/app.js') !!}" defer></script>
+<script type="text/javascript" src="{!! asset('js/app.js') !!}"></script>
 
 <!-- Stylesheets -->
 <link href="{!! asset('css/app.css') !!}" rel="stylesheet">
