@@ -6,7 +6,6 @@ return [
     'options_modal_btn_share' => 'Udostępnij',
     'options_modal_btn_copy_link' => 'Skopiuj link do tego atykułu',
     'options_modal_header' => 'Wybierz akcję',
-    'options_modal_btn_cancel' => 'Anuluj',
     'options_modal_toast_link_copied' => 'Link został skopiowany do schowka!',
     'name' => 'Strona z pojedynczym artykułem',
     'switch_on' => 'Włączony',

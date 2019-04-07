@@ -5,10 +5,7 @@
 @endsection
 
 @section('mod_breadcrumbs')
-	@if($base_slug != url("/") || $base_slug != "/")
-		<a href="{{ url($base_slug) }}"
-		   class="breadcrumb">{{ \App\Toolbox::string_truncate($page->page_title, 25) }}</a>
-	@endif
+	<a href="{{ url($base_slug) }}" class="breadcrumb">{{ \App\Toolbox::string_truncate($page->page_title, 25) }}</a>
 	<a class="breadcrumb">{{ \App\Toolbox::string_truncate($article->title, 25) }}</a>
 @endsection
 
@@ -38,10 +35,6 @@
 					</script>
 				</div>
 			</div>
-			<div class="modal-footer">
-				<a href="#!"
-				   class="modal-action modal-close waves-effect waves-yellow btn-flat">{{ trans('Hydrogen::hydrogen.options_modal_btn_cancel') }}</a>
-			</div>
 		</div>
 		<script>
             $(document).ready(function () {
@@ -62,9 +55,9 @@
 				<div class="card-image col s12 m6 l5 row">
 					<img src="{{ url($article->image) }}" class="synthesis-cool-image materialboxed"
 						 data-caption="{{ $article->title }}">
-					<a style="position: absolute; top: 18%; left: 90%;"
+					<a style="position: absolute; top: 10%; right: -15px;"
 					   onclick="$('#options').modal('open');"
-					   class="btn-floating btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2">
+					   class="halfway-fab btn-floating btn-large waves-effect waves-light {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2">
 						<i class="material-icons">more_vert</i>
 					</a>
 				</div>

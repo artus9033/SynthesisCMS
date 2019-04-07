@@ -5,7 +5,6 @@ return [
     'options_modal_btn_share' => 'Udostępnij',
     'options_modal_btn_copy_link' => 'Skopiuj link do tego formularza',
     'options_modal_header' => 'Wybierz akcję',
-    'options_modal_btn_cancel' => 'Anuluj',
     'name' => 'Formularz zgłoszeniowy',
     'switch_on' => 'Włączony',
     'switch_off' => 'Wyłączony',

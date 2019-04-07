@@ -174,12 +174,19 @@
 								<textarea class="editor" id="footer_links_content"
 										  name="footer_links_content"></textarea>
 							</div>
+
 							<style>
 								.trumbowyg-editor {
-									background-color: grey;
 									cursor: default;
 								}
 							</style>
+
+							<script>
+								$(function(){
+									// for footer background preview purposes
+									$(".trumbowyg-editor").addClass("{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}");
+								});
+							</script>
 						</div>
 						<div id="settings-footer-bottom" class="col s12">
 							<div>

@@ -4,14 +4,6 @@
 	{{ $page->page_title }}
 @endsection
 
-@section('mod_breadcrumbs')
-	@if($base_slug != url("/") || $base_slug != "/")
-		<a href="{{ url($base_slug) }}"
-		   class="breadcrumb">{{ \App\Toolbox::string_truncate($page->page_title, 25) }}</a>
-	@endif
-	<a class="breadcrumb">{{ \App\Toolbox::string_truncate($article->title, 25) }}</a>
-@endsection
-
 @section('mod_main')
 	<article>
 		<div id="options" class="modal bottom-sheet">
@@ -37,10 +29,6 @@
                         new Clipboard('.copylink');
 					</script>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<a href="#!"
-				   class="modal-action modal-close waves-effect waves-yellow btn-flat">{{ trans('Hydrogen::hydrogen.options_modal_btn_cancel') }}</a>
 			</div>
 		</div>
 		<script>
