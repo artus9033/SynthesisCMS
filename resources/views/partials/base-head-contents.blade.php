@@ -17,7 +17,7 @@
 <meta name="synthesiscms-public-root" content="{{ url('/') }}">
 <meta name="synthesiscms-asset-root" content="{{ asset('/') }}">
 
-<meta property="og:url" content="{{ \Url::current() }}" />
+<meta property="og:url" content="{{ url()->current() }}" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="{{ $title }}{{ $additionalGeneratedTitlePart }}" />
 <meta property="og:description" content="{{trim(View::yieldContent('title'))}}" />
