@@ -44,6 +44,22 @@ function synthesiscmsResizeBrandLogoMargin() {
 
 $(document).ready(function() {
   $(function() {
+    $.getScript(
+      "//connect.facebook.net/{!! App::getLocale() !!}/sdk.js#xfbml=1&version=v3.0",
+      function() {
+        FB.init({
+          appId: "{{ $model->facebookAppId }}",
+          version: "v2.7"
+        });
+
+        $("#loginbutton,#feedbutton").removeAttr("disabled");
+
+        FB.getLoginStatus(function() {
+          //do something
+        });
+      }
+    );
+
     synthesiscmsResizeBrandLogoMargin();
 
     $(".dropdown-trigger").dropdown({
