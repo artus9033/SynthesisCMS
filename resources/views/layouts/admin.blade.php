@@ -159,7 +159,7 @@
 				id="synthesiscms-admin-nav-wrapper">
 				<div class="nav-wrapper col s12 no-padding">
 					<button data-target="nav-mobile"
-							class="synthesiscms-mobile-btn-wrapper admin-menu-button-collapse hide-on-large-only lighten-1 btn btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light z-depth-1">
+							class="synthesiscms-mobile-btn-wrapper sidenav-trigger admin-menu-button-collapse hide-on-large-only lighten-1 btn btn-floating btn-large {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light z-depth-1">
 						<i class="material-icons">menu</i>
 					</button>
 					<a id="synthesiscms-desktop-brand-logo" style="margin-left: 10px;" href="{{ route('admin') }}"

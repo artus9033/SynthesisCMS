@@ -23,21 +23,19 @@
 		<thead>
 		<tr>
 			<th class="center"><i class="material-icons {{ $synthesiscmsMainColor }}-text center">delete_sweep</i>
-			</td>
-			<th class="center"><p class="center">{{ trans('Berylium::berylium.header_id') }}</p>
-			</td>
+			</th>
 			<th class="center"><p class="center">{{ trans('Berylium::berylium.header_title') }}</p>
-			</td>
+			</th>
 			<th class="center"><p class="center">{{ trans('Berylium::berylium.header_category') }}</p>
-			</td>
+			</th>
 			<th class="center"><p class="center">{{ trans('Berylium::berylium.header_type') }}</p>
-			</td>
+			</th>
 			<th class="center"><p class="center">{{ trans('Berylium::berylium.edit') }}</p>
-			</td>
+			</th>
 			<th class="center"><p class="center">{{ trans('Berylium::berylium.delete') }}</p>
-			</td>
+			</th>
 			<th class="center"><p class="center">{{ trans('Berylium::berylium.order') }}</p>
-			</td>
+			</th>
 		</tr>
 		</thead>
 		<tbody>

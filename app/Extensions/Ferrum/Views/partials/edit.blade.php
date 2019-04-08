@@ -126,7 +126,7 @@
             closeOnSelect: false,
         });
 
-        $('#applicationsCloseTime').pickatime({
+        $('#applicationsCloseTime').timepicker({
             defaultTime: 'now',
             fromNow: 0,
             twelveHour: false,

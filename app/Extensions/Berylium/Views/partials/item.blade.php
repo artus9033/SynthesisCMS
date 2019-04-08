@@ -4,12 +4,9 @@
 			<label>
 				<input class="item_checkbox filled-in" type="checkbox" id="checkbox{{ $item->id }}"
 						name="item_checkbox{{ $item->id }}">
-				<span></span>
+				<span>ID {{ $item->id }}</span>
 			</label>
 		</p>
-	</td>
-	<td class="center">
-		<p class="center">{{ $item->id }}</p>
 	</td>
 	<td class="center">
 		<p class="center tooltipped" data-tooltip="{{ $item->title }}" data-position="top">@if($item->menu != $model->id) <i class="material-icons {{ $synthesiscmsMainColor }}-text">subdirectory_arrow_right</i> @endif{{ App\Toolbox::string_truncate($item->title, 7) }}
