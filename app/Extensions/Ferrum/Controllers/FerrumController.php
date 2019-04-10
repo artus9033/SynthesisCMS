@@ -45,23 +45,27 @@ class FerrumController extends Controller
 
                 $pdf->SetFont('Helvetica', 'B', 20);
                 $pdf->Write(0, $page->page_title);
-                $pdf->Write(0, "\n");
+                //$pdf->Write(0, "\n");
+                $pdf->Ln();
                 $pdf->SetFont('Helvetica', '', 14);
                 $pdf->Write($date_time_spacing, trans('Ferrum::items.word_access_timestamp_pdf', ['datetime' => Carbon::now()->toDateTimeString()]));
-                $pdf->Write(0, "\n");
+                //$pdf->Write(0, "\n");
+                $pdf->Ln();
 
+                $pdf->SetFont('Helvetica', 'B', 12);
                 foreach ($allTableHeadings as $heading) {
-                    $pdf->SetFont('Helvetica', 'B', 12);
                     $pdf->Cell($lineWidth, 12, $heading, 1, 0, 'C');
                 }
-                $pdf->Write(0, "\n");
+                //$pdf->Write(0, "\n");
+                $pdf->Ln();
 
+                $pdf->SetFont('Helvetica', '', 12);
                 foreach ($allTableRows as $row) {
                     foreach ($row as $cell) {
-                        $pdf->SetFont('Helvetica', '', 12);
                         $pdf->Cell($lineWidth, 12, $cell, 1, 0, 'C');
                     }
-                    $pdf->Write(0, "\n");
+                    //$pdf->Write(0, "\n");
+                    $pdf->Ln();
                 }
             } else {
                 $message = Carbon::now()->toDateTimeString() . " : " . trans('Ferrum::messages.msg_no_applications');

@@ -26,9 +26,9 @@ class SynthesisDevModeMiddleware
         }
 
         if ($isDevModeEnabled) {
-            \Barryvdh\Debugbar\Facade::enable(); // works
+            \Barryvdh\Debugbar\Facade::enable();
         } else {
-            \Barryvdh\Debugbar\Facade::disable(); // works
+            \Barryvdh\Debugbar\Facade::disable();
         }
 
         if (!Toolbox::hasWarningInBag(trans('synthesiscms/settings.msg_warning_dev_mode_active')) && $isDevModeEnabled) {

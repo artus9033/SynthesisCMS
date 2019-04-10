@@ -97,13 +97,13 @@
 						<div class="row col s12"></div>
 						<div id="settings-main" class="col s12">
 							<div class="row"></div>
-							<div class="col s12">
+							<div style="margin-bottom: 15px;" class="col s12 row">
 								<span>
-									{{ trans('synthesiscms/settings.site_enabled') }}
+									{{ trans('synthesiscms/settings.switch_show_login_register_buttons') }}
 								</span>
-								<div class="switch">
+								<div class="switch col s12">
 									<label>
-										<input @if($synthesiscmsSiteEnabled) checked="checked" @endif name="site_enabled" type="checkbox">
+										<input @if($synthesiscmsShowLoginRegisterButtons) checked="checked" @endif name="show_login_register_buttons" type="checkbox">
 										<span class="lever"></span>
 									</label>
 								</div>
@@ -130,17 +130,6 @@
 									<input value="{{ $synthesiscmsHomePage }}" id="home_page" name="home_page"
 										   type="text">
 									<label for="home_page">{{ trans('synthesiscms/settings.home_page_button_link') }}</label>
-								</div>
-							</div>
-							<div class="col s12 row">
-								<span>
-									{{ trans('synthesiscms/settings.switch_show_login_register_buttons') }}
-								</span>
-								<div class="switch col s12">
-									<label>
-										<input @if($synthesiscmsShowLoginRegisterButtons) checked="checked" @endif name="show_login_register_buttons" type="checkbox">
-										<span class="lever"></span>
-									</label>
 								</div>
 							</div>
 						</div>
@@ -333,51 +322,60 @@
 							</div>
 						</div>
 						<div id="settings-advanced" class="col s12">
-							<div>
-								<div class="col s12">
-									<span>
-										{{ trans('synthesiscms/settings.force_https') }}
-									</span>
-									<div class="switch">
-										<label>
-											<input @if($synthesiscmsForceHttps) checked="checked" @endif name="force_https" type="checkbox">
-											<span class="lever"></span>
-										</label>
-									</div>
+							<div class="col s12">
+								<span>
+									{{ trans('synthesiscms/settings.site_enabled') }}
+								</span>
+								<div class="switch">
+									<label>
+										<input @if($synthesiscmsSiteEnabled) checked="checked" @endif name="site_enabled" type="checkbox">
+										<span class="lever"></span>
+									</label>
 								</div>
-								<div class="col s12">
-									<p class="center">
-										<label>
-											<input class="filled-in" type="checkbox" id="devModeCheckbox"
-												name="devModeCheckbox"
-												@if(\App\Models\Settings\Settings::getActiveInstance()->isDevModeEnabled()) checked="checked" @endif>
-											<span class="grey-text text-darken-3">
-												{!! trans('synthesiscms/settings.dev_mode_checkbox_text') !!}
-											</span>
-										</label>
-									</p>
-								</div>
-								<script>
-                                    var synthesiscmsSettingsCanToggleDevMode = false;
-                                    function synthesiscmsSettingsEnableDevModeFromModal() {
-                                        $('#modalDevModeEnableWarning').modal('close');
-                                        synthesiscmsSettingsCanToggleDevMode = true;
-                                        $('#devModeCheckbox').click();
-                                        synthesiscmsSettingsCanToggleDevMode = false;
-                                    }
-                                    $('#devModeCheckbox').click(function (event) {
-                                        if ($('#devModeCheckbox').prop("checked")) {
-                                            if (!synthesiscmsSettingsCanToggleDevMode) {
-                                                event.preventDefault();
-                                                $('#modalDevModeEnableWarning').modal('open');
-                                            }
-                                        }
-                                    });
-                                    $(document).ready(function () {
-                                        $('#modalDevModeEnableWarning').modal();
-                                    });
-								</script>
 							</div>
+							<div style="margin-top: 25px;" class="col s12">
+								<span>
+									{{ trans('synthesiscms/settings.force_https') }}
+								</span>
+								<div class="switch">
+									<label>
+										<input @if($synthesiscmsForceHttps) checked="checked" @endif name="force_https" type="checkbox">
+										<span class="lever"></span>
+									</label>
+								</div>
+							</div>
+							<div style="margin-top: 25px;" class="col s12">
+								<p class="center">
+									<label>
+										<input class="filled-in" type="checkbox" id="devModeCheckbox"
+											name="devModeCheckbox"
+											@if(\App\Models\Settings\Settings::getActiveInstance()->isDevModeEnabled()) checked="checked" @endif>
+										<span class="grey-text text-darken-3">
+											{!! trans('synthesiscms/settings.dev_mode_checkbox_text') !!}
+										</span>
+									</label>
+								</p>
+							</div>
+							<script>
+								var synthesiscmsSettingsCanToggleDevMode = false;
+								function synthesiscmsSettingsEnableDevModeFromModal() {
+									$('#modalDevModeEnableWarning').modal('close');
+									synthesiscmsSettingsCanToggleDevMode = true;
+									$('#devModeCheckbox').click();
+									synthesiscmsSettingsCanToggleDevMode = false;
+								}
+								$('#devModeCheckbox').click(function (event) {
+									if ($('#devModeCheckbox').prop("checked")) {
+										if (!synthesiscmsSettingsCanToggleDevMode) {
+											event.preventDefault();
+											$('#modalDevModeEnableWarning').modal('open');
+										}
+									}
+								});
+								$(document).ready(function () {
+									$('#modalDevModeEnableWarning').modal();
+								});
+							</script>
 						</div>
 					</div>
 					<script>

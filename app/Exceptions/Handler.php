@@ -94,13 +94,17 @@ class Handler extends ExceptionHandler
             Toolbox::addWarningToBag(trans('synthesiscms/errors.warning_csrf_token_expired_please_try_again'));
             return redirect()->back();
         }
+
         if ($exception instanceof ValidationException) {
             // adding messages/warnings/errors should be handled by the app itself during validation
             // calling parent::render makes sure that all these messages will be flashed to the session
             return parent::render($request, $exception);
         }
+
         \App::setLocale(strtolower(Toolbox::getBrowserLocale()));
+
         $settings = Settings::getActiveInstance();
+
         if (is_null($settings)) {
             // works, executed here, because if settings db table doesn't exist,
             // then the dev middleware is unlikely to even be executed before the error handler (here), which ends the app
@@ -108,9 +112,12 @@ class Handler extends ExceptionHandler
         } else {
             $continue = $settings->isDevModeEnabled();
         }
+
         if ($continue) {
+            \Barryvdh\Debugbar\Facade::enable();
             return parent::render($request, $exception);
         } else {
+            \Barryvdh\Debugbar\Facade::disable();
             if ($exception instanceof NotFoundHttpException) {
                 return response()->view("errors/404")->setStatusCode(404);
             } else if ($exception instanceof MaintenanceModeException || $exception instanceof ServiceUnavailableHttpException) {
