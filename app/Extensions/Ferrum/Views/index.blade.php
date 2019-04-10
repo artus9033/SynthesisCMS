@@ -32,21 +32,23 @@
 	<form action="{{ $base_href . '/apply' }}" class="col s12 row" method="POST">
 		{{ csrf_field() }}
 		@php($ctr = 0)
-		@foreach($parsedJson as $node)
-			@php($ctr++)
-			@if($node->elementType == "ferrum-label-element")
-				@include('Ferrum::items/labelTitle', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemTitle' => $node->elementValuesArray[0]])
-			@endif
-			@if($node->elementType == "ferrum-label-with-description-element")
-				@include('Ferrum::items/labelWithDescription', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemTitle' => $node->elementValuesArray[0], 'itemDescription' => $node->elementValuesArray[1]])
-			@endif
-			@if($node->elementType == "ferrum-text-input-with-hint-element")
-				@include('Ferrum::items/textInput', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemInputLabel' => $node->elementValuesArray[0]])
-			@endif
-			@if($node->elementType == "ferrum-number-input-with-hint-element")
-				@include('Ferrum::items/numberInput', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemInputLabel' => $node->elementValuesArray[0]])
-			@endif
-		@endforeach
+		@if($parsedJson)
+			@foreach($parsedJson as $node)
+				@php($ctr++)
+				@if($node->elementType == "ferrum-label-element")
+					@include('Ferrum::items/labelTitle', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemTitle' => $node->elementValuesArray[0]])
+				@endif
+				@if($node->elementType == "ferrum-label-with-description-element")
+					@include('Ferrum::items/labelWithDescription', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemTitle' => $node->elementValuesArray[0], 'itemDescription' => $node->elementValuesArray[1]])
+				@endif
+				@if($node->elementType == "ferrum-text-input-with-hint-element")
+					@include('Ferrum::items/textInput', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemInputLabel' => $node->elementValuesArray[0]])
+				@endif
+				@if($node->elementType == "ferrum-number-input-with-hint-element")
+					@include('Ferrum::items/numberInput', ['mode' => 'frontend-show-item', 'ferrumIdManagerInstance' => $ferrumIdManager, 'itemInputLabel' => $node->elementValuesArray[0]])
+				@endif
+			@endforeach
+		@endif
 		<input style="display: none;" value="{!! $ferrumIdManager->ferrumGetAllIdsArrayImploded() !!}"
 			   name="ferrum-all-form-ids-jsonified">
 		@if($ctr > 0)

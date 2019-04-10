@@ -33,7 +33,7 @@ class FerrumController extends Controller
             $pdf = new Fpdf("L");
             $pdf->AddPage();
 
-            if (count($applications)) {
+            if ($applications && count($applications)) {
                 list($allTableHeadings, $allTableRows) = $this->getApplicationsAsTable($applications);
 
                 array_unshift($allTableHeadings, "No.");
@@ -69,8 +69,8 @@ class FerrumController extends Controller
                 $message = Carbon::now()->toDateTimeString() . " : " . trans('Ferrum::messages.msg_no_applications');
                 $pdf->SetFont('Helvetica', 'B', 20);
                 $pdf->Write(0, $this->diacritify($page->page_title));
-                $pdf->Ln();
                 $pdf->SetFont('Helvetica', '', 16);
+                $pdf->Ln();
                 $pdf->Write(20, $this->diacritify($message));
             }
 
@@ -159,7 +159,7 @@ class FerrumController extends Controller
 
             $applications = json_decode($extension_instance->applicationsInJson);
 
-            if (count($applications)) {
+            if ($applications && count($applications)) {
 
                 list($allTableHeadings, $allTableRows) = $this->getApplicationsAsTable($applications);
 
