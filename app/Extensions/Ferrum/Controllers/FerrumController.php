@@ -6,10 +6,15 @@ use App\Extensions\Ferrum\Models\FerrumExtension;
 use App\Http\Controllers\Controller;
 use App\Toolbox;
 use Carbon\Carbon;
-use \Mpdf\Mpdf;
+use \Fpdf\Fpdf;
 
 class FerrumController extends Controller
 {
+
+    private function diacritify($string)
+    {
+        return iconv('UTF-8', 'ASCII//TRANSLIT', $string);
+    }
 
     public function downloadPdf($page, $kernel, $base_slug)
     {
@@ -25,55 +30,48 @@ class FerrumController extends Controller
 
             $applications = json_decode($extension_instance->applicationsInJson);
 
-            $pdf = new Mpdf(['tempDir' => public_path('tmp/')]);
+            $pdf = new Fpdf("L");
             $pdf->AddPage();
 
             if (count($applications)) {
-
                 list($allTableHeadings, $allTableRows) = $this->getApplicationsAsTable($applications);
 
-                $A4PaperSheetWidth = 210; // 210mm = 21cm, A4 paper sheet width
-                $margin_left = 10; // 10mm = 1cm
-                $margin_right = 10; // 10mm = 1cm
+                array_unshift($allTableHeadings, "No.");
+
                 $date_time_spacing = 17; // 17mm = 1.7cm
-                $A4PaperSheetWidthWithMargins = ($A4PaperSheetWidth - ($margin_left + $margin_right));
+                $pageHeightWithMargins = 277; // 277mm = 27.7cm
+                $fontSize = 10;
 
-                $pdf->SetLeftMargin($margin_left);
-                $pdf->SetRightMargin($margin_right);
-
-                $lineWidth = ($A4PaperSheetWidthWithMargins / count($allTableHeadings));
+                $lineWidth = ($pageHeightWithMargins / count($allTableHeadings));
 
                 $pdf->SetFont('Helvetica', 'B', 20);
-                $pdf->Write(0, $page->page_title);
-                //$pdf->Write(0, "\n");
+                $pdf->Write(0, $this->diacritify($page->page_title));
                 $pdf->Ln();
                 $pdf->SetFont('Helvetica', '', 14);
-                $pdf->Write($date_time_spacing, trans('Ferrum::items.word_access_timestamp_pdf', ['datetime' => Carbon::now()->toDateTimeString()]));
-                //$pdf->Write(0, "\n");
+                $pdf->Write($date_time_spacing, $this->diacritify(trans('Ferrum::items.word_access_timestamp_pdf', ['datetime' => Carbon::now()->toDateTimeString()])));
                 $pdf->Ln();
 
-                $pdf->SetFont('Helvetica', 'B', 12);
+                $pdf->SetFont('Helvetica', 'B', $fontSize);
                 foreach ($allTableHeadings as $heading) {
-                    $pdf->Cell($lineWidth, 12, $heading, 1, 0, 'C');
+                    $pdf->Cell($lineWidth, $fontSize, $this->diacritify($heading), 1, 0, 'C');
                 }
-                //$pdf->Write(0, "\n");
                 $pdf->Ln();
 
-                $pdf->SetFont('Helvetica', '', 12);
-                foreach ($allTableRows as $row) {
+                $pdf->SetFont('Helvetica', '', $fontSize);
+                foreach ($allTableRows as $key => $row) {
+                    $pdf->Cell($lineWidth, $fontSize, $key + 1, 1, 0, 'C');
                     foreach ($row as $cell) {
-                        $pdf->Cell($lineWidth, 12, $cell, 1, 0, 'C');
+                        $pdf->Cell($lineWidth, $fontSize, $this->diacritify($cell), 1, 0, 'C');
                     }
-                    //$pdf->Write(0, "\n");
                     $pdf->Ln();
                 }
             } else {
                 $message = Carbon::now()->toDateTimeString() . " : " . trans('Ferrum::messages.msg_no_applications');
                 $pdf->SetFont('Helvetica', 'B', 20);
-                $pdf->Write(0, $page->page_title);
-                $pdf->Write(0, "\n");
+                $pdf->Write(0, $this->diacritify($page->page_title));
+                $pdf->Ln();
                 $pdf->SetFont('Helvetica', '', 16);
-                $pdf->Write(20, $message);
+                $pdf->Write(20, $this->diacritify($message));
             }
 
             fputs($handle, $pdf->Output());
@@ -167,17 +165,17 @@ class FerrumController extends Controller
 
                 fputcsv($handle, array($page->page_title));
 
-                //fputcsv($handle, Array(trans('Ferrum::items.word_access_timestamp_pdf', ['datetime' => Carbon::now()->toDateTimeString()])));
+                fputcsv($handle, array(trans('Ferrum::items.word_access_timestamp_pdf', ['datetime' => Carbon::now()->toDateTimeString()])));
 
-                fputcsv($handle, array(''));
+                fputcsv($handle, array(''), ";");
 
-                fputcsv($handle, $allTableHeadings);
+                fputcsv($handle, $allTableHeadings, ";");
 
                 foreach ($allTableRows as $row) {
-                    fputcsv($handle, $row);
+                    fputcsv($handle, $row, ";");
                 }
             } else {
-                //fputcsv($handle, Array(trans('Ferrum::items.word_access_timestamp_pdf', ['datetime' => Carbon::now()->toDateTimeString()]) . " : " . trans('Ferrum::messages.msg_no_applications')));
+                fputcsv($handle, array(trans('Ferrum::items.word_access_timestamp_pdf', ['datetime' => Carbon::now()->toDateTimeString()]) . " : " . trans('Ferrum::messages.msg_no_applications')));
             }
 
             fclose($handle);
