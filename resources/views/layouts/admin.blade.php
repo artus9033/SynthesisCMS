@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{!! App::getLocale() !!}">
 <head>
-	@include('partials/base-head-contents', ['title' => $synthesiscmsHeaderTitle . (View::hasSection('title') ? (' - ' . View::getSection('title')) : "")])
+	@include('partials/base-head-contents', ['title' => $synthesiscmsHeaderTitle])
 
 	<script src="{{ asset('trumbowyg/trumbowyg.min.js') }}"></script>
 	<link rel="stylesheet" href="{{ asset('trumbowyg/ui/trumbowyg.min.css') }}">

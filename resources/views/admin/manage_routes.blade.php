@@ -53,8 +53,8 @@
 							<td class="center">{{ $route->id }}</td>
 							<td class="center">{{ $route->slug }}</td>
 							<td class="center">{{ $route->page_title }}</td>
-							<td class="center tooltipped" data-position="top" data-delay="50"
-								data-tooltip="{{ $kernel->getExtensionName() }}">{{ \App\Toolbox::string_truncate($kernel->getExtensionName(), 17) }}</td>
+							<td class="center tooltipped truncate" data-position="top" data-delay="50"
+								data-tooltip="{{ $kernel->getExtensionName() }}">{{ $kernel->getExtensionName() }}</td>
 							<td class="center">
 								<a href="{{ route('manage_routes_edit', ['id' => $route->id]) }}"
 								   class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable truncate">

@@ -16,11 +16,10 @@ class ExtensionsCallbacksBridge
      */
     public static function handleOnArticleDeleted($id)
     {
-        $extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
+        $synthesiscmsExtensions = view()->shared("synthesiscmsExtensions");
 
-        while (list(, $extension) = \App\Toolbox::each($extensions)) {
-            $kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
-            $kernel = new $kpath;
+        foreach ($synthesiscmsExtensions as $extensionPack) {
+            $kernel = $extensionPack[0];
             $kernel->onArticleDeleted($id);
         }
     }
@@ -31,11 +30,10 @@ class ExtensionsCallbacksBridge
      */
     public static function handleOnArticleCategoryDeleted($id)
     {
-        $extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
+        $synthesiscmsExtensions = view()->shared("synthesiscmsExtensions");
 
-        while (list(, $extension) = \App\Toolbox::each($extensions)) {
-            $kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
-            $kernel = new $kpath;
+        foreach ($synthesiscmsExtensions as $extensionPack) {
+            $kernel = $extensionPack[0];
             $kernel->onArticleCategoryDeleted($id);
         }
     }
@@ -46,11 +44,10 @@ class ExtensionsCallbacksBridge
      */
     public static function handleOnRouteDeleted($id)
     {
-        $extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
+        $synthesiscmsExtensions = view()->shared("synthesiscmsExtensions");
 
-        while (list(, $extension) = \App\Toolbox::each($extensions)) {
-            $kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
-            $kernel = new $kpath;
+        foreach ($synthesiscmsExtensions as $extensionPack) {
+            $kernel = $extensionPack[0];
             $kernel->onRouteDeleted($id);
         }
     }
@@ -61,11 +58,10 @@ class ExtensionsCallbacksBridge
      */
     public static function handleOnRouteCreated($id)
     {
-        $extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
+        $synthesiscmsExtensions = view()->shared("synthesiscmsExtensions");
 
-        while (list(, $extension) = \App\Toolbox::each($extensions)) {
-            $kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
-            $kernel = new $kpath;
+        foreach ($synthesiscmsExtensions as $extensionPack) {
+            $kernel = $extensionPack[0];
             $kernel->onRouteCreated($id);
         }
     }
@@ -76,11 +72,10 @@ class ExtensionsCallbacksBridge
      */
     public static function handleOnRouteSaved($id)
     {
-        $extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
+        $synthesiscmsExtensions = view()->shared("synthesiscmsExtensions");
 
-        while (list(, $extension) = \App\Toolbox::each($extensions)) {
-            $kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
-            $kernel = new $kpath;
+        foreach ($synthesiscmsExtensions as $extensionPack) {
+            $kernel = $extensionPack[0];
             $kernel->onRouteSaved($id);
         }
     }

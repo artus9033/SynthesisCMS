@@ -12,7 +12,11 @@
 		<p class="center">{{ $item->id }}</p>
 	</td>
 	<td class="center">
-		<p class="center">@if($item->slider != $model->id) <i class="material-icons {{ $synthesiscmsMainColor }}-text">subdirectory_arrow_right</i> @endif{{ App\Toolbox::string_truncate($item->title, 7) }}
+		<p class="center truncate">
+			@if($item->slider != $model->id)
+				<i class="material-icons {{ $synthesiscmsMainColor }}-text">subdirectory_arrow_right</i>
+			@endif
+			{{ $item->title }}
 		</p>
 	</td>
 	<td class="center">

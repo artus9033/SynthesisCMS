@@ -30,9 +30,8 @@
 					$selected = "";
 				}
 			@endphp
-			@php($truncatedTitle = App\Toolbox::string_truncate($value->title, 25))
-			<option {{ $selected }} class="card-panel col s10 offset-s1 red white-text"
-					value="{{ $value->id }}">{{ $truncatedTitle }}&nbsp;(ID&nbsp;{{ $value->id }})
+			<option {{ $selected }} class="card-panel col s10 offset-s1 red white-text truncate"
+					value="{{ $value->id }}">{{ $value->title }}&nbsp;(ID&nbsp;{{ $value->id }})
 			</option>
 		@endforeach
 	</select>

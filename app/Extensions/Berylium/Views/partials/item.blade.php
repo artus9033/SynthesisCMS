@@ -9,7 +9,11 @@
 		</p>
 	</td>
 	<td class="center">
-		<p class="center tooltipped" data-tooltip="{{ $item->title }}" data-position="top">@if($item->menu != $model->id) <i class="material-icons {{ $synthesiscmsMainColor }}-text">subdirectory_arrow_right</i> @endif{{ App\Toolbox::string_truncate($item->title, 7) }}
+		<p class="center tooltipped truncate" data-tooltip="{{ $item->title }}" data-position="top">
+			@if($item->menu != $model->id)
+				<i class="material-icons {{ $synthesiscmsMainColor }}-text">subdirectory_arrow_right</i>
+				@endif
+				{{ $item->title }}
 		</p>
 	</td>
 	<td class="center">

@@ -57,12 +57,11 @@
 					</li>
 					@php
 						$ct = 0;
-						$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
+						$synthesiscmsExtensions = view()->shared("synthesiscmsExtensions");
 					@endphp
-					@foreach ($extensions as $extension)
+					@foreach ($synthesiscmsExtensions as $extensionPack)
 						@php
-							$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
-							$kernel = new $kpath;
+							$kernel = $extensionPack[0];
 							$class = "applet";
 							$class2 = " " . $synthesiscmsMainColor . "-text waves-effect waves-" . $synthesiscmsMainColor;
 						@endphp

@@ -29,10 +29,10 @@
 				}else{
 					$selected = "";
 				}
-				$optionVal = App\Toolbox::string_truncate($value->title, 40) . " (ID " . $value->id . ")";
+				$optionVal = $value->title . " (ID " . $value->id . ")";
 			@endphp
 			<option {{ $selected }} value="{{ $value->id }}"
-					class="card-panel col s10 offset-s1 red white-text">{{ $optionVal }}</option>
+					class="card-panel col s10 offset-s1 red white-text truncate">{{ $optionVal }}</option>
 		@endforeach
 	</select>
 	<label>{{ trans("Hydrogen::messages.choose_article_category") }}</label>

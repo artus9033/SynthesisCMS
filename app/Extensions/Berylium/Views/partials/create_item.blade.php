@@ -144,7 +144,7 @@
 					<select id="parent" name="parent">
 						<option value="{{ $model->id }};0">{{ trans("Berylium::berylium.option_default_parent") }}</option>
 						@foreach (App\Extensions\Berylium\Models\BeryliumItem::where('menu', $model->id)->get() as $key => $item)
-							<option value="{{ $item->parentOf }};{{ $item->id }}">{{ App\Toolbox::string_truncate($item->title, 20) }}</option>
+							<option class="truncate" value="{{ $item->parentOf }};{{ $item->id }}">{{ $item->title }}</option>
 						@endforeach
 					</select>
 					<label>{{ trans("Berylium::berylium.parent") }}</label>

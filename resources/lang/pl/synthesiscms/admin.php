@@ -69,7 +69,7 @@ return [
     'msg_now_edit_route' => 'Teraz edytuj ścieżkę oraz ustawienia przypisanego do niej modułu',
     'msg_route_created' => 'Ścieżka :route została pomyślnie utworzona',
     'msg_route_deleted' => 'Ścieżka :route została pomyślnie usunięta',
-    'create_route_slug_tooltip' => 'Ścieżka może być subdomeną (e.g. \'mypage\this\is\a\wildcard\')',
+    'create_route_slug_tooltip' => 'Ścieżka może być subdomeną (np. \'moja\\strona\\subdomena\')',
     'create_route_slug_label' => 'Ścieżka Strony',
     'create_route' => 'Utwórz Ścieżkę',
     'msg_create_route_wait_for_end_of_check' => 'Proszę poczekać aż dostępność tej ścieżki zostanie sprawdzona!',
@@ -145,4 +145,5 @@ return [
     'applets' => 'Applety',
     'applet_settings' => ':applet - Ustawienia',
     'applet_return' => 'Powrót',
+    'err_route_already_occupied' => 'Ta ścieżka jest już zajęta',
 ];

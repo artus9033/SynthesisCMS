@@ -145,4 +145,5 @@ return [
     'applets' => 'Applets',
     'applet_settings' => ':applet Settings',
     'applet_return' => 'Back',
+    'err_route_already_occupied' => 'This route is already occupied',
 ];

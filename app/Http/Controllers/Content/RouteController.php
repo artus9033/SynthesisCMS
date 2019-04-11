@@ -14,9 +14,7 @@ class RouteController extends Controller
 {
     public function checkRoute(ContentEditorRequest $request)
     {
-        $routes = \Route::getRoutes();
         $routePath = trim($request->get('route'));
-        $request2 = Request::create($routePath);
 
         if ($request->has('source')) {
             if ($request->get('source') == $routePath) {
@@ -24,14 +22,27 @@ class RouteController extends Controller
             }
         }
 
-        try {
-            $routes->match($request2);
+        if ($this->_checkIfRouteOccupied($routePath)) {
             return array('text' => trans('synthesiscms/helper.route_occupied'), 'color' => 'red', 'valid' => false);
+        } else {
+            return array('text' => trans('synthesiscms/helper.route_free'), 'color' => 'green', 'valid' => true);
+        }
+    }
+
+    private function _checkIfRouteOccupied($routePath)
+    {
+        try {
+            $routes = \Route::getRoutes();
+            $request = Request::create($routePath);
+
+            $routes->match($request);
+
+            return true;
         } catch (\Exception $e) {
             if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
-                return array('text' => trans('synthesiscms/helper.route_free'), 'color' => 'green', 'valid' => true);
+                return false;
             } else {
-                return array('text' => trans('synthesiscms/helper.route_occupied'), 'color' => 'red', 'valid' => false);
+                return true;
             }
         }
     }
@@ -77,13 +88,19 @@ class RouteController extends Controller
         }
 
         if (!$err) {
+            $page = Page::find($id);
+
             Toolbox::chkRoute($slug);
+
+            if ($slug != $page->slug && $this->_checkIfRouteOccupied($slug)) {
+                $err = true;
+                array_push($errors, trans("synthesiscms/admin.err_route_already_occupied"));
+            }
         }
 
         if ($err) {
             return \Redirect::to(\Request::path())->with('errors', $errors);
         } else {
-            $page = Page::find($id);
             $page->slug = $slug;
             $page->page_title = $title;
             $page->page_header = $header;
@@ -131,12 +148,18 @@ class RouteController extends Controller
             array_push($errors, trans("synthesiscms/admin.err_slug_cannot_be_empty"));
         }
 
+        if (!$err) {
+            Toolbox::chkRoute($route);
+
+            if ($this->_checkIfRouteOccupied($route)) {
+                $err = true;
+                array_push($errors, trans("synthesiscms/admin.err_route_already_occupied"));
+            }
+        }
+
         if ($err) {
             return \Redirect::route('manage_routes')->with('errors', $errors);
         } else {
-
-            Toolbox::chkRoute($route);
-
             $page = Page::create(['slug' => $route, 'extension' => $extension, 'page_title' => 'SynthesisCMS Sample Title', 'page_header' => 'SynthesisCMS Sample Page Header: Lorem ipsum sit dolor amet...']);
 
             $kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';

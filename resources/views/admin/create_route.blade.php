@@ -136,13 +136,12 @@
 			<div class="input-field col s8 valign" id="route-sel">
 				<select id="extension" name="extension" class="{{ $synthesiscmsMainColor }}-text">
 					@php
-						$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
-
-						while (list(,$extension) = \App\Toolbox::each($extensions)) {
-							$kpath = 'App\\Extensions\\' . $extension . '\\ExtensionKernel';
-							$kernel = new $kpath;
+						$synthesiscmsExtensions = view()->shared("synthesiscmsExtensions");
+                        foreach ($synthesiscmsExtensions as $extensionPack) {
+                            $kernel = $extensionPack[0];
+                            $extensionDirname = $extensionPack[1];
 							if($kernel->getExtensionType() == App\SynthesisCMS\API\Extensions\SynthesisExtensionType::Module){
-								echo("<option value='" . $extension . "'>" . $kernel->getExtensionName() . "</option>");
+								echo("<option value='" . $extensionDirname . "'>" . $kernel->getExtensionName() . "</option>");
 							}
 						}
 					@endphp

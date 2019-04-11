@@ -201,16 +201,19 @@ class Toolbox
     {
         $ret = false;
         $route = str_replace("\\", "/", $route);
+
         if (!starts_with($route, "/")) {
             $ret = true;
             $route = "/" . $route;
         }
+
         if (!strlen($route) == 1) {
             if (ends_with($route, "/")) {
                 $ret = true;
                 $route = substr($route, 0, -1);
             }
         }
+
         if ($ret) {
             Toolbox::chkRoute($route);
         }
