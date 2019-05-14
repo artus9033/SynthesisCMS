@@ -68,13 +68,13 @@
 						@if($kernel->getExtensionType() == App\SynthesisCMS\API\Extensions\SynthesisExtensionType::Applet)
 							@php
 								if($ct == 0){
-									$firstExt = $extension;
+									$firstExt = $extensionPack[1];
 									$class .= " active-applet white-text waves-effect waves-light " . $synthesiscmsMainColor;
 									$class2 = "";
 								}
 								$ct++;
 							@endphp
-							<div onclick="loadIframeContents('{{ $extension }}', this);" style="width: 85%;"
+							<div onclick="loadIframeContents('{{ $extensionPack[1] }}', this);" style="width: 85%;"
 								 class="card-panel {{ $class }} {{ $class2 }}">{{ $kernel->getExtensionName() }}</div>
 						@endif
 					@endforeach
