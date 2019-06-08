@@ -1,6 +1,8 @@
 @php
     $thisPageDescription = trim(View::yieldContent('title'));
 
+    $thisPageImage = trim(View::yieldContent('image'));
+
     $additionalGeneratedTitlePart = $thisPageDescription;
 
     if(strlen($additionalGeneratedTitlePart) > 0){
@@ -25,7 +27,7 @@
 <meta property="og:title" content="{{ $additionalGeneratedTitlePart }}{{ $title }}" />
 <meta property="og:description" content="{{ $thisPageDescription }}" />
 <meta property="og:site_name" content="{{ $title }}" /> 
-<meta property="og:image" content="{{ url('/favicon.ico') }}" />
+<meta property="og:image" content="{{ strlen($thisPageImage) ? $thisPageImage : url('/favicon.ico') }}" />
 
 <meta name="description" content="{{ $thisPageDescription }}">
 

@@ -1,4 +1,4 @@
-@extends('layouts.standalone_extension', ['brand_logo' => $page->page_title])
+@extends('layouts.standalone_extension')
 
 @section('mod_title')
 	{{ $page->page_title }}

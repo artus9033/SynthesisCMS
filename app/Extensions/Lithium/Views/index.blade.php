@@ -1,7 +1,14 @@
-@extends('layouts.standalone_extension', ['brand_logo' => $page->page_title])
+@extends('layouts.standalone_extension')
 
 @section('mod_title')
 	{{ $page->page_title }}
+@endsection
+
+
+@section('mod_image')
+	@if($article->hasImage)
+		{!! url($article->image) !!}
+	@endif
 @endsection
 
 @section('mod_main')

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{!! App::getLocale() !!}">
 <head>
-	@include('partials/base-head-contents', ['title' => $synthesiscmsHeaderTitle])
+	@include('partials/base-head-contents', ['title' => $synthesiscmsHeaderTitle, 'image'=> trim(View::yieldContent('image'))])
 
 	@yield('head')
 </head>
