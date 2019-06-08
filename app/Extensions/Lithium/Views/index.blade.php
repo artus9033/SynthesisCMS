@@ -5,7 +5,7 @@
 @endsection
 
 @section('mod_main')
-	<article>
+	<article title="{!! $page->page_title !!}">
 		<div id="options" class="modal bottom-sheet">
 			<div class="modal-content center col s12">
 				<h4 class="col s12">{{ trans('Hydrogen::hydrogen.options_modal_header') }}</h4>
@@ -39,7 +39,7 @@
 
 		@if($extension_instance->showHeader)
 			<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
-				<h3 class="col s12">{{ $page->page_title }}</h3>
+				<h1 class="col s12">{{ $page->page_title }}</h1>
 				<div class="col s12 row white divider" style="height: 2px;"></div>
 				<h5 class="col s12">{!! $page->page_header !!}</h5>
 			</div>

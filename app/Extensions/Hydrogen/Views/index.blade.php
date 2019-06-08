@@ -54,7 +54,7 @@
 		@include('partials/error', ['error' => trans("Hydrogen::messages.err_no_articles")]);
 	@else
 		<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
-			<h3 class="col s12">{{ $page->page_title }}</h3>
+			<h1 style="font-size: 2.92rem" class="col s12">{{ $page->page_title }}</h1>
 			<div class="col s12 row white divider" style="height: 2px;"></div>
 			<h5 class="col s12">{!! $page->page_header !!}</h5>
 		</div>

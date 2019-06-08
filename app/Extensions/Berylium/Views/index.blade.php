@@ -72,14 +72,14 @@
 		@if($synthesiscmsShowLoginRegisterButtons)
 			<ul style="width: 100%;" class="collapsible collapsible-accordion">
 				<li class="{{ $synthesiscmsMainColor }}-text col s12 waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-					<a class="{{ $synthesiscmsMainColor }}-text collapsible-header" href="{{ route('register') }}"><i
+					<a title="{!! trans('synthesiscms/menu.register') !!}" class="{{ $synthesiscmsMainColor }}-text collapsible-header" href="{{ route('register') }}"><i
 								class="material-icons {{ $synthesiscmsMainColor }}-text left">create</i>{!! trans('synthesiscms/menu.register') !!}
 					</a>
 				</li>
 			</ul>
 			<ul style="width: 100%;" class="collapsible collapsible-accordion">
 				<li class="{{ $synthesiscmsMainColor }}-text col s12 waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}">
-					<a class="{{ $synthesiscmsMainColor }}-text collapsible-header" href="{{ route('login') }}"><i
+					<a title="{!! trans('synthesiscms/menu.login') !!}" class="{{ $synthesiscmsMainColor }}-text collapsible-header" href="{{ route('login') }}"><i
 								class="material-icons {{ $synthesiscmsMainColor }}-text left">fingerprint</i>{!! trans('synthesiscms/menu.login') !!}
 					</a>
 				</li>
@@ -97,15 +97,15 @@
 					<ul>
 						<li>
 							@if(Auth::user()->is_admin)
-								<a class="{{ $synthesiscmsMainColor }}-text waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
+								<a title="{!! trans('synthesiscms/menu.admin') !!}" class="{{ $synthesiscmsMainColor }}-text waves-effect waves-{{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }}"
 								   href="{{ route('admin') }}">
 									<i class="material-icons {{ $synthesiscmsMainColor }}-text left">build</i>{!! trans('synthesiscms/menu.admin') !!}
 								</a>
 							@endif
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}">
+							<a title="{!! trans('synthesiscms/menu.profile') !!}" class="{{ $synthesiscmsMainColor }}-text" href="{{ route('profile') }}">
 								<i class="material-icons {{ $synthesiscmsMainColor }}-text left">perm_identity</i>{!! trans('synthesiscms/menu.profile') !!}
 							</a>
-							<a class="{{ $synthesiscmsMainColor }}-text" href="{{ route('logout') }}"
+							<a title="{!! trans('synthesiscms/menu.logout') !!}" class="{{ $synthesiscmsMainColor }}-text" href="{{ route('logout') }}"
 							   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 								<i class="material-icons {{ $synthesiscmsMainColor }}-text left">power_settings_new</i>{!! trans('synthesiscms/menu.logout') !!}
 							</a>
@@ -125,7 +125,7 @@
 	{!! $synthesiscmsPositionManager->getStandard(App\SynthesisCMS\API\Positions\SynthesisPositions::InsideMenu, Request::url()) !!}
 	<ul style="width: 100%;" class="collapsible collapsible-accordion">
 		<li class="no-padding">
-			<a class="collapsible-header {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">
+			<a title="{!! trans('Berylium::berylium.language') !!}" class="collapsible-header {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">
 				<i class="material-icons left {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">public</i>
 				{{ trans('Berylium::berylium.language') }}
 				<i class="material-icons right {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}">arrow_drop_down</i>

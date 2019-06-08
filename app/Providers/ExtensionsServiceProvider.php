@@ -58,6 +58,7 @@ class ExtensionsServiceProvider extends ServiceProvider
                 if (is_dir($extensionsDirectoryPath . $extension . '/Views')) {
                     $this->loadViewsFrom($extensionsDirectoryPath . $extension . '/Views', $extension);
                 }
+
                 // Load translation files, then callable by trans("extensionName::path.to.file.and.value.from.extension.lang")
                 if (is_dir($extensionsDirectoryPath . $extension . '/Lang')) {
                     $this->loadTranslationsFrom($extensionsDirectoryPath . $extension . '/Lang', $extension);

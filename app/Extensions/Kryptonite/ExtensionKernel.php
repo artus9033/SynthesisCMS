@@ -43,7 +43,7 @@ class ExtensionKernel extends SynthesisExtension
 
     public function getExtensionName()
     {
-        return trans('Kryptonite::Kryptonite.name');
+        return trans('Kryptonite::kryptonite.name');
     }
 
     public function editGet($page)

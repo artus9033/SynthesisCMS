@@ -331,9 +331,9 @@ class ExtensionKernel extends SynthesisExtension
                 }
                 if ($type == "mobile") {
                     $item_onclick = "onclick=\"window.location.href = '$href'\"";
-                    $out = "<a $item_onclick class='$class' href='$href'>" . $item->title . "</a>$children_dropdown_caret";
+                    $out = "<a title='$item->title' $item_onclick class='$class' href='$href'>" . $item->title . "</a>$children_dropdown_caret";
                 } else {
-                    $out = "<a class='$class' href='$href'>" . $item->title . $children_dropdown_caret . "</a>";
+                    $out = "<a title='$item->title' class='$class' href='$href'>" . $item->title . $children_dropdown_caret . "</a>";
                 }
                 break;
 
@@ -341,9 +341,9 @@ class ExtensionKernel extends SynthesisExtension
                 $href = $item->data;
                 if ($type == "mobile") {
                     $item_onclick = "onclick=\"window.location.href = '$href'\"";
-                    $out = "<a $item_onclick class='$class' href='$href'>" . $item->title . "</a>$children_dropdown_caret";
+                    $out = "<a title='$item->title' $item_onclick class='$class' href='$href'>" . $item->title . "</a>$children_dropdown_caret";
                 } else {
-                    $out = "<a class='$class' href='$href'>" . $item->title . $children_dropdown_caret . "</a>";
+                    $out = "<a title='$item->title' class='$class' href='$href'>" . $item->title . $children_dropdown_caret . "</a>";
                 }
                 break;
 
@@ -351,9 +351,9 @@ class ExtensionKernel extends SynthesisExtension
                 $href = "";
                 if ($type == "mobile") {
                     $item_onclick = "onclick=\"window.location.href = '$href'\"";
-                    $out = "<a $item_onclick class='$class' href='$href'>" . $item->title . "</a>$children_dropdown_caret";
+                    $out = "<a title='$item->title' $item_onclick class='$class' href='$href'>" . $item->title . "</a>$children_dropdown_caret";
                 } else {
-                    $out = "<a class='$class'>" . $item->title . $children_dropdown_caret . "</a>";
+                    $out = "<a title='$item->title' class='$class'>" . $item->title . $children_dropdown_caret . "</a>";
                 }
                 break;
         }
