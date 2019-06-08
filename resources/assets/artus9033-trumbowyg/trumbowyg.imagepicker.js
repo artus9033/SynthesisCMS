@@ -3,7 +3,7 @@ var mImagePickerTrumbowyg;
 function trumbowygImagePickerCallback(url, fsize) {
   if (url.length) {
     var img = SynthesisCmsJsUtils.addDynamicSynthesisUrlClientSideProcessableAttributesToElement(
-      $("<img class='col s10 offset-s1'>"),
+      $("<img>"),
       url,
       "src"
     );
