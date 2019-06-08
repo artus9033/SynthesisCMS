@@ -1,6 +1,7 @@
 <?php
 
 use App\Console\Commands\DropTables;
+use App\Console\Commands\RegenerateSitemap;
 use Illuminate\Foundation\Inspiring;
 
 /*
@@ -12,10 +13,12 @@ use Illuminate\Foundation\Inspiring;
 | commands. Each Closure is bound to a command instance allowing a
 | simple approach to interacting with each command's IO methods.
 |
-*/
+ */
 
 Artisan::command('inspire', function () {
-	$this->comment(Inspiring::quote());
+    $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
 
 Artisan::registerCommand(new DropTables());
+
+Artisan::registerCommand(new RegenerateSitemap());

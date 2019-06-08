@@ -1,7 +1,10 @@
 @php
-    $additionalGeneratedTitlePart = trim(View::yieldContent('title'));
+    $thisPageDescription = trim(View::yieldContent('title'));
+
+    $additionalGeneratedTitlePart = $thisPageDescription;
+
     if(strlen($additionalGeneratedTitlePart) > 0){
-        $additionalGeneratedTitlePart = " - " . $additionalGeneratedTitlePart;
+        $additionalGeneratedTitlePart = $additionalGeneratedTitlePart . " - ";
     }
 @endphp
 
@@ -19,14 +22,14 @@
 
 <meta property="og:url" content="{{ url()->current() }}" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="{{ $title }}{{ $additionalGeneratedTitlePart }}" />
-<meta property="og:description" content="{{trim(View::yieldContent('title'))}}" />
-<!-- make it possible to specify desc, img -->
-<meta property="og:image" content="url('/favicon.ico')" />
+<meta property="og:title" content="{{ $additionalGeneratedTitlePart }}{{ $title }}" />
+<meta property="og:description" content="{{ $thisPageDescription }}" />
+<meta property="og:site_name" content="{{ $title }}" /> 
+<meta property="og:image" content="{{ url('/favicon.ico') }}" />
 
-<meta name="description" content="{{trim(View::yieldContent('title'))}}">
+<meta name="description" content="{{ $thisPageDescription }}">
 
-<title>{{ $title }}{{ $additionalGeneratedTitlePart }}</title>
+<title>{{ $additionalGeneratedTitlePart }}{{ $title }}</title>
 <link rel="shortcut icon" type="image/ico" href="{{ url('/favicon.ico') }}"/>
 
 <!-- TODO: implement no-print class from gutenberg in the CMS -->

@@ -2,6 +2,7 @@ vendor/
 node_modules/
 database/database.sqlite
 .env
+package-lock.json
 composer.phar
 composer.lock
 npm-debug.log*

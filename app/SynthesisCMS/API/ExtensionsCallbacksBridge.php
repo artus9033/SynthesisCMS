@@ -8,8 +8,40 @@
 
 namespace App\SynthesisCMS\API;
 
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
+
 class ExtensionsCallbacksBridge
 {
+    public static function regenerateSitemap()
+    {
+        $robotsContents = "User-agent: *\nDisallow: /admin\n\nUser-agent: *\nDisallow: /profile\n\nUser-agent: *\nDisallow: /register\n\nUser-agent: *\nDisallow: /login\n\nUser-agent: *\nDisallow: /logout\n\nUser-agent: *\nDisallow: /profile\n\nSitemap: ";
+
+        $robotsContents .= url("/sitemap.xml");
+
+        file_put_contents(public_path("robots.txt"), $robotsContents);
+
+        $sitemapGenerator = Sitemap::create();
+
+        $count = 0;
+
+        foreach (\Route::getRoutes()->getIterator() as $route) {
+            if ($route->getActionName() == "Closure") {
+                $count++;
+
+                $uri = $route->uri;
+
+                if (!\preg_match("/{.+}/", $uri)) {
+                    $sitemapGenerator->add(Url::create($uri));
+                }
+            }
+        }
+
+        echo ("Now the sitemap contains " . $count . " records!\n");
+
+        $sitemapGenerator->writeToFile(public_path("sitemap.xml"));
+    }
+
     /**
      * Function that executes onArticleDeleted function on every extension that overrides this method
      * @param $id int id of the article deleted
@@ -44,6 +76,8 @@ class ExtensionsCallbacksBridge
      */
     public static function handleOnRouteDeleted($id)
     {
+        self::regenerateSitemap();
+
         $synthesiscmsExtensions = view()->shared("synthesiscmsExtensions");
 
         foreach ($synthesiscmsExtensions as $extensionPack) {
@@ -58,6 +92,8 @@ class ExtensionsCallbacksBridge
      */
     public static function handleOnRouteCreated($id)
     {
+        self::regenerateSitemap();
+
         $synthesiscmsExtensions = view()->shared("synthesiscmsExtensions");
 
         foreach ($synthesiscmsExtensions as $extensionPack) {
@@ -72,6 +108,8 @@ class ExtensionsCallbacksBridge
      */
     public static function handleOnRouteSaved($id)
     {
+        self::regenerateSitemap();
+
         $synthesiscmsExtensions = view()->shared("synthesiscmsExtensions");
 
         foreach ($synthesiscmsExtensions as $extensionPack) {

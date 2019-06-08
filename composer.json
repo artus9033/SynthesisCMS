@@ -1,19 +1,19 @@
 {
   "require": {
     "php": "*",
-    "laravel/framework": "5.5.9",
+    "laravel/framework": "*",
     "doctrine/dbal": "*",
     "nesbot/carbon": "*",
     "barryvdh/laravel-ide-helper": "*",
-    "mobiledetect/mobiledetectlib": "^2.8",
-    "dimsav/laravel-translatable": "*",
-    "trntv/probe": "^1.0",
-    "chrisjean/php-ico": "^1.0",
-    "meyfa/php-svg": "^0.6.0",
-    "mouf/nodejs-installer": "^1.0",
-    "itsgoingd/clockwork": "^2.0",
-    "laravel/tinker": "^1.0",
-    "fpdf/fpdf": "^1.81"
+    "mobiledetect/mobiledetectlib": "*",
+    "trntv/probe": "*",
+    "chrisjean/php-ico": "*",
+    "meyfa/php-svg": "*",
+    "mouf/nodejs-installer": "*",
+    "itsgoingd/clockwork": "*",
+    "laravel/tinker": "*",
+    "fpdf/fpdf": "*",
+    "spatie/laravel-sitemap": "^5.3"
   },
   "require-dev": {
     "fzaninotto/faker": "*",
@@ -21,7 +21,7 @@
     "phpunit/phpunit": "*",
     "symfony/css-selector": "*",
     "symfony/dom-crawler": "*",
-    "barryvdh/laravel-debugbar": "^3.1"
+    "barryvdh/laravel-debugbar": "*"
   },
   "autoload": {
     "classmap": [
