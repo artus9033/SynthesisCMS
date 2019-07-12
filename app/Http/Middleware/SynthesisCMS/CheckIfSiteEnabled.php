@@ -25,7 +25,7 @@ class CheckIfSiteEnabled
 			if(UserPrivilegesManager::isSiteManager()){
 				Toolbox::addWarningToBag(trans('synthesiscms/main.warning_site_disabled'));
 			}else {
-				throw new MaintenanceModeException(Carbon::now()->getTimestamp(), 'Please try again later', 'Maintenance break');
+				throw new MaintenanceModeException(Carbon::now()->getTimestamp(), 40, 'Please try again later');
 			}
 		}
 
