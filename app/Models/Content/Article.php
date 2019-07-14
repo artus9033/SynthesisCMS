@@ -21,7 +21,7 @@ class Article extends Model
 	public function getPublisher(){
 		$userQuery = User::find($this->publishedBy);
 		if($userQuery) {
-			$user = $userQuery->first();
+			$user = $userQuery;
 		}else{
 			$user = User::first();
 		}
