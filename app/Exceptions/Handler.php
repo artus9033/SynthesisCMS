@@ -18,6 +18,7 @@ use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -118,7 +119,7 @@ class Handler extends ExceptionHandler
             return parent::render($request, $exception);
         } else {
             \Barryvdh\Debugbar\Facade::disable();
-            if ($exception instanceof NotFoundHttpException) {
+            if ($exception instanceof NotFoundHttpException || $exception instanceof MethodNotAllowedHttpException) {
                 return response()->view("errors/404")->setStatusCode(404);
             } else if ($exception instanceof MaintenanceModeException || $exception instanceof ServiceUnavailableHttpException) {
                 return response()->view("errors/503")->setStatusCode(503);
