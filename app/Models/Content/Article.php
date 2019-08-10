@@ -19,9 +19,9 @@ class Article extends Model
 	protected $fillable = array('title', 'description', 'articleCategory', 'image', 'hasImage', 'cardSize', 'publishedBy');
 
 	public function getPublisher(){
-		$userQuery = User::find(13);
+		$userQuery = User::find($this->publishedBy);
 		if($userQuery) {
-			$user = $userQuery->first();
+			$user = $userQuery;
 		}else{
 			$user = User::first();
 		}
