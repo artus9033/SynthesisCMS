@@ -140,8 +140,8 @@ class Handler extends ExceptionHandler
                         break;
                 }
             } else {
-                //$exception instanceof ModelNotFoundException -> best to show 500 ISE
-                return response()->view("errors/500")->setStatusCode(500);
+                //$exception instanceof ModelNotFoundException -> best to show 404
+                return response()->view("errors/404")->setStatusCode(404);
             }
         }
     }

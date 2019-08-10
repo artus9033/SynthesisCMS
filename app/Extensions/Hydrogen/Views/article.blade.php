@@ -50,12 +50,12 @@
 
 		@if($extension_instance->showHeader)
 			<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
-				<h1 style="font-size: 2.92rem" class="col s12">{{ $page->page_title }}</h1>
+				<h2 style="font-size: 2.92rem" class="col s12">{{ $page->page_title }}</h2>
 				<div class="col s12 row white divider" style="height: 2px;"></div>
 				<h5 class="col s12">{!! $page->page_header !!}</h5>
 			</div>
 		@endif
-		
+
 		<div class="card z-depth-3 col @if($article->hasImage) s12 m12 l12 @else s12 m12 l10 offset-l1 @endif">
 			@if($article->hasImage)
 				<div class="card-image col s12 m6 l5 row">

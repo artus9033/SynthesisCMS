@@ -46,7 +46,7 @@
 
 		@if($extension_instance->showHeader)
 			<div class="col s10 offset-s1 card-panel white-text {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} z-depth-2 hoverable center row">
-				<h1 class="col s12">{{ $page->page_title }}</h1>
+				<h2 class="col s12">{{ $page->page_title }}</h2>
 				<div class="col s12 row white divider" style="height: 2px;"></div>
 				<h5 class="col s12">{!! $page->page_header !!}</h5>
 			</div>

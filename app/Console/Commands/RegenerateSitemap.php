@@ -38,6 +38,6 @@ class RegenerateSitemap extends Command
     {
         ExtensionsCallbacksBridge::regenerateSitemap();
 
-        echo ("Sitemap & robots.txt regenerated successfully!");
+        echo ("Sitemap & robots.txt regenerated successfully!\n");
     }
 }
