@@ -48,6 +48,25 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\SynthesisCMS\SynthesisFilesystemMiddleware::class,
         ],
 
+        // uploads - public routes that are used for downloading files uploaded to the server; not meant to be indexed by stats tracker
+        'uploads' => [
+            \App\Http\Middleware\SynthesisCMS\CheckDatabaseConnectionMiddleware::class,
+            \App\Http\Middleware\Security\HttpsRedirectionMiddleware::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \App\Http\Middleware\Content\Locale::class,
+            \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+            \App\Http\Middleware\SynthesisCMS\CheckIfSiteEnabled::class,
+            \App\Http\Middleware\Security\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\Content\SynthesisHtmlDynamicUrlHandlerMiddleware::class,
+            \App\Http\Middleware\SynthesisCMS\SynthesisDevModeMiddleware::class,
+            \App\Http\Middleware\Security\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\SynthesisCMS\HookExtensionsMiddleware::class,
+            \App\Http\Middleware\SynthesisCMS\SynthesisFilesystemMiddleware::class,
+        ],
+
         // web_internal - should be used by routes that are not meant to be indexed by stats tracker
         'web_internal' => [
             //\App\Http\Middleware\SynthesisCMS\SynthesisInstallationCheckMiddleware::class,
