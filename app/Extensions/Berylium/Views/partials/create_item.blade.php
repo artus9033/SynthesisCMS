@@ -69,11 +69,10 @@
                                 }
 							</script>
 							@php
-								$extensions = \App\Models\Settings\Settings::getActiveInstance()->getInstalledExtensions();
+								$synthesiscmsExtensions = view()->shared("synthesiscmsExtensions");
 								$routes_data = Array();
-								while(list(,$extension) = \App\Toolbox::each($extensions)) {
-									$kpath = 'App\\Extensions\\'.$extension.'\\ExtensionKernel';
-									$kernel = new $kpath;
+								foreach ($synthesiscmsExtensions as $extensionPack) {
+									$kernel = $extensionPack[0];
 									foreach($kernel->getRoutesAndSubroutes() as $routes_packed){
 										if(!empty($routes_packed)){
 											foreach($routes_packed as $routes_unpacked){
