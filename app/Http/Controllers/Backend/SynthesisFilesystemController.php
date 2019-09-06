@@ -159,10 +159,6 @@ class SynthesisFilesystemController extends Controller
 
         $data = [
             'success' => $success,
-            'src' => $srcPath,
-            'tgt' => $tgtParentPath,
-            'srce' => $storage->exists($srcPath),
-            'tgte' => ($tgtParentPath),
         ];
 
         return response($data);
@@ -198,6 +194,11 @@ class SynthesisFilesystemController extends Controller
                 $fname = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $fext = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
                 $fdir = $request->get('path');
+
+                if (!endsWith($fdir, "/")) {
+                    $fdir .= "/";
+                }
+
                 $fpathRelative = $fdir . getNewFileName($storage, $fdir, $fname, $fext, false);
                 if ($storage->putFileAs('', $file, $fpathRelative)) {
                     $data = array(
