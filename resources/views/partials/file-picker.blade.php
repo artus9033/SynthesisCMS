@@ -7,17 +7,19 @@
 			<nav>
 				<div class="nav-wrapper {{ $synthesiscmsMainColor }}">
 					<div class="col s12" id="{{ $picker_modal_id }}_path">
-						<a class="white-text breadcrumb" style="cursor: pointer;" onclick="{{ $picker_modal_id }}_setPickerPath('/')">
-							{{ trans('synthesiscms/admin.chooser_path') }}
-							&nbsp;{{ trans('synthesiscms/admin.chooser_path_root') }}
-						</a>
 					</div>
 				</div>
 			</nav>
-			<div class="progress">
+			<div class="progress" style="margin-top: 10px;">
 				<div id="{{ $picker_modal_id }}_loading" class="indeterminate"></div>
 			</div>
 		</div>
+        <div class="center col s12 row">
+            <a onclick="{{ $picker_modal_id }}_askForCreateDirectory()" class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
+                    <i class="material-icons white-text left">create_new_folder</i>
+                    {{ trans('synthesiscms/admin.chooser_create_directory') }}
+            </a>
+        </div>
         <div class="col s12 row divider {{ $synthesiscmsMainColor }}"></div>
         <div class="col s12 row">
             <h5 class="teal-text center">
@@ -36,7 +38,7 @@
 			<a class="btn {{ $synthesiscmsMainColor }} col waves-effect waves-light"
 			   onclick="{{ $picker_modal_id }}_uploadPickerNow()">{{ trans('synthesiscms/admin.chooser_upload') }}</a>
 		</div>
-		<script>
+        <script>
             function {{ $picker_modal_id }}_uploadPickerNow() {
                 var mCurrentPath = synthesiscmsPicker{{ $picker_modal_id }}CurrentPath;
                 var formData = new FormData();
@@ -71,9 +73,45 @@
 					}
                 });
             }
+
+            function {{ $picker_modal_id }}_askForCreateDirectory() {
+                var mCurrentPath = synthesiscmsPicker{{ $picker_modal_id }}CurrentPath;
+                var formData = new FormData();
+                var newDirName = prompt("Podaj nazwę nowego katalogu", "");
+                var fullNewDirPath = `${mCurrentPath.endsWith("/") ? mCurrentPath : `${mCurrentPath}/`}${newDirName}`;
+                formData.append('path', fullNewDirPath);console.log(fullNewDirPath)
+                $.ajax({
+                    url: {!! json_encode(route('admin_uploads_create_dir')) !!},
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    cache: false,
+                    contentType: false,
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    success: function (response) {
+                        if(response.success) {
+                            {{ $picker_modal_id }}_setPickerPath(mCurrentPath);
+                            SynthesisCmsJsUtils.showToast("{{ trans('synthesiscms/admin.chooser_toast_create_dir_success') }}");
+                        }else{
+                            SynthesisCmsJsUtils.showToast("{{ trans('synthesiscms/admin.chooser_toast_create_dir_failed') }}");
+                            console.error("SynthesisCMS file picker create directory error: ");
+                            console.error(response);
+						}
+                    },
+					error: function(response){
+                        SynthesisCmsJsUtils.showToast("{{ trans('synthesiscms/admin.chooser_toast_create_dir_failed') }}");
+                        console.error("SynthesisCMS file picker create directory error: ");
+                        console.error(response);
+					}
+                });
+            }
 		</script>
 		<div class="col s12 row divider {{ $synthesiscmsMainColor }}"></div>
-		<div class="col s12 row" id="{{ $picker_modal_id }}_manager"></div>
+		<div class="col s12 row" id="{{ $picker_modal_id }}_manager" style="text-align: center;"></div>
 	</div>
 	<div class="modal-footer">
 		<span class="valign">
@@ -89,21 +127,12 @@
 </div>
 <script>
 	var synthesiscmsPicker{{ $picker_modal_id }}CurrentPath = '';
-			@if(isset($followIframeParentHeight))
-			@if($followIframeParentHeight)
-    var mNitrogenHeight = $(window.parent).height() / 3;
-    if (mNitrogenHeight < 650) {
-        mNitrogenHeight = 650;
-    }
-    $('#{{ $picker_modal_id }}').css('height', mNitrogenHeight);
-    @endif
-@endif
-$('#{{ $picker_modal_id }}').modal({
+    $('#{{ $picker_modal_id }}').modal({
     onOpenEnd: function (modal, trigger) {
             {{ $picker_modal_id }}_setPickerPath('/');
         }
     });
-//TODO: handle first here
+
     function {{ $picker_modal_id }}_selectFile(name, path, size) {
         $("#{{ $picker_modal_id }}_chosen-image").text(name);
         $("#{{ $picker_modal_id }}_chosen-image-data").text(path);
@@ -133,22 +162,51 @@ $('#{{ $picker_modal_id }}').modal({
                             mgrHtml += value['name'] + "', '";
                             mgrHtml += value['path'] + "', '" + value['size'] + "')\"><div class='card-image' style='width: 100%; height: 100%;'>" + imgObject.prop('outerHTML') + "<span class='card-title card-panel truncate no-padding col s12 white-text' style='margin: unset !important; background-color: rgba(100, 100, 100, 0.5);text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;'>" + value['name'] + "</span></div></div>";
                         } else {
-                            mgrHtml += "<div class='col s12 m6 l3 waves-effect synthesis-aspect-ratio card-panel synthesiscms-file-picker-pointer-element hoverable {{ $synthesiscmsMainColor }}-text center' onclick=\"{{ $picker_modal_id }}_selectFile('";
+                            mgrHtml += "<div style='overflow: hidden;' data-position='top' data-delay='50' data-tooltip='" + value['name'] + "' class='col s12 m6 l3 waves-effect waves-light tooltipped synthesis-aspect-ratio card synthesiscms-file-picker-pointer-element hoverable no-padding' onclick=\"{{ $picker_modal_id }}_selectFile('";
                             mgrHtml += value['name'] + "', '";
-                            mgrHtml += value['path'] + "', '" + value['size'] + "')\"><span class='center col s12 row' style='margin-top: 5px; margin-bottom: 5px; height: 100%;'>" + value['name'] + "</div>";
+                            mgrHtml += value['path'] + "', '" + value['size'] + "')\"><i style='font-size: 140px;' class='material-icons {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}'>insert_drive_file</i><span class='center col s12 row' style='margin-top: 5px; margin-bottom: 5px; height: 100%;'>" + value['name'] + "</div>";
                         }
                     });
+
+                    $.each(data['directories'], function (index, value) {
+                        mgrHtml += "<div style='overflow: hidden;' data-position='top' data-delay='50' data-tooltip='" + value['name'] + "' class='col s12 m6 l3 waves-effect waves-light tooltipped synthesis-aspect-ratio card synthesiscms-file-picker-pointer-element hoverable no-padding' onclick=\"{{ $picker_modal_id }}_setPickerPath('";
+                        mgrHtml += value['name'] + "')\"><i style='font-size: 140px;' class='material-icons {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}'>folder</i><span class='center col s12 row' style='margin-top: 5px; margin-bottom: 5px; height: 100%;'>" + value['name'].split("/").slice(-1)[0] + "</div>";
+                    });
+
+                    var breadcrumbsHtml = `<a class='white-text breadcrumb' style='cursor: pointer;' onclick="{!! $picker_modal_id !!}_setPickerPath('/')">
+                        {{ trans('synthesiscms/admin.chooser_path') }}
+                        &nbsp;{{ trans('synthesiscms/admin.chooser_path_root') }}
+                    </a>`;
+                    var pathSegments = path.split("/");
+
+                    pathSegments.forEach(function(item, index){
+                        if(item.length){
+                            var isLastSegment = index == pathSegments.length - 1;
+
+                            breadcrumbsHtml += `<a class="white-text breadcrumb" style="${isLastSegment ? "" : `cursor: pointer`};" ${isLastSegment ? "" : `onclick="{{ $picker_modal_id }}_setPickerPath('${item}')`}">
+                                ${item}
+                            </a>`;
+                        }
+                    });
+
+                    $("#{{ $picker_modal_id }}_path").html(breadcrumbsHtml);
+
                     $('#{{ $picker_modal_id }}_manager').html(mgrHtml);
+
                     $('#{{ $picker_modal_id }}_loading').css('display', 'none');
+
                     SynthesisCmsJsUtils.triggerSynthesisDynamicUrlsRescanOnElement($('#{{ $picker_modal_id }}_manager').parent());
+
                     var synthesiscmsFilePickerResizerFunc = function () {
                         $('.synthesis-aspect-ratio').each(function (e) {
                             $(this).height($(this).width());
                         });
                     };
+
                     $(window).resize(function () {
                         synthesiscmsFilePickerResizerFunc();
                     });
+
                     $(document).ready(function(){
                         synthesiscmsFilePickerResizerFunc();
                         $('.synthesis-aspect-ratio').each(function (e) {

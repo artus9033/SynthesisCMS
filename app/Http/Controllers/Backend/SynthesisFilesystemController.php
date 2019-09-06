@@ -55,7 +55,8 @@ class SynthesisFilesystemController extends Controller
     public function files_list(ContentEditorRequest $request)
     {
         $storage = $this->getUploadsDisk();
-        $allFiles = $storage->files();
+        $currentDir = $request->get("path");
+        $allFiles = $storage->files($currentDir);
         $requestedExtensions = $request->get('extensions');
         $filteredFiles = array();
         foreach ($allFiles as $file) {
@@ -72,17 +73,47 @@ class SynthesisFilesystemController extends Controller
                 ]);
             }
         }
+
         $directories = array();
-        foreach ($storage->directories() as $dir) {
+
+        foreach ($storage->directories($currentDir) as $dir) {
             array_push($directories, [
                 'name' => $dir,
                 'itemsCount' => count($storage->files($dir)),
             ]);
         }
+
         $data = [
             'files' => $filteredFiles,
             'directories' => $directories,
         ];
+        return response($data);
+    }
+
+    /**
+     * Function that creates a directory inside the public/synthesis-uploads directory
+     * @param ContentEditorRequest $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function createDir(ContentEditorRequest $request)
+    {
+        $storage = $this->getUploadsDisk();
+        $path = ltrim($request->get('path'), "/");
+
+        $success = true;
+
+        if ($storage->exists($path)) {
+            $success = false;
+        } else {
+            if (!$storage->makeDirectory($path)) {
+                $success = false;
+            }
+        }
+
+        $data = [
+            'success' => $success,
+        ];
+
         return response($data);
     }
 

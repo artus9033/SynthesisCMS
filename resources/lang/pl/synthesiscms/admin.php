@@ -2,6 +2,10 @@
 
 return [
     'open_applet_settings_fullscreen' => 'Otwórz ustawienia appletu w trybie pełnoekranowym',
+    'chooser_toast_create_dir_success' => 'Katalog utworzony pomyślnie',
+    'chooser_toast_create_dir_failed' => 'Błąd podczas tworzenia katalogu',
+    'chooser_create_directory' => "Utwórz katalog",
+    'chooser_delete_directory' => "Usuń katalog",
     'chooser_upload_header' => 'Wczytaj plik na serwer',
     'chooser_file_hint' => 'Wybierz plik z dysku',
     'chooser_upload' => 'Wyślij',

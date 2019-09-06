@@ -2,6 +2,10 @@
 
 return [
     'open_applet_settings_fullscreen' => 'Open applet settings in fullscreen mode',
+    'chooser_toast_create_dir_success' => 'Directory created successfully',
+    'chooser_toast_create_dir_failed' => 'Error creating directory',
+    'chooser_create_directory' => "Create directory",
+    'chooser_delete_directory' => "Delete directory",
     'chooser_upload_header' => 'Upload a file to the server',
     'chooser_file_hint' => 'Choose a file from disk',
     'chooser_upload' => 'Upload',

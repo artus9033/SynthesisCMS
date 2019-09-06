@@ -7,6 +7,7 @@ Route::get('/admin', 'Backend\\BackendController@index')->name('admin');
 
 Route::get('/admin/uploads_list', 'Backend\\SynthesisFilesystemController@files_list')->name('admin_uploads_list');
 Route::post('/admin/upload', 'Backend\\SynthesisFilesystemController@uploadPost')->name('admin_upload_post');
+Route::post('/admin/uploads_create_directory', 'Backend\\SynthesisFilesystemController@createDir')->name('admin_uploads_create_dir');
 
 Route::post('/synthesis-route-check', 'Content\\RouteController@checkRoute')->name('synthesis_route_check');
 
@@ -61,5 +62,3 @@ Route::get('/admin/tools/optimizer', 'Backend\\BackendController@toolOptimizerGe
 Route::post('/admin/tools/optimizer_execute', 'Backend\\BackendController@toolOptimizerExecutePost')->name('tools_optimizer_execute_post');
 
 Route::get('/update', 'Backend\\UpdateController@index')->name('update');
-
-?>

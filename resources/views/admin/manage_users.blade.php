@@ -50,11 +50,14 @@
 								<td class="center">{{ $user->name }}</td>
 								<td class="center">{{ $user->email }}</td>
 								<td class="center">@php if($user->is_admin){ echo trans('synthesiscms/profile.admin'); }else{ echo trans('synthesiscms/profile.user'); } @endphp</td>
-								<td class="center"><a href="{{ route('user_privileges', ['id' => $uid]) }}"
-													  class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable"><i
-												class="material-icons white-text left">edit</i>{{ trans('synthesiscms/admin.change_user_privileges') }}
-									</a></td>
-								<div id="modalDelete" class="modal">
+								<td class="center">
+									<a href="{{ route('user_privileges', ['id' => $uid]) }}"
+										class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
+											<i class="material-icons white-text left">edit</i>
+											{{ trans('synthesiscms/admin.change_user_privileges') }}
+									</a>
+								</td>
+								<div id="modalDelete-{!! $uid !!}" class="modal">
 									<div class="modal-content">
 										<h3>{{ trans('synthesiscms/admin.modal_delete_user_header') }}</h3>
 										<div class="row col s12">
@@ -66,14 +69,14 @@
 										</h5>
 									</div>
 									<div class="modal-footer">
-										<a style="margin-right: 9%;" onclick="$('#modalDelete').modal('close');"
+										<a style="margin-right: 9%;" onclick="$('#modalDelete-{!! $uid !!}').modal('close');"
 										   class="modal-action modal-close waves-effect waves-green btn-flat right">{{ trans('synthesiscms/admin.modal_delete_user_btn_no') }}</a>
 										<a style="margin-left: 9%;" href="{{ route('profile_delete', ['id' => $uid]) }}"
 										   class="modal-action red white-text modal-close waves-effect waves-light btn-flat left">{{ trans('synthesiscms/admin.modal_delete_user_btn_yes') }}</a>
 									</div>
 								</div>
 								<td class="center">
-									<button onclick="$('#modalDelete').modal('open');"
+									<button onclick="$('#modalDelete-{!! $uid !!}').modal('open');"
 											class="btn {{ $synthesiscmsMainColor }} {{ $synthesiscmsMainColorClass }} waves-effect waves-light hoverable">
 										<i class="material-icons white-text left">delete</i>{{ trans('synthesiscms/admin.delete_user') }}
 									</button>
