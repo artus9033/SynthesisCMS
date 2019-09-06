@@ -260,15 +260,17 @@
                 success: function (data) {
                     var mgrHtml = "";
                     $.each(data['files'], function (index, value) {
+                        var nameExtracted = value['name'].split("/").slice(-1)[0];
+
                         if (value['mime_type'].includes('image')) {
                             var imgObject = SynthesisCmsJsUtils.addDynamicSynthesisUrlClientSideProcessableAttributesToElement($("<img style='width: 100%; height: 100%; object-fit: cover'>"), value['path'], 'src');
                             mgrHtml += `<div data-filepath='${value['path']}' draggable='true' ondragstart='{{ $picker_modal_id }}_drag(event)' style='overflow: hidden;' data-position='top' data-delay='50' data-tooltip='${value['name']}' class='col s12 m6 l3 waves-effect waves-light tooltipped synthesis-aspect-ratio card synthesiscms-file-picker-pointer-element hoverable no-padding' onclick=\"{{ $picker_modal_id }}_selectFile('`;
                             mgrHtml += value['name'] + "', '";
-                            mgrHtml += value['path'] + "', '" + value['size'] + "')\"><div class='card-image' style='width: 100%; height: 100%;'>" + imgObject.prop('outerHTML') + "<span class='card-title card-panel truncate no-padding col s12 white-text' style='margin: unset !important; background-color: rgba(100, 100, 100, 0.5);text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;'>" + value['name'] + "</span></div></div>";
+                            mgrHtml += value['path'] + "', '" + value['size'] + "')\"><div class='card-image' style='width: 100%; height: 100%;'>" + imgObject.prop('outerHTML') + "<span class='card-title card-panel truncate no-padding col s12 white-text' style='margin: unset !important; background-color: rgba(100, 100, 100, 0.5);text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;'>" + nameExtracted + "</span></div></div>";
                         } else {
                             mgrHtml += `<div data-filepath='${value['path']}' draggable='true' ondragstart='{{ $picker_modal_id }}_drag(event)' style='overflow: hidden;' data-position='top' data-delay='50' data-tooltip='${value['name']}' class='col s12 m6 l3 waves-effect waves-light tooltipped synthesis-aspect-ratio card synthesiscms-file-picker-pointer-element hoverable no-padding' onclick=\"{{ $picker_modal_id }}_selectFile('`;
                             mgrHtml += value['name'] + "', '";
-                            mgrHtml += value['path'] + "', '" + value['size'] + "')\"><i style='font-size: 140px;' class='material-icons {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}'>insert_drive_file</i><span class='center col s12 row' style='margin-top: 5px; margin-bottom: 5px; height: 100%;'>" + value['name'] + "</div>";
+                            mgrHtml += value['path'] + "', '" + value['size'] + "')\"><i style='font-size: 140px;' class='material-icons {{ $synthesiscmsMainColor }}-text {{ $synthesiscmsMainColorClass }}'>insert_drive_file</i><span class='center col s12 row' style='margin-top: 5px; margin-bottom: 5px; height: 100%;'>" + nameExtracted + "</div>";
                         }
                     });
 
