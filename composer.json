@@ -13,7 +13,8 @@
     "itsgoingd/clockwork": "*",
     "laravel/tinker": "*",
     "fpdf/fpdf": "*",
-    "spatie/laravel-sitemap": "^5.3"
+    "spatie/laravel-sitemap": "^5.3",
+    "league/flysystem": "^1.0"
   },
   "require-dev": {
     "fzaninotto/faker": "*",

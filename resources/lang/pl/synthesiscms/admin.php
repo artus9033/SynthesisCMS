@@ -2,6 +2,8 @@
 
 return [
     'open_applet_settings_fullscreen' => 'Otwórz ustawienia appletu w trybie pełnoekranowym',
+    'chooser_toast_move_file_success' => 'Element przeniesiony pomyślnie',
+    'chooser_toast_move_file_failed' => 'Błąd podczas przenoszenia elementu',
     'chooser_toast_create_dir_success' => 'Katalog utworzony pomyślnie',
     'chooser_toast_create_dir_failed' => 'Błąd podczas tworzenia katalogu',
     'chooser_create_directory' => "Utwórz katalog",

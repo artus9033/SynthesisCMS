@@ -8,6 +8,7 @@ Route::get('/admin', 'Backend\\BackendController@index')->name('admin');
 Route::get('/admin/uploads_list', 'Backend\\SynthesisFilesystemController@files_list')->name('admin_uploads_list');
 Route::post('/admin/upload', 'Backend\\SynthesisFilesystemController@uploadPost')->name('admin_upload_post');
 Route::post('/admin/uploads_create_directory', 'Backend\\SynthesisFilesystemController@createDir')->name('admin_uploads_create_dir');
+Route::post('/admin/uploads_move_file', 'Backend\\SynthesisFilesystemController@moveFile')->name('admin_uploads_move_file');
 
 Route::post('/synthesis-route-check', 'Content\\RouteController@checkRoute')->name('synthesis_route_check');
 

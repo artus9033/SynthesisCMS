@@ -2,6 +2,8 @@
 
 return [
     'open_applet_settings_fullscreen' => 'Open applet settings in fullscreen mode',
+    'chooser_toast_move_file_success' => 'Item moved successfully',
+    'chooser_toast_move_file_failed' => 'Error moving item',
     'chooser_toast_create_dir_success' => 'Directory created successfully',
     'chooser_toast_create_dir_failed' => 'Error creating directory',
     'chooser_create_directory' => "Create directory",

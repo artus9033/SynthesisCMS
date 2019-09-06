@@ -8,6 +8,15 @@ use App\Toolbox;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
+function endsWith($string, $endString)
+{
+    $len = strlen($endString);
+    if ($len == 0) {
+        return true;
+    }
+    return (substr($string, -$len) === $endString);
+}
+
 /**
  * Class SynthesisFilesystemController
  * @package App\Http\Controllers\Backend
@@ -112,6 +121,48 @@ class SynthesisFilesystemController extends Controller
 
         $data = [
             'success' => $success,
+        ];
+
+        return response($data);
+    }
+
+    /**
+     * Function that moves a file inside the public/synthesis-uploads directory
+     * @param ContentEditorRequest $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function moveFile(ContentEditorRequest $request)
+    {
+        $storage = $this->getUploadsDisk();
+        $srcPath = str_replace("synthesis-uploads", "", ltrim($request->get('sourceFile'), "/"));
+        $tgtParentPath = ltrim($request->get('targetDirectory'), "/");
+
+        if (!endsWith($tgtParentPath, "/")) {
+            $tgtParentPath .= "/";
+        }
+
+        $expld = explode("/", $srcPath);
+
+        $tgtPath = $tgtParentPath . end($expld);
+
+        $success = true;
+
+        if ($storage->exists($srcPath) && (!strlen($tgtParentPath) || $tgtParentPath == "/" || $storage->exists($tgtParentPath))) { //  && $storage->isFile($tgtParentPath)
+            if ($srcPath == $tgtPath) {
+                $success = false;
+            } else {
+                $success = $storage->move($srcPath, $tgtPath);
+            }
+        } else {
+            $success = false;
+        }
+
+        $data = [
+            'success' => $success,
+            'src' => $srcPath,
+            'tgt' => $tgtParentPath,
+            'srce' => $storage->exists($srcPath),
+            'tgte' => ($tgtParentPath),
         ];
 
         return response($data);
