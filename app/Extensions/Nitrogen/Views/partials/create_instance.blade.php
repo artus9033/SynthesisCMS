@@ -136,37 +136,50 @@
 				</p>
 			</div>
 			<script>
-                var buttonCollapsible = false;
+				var buttonCollapsible = false;
+
                 $("#hasButton").click(function () {
                     buttonCollapsible = true;
                     $("#buttonCollapsible").click();
                     buttonCollapsible = false;
-                });
+				});
+
                 $("#buttonCollapsible").click(function (event) {
                     if (!buttonCollapsible) {
                         event.preventDefault();
                     }
-                });
-                var pagesCollapsible = false;
+				});
+
+				var pagesCollapsible = false;
+
                 $(document).ready(function () {
-                    $("#pagesCollapsible").click();
-                });
+					$(function(){
+						pagesCollapsible = true;
+						$("#pagesCollapsible").click();
+						pagesCollapsible = false;
+					});
+				});
+
                 $("#assignedToAllPages").click(function () {
                     pagesCollapsible = true;
                     $("#pagesCollapsible").click();
                     pagesCollapsible = false;
-                });
+				});
+
                 $("#pagesCollapsible").click(function (event) {
                     if (!pagesCollapsible) {
                         event.preventDefault();
                     }
-                });
-                var autoplayCollapsible = false;
+				});
+
+				var autoplayCollapsible = false;
+
                 $("#autoplay").click(function () {
                     autoplayCollapsible = true;
                     $("#autoplayCollapsible").click();
                     autoplayCollapsible = false;
-                });
+				});
+
                 $("#autoplayCollapsible").click(function (event) {
                     if (!autoplayCollapsible) {
                         event.preventDefault();

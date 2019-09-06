@@ -154,55 +154,72 @@
 				</p>
 			</div>
 			<script>
-                var buttonCollapsible = false;
-                $(document).ready(function () {
-                    if ({!! json_encode($model->hasButton) !!}) {
-                        buttonCollapsible = true;
-                        $("#buttonCollapsible").click();
-                        buttonCollapsible = false;
-                    }
-                });
+				var buttonCollapsible = false;
+
+                $(document).ready(function(){
+					$(function(){
+						if ({!! json_encode($model->hasButton) !!}) {
+							buttonCollapsible = true;
+							$("#buttonCollapsible").click();
+							buttonCollapsible = false;
+						}
+					});
+				});
+
                 $("#hasButton").click(function () {
                     buttonCollapsible = true;
                     $("#buttonCollapsible").click();
                     buttonCollapsible = false;
-                });
+				});
+
                 $("#buttonCollapsible").click(function (event) {
                     if (!buttonCollapsible) {
                         event.preventDefault();
                     }
-                });
-                var pagesCollapsible = false;
-                $(document).ready(function () {
-                    if (!{!! json_encode($model->assignedToAllPages) !!}) {
-                        pagesCollapsible = true;
-                        $("#pagesCollapsible").click();
-                        pagesCollapsible = false;
-                    }
-                });
+				});
+
+				var pagesCollapsible = false;
+
+				$(document).ready(function(){
+					$(function(){
+						if (!{!! json_encode($model->assignedToAllPages) !!}) {
+							pagesCollapsible = true;
+							$("#pagesCollapsible").click();
+							pagesCollapsible = false;
+						}
+					});
+				});
+
                 $("#assignedToAllPages").click(function () {
                     pagesCollapsible = true;
                     $("#pagesCollapsible").click();
                     pagesCollapsible = false;
-                });
+				});
+
                 $("#pagesCollapsible").click(function (event) {
                     if (!pagesCollapsible) {
                         event.preventDefault();
                     }
-                });
-                var autoplayCollapsible = false;
-                $(document).ready(function () {
-                    if ({!! json_encode($model->autoplay) !!}) {
-                        autoplayCollapsible = true;
-                        $("#autoplayCollapsible").click();
-                        autoplayCollapsible = false;
-                    }
-                });
+				});
+
+				var autoplayCollapsible = false;
+
+				$(document).ready(function(){
+					$(function () {
+						if ({!! json_encode($model->autoplay) !!}) {
+							autoplayCollapsible = true;
+							$("#autoplayCollapsible").click();
+							autoplayCollapsible = false;
+						}
+					});
+				});
+
                 $("#autoplay").click(function () {
                     autoplayCollapsible = true;
                     $("#autoplayCollapsible").click();
                     autoplayCollapsible = false;
-                });
+				});
+
                 $("#autoplayCollapsible").click(function (event) {
                     if (!autoplayCollapsible) {
                         event.preventDefault();
