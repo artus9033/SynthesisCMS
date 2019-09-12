@@ -2,6 +2,7 @@
 
 namespace App\Extensions\Berylium;
 
+use Illuminate\Support\Str;
 use App\Extensions\Berylium\Models\BeryliumExtension;
 use App\Extensions\Berylium\Models\BeryliumItem;
 use App\Http\Requests\SiteManagerRequest;
@@ -227,7 +228,7 @@ class ExtensionKernel extends SynthesisExtension
         $model->save();
         $count = 0;
         foreach ($request->all() as $key => $val) {
-            if (starts_with($key, "item_checkbox")) {
+            if (Str::startsWith($key, "item_checkbox")) {
                 $item = BeryliumItem::where(['id' => intval(str_replace("item_checkbox", "", $key))])->first();
                 $after_query = BeryliumItem::where(['menu' => $item->menu, 'before' => $item->id]);
                 if ($after_query->count()) {
