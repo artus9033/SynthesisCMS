@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Content;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContentEditorRequest;
 use App\Http\Requests\ContentManagerRequest;
@@ -127,7 +128,7 @@ class ArticleController extends Controller
         foreach ($request->all() as $key => $val) {
             if ($csrf_token) {
                 $csrf_token = false;
-            } else if (starts_with($key, "article_checkbox")) {
+            } else if (Str::startsWith($key, "article_checkbox")) {
                 if (Article::where(['id' => intval(str_replace("article_checkbox", "", $key))])->exists()) {
                     Article::find(intval(str_replace("article_checkbox", "", $key)))->delete();
                     $count++;
@@ -150,7 +151,7 @@ class ArticleController extends Controller
         foreach ($request->all() as $key => $val) {
             if ($csrf_token) {
                 $csrf_token = false;
-            } else if (starts_with($key, "article_checkbox")) {
+            } else if (Str::startsWith($key, "article_checkbox")) {
                 if (Article::where(['id' => intval(str_replace("article_checkbox", "", $key))])->exists()) {
                     $origin = Article::find(intval(str_replace("article_checkbox", "", $key)));
                     $clone = $origin->replicate();
