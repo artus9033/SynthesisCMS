@@ -2,6 +2,7 @@
 
 namespace App\Extensions\Nitrogen;
 
+use Illuminate\Support\Str;
 use App\Extensions\Nitrogen\Models\NitrogenExtension;
 use App\Extensions\Nitrogen\Models\NitrogenItem;
 use App\Http\Requests\SiteManagerRequest;
@@ -316,7 +317,7 @@ class ExtensionKernel extends SynthesisExtension
         $model->save();
         $count = 0;
         foreach ($request->all() as $key => $val) {
-            if (starts_with($key, "item_checkbox")) {
+            if (Str::startsWith($key, "item_checkbox")) {
                 $item = NitrogenItem::where(['id' => intval(str_replace("item_checkbox", "", $key)), 'parentInstance' => $nr])->first();
                 $after_query = NitrogenItem::where(['slider' => $item->slider, 'before' => $item->id, 'parentInstance' => $nr]);
                 if ($after_query->count()) {
