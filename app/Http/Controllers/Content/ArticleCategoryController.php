@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Content;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContentEditorRequest;
 use App\Models\Content\Article;
@@ -86,9 +87,9 @@ class ArticleCategoryController extends Controller
         foreach ($request->all() as $key => $val) {
             if ($csrf_token) {
                 $csrf_token = false;
-            } else if (starts_with($key, "formMassDeleteChildArticlesCheckbox")) { // check if it's the delete child articles hidden checkbox
+            } else if (Str::startsWith($key, "formMassDeleteChildArticlesCheckbox")) { // check if it's the delete child articles hidden checkbox
                 $bool_delete_child_articles = true;
-            } else if (starts_with($key, "articleCategory_checkbox")) {
+            } else if (Str::startsWith($key, "articleCategory_checkbox")) {
                 $mID = intval(str_replace("articleCategory_checkbox", "", $key));
                 if ($mID != 1) {
                     if ($bool_delete_child_articles) {
@@ -128,7 +129,7 @@ class ArticleCategoryController extends Controller
         foreach ($request->all() as $key => $val) {
             if ($csrf_token) {
                 $csrf_token = false;
-            } else if (starts_with($key, "articleCategory_checkbox")) {
+            } else if (Str::startsWith($key, "articleCategory_checkbox")) {
                 $origin = ArticleCategory::find(intval(str_replace("articleCategory_checkbox", "", $key)));
                 $newArticleCategory = $origin->replicate();
                 $newArticleCategory->title = trans("synthesiscms/helper.articleCategory_copy_prefix") . $newArticleCategory->title;
