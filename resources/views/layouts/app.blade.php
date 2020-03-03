@@ -4,6 +4,16 @@
 	@include('partials/base-head-contents', ['title' => $synthesiscmsHeaderTitle, 'image'=> trim(View::yieldContent('image'))])
 
 	@yield('head')
+
+	<script>
+		$(function(){
+			if(document.cookie.indexOf('cookie_notice') == -1) {
+				SynthesisCmsJsUtils.showToastWithButton("{!! trans('synthesiscms/main.toast_cookies_text') !!}", "{!! trans('synthesiscms/main.toast_cookies_btn_accept') !!}", Infinity, function(){}, function(){
+					document.cookie = "cookie_notice=1; path=/;";
+				});
+			}
+		});
+	</script>
 </head>
 <body style="overflow-x: hidden">
 	<header class="no-print">

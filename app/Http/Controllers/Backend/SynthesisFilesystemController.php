@@ -249,11 +249,11 @@ class SynthesisFilesystemController extends Controller
     /**
      * Function that sends the requested file from a non-straightly-public
      * virtual storage folder (see config/filesystems.php) within a download response
-     * @param ContentEditorRequest $request
+     * @param \Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      * response with the requested file contents or a 404 repsonse
      */
-    public function uploadDownload($file, ContentEditorRequest $request)
+    public function uploadDownload($file, \Request $request)
     {
         $storage = $this->getUploadsDisk();
         if ($storage->has($file)) {
