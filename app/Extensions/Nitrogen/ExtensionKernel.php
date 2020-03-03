@@ -2,7 +2,6 @@
 
 namespace App\Extensions\Nitrogen;
 
-use Illuminate\Support\Str;
 use App\Extensions\Nitrogen\Models\NitrogenExtension;
 use App\Extensions\Nitrogen\Models\NitrogenItem;
 use App\Http\Requests\SiteManagerRequest;
@@ -11,6 +10,7 @@ use App\SynthesisCMS\API\Extensions\SynthesisExtension;
 use App\SynthesisCMS\API\Extensions\SynthesisExtensionType;
 use App\SynthesisCMS\API\Positions\SynthesisPositions;
 use App\Toolbox;
+use Illuminate\Support\Str;
 
 /**
  * ExtensionKernel
@@ -383,7 +383,7 @@ class ExtensionKernel extends SynthesisExtension
                         foreach ($pages_assigned_array as $page_id) {
                             if ($page_id) {
                                 $page = Page::where(['id' => $page_id])->first();
-                                if (url($page->slug) === $slug) {
+                                if ($page && url($page->slug) === $slug) {
                                     $show = true;
                                 }
                             }
