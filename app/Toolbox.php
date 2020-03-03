@@ -2,8 +2,9 @@
 
 namespace App;
 
-use App\SynthesisCMS\API\Constants;
 use DirectoryIterator;
+use Illuminate\Support\Str;
+use App\SynthesisCMS\API\Constants;
 
 class Toolbox
 {
@@ -202,13 +203,13 @@ class Toolbox
         $ret = false;
         $route = str_replace("\\", "/", $route);
 
-        if (!starts_with($route, "/")) {
+        if (!Str::startsWith($route, "/")) {
             $ret = true;
             $route = "/" . $route;
         }
 
         if (!strlen($route) == 1) {
-            if (ends_with($route, "/")) {
+            if (Str::startsWith($route, "/")) {
                 $ret = true;
                 $route = substr($route, 0, -1);
             }
